@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($env:CI = \"true\"; pnpm install)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/\" -UseBasicParsing -TimeoutSec 60; Write-Output \"Status: $\\($r.StatusCode\\), Length: $\\($r.Content.Length\\)\"; if \\($r.Content -match \"data-chat-open|Open chat\"\\){ Write-Output \"OK: chat widget present\" } } catch { Write-Output \"FAIL: $\\($_.Exception.Message\\)\" })"
+    ]
+  }
+}
