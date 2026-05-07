@@ -8,7 +8,7 @@ import { ArrowRight, PhoneCall } from "lucide-react"
 import { motion } from "motion/react"
 
 const stats = [
-  { numeric: 10, suffix: "M+", label: "Calls Automated" },
+  { numeric: 300, suffix: "ms", label: "Voice Latency" },
   { numeric: 15, suffix: "+", label: "Indian Languages" },
   { numeric: 40, prefix: "+", suffix: "%", label: "Answer Rate" },
   { numeric: 99.99, suffix: "%", label: "Uptime SLA", decimals: 2 },
