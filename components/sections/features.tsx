@@ -61,12 +61,13 @@ export function Features() {
     <section id="features" className="border-b border-border">
       <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Platform Features</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">The Voice Engine</p>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            Everything you need to ship a production-grade voice agent.
+            Native audio. Not a relay.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Real-time audio in Indian languages, TRAI-compliant telephony, and local integrations — all production-ready, all in one platform.
+            Most AI voice products glue speech-to-text, an LLM, and text-to-speech together — the seams show.
+            9278.io runs on a single audio-native model. No relay, no pipeline lag, no robotic timing.
           </p>
         </ScrollReveal>
 

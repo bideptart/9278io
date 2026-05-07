@@ -83,7 +83,7 @@ export function Hero() {
           className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.08] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
         >
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-          India's #1 AI Voice Agent Platform
+          What's inside 9278.io
         </motion.div>
 
         {/* Headline */}
@@ -93,9 +93,9 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="mx-auto max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          AI Voice Agents Built for{" "}
+          Everything you need to ship a{" "}
           <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/50 bg-clip-text text-transparent">
-            Indian Businesses
+            real voice agent.
           </span>
         </motion.h1>
 
@@ -106,8 +106,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.22 }}
           className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Handle inbound and outbound calls in Hindi, Tamil, Telugu, Marathi, Bengali, and
-          15+ Indian languages. TRAI-compliant, sub-second latency, Indian phone numbers — live in hours.
+          Native audio in 15+ Indian languages, Indian carrier connectivity, RAG over your docs,
+          and a self-hosted control panel — without the enterprise vendor markup.
         </motion.p>
 
         {/* CTAs */}
@@ -123,7 +123,7 @@ export function Hero() {
             className="h-12 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_0_32px_oklch(0.78_0.16_195/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_0_48px_oklch(0.78_0.16_195/0.5)]"
           >
             <Link href="/get-started">
-              Start Now
+              Build your first agent
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
@@ -133,9 +133,9 @@ export function Hero() {
             variant="outline"
             className="h-12 rounded-xl border-border bg-white/[0.04] px-8 text-base font-semibold backdrop-blur-sm transition-all hover:border-border/80 hover:bg-white/[0.07]"
           >
-            <a href="https://dashboard.9278.io/login">
+            <a href="#demo-audio">
               <PhoneCall className="mr-2 h-4 w-4" />
-              Contact Sales
+              Try the live demo
             </a>
           </Button>
         </motion.div>
@@ -147,15 +147,16 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-6 text-xs text-muted-foreground/70"
         >
-          Trusted by 500+ Indian businesses · TRAI Compliant · DPDP Act Ready · Data Stored in India
+          Sub-second latency · Self-hosted dashboard · Indian carrier connectivity · No contracts
         </motion.p>
 
         {/* Demo audio */}
         <motion.div
+          id="demo-audio"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="mx-auto mt-10 w-full max-w-xl"
+          className="mx-auto mt-10 w-full max-w-xl scroll-mt-24"
         >
           <AudioPlayer src="/audio/demo.mp3" title="Hear our agent in action" />
         </motion.div>

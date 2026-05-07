@@ -55,8 +55,8 @@ export function SiteFooter() {
               <Logo height={38} />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Enterprise-ready AI voice agents for inbound and outbound phone calls. Carrier-grade telephony, sub-second
-              latency, proven ROI.
+              Native-audio voice agents for Indian businesses. Sub-second latency, self-hosted dashboard,
+              Indian carrier connectivity — without the enterprise vendor markup.
             </p>
 
             {/* Social links */}

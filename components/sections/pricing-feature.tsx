@@ -81,11 +81,11 @@ export function PricingFeature() {
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Pricing</p>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            Pay only for what you use.
+            Fair pricing. Pay only for what you talk.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Top up with ₹1,699, ₹4,199, or ₹8,399 of voice credit. Pay in INR, get GST invoices.
-            No contracts, no setup fees — credit valid for 60 days.
+            Voice credit valid 60 days from purchase. Indian DIDs from ₹200/month, billed separately.
+            No setup, no contracts, no minimums beyond your top-up.
           </p>
         </ScrollReveal>
 

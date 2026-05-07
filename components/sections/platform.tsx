@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import {
   Network, PhoneCall, FlaskConical, BarChart3, Database,
-  CheckCircle2, XCircle, Clock, ArrowRight, Zap,
+  CheckCircle2, Clock,
 } from "lucide-react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 
@@ -71,12 +71,13 @@ export function Platform() {
     <section className="border-b border-border">
       <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Platform</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">The Control Panel</p>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            The Complete Voice AI OS
+            A self-hosted dashboard you actually own.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            End-to-end infrastructure built for India — multi-agent orchestration, carrier-grade telephony, live monitoring, and continuous model improvement.
+            Voice agents, SIP routes, API keys, and analytics — all live on infrastructure you control.
+            Recordings and transcripts never leave your environment.
           </p>
         </ScrollReveal>
 
@@ -498,7 +499,7 @@ function MonitoringPanel() {
       <div className="space-y-1.5">
         <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Live Events</div>
         <AnimatePresence initial={false}>
-          {events.slice(0, 3).map((ev, i) => (
+          {events.slice(0, 3).map((ev) => (
             <motion.div
               key={`${ev.type}-${ev.ago}`}
               initial={{ opacity: 0, y: -12, height: 0 }}

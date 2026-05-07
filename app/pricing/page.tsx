@@ -13,9 +13,9 @@ import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 
 export const metadata: Metadata = pageSeo({
-  title: "Pricing — voice AI from $0.10/min",
+  title: "Pricing — voice AI from ₹8.35/min",
   description:
-    "Simple, transparent pricing. Voice from $0.10/min. Top up with $20, $50, or $100 to unlock 1, 2, or 3 AI voice agents. Phone numbers from $2/month.",
+    "Fair pricing. Pay only for what you talk. Top up with ₹1,699, ₹4,199, or ₹8,399 to unlock 1, 2, or 3 AI voice agents. Indian DIDs from ₹200/month. No setup, no contracts.",
   path: "/pricing",
 })
 
@@ -64,11 +64,11 @@ export default async function PricingPage({
               Pay as you go · INR pricing · GST invoices
             </span>
             <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">
-              India-first pricing. No surprises.
+              Fair pricing. Pay only for what you talk.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Pay in INR, get GST-compliant invoices. Three top-up sizes. Indian phone numbers from ₹200/month.
-              You only ever pay for the minutes your agents actually talk.
+              Voice credit valid 60 days from purchase. Indian DIDs from ₹200/month, billed separately.
+              No setup, no contracts, no minimums beyond your top-up.
             </p>
           </ScrollReveal>
 

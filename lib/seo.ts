@@ -5,7 +5,7 @@ export const SITE = {
   domain: "9278.io",
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://9278.io",
   description:
-    "India's leading AI voice agent platform. Handle calls in Hindi, Tamil, Telugu, Marathi, Bengali and 15+ Indian languages. TRAI compliant, sub-second latency, Indian phone numbers.",
+    "Native-audio voice agents for Indian businesses. Sub-second latency on Jio/Airtel/BSNL/Vi, RAG over your docs, and a self-hosted control panel — without the enterprise vendor markup.",
   twitter: "@9278io",
   locale: "en_IN",
 } as const

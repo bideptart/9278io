@@ -10,28 +10,28 @@ const steps = [
     icon: Code2,
     title: "Build",
     description:
-      "Design your AI agent with our visual flow builder. Set prompts, tools, knowledge bases, and integrations in minutes — no engineering required.",
+      "Design your agent visually or in plain English. Set system prompt, RAG sources, tools, and personas — no engineering required.",
   },
   {
     number: "02",
     icon: FlaskConical,
     title: "Evaluate",
     description:
-      "Test every scenario in our AI sandbox before going live. Simulate real calls, check edge cases, and fine-tune responses with live audio previews.",
+      "Sandbox every scenario before going live. Compare versions, run scripted calls, and roll back any update with zero downtime.",
   },
   {
     number: "03",
     icon: Rocket,
     title: "Launch",
     description:
-      "Go live instantly with carrier-grade phone numbers in 60+ countries. Deploy to one line or thousands with zero infrastructure setup.",
+      "Provision an Indian DID from ₹200/month or port your existing number through our SIP trunk. Go live on Jio/Airtel/BSNL/Vi in minutes.",
   },
   {
     number: "04",
     icon: BarChart3,
     title: "Optimize",
     description:
-      "Monitor every call with live transcripts, sentiment analysis, and conversion tracking. Continuously improve agents with real-world data.",
+      "Watch P50/P90 latency, transcripts, and AI summaries from the self-hosted dashboard. Fine-tune on your own call data.",
   },
 ]
 
@@ -42,10 +42,11 @@ export function UseCases() {
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">How It Works</p>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            From idea to live calls in hours, not weeks.
+            Every call your business makes.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Our end-to-end platform handles everything — no telephony expertise or ML background required.
+            Inbound front desk, outbound campaigns, follow-ups and reminders — one platform,
+            TRAI-compliant, live in hours.
           </p>
         </ScrollReveal>
 
