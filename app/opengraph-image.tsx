@@ -47,7 +47,7 @@ export default function OG() {
           AI voice agents that actually sound human.
         </div>
         <div style={{ fontSize: 30, color: "#94a3b8", maxWidth: 980, lineHeight: 1.3 }}>
-          Carrier-grade phone numbers. Sub-second latency. Pay-as-you-go from $0.10 / minute.
+          Indian carrier connectivity. Sub-second latency. Pay-as-you-go from ₹8.35 / minute.
         </div>
       </div>
 

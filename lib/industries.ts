@@ -72,9 +72,9 @@ export const INDUSTRIES: Industry[] = [
     slug: "healthcare",
     name: "Healthcare clinics",
     icon: HeartPulse,
-    short: "Patient intake, prescription refills, and reminder calls with a calm, HIPAA-aware bedside tone.",
+    short: "Patient intake, prescription refills, and reminder calls with a calm, DPDP-compliant bedside tone.",
     pitch:
-      "Health systems are drowning in repetitive phone work. 9278.io automates intake, refill requests, post-visit follow-ups, and benefits questions — with a warm, paced bedside tone that elderly and ESL patients actually respond to.",
+      "Indian clinics and hospital chains are drowning in repetitive phone work. 9278.io automates intake, refill requests, post-visit follow-ups, and benefits questions — with a warm, paced bedside tone in Hindi, Tamil, Telugu and other regional languages that patients actually respond to.",
     jobs: [
       "New patient intake and demographic capture",
       "Prescription refill requests routed to pharmacy",
@@ -84,8 +84,8 @@ export const INDUSTRIES: Industry[] = [
     ],
     sampleLines: [
       "Just checking in — on a scale of 0 to 10, how is your pain today compared to right after surgery?",
-      "Of course. I can request a refill for your lisinopril at the CVS on Main — does that still work for you?",
-      "Take a breath. I'm going to ask a few short questions, and then a nurse will call you back within ten minutes.",
+      "Of course. I can request a refill for your telmisartan at the Apollo Pharmacy nearby — does that still work for you?",
+      "एक गहरी सांस लीजिए। मैं आपसे कुछ छोटे सवाल पूछूंगी, फिर डॉक्टर दस मिनट में आपको कॉल करेंगे।",
     ],
   },
   {
@@ -95,18 +95,18 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Capture every after-hours service request, dispatch the right tech, and never lose a job to a slow callback again.",
     pitch:
-      "HVAC, plumbing, electrical and roofing contractors live and die by callback speed. 9278.io answers every after-hours and weekend call, captures the job details, surge-prices emergencies, and books the right technician on your dispatch board.",
+      "AC, plumbing, electrical and home-repair contractors live and die by callback speed. 9278.io answers every after-hours and weekend call, captures the job details, surge-prices emergencies, and books the right technician on your dispatch board — across Tier-1 and Tier-2 Indian cities.",
     jobs: [
-      "After-hours emergency intake (no AC, no heat, water leak)",
+      "After-hours emergency intake (AC failure, no power, water leak)",
       "Same-day vs scheduled job triage",
-      "Direct booking on ServiceTitan, Housecall Pro, and Jobber",
-      "Quote ranges based on job type and zip code",
-      "Estimate-day reminders and arrival-window updates",
+      "Direct booking on Urban Company, ServiceTitan and dispatch tools",
+      "Quote ranges based on job type and PIN code",
+      "Estimate-day reminders and arrival-window updates over WhatsApp",
     ],
     sampleLines: [
-      "Got it — no cold air, started this afternoon, and you've got a 2-year-old at home. I'm marking this priority.",
-      "Our next emergency window is 7–9pm tonight. Tech rate is $129 plus parts. Want me to lock that in?",
-      "Mike is 22 minutes out. I'll text you when he's at the door.",
+      "Got it — AC stopped cooling, started this afternoon, and you have a small child at home. I'm marking this priority.",
+      "Our next emergency window is 7–9pm tonight. Visit charge is ₹499 plus parts. Shall I lock that in?",
+      "तकनीशियन 22 मिनट में पहुंच जाएगा। दरवाज़े पर पहुंचते ही मैं आपको WhatsApp कर दूंगी।",
     ],
   },
   {
@@ -118,7 +118,7 @@ export const INDUSTRIES: Industry[] = [
     pitch:
       "Phones during dinner rush are a tax on your hosts. 9278.io handles reservations, confirms large parties, answers hours and menu questions, and routes catering inquiries — so the host stand can focus on the room.",
     jobs: [
-      "Reservation booking and modification on OpenTable / Resy",
+      "Reservation booking and modification on Zomato / EazyDiner / Dineout",
       "Large-party and private-event qualification",
       "Hours, parking, and dress-code questions",
       "Allergen and dietary inquiries with menu lookups",
@@ -137,17 +137,17 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Schedule service, follow up on test drives, and keep the BDC ringing 24 hours a day across every dealership.",
     pitch:
-      "Dealerships still lose deals overnight. 9278.io handles service scheduling, test-drive follow-ups, parts inquiries, and trade-in questions — for a single rooftop or a multi-state dealer group on one platform.",
+      "Indian dealerships still lose deals overnight. 9278.io handles service scheduling, test-drive follow-ups, parts inquiries, and exchange questions — for a single showroom or a multi-state dealer group on one platform.",
     jobs: [
-      "Service appointment booking by VIN and mileage",
-      "Test-drive follow-up and credit pre-qual",
+      "Service appointment booking by registration number and mileage",
+      "Test-drive follow-up and finance pre-qualification",
       "Parts and warranty inquiries",
-      "Trade-in valuation lead capture",
+      "Exchange valuation lead capture (CARS24 / Spinny / OLX)",
       "Loaner-vehicle dispatch coordination",
     ],
     sampleLines: [
-      "Looks like your 2022 Outback is due for the 30k service. I have Thursday at 8 or Friday at 10:30 — which works?",
-      "I can get you a Carfax estimate on your trade if I have the VIN — got a minute to grab it?",
+      "Looks like your 2022 Maruti Brezza is due for the 30,000 km service. I have Thursday at 8 or Friday at 10:30 — which works?",
+      "I can get you an exchange estimate on your trade-in via Spinny if you share the registration number — got a minute?",
       "Loaner vehicle is confirmed. We'll have it ready when you drop off Tuesday at 7:30am.",
     ],
   },
@@ -158,18 +158,18 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Intake new clients, qualify cases by jurisdiction and statute of limitations, and book consults — without a paralegal stuck on the phone.",
     pitch:
-      "Personal-injury, immigration and family-law firms live on lead intake. 9278.io screens every inbound call against your conflict and qualification rules, captures the facts your attorneys actually need, and books a paid consult before the lead shops you.",
+      "Family-law, property-dispute and consumer-rights firms live on lead intake. 9278.io screens every inbound call against your conflict and qualification rules, captures the facts your advocates actually need, and books a paid consult before the lead shops you.",
     jobs: [
       "Practice-area routing and conflict checks",
-      "Statute-of-limitations and jurisdiction screening",
-      "Paid-consult booking with payment capture",
+      "Limitation-period and jurisdiction screening",
+      "Paid-consult booking with Razorpay capture",
       "Document-collection reminders pre-consult",
-      "Spanish-language intake out of the box",
+      "Hindi, Tamil, Telugu intake out of the box",
     ],
     sampleLines: [
-      "I'm sorry to hear about the accident. Was a police report filed, and were you treated at a hospital?",
-      "Got it — that puts you within the two-year window in Texas. Let me get you on the attorney's calendar.",
-      "Antes de la consulta, necesitaremos su identificación y el reporte del accidente.",
+      "नमस्ते, मुझे आपकी संपत्ति विवाद के बारे में जानकर खेद है। क्या आपके पास मूल बिक्री विलेख (sale deed) उपलब्ध है?",
+      "Got it — that's still within the three-year limitation period under the Limitation Act. Let me get you on the advocate's calendar.",
+      "परामर्श से पहले, हमें आपका आधार और संपत्ति के दस्तावेज़ चाहिए होंगे।",
     ],
   },
   {

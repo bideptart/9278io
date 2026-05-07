@@ -176,7 +176,7 @@ export default async function IndustryPage({
             />
             <Stat
               label="Per-minute rate"
-              value="From $0.10"
+              value="From ₹8.35"
               sub="See the full rate card on the pricing page."
             />
           </ScrollReveal>
@@ -237,12 +237,12 @@ export default async function IndustryPage({
           {
             href: "/pricing",
             title: "Compare plans and per-minute rates",
-            description: "Three tiers from $20 to $100, with rates from $0.15 down to $0.10/min.",
+            description: "Three tiers from ₹1,699 to ₹8,399, with rates from ₹12.50 down to ₹8.35/min.",
           },
           {
             href: "/faq",
             title: "FAQ — credit, phone numbers, compliance",
-            description: "60-day credit validity, monthly DID billing, HIPAA, TCPA, and more.",
+            description: "60-day credit validity, monthly Indian DID billing, TRAI calling-window enforcement, DPDP Act 2023, and more.",
           },
         ]}
       />

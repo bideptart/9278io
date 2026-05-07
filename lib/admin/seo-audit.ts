@@ -58,9 +58,9 @@ export function getRegistry(): SeoEntry[] {
     },
     {
       path: "/pricing",
-      title: "Pricing — voice AI from $0.10/min",
+      title: "Pricing — voice AI from ₹8.35/min",
       description:
-        "Simple, transparent pricing. Voice from $0.10/min. Top up with $20, $50, or $100 to unlock 1, 2, or 3 AI voice agents. Phone numbers from $2/month.",
+        "Fair pricing. Pay only for what you talk. Top up with ₹1,699, ₹4,199, or ₹8,399 to unlock 1, 2, or 3 AI voice agents. Indian DIDs from ₹200/month. No setup, no contracts.",
       canonical: absoluteUrl("/pricing"),
       indexable: true,
       group: "Marketing",

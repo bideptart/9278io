@@ -11,7 +11,6 @@ const plans = [
     icon: Zap,
     name: "Starter",
     price: "₹1,699",
-    priceUsd: "$20",
     rate: "₹12.50 / min",
     credit: "~135 minutes",
     agents: "1 concurrent agent",
@@ -32,7 +31,6 @@ const plans = [
     icon: TrendingUp,
     name: "Growth",
     price: "₹4,199",
-    priceUsd: "$50",
     rate: "₹10 / min",
     credit: "~420 minutes",
     agents: "2 concurrent agents",
@@ -54,7 +52,6 @@ const plans = [
     icon: Building2,
     name: "Scale",
     price: "₹8,399",
-    priceUsd: "$100",
     rate: "₹8.35 / min",
     credit: "~1,005 minutes",
     agents: "3 concurrent agents",
@@ -121,7 +118,7 @@ export function PricingFeature() {
 
                   <div className="mt-5">
                     <span className="text-4xl font-bold tracking-tight">{plan.price}</span>
-                    <span className="ml-2 text-sm text-muted-foreground">{plan.priceUsd} · one-time top-up</span>
+                    <span className="ml-2 text-sm text-muted-foreground">one-time top-up</span>
                   </div>
 
                   <div className="mt-2 flex flex-wrap gap-2">

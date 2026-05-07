@@ -103,13 +103,13 @@ export default function IndustriesPage() {
         links={[
           {
             href: "/pricing",
-            title: "Pricing — voice from $0.10/min",
-            description: "Three top-up tiers, transparent rates, and per-region phone-number pricing.",
+            title: "Pricing — voice AI from ₹8.35/min",
+            description: "Three top-up tiers, transparent rates, and Indian DIDs from ₹200/month.",
           },
           {
             href: "/faq",
             title: "FAQ — credit, numbers, compliance",
-            description: "60-day credit, monthly DIDs, HIPAA, TCPA, supported languages, and more.",
+            description: "60-day credit, Indian DIDs, TRAI calling-window enforcement, DPDP Act 2023, supported languages, and more.",
           },
           {
             href: "/get-started",
