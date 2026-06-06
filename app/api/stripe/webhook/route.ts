@@ -101,6 +101,8 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   // 2) Insert plan_credit payment row.
   if (plan) {
+    const amountCents = Math.max(0, Number(md.planAmountUsdCents || plan.amountUsd * 100) || 0)
+    const billingPeriod = md.billingPeriod === "yearly" ? "yearly" : "monthly"
     await supabase.from("payments").upsert(
       {
         customer_id: customer.id,
@@ -111,10 +113,10 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
             : session.payment_intent?.id ?? null,
         kind: "plan_credit",
         plan_id: plan.id,
-        amount_cents: plan.amountUsd * 100,
+        amount_cents: amountCents,
         currency: (session.currency ?? "usd").toLowerCase(),
         status: session.payment_status === "paid" || session.status === "complete" ? "paid" : "pending",
-        description: `${plan.name} credit · ${plan.minutes.toLocaleString()} min`,
+        description: `${plan.name} ${billingPeriod} credit · ${plan.minutes.toLocaleString()} min`,
       },
       { onConflict: "stripe_session_id" },
     )

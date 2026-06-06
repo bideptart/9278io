@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
   formatPlanAgents,
+  planAmountInr,
+  type BillingPeriod,
   PLANS,
   PHONE_NUMBER_RATES,
   type PlanId,
@@ -38,27 +40,29 @@ export function SignupForm() {
   const [planId, setPlanId] = useState<PlanId>(
     PLANS.find((p) => p.id === initialPlan) ? initialPlan : "growth",
   )
+  const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>("monthly")
   const [region, setRegion] = useState<PhoneNumberRegion["id"] | "none">("none")
   const [phoneQty, setPhoneQty] = useState<number>(1)
 
   const plan = PLANS.find((p) => p.id === planId)!
+  const planAmount = planAmountInr(plan, billingPeriod)
   const regionRow: PhoneNumberRegion | undefined =
     region === "none" ? undefined : PHONE_NUMBER_RATES.find((r) => r.id === region)
 
   const phoneCost = regionRow ? regionRow.monthlyInr * phoneQty : 0
-  const total = plan.amountInr + phoneCost
+  const total = planAmount + phoneCost
 
   const [state, formAction, pending] = useActionState<SignupState, FormData>(submitSignup, { ok: true })
   const errors = state.errors ?? {}
 
   const summary = useMemo(
     () => ({
-      planLine: `${plan.name} · ₹${plan.amountInr.toLocaleString("en-IN")} / mo`,
+      planLine: `${plan.name} · ₹${planAmount.toLocaleString("en-IN")} / ${billingPeriod === "yearly" ? "yr" : "mo"}`,
       minutesLine: `${plan.minutes.toLocaleString("en-IN")} included min · ₹${plan.ratePerMinInr}/min eff. · ${plan.agents === "unlimited" ? "Unlimited" : `${formatPlanAgents(plan.agents)} agents`}`,
       phoneLine: regionRow ? `${phoneQty} × ${regionRow.region} number${phoneQty > 1 ? "s" : ""}` : "No phone number",
       phoneCostLine: regionRow ? `₹${regionRow.monthlyInr} / mo each` : "—",
     }),
-    [plan, regionRow, phoneQty],
+    [plan, planAmount, billingPeriod, regionRow, phoneQty],
   )
 
   return (
@@ -71,9 +75,44 @@ export function SignupForm() {
           subtitle="All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit."
         >
           <input type="hidden" name="plan" value={planId} />
+          <input type="hidden" name="billingPeriod" value={billingPeriod} />
+
+          <div className="mb-4 flex justify-center md:justify-start">
+            <div className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-card/40 p-1">
+              <button
+                type="button"
+                onClick={() => setBillingPeriod("monthly")}
+                className={cn(
+                  "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                  billingPeriod === "monthly"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                onClick={() => setBillingPeriod("yearly")}
+                className={cn(
+                  "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                  billingPeriod === "yearly"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                Yearly
+              </button>
+              <span className="ml-1 rounded-full bg-primary/15 px-2 py-1 text-xs font-medium text-primary">
+                Save 20%
+              </span>
+            </div>
+          </div>
+
           <div className="grid gap-4 md:grid-cols-3">
             {PLANS.map((p) => {
               const active = p.id === planId
+              const amount = planAmountInr(p, billingPeriod)
               return (
                 <button
                   key={p.id}
@@ -107,8 +146,8 @@ export function SignupForm() {
                   <p className="mt-1 text-xs text-muted-foreground">{p.tagline}</p>
 
                   <div className="mt-4 flex items-baseline gap-2">
-                    <p className="text-3xl font-semibold tracking-tight">₹{p.amountInr.toLocaleString("en-IN")}</p>
-                    <p className="text-xs text-muted-foreground">/mo</p>
+                    <p className="text-3xl font-semibold tracking-tight">₹{amount.toLocaleString("en-IN")}</p>
+                    <p className="text-xs text-muted-foreground">{billingPeriod === "yearly" ? "/yr" : "/mo"}</p>
                   </div>
 
                   <p className="mt-1 text-xs text-muted-foreground">

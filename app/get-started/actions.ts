@@ -1,6 +1,6 @@
 "use server"
 
-import { PLANS, PHONE_NUMBER_RATES, type PlanId, type PhoneNumberRegion } from "@/lib/pricing"
+import { PLANS, PHONE_NUMBER_RATES, type BillingPeriod, type PlanId, type PhoneNumberRegion } from "@/lib/pricing"
 import { startCheckout } from "@/app/actions/checkout"
 
 export type SignupState = {
@@ -24,6 +24,7 @@ const INDUSTRIES = [
 
 export async function submitSignup(_prev: SignupState, formData: FormData): Promise<SignupState> {
   const planId = String(formData.get("plan") || "") as PlanId
+  const billingPeriod = String(formData.get("billingPeriod") || "monthly") as BillingPeriod
   // The form posts the region.id ("us" | "ca" | "uk" | "eu") or "none"
   const phoneRegionId = String(formData.get("phoneRegion") || "none") as PhoneNumberRegion["id"] | "none"
   const phoneQty = Number(formData.get("phoneQty") || 0)
@@ -56,6 +57,7 @@ export async function submitSignup(_prev: SignupState, formData: FormData): Prom
   // never returns, so anything after this is unreachable.
   await startCheckout({
     planId,
+    billingPeriod,
     phoneRegionId,
     phoneQty,
     customer: { name, email, company, phone, industry, useCase },

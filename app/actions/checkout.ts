@@ -6,8 +6,11 @@ import { getStripe } from "@/lib/stripe"
 import {
   formatPlanAgentNoun,
   formatPlanAgents,
+  planAmountInr,
+  planAmountUsd,
   PLANS,
   PHONE_NUMBER_RATES,
+  type BillingPeriod,
   type PlanId,
   type PhoneNumberRegion,
 } from "@/lib/pricing"
@@ -16,6 +19,7 @@ type RegionId = PhoneNumberRegion["id"]
 
 export type StartCheckoutInput = {
   planId: PlanId
+  billingPeriod?: BillingPeriod
   /** Optional phone number region id; "none" or undefined skips DID. */
   phoneRegionId?: RegionId | "none"
   /** Quantity of phone numbers (only used when a region is selected). */
@@ -53,6 +57,10 @@ export async function startCheckout(input: StartCheckoutInput): Promise<never> {
     throw new Error(`Unknown plan: ${input.planId}`)
   }
 
+  const billingPeriod: BillingPeriod = input.billingPeriod === "yearly" ? "yearly" : "monthly"
+  const amountInr = planAmountInr(plan, billingPeriod)
+  const amountUsd = planAmountUsd(plan, billingPeriod)
+
   const region =
     input.phoneRegionId && input.phoneRegionId !== "none"
       ? PHONE_NUMBER_RATES.find((r) => r.id === input.phoneRegionId)
@@ -71,9 +79,9 @@ export async function startCheckout(input: StartCheckoutInput): Promise<never> {
         currency: "usd",
         product_data: {
           name: `9278.io ${plan.name} credit`,
-          description: `₹${plan.amountInr} wallet credit · ${plan.minutes.toLocaleString("en-IN")} included minutes · ₹${plan.ratePerMinInr}/min effective · ${formatPlanAgents(plan.agents)} concurrent ${formatPlanAgentNoun(plan.agents)}`,
+          description: `₹${amountInr} wallet credit · ${plan.minutes.toLocaleString("en-IN")} included minutes · ₹${plan.ratePerMinInr}/min effective · ${formatPlanAgents(plan.agents)} concurrent ${formatPlanAgentNoun(plan.agents)}`,
         },
-        unit_amount: plan.amountUsd * 100,
+        unit_amount: amountUsd * 100,
       },
       quantity: 1,
     },
@@ -101,11 +109,14 @@ export async function startCheckout(input: StartCheckoutInput): Promise<never> {
     mode,
     line_items: items,
     customer_email: input.customer?.email,
-    success_url: `${origin}/get-started/thanks?plan=${plan.id}&session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${origin}/get-started/thanks?plan=${plan.id}&billing=${billingPeriod}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/pricing?canceled=1`,
     allow_promotion_codes: true,
     metadata: {
       planId: plan.id,
+      billingPeriod,
+      planAmountInr: String(amountInr),
+      planAmountUsdCents: String(amountUsd * 100),
       phoneRegionId: region?.id ?? "none",
       phoneQty: region ? String(qty) : "0",
       industry: input.customer?.industry ?? "",
@@ -129,5 +140,6 @@ export async function startCheckout(input: StartCheckoutInput): Promise<never> {
  */
 export async function checkoutPlanAction(formData: FormData): Promise<void> {
   const planId = String(formData.get("planId") || "") as PlanId
-  await startCheckout({ planId })
+  const billingPeriod = String(formData.get("billingPeriod") || "monthly") as BillingPeriod
+  await startCheckout({ planId, billingPeriod })
 }

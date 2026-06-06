@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
+import { formatPlanAgentNoun, formatPlanAgents, planAmountInr, type BillingPeriod, PLANS } from "@/lib/pricing"
 import { getStripe, isStripeConfigured } from "@/lib/stripe"
 import { pageSeo } from "@/lib/seo"
 
@@ -18,10 +18,12 @@ export const metadata: Metadata = pageSeo({
 export default async function ThanksPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string; session_id?: string }>
+  searchParams: Promise<{ plan?: string; billing?: string; session_id?: string }>
 }) {
-  const { plan: planId, session_id } = await searchParams
+  const { plan: planId, billing, session_id } = await searchParams
   const plan = PLANS.find((p) => p.id === planId)
+  const billingPeriod: BillingPeriod = billing === "yearly" ? "yearly" : "monthly"
+  const amountInr = plan ? planAmountInr(plan, billingPeriod) : null
 
   let amountPaid: number | null = null
   let customerEmail: string | null = null
@@ -54,7 +56,7 @@ export default async function ThanksPage({
             ? `Thanks${customerEmail ? `, ${customerEmail}` : ""}. We've activated your ${plan ? `${plan.name} ` : ""}wallet credit${
                 amountPaid ? ` ($${amountPaid.toFixed(2)} charged)` : ""
               } and are provisioning your agent now. Check your inbox for dashboard access at dashboard.9278.io.`
-            : `We've received your details${plan ? ` for the ${plan.name} plan (₹${plan.amountInr} wallet credit)` : ""}. Our team will email you in the next few minutes with onboarding next steps.`}
+            : `We've received your details${plan && amountInr ? ` for the ${plan.name} plan (₹${amountInr} wallet credit)` : ""}. Our team will email you in the next few minutes with onboarding next steps.`}
         </p>
 
         {plan && (
@@ -62,7 +64,7 @@ export default async function ThanksPage({
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Order</p>
             <div className="mt-3 flex items-baseline justify-between">
               <span className="text-sm">{plan.name} credit</span>
-              <span className="text-sm font-medium">₹{plan.amountInr.toLocaleString("en-IN")}</span>
+              <span className="text-sm font-medium">₹{(amountInr ?? plan.amountInr).toLocaleString("en-IN")}</span>
             </div>
             <p className="mt-1 text-xs text-muted-foreground">
               {plan.minutes.toLocaleString("en-IN")} included min · ₹{plan.ratePerMinInr}/min eff. ·{" "}

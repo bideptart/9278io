@@ -6,6 +6,8 @@ export type PlanId = "starter" | "growth" | "scale"
 
 export type PlanAgents = number | "unlimited"
 
+export type BillingPeriod = "monthly" | "yearly"
+
 export type Plan = {
   id: PlanId
   name: string
@@ -33,6 +35,18 @@ export function formatPlanAgents(agents: PlanAgents) {
 export function formatPlanAgentNoun(agents: PlanAgents) {
   if (agents === "unlimited") return "AI voice agents"
   return `AI voice agent${agents === 1 ? "" : "s"}`
+}
+
+export const YEARLY_DISCOUNT = 0.2
+
+export function planAmountInr(plan: Pick<Plan, "amountInr">, period: BillingPeriod) {
+  if (period === "monthly") return plan.amountInr
+  return Math.round(plan.amountInr * 12 * (1 - YEARLY_DISCOUNT))
+}
+
+export function planAmountUsd(plan: Pick<Plan, "amountUsd">, period: BillingPeriod) {
+  if (period === "monthly") return plan.amountUsd
+  return Math.round(plan.amountUsd * 12 * (1 - YEARLY_DISCOUNT))
 }
 
 export const LOWEST_RATE_INR = 5.7
