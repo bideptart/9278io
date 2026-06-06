@@ -13,9 +13,9 @@ import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 
 export const metadata: Metadata = pageSeo({
-  title: "Pricing — voice AI from ₹9/min",
+  title: "Pricing — voice AI from ₹5.7/min",
   description:
-    "Pick a plan and get started. Starter ₹2,399, Growth ₹6,999, Scale ₹26,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
+    "Pick a plan and get started. Starter ₹1,999, Growth ₹5,999, Scale ₹19,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
   path: "/pricing",
 })
 
@@ -73,12 +73,12 @@ export default async function PricingPage({
           </ScrollReveal>
 
           <div className="mt-12 grid gap-3 md:grid-cols-3">
-            <Stat icon={Zap} label="Voice rate" value="From ₹9 / min" sub="Best rate on the Scale plan." />
+            <Stat icon={Zap} label="Voice rate" value="From ₹5.7 / min" sub="Best rate on the Scale plan." />
             <Stat icon={Phone} label="Indian numbers" value="From ₹200 / mo" sub="All states · US, UK, UAE also available." />
             <Stat
               icon={Headphones}
               label="Minimum top-up"
-              value="₹2,399"
+              value="₹1,999"
               sub="GST charged at checkout."
             />
           </div>

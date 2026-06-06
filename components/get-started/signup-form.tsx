@@ -54,7 +54,7 @@ export function SignupForm() {
   const summary = useMemo(
     () => ({
       planLine: `${plan.name} · ₹${plan.amountInr.toLocaleString("en-IN")} / mo`,
-      minutesLine: `${plan.minutes.toLocaleString("en-IN")} included min · ₹${plan.ratePerMinInr}/min eff. · ${plan.agents === "unlimited" ? "unlimited" : formatPlanAgents(plan.agents)} ${plan.agents === 1 ? "agent" : "agents"}`,
+      minutesLine: `${plan.minutes.toLocaleString("en-IN")} included min · ₹${plan.ratePerMinInr}/min eff. · ${plan.agents === "unlimited" ? "Unlimited" : `${formatPlanAgents(plan.agents)} agents`}`,
       phoneLine: regionRow ? `${phoneQty} × ${regionRow.region} number${phoneQty > 1 ? "s" : ""}` : "No phone number",
       phoneCostLine: regionRow ? `₹${regionRow.monthlyInr} / mo each` : "—",
     }),
@@ -113,7 +113,7 @@ export function SignupForm() {
 
                   <p className="mt-1 text-xs text-muted-foreground">
                     {p.minutes.toLocaleString("en-IN")} included min · ₹{p.ratePerMinInr}/min eff. ·{" "}
-                    {p.agents === "unlimited" ? "unlimited" : formatPlanAgents(p.agents)} {p.agents === 1 ? "agent" : "agents"}
+                    {p.agents === "unlimited" ? "Unlimited" : `${formatPlanAgents(p.agents)} agents`}
                   </p>
 
                   <ul className="mt-4 space-y-2 text-sm">

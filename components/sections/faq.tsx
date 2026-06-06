@@ -20,7 +20,7 @@ export function FAQ() {
             Questions, answered.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            The short version: ₹2,399 minimum top-up, voice from ₹9/min, Indian numbers from ₹200/month. The long
+            The short version: ₹1,999 minimum top-up, voice from ₹5.7/min, Indian numbers from ₹200/month. The long
             version is below.
           </p>
         </ScrollReveal>

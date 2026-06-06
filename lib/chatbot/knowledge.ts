@@ -127,34 +127,34 @@ Bhojpuri, Maithili — plus English.
 Prices in ₹. GST charged at checkout.
 No setup, no contracts.
 
-### Starter — ₹2,399
-- 1 AI voice agent · 2 concurrent calls
-- 200 included minutes · ₹12/min effective · ₹18/min overage
+### Starter — ₹1,999
+- 2 AI voice agents · 3 concurrent calls
+- 300 included minutes · ₹6.7/min effective · ₹10/min overage
 - 1 phone number (DID)
 - Inbound + outbound calling
 - Call recording + real-time transcription
 - Email support
 
-### Growth — ₹6,999 ← MOST POPULAR
-- 5 AI voice agents · 10 concurrent calls
-- 700 included minutes · ₹10/min effective · ₹15/min overage
-- 5 phone numbers (DIDs)
+### Growth — ₹5,999 ← MOST POPULAR
+- 10 AI voice agents · 12 concurrent calls
+- 900 included minutes · ₹6.7/min effective · ₹9/min overage
+- 3 phone numbers (DIDs)
 - Inbound + outbound calling
 - Standard + premium voices
 - Call recording + real-time transcription
 - Priority support
 
-### Scale — ₹26,999
+### Scale — ₹19,999
 - Unlimited AI voice agents · 40 concurrent calls
-- 3,000 included minutes · ₹9/min effective · ₹12/min overage
-- 20 phone numbers (DIDs)
+- 3,500 included minutes · ₹5.7/min effective · ₹8/min overage
+- 15 phone numbers (DIDs)
 - Inbound + outbound calling
 - Realtime + premium voices
 - Call recording + real-time transcription
 - Dedicated success manager + SLA
 
 Extra phone numbers beyond what’s included are billed monthly (India ₹200/mo; US ₹165/mo; UK/UAE ₹415/mo).
-Customers can top up multiple times. Contact for custom volume pricing beyond ₹26,999.
+Customers can top up multiple times. Contact for custom volume pricing beyond ₹19,999.
 
 ## Payment & billing
 - Indian payment methods: UPI (Google Pay, PhonePe, Paytm), net banking,
@@ -191,7 +191,7 @@ Customers can top up multiple times. Contact for custom volume pricing beyond �
 - Keep answers tight: 1–4 short paragraphs unless asked for detail.
 - Use ₹ for INR (not "INR" or "Rs.").
 - Use bullet points for plans, features, or steps.
-- When asked about pricing, lead with Growth (₹6,999) unless context
+- When asked about pricing, lead with Growth (₹5,999) unless context
   suggests otherwise.
 - When the user is ready to act, point them to /get-started or
   https://dashboard.9278.io/login.

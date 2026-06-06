@@ -143,7 +143,7 @@ export default function LeadQualificationPage() {
             Stop losing leads to slow follow-up.
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Starter plan from ₹2,399 — deploy your first qualification agent in under 5 minutes.
+            Starter plan from ₹1,999 — deploy your first qualification agent in under 5 minutes.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">

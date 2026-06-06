@@ -58,9 +58,9 @@ export function getRegistry(): SeoEntry[] {
     },
     {
       path: "/pricing",
-      title: "Pricing — voice AI from ₹9/min",
+      title: "Pricing — voice AI from ₹5.7/min",
       description:
-        "Pick a plan and get started. Starter ₹2,399, Growth ₹6,999, Scale ₹26,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
+        "Pick a plan and get started. Starter ₹1,999, Growth ₹5,999, Scale ₹19,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
       canonical: absoluteUrl("/pricing"),
       indexable: true,
       group: "Marketing",

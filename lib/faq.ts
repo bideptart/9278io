@@ -16,7 +16,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How does pricing work?",
-        a: "You pick a plan and get billed once as wallet credit: Starter ₹2,399 (200 included minutes), Growth ₹6,999 (700 included minutes), or Scale ₹26,999 (3,000 included minutes). The effective rate is ₹12/min on Starter, ₹10/min on Growth, and ₹9/min on Scale, with overage at ₹18/min, ₹15/min, and ₹12/min respectively. There are no setup fees and no contracts. Prices are in ₹ and GST is charged at checkout.",
+        a: "You pick a plan and get billed once as wallet credit: Starter ₹1,999 (300 included minutes), Growth ₹5,999 (900 included minutes), or Scale ₹19,999 (3,500 included minutes). The effective rate is ₹6.7/min on Starter and Growth, and ₹5.7/min on Scale, with overage at ₹10/min, ₹9/min, and ₹8/min respectively. There are no setup fees and no contracts. Prices are in ₹ and GST is charged at checkout.",
       },
       {
         q: "Do you accept Indian payment methods?",
@@ -31,7 +31,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
         a: "Your plan is billed once as wallet credit. You can top up again any time as you scale usage.",
       },
       {
-        q: "Can I top up more than ₹26,999?",
+        q: "Can I top up more than ₹19,999?",
         a: "Yes. You can top up multiple times in any combination. High-volume BPOs and enterprise teams typically run 3–5 Scale top-ups a week. Contact us for custom volume pricing.",
       },
       {
@@ -94,7 +94,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How many concurrent AI agents do I get?",
-        a: "1 on Starter, 5 on Growth, and unlimited on Scale. That’s how many AI voice agents can run in parallel for your account.",
+        a: "2 on Starter, 10 on Growth, and unlimited on Scale. That’s how many AI voice agents can run in parallel for your account.",
       },
       {
         q: "Does it integrate with Indian CRMs and tools?",

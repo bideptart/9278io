@@ -44,8 +44,7 @@ export function PlanCards() {
           </div>
           <p className="mt-2 text-sm text-muted-foreground">
             {plan.minutes.toLocaleString("en-IN")} included min · ₹{plan.ratePerMinInr}/min eff. ·{" "}
-            {plan.agents === "unlimited" ? "unlimited" : formatPlanAgents(plan.agents)}{" "}
-            {plan.agents === 1 ? "agent" : "agents"}
+            {plan.agents === "unlimited" ? "Unlimited" : `${formatPlanAgents(plan.agents)} agents`}
           </p>
 
           <ul className="mt-6 space-y-3 text-sm">

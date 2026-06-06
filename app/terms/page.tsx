@@ -43,7 +43,7 @@ We may suspend or terminate your account for violation of these Terms, non-payme
   {
     id: "billing",
     title: "4. Billing & credit",
-    content: `**Voice credit:** Voice credit is purchased as a one-time top-up (₹2,399, ₹6,999, or ₹26,999) and is billed once as wallet credit. Credit is applied against call usage; per-minute and overage rates depend on the plan selected. Unused credit purchased within the last 14 days is refundable on request due to a service issue.
+    content: `**Voice credit:** Voice credit is purchased as a one-time top-up (₹1,999, ₹5,999, or ₹19,999) and is billed once as wallet credit. Credit is applied against call usage; per-minute and overage rates depend on the plan selected. Unused credit purchased within the last 14 days is refundable on request due to a service issue.
 
 **Phone numbers:** Phone numbers are billed monthly and renew automatically. You may release a number at any time from your dashboard to stop the recurring charge. Partial months are not refunded.
 
