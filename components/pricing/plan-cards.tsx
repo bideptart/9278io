@@ -25,6 +25,7 @@ export function PlanCards() {
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:text-foreground",
             )}
+            aria-pressed={billingPeriod === "monthly"}
           >
             Monthly
           </button>
@@ -32,17 +33,23 @@ export function PlanCards() {
             type="button"
             onClick={() => setBillingPeriod("yearly")}
             className={cn(
-              "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+              "inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
               billingPeriod === "yearly"
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:text-foreground",
             )}
+            aria-pressed={billingPeriod === "yearly"}
           >
             Yearly
+            <span
+              className={cn(
+                "rounded-full px-2 py-0.5 text-[11px] font-medium",
+                billingPeriod === "yearly" ? "bg-primary-foreground/15 text-primary-foreground" : "bg-primary/15 text-primary",
+              )}
+            >
+              Save 20%
+            </span>
           </button>
-          <span className="ml-1 rounded-full bg-primary/15 px-2 py-1 text-xs font-medium text-primary">
-            Save 20%
-          </span>
         </div>
       </div>
 
