@@ -20,8 +20,8 @@ export function FAQ() {
             Questions, answered.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            The short version: ₹1,699 minimum top-up, voice credit valid 60 days, Indian DIDs from
-            ₹200/month. The long version is below.
+            The short version: ₹2,399 minimum top-up, voice from ₹9/min, Indian numbers from ₹200/month. The long
+            version is below.
           </p>
         </ScrollReveal>
 

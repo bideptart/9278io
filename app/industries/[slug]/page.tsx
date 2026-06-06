@@ -171,12 +171,12 @@ export default async function IndustryPage({
             />
             <Stat
               label="Concurrent calls"
-              value="Up to 3"
+              value="Up to 40"
               sub="On the Scale plan — no extra hardware, no extra licenses."
             />
             <Stat
               label="Per-minute rate"
-              value="From ₹8.35"
+              value="From ₹9"
               sub="See the full rate card on the pricing page."
             />
           </ScrollReveal>
@@ -237,12 +237,12 @@ export default async function IndustryPage({
           {
             href: "/pricing",
             title: "Compare plans and per-minute rates",
-            description: "Three tiers from ₹1,699 to ₹8,399, with rates from ₹12.50 down to ₹8.35/min.",
+            description: "Three tiers from ₹2,399 to ₹26,999, with rates from ₹12 down to ₹9/min.",
           },
           {
             href: "/faq",
             title: "FAQ — credit, phone numbers, compliance",
-            description: "60-day credit validity, monthly Indian DID billing, TRAI calling-window enforcement, DPDP Act 2023, and more.",
+            description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
           },
         ]}
       />

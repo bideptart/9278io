@@ -30,7 +30,7 @@ const features = [
 const stats = [
   { value: "3×", label: "Higher connect rate vs SMS" },
   { value: "100%", label: "TRAI-compliant DND scrubbing" },
-  { value: "₹8.35", label: "Per minute on Scale plan" },
+  { value: "₹9", label: "Per minute on Scale plan" },
   { value: "15+", label: "Indian languages" },
 ]
 
@@ -143,7 +143,7 @@ export default function OutboundCallsPage() {
             Launch your first outbound campaign today.
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Scale plan from ₹8,399 — ₹8.35/min, 3 concurrent agents, full TRAI compliance included.
+            Scale plan from ₹26,999 — ₹9/min effective, unlimited agents, full TRAI compliance included.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">

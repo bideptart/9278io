@@ -143,7 +143,7 @@ export default function CustomerSupportPage() {
             Scale your support without scaling your team.
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Growth plan from ₹4,199 — 2 concurrent agents, Zoho & Freshworks integrations included.
+            Growth plan from ₹6,999 — 5 AI voice agents and 10 concurrent calls.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">

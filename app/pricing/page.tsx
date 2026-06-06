@@ -7,15 +7,15 @@ import { PlanCards } from "@/components/pricing/plan-cards"
 import { PhoneRates } from "@/components/pricing/phone-rates"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { PLANS } from "@/lib/pricing"
+import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 
 export const metadata: Metadata = pageSeo({
-  title: "Pricing — voice AI from ₹8.35/min",
+  title: "Pricing — voice AI from ₹9/min",
   description:
-    "Fair pricing. Pay only for what you talk. Top up with ₹1,699, ₹4,199, or ₹8,399 to unlock 1, 2, or 3 AI voice agents. Indian DIDs from ₹200/month. No setup, no contracts.",
+    "Pick a plan and get started. Starter ₹2,399, Growth ₹6,999, Scale ₹26,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
   path: "/pricing",
 })
 
@@ -39,7 +39,7 @@ export default async function PricingPage({
         offers={PLANS.map((p) => ({
           name: `${p.name} credit`,
           amount: p.amountInr,
-          description: `${p.tagline} ${p.minutes.toLocaleString()} voice minutes at ₹${p.ratePerMinInr}/min, ${p.agents} AI agent${p.agents === 1 ? "" : "s"}, valid 60 days.`,
+          description: `${p.tagline} ${p.minutes.toLocaleString("en-IN")} included minutes at ₹${p.ratePerMinInr}/min effective, ${formatPlanAgents(p.agents)} ${formatPlanAgentNoun(p.agents)}.`,
           ratePerMin: p.ratePerMinInr,
         }))}
       />
@@ -64,22 +64,22 @@ export default async function PricingPage({
               Pay as you go · INR pricing · GST invoices
             </span>
             <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">
-              Fair pricing. Pay only for what you talk.
+              Pick your plan.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Voice credit valid 60 days from purchase. Indian DIDs from ₹200/month, billed separately.
-              No setup, no contracts, no minimums beyond your top-up.
+              All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹,
+              billed once as wallet credit.
             </p>
           </ScrollReveal>
 
           <div className="mt-12 grid gap-3 md:grid-cols-3">
-            <Stat icon={Zap} label="Voice rate" value="From ₹8.35 / min" sub="Best rate on the Scale plan." />
+            <Stat icon={Zap} label="Voice rate" value="From ₹9 / min" sub="Best rate on the Scale plan." />
             <Stat icon={Phone} label="Indian numbers" value="From ₹200 / mo" sub="All states · US, UK, UAE also available." />
             <Stat
               icon={Headphones}
               label="Minimum top-up"
-              value="₹1,699"
-              sub="Voice credit valid for 60 days. GST invoice included."
+              value="₹2,399"
+              sub="GST charged at checkout."
             />
           </div>
         </div>
@@ -87,17 +87,17 @@ export default async function PricingPage({
 
       <section id="plans" className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
         <ScrollReveal className="mb-10">
-          <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Choose your starting credit</h2>
+          <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Pick your plan.</h2>
           <p className="mt-3 max-w-2xl text-pretty text-muted-foreground">
-            Three tiers, three rates. The more you commit, the less you pay per minute — and the more concurrent AI
-            agents you unlock.
+            All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹,
+            billed once as wallet credit.
           </p>
         </ScrollReveal>
 
         <PlanCards />
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          All plans include real-time transcripts, recording, analytics, and 15+ Indian languages. GST invoice on every top-up.
+          GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
         </p>
       </section>
 

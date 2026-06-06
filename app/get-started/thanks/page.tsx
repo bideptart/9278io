@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { PLANS } from "@/lib/pricing"
+import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { getStripe, isStripeConfigured } from "@/lib/stripe"
 import { pageSeo } from "@/lib/seo"
 
@@ -51,10 +51,10 @@ export default async function ThanksPage({
         </h1>
         <p className="mt-4 text-pretty text-muted-foreground">
           {paid
-            ? `Thanks${customerEmail ? `, ${customerEmail}` : ""}. We've activated your ${plan ? `${plan.name} ` : ""}credit${
+            ? `Thanks${customerEmail ? `, ${customerEmail}` : ""}. We've activated your ${plan ? `${plan.name} ` : ""}wallet credit${
                 amountPaid ? ` ($${amountPaid.toFixed(2)} charged)` : ""
               } and are provisioning your agent now. Check your inbox for dashboard access at dashboard.9278.io.`
-            : `We've received your details${plan ? ` for the ${plan.name} plan (₹${plan.amountInr} credit)` : ""}. Our team will email you in the next few minutes with onboarding next steps.`}
+            : `We've received your details${plan ? ` for the ${plan.name} plan (₹${plan.amountInr} wallet credit)` : ""}. Our team will email you in the next few minutes with onboarding next steps.`}
         </p>
 
         {plan && (
@@ -65,8 +65,8 @@ export default async function ThanksPage({
               <span className="text-sm font-medium">₹{plan.amountInr.toLocaleString("en-IN")}</span>
             </div>
             <p className="mt-1 text-xs text-muted-foreground">
-              ₹{plan.ratePerMinInr}/min · ≈ {plan.minutes.toLocaleString()} minutes ·{" "}
-              {plan.agents} {plan.agents === 1 ? "AI agent" : "AI agents"} · valid 60 days
+              {plan.minutes.toLocaleString("en-IN")} included min · ₹{plan.ratePerMinInr}/min eff. ·{" "}
+              {formatPlanAgents(plan.agents)} {formatPlanAgentNoun(plan.agents)}
             </p>
           </div>
         )}

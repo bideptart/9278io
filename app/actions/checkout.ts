@@ -4,6 +4,8 @@ import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 import { getStripe } from "@/lib/stripe"
 import {
+  formatPlanAgentNoun,
+  formatPlanAgents,
   PLANS,
   PHONE_NUMBER_RATES,
   type PlanId,
@@ -69,7 +71,7 @@ export async function startCheckout(input: StartCheckoutInput): Promise<never> {
         currency: "usd",
         product_data: {
           name: `9278.io ${plan.name} credit`,
-          description: `₹${plan.amountInr} voice credit · ${plan.minutes.toLocaleString()} minutes at ₹${plan.ratePerMinInr}/min · ${plan.agents} concurrent AI agent${plan.agents > 1 ? "s" : ""} · valid 60 days`,
+          description: `₹${plan.amountInr} wallet credit · ${plan.minutes.toLocaleString("en-IN")} included minutes · ₹${plan.ratePerMinInr}/min effective · ${formatPlanAgents(plan.agents)} concurrent ${formatPlanAgentNoun(plan.agents)}`,
         },
         unit_amount: plan.amountUsd * 100,
       },

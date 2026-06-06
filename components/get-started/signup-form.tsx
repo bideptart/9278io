@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
+  formatPlanAgents,
   PLANS,
   PHONE_NUMBER_RATES,
   type PlanId,
@@ -52,8 +53,8 @@ export function SignupForm() {
 
   const summary = useMemo(
     () => ({
-      planLine: `${plan.name} credit · ₹${plan.amountInr.toLocaleString("en-IN")}`,
-      minutesLine: `≈ ${plan.minutes.toLocaleString()} min · ${plan.agents} ${plan.agents === 1 ? "agent" : "agents"} · ₹${plan.ratePerMinInr}/min`,
+      planLine: `${plan.name} · ₹${plan.amountInr.toLocaleString("en-IN")} / mo`,
+      minutesLine: `${plan.minutes.toLocaleString("en-IN")} included min · ₹${plan.ratePerMinInr}/min eff. · ${plan.agents === "unlimited" ? "unlimited" : formatPlanAgents(plan.agents)} ${plan.agents === 1 ? "agent" : "agents"}`,
       phoneLine: regionRow ? `${phoneQty} × ${regionRow.region} number${phoneQty > 1 ? "s" : ""}` : "No phone number",
       phoneCostLine: regionRow ? `₹${regionRow.monthlyInr} / mo each` : "—",
     }),
@@ -66,8 +67,8 @@ export function SignupForm() {
         {/* Plan selection */}
         <Section
           number="01"
-          title="Choose your starting credit"
-          subtitle="Three tiers, three rates. Higher tiers unlock lower per-minute pricing and more concurrent AI agents."
+          title="Pick your plan."
+          subtitle="All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit."
         >
           <input type="hidden" name="plan" value={planId} />
           <div className="grid gap-4 md:grid-cols-3">
@@ -103,11 +104,26 @@ export function SignupForm() {
                       {active && <Check className="size-3" />}
                     </span>
                   </div>
-                  <p className="mt-3 text-3xl font-semibold tracking-tight">₹{p.amountInr.toLocaleString("en-IN")}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{p.tagline}</p>
+
+                  <div className="mt-4 flex items-baseline gap-2">
+                    <p className="text-3xl font-semibold tracking-tight">₹{p.amountInr.toLocaleString("en-IN")}</p>
+                    <p className="text-xs text-muted-foreground">/mo</p>
+                  </div>
+
                   <p className="mt-1 text-xs text-muted-foreground">
-                    ₹{p.ratePerMinInr}/min · {p.minutes.toLocaleString()} min · {p.agents}{" "}
-                    {p.agents === 1 ? "agent" : "agents"}
+                    {p.minutes.toLocaleString("en-IN")} included min · ₹{p.ratePerMinInr}/min eff. ·{" "}
+                    {p.agents === "unlimited" ? "unlimited" : formatPlanAgents(p.agents)} {p.agents === 1 ? "agent" : "agents"}
                   </p>
+
+                  <ul className="mt-4 space-y-2 text-sm">
+                    {p.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-2.5 text-muted-foreground">
+                        <Check className="mt-0.5 size-4 flex-none text-primary" aria-hidden />
+                        <span className="text-muted-foreground">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </button>
               )
             })}
@@ -270,7 +286,7 @@ export function SignupForm() {
           </Button>
 
           <p className="mt-3 text-center text-xs text-muted-foreground">
-            Secure Stripe checkout. Voice credit valid 60 days. Phone numbers renew monthly.
+            Secure Stripe checkout. Prices in ₹, billed once as wallet credit. Phone numbers renew monthly.
           </p>
         </motion.div>
       </aside>

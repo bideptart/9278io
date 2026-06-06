@@ -6,7 +6,7 @@ import { Check, Loader2 } from "lucide-react"
 import { useFormStatus } from "react-dom"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { PLANS } from "@/lib/pricing"
+import { formatPlanAgents, PLANS } from "@/lib/pricing"
 import { checkoutPlanAction } from "@/app/actions/checkout"
 
 export function PlanCards() {
@@ -40,11 +40,12 @@ export function PlanCards() {
 
           <div className="mt-6 flex items-baseline gap-2">
             <span className="text-5xl font-semibold tracking-tight">₹{plan.amountInr.toLocaleString("en-IN")}</span>
-            <span className="text-sm text-muted-foreground">credit</span>
+            <span className="text-sm text-muted-foreground">/mo</span>
           </div>
           <p className="mt-2 text-sm text-muted-foreground">
-            ₹{plan.ratePerMinInr}/min · ≈ {plan.minutes.toLocaleString()} minutes ·{" "}
-            {plan.agents} {plan.agents === 1 ? "AI agent" : "AI agents"}
+            {plan.minutes.toLocaleString("en-IN")} included min · ₹{plan.ratePerMinInr}/min eff. ·{" "}
+            {plan.agents === "unlimited" ? "unlimited" : formatPlanAgents(plan.agents)}{" "}
+            {plan.agents === 1 ? "agent" : "agents"}
           </p>
 
           <ul className="mt-6 space-y-3 text-sm">

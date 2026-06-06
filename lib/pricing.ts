@@ -4,6 +4,8 @@
 
 export type PlanId = "starter" | "growth" | "scale"
 
+export type PlanAgents = number | "unlimited"
+
 export type Plan = {
   id: PlanId
   name: string
@@ -18,58 +20,70 @@ export type Plan = {
   /** Approx voice minutes included. */
   minutes: number
   /** Number of concurrent AI voice agents. */
-  agents: number
+  agents: PlanAgents
   tagline: string
   highlights: string[]
   recommended?: boolean
 }
 
-export const LOWEST_RATE_INR = 8.35
-export const ENTRY_RATE_INR = 12.50
-export const LOWEST_RATE_PER_MIN = 0.1
+export function formatPlanAgents(agents: PlanAgents) {
+  return agents === "unlimited" ? "Unlimited" : String(agents)
+}
+
+export function formatPlanAgentNoun(agents: PlanAgents) {
+  if (agents === "unlimited") return "AI voice agents"
+  return `AI voice agent${agents === 1 ? "" : "s"}`
+}
+
+export const LOWEST_RATE_INR = 9
+export const ENTRY_RATE_INR = 12
+export const LOWEST_RATE_PER_MIN = 0.11
 export const ENTRY_RATE_PER_MIN = 0.15
 
 export const PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    amountInr: 1699,
-    amountUsd: 20,
-    ratePerMinInr: 12.50,
+    amountInr: 2399,
+    amountUsd: 29,
+    ratePerMinInr: 12,
     ratePerMinUsd: 0.15,
-    minutes: 135,
+    minutes: 200,
     agents: 1,
-    tagline: "Pilot a single agent and prove the ROI.",
+    tagline: "Pilot a single agent.",
     highlights: [
       "1 AI voice agent",
-      "~135 voice minutes included",
-      "₹12.50 per minute",
-      "Credit valid for 60 days",
-      "Inbound or outbound calling",
-      "Hindi & regional language support",
-      "Real-time transcripts",
+      "200 included minutes",
+      "₹12/min effective rate · ₹18/min overage",
+      "1 phone number (DID)",
+      "2 concurrent calls",
+      "Inbound + outbound calling",
+      "Standard voice stack",
+      "Call recording",
+      "Real-time transcription",
       "Email support",
     ],
   },
   {
     id: "growth",
     name: "Growth",
-    amountInr: 4199,
-    amountUsd: 50,
+    amountInr: 6999,
+    amountUsd: 84,
     ratePerMinInr: 10,
     ratePerMinUsd: 0.12,
-    minutes: 420,
-    agents: 2,
-    tagline: "Most Indian teams start here. Scale to a full pipeline.",
+    minutes: 700,
+    agents: 5,
+    tagline: "Most teams start here.",
     highlights: [
-      "2 AI voice agents",
-      "~420 voice minutes included",
-      "₹10 per minute",
-      "Credit valid for 60 days",
-      "Inbound + outbound + transfers",
-      "Custom voice & persona",
-      "Zoho, Freshworks & CRM integrations",
-      "WhatsApp Business API",
+      "5 AI voice agents",
+      "700 included minutes",
+      "₹10/min effective rate · ₹15/min overage",
+      "5 phone numbers (DIDs)",
+      "10 concurrent calls",
+      "Inbound + outbound calling",
+      "Standard + premium voices",
+      "Call recording",
+      "Real-time transcription",
       "Priority support",
     ],
     recommended: true,
@@ -77,23 +91,24 @@ export const PLANS: Plan[] = [
   {
     id: "scale",
     name: "Scale",
-    amountInr: 8399,
-    amountUsd: 100,
-    ratePerMinInr: 8.35,
-    ratePerMinUsd: 0.1,
-    minutes: 1005,
-    agents: 3,
-    tagline: "High-volume BPOs and enterprises running full call centers.",
+    amountInr: 26999,
+    amountUsd: 325,
+    ratePerMinInr: 9,
+    ratePerMinUsd: 0.11,
+    minutes: 3000,
+    agents: "unlimited",
+    tagline: "High-volume call centers.",
     highlights: [
-      "3 AI voice agents",
-      "~1,005 voice minutes included",
-      "₹8.35 per minute — our best rate",
-      "Credit valid for 60 days",
-      "Concurrent call campaigns",
-      "Advanced analytics & reports",
-      "Custom integrations & webhooks",
-      "TRAI-compliant calling",
-      "Dedicated success manager",
+      "Unlimited AI voice agents",
+      "3,000 included minutes",
+      "₹9/min effective rate · ₹12/min overage",
+      "20 phone numbers (DIDs)",
+      "40 concurrent calls",
+      "Inbound + outbound calling",
+      "Realtime + premium voices",
+      "Call recording",
+      "Real-time transcription",
+      "Dedicated success manager + SLA",
     ],
   },
 ]

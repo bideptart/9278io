@@ -58,9 +58,9 @@ export function getRegistry(): SeoEntry[] {
     },
     {
       path: "/pricing",
-      title: "Pricing — voice AI from ₹8.35/min",
+      title: "Pricing — voice AI from ₹9/min",
       description:
-        "Fair pricing. Pay only for what you talk. Top up with ₹1,699, ₹4,199, or ₹8,399 to unlock 1, 2, or 3 AI voice agents. Indian DIDs from ₹200/month. No setup, no contracts.",
+        "Pick a plan and get started. Starter ₹2,399, Growth ₹6,999, Scale ₹26,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
       canonical: absoluteUrl("/pricing"),
       indexable: true,
       group: "Marketing",
@@ -78,7 +78,7 @@ export function getRegistry(): SeoEntry[] {
       path: "/faq",
       title: "Frequently asked questions",
       description:
-        "Answers on pricing, voice credit expiry, phone numbers, AI agents, compliance, and account access at 9278.io.",
+        "Answers on pricing, phone numbers, AI agents, compliance, and account access at 9278.io.",
       canonical: absoluteUrl("/faq"),
       indexable: true,
       group: "Marketing",

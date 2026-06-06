@@ -16,7 +16,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How does pricing work?",
-        a: "You top up with ₹1,699, ₹4,199, or ₹8,399 of voice credit. Voice minutes are billed against that credit at ₹12.50/min on Starter, ₹10/min on Growth, or ₹8.35/min on Scale. There are no setup fees, no contracts, and no monthly platform fees beyond your top-up. All payments are in INR and you receive a GST-compliant invoice automatically.",
+        a: "You pick a plan and get billed once as wallet credit: Starter ₹2,399 (200 included minutes), Growth ₹6,999 (700 included minutes), or Scale ₹26,999 (3,000 included minutes). The effective rate is ₹12/min on Starter, ₹10/min on Growth, and ₹9/min on Scale, with overage at ₹18/min, ₹15/min, and ₹12/min respectively. There are no setup fees and no contracts. Prices are in ₹ and GST is charged at checkout.",
       },
       {
         q: "Do you accept Indian payment methods?",
@@ -28,10 +28,10 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do my voice minutes expire?",
-        a: "Voice credit is valid for 60 days from the date of purchase. After 60 days any unused balance expires. Top up again at any time to extend — every new top-up gets its own fresh 60-day window.",
+        a: "Your plan is billed once as wallet credit. You can top up again any time as you scale usage.",
       },
       {
-        q: "Can I top up more than ₹8,399?",
+        q: "Can I top up more than ₹26,999?",
         a: "Yes. You can top up multiple times in any combination. High-volume BPOs and enterprise teams typically run 3–5 Scale top-ups a week. Contact us for custom volume pricing.",
       },
       {
@@ -94,7 +94,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How many concurrent AI agents do I get?",
-        a: "1 on the Starter plan, 2 on Growth, and 3 on Scale. That means up to 1, 2, or 3 calls happening simultaneously. Need more? Reach out and we'll tailor a higher-concurrency plan.",
+        a: "1 on Starter, 5 on Growth, and unlimited on Scale. That’s how many AI voice agents can run in parallel for your account.",
       },
       {
         q: "Does it integrate with Indian CRMs and tools?",

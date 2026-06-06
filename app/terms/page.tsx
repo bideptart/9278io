@@ -43,7 +43,7 @@ We may suspend or terminate your account for violation of these Terms, non-payme
   {
     id: "billing",
     title: "4. Billing & credit",
-    content: `**Voice credit:** Voice credit is purchased as a one-time top-up (₹1,699, ₹4,199, or ₹8,399) and is valid for 60 days from the date of purchase. Unused credit expires after 60 days and is non-refundable unless requested within 14 days of purchase due to a service issue.
+    content: `**Voice credit:** Voice credit is purchased as a one-time top-up (₹2,399, ₹6,999, or ₹26,999) and is billed once as wallet credit. Credit is applied against call usage; per-minute and overage rates depend on the plan selected. Unused credit purchased within the last 14 days is refundable on request due to a service issue.
 
 **Phone numbers:** Phone numbers are billed monthly and renew automatically. You may release a number at any time from your dashboard to stop the recurring charge. Partial months are not refunded.
 

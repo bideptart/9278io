@@ -123,40 +123,38 @@ Bhojpuri, Maithili — plus English.
 - **DPDP Act 2023 ready** — data localisation in India, consent management,
   PII redaction, right to erasure all supported.
 
-## Pricing — three top-up plans (one-time INR top-ups)
-Voice credit valid 60 days. GST invoice generated automatically.
-No setup, no contracts, no monthly platform fee.
+## Pricing — plans (billed once as wallet credit)
+Prices in ₹. GST charged at checkout.
+No setup, no contracts.
 
-### Starter — ₹1,699 (~$20)
-- 1 AI voice agent · 1 concurrent call
-- ~135 voice minutes · ₹12.50 / minute
-- Inbound or outbound calling
-- Hindi & regional language support
-- Real-time transcripts
+### Starter — ₹2,399
+- 1 AI voice agent · 2 concurrent calls
+- 200 included minutes · ₹12/min effective · ₹18/min overage
+- 1 phone number (DID)
+- Inbound + outbound calling
+- Call recording + real-time transcription
 - Email support
 
-### Growth — ₹4,199 (~$50) ← MOST POPULAR
-- 2 AI voice agents · 2 concurrent calls
-- ~420 voice minutes · ₹10 / minute
-- Inbound + outbound + transfers
-- Custom voice & persona
-- Zoho, Freshworks & CRM integrations
-- WhatsApp Business API
+### Growth — ₹6,999 ← MOST POPULAR
+- 5 AI voice agents · 10 concurrent calls
+- 700 included minutes · ₹10/min effective · ₹15/min overage
+- 5 phone numbers (DIDs)
+- Inbound + outbound calling
+- Standard + premium voices
+- Call recording + real-time transcription
 - Priority support
 
-### Scale — ₹8,399 (~$100)
-- 3 AI voice agents · 3 concurrent calls
-- ~1,005 voice minutes · ₹8.35 / minute (lowest rate)
-- Concurrent call campaigns
-- Advanced analytics & reports
-- Custom integrations & webhooks
-- TRAI-compliant calling
-- Dedicated success manager
+### Scale — ₹26,999
+- Unlimited AI voice agents · 40 concurrent calls
+- 3,000 included minutes · ₹9/min effective · ₹12/min overage
+- 20 phone numbers (DIDs)
+- Inbound + outbound calling
+- Realtime + premium voices
+- Call recording + real-time transcription
+- Dedicated success manager + SLA
 
-Indian phone numbers (DIDs) bill separately at ₹200/month and are optional —
-shared connectivity is free for outbound web-call testing and inbound demos.
-Customers can top up multiple times. Contact for custom volume pricing
-beyond ₹8,399.
+Extra phone numbers beyond what’s included are billed monthly (India ₹200/mo; US ₹165/mo; UK/UAE ₹415/mo).
+Customers can top up multiple times. Contact for custom volume pricing beyond ₹26,999.
 
 ## Payment & billing
 - Indian payment methods: UPI (Google Pay, PhonePe, Paytm), net banking,
@@ -193,7 +191,7 @@ beyond ₹8,399.
 - Keep answers tight: 1–4 short paragraphs unless asked for detail.
 - Use ₹ for INR (not "INR" or "Rs.").
 - Use bullet points for plans, features, or steps.
-- When asked about pricing, lead with Growth (₹4,199) unless context
+- When asked about pricing, lead with Growth (₹6,999) unless context
   suggests otherwise.
 - When the user is ready to act, point them to /get-started or
   https://dashboard.9278.io/login.

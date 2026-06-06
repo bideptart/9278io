@@ -180,7 +180,7 @@ export default function AboutPage() {
         heading="Explore 9278.io"
         description="Product, pricing, and industries — everything in one place."
         links={[
-          { href: "/pricing", title: "Pricing in INR", description: "Top up with ₹1,699, ₹4,199, or ₹8,399. Pay in INR, get GST invoices." },
+          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹2,399, Growth ₹6,999, Scale ₹26,999. Prices in ₹, billed once as wallet credit." },
           { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, healthcare, EdTech, and more." },
           { href: "/careers", title: "Join the team", description: "Open roles in Bengaluru and remote-India." },
         ]}

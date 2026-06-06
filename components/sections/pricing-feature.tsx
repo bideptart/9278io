@@ -10,19 +10,19 @@ const plans = [
   {
     icon: Zap,
     name: "Starter",
-    price: "₹1,699",
-    rate: "₹12.50 / min",
-    credit: "~135 minutes",
-    agents: "1 concurrent agent",
+    price: "₹2,399",
+    rate: "₹12 / min eff.",
+    credit: "200 included min",
+    agents: "1 agent",
     highlight: false,
     features: [
       "1 AI voice agent",
-      "~135 voice minutes",
-      "Inbound & outbound calls",
-      "Hindi & regional languages",
-      "Email support",
-      "Call recordings & transcripts",
-      "Credit valid for 60 days",
+      "200 included minutes",
+      "₹12/min effective rate · ₹18/min overage",
+      "1 phone number (DID)",
+      "2 concurrent calls",
+      "Call recording",
+      "Real-time transcription",
     ],
     cta: "Get started",
     href: "/get-started",
@@ -30,20 +30,20 @@ const plans = [
   {
     icon: TrendingUp,
     name: "Growth",
-    price: "₹4,199",
-    rate: "₹10 / min",
-    credit: "~420 minutes",
-    agents: "2 concurrent agents",
+    price: "₹6,999",
+    rate: "₹10 / min eff.",
+    credit: "700 included min",
+    agents: "5 agents",
     highlight: true,
     features: [
-      "2 AI voice agents",
-      "~420 voice minutes",
-      "Inbound + outbound + transfers",
-      "Custom voice & persona",
-      "Zoho, Freshworks & CRM integrations",
-      "WhatsApp Business API",
+      "5 AI voice agents",
+      "700 included minutes",
+      "₹10/min effective rate · ₹15/min overage",
+      "5 phone numbers (DIDs)",
+      "10 concurrent calls",
+      "Standard + premium voices",
+      "Real-time transcription",
       "Priority support",
-      "Credit valid for 60 days",
     ],
     cta: "Start now",
     href: "/get-started",
@@ -51,20 +51,19 @@ const plans = [
   {
     icon: Building2,
     name: "Scale",
-    price: "₹8,399",
-    rate: "₹8.35 / min",
-    credit: "~1,005 minutes",
-    agents: "3 concurrent agents",
+    price: "₹26,999",
+    rate: "₹9 / min eff.",
+    credit: "3,000 included min",
+    agents: "Unlimited",
     highlight: false,
     features: [
-      "3 AI voice agents",
-      "~1,005 voice minutes",
-      "Concurrent call campaigns",
-      "Advanced analytics & reports",
-      "Custom integrations & webhooks",
-      "TRAI-compliant calling",
-      "Dedicated success manager",
-      "Credit valid for 60 days",
+      "Unlimited AI voice agents",
+      "3,000 included minutes",
+      "₹9/min effective rate · ₹12/min overage",
+      "20 phone numbers (DIDs)",
+      "40 concurrent calls",
+      "Realtime + premium voices",
+      "Dedicated success manager + SLA",
     ],
     cta: "Contact sales",
     href: "/get-started",
@@ -78,11 +77,11 @@ export function PricingFeature() {
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Pricing</p>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            Fair pricing. Pay only for what you talk.
+            Pick your plan.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Voice credit valid 60 days from purchase. Indian DIDs from ₹200/month, billed separately.
-            No setup, no contracts, no minimums beyond your top-up.
+            All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹,
+            billed once as wallet credit.
           </p>
         </ScrollReveal>
 
@@ -118,7 +117,7 @@ export function PricingFeature() {
 
                   <div className="mt-5">
                     <span className="text-4xl font-bold tracking-tight">{plan.price}</span>
-                    <span className="ml-2 text-sm text-muted-foreground">one-time top-up</span>
+                    <span className="ml-2 text-sm text-muted-foreground">/mo</span>
                   </div>
 
                   <div className="mt-2 flex flex-wrap gap-2">

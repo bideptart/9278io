@@ -143,7 +143,7 @@ export default function AppointmentBookingPage() {
             Fill your calendar without lifting a finger.
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Starter plan from ₹1,699. Up and running in under 5 minutes. No contracts.
+            Starter plan from ₹2,399. Up and running in under 5 minutes. No contracts.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
