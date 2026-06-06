@@ -159,7 +159,7 @@ export function PricingFeature() {
 
         <ScrollReveal className="mt-8 text-center">
           <p className="text-xs text-muted-foreground">
-            Indian numbers from ₹200/mo · US, UK, UAE also available · No contracts · Cancel anytime · GST invoice included
+            Indian numbers ₹200/mo · No contracts · Cancel anytime · GST invoice included
           </p>
         </ScrollReveal>
       </div>

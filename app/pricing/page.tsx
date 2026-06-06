@@ -4,7 +4,6 @@ import { Sparkles, Zap, Phone, Headphones } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PlanCards } from "@/components/pricing/plan-cards"
-import { PhoneRates } from "@/components/pricing/phone-rates"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
@@ -74,7 +73,7 @@ export default async function PricingPage({
 
           <div className="mt-12 grid gap-3 md:grid-cols-3">
             <Stat icon={Zap} label="Voice rate" value="From ₹5.7 / min" sub="Best rate on the Scale plan." />
-            <Stat icon={Phone} label="Indian numbers" value="From ₹200 / mo" sub="All states · US, UK, UAE also available." />
+            <Stat icon={Phone} label="Indian numbers" value="₹200 / mo" sub="Available across all states." />
             <Stat
               icon={Headphones}
               label="Minimum top-up"
@@ -99,24 +98,6 @@ export default async function PricingPage({
         <p className="mt-6 text-center text-sm text-muted-foreground">
           GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
         </p>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
-        <ScrollReveal className="mb-10">
-          <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Phone number rates</h2>
-          <p className="mt-3 max-w-2xl text-pretty text-muted-foreground">
-            Phone numbers are optional. Use our shared connectivity for free, or provision your own DID for outbound
-            caller-ID and inbound calls.
-          </p>
-        </ScrollReveal>
-
-        <PhoneRates />
-
-        <div className="mt-6 grid gap-4 text-sm text-muted-foreground md:grid-cols-3">
-          <p>Numbers renew every 30 days and can be released anytime to stop the recurring fee.</p>
-          <p>Toll-free numbers in the USA are available on request.</p>
-          <p>Need a number in another country? Reach out — we provision globally.</p>
-        </div>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">

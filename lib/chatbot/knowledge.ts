@@ -79,10 +79,7 @@ Connect your knowledge base; the agent answers from your source of truth.
 - HD voice codecs with call-quality monitoring and TRAI calling-window
   enforcement built in.
 
-International numbers are also available:
-- US — ₹165/month (local area codes; toll-free 800-series available)
-- UK — ₹415/month (London, Manchester, Edinburgh, etc.)
-- UAE & Gulf — ₹415/month (Dubai, Abu Dhabi, Riyadh, Doha)
+Only Indian numbers are available: ₹200/month.
 
 ## Multilingual — speaks the caller's language. Literally.
 Supports **15+ Indian languages**: Hindi, Tamil, Telugu, Kannada, Marathi,
@@ -153,7 +150,7 @@ No setup, no contracts.
 - Call recording + real-time transcription
 - Dedicated success manager + SLA
 
-Extra phone numbers beyond what’s included are billed monthly (India ₹200/mo; US ₹165/mo; UK/UAE ₹415/mo).
+Extra phone numbers beyond what’s included are billed monthly at ₹200/mo.
 Customers can top up multiple times. Contact for custom volume pricing beyond ₹19,999.
 
 ## Payment & billing
