@@ -104,7 +104,7 @@ export default function IndustriesPage() {
           {
             href: "/pricing",
             title: "Pricing — voice AI from ₹5.7/min",
-            description: "Three plan tiers, transparent rates, and Indian numbers from ₹200/month.",
+            description: "Three plan tiers, transparent rates, and Indian numbers from ₹400/month.",
           },
           {
             href: "/faq",

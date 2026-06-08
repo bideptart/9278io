@@ -24,7 +24,7 @@ const steps = [
     icon: Rocket,
     title: "Launch",
     description:
-      "Provision an Indian DID from ₹200/month or port your existing number through our SIP trunk. Go live on Jio/Airtel/BSNL/Vi in minutes.",
+      "Provision an Indian DID from ₹400/month or port your existing number through our SIP trunk. Go live on Jio/Airtel/BSNL/Vi in minutes.",
   },
   {
     number: "04",

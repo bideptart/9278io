@@ -73,7 +73,7 @@ export default async function PricingPage({
 
           <div className="mt-12 grid gap-3 md:grid-cols-3">
             <Stat icon={Zap} label="Voice rate" value="From ₹5.7 / min" sub="Best rate on the Scale plan." />
-            <Stat icon={Phone} label="Indian numbers" value="₹200 / mo" sub="Available across all states." />
+            <Stat icon={Phone} label="Indian numbers" value="₹400 / mo" sub="Available across all states." />
             <Stat
               icon={Headphones}
               label="Minimum top-up"

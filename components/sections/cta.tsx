@@ -92,7 +92,7 @@ export function CTA() {
           </div>
 
           <p className="mt-8 text-xs text-muted-foreground/60">
-            Prices in ₹, billed once as wallet credit · Indian numbers from ₹200/month · No contracts
+            Prices in ₹, billed once as wallet credit · Indian numbers from ₹400/month · No contracts
           </p>
         </ScrollReveal>
       </div>

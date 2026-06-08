@@ -54,7 +54,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "What does an Indian phone number cost?",
-        a: "₹200/month for Indian landline and mobile DIDs across all major cities and states. Phone-number rates renew every 30 days.",
+        a: "₹400/month for Indian landline and mobile DIDs across all major cities and states. Phone-number rates renew every 30 days.",
       },
       {
         q: "Which states and cities can you provision Indian numbers in?",

@@ -71,7 +71,7 @@ Connect your knowledge base; the agent answers from your source of truth.
   into every conversation. Stays on script even when callers don't.
 
 ## Telephony — Indian carrier-grade voice, built in
-- Provision Indian DIDs across all major cities and states from **₹200/month**.
+- Provision Indian DIDs across all major cities and states from **₹400/month**.
 - Routed via TRAI-licensed Tier-1 carriers: **Jio, Airtel, BSNL, Vi**.
 - Inbound + outbound on the same number — no rewiring.
 - SIP trunking + full porting supported. Keep your existing Indian number;
@@ -79,7 +79,7 @@ Connect your knowledge base; the agent answers from your source of truth.
 - HD voice codecs with call-quality monitoring and TRAI calling-window
   enforcement built in.
 
-Only Indian numbers are available: ₹200/month.
+Only Indian numbers are available: ₹400/month.
 
 ## Multilingual — speaks the caller's language. Literally.
 Supports **15+ Indian languages**: Hindi, Tamil, Telugu, Kannada, Marathi,
@@ -150,7 +150,7 @@ No setup, no contracts.
 - Call recording + real-time transcription
 - Dedicated success manager + SLA
 
-Extra phone numbers beyond what’s included are billed monthly at ₹200/mo.
+Extra phone numbers beyond what’s included are billed monthly at ₹400/mo.
 Customers can top up multiple times. Contact for custom volume pricing beyond ₹19,999.
 
 ## Payment & billing

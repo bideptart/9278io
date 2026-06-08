@@ -145,7 +145,7 @@ export const PHONE_NUMBER_RATES: PhoneNumberRegion[] = [
     region: "India",
     flag: "IN",
     countries: ["India"],
-    monthlyInr: 200,
+    monthlyInr: 400,
     monthlyUsd: 2.4,
     description: "Indian landline & mobile DIDs across all major cities and states.",
   },
