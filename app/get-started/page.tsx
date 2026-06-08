@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { Suspense } from "react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
+import SignupWidget from "./SignupWidget"
 
 export const metadata: Metadata = pageSeo({
   title: "Get started — launch your AI voice agent",
@@ -35,24 +35,16 @@ export default function GetStartedPage() {
               Spin up your voice agent.
             </h1>
             <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Pick a starting credit, optionally add a phone number, and tell us what your agent should do. You&apos;ll
-              be live in under 5 minutes — no contracts, no setup fee.
+              Pick a plan, choose a phone number, and tell us how your AI receptionist should
+              greet your callers. You&apos;ll be live in under 5 minutes — no contracts, per-second
+              billing.
             </p>
           </div>
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
-        <Suspense fallback={<div className="text-sm text-muted-foreground">Loading…</div>}>
-          <iframe
-            src="https://voice.9278.io/embed/signup.html"
-            width="100%"
-            height={1000}
-            style={{ border: 0, maxWidth: 1100, display: "block", margin: "0 auto" }}
-            allow="payment"
-            title="9278 Voice signup"
-          />
-        </Suspense>
+        <SignupWidget />
       </section>
 
       <SiteFooter />
