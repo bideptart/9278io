@@ -142,7 +142,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Where do I sign in?",
-        a: "Your dashboard lives at dashboard.9278.io/login. You can review usage, top up credit, manage Indian phone numbers, edit agent prompts, and download GST invoices.",
+        a: "Your dashboard lives at https://voice.9278.io/signin. You can review usage, top up credit, manage Indian phone numbers, edit agent prompts, and download GST invoices.",
       },
       {
         q: "How fast can I be live?",

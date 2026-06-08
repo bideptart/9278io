@@ -75,7 +75,7 @@ export default async function ThanksPage({
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href="https://dashboard.9278.io/login" target="_blank" rel="noopener noreferrer">
+            <a href="https://voice.9278.io/signin" target="_blank" rel="noopener noreferrer">
               Open dashboard
             </a>
           </Button>

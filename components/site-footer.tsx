@@ -7,8 +7,8 @@ const nav = {
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/pricing" },
     { label: "FAQ", href: "/faq" },
-    { label: "API Docs", href: "https://dashboard.9278.io" },
-    { label: "Dashboard", href: "https://dashboard.9278.io" },
+    { label: "API Docs", href: "https://voice.9278.io/signin" },
+    { label: "Dashboard", href: "https://voice.9278.io/signin" },
   ],
   "Use Cases": [
     { label: "Inbound Calls", href: "/use-cases/inbound-calls" },
@@ -108,7 +108,7 @@ export function SiteFooter() {
           </p>
 
           <a
-            href="https://dashboard.9278.io/login"
+            href="https://voice.9278.io/signin"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-primary underline-offset-4 hover:underline"

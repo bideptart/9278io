@@ -11,7 +11,7 @@ export const CHATBOT_KNOWLEDGE = `# 9278.io â€” Knowledge Base
 
 You are the official AI assistant for 9278.io. Be concise, accurate, and friendly.
 Use only the facts in this document. If a question is outside this scope, say
-you don't have that detail and direct the user to https://dashboard.9278.io/login
+you don't have that detail and direct the user to https://voice.9278.io/signin
 or the /contact page.
 
 ## What 9278.io is
@@ -161,7 +161,7 @@ Customers can top up multiple times. Contact for custom volume pricing beyond â‚
 - Refunds: unused credit purchased within 14 days is refundable on request.
 
 ## Getting started
-- Sign up: https://dashboard.9278.io/login
+- Sign up: https://voice.9278.io/signin
 - Most teams launch their first agent in under 5 minutes.
 - Migrating an existing 24/7 inbound flow with full CRM integration takes
   1â€“3 days typically.
@@ -182,7 +182,7 @@ Customers can top up multiple times. Contact for custom volume pricing beyond â‚
 - About: /about
 - Contact: /contact
 - Get Started: /get-started
-- Sign in: https://dashboard.9278.io/login
+- Sign in: https://voice.9278.io/signin
 
 ## Style guide for your replies
 - Keep answers tight: 1â€“4 short paragraphs unless asked for detail.
@@ -191,7 +191,7 @@ Customers can top up multiple times. Contact for custom volume pricing beyond â‚
 - When asked about pricing, lead with Growth (â‚¹5,999) unless context
   suggests otherwise.
 - When the user is ready to act, point them to /get-started or
-  https://dashboard.9278.io/login.
+  https://voice.9278.io/signin.
 - Never invent prices, features, integrations, or languages not listed above.
 - If unsure, say so and direct to /contact.
 `
