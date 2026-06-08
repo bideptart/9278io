@@ -8,6 +8,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import Script from "next/script"
+import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -80,6 +81,17 @@ declare global {
 }
 
 export default function SignupWidget() {
+  // Honor ?plan=…&cycle=… deep-links from the marketing /pricing page so the
+  // customer lands on the exact plan they clicked. Unknown values fall back
+  // to the defaults (Growth, monthly).
+  const searchParams = useSearchParams()
+  const initialPlanId = (() => {
+    const p = searchParams.get("plan")
+    return p && ["starter", "growth", "scale"].includes(p) ? p : "growth"
+  })()
+  const initialCycle: "monthly" | "yearly" =
+    searchParams.get("cycle") === "yearly" ? "yearly" : "monthly"
+
   const [plans, setPlans] = useState<Plan[]>([])
   const [numbers, setNumbers] = useState<AvailableNumber[]>([])
   // Per-DID activation fee, fetched live from /api/plans.perDidPriceInr.
@@ -88,8 +100,8 @@ export default function SignupWidget() {
   const [perDidPriceInr, setPerDidPriceInr] = useState<number>(400)
   const [loadError, setLoadError] = useState<string | null>(null)
 
-  const [cycle, setCycle] = useState<"monthly" | "yearly">("monthly")
-  const [selectedId, setSelectedId] = useState<string>("growth")
+  const [cycle, setCycle] = useState<"monthly" | "yearly">(initialCycle)
+  const [selectedId, setSelectedId] = useState<string>(initialPlanId)
 
   const [form, setForm] = useState({
     name: "",
