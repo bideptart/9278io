@@ -58,7 +58,7 @@ export const PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    amountInr: 3000,
+    amountInr: 2999,
     amountUsd: 36,
     ratePerMinInr: 12,
     ratePerMinUsd: 0.15,
@@ -82,7 +82,7 @@ export const PLANS: Plan[] = [
   {
     id: "growth",
     name: "Growth",
-    amountInr: 8800,
+    amountInr: 8799,
     amountUsd: 106,
     ratePerMinInr: 11,
     ratePerMinUsd: 0.14,
@@ -107,7 +107,7 @@ export const PLANS: Plan[] = [
   {
     id: "scale",
     name: "Scale",
-    amountInr: 30000,
+    amountInr: 29999,
     amountUsd: 360,
     ratePerMinInr: 10,
     ratePerMinUsd: 0.12,
