@@ -8,11 +8,13 @@
 
 import { useEffect, useMemo, useState } from "react"
 import Script from "next/script"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import {
   Select,
   SelectContent,
@@ -20,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Check, Loader2 } from "lucide-react"
+import { Check, Loader2, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const PORTAL_BASE = "https://voice.9278.io"
@@ -128,9 +130,14 @@ export default function SignupWidget() {
 
   const priceFor = (p: Plan) => (cycle === "yearly" ? p.yearlyAmount : p.amount)
 
-  const update =
+  const updateInput =
     (field: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) =>
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      setForm((f) => ({ ...f, [field]: e.target.value }))
+
+  const updateTextarea =
+    (field: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [field]: e.target.value }))
 
   const validateAndSubmit = async (e: React.FormEvent) => {
@@ -270,6 +277,9 @@ export default function SignupWidget() {
     )
   }
 
+  const totalAmount = selectedPlan ? priceFor(selectedPlan) : 0
+  const selectedNumber = numbers.find((n) => n.phoneNumber === form.number)
+
   return (
     <>
       {/* Razorpay's Checkout SDK — needed before submission. */}
@@ -383,51 +393,49 @@ export default function SignupWidget() {
         })}
       </div>
 
-      {/* Signup form */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Create your account</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Selected:{" "}
-            <strong>
-              {selectedPlan?.label} ·{" "}
-              {selectedPlan && inr(priceFor(selectedPlan))}
-              {cycle === "yearly" ? "/yr" : "/mo"}
-            </strong>
-          </p>
-        </CardHeader>
-        <form onSubmit={validateAndSubmit}>
+      {/* Two-column section: form on the left, order summary on the right */}
+      <form onSubmit={validateAndSubmit} className="grid gap-6 lg:grid-cols-[1fr_360px]">
+        {/* === LEFT: form fields ============================================= */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Create your account</CardTitle>
+          </CardHeader>
           <CardContent className="grid gap-4 md:grid-cols-2">
-            <Field id="name" label="Your name" value={form.name} onChange={update("name")} />
+            <Field id="name" label="Your name" value={form.name} onChange={updateInput("name")} />
             <Field
               id="company"
               label="Company"
               value={form.company}
-              onChange={update("company")}
+              onChange={updateInput("company")}
             />
             <Field
               id="username"
               label="Username"
               value={form.username}
-              onChange={update("username")}
+              onChange={updateInput("username")}
             />
             <Field
               id="email"
               label="Work email"
               type="email"
               value={form.email}
-              onChange={update("email")}
+              onChange={updateInput("email")}
             />
-            <Field id="phone" label="Phone (optional)" value={form.phone} onChange={update("phone")} />
+            <Field
+              id="phone"
+              label="Phone (optional)"
+              value={form.phone}
+              onChange={updateInput("phone")}
+            />
             <Field
               id="password"
               label="Password (8+ chars)"
               type="password"
               value={form.password}
-              onChange={update("password")}
+              onChange={updateInput("password")}
             />
 
-            <div className="md:col-span-1">
+            <div>
               <Label htmlFor="number" className="mb-1.5 block">
                 Phone number to attach
               </Label>
@@ -448,7 +456,7 @@ export default function SignupWidget() {
               </Select>
             </div>
 
-            <div className="md:col-span-1">
+            <div>
               <Label htmlFor="language" className="mb-1.5 block">
                 Agent language
               </Label>
@@ -473,47 +481,125 @@ export default function SignupWidget() {
               id="agentName"
               label="Agent name (optional)"
               value={form.agentName}
-              onChange={update("agentName")}
+              onChange={updateInput("agentName")}
               placeholder={form.company ? `${form.company} Receptionist` : "Acme Receptionist"}
               wrapperClassName="md:col-span-2"
             />
-            <Field
-              id="greeting"
-              label="Greeting (optional — first line on every call)"
-              value={form.greeting}
-              onChange={update("greeting")}
-              placeholder={
-                form.company
-                  ? `Hi, thanks for calling ${form.company}. How can I help?`
-                  : "Hi, thanks for calling…"
-              }
-              wrapperClassName="md:col-span-2"
-            />
-          </CardContent>
 
-          <CardFooter className="flex flex-col items-stretch gap-3">
-            {error && (
-              <div className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
-                {error}
+            {/* Greeting — multi-line description-style textarea */}
+            <div className="md:col-span-2">
+              <Label htmlFor="greeting" className="mb-1.5 block">
+                Greeting / description{" "}
+                <span className="font-normal text-muted-foreground">
+                  (optional — what your agent says + how it should behave)
+                </span>
+              </Label>
+              <Textarea
+                id="greeting"
+                rows={5}
+                value={form.greeting}
+                onChange={updateTextarea("greeting")}
+                placeholder={
+                  form.company
+                    ? `e.g. "Hi, thanks for calling ${form.company}. I can help you book an appointment, share pricing, or take a message. What can I do for you today?"`
+                    : 'e.g. "Hi, thanks for calling. I can help you book an appointment, share pricing, or take a message. What can I do for you today?"'
+                }
+                className="min-h-[120px] resize-y"
+              />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Leave blank to use a friendly default. You can refine this from your dashboard
+                later under <strong>Knowledge &amp; Agent</strong>.
+              </p>
+              {/* Spacing below the description field */}
+              <div className="h-6" />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* === RIGHT: order summary (sticky on desktop) ====================== */}
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <Card className="border-sky-200/60 dark:border-sky-800/40">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-300">
+                <Sparkles className="h-3.5 w-3.5" />
+                Order summary
               </div>
-            )}
-            <Button type="submit" size="lg" disabled={submitting} className="w-full">
-              {submitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Opening payment…
-                </>
-              ) : (
-                <>
-                  Continue to payment — {selectedPlan && inr(priceFor(selectedPlan))}
-                </>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm">
+              <Row label="Plan">
+                <div className="text-right">
+                  <div className="font-semibold">
+                    {selectedPlan?.label} · {cycle === "yearly" ? "yearly" : "monthly"}
+                  </div>
+                  {selectedPlan && (
+                    <div className="text-xs text-muted-foreground">
+                      ≈ {selectedPlan.min.toLocaleString("en-IN")} min ·{" "}
+                      {selectedPlan.agents >= 999
+                        ? "Unlimited"
+                        : `${selectedPlan.agents} agents`}{" "}
+                      · {inr(selectedPlan.rate)}/min
+                    </div>
+                  )}
+                </div>
+              </Row>
+
+              <Row label="Phone number">
+                <div className="text-right">
+                  <div className="font-semibold">{selectedNumber?.phoneNumber || "—"}</div>
+                  {selectedNumber?.locality && (
+                    <div className="text-xs text-muted-foreground">
+                      {selectedNumber.locality}
+                    </div>
+                  )}
+                </div>
+              </Row>
+
+              <Row label="Language">
+                <span className="font-semibold">
+                  {LANGUAGES.find((l) => l.value === form.language)?.label || form.language}
+                </span>
+              </Row>
+
+              <Separator />
+
+              <Row label="Voice rate">
+                <span className="font-semibold">
+                  {selectedPlan ? `${inr(selectedPlan.rate)} / min` : "—"}
+                </span>
+              </Row>
+
+              <Row label="Billed today">
+                <span className="text-lg font-bold">{inr(totalAmount)}</span>
+              </Row>
+
+              <Separator />
+
+              {error && (
+                <div className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                  {error}
+                </div>
               )}
-            </Button>
-            <p className="text-center text-xs text-muted-foreground">
-              Secured by Razorpay · End-to-end encrypted · 30-day sessions
-            </p>
-          </CardFooter>
-        </form>
-      </Card>
+
+              <Button type="submit" size="lg" disabled={submitting} className="w-full">
+                {submitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Opening payment…
+                  </>
+                ) : (
+                  <>Pay {inr(totalAmount)} with Razorpay →</>
+                )}
+              </Button>
+
+              <p className="text-center text-xs leading-relaxed text-muted-foreground">
+                Secure Razorpay checkout · UPI / cards / netbanking / wallets.{" "}
+                {cycle === "monthly"
+                  ? "Plan minutes reset every month."
+                  : "Yearly plan minutes reset every month, billed once upfront."}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </form>
     </>
   )
 }
@@ -541,6 +627,15 @@ function Field({
         {label}
       </Label>
       <Input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} />
+    </div>
+  )
+}
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-start justify-between gap-3">
+      <span className="text-muted-foreground">{label}</span>
+      <div className="text-right">{children}</div>
     </div>
   )
 }
