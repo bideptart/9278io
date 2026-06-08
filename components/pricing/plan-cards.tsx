@@ -3,12 +3,10 @@
 import { useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { Check, Loader2 } from "lucide-react"
-import { useFormStatus } from "react-dom"
+import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { formatPlanAgents, planAmountInr, type BillingPeriod, PLANS } from "@/lib/pricing"
-import { checkoutPlanAction } from "@/app/actions/checkout"
 
 export function PlanCards() {
   const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>("monthly")
@@ -114,13 +112,30 @@ export function PlanCards() {
               </ul>
 
               <div className="mt-8 flex flex-col gap-2 pt-2">
-                <form action={checkoutPlanAction}>
-                  <input type="hidden" name="planId" value={plan.id} />
-                  <input type="hidden" name="billingPeriod" value={billingPeriod} />
-                  <BuyNowButton recommended={plan.recommended} amountInr={amountInr} />
-                </form>
+                {/* Both buttons now route to the in-house /get-started signup
+                    widget. The CTA copy stays distinct so the price reinforces
+                    intent, but the destination is the same. */}
+                <Button
+                  asChild
+                  className={cn(
+                    "w-full",
+                    plan.recommended
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+                  )}
+                >
+                  <Link
+                    href={`/get-started?plan=${plan.id}&cycle=${billingPeriod}`}
+                  >
+                    Buy ₹{amountInr.toLocaleString("en-IN")} now
+                  </Link>
+                </Button>
                 <Button asChild variant="ghost" className="w-full text-sm text-muted-foreground hover:text-foreground">
-                  <Link href={`/get-started?plan=${plan.id}`}>Configure with phone number →</Link>
+                  <Link
+                    href={`/get-started?plan=${plan.id}&cycle=${billingPeriod}`}
+                  >
+                    Configure with phone number →
+                  </Link>
                 </Button>
               </div>
             </motion.div>
@@ -128,30 +143,5 @@ export function PlanCards() {
         })}
       </div>
     </div>
-  )
-}
-
-function BuyNowButton({ recommended, amountInr }: { recommended?: boolean; amountInr: number }) {
-  const { pending } = useFormStatus()
-  return (
-    <Button
-      type="submit"
-      disabled={pending}
-      className={cn(
-        "w-full",
-        recommended
-          ? "bg-primary text-primary-foreground hover:bg-primary/90"
-          : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-      )}
-    >
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 size-4 animate-spin" aria-hidden />
-          Redirecting…
-        </>
-      ) : (
-        <>Buy ₹{amountInr.toLocaleString("en-IN")} now</>
-      )}
-    </Button>
   )
 }
