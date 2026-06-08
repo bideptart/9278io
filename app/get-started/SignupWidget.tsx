@@ -123,7 +123,8 @@ export default function SignupWidget() {
         }
         const nums: AvailableNumber[] = numbersRes.numbers || []
         setNumbers(nums)
-        if (nums.length > 0) setForm((f) => ({ ...f, number: nums[0].phoneNumber }))
+        // Don't auto-select — force the customer to deliberately pick a number
+        // from the visual card picker so they SEE which DID they're buying.
       } catch (e) {
         if (!cancelled) setLoadError((e as Error).message || "Could not load plans")
       }
@@ -447,25 +448,68 @@ export default function SignupWidget() {
               onChange={updateInput("password")}
             />
 
-            <div>
-              <Label htmlFor="number" className="mb-1.5 block">
-                Phone number to attach
+            {/* Phone-number picker — a visual card grid that spans the form
+                width so customers see every DID and pick one deliberately. */}
+            <div className="md:col-span-2">
+              <Label className="mb-2 block">
+                Phone number to attach{" "}
+                <span className="font-normal text-muted-foreground">
+                  — pick one to select
+                </span>
               </Label>
-              <Select
-                value={form.number}
-                onValueChange={(v) => setForm((f) => ({ ...f, number: v }))}
-              >
-                <SelectTrigger id="number">
-                  <SelectValue placeholder="Pick a number" />
-                </SelectTrigger>
-                <SelectContent>
-                  {numbers.map((n) => (
-                    <SelectItem key={n.phoneNumber} value={n.phoneNumber}>
-                      {n.phoneNumber} {n.locality ? `· ${n.locality}` : ""}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {numbers.length === 0 ? (
+                <div className="rounded-md border border-dashed border-border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
+                  No numbers available right now. Please contact support.
+                </div>
+              ) : (
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {numbers.map((n) => {
+                    const selected = form.number === n.phoneNumber
+                    return (
+                      <button
+                        type="button"
+                        key={n.phoneNumber}
+                        onClick={() =>
+                          setForm((f) => ({ ...f, number: n.phoneNumber }))
+                        }
+                        className={cn(
+                          "flex items-center justify-between rounded-lg border px-4 py-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500",
+                          selected
+                            ? "border-sky-500 bg-sky-50/50 ring-2 ring-sky-500/30 dark:bg-sky-950/40"
+                            : "border-border bg-card hover:border-sky-300",
+                        )}
+                      >
+                        <div>
+                          <div className="font-mono text-sm font-semibold">
+                            {n.phoneNumber}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {[n.locality, n.region, n.isoCountry]
+                              .filter(Boolean)
+                              .join(" · ") || "India"}
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-1">
+                          <span className="text-xs font-semibold text-sky-600 dark:text-sky-300">
+                            {inr(perDidPriceInr)}
+                          </span>
+                          {selected ? (
+                            <Check className="h-4 w-4 text-sky-500" />
+                          ) : (
+                            <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                              Pick
+                            </span>
+                          )}
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+              <p className="mt-2 text-xs text-muted-foreground">
+                One-time activation fee of {inr(perDidPriceInr)} per number,
+                included in today&apos;s total.
+              </p>
             </div>
 
             <div>
@@ -488,6 +532,9 @@ export default function SignupWidget() {
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Empty cell to keep the language picker in column 1 */}
+            <div className="hidden md:block" />
 
             <Field
               id="agentName"
