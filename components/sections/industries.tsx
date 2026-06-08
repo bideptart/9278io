@@ -143,8 +143,8 @@ const industries = [
     description: "Class bookings, membership renewals, and no-show recovery for gyms, yoga studios, and wellness chains across India.",
     caps: ["Outbound", "Appointment", "Multilingual"],
     script: [
-      { speaker: "Agent", text: "آپ کی ممبرشپ 3 دن میں ختم ہو رہی ہے۔" },
-      { speaker: "Caller", text: "جی، ایک سال کے لیے رینیو کر دیں۔" },
+      { speaker: "Agent", text: "Your membership expires in 3 days, Ankit!" },
+      { speaker: "Caller", text: "Renew kar do, 1 saal ka." },
     ],
     href: "/industries/fitness",
   },
