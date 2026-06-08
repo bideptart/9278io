@@ -82,6 +82,10 @@ declare global {
 export default function SignupWidget() {
   const [plans, setPlans] = useState<Plan[]>([])
   const [numbers, setNumbers] = useState<AvailableNumber[]>([])
+  // Per-DID activation fee, fetched live from /api/plans.perDidPriceInr.
+  // The portal charges this for every phone number attached — including the
+  // first one at signup. Default ₹400, overridden by the API response.
+  const [perDidPriceInr, setPerDidPriceInr] = useState<number>(400)
   const [loadError, setLoadError] = useState<string | null>(null)
 
   const [cycle, setCycle] = useState<"monthly" | "yearly">("monthly")
@@ -114,6 +118,9 @@ export default function SignupWidget() {
         ])
         if (cancelled) return
         setPlans(plansRes.plans || [])
+        if (typeof plansRes.perDidPriceInr === "number") {
+          setPerDidPriceInr(plansRes.perDidPriceInr)
+        }
         const nums: AvailableNumber[] = numbersRes.numbers || []
         setNumbers(nums)
         if (nums.length > 0) setForm((f) => ({ ...f, number: nums[0].phoneNumber }))
@@ -171,7 +178,9 @@ export default function SignupWidget() {
 
       number: form.number,
       numberLoc: numbers.find((n) => n.phoneNumber === form.number)?.locality || "",
-      numberPrice: 0,
+      // ₹400 activation fee per DID — gets added to the Razorpay order total
+      // server-side. Keep this in sync with what the order summary shows.
+      numberPrice: perDidPriceInr,
 
       voice: "Kore",
       language: form.language,
@@ -277,7 +286,10 @@ export default function SignupWidget() {
     )
   }
 
-  const totalAmount = selectedPlan ? priceFor(selectedPlan) : 0
+  const planPrice = selectedPlan ? priceFor(selectedPlan) : 0
+  const numberCount = form.number ? 1 : 0
+  const numberSubtotal = numberCount * perDidPriceInr
+  const totalAmount = planPrice + numberSubtotal
   const selectedNumber = numbers.find((n) => n.phoneNumber === form.number)
 
   return (
@@ -562,11 +574,33 @@ export default function SignupWidget() {
 
               <Separator />
 
+              {/* Itemised charges — plan + per-DID activation fee */}
+              <Row label={`${selectedPlan?.label || "Plan"} credit`}>
+                <span className="font-semibold">{inr(planPrice)}</span>
+              </Row>
+
+              <Row
+                label={
+                  <>
+                    Phone number
+                    {numberCount > 0 && (
+                      <span className="ml-1 text-xs text-muted-foreground">
+                        ({numberCount} × {inr(perDidPriceInr)})
+                      </span>
+                    )}
+                  </>
+                }
+              >
+                <span className="font-semibold">{inr(numberSubtotal)}</span>
+              </Row>
+
               <Row label="Voice rate">
-                <span className="font-semibold">
+                <span className="text-xs font-medium text-muted-foreground">
                   {selectedPlan ? `${inr(selectedPlan.rate)} / min` : "—"}
                 </span>
               </Row>
+
+              <Separator />
 
               <Row label="Billed today">
                 <span className="text-lg font-bold">{inr(totalAmount)}</span>
@@ -631,7 +665,7 @@ function Field({
   )
 }
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({ label, children }: { label: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex items-start justify-between gap-3">
       <span className="text-muted-foreground">{label}</span>
