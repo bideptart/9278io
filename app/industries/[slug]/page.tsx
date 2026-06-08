@@ -176,7 +176,7 @@ export default async function IndustryPage({
             />
             <Stat
               label="Per-minute rate"
-              value="From ₹5.7"
+              value="From ₹10"
               sub="See the full rate card on the pricing page."
             />
           </ScrollReveal>
@@ -237,7 +237,7 @@ export default async function IndustryPage({
           {
             href: "/pricing",
             title: "Compare plans and per-minute rates",
-            description: "Three tiers from ₹1,999 to ₹19,999, with rates from ₹6.7 down to ₹5.7/min.",
+            description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
           },
           {
             href: "/faq",

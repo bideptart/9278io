@@ -49,29 +49,30 @@ export function planAmountUsd(plan: Pick<Plan, "amountUsd">, period: BillingPeri
   return Math.round(plan.amountUsd * 12 * (1 - YEARLY_DISCOUNT))
 }
 
-export const LOWEST_RATE_INR = 5.7
-export const ENTRY_RATE_INR = 6.7
-export const LOWEST_RATE_PER_MIN = 0.07
-export const ENTRY_RATE_PER_MIN = 0.08
+export const LOWEST_RATE_INR = 10
+export const ENTRY_RATE_INR = 12
+export const LOWEST_RATE_PER_MIN = 0.12
+export const ENTRY_RATE_PER_MIN = 0.15
 
 export const PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    amountInr: 1999,
-    amountUsd: 24,
-    ratePerMinInr: 6.7,
-    ratePerMinUsd: 0.08,
-    minutes: 300,
+    amountInr: 3000,
+    amountUsd: 36,
+    ratePerMinInr: 12,
+    ratePerMinUsd: 0.15,
+    minutes: 250,
     agents: 2,
     tagline: "Pilot a single agent.",
     highlights: [
       "2 AI voice agents",
-      "300 included minutes",
-      "₹6.7/min effective rate · ₹10/min overage",
+      "250 included minutes",
+      "₹12/min effective rate · ₹12/min overage",
       "1 phone number (DID)",
       "3 concurrent calls",
-      "Inbound + outbound calling",
+      "Inbound calling",
+      "Per-second billing (no minute-rounding)",
       "Standard voice stack",
       "Call recording",
       "Real-time transcription",
@@ -81,20 +82,21 @@ export const PLANS: Plan[] = [
   {
     id: "growth",
     name: "Growth",
-    amountInr: 5999,
-    amountUsd: 72,
-    ratePerMinInr: 6.7,
-    ratePerMinUsd: 0.08,
-    minutes: 900,
+    amountInr: 8800,
+    amountUsd: 106,
+    ratePerMinInr: 11,
+    ratePerMinUsd: 0.14,
+    minutes: 800,
     agents: 10,
     tagline: "Most teams start here.",
     highlights: [
       "10 AI voice agents",
-      "900 included minutes",
-      "₹6.7/min effective rate · ₹9/min overage",
+      "800 included minutes",
+      "₹11/min effective rate · ₹11/min overage",
       "3 phone numbers (DIDs)",
       "12 concurrent calls",
-      "Inbound + outbound calling",
+      "Inbound calling",
+      "Per-second billing (no minute-rounding)",
       "Standard + premium voices",
       "Call recording",
       "Real-time transcription",
@@ -105,20 +107,21 @@ export const PLANS: Plan[] = [
   {
     id: "scale",
     name: "Scale",
-    amountInr: 19999,
-    amountUsd: 240,
-    ratePerMinInr: 5.7,
-    ratePerMinUsd: 0.07,
-    minutes: 3500,
+    amountInr: 30000,
+    amountUsd: 360,
+    ratePerMinInr: 10,
+    ratePerMinUsd: 0.12,
+    minutes: 3000,
     agents: "unlimited",
     tagline: "High-volume call centers.",
     highlights: [
       "Unlimited AI voice agents",
-      "3,500 included minutes",
-      "₹5.7/min effective rate · ₹8/min overage",
+      "3,000 included minutes",
+      "₹10/min effective rate · ₹10/min overage",
       "15 phone numbers (DIDs)",
       "40 concurrent calls",
-      "Inbound + outbound calling",
+      "Inbound calling",
+      "Per-second billing (no minute-rounding)",
       "Realtime + premium voices",
       "Call recording",
       "Real-time transcription",

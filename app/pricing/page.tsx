@@ -12,9 +12,9 @@ import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 
 export const metadata: Metadata = pageSeo({
-  title: "Pricing — voice AI from ₹5.7/min",
+  title: "Pricing — voice AI from ₹10/min",
   description:
-    "Pick a plan and get started. Starter ₹1,999, Growth ₹5,999, Scale ₹19,999. All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
+    "Pick a plan and get started. Starter ₹3,000, Growth ₹8,800, Scale ₹30,000. All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
   path: "/pricing",
 })
 
@@ -66,18 +66,18 @@ export default async function PricingPage({
               Pick your plan.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹,
-              billed once as wallet credit.
+              All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once
+              as wallet credit.
             </p>
           </ScrollReveal>
 
           <div className="mt-12 grid gap-3 md:grid-cols-3">
-            <Stat icon={Zap} label="Voice rate" value="From ₹5.7 / min" sub="Best rate on the Scale plan." />
+            <Stat icon={Zap} label="Voice rate" value="From ₹10 / min" sub="Best rate on the Scale plan." />
             <Stat icon={Phone} label="Indian numbers" value="₹400 / mo" sub="Available across all states." />
             <Stat
               icon={Headphones}
               label="Minimum top-up"
-              value="₹1,999"
+              value="₹3,000"
               sub="GST charged at checkout."
             />
           </div>
@@ -88,8 +88,8 @@ export default async function PricingPage({
         <ScrollReveal className="mb-10">
           <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Pick your plan.</h2>
           <p className="mt-3 max-w-2xl text-pretty text-muted-foreground">
-            All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹,
-            billed once as wallet credit.
+            All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as
+            wallet credit.
           </p>
         </ScrollReveal>
 

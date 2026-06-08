@@ -72,7 +72,7 @@ export function SignupForm() {
         <Section
           number="01"
           title="Pick your plan."
-          subtitle="All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit."
+          subtitle="All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit."
         >
           <input type="hidden" name="plan" value={planId} />
           <input type="hidden" name="billingPeriod" value={billingPeriod} />
@@ -117,9 +117,17 @@ export function SignupForm() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
-            {PLANS.map((p) => {
+            {[...PLANS]
+              .sort((a, b) => {
+                const order: Record<string, number> = { scale: 0, growth: 1, starter: 2 }
+                return (order[a.id] ?? 99) - (order[b.id] ?? 99)
+              })
+              .map((p) => {
               const active = p.id === planId
               const amount = planAmountInr(p, billingPeriod)
+              const yearlyTotalInr = planAmountInr(p, "yearly")
+              const yearlySaveInr = p.amountInr * 12 - yearlyTotalInr
+              const yearlyMonthlyEquivalentInr = Math.round(yearlyTotalInr / 12)
               return (
                 <button
                   key={p.id}
@@ -156,6 +164,12 @@ export function SignupForm() {
                     <p className="text-3xl font-semibold tracking-tight">₹{amount.toLocaleString("en-IN")}</p>
                     <p className="text-xs text-muted-foreground">{billingPeriod === "yearly" ? "/yr" : "/mo"}</p>
                   </div>
+                  {billingPeriod === "yearly" && (
+                    <p className="mt-1 text-xs text-primary">
+                      Save ₹{yearlySaveInr.toLocaleString("en-IN")} vs monthly · ₹{yearlyMonthlyEquivalentInr.toLocaleString("en-IN")}
+                      /mo equivalent
+                    </p>
+                  )}
 
                   <p className="mt-1 text-xs text-muted-foreground">
                     {p.minutes.toLocaleString("en-IN")} included min · ₹{p.ratePerMinInr}/min eff. ·{" "}

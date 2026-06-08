@@ -16,7 +16,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "How does pricing work?",
-        a: "You pick a plan and get billed once as wallet credit: Starter ₹1,999 (300 included minutes), Growth ₹5,999 (900 included minutes), or Scale ₹19,999 (3,500 included minutes). The effective rate is ₹6.7/min on Starter and Growth, and ₹5.7/min on Scale, with overage at ₹10/min, ₹9/min, and ₹8/min respectively. There are no setup fees and no contracts. Prices are in ₹ and GST is charged at checkout.",
+        a: "You pick a plan and get billed once as wallet credit: Starter ₹3,000 (250 included minutes), Growth ₹8,800 (800 included minutes), or Scale ₹30,000 (3,000 included minutes). The effective rate is ₹12/min on Starter, ₹11/min on Growth, and ₹10/min on Scale, with overage at ₹12/min, ₹11/min, and ₹10/min respectively. There are no setup fees and no contracts. Prices are in ₹ and GST is charged at checkout.",
       },
       {
         q: "Do you accept Indian payment methods?",
@@ -31,8 +31,8 @@ export const FAQ_GROUPS: FaqGroup[] = [
         a: "Your plan is billed once as wallet credit. You can top up again any time as you scale usage.",
       },
       {
-        q: "Can I top up more than ₹19,999?",
-        a: "Yes. You can top up multiple times in any combination. High-volume BPOs and enterprise teams typically run 3–5 Scale top-ups a week. Contact us for custom volume pricing.",
+        q: "Can I top up more than ₹30,000?",
+        a: "Yes. You can top up multiple times in any combination. High-volume BPOs and enterprise teams typically run multiple Scale top-ups a week. Contact us for custom volume pricing.",
       },
       {
         q: "Are there any hidden fees?",

@@ -146,7 +146,7 @@ export default function InboundCallsPage() {
             Never miss another inbound call.
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Deploy your first inbound agent in under 5 minutes. Starter plan from ₹1,999 — no contracts.
+            Deploy your first inbound agent in under 5 minutes. Starter plan from ₹3,000 — no contracts.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">

@@ -150,7 +150,7 @@ export default function BlogPage() {
         heading="Keep exploring"
         description="Product, pricing, and industries — everything in one place."
         links={[
-          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹1,999, Growth ₹5,999, Scale ₹19,999. GST charged at checkout." },
+          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹3,000, Growth ₹8,800, Scale ₹30,000. GST charged at checkout." },
           { href: "/industries", title: "Industries we power", description: "BPO, BFSI, EdTech, healthcare, e-commerce, and more." },
           { href: "/faq", title: "FAQ", description: "TRAI compliance, Indian languages, billing, and account questions." },
         ]}

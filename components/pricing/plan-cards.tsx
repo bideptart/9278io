@@ -12,6 +12,10 @@ import { checkoutPlanAction } from "@/app/actions/checkout"
 
 export function PlanCards() {
   const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>("monthly")
+  const displayPlans = [...PLANS].sort((a, b) => {
+    const order: Record<string, number> = { scale: 0, growth: 1, starter: 2 }
+    return (order[a.id] ?? 99) - (order[b.id] ?? 99)
+  })
   return (
     <div className="space-y-6">
       <div className="flex justify-center">
@@ -54,8 +58,11 @@ export function PlanCards() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {PLANS.map((plan, i) => {
+        {displayPlans.map((plan, i) => {
           const amountInr = planAmountInr(plan, billingPeriod)
+          const yearlyTotalInr = planAmountInr(plan, "yearly")
+          const yearlySaveInr = plan.amountInr * 12 - yearlyTotalInr
+          const yearlyMonthlyEquivalentInr = Math.round(yearlyTotalInr / 12)
           return (
             <motion.div
               key={plan.id}
@@ -86,6 +93,12 @@ export function PlanCards() {
                 <span className="text-5xl font-semibold tracking-tight">₹{amountInr.toLocaleString("en-IN")}</span>
                 <span className="text-sm text-muted-foreground">{billingPeriod === "yearly" ? "/yr" : "/mo"}</span>
               </div>
+              {billingPeriod === "yearly" && (
+                <p className="mt-1 text-xs text-primary">
+                  Save ₹{yearlySaveInr.toLocaleString("en-IN")} vs monthly · ₹{yearlyMonthlyEquivalentInr.toLocaleString("en-IN")}
+                  /mo equivalent
+                </p>
+              )}
               <p className="mt-2 text-sm text-muted-foreground">
                 {plan.minutes.toLocaleString("en-IN")} included min · ₹{plan.ratePerMinInr}/min eff. ·{" "}
                 {plan.agents === "unlimited" ? "Unlimited" : `${formatPlanAgents(plan.agents)} agents`}

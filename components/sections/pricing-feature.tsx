@@ -10,17 +10,19 @@ const plans = [
   {
     icon: Zap,
     name: "Starter",
-    price: "₹1,999",
-    rate: "₹6.7 / min eff.",
-    credit: "300 included min",
+    price: "₹3,000",
+    rate: "₹12 / min eff.",
+    credit: "250 included min",
     agents: "2 agents",
     highlight: false,
     features: [
       "2 AI voice agents",
-      "300 included minutes",
-      "₹6.7/min effective rate · ₹10/min overage",
+      "250 included minutes",
+      "₹12/min effective rate · ₹12/min overage",
       "1 phone number (DID)",
       "3 concurrent calls",
+      "Inbound calling",
+      "Per-second billing (no minute-rounding)",
       "Call recording",
       "Real-time transcription",
     ],
@@ -30,17 +32,19 @@ const plans = [
   {
     icon: TrendingUp,
     name: "Growth",
-    price: "₹5,999",
-    rate: "₹6.7 / min eff.",
-    credit: "900 included min",
+    price: "₹8,800",
+    rate: "₹11 / min eff.",
+    credit: "800 included min",
     agents: "10 agents",
     highlight: true,
     features: [
       "10 AI voice agents",
-      "900 included minutes",
-      "₹6.7/min effective rate · ₹9/min overage",
+      "800 included minutes",
+      "₹11/min effective rate · ₹11/min overage",
       "3 phone numbers (DIDs)",
       "12 concurrent calls",
+      "Inbound calling",
+      "Per-second billing (no minute-rounding)",
       "Standard + premium voices",
       "Real-time transcription",
       "Priority support",
@@ -51,17 +55,19 @@ const plans = [
   {
     icon: Building2,
     name: "Scale",
-    price: "₹19,999",
-    rate: "₹5.7 / min eff.",
-    credit: "3,500 included min",
+    price: "₹30,000",
+    rate: "₹10 / min eff.",
+    credit: "3,000 included min",
     agents: "Unlimited",
     highlight: false,
     features: [
       "Unlimited AI voice agents",
-      "3,500 included minutes",
-      "₹5.7/min effective rate · ₹8/min overage",
+      "3,000 included minutes",
+      "₹10/min effective rate · ₹10/min overage",
       "15 phone numbers (DIDs)",
       "40 concurrent calls",
+      "Inbound calling",
+      "Per-second billing (no minute-rounding)",
       "Realtime + premium voices",
       "Dedicated success manager + SLA",
     ],
@@ -80,8 +86,8 @@ export function PricingFeature() {
             Pick your plan.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            All plans include inbound + outbound calling, call recording, and real-time transcription. Prices in ₹,
-            billed once as wallet credit.
+            All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as
+            wallet credit.
           </p>
         </ScrollReveal>
 

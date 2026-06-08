@@ -124,34 +124,37 @@ Bhojpuri, Maithili — plus English.
 Prices in ₹. GST charged at checkout.
 No setup, no contracts.
 
-### Starter — ₹1,999
+### Starter — ₹3,000
 - 2 AI voice agents · 3 concurrent calls
-- 300 included minutes · ₹6.7/min effective · ₹10/min overage
+- 250 included minutes · ₹12/min effective · ₹12/min overage
 - 1 phone number (DID)
-- Inbound + outbound calling
+- Inbound calling
+- Per-second billing (no minute-rounding)
 - Call recording + real-time transcription
 - Email support
 
-### Growth — ₹5,999 ← MOST POPULAR
+### Growth — ₹8,800 ← MOST POPULAR
 - 10 AI voice agents · 12 concurrent calls
-- 900 included minutes · ₹6.7/min effective · ₹9/min overage
+- 800 included minutes · ₹11/min effective · ₹11/min overage
 - 3 phone numbers (DIDs)
-- Inbound + outbound calling
+- Inbound calling
+- Per-second billing (no minute-rounding)
 - Standard + premium voices
 - Call recording + real-time transcription
 - Priority support
 
-### Scale — ₹19,999
+### Scale — ₹30,000
 - Unlimited AI voice agents · 40 concurrent calls
-- 3,500 included minutes · ₹5.7/min effective · ₹8/min overage
+- 3,000 included minutes · ₹10/min effective · ₹10/min overage
 - 15 phone numbers (DIDs)
-- Inbound + outbound calling
+- Inbound calling
+- Per-second billing (no minute-rounding)
 - Realtime + premium voices
 - Call recording + real-time transcription
 - Dedicated success manager + SLA
 
 Extra phone numbers beyond what’s included are billed monthly at ₹400/mo.
-Customers can top up multiple times. Contact for custom volume pricing beyond ₹19,999.
+Customers can top up multiple times. Contact for custom volume pricing beyond ₹30,000.
 
 ## Payment & billing
 - Indian payment methods: UPI (Google Pay, PhonePe, Paytm), net banking,
@@ -188,7 +191,7 @@ Customers can top up multiple times. Contact for custom volume pricing beyond �
 - Keep answers tight: 1–4 short paragraphs unless asked for detail.
 - Use ₹ for INR (not "INR" or "Rs.").
 - Use bullet points for plans, features, or steps.
-- When asked about pricing, lead with Growth (₹5,999) unless context
+- When asked about pricing, lead with Growth (₹8,800) unless context
   suggests otherwise.
 - When the user is ready to act, point them to /get-started or
   https://voice.9278.io/signin.

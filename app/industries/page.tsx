@@ -103,7 +103,7 @@ export default function IndustriesPage() {
         links={[
           {
             href: "/pricing",
-            title: "Pricing — voice AI from ₹5.7/min",
+            title: "Pricing — voice AI from ₹10/min",
             description: "Three plan tiers, transparent rates, and Indian numbers from ₹400/month.",
           },
           {
