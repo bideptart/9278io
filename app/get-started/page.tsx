@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { SignupForm } from "@/components/get-started/signup-form"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -45,7 +44,14 @@ export default function GetStartedPage() {
 
       <section className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
         <Suspense fallback={<div className="text-sm text-muted-foreground">Loading…</div>}>
-          <SignupForm />
+          <iframe
+            src="https://voice.9278.io/embed/signup.html"
+            width="100%"
+            height={1000}
+            style={{ border: 0, maxWidth: 1100, display: "block", margin: "0 auto" }}
+            allow="payment"
+            title="9278 Voice signup"
+          />
         </Suspense>
       </section>
 
