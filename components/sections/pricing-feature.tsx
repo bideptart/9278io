@@ -49,7 +49,7 @@ const plans = [
       "Real-time transcription",
       "Priority support",
     ],
-    cta: "Start now",
+    cta: "Get started",
     href: "/get-started",
   },
   {
