@@ -208,7 +208,7 @@ export function SiteHeader() {
             size="sm"
             className="hidden text-sm text-muted-foreground hover:bg-muted hover:text-foreground sm:inline-flex"
           >
-            <a href="https://dashboard.9278.io/login" target="_blank" rel="noopener noreferrer">
+            <a href="https://voice.9278.io/signin" target="_blank" rel="noopener noreferrer">
               Sign in
             </a>
           </Button>
@@ -218,7 +218,7 @@ export function SiteHeader() {
             size="sm"
             className="hidden rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[0_0_20px_oklch(0.78_0.16_195/0.3)] transition-all hover:bg-primary/90 hover:shadow-[0_0_28px_oklch(0.78_0.16_195/0.45)] sm:inline-flex"
           >
-            <Link href="/get-started">Start Now</Link>
+            <Link href="/get-started">Get Started</Link>
           </Button>
 
           {/* Mobile hamburger */}
@@ -292,12 +292,12 @@ export function SiteHeader() {
 
               <div className="mt-3 flex flex-col gap-2 border-t border-border/50 pt-4">
                 <Button asChild variant="ghost" size="sm" className="w-full justify-center text-muted-foreground">
-                  <a href="https://dashboard.9278.io/login" target="_blank" rel="noopener noreferrer">
+                  <a href="https://voice.9278.io/signin" target="_blank" rel="noopener noreferrer">
                     Sign in
                   </a>
                 </Button>
                 <Button asChild size="sm" className="w-full bg-primary font-semibold text-primary-foreground">
-                  <Link href="/get-started">Start Now →</Link>
+                  <Link href="/get-started">Get Started →</Link>
                 </Button>
               </div>
             </nav>
