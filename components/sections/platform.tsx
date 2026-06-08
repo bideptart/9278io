@@ -14,37 +14,37 @@ const tabs = [
   {
     id: "multi-agent",
     icon: Network,
-    title: "Multi-Agent System",
+    title: "AI Receptionist Flow",
     description:
-      "Architect modular call flows with specialised sub-agents — lead qualifier, scheduler, support, collections — all running in parallel.",
+      "Greet callers, capture intent, ask qualifying questions, and route to the right team automatically.",
   },
   {
     id: "telephony",
     icon: PhoneCall,
-    title: "Custom Telephony",
+    title: "Numbers & Routing",
     description:
-      "Sub-100ms latency across Jio, Airtel, BSNL, and Vi. Provision Indian DIDs and route intelligently without replacing your SIP or PBX.",
+      "Provision Indian DIDs and route inbound calls intelligently without replacing your SIP or PBX.",
   },
   {
     id: "sandbox",
     icon: FlaskConical,
-    title: "AI Sandbox for Testing",
+    title: "Script Testing",
     description:
-      "Preview and test your agent safely. Compare versions, run scenario tests, and roll back any update without downtime.",
+      "Test greetings, FAQs, appointment booking, and transfers before you go live — then roll back instantly.",
   },
   {
     id: "monitoring",
     icon: BarChart3,
-    title: "Real-Time Monitoring",
+    title: "Live Call Logs",
     description:
-      "Live visibility into every call, webhook, and API event. Debug faster and deploy with full confidence.",
+      "See live calls, transcripts, outcomes, and transfers — and improve your receptionist as you learn.",
   },
   {
     id: "finetuning",
     icon: Database,
-    title: "Data Fine-Tuning",
+    title: "Knowledge & Tuning",
     description:
-      "Train smarter agents using your own past call recordings. Improve accuracy and behaviour on your specific Indian use cases.",
+      "Add your FAQs and documents, then tune responses based on real calls to improve accuracy over time.",
   },
 ]
 
@@ -71,13 +71,12 @@ export function Platform() {
     <section className="border-b border-border">
       <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">The Control Panel</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">AI Receptionist</p>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            A self-hosted dashboard you actually own.
+            Answer every call like your best front desk.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Voice agents, SIP routes, API keys, and analytics — all live on infrastructure you control.
-            Recordings and transcripts never leave your environment.
+            Greet callers, qualify requests, route to the right team, and book appointments — in 15+ Indian languages.
           </p>
         </ScrollReveal>
 
@@ -273,25 +272,25 @@ function MultiAgentPanel() {
   )
 }
 
-/* ─── Panel 2: Custom Telephony ─── */
+/* ─── Panel 2: Numbers & Routing ─── */
 
-const carriers = [
-  { name: "Jio", latency: 88, calls: 412, bars: 5, color: "bg-blue-400" },
-  { name: "Airtel", latency: 94, calls: 389, bars: 5, color: "bg-red-400" },
-  { name: "BSNL", latency: 108, calls: 201, bars: 4, color: "bg-green-400" },
-  { name: "Vi", latency: 101, calls: 245, bars: 4, color: "bg-purple-400" },
+const circles = [
+  { name: "Mumbai", latency: 88, calls: 412, bars: 5, color: "bg-blue-400" },
+  { name: "Delhi", latency: 94, calls: 389, bars: 5, color: "bg-red-400" },
+  { name: "Bengaluru", latency: 108, calls: 201, bars: 4, color: "bg-green-400" },
+  { name: "Kolkata", latency: 101, calls: 245, bars: 4, color: "bg-purple-400" },
 ]
 
 function TelephonyPanel() {
   return (
     <div className="flex flex-col gap-4 p-6">
       <PanelHeader
-        label="Carrier Status"
+        label="Routing Status"
         right={<LiveBadge>All systems operational</LiveBadge>}
       />
 
       <div className="space-y-3">
-        {carriers.map((carrier, i) => (
+        {circles.map((carrier, i) => (
           <motion.div
             key={carrier.name}
             initial={{ opacity: 0, y: 8 }}
@@ -309,8 +308,8 @@ function TelephonyPanel() {
               <div className="h-1.5 w-1.5 rounded-full bg-green-400" />
             </div>
 
-            {/* Carrier name */}
-            <span className="w-12 text-sm font-bold text-foreground">{carrier.name}</span>
+            {/* Circle */}
+            <span className="w-20 text-sm font-bold text-foreground">{carrier.name}</span>
 
             {/* Signal bars */}
             <div className="flex items-end gap-0.5">

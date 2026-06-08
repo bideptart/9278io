@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react"
 import {
-  AudioLines, Hand, PhoneCall, Languages, Wrench,
+  AudioLines, Hand, PhoneCall, Languages,
   ShieldCheck, Activity, Network,
 } from "lucide-react"
 import { motion } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 
-const carriers = ["Jio", "Airtel", "BSNL", "Vi"]
-
-const integrations = ["Zoho CRM", "Freshworks", "Razorpay", "WhatsApp", "LeadSquared", "Google Cal"]
+const networkPills = ["Inbound PSTN", "Outbound PSTN", "SIP trunking", "Indian DIDs"]
 
 const waveHeights = [30, 55, 40, 70, 50, 85, 45, 72, 38, 65, 42, 78, 35, 60, 48]
 
@@ -39,14 +37,14 @@ const concurrencyDots = Array.from({ length: 12 })
 
 export function Features() {
   const [transcriptKey, setTranscriptKey] = useState(0)
-  const [activeCarrier, setActiveCarrier] = useState(0)
+  const [activePill, setActivePill] = useState(0)
   const [analyticsIdx, setAnalyticsIdx] = useState(0)
   const [analyticsKey, setAnalyticsKey] = useState(0)
   const [activeCheck, setActiveCheck] = useState(0)
 
   useEffect(() => {
     const t1 = setInterval(() => setTranscriptKey(k => k + 1), 7500)
-    const t2 = setInterval(() => setActiveCarrier(i => (i + 1) % carriers.length), 1800)
+    const t2 = setInterval(() => setActivePill(i => (i + 1) % networkPills.length), 1800)
     const t3 = setInterval(() => {
       setAnalyticsIdx(i => (i + 1) % analyticsDataSets.length)
       setAnalyticsKey(k => k + 1)
@@ -118,25 +116,25 @@ export function Features() {
               <CardIcon Icon={PhoneCall} />
               <h3 className="mt-4 font-bold tracking-tight">Indian Carrier-Grade Telephony</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Inbound and outbound calls over Jio, Airtel, BSNL, and Vi. Provision DIDs across all Indian telecom circles and route intelligently.
+                Inbound and outbound calls with Indian numbers, reliable routing, and full telecom-circle coverage.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {carriers.map((c, i) => (
+                {networkPills.map((c, i) => (
                   <motion.span
                     key={c}
                     animate={
-                      activeCarrier === i
+                      activePill === i
                         ? { scale: 1.07 }
                         : { scale: 1 }
                     }
                     transition={{ type: "spring", stiffness: 320, damping: 22 }}
                     className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-semibold transition-colors duration-300 ${
-                      activeCarrier === i
+                      activePill === i
                         ? "border-primary/50 bg-primary/[0.15] text-primary"
                         : "border-primary/20 bg-primary/[0.06] text-primary/70"
                     }`}
                   >
-                    {activeCarrier === i && (
+                    {activePill === i && (
                       <motion.span
                         className="h-1.5 w-1.5 rounded-full bg-primary"
                         animate={{ opacity: [1, 0.3, 1] }}
@@ -240,33 +238,6 @@ export function Features() {
                     />
                     {f}
                   </motion.div>
-                ))}
-              </div>
-            </BentoCard>
-          </ScrollReveal>
-
-          {/* Tools & Integrations */}
-          <ScrollReveal>
-            <BentoCard>
-              <CardBadge>Integrations</CardBadge>
-              <CardIcon Icon={Wrench} />
-              <h3 className="mt-4 font-bold tracking-tight">Tools & Function Calling</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Zoho CRM, Razorpay, WhatsApp — your agent uses the same APIs your team does.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-1.5">
-                {integrations.map((name, i) => (
-                  <motion.span
-                    key={name}
-                    initial={{ opacity: 0, scale: 0.75 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.07 * i, type: "spring", stiffness: 280, damping: 20 }}
-                    whileHover={{ scale: 1.07, y: -1 }}
-                    className="cursor-default rounded-full border border-border bg-card/50 px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:border-primary/25 hover:text-primary/80"
-                  >
-                    {name}
-                  </motion.span>
                 ))}
               </div>
             </BentoCard>

@@ -16,7 +16,7 @@ export default function HomePage() {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <ServiceJsonLd
         name="9278.io — AI voice agents for Indian businesses"
-        description="Native-audio voice agents for Indian businesses. Sub-second latency on Jio/Airtel/BSNL/Vi, RAG over your docs, and a self-hosted control panel — without the enterprise vendor markup."
+        description="Native-audio voice agents for Indian businesses. Clean per-second billing (no minute-rounding), 15+ Indian languages, and RAG over your docs."
         path="/"
         serviceType="AI voice agent platform"
       />

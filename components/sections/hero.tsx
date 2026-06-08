@@ -106,8 +106,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.22 }}
           className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Native audio in 15+ Indian languages, Indian carrier connectivity, RAG over your docs,
-          and a self-hosted control panel — without the enterprise vendor markup.
+          Clean per-second billing — no minute-rounding, no hidden markups. Pay only for what your agent actually talks.
         </motion.p>
 
         {/* CTAs */}
@@ -147,7 +146,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-6 text-xs text-muted-foreground/70"
         >
-          Sub-second latency · Self-hosted dashboard · Indian carrier connectivity · No contracts
+          Per-second billing · 15+ Indian languages · Sub-second latency · No contracts
         </motion.p>
 
         {/* Demo audio */}

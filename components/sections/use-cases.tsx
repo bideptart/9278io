@@ -24,14 +24,14 @@ const steps = [
     icon: Rocket,
     title: "Launch",
     description:
-      "Provision an Indian DID from ₹400/month or port your existing number through our SIP trunk. Go live on Jio/Airtel/BSNL/Vi in minutes.",
+      "Provision an Indian DID from ₹400/month or port your existing number through our SIP trunk. Go live in minutes.",
   },
   {
     number: "04",
     icon: BarChart3,
     title: "Optimize",
     description:
-      "Watch P50/P90 latency, transcripts, and AI summaries from the self-hosted dashboard. Fine-tune on your own call data.",
+      "Watch P50/P90 latency, transcripts, and AI summaries in your dashboard. Fine-tune on your own call data.",
   },
 ]
 
