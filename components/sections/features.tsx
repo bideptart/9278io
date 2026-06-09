@@ -213,7 +213,7 @@ export function Features() {
           </ScrollReveal>
 
           {/* Natural Turn-Taking */}
-          <ScrollReveal>
+          <ScrollReveal className="md:row-span-2">
             <BentoCard>
               <CardBadge>Conversational</CardBadge>
               <CardIcon Icon={Hand} />
