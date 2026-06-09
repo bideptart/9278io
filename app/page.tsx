@@ -2,8 +2,8 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Hero } from "@/components/sections/hero"
 import { PricingFeature } from "@/components/sections/pricing-feature"
-import { VoiceEngineContent, VoiceEngineHeader } from "@/components/sections/features"
-import { AiReceptionistHeader } from "@/components/sections/platform"
+import { Features } from "@/components/sections/features"
+import { Platform } from "@/components/sections/platform"
 import { Connectivity } from "@/components/sections/connectivity"
 import { Industries } from "@/components/sections/industries"
 import { UseCases } from "@/components/sections/use-cases"
@@ -24,15 +24,8 @@ export default function HomePage() {
       <main className="flex-1">
         <Hero />
         <Connectivity />
-        <section id="features" className="border-b border-border">
-          <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
-            <div className="grid gap-12 lg:grid-cols-2">
-              <AiReceptionistHeader />
-              <VoiceEngineHeader />
-            </div>
-            <VoiceEngineContent />
-          </div>
-        </section>
+        <Platform />
+        <Features />
         <Industries />
         <UseCases />
         <PricingFeature />
