@@ -126,7 +126,7 @@ export default function FaqPage() {
           {
             href: "/industries",
             title: "Industries — pre-tuned playbooks",
-            description: "Real estate, dental, healthcare, home services, restaurants, automotive, and more.",
+            description: "Real estate, home services, restaurants, automotive, legal, education, and more.",
           },
           {
             href: "/get-started",

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import {
-  Phone, Stethoscope, Home, ShoppingBag, Scale,
+  Phone, Home, ShoppingBag, Scale,
   GraduationCap, Car, UtensilsCrossed, Dumbbell, Landmark,
   ArrowRight,
 } from "lucide-react"
@@ -63,18 +63,6 @@ const industries = [
       { speaker: "Caller", text: "ஆமாம், புனேவில் பார்க்க வேண்டும்." },
     ],
     href: "/industries/real-estate",
-  },
-  {
-    icon: Stethoscope,
-    tag: "Healthcare",
-    title: "Healthcare & Pharma",
-    description: "Appointment reminders, prescription follow-ups, and patient intake — DPDP Act compliant.",
-    caps: ["Inbound", "Appointment", "DPDP Ready"],
-    script: [
-      { speaker: "Agent", text: "మీ అపాయింట్మెంట్ రేపు ఉదయం 10 గంటలకు ఉంది." },
-      { speaker: "Caller", text: "దాన్ని మధ్యాహ్నం 2కి మార్చగలరా?" },
-    ],
-    href: "/use-cases/appointment-booking",
   },
   {
     icon: GraduationCap,

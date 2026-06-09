@@ -41,7 +41,7 @@ const milestones = [
   { year: "2023", event: "Founded in Bengaluru with a mission to make AI voice accessible in Indian languages." },
   { year: "2024 Q1", event: "Launched Hindi, Tamil, and Telugu voice agents. First 50 customers in BFSI and real estate." },
   { year: "2024 Q3", event: "Expanded to 15+ Indian languages. Crossed 1 million calls automated." },
-  { year: "2025", event: "Serving 500+ businesses across healthcare, EdTech, e-commerce, and BPO sectors nationwide." },
+  { year: "2025", event: "Serving 500+ businesses across BFSI, EdTech, e-commerce, and BPO sectors nationwide." },
 ]
 
 export default function AboutPage() {
@@ -181,7 +181,7 @@ export default function AboutPage() {
         description="Product, pricing, and industries — everything in one place."
         links={[
           { href: "/pricing", title: "Pricing in INR", description: "Starter ₹3,000, Growth ₹8,800, Scale ₹30,000. Prices in ₹, billed once as wallet credit." },
-          { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, healthcare, EdTech, and more." },
+          { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, EdTech, and more." },
           { href: "/careers", title: "Join the team", description: "Open roles in Bengaluru and remote-India." },
         ]}
       />

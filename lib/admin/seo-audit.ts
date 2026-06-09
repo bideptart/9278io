@@ -69,7 +69,7 @@ export function getRegistry(): SeoEntry[] {
       path: "/industries",
       title: "Industries we power",
       description:
-        "Pre-tuned AI voice agents for real estate, dental, healthcare, home services, restaurants, automotive, legal, education, e-commerce, and fitness — live in under 5 minutes.",
+        "Pre-tuned AI voice agents for real estate, home services, restaurants, automotive, legal, education, e-commerce, and fitness — live in under 5 minutes.",
       canonical: absoluteUrl("/industries"),
       indexable: true,
       group: "Marketing",

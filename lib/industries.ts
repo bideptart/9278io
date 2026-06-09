@@ -1,7 +1,5 @@
 import {
   Home,
-  Stethoscope,
-  HeartPulse,
   Wrench,
   UtensilsCrossed,
   Car,
@@ -45,47 +43,6 @@ export const INDUSTRIES: Industry[] = [
       "Hi! I saw you just inquired about the colonial on Maple — are you working with an agent yet?",
       "Quick question — are you pre-approved, or would you like me to introduce a lender?",
       "I have Tuesday at 4 or Saturday at 11 open for a showing — which works better?",
-    ],
-  },
-  {
-    slug: "dental",
-    name: "Dental practices",
-    icon: Stethoscope,
-    short:
-      "Confirm appointments, fill last-minute cancellations, and answer insurance & treatment questions without tying up the front desk.",
-    pitch:
-      "Front desks miss 20–40% of inbound calls during lunch and after hours. 9278.io picks up every one — confirms cleanings, reschedules cancellations, answers insurance questions, and only routes the genuine emergencies to your team.",
-    jobs: [
-      "Confirm and reschedule cleanings, hygiene, and ortho visits",
-      "Fill last-minute openings from your cancellation list",
-      "Verify benefits and explain estimated patient cost",
-      "Triage emergencies (toothache, broken crown) and warm-transfer",
-      "Send pre-visit instructions and intake forms automatically",
-    ],
-    sampleLines: [
-      "Hi Mrs. Patel, this is the office at Sunrise Dental confirming your cleaning tomorrow at 2:30. Reply 1 to confirm or 2 to reschedule.",
-      "Sure — your plan covers two cleanings a year, and your last one was in January, so you're due.",
-      "That sounds like a real toothache. Let me get Dr. Lee on the line right now.",
-    ],
-  },
-  {
-    slug: "healthcare",
-    name: "Healthcare clinics",
-    icon: HeartPulse,
-    short: "Patient intake, prescription refills, and reminder calls with a calm, DPDP-compliant bedside tone.",
-    pitch:
-      "Indian clinics and hospital chains are drowning in repetitive phone work. 9278.io automates intake, refill requests, post-visit follow-ups, and benefits questions — with a warm, paced bedside tone in Hindi, Tamil, Telugu and other regional languages that patients actually respond to.",
-    jobs: [
-      "New patient intake and demographic capture",
-      "Prescription refill requests routed to pharmacy",
-      "Post-discharge follow-up and symptom tracking",
-      "Appointment reminders with re-confirmation flow",
-      "Benefits and copay explanations",
-    ],
-    sampleLines: [
-      "Just checking in — on a scale of 0 to 10, how is your pain today compared to right after surgery?",
-      "Of course. I can request a refill for your telmisartan at the Apollo Pharmacy nearby — does that still work for you?",
-      "एक गहरी सांस लीजिए। मैं आपसे कुछ छोटे सवाल पूछूंगी, फिर डॉक्टर दस मिनट में आपको कॉल करेंगे।",
     ],
   },
   {
@@ -188,7 +145,7 @@ export const INDUSTRIES: Industry[] = [
       "At-risk student check-ins between terms",
     ],
     sampleLines: [
-      "Hi Marcus — I saw you started an application for the medical-assisting program. Want me to walk you through next steps?",
+      "Hi Marcus — I saw you started an application for the business program. Want me to walk you through next steps?",
       "Looks like we're still missing your high-school transcript. Want me to text you the upload link?",
       "Just checking in — the next term starts Jan 22. Are you still planning to register?",
     ],
@@ -220,7 +177,7 @@ export const INDUSTRIES: Industry[] = [
     icon: Dumbbell,
     short: "Class bookings, membership upsells, and no-show recovery for studios and gyms — without a front-desk human.",
     pitch:
-      "Boutique gyms, yoga studios and PT clinics fill classes by phone and SMS. 9278.io books classes, recovers no-shows, sells memberships, and re-engages lapsed members — at a fraction of the cost of an answering service.",
+      "Boutique gyms and yoga studios fill classes by phone and SMS. 9278.io books classes, recovers no-shows, sells memberships, and re-engages lapsed members — at a fraction of the cost of an answering service.",
     jobs: [
       "Class and trainer booking on Mindbody, Mariana Tek, ClubReady",
       "Membership freeze, cancel, and upgrade requests",

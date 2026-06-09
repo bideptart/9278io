@@ -14,7 +14,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "Industries we power",
   description:
-    "Pre-tuned AI voice agents for real estate, dental, healthcare, home services, restaurants, automotive, legal, education, e-commerce, and fitness — live in under 5 minutes.",
+    "Pre-tuned AI voice agents for real estate, home services, restaurants, automotive, legal, education, e-commerce, and fitness — live in under 5 minutes.",
   path: "/industries",
 })
 

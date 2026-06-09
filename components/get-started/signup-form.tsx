@@ -22,8 +22,6 @@ import { submitSignup, type SignupState } from "@/app/get-started/actions"
 
 const INDUSTRIES = [
   { id: "real-estate", label: "Real Estate" },
-  { id: "dental", label: "Dental" },
-  { id: "healthcare", label: "Healthcare" },
   { id: "home-services", label: "Home Services" },
   { id: "automotive", label: "Automotive" },
   { id: "legal", label: "Legal" },

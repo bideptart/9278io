@@ -18,12 +18,12 @@ const nav = {
     { label: "Customer Support", href: "/use-cases/customer-support" },
   ],
   Industries: [
-    { label: "Healthcare", href: "/industries/healthcare" },
     { label: "Real Estate", href: "/industries/real-estate" },
     { label: "Legal Services", href: "/industries/legal" },
     { label: "E-Commerce", href: "/industries/ecommerce" },
     { label: "Restaurants", href: "/industries/restaurants" },
     { label: "Automotive", href: "/industries/automotive" },
+    { label: "Home Services", href: "/industries/home-services" },
   ],
   Company: [
     { label: "About", href: "/about" },
