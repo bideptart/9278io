@@ -213,7 +213,7 @@ export function Features() {
           </ScrollReveal>
 
           {/* Natural Turn-Taking */}
-          <ScrollReveal className="md:row-span-2">
+          <ScrollReveal>
             <BentoCard>
               <CardBadge>Conversational</CardBadge>
               <CardIcon Icon={Hand} />
@@ -284,8 +284,49 @@ export function Features() {
             </BentoCard>
           </ScrollReveal>
 
-          {/* TRAI Compliance — spans 2 */}
-          <ScrollReveal className="md:col-span-2">
+          {/* Massive Concurrency */}
+          <ScrollReveal>
+            <BentoCard>
+              <CardBadge>Scale</CardBadge>
+              <CardIcon Icon={Network} />
+              <h3 className="mt-4 font-bold tracking-tight">Massive Concurrency</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Scale from one call to thousands simultaneously. Burst capacity is built in.
+              </p>
+              <div className="mt-6 grid grid-cols-3 gap-1.5 sm:grid-cols-6">
+                {concurrencyDots.map((_, i) => {
+                  const row = Math.floor(i / 6)
+                  const col = i % 6
+                  const rippleDelay = (row + col) * 0.18
+                  return (
+                    <motion.div
+                      key={i}
+                      className="aspect-square rounded-md bg-primary/15"
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ type: "spring", delay: 0.05 * i, stiffness: 300, damping: 18 }}
+                    >
+                      <motion.div
+                        className="h-full w-full rounded-md bg-primary/40"
+                        animate={{ opacity: [0.25, 1, 0.25], scale: [0.8, 1, 0.8] }}
+                        transition={{
+                          duration: 2.4,
+                          repeat: Infinity,
+                          delay: rippleDelay,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </motion.div>
+                  )
+                })}
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">Each cell = 1 concurrent agent</p>
+            </BentoCard>
+          </ScrollReveal>
+
+          {/* TRAI Compliance */}
+          <ScrollReveal className="md:col-span-3">
             <BentoCard>
               <CardBadge>Compliant</CardBadge>
               <CardIcon Icon={ShieldCheck} />
@@ -331,47 +372,6 @@ export function Features() {
                   </motion.div>
                 ))}
               </div>
-            </BentoCard>
-          </ScrollReveal>
-
-          {/* Massive Concurrency */}
-          <ScrollReveal>
-            <BentoCard>
-              <CardBadge>Scale</CardBadge>
-              <CardIcon Icon={Network} />
-              <h3 className="mt-4 font-bold tracking-tight">Massive Concurrency</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Scale from one call to thousands simultaneously. Burst capacity is built in.
-              </p>
-              <div className="mt-6 grid grid-cols-3 gap-1.5 sm:grid-cols-6">
-                {concurrencyDots.map((_, i) => {
-                  const row = Math.floor(i / 6)
-                  const col = i % 6
-                  const rippleDelay = (row + col) * 0.18
-                  return (
-                    <motion.div
-                      key={i}
-                      className="aspect-square rounded-md bg-primary/15"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", delay: 0.05 * i, stiffness: 300, damping: 18 }}
-                    >
-                      <motion.div
-                        className="h-full w-full rounded-md bg-primary/40"
-                        animate={{ opacity: [0.25, 1, 0.25], scale: [0.8, 1, 0.8] }}
-                        transition={{
-                          duration: 2.4,
-                          repeat: Infinity,
-                          delay: rippleDelay,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </motion.div>
-                  )
-                })}
-              </div>
-              <p className="mt-3 text-xs text-muted-foreground">Each cell = 1 concurrent agent</p>
             </BentoCard>
           </ScrollReveal>
 
