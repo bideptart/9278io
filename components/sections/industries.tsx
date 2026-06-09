@@ -141,6 +141,9 @@ const industries = [
 /* ── Component ── */
 
 export function Industries() {
+  const primaryIndustries = industries.slice(0, 6)
+  const tailIndustries = industries.slice(6)
+
   return (
     <section id="industries" className="border-b border-border">
       <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
@@ -162,11 +165,26 @@ export function Industries() {
 
         {/* ── Industry grid ── */}
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {industries.map((item, i) => (
+          {primaryIndustries.map((item, i) => (
             <ScrollReveal key={item.title} delay={i * 0.05}>
               <IndustryCard item={item} />
             </ScrollReveal>
           ))}
+          {tailIndustries.length === 2 ? (
+            <div className="grid gap-4 sm:col-span-2 lg:col-span-3 lg:grid-cols-2">
+              {tailIndustries.map((item, i) => (
+                <ScrollReveal key={item.title} delay={(i + primaryIndustries.length) * 0.05}>
+                  <IndustryCard item={item} />
+                </ScrollReveal>
+              ))}
+            </div>
+          ) : (
+            tailIndustries.map((item, i) => (
+              <ScrollReveal key={item.title} delay={(i + primaryIndustries.length) * 0.05}>
+                <IndustryCard item={item} />
+              </ScrollReveal>
+            ))
+          )}
         </div>
 
       </div>
