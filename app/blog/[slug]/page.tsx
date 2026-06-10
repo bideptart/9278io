@@ -49,7 +49,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
         ]}
       />
 
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 md:px-6 md:py-24">
+      <div className="mx-auto w-full max-w-4xl px-4 py-16 md:px-6 md:py-24">
         <Button asChild variant="ghost" size="sm" className="mb-8 -ml-2 text-muted-foreground">
           <Link href="/blog">
             <ArrowLeft className="mr-2 h-4 w-4" aria-hidden />
@@ -57,7 +57,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           </Link>
         </Button>
 
-        <div className="rounded-2xl border border-border bg-card/50 p-8 md:p-12">
+        <div className="rounded-2xl border border-border bg-card/50 p-6 md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span className="rounded-full border border-primary/20 bg-primary/[0.08] px-2.5 py-0.5 text-xs font-medium text-primary">
               {post.category}
