@@ -49,8 +49,8 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
         ]}
       />
 
-      <div className="mx-auto w-full max-w-4xl px-4 py-16 md:px-6 md:py-24">
-        <Button asChild variant="ghost" size="sm" className="mb-8 -ml-2 text-muted-foreground">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8 md:px-8 md:py-12">
+        <Button asChild variant="ghost" size="sm" className="mb-4 -ml-2 text-muted-foreground">
           <Link href="/blog">
             <ArrowLeft className="mr-2 h-4 w-4" aria-hidden />
             Back to blog
