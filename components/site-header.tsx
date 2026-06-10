@@ -184,6 +184,7 @@ export function SiteHeader() {
 
           {navLink("Industries", "/industries")}
           {navLink("Pricing", "/pricing")}
+          {navLink("Blog", "/blog")}
           {navLink("FAQ", "/faq")}
         </nav>
 
@@ -278,6 +279,7 @@ export function SiteHeader() {
                 {[
                   { label: "Industries", href: "/industries" },
                   { label: "Pricing", href: "/pricing" },
+                  { label: "Blog", href: "/blog" },
                   { label: "FAQ", href: "/faq" },
                 ].map(item => (
                   <Link
