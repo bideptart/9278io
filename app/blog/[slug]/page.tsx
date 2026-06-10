@@ -17,8 +17,9 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
   if (!post) return pageSeo({ title: "Blog — 9278.io", path: "/blog" })
   return pageSeo({
     title: `${post.title} — 9278.io`,
@@ -27,8 +28,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   })
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  return <BlogPostPageContent slug={params.slug} />
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  return <BlogPostPageContent slug={slug} />
 }
 
 async function BlogPostPageContent({ slug }: { slug: string }) {
