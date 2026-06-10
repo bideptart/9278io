@@ -16,6 +16,8 @@ export const metadata: Metadata = pageSeo({
   path: "/blog",
 })
 
+export const dynamic = "force-static"
+
 const categoryColors: Record<string, string> = {
   "Use Cases": "border-primary/20 bg-primary/[0.08] text-primary",
   Guides: "border-primary/20 bg-primary/[0.08] text-primary",

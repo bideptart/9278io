@@ -16,7 +16,7 @@ export type BlogPost = BlogPostSummary & {
   articleHtml: string
 }
 
-const BLOG_DIR = path.join(process.cwd(), "content", "blog")
+const BLOG_DIR = path.join(process.cwd(), "public", "blog-content")
 
 function decodeHtmlEntities(input: string) {
   return input.replace(/&(#(\d+)|#x([\da-fA-F]+)|[a-zA-Z]+);/g, (m, token, dec, hex) => {
@@ -120,4 +120,3 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     return null
   }
 }
-

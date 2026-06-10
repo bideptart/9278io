@@ -9,6 +9,9 @@ import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { getAllBlogSlugs, getBlogPostBySlug } from "@/lib/blog"
 
+export const dynamic = "force-static"
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const slugs = await getAllBlogSlugs()
   return slugs.map((slug) => ({ slug }))
