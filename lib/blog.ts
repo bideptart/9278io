@@ -16,8 +16,30 @@ export type BlogPost = BlogPostSummary & {
   articleHtml: string
 }
 
-const BLOG_PUBLIC_DIR = path.join(process.cwd(), "public", "blog-content")
 const BLOG_PUBLIC_ROUTE_PREFIX = "/blog-content"
+const BLOG_DIR_CANDIDATES = [
+  path.join(process.cwd(), "public", "blog-content"),
+  path.join(process.cwd(), "..", "public", "blog-content"),
+  path.join(process.cwd(), "..", "..", "public", "blog-content"),
+] as const
+
+let cachedBlogDir: string | null | undefined
+
+async function resolveBlogDir() {
+  if (cachedBlogDir !== undefined) return cachedBlogDir
+
+  for (const dir of BLOG_DIR_CANDIDATES) {
+    try {
+      await fs.access(dir)
+      cachedBlogDir = dir
+      return dir
+    } catch {
+    }
+  }
+
+  cachedBlogDir = null
+  return null
+}
 
 const FALLBACK_SLUGS = [
   "ai-calling-agent-cost-india",
@@ -69,12 +91,16 @@ function resolveSiteBaseUrl() {
   if (fromEnv) return fromEnv
   const vercel = process.env.VERCEL_URL
   if (vercel) return `https://${vercel}`
-  return "http://localhost:3000"
+  const port = process.env.PORT?.trim()
+  if (port) return `http://127.0.0.1:${port}`
+  return "http://127.0.0.1:3000"
 }
 
 async function readHtmlFile(slug: string) {
-  const filePath = path.join(BLOG_PUBLIC_DIR, `${slug}.html`)
   try {
+    const blogDir = await resolveBlogDir()
+    if (!blogDir) throw new Error("Missing blog-content directory")
+    const filePath = path.join(blogDir, `${slug}.html`)
     return await fs.readFile(filePath, "utf8")
   } catch {
     const baseUrl = resolveSiteBaseUrl()
@@ -116,7 +142,9 @@ function parseBlogHtml(slug: string, html: string): BlogPost {
 
 export async function getAllBlogSlugs() {
   try {
-    const files = await fs.readdir(BLOG_PUBLIC_DIR)
+    const blogDir = await resolveBlogDir()
+    if (!blogDir) throw new Error("Missing blog-content directory")
+    const files = await fs.readdir(blogDir)
     const slugs = files
       .filter((f) => f.toLowerCase().endsWith(".html"))
       .map((f) => f.replace(/\.html$/i, ""))
