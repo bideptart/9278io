@@ -16,7 +16,21 @@ export type BlogPost = BlogPostSummary & {
   articleHtml: string
 }
 
-const BLOG_DIR = path.join(process.cwd(), "public", "blog-content")
+const BLOG_PUBLIC_DIR = path.join(process.cwd(), "public", "blog-content")
+const BLOG_PUBLIC_ROUTE_PREFIX = "/blog-content"
+
+const FALLBACK_SLUGS = [
+  "ai-calling-agent-cost-india",
+  "ai-receptionist-india",
+  "ai-voice-agent-bfsi",
+  "ai-voice-agent-real-estate",
+  "ai-voice-agent-vs-human",
+  "best-ai-voice-agents-india",
+  "hindi-ai-voice-agent",
+  "how-to-build-an-ai-voice-agent",
+  "trai-compliant-ai-cold-calling",
+  "what-is-an-ai-voice-agent",
+] as const
 
 function decodeHtmlEntities(input: string) {
   return input.replace(/&(#(\d+)|#x([\da-fA-F]+)|[a-zA-Z]+);/g, (m, token, dec, hex) => {
@@ -50,9 +64,25 @@ function formatPublishedDate(iso: string) {
   return d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
 }
 
+function resolveSiteBaseUrl() {
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
+  if (fromEnv) return fromEnv
+  const vercel = process.env.VERCEL_URL
+  if (vercel) return `https://${vercel}`
+  return "http://localhost:3000"
+}
+
 async function readHtmlFile(slug: string) {
-  const filePath = path.join(BLOG_DIR, `${slug}.html`)
-  return fs.readFile(filePath, "utf8")
+  const filePath = path.join(BLOG_PUBLIC_DIR, `${slug}.html`)
+  try {
+    return await fs.readFile(filePath, "utf8")
+  } catch {
+    const baseUrl = resolveSiteBaseUrl()
+    const url = `${baseUrl}${BLOG_PUBLIC_ROUTE_PREFIX}/${slug}.html`
+    const res = await fetch(url, { cache: "force-cache" })
+    if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`)
+    return res.text()
+  }
 }
 
 function parseBlogHtml(slug: string, html: string): BlogPost {
@@ -85,11 +115,16 @@ function parseBlogHtml(slug: string, html: string): BlogPost {
 }
 
 export async function getAllBlogSlugs() {
-  const files = await fs.readdir(BLOG_DIR)
-  return files
-    .filter((f) => f.toLowerCase().endsWith(".html"))
-    .map((f) => f.replace(/\.html$/i, ""))
-    .sort((a, b) => a.localeCompare(b))
+  try {
+    const files = await fs.readdir(BLOG_PUBLIC_DIR)
+    const slugs = files
+      .filter((f) => f.toLowerCase().endsWith(".html"))
+      .map((f) => f.replace(/\.html$/i, ""))
+      .sort((a, b) => a.localeCompare(b))
+    return slugs.length ? slugs : [...FALLBACK_SLUGS]
+  } catch {
+    return [...FALLBACK_SLUGS]
+  }
 }
 
 export async function getAllBlogPostSummaries(): Promise<BlogPostSummary[]> {
