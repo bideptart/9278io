@@ -24,25 +24,6 @@ export default function GetStartedPage() {
         ]}
       />
 
-      <section className="relative overflow-hidden border-b border-border/50">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[360px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
-        />
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
-          <div className="max-w-3xl">
-            <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              Spin up your voice agent.
-            </h1>
-            <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Pick a plan, choose a phone number, and tell us how your AI receptionist should
-              greet your callers. You&apos;ll be live in under 5 minutes — no contracts, per-second
-              billing.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
         <SignupWidget />
       </section>
