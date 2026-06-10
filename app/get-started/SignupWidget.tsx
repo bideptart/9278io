@@ -405,7 +405,7 @@ export default function SignupWidget() {
                   {p.agents >= 999 ? "Unlimited" : `${p.agents} agents`}
                 </div>
                 <ul className="space-y-2 text-sm">
-                  {p.perks.map((perk) => (
+                  {p.perks.filter((perk) => !/phone number|concurrent call/i.test(perk)).map((perk) => (
                     <li key={perk} className="flex items-start gap-2">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
                       <span>{perk}</span>
