@@ -142,14 +142,14 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-primary/20 bg-card/60 p-5 shadow-[0_0_40px_oklch(0.78_0.16_195/0.06)] backdrop-blur-xl sm:p-6",
+        "relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] p-5 shadow-[0_0_40px_oklch(0.52_0.22_265/0.12)] backdrop-blur-sm sm:p-6",
         className,
       )}
     >
       {/* Glow halo behind the card */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-px rounded-2xl bg-[radial-gradient(60%_100%_at_50%_0%,oklch(0.78_0.16_195/0.10),transparent_70%)]"
+        className="pointer-events-none absolute -inset-px rounded-2xl bg-[radial-gradient(60%_100%_at_50%_0%,oklch(0.52_0.22_265/0.10),transparent_70%)]"
       />
 
       <audio
@@ -167,7 +167,7 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
           onClick={toggle}
           aria-label={playing ? "Pause" : "Play"}
           className={cn(
-            "group relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_0_24px_oklch(0.78_0.16_195/0.45)] transition-all hover:scale-105 hover:shadow-[0_0_36px_oklch(0.78_0.16_195/0.65)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "group relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-[0_0_24px_oklch(0.52_0.22_265/0.55)] transition-all hover:scale-105 hover:shadow-[0_0_36px_oklch(0.52_0.22_265/0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
           )}
         >
           {/* Animated pulse ring while playing */}
@@ -201,8 +201,8 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
                 {title ?? "Hear our agent in action"}
               </p>
             </div>
-            <p className="shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">
-              {formatTime(current)} <span className="text-muted-foreground/40">/</span>{" "}
+            <p className="shrink-0 font-mono text-[11px] tabular-nums text-white/50">
+              {formatTime(current)} <span className="text-white/25">/</span>{" "}
               {formatTime(duration)}
             </p>
           </div>
@@ -224,7 +224,7 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
                     key={i}
                     className={cn(
                       "block flex-1 rounded-full transition-colors duration-150",
-                      reached ? "bg-primary" : "bg-muted-foreground/25",
+                      reached ? "bg-primary" : "bg-white/20",
                     )}
                     style={{ height: `${h}%`, transformOrigin: "center" }}
                     animate={
@@ -266,7 +266,7 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
           type="button"
           onClick={toggleMute}
           aria-label={muted ? "Unmute" : "Mute"}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
         >
           {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
         </button>
