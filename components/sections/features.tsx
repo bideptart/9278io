@@ -21,7 +21,7 @@ function LatencyVisual() {
   ]
   const max = 2400
   return (
-    <div className="space-y-4">
+    <div className="space-y-2.5">
       <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Latency comparison</p>
       {rows.map((r, i) => (
         <div key={r.label} className="space-y-1">
@@ -29,9 +29,8 @@ function LatencyVisual() {
             <span className={`font-medium ${i === 2 ? "text-primary" : "text-muted-foreground"}`}>{r.label}</span>
             <span className={`font-bold tabular-nums ${i === 2 ? "text-primary" : "text-muted-foreground"}`}>{r.ms} ms</span>
           </div>
-          <div className="h-3 overflow-hidden rounded-full bg-slate-100">
-            <motion.div
-              className={`h-full rounded-full ${r.color}`}
+          <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+            <motion.div className={`h-full rounded-full ${r.color}`}
               initial={{ width: 0 }}
               whileInView={{ width: `${(r.ms / max) * 100}%` }}
               viewport={{ once: false }}
@@ -40,9 +39,9 @@ function LatencyVisual() {
           </div>
         </div>
       ))}
-      <div className="mt-2 flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/[0.06] px-4 py-2.5">
-        <motion.div className="h-2 w-2 rounded-full bg-primary" animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1, repeat: Infinity }} />
-        <span className="text-sm font-bold text-primary">96% faster than legacy IVR</span>
+      <div className="flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/[0.06] px-3 py-2">
+        <motion.div className="h-1.5 w-1.5 rounded-full bg-primary" animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1, repeat: Infinity }} />
+        <span className="text-xs font-bold text-primary">96% faster than legacy IVR</span>
       </div>
     </div>
   )
@@ -135,24 +134,21 @@ function TurnTakingVisual() {
 }
 
 function ConcurrencyVisual() {
+  const TOTAL = 32
   const [count, setCount] = useState(1)
   useEffect(() => {
-    const t = setInterval(() => setCount(c => c < 16 ? c + 1 : 1), 400)
+    const t = setInterval(() => setCount(c => c < TOTAL ? c + 1 : 1), 250)
     return () => clearInterval(t)
   }, [])
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-3">
-        <span className="text-sm text-muted-foreground">Active calls</span>
-        <motion.span key={count} initial={{ scale: 1.3 }} animate={{ scale: 1 }} className="text-2xl font-black text-primary">{count.toLocaleString()}</motion.span>
+    <div className="space-y-2.5">
+      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-3 py-2">
+        <span className="text-xs text-muted-foreground">Active calls right now</span>
+        <motion.span key={count} initial={{ scale: 1.25 }} animate={{ scale: 1 }} className="text-xl font-black text-primary">{count}</motion.span>
       </div>
-      <div className="grid grid-cols-8 gap-1.5">
-        {Array.from({ length: 16 }).map((_, i) => (
-          <motion.div key={i}
-            className={`aspect-square rounded-md transition-colors duration-200 ${i < count ? "bg-primary" : "bg-primary/10"}`}
-            animate={i < count ? { scale: [1, 1.15, 1] } : {}}
-            transition={{ duration: 0.3, delay: i === count - 1 ? 0 : 0 }}
-          />
+      <div className="grid grid-cols-8 gap-1">
+        {Array.from({ length: TOTAL }).map((_, i) => (
+          <div key={i} className={`h-7 w-full rounded-md transition-colors duration-200 ${i < count ? "bg-primary" : "bg-primary/10"}`} />
         ))}
       </div>
       <p className="text-center text-[10px] text-muted-foreground">Each cell = 1 concurrent agent · scales to thousands</p>
@@ -215,9 +211,9 @@ function ForwardingVisual() {
   useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % calls.length), 2200); return () => clearInterval(t) }, [])
   const c = calls[active]
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {/* Incoming call card */}
-      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-3">
+      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-2.5">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Incoming call</p>
           <p className="mt-0.5 font-mono text-sm font-bold text-foreground">+91 98765 43210</p>
@@ -235,28 +231,28 @@ function ForwardingVisual() {
       </div>
 
       {/* Connector */}
-      <div className="flex flex-col items-center gap-0.5">
-        <div className="h-3 w-px bg-border" />
+      <div className="flex items-center gap-2">
+        <div className="h-px flex-1 bg-border" />
         <div className="rounded-full border border-primary/30 bg-primary/[0.08] px-3 py-1 text-[10px] font-semibold text-primary">
           Rule engine
         </div>
-        <div className="h-3 w-px bg-border" />
+        <div className="h-px flex-1 bg-border" />
       </div>
 
       {/* 3-column destination grid */}
       <div className="grid grid-cols-3 gap-2">
         {dests.map((d, i) => (
           <motion.div key={d.name}
-            animate={i === active ? { scale: 1.04 } : { scale: 1 }}
+            animate={i === active ? { scale: 1.03 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
-            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
+            className={`flex flex-col items-center gap-1 rounded-xl border py-3 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
           >
-            <span className="text-xl">{d.icon}</span>
+            <span className="text-lg">{d.icon}</span>
             <span className="text-[10px] font-bold leading-tight">{d.name}</span>
             {i === active && (
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 className="flex items-center gap-0.5 text-[9px] font-semibold">
-                <motion.span className="h-1.5 w-1.5 rounded-full bg-current"
+                <motion.span className="h-1 w-1 rounded-full bg-current"
                   animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 0.8, repeat: Infinity }} />
                 Active
               </motion.span>
