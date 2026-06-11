@@ -318,8 +318,8 @@ export function Features() {
                     isLast ? "col-span-2" : ""
                   } ${
                     isActive
-                      ? "border border-border bg-white shadow-sm"
-                      : "border border-transparent hover:border-border/60 hover:bg-slate-50"
+                      ? "border border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
+                      : "border border-primary/15 hover:border-primary/35 hover:bg-slate-50"
                   }`}
                 >
                   {/* Active progress bar */}
@@ -365,7 +365,7 @@ export function Features() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex flex-col rounded-2xl border border-border bg-white p-8 shadow-sm"
+              className="flex flex-col rounded-2xl border border-primary/30 bg-white p-8 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
             >
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>
