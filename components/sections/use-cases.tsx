@@ -56,27 +56,28 @@ export function UseCases() {
             return (
               <StaggerItem key={step.number}>
                 <motion.div
-                  className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-border bg-white p-7 transition-all duration-300 hover:border-primary/25 hover:bg-slate-50"
+                  className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-primary bg-primary p-7 shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] transition-all duration-300 hover:border-border hover:bg-white hover:shadow-md"
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 280, damping: 22 }}
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Top shine on hover */}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div className="flex items-start justify-between">
-                    <span className="text-5xl font-black leading-none text-white/[0.06]">{step.number}</span>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/15 bg-primary/[0.07] text-primary">
+                    <span className="text-5xl font-black leading-none text-white/10 transition-colors duration-300 group-hover:text-primary/10">{step.number}</span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/[0.12] text-white transition-colors duration-300 group-hover:border-primary/20 group-hover:bg-primary/[0.08] group-hover:text-primary">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold tracking-tight">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+                    <h3 className="text-xl font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-foreground">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-muted-foreground">{step.description}</p>
                   </div>
 
                   {/* Connector arrow for desktop */}
                   {i < steps.length - 1 && (
-                    <div className="absolute -right-2.5 top-1/2 z-10 hidden h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background text-xs text-muted-foreground lg:flex">
+                    <div className="absolute -right-2.5 top-1/2 z-10 hidden h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border border-primary bg-white text-xs text-primary lg:flex">
                       →
                     </div>
                   )}
