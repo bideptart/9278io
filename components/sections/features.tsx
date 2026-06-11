@@ -8,29 +8,26 @@ import {
 import { motion } from "motion/react"
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
 
+/* ── Animated waveform ── */
 const WAVE = [30, 55, 40, 70, 50, 85, 45, 72, 38, 65, 42, 78, 35, 60, 48]
-
 function WaveformVisual() {
   return (
-    <div className="mt-5 flex items-center gap-0.5" style={{ height: 36 }}>
+    <div className="mt-4 flex items-center gap-[2px]" style={{ height: 28 }}>
       {WAVE.map((h, i) => (
-        <motion.div
-          key={i}
-          className={`flex-1 rounded-full ${h >= 70 ? "bg-primary" : h >= 50 ? "bg-primary/60" : "bg-primary/30"}`}
+        <motion.div key={i}
+          className="flex-1 rounded-full bg-blue-500/60"
           style={{ height: `${h}%` }}
-          animate={{ scaleY: [1, 1.6, 0.4, 1.4, 0.7, 1] }}
-          transition={{ duration: 1.3, repeat: Infinity, delay: i * 0.07, ease: "easeInOut" }}
+          animate={{ scaleY: [1, 1.5, 0.5, 1.3, 0.8, 1] }}
+          transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.06, ease: "easeInOut" }}
         />
       ))}
-      <div className="ml-2 flex items-center gap-1">
-        <motion.div className="h-1.5 w-1.5 rounded-full bg-primary" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
-        <span className="whitespace-nowrap text-[10px] font-semibold text-primary">94 ms avg</span>
-      </div>
+      <span className="ml-2 whitespace-nowrap text-[10px] font-semibold text-blue-600">94 ms</span>
     </div>
   )
 }
 
-const LANGS = ["Hindi", "Tamil", "Telugu", "Kannada", "Marathi", "Bengali", "Gujarati", "Punjabi", "Malayalam", "Odia"]
+/* ── Language pill ticker ── */
+const LANGS = ["Hindi", "Tamil", "Telugu", "Kannada", "Marathi", "Bengali", "Punjabi", "Gujarati"]
 function LangTicker() {
   const [idx, setIdx] = useState(0)
   useEffect(() => {
@@ -38,165 +35,129 @@ function LangTicker() {
     return () => clearInterval(t)
   }, [])
   return (
-    <div className="mt-5 flex flex-wrap gap-1.5">
-      {LANGS.slice(0, 6).map((l, i) => (
-        <motion.span
-          key={l}
-          animate={idx % LANGS.length === i ? { scale: 1.08 } : { scale: 1 }}
-          className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold transition-colors duration-200 ${
-            idx % LANGS.length === i
-              ? "border-primary/40 bg-primary/[0.12] text-primary"
-              : "border-primary/20 bg-primary/[0.06] text-primary/70"
-          }`}
-        >
-          {l}
-        </motion.span>
+    <div className="mt-4 flex flex-wrap gap-1">
+      {LANGS.slice(0, 5).map((l, i) => (
+        <span key={l} className={`rounded-full px-2 py-0.5 text-[10px] font-medium transition-all duration-200 ${
+          idx % LANGS.length === i
+            ? "bg-violet-100 text-violet-700 ring-1 ring-violet-300"
+            : "bg-slate-100 text-slate-500"
+        }`}>{l}</span>
       ))}
-      <span className="rounded-full border border-border bg-slate-50 px-2.5 py-0.5 text-[10px] text-muted-foreground">+4 more</span>
+      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-400">+5</span>
     </div>
   )
 }
 
-const BAR_DATA = [45, 62, 58, 78, 72, 88, 82, 95]
-function AnalyticsVisual() {
-  const [key, setKey] = useState(0)
-  useEffect(() => {
-    const t = setInterval(() => setKey(k => k + 1), 3000)
-    return () => clearInterval(t)
-  }, [])
+/* ── Bar chart ── */
+const BARS = [38, 52, 46, 68, 60, 80, 74, 92]
+function BarsVisual() {
+  const [k, setK] = useState(0)
+  useEffect(() => { const t = setInterval(() => setK(x => x + 1), 3000); return () => clearInterval(t) }, [])
   return (
-    <div key={key} className="mt-5">
-      <div className="flex items-end gap-1.5" style={{ height: 48 }}>
-        {BAR_DATA.map((h, i) => (
-          <motion.div
-            key={i}
-            className={`flex-1 rounded-t-sm ${h >= 85 ? "bg-primary" : h >= 70 ? "bg-primary/65" : "bg-primary/35"}`}
-            style={{ height: `${h}%`, originY: 1 }}
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.45, delay: 0.05 * i, ease: "easeOut" }}
-          />
-        ))}
-      </div>
-      <div className="mt-1 flex justify-between text-[10px] text-muted-foreground/50">
-        <span>Mon</span><span className="font-semibold text-primary/70">+{BAR_DATA[BAR_DATA.length - 1]}% resolved</span><span>Fri</span>
-      </div>
+    <div key={k} className="mt-4 flex items-end gap-1" style={{ height: 32 }}>
+      {BARS.map((h, i) => (
+        <motion.div key={i}
+          className="flex-1 rounded-t-sm bg-emerald-500/70"
+          style={{ height: `${h}%`, originY: 1 }}
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ duration: 0.4, delay: 0.04 * i }}
+        />
+      ))}
     </div>
   )
 }
 
-const DOTS = Array.from({ length: 12 })
-function ConcurrencyVisual() {
+/* ── Live billing meter ── */
+function BillingMeter() {
+  const [s, setS] = useState(0)
+  useEffect(() => { const t = setInterval(() => setS(x => x + 1), 1000); return () => clearInterval(t) }, [])
   return (
-    <div className="mt-5 grid grid-cols-6 gap-1.5">
-      {DOTS.map((_, i) => {
-        const row = Math.floor(i / 6), col = i % 6
-        return (
-          <motion.div key={i} className="aspect-square rounded-md bg-primary/15"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", delay: 0.05 * i, stiffness: 300, damping: 18 }}
-          >
-            <motion.div className="h-full w-full rounded-md bg-primary/50"
-              animate={{ opacity: [0.25, 1, 0.25], scale: [0.8, 1, 0.8] }}
-              transition={{ duration: 2.4, repeat: Infinity, delay: (row + col) * 0.18, ease: "easeInOut" }}
-            />
-          </motion.div>
-        )
-      })}
+    <div className="mt-4 flex items-center gap-2 rounded-lg border border-indigo-100 bg-indigo-50 px-3 py-2">
+      <motion.div className="h-1.5 w-1.5 rounded-full bg-indigo-500" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
+      <span className="text-xs font-bold text-indigo-700">₹{(s * 10 / 60).toFixed(3)}</span>
+      <span className="text-[10px] text-indigo-400">· {s}s billed</span>
+      <span className="ml-auto text-[10px] font-semibold text-indigo-500">₹10/min</span>
     </div>
   )
 }
 
-function RecordingVisual() {
+/* ── Recording pulse ── */
+function RecordingPulse() {
   return (
-    <div className="mt-5 flex items-center gap-3 rounded-xl border border-red-100 bg-red-50/60 px-4 py-3">
-      <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-red-300/50 bg-red-100">
-        <motion.div className="absolute inset-0 rounded-full bg-red-300/30" animate={{ scale: [1, 1.6], opacity: [0.5, 0] }} transition={{ duration: 1.3, repeat: Infinity }} />
-        <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
+    <div className="mt-4 flex items-center gap-2">
+      <div className="relative flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100">
+        <motion.div className="absolute inset-0 rounded-full bg-red-300/50" animate={{ scale: [1, 1.6], opacity: [0.5, 0] }} transition={{ duration: 1.2, repeat: Infinity }} />
+        <div className="h-2 w-2 rounded-full bg-red-500" />
       </div>
-      <div>
-        <p className="text-xs font-semibold text-foreground">Recording active</p>
-        <p className="text-[10px] text-muted-foreground">Encrypted · searchable · downloadable</p>
-      </div>
-    </div>
-  )
-}
-
-function BillingVisual() {
-  const [secs, setSecs] = useState(0)
-  useEffect(() => {
-    const t = setInterval(() => setSecs(s => s + 1), 1000)
-    return () => clearInterval(t)
-  }, [])
-  const cost = (secs * (10 / 60)).toFixed(3)
-  return (
-    <div className="mt-5 flex items-center gap-3 rounded-xl border border-primary/20 bg-primary/[0.05] px-4 py-3">
-      <motion.div className="h-2 w-2 rounded-full bg-primary" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
-      <div>
-        <p className="text-[10px] text-muted-foreground">Live meter</p>
-        <p className="text-xs font-bold text-primary">₹{cost} · {secs}s billed</p>
-      </div>
-      <span className="ml-auto rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">₹10/min</span>
+      <span className="text-xs text-muted-foreground">Encrypted · searchable · downloadable</span>
     </div>
   )
 }
 
 const features = [
   {
-    icon: AudioLines, badge: "Real-Time", span: "md:col-span-2",
+    icon: AudioLines,
     title: "Sub-300ms Latency",
-    description: "WebRTC audio with a distributed Indian media network. Conversations feel instant with near-zero perceptible lag.",
-    visual: <WaveformVisual />,
+    description: "WebRTC audio on Indian media network. Conversations feel instant — zero perceptible lag.",
+    extra: <WaveformVisual />,
+    iconBg: "bg-blue-50 text-blue-600 border-blue-100",
   },
   {
-    icon: Languages, badge: "Multilingual", span: "",
+    icon: Languages,
     title: "10+ Indian Languages",
-    description: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect mid-call.",
-    visual: <LangTicker />,
+    description: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects mid-call.",
+    extra: <LangTicker />,
+    iconBg: "bg-violet-50 text-violet-600 border-violet-100",
   },
   {
-    icon: MessageCircle, badge: "Conversational", span: "",
+    icon: MessageCircle,
     title: "Natural Turn-Taking",
-    description: "Smart endpointing, barge-in detection, and interruption handling. The agent listens, pauses, and responds like a person.",
-    visual: null,
+    description: "Smart endpointing, barge-in detection and interruption handling. Responds like a real person.",
+    extra: null,
+    iconBg: "bg-cyan-50 text-cyan-600 border-cyan-100",
   },
   {
-    icon: Activity, badge: "Analytics", span: "md:col-span-2",
+    icon: Activity,
     title: "Real Time Transcripts & Analytics",
-    description: "Speaker labels, sentiment, intents, and conversion events — searchable and exportable from day one.",
-    visual: <AnalyticsVisual />,
+    description: "Speaker labels, sentiment, intents and conversion events — searchable from day one.",
+    extra: <BarsVisual />,
+    iconBg: "bg-emerald-50 text-emerald-600 border-emerald-100",
   },
   {
-    icon: Network, badge: "Scale", span: "",
+    icon: Network,
     title: "Massive Concurrency",
-    description: "Scale from one call to thousands simultaneously. Burst capacity is built in — no pre-provisioning needed.",
-    visual: <ConcurrencyVisual />,
+    description: "Scale from one call to thousands with no pre-provisioning. Burst capacity built in.",
+    extra: null,
+    iconBg: "bg-orange-50 text-orange-600 border-orange-100",
   },
   {
-    icon: CalendarClock, badge: "Scheduling", span: "",
+    icon: CalendarClock,
     title: "Call Scheduling",
     description: "Schedule outbound campaigns by time window or day. TRAI calling-window enforced automatically.",
-    visual: null,
+    extra: null,
+    iconBg: "bg-purple-50 text-purple-600 border-purple-100",
   },
   {
-    icon: PhoneForwarded, badge: "Routing", span: "",
+    icon: PhoneForwarded,
     title: "Call Forwarding",
-    description: "Route any call to a human agent, department, or external number in real time. Define rules by intent or keyword.",
-    visual: null,
+    description: "Route any call to a human agent or department in real time. Define rules by intent or keyword.",
+    extra: null,
+    iconBg: "bg-teal-50 text-teal-600 border-teal-100",
   },
   {
-    icon: Mic, badge: "Security", span: "",
+    icon: Mic,
     title: "Call Recording",
-    description: "Every call recorded and stored securely. Full playback, download, and audit trail included on every plan.",
-    visual: <RecordingVisual />,
+    description: "Every call recorded and stored securely. Full playback, download and audit trail on every plan.",
+    extra: <RecordingPulse />,
+    iconBg: "bg-red-50 text-red-600 border-red-100",
   },
   {
-    icon: Timer, badge: "Billing", span: "",
+    icon: Timer,
     title: "Per Second Billing",
-    description: "Pay only for the seconds your agent actually speaks — no minute-rounding, no idle time, no hidden charges.",
-    visual: <BillingVisual />,
+    description: "Pay only for seconds your agent actually speaks. No minute-rounding, no hidden charges.",
+    extra: <BillingMeter />,
+    iconBg: "bg-indigo-50 text-indigo-600 border-indigo-100",
   },
 ]
 
@@ -214,31 +175,29 @@ export function Features() {
           </p>
         </ScrollReveal>
 
-        <StaggerGroup className="mt-14 grid gap-4 md:grid-cols-3">
+        <StaggerGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => {
             const Icon = f.icon
             return (
-              <StaggerItem key={f.title} className={f.span}>
+              <StaggerItem key={f.title}>
                 <motion.div
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary/25 hover:shadow-md"
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                  className="group relative flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+                  whileHover={{ y: -3 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
                 >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <div className="flex items-start justify-between">
-                    <span className="w-fit rounded-full border border-primary/20 bg-primary/[0.07] px-2.5 py-0.5 text-[11px] font-semibold text-primary">
-                      {f.badge}
-                    </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-primary/15 bg-primary/[0.07] text-primary">
-                      <Icon className="h-[18px] w-[18px]" aria-hidden />
-                    </span>
-                  </div>
+                  {/* Icon */}
+                  <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border ${f.iconBg}`}>
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </span>
 
+                  {/* Text */}
                   <h3 className="mt-4 font-bold tracking-tight text-foreground">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.description}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{f.description}</p>
 
-                  {f.visual}
+                  {/* Optional visual */}
+                  {f.extra}
                 </motion.div>
               </StaggerItem>
             )
