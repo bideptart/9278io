@@ -240,12 +240,12 @@ function ForwardingVisual() {
       </div>
 
       {/* 3-column destination grid */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-2 px-1">
         {dests.map((d, i) => (
           <motion.div key={d.name}
-            animate={i === active ? { scale: 1.03 } : { scale: 1 }}
+            animate={i === active ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
-            className={`flex flex-col items-center gap-0.5 rounded-xl border px-2 py-1.5 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
+            className={`flex flex-col items-center gap-0.5 rounded-xl border px-1 py-1.5 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
           >
             <span className="text-sm leading-none">{d.icon}</span>
             <span className="text-[10px] font-bold leading-tight">{d.name}</span>
