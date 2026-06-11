@@ -1,9 +1,10 @@
 "use client"
 
-// Inline signup widget for /get-started — fetches live plans + available
-// phone numbers from the voice.9278.io portal, opens Razorpay Checkout,
-// verifies payment, then redirects the customer into the portal already
-// signed-in via ?token=. No iframe — fully native, styled with the site's
+// Inline signup widget for /get-started — fetches live plans from the
+// voice.9278.io portal, opens Razorpay Checkout, verifies payment, then
+// redirects the customer into the portal already signed-in via ?token=.
+// The customer's phone number is auto-assigned server-side at checkout
+// (no picker UI here). No iframe — fully native, styled with the site's
 // shadcn primitives.
 
 import { useEffect, useMemo, useState } from "react"
@@ -47,15 +48,6 @@ type Plan = {
   perks: string[]
 }
 
-type AvailableNumber = {
-  phoneNumber: string
-  friendlyName?: string
-  locality?: string
-  region?: string
-  isoCountry?: string
-  priceInr?: number
-}
-
 const LANGUAGES: Array<{ value: string; label: string }> = [
   { value: "en-IN", label: "English (India)" },
   { value: "en-US", label: "English (US)" },
@@ -93,11 +85,6 @@ export default function SignupWidget() {
     searchParams.get("cycle") === "yearly" ? "yearly" : "monthly"
 
   const [plans, setPlans] = useState<Plan[]>([])
-  const [numbers, setNumbers] = useState<AvailableNumber[]>([])
-  // Per-DID activation fee, fetched live from /api/plans.perDidPriceInr.
-  // The portal charges this for every phone number attached — including the
-  // first one at signup. Default ₹400, overridden by the API response.
-  const [perDidPriceInr, setPerDidPriceInr] = useState<number>(400)
   const [loadError, setLoadError] = useState<string | null>(null)
 
   const [cycle, setCycle] = useState<"monthly" | "yearly">(initialCycle)
@@ -110,7 +97,6 @@ export default function SignupWidget() {
     email: "",
     phone: "",
     password: "",
-    number: "",
     language: "en-IN",
     agentName: "",
     greeting: "",
@@ -119,24 +105,15 @@ export default function SignupWidget() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Load plans + numbers in parallel on mount.
+  // Load plans on mount. The phone number is auto-assigned by the portal
+  // at checkout — no inventory fetch needed here.
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       try {
-        const [plansRes, numbersRes] = await Promise.all([
-          fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json()),
-          fetch(`${PORTAL_BASE}/api/twilio/available-numbers?country=IN`).then((r) => r.json()),
-        ])
+        const plansRes = await fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json())
         if (cancelled) return
         setPlans(plansRes.plans || [])
-        if (typeof plansRes.perDidPriceInr === "number") {
-          setPerDidPriceInr(plansRes.perDidPriceInr)
-        }
-        const nums: AvailableNumber[] = numbersRes.numbers || []
-        setNumbers(nums)
-        // Don't auto-select — force the customer to deliberately pick a number
-        // from the visual card picker so they SEE which DID they're buying.
       } catch (e) {
         if (!cancelled) setLoadError((e as Error).message || "Could not load plans")
       }
@@ -170,7 +147,6 @@ export default function SignupWidget() {
     if (!form.username.trim()) return setError("Pick a username.")
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return setError("Enter a valid email.")
     if (form.password.length < 8) return setError("Password must be 8+ characters.")
-    if (!form.number) return setError("Pick a phone number.")
 
     setSubmitting(true)
 
@@ -189,11 +165,8 @@ export default function SignupWidget() {
       planAgents: selectedPlan.agents,
       planCycle: cycle,
 
-      number: form.number,
-      numberLoc: numbers.find((n) => n.phoneNumber === form.number)?.locality || "",
-      // ₹400 activation fee per DID — gets added to the Razorpay order total
-      // server-side. Keep this in sync with what the order summary shows.
-      numberPrice: perDidPriceInr,
+      // The portal auto-assigns a DID at checkout and bills it as part of
+      // the plan amount — no extra `number` / `numberPrice` payload needed.
 
       voice: "Kore",
       language: form.language,
@@ -300,10 +273,8 @@ export default function SignupWidget() {
   }
 
   const planPrice = selectedPlan ? priceFor(selectedPlan) : 0
-  const numberCount = form.number ? 1 : 0
-  const numberSubtotal = numberCount * perDidPriceInr
-  const totalAmount = planPrice + numberSubtotal
-  const selectedNumber = numbers.find((n) => n.phoneNumber === form.number)
+  // One DID is included in every plan — no separate line item.
+  const totalAmount = planPrice
 
   return (
     <>
@@ -460,68 +431,11 @@ export default function SignupWidget() {
               onChange={updateInput("password")}
             />
 
-            {/* Phone-number picker — a visual card grid that spans the form
-                width so customers see every DID and pick one deliberately. */}
-            <div className="md:col-span-2">
-              <Label className="mb-2 block">
-                Phone number to attach{" "}
-                <span className="font-normal text-muted-foreground">
-                  — pick one to select
-                </span>
-              </Label>
-              {numbers.length === 0 ? (
-                <div className="rounded-md border border-dashed border-border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground">
-                  No numbers available right now. Please contact support.
-                </div>
-              ) : (
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {numbers.map((n) => {
-                    const selected = form.number === n.phoneNumber
-                    return (
-                      <button
-                        type="button"
-                        key={n.phoneNumber}
-                        onClick={() =>
-                          setForm((f) => ({ ...f, number: n.phoneNumber }))
-                        }
-                        className={cn(
-                          "flex items-center justify-between rounded-lg border px-4 py-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500",
-                          selected
-                            ? "border-sky-500 bg-sky-50/50 ring-2 ring-sky-500/30 dark:bg-sky-950/40"
-                            : "border-border bg-card hover:border-sky-300",
-                        )}
-                      >
-                        <div>
-                          <div className="font-mono text-sm font-semibold">
-                            {n.phoneNumber}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {[n.locality, n.region, n.isoCountry]
-                              .filter(Boolean)
-                              .join(" · ") || "India"}
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-end gap-1">
-                          <span className="text-xs font-semibold text-sky-600 dark:text-sky-300">
-                            {inr(perDidPriceInr)}
-                          </span>
-                          {selected ? (
-                            <Check className="h-4 w-4 text-sky-500" />
-                          ) : (
-                            <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                              Pick
-                            </span>
-                          )}
-                        </div>
-                      </button>
-                    )
-                  })}
-                </div>
-              )}
-              <p className="mt-2 text-xs text-muted-foreground">
-                One-time activation fee of {inr(perDidPriceInr)} per number,
-                included in today&apos;s total.
-              </p>
+            {/* Phone number is auto-assigned by the portal at checkout —
+                the form no longer asks the customer to pick one. */}
+            <div className="md:col-span-2 rounded-md border border-dashed border-border bg-muted/20 px-4 py-3 text-xs text-muted-foreground">
+              📞 Your phone number is included in the plan and assigned
+              automatically at checkout — no separate fee.
             </div>
 
             <div>
@@ -615,14 +529,9 @@ export default function SignupWidget() {
               </Row>
 
               <Row label="Phone number">
-                <div className="text-right">
-                  <div className="font-semibold">{selectedNumber?.phoneNumber || "—"}</div>
-                  {selectedNumber?.locality && (
-                    <div className="text-xs text-muted-foreground">
-                      {selectedNumber.locality}
-                    </div>
-                  )}
-                </div>
+                <span className="text-xs font-medium text-muted-foreground">
+                  Assigned at checkout
+                </span>
               </Row>
 
               <Row label="Language">
@@ -636,21 +545,6 @@ export default function SignupWidget() {
               {/* Itemised charges — plan + per-DID activation fee */}
               <Row label={`${selectedPlan?.label || "Plan"} credit`}>
                 <span className="font-semibold">{inr(planPrice)}</span>
-              </Row>
-
-              <Row
-                label={
-                  <>
-                    Phone number
-                    {numberCount > 0 && (
-                      <span className="ml-1 text-xs text-muted-foreground">
-                        ({numberCount} × {inr(perDidPriceInr)})
-                      </span>
-                    )}
-                  </>
-                }
-              >
-                <span className="font-semibold">{inr(numberSubtotal)}</span>
               </Row>
 
               <Row label="Voice rate">
