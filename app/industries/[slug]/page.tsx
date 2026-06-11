@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -100,6 +100,17 @@ export default async function IndustryPage({
               {industry.pitch}
             </p>
 
+            <div className="mt-6 flex flex-wrap gap-2">
+              {industry.caps.map((cap) => (
+                <span
+                  key={cap}
+                  className={`rounded-full border px-3 py-1 text-xs font-medium ${CAP_COLORS[cap]}`}
+                >
+                  {cap}
+                </span>
+              ))}
+            </div>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link href={`/get-started?industry=${industry.slug}`}>
@@ -143,6 +154,33 @@ export default async function IndustryPage({
               Real lines our voice agents have used in {industry.name.toLowerCase()} deployments. Every word is
               generated in real time with sub-second latency, real interruptions, and natural emotion.
             </p>
+
+            {/* Live multilingual conversation preview */}
+            <div className="mt-8 space-y-2 rounded-2xl border border-slate-200 bg-white p-5">
+              <p className="mb-1 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />
+                Live agent preview
+              </p>
+              {industry.conversation.map((line, i) => (
+                <div
+                  key={i}
+                  className={`flex text-sm ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
+                >
+                  {line.speaker === "Agent" ? (
+                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-primary/15 px-3.5 py-2 text-primary ring-1 ring-primary/20">
+                      <span className="mr-1 text-[10px] font-bold opacity-60">Agent</span>
+                      {line.text}
+                    </span>
+                  ) : (
+                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-3.5 py-2 text-slate-700 ring-1 ring-slate-200">
+                      <span className="mr-1 text-[10px] font-bold opacity-40">Caller</span>
+                      {line.text}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+
             <ul className="mt-8 space-y-4">
               {industry.sampleLines.map((line, i) => (
                 <li

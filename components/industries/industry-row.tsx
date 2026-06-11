@@ -5,7 +5,7 @@ import { Check, Quote } from "lucide-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
-import { getIndustry } from "@/lib/industries"
+import { getIndustry, CAP_COLORS } from "@/lib/industries"
 
 export function IndustryRow({ slug, reverse }: { slug: string; reverse?: boolean }) {
   const industry = getIndustry(slug)
@@ -33,6 +33,17 @@ export function IndustryRow({ slug, reverse }: { slug: string; reverse?: boolean
             </Link>
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">{industry.pitch}</p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {industry.caps.map((cap) => (
+              <span
+                key={cap}
+                className={cn("rounded-full border px-2.5 py-0.5 text-[11px] font-medium", CAP_COLORS[cap])}
+              >
+                {cap}
+              </span>
+            ))}
+          </div>
 
           <p className="mt-8 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             What the agent does on day one
@@ -74,6 +85,33 @@ export function IndustryRow({ slug, reverse }: { slug: string; reverse?: boolean
               <Quote className="size-3.5 text-primary" aria-hidden />
               How it sounds on the call
             </div>
+
+            {/* Live multilingual conversation preview */}
+            <div className="mt-5 space-y-2 rounded-xl border border-slate-200 bg-slate-50/60 p-4">
+              <p className="mb-1 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />
+                Live agent preview
+              </p>
+              {industry.conversation.map((line, i) => (
+                <div
+                  key={i}
+                  className={cn("flex text-xs", line.speaker === "Agent" ? "justify-start" : "justify-end")}
+                >
+                  {line.speaker === "Agent" ? (
+                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-primary/15 px-3 py-1.5 text-primary ring-1 ring-primary/20">
+                      <span className="mr-1 text-[9px] font-bold opacity-60">Agent</span>
+                      {line.text}
+                    </span>
+                  ) : (
+                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-white px-3 py-1.5 text-slate-700 shadow-sm ring-1 ring-slate-200">
+                      <span className="mr-1 text-[9px] font-bold opacity-40">Caller</span>
+                      {line.text}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+
             <ul className="mt-5 space-y-5">
               {industry.sampleLines.map((line, i) => (
                 <motion.li

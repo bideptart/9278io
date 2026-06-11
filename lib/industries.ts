@@ -10,6 +10,8 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
+export type ConversationLine = { speaker: "Agent" | "Caller"; text: string }
+
 export type Industry = {
   slug: string
   name: string
@@ -21,6 +23,24 @@ export type Industry = {
   jobs: string[]
   /** A handful of representative real-world phrases the agent handles well. */
   sampleLines: string[]
+  /** Capability tags surfaced on the home-page cards and industry pages. */
+  caps: string[]
+  /** Short multilingual agent↔caller exchange shown as a live preview. */
+  conversation: ConversationLine[]
+}
+
+/* Capability tag colours — shared with the home-page Industries section. */
+export const CAP_COLORS: Record<string, string> = {
+  "Inbound":          "border-blue-500/25 bg-blue-500/10 text-blue-600",
+  "Outbound":         "border-orange-500/25 bg-orange-500/10 text-orange-600",
+  "24/7 Calling":     "border-green-500/25 bg-green-500/10 text-green-600",
+  "Hindi & Regional": "border-primary/25 bg-primary/10 text-primary",
+  "Lead Qualify":     "border-purple-500/25 bg-purple-500/10 text-purple-600",
+  "TRAI Compliant":   "border-red-500/25 bg-red-500/10 text-red-600",
+  "Appointment":      "border-cyan-500/25 bg-cyan-500/10 text-cyan-600",
+  "EMI Reminder":     "border-yellow-500/25 bg-yellow-500/10 text-yellow-600",
+  "DPDP Ready":       "border-pink-500/25 bg-pink-500/10 text-pink-600",
+  "Multilingual":     "border-primary/25 bg-primary/10 text-primary",
 }
 
 export const INDUSTRIES: Industry[] = [
@@ -29,20 +49,25 @@ export const INDUSTRIES: Industry[] = [
     name: "Real estate",
     icon: Home,
     short:
-      "Qualify buyer & seller leads 24/7, book showings on your calendar, and follow up the moment a listing gets a hit.",
+      "Qualify buyer & seller leads 24/7, book site visits on your calendar, and follow up the moment a listing gets a hit.",
     pitch:
-      "Most leads die because no one picks up in the first five minutes. 9278.io answers every inbound call instantly, qualifies buyers and sellers, and books showings directly on your calendar — so you walk into every conversation with context, not voicemail.",
+      "Most leads die because no one picks up in the first five minutes. 9278.io answers every inbound call instantly, qualifies buyers and sellers, and books site visits directly on your calendar — in the caller's preferred Indian language — so you walk into every conversation with context, not voicemail.",
     jobs: [
-      "Answer Zillow, Redfin and website leads in under 3 seconds",
-      "Qualify budget, timeline, financing, and motivation",
-      "Book and reschedule showings on your team calendar",
-      "Send listing follow-ups by SMS and email",
+      "Answer Housing.com, MagicBricks and 99acres leads in under 3 seconds",
+      "Qualify budget, timeline, home-loan status, and motivation",
+      "Book and reschedule site visits on your team calendar",
+      "Send listing follow-ups by SMS and WhatsApp",
       "Hand warm buyers off to your top agent live on the call",
     ],
     sampleLines: [
-      "Hi! I saw you just inquired about the colonial on Maple — are you working with an agent yet?",
-      "Quick question — are you pre-approved, or would you like me to introduce a lender?",
-      "I have Tuesday at 4 or Saturday at 11 open for a showing — which works better?",
+      "Hi! I saw you just enquired about the 2BHK in Kothrud — are you working with an agent yet?",
+      "Quick question — is your home loan pre-approved, or would you like me to introduce a lender?",
+      "I have Tuesday at 4 or Saturday at 11 open for a site visit — which works better?",
+    ],
+    caps: ["24/7 Calling", "Lead Qualify", "Appointment"],
+    conversation: [
+      { speaker: "Agent", text: "வணக்கம்! நீங்கள் 2BHK அபார்ட்மெண்ட் பார்க்க விரும்புகிறீர்களா?" },
+      { speaker: "Caller", text: "ஆமாம், புனேவில் பார்க்க வேண்டும்." },
     ],
   },
   {
@@ -56,7 +81,7 @@ export const INDUSTRIES: Industry[] = [
     jobs: [
       "After-hours emergency intake (AC failure, no power, water leak)",
       "Same-day vs scheduled job triage",
-      "Direct booking on Urban Company, ServiceTitan and dispatch tools",
+      "Direct booking on Urban Company and your dispatch tools",
       "Quote ranges based on job type and PIN code",
       "Estimate-day reminders and arrival-window updates over WhatsApp",
     ],
@@ -65,13 +90,18 @@ export const INDUSTRIES: Industry[] = [
       "Our next emergency window is 7–9pm tonight. Visit charge is ₹499 plus parts. Shall I lock that in?",
       "तकनीशियन 22 मिनट में पहुंच जाएगा। दरवाज़े पर पहुंचते ही मैं आपको WhatsApp कर दूंगी।",
     ],
+    caps: ["Inbound", "24/7 Calling", "Appointment"],
+    conversation: [
+      { speaker: "Agent", text: "नमस्ते! आपको कौन सी सेवा चाहिए — AC, प्लंबिंग या इलेक्ट्रिकल?" },
+      { speaker: "Caller", text: "AC ठंडा नहीं कर रहा, आज ही चाहिए." },
+    ],
   },
   {
     slug: "restaurants",
     name: "Restaurants",
     icon: UtensilsCrossed,
     short:
-      "Take reservations, confirm large parties, answer hours and menu questions — fluently, in any accent.",
+      "Take reservations, confirm large parties, answer hours and menu questions — fluently, in any language.",
     pitch:
       "Phones during dinner rush are a tax on your hosts. 9278.io handles reservations, confirms large parties, answers hours and menu questions, and routes catering inquiries — so the host stand can focus on the room.",
     jobs: [
@@ -83,8 +113,13 @@ export const INDUSTRIES: Industry[] = [
     ],
     sampleLines: [
       "We have a 4-top open Friday at 7:30 or 8:45 — which would you like?",
-      "All our pasta is made fresh daily. The tagliatelle is egg-based, but the spaghetti is vegan.",
-      "For a party of 12 we'd recommend the back room — let me grab a few details.",
+      "All our breads are made fresh — the butter naan pairs really well with the dal makhani.",
+      "For a party of 12 we'd recommend the private dining room — let me grab a few details.",
+    ],
+    caps: ["Inbound", "24/7 Calling", "Appointment"],
+    conversation: [
+      { speaker: "Agent", text: "സ്പൈസ് ഗാർഡനിലേക്ക് സ്വാഗതം! എത്ര പേർക്ക് ടേബിള്‍ വേണം?" },
+      { speaker: "Caller", text: "4 പേർക്ക്, ഇന്ന് രാത്രി 8 മണിക്ക്." },
     ],
   },
   {
@@ -107,6 +142,11 @@ export const INDUSTRIES: Industry[] = [
       "I can get you an exchange estimate on your trade-in via Spinny if you share the registration number — got a minute?",
       "Loaner vehicle is confirmed. We'll have it ready when you drop off Tuesday at 7:30am.",
     ],
+    caps: ["Outbound", "Appointment", "EMI Reminder"],
+    conversation: [
+      { speaker: "Agent", text: "સાહેબ, તમારી કાર સર્વિસ આ અઠવાડિયે બાકી છે." },
+      { speaker: "Caller", text: "શનિવારે 11 વાગ્યે બુક કરો." },
+    ],
   },
   {
     slug: "legal",
@@ -128,26 +168,36 @@ export const INDUSTRIES: Industry[] = [
       "Got it — that's still within the three-year limitation period under the Limitation Act. Let me get you on the advocate's calendar.",
       "परामर्श से पहले, हमें आपका आधार और संपत्ति के दस्तावेज़ चाहिए होंगे।",
     ],
+    caps: ["Inbound", "Appointment", "DPDP Ready"],
+    conversation: [
+      { speaker: "Agent", text: "ਸਤ ਸ੍ਰੀ ਅਕਾਲ, ਮੈਂ ਮੁਫ਼ਤ ਕਨਸਲਟੇਸ਼ਨ ਬੁੱਕ ਕਰ ਸਕਦਾ/ਸਕਦੀ ਹਾਂ।" },
+      { speaker: "Caller", text: "ਹਾਂ, ਕੱਲ੍ਹ ਦੁਪਹਿਰ ਠੀਕ ਹੈ।" },
+    ],
   },
   {
     slug: "education",
     name: "Education",
     icon: GraduationCap,
     short:
-      "Admissions intake, financial-aid follow-ups, and student-success calls without burning out enrollment counselors.",
+      "Admissions intake, fee-payment follow-ups, and student-success calls without burning out your counsellors.",
     pitch:
-      "Higher-ed and trade schools call hundreds of inquiries every day. 9278.io handles first-touch outreach, financial-aid document chasing, and re-enrollment campaigns — so counselors only talk to leads who are actually ready.",
+      "Coaching institutes and ed-tech platforms call hundreds of enquiries every day. 9278.io handles first-touch outreach, fee-document chasing, and re-enrollment campaigns across Hindi and regional languages — so counsellors only talk to leads who are actually ready.",
     jobs: [
-      "Inquiry-form follow-up within 60 seconds",
+      "Enquiry-form follow-up within 60 seconds",
       "Application status checks and document chasing",
-      "Financial-aid Q&A and FAFSA reminders",
-      "Class-start reminders and orientation booking",
+      "Fee-payment Q&A and instalment reminders",
+      "Batch-start reminders and orientation booking",
       "At-risk student check-ins between terms",
     ],
     sampleLines: [
-      "Hi Marcus — I saw you started an application for the business program. Want me to walk you through next steps?",
-      "Looks like we're still missing your high-school transcript. Want me to text you the upload link?",
-      "Just checking in — the next term starts Jan 22. Are you still planning to register?",
+      "Hi Priya — I saw you started an application for the NEET batch. Want me to walk you through next steps?",
+      "Looks like we're still missing your board marksheet. Want me to WhatsApp you the upload link?",
+      "Just checking in — the next batch starts on the 22nd. Are you still planning to register?",
+    ],
+    caps: ["Outbound", "Lead Qualify", "Multilingual"],
+    conversation: [
+      { speaker: "Agent", text: "प्रिया, NEET बॅचसाठी प्रवेश घ्यायचा आहे का?" },
+      { speaker: "Caller", text: "फी किती आहे ते सांगाल का?" },
     ],
   },
   {
@@ -157,7 +207,7 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Order status, returns, fitting and sizing — handled 24/7 in any language, with a tone that matches your brand.",
     pitch:
-      "DTC brands hit support volume spikes the moment they hit a marketing milestone. 9278.io absorbs the surge — order status, returns, sizing, and post-purchase upsells — and only escalates the genuinely angry customers to a human.",
+      "D2C brands hit support volume spikes the moment they hit a marketing milestone. 9278.io absorbs the surge — order status, returns, sizing, and post-purchase upsells — and only escalates the genuinely angry customers to a human.",
     jobs: [
       "Order status and tracking updates",
       "Returns, exchanges, and warranty intake",
@@ -167,8 +217,13 @@ export const INDUSTRIES: Industry[] = [
     ],
     sampleLines: [
       "Looks like your order shipped Monday and is out for delivery today before 6pm.",
-      "Totally understandable. I'll get a return label sent — should I refund to the card you paid with?",
+      "Totally understandable. I'll get a return label sent — should I refund to your original method or UPI?",
       "Based on your last order, the size 9 should fit a touch better than the 8.5. Want me to swap it?",
+    ],
+    caps: ["Inbound", "24/7 Calling", "Hindi & Regional"],
+    conversation: [
+      { speaker: "Agent", text: "ನಿಮ್ಮ ಆರ್ಡರ್ ಇಂದು ಡೆಲಿವರಿಗೆ ಹೊರಟಿದೆ!" },
+      { speaker: "Caller", text: "ಚೆನ್ನಾಗಿದೆ, ಯಾವ ಸಮಯಕ್ಕೆ ಬರಲಿದೆ?" },
     ],
   },
   {
@@ -177,18 +232,23 @@ export const INDUSTRIES: Industry[] = [
     icon: Dumbbell,
     short: "Class bookings, membership upsells, and no-show recovery for studios and gyms — without a front-desk human.",
     pitch:
-      "Boutique gyms and yoga studios fill classes by phone and SMS. 9278.io books classes, recovers no-shows, sells memberships, and re-engages lapsed members — at a fraction of the cost of an answering service.",
+      "Boutique gyms and yoga studios fill classes by phone and WhatsApp. 9278.io books classes, recovers no-shows, sells memberships, and re-engages lapsed members across Indian languages — at a fraction of the cost of a front-desk hire.",
     jobs: [
-      "Class and trainer booking on Mindbody, Mariana Tek, ClubReady",
+      "Class and trainer booking on your studio software",
       "Membership freeze, cancel, and upgrade requests",
       "No-show recovery within minutes of class end",
       "Trial-to-member upsell calls",
       "Win-back to lapsed members at month-end",
     ],
     sampleLines: [
-      "Hey Sam — saw you missed the 6am class. Want me to grab you the 5pm spot tonight?",
-      "Your trial wraps on Friday. I can lock in the unlimited plan at $149 if I do it before Sunday — interested?",
+      "Hey Ankit — saw you missed the 6am class. Want me to grab you the 5pm spot tonight?",
+      "Your trial wraps on Friday. I can lock in the annual plan at ₹14,999 if I do it before Sunday — interested?",
       "We can freeze your membership for up to 90 days at no cost. Want me to set that up?",
+    ],
+    caps: ["Outbound", "Appointment", "Multilingual"],
+    conversation: [
+      { speaker: "Agent", text: "Your membership expires in 3 days, Ankit!" },
+      { speaker: "Caller", text: "Renew kar do, 1 saal ka." },
     ],
   },
 ]
