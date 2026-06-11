@@ -75,12 +75,6 @@ export function UseCases() {
                     <p className="mt-2 text-sm leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-muted-foreground">{step.description}</p>
                   </div>
 
-                  {/* Connector arrow for desktop */}
-                  {i < steps.length - 1 && (
-                    <div className="absolute -right-2.5 top-1/2 z-10 hidden h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border border-primary bg-white text-xs text-primary lg:flex">
-                      →
-                    </div>
-                  )}
                 </motion.div>
               </StaggerItem>
             )
