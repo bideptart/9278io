@@ -5,6 +5,7 @@ import { PricingFeature } from "@/components/sections/pricing-feature"
 import { Features } from "@/components/sections/features"
 import { Platform } from "@/components/sections/platform"
 import { Industries } from "@/components/sections/industries"
+import { HowItWorks } from "@/components/sections/how-it-works"
 import { FAQ } from "@/components/sections/faq"
 import { ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -23,6 +24,7 @@ export default function HomePage() {
         <Platform />
         <Features />
         <Industries />
+        <HowItWorks />
         <PricingFeature />
         <FAQ />
       </main>
