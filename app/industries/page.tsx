@@ -35,7 +35,7 @@ export default function IndustriesPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
@@ -65,13 +65,13 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
+      <div className="w-full px-6 md:px-8">
         {INDUSTRIES.map((industry, i) => (
           <IndustryRow key={industry.slug} slug={industry.slug} reverse={i % 2 === 1} />
         ))}
       </div>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
+      <section className="w-full px-6 pb-24 md:px-8">
         <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">

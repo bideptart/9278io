@@ -24,7 +24,7 @@ export default function GetStartedPage() {
         ]}
       />
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-14 md:px-6 md:py-20">
+      <section className="w-full px-6 py-14 md:px-8 md:py-20">
         <SignupWidget />
       </section>
 

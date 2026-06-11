@@ -191,7 +191,7 @@ export default function TermsPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.1),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-4 py-16 md:px-6 md:py-20">
+        <div className="w-full px-6 py-16 md:px-8 md:py-20">
           <ScrollReveal>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Legal</p>
             <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Terms of Service</h1>
@@ -200,7 +200,7 @@ export default function TermsPage() {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-4xl px-4 py-16 md:px-6 md:py-24">
+      <div className="w-full px-6 py-16 md:px-8 md:py-24">
         {preamble ? (
           <ScrollReveal className="mb-10 space-y-3 text-sm leading-relaxed text-muted-foreground">
             {preamble.split("\n\n").map((para, i) => (

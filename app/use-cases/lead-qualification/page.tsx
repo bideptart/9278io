@@ -80,7 +80,7 @@ export default function LeadQualificationPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
+        <div className="w-full px-6 py-16 md:px-8">
           <div className="grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border border-border bg-white md:grid-cols-4 md:divide-y-0">
             {stats.map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-1.5 px-6 py-8 text-center">
@@ -92,7 +92,7 @@ export default function LeadQualificationPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <section className="w-full px-6 py-20 md:px-8 md:py-28">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <ScrollReveal>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">What you get</p>
@@ -137,7 +137,7 @@ export default function LeadQualificationPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
+      <section className="w-full px-6 pb-24 md:px-8">
         <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 text-center md:px-12 md:py-14">
           <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
             Stop losing leads to slow follow-up.

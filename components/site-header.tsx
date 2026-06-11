@@ -77,7 +77,7 @@ export function SiteHeader() {
         scrolled ? "shadow-sm" : "",
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 md:px-6">
+      <div className="flex h-16 w-full items-center justify-between px-6 md:px-8">
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center" aria-label="9278.io home">

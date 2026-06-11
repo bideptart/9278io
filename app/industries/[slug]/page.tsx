@@ -69,7 +69,7 @@ export default async function IndustryPage({
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-24">
+        <div className="w-full px-6 py-16 md:px-8 md:py-24">
           <ScrollReveal>
             <nav aria-label="Breadcrumb" className="mb-6 text-xs text-muted-foreground">
               <ol className="flex flex-wrap items-center gap-2">
@@ -115,7 +115,7 @@ export default async function IndustryPage({
       </section>
 
       {/* What it does */}
-      <section className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-20">
+      <section className="w-full px-6 py-16 md:px-8 md:py-20">
         <div className="grid gap-12 md:grid-cols-2">
           <ScrollReveal>
             <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
@@ -162,7 +162,7 @@ export default async function IndustryPage({
 
       {/* Why teams switch */}
       <section className="border-y border-border/50 bg-card/20">
-        <div className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-20">
+        <div className="w-full px-6 py-16 md:px-8 md:py-20">
           <ScrollReveal className="grid gap-8 md:grid-cols-3">
             <Stat
               label="First-touch response"
@@ -184,7 +184,7 @@ export default async function IndustryPage({
       </section>
 
       {/* Internal contextual links */}
-      <section className="mx-auto w-full max-w-5xl px-4 py-16 md:px-6 md:py-20">
+      <section className="w-full px-6 py-16 md:px-8 md:py-20">
         <ScrollReveal>
           <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
             How {industry.name.toLowerCase()} teams roll out 9278.io

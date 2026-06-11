@@ -45,7 +45,7 @@ export default async function PricingPage({
 
       {canceled && (
         <div className="border-b border-border/60 bg-white">
-          <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3 text-sm text-muted-foreground md:px-6">
+          <div className="flex w-full items-center justify-between gap-3 px-6 py-3 text-sm text-muted-foreground md:px-6">
             <p>Checkout was canceled. You can pick a plan again whenever you&apos;re ready.</p>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default async function PricingPage({
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
@@ -84,7 +84,7 @@ export default async function PricingPage({
         </div>
       </section>
 
-      <section id="plans" className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
+      <section id="plans" className="w-full px-6 pb-24 md:px-8">
         <ScrollReveal className="mb-10">
           <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Pick your plan.</h2>
           <p className="mt-3 max-w-2xl text-pretty text-muted-foreground">
@@ -100,7 +100,7 @@ export default async function PricingPage({
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
+      <section className="w-full px-6 pb-24 md:px-8">
         <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">

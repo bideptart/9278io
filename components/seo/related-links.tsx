@@ -21,7 +21,7 @@ export function RelatedLinks({
   links: RelatedLink[]
 }) {
   return (
-    <section aria-labelledby="related-heading" className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
+    <section aria-labelledby="related-heading" className="w-full px-6 pb-24 md:px-8">
       <div className="mb-8 flex items-end justify-between gap-6">
         <div>
           <h2 id="related-heading" className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">

@@ -61,7 +61,7 @@ export default async function BlogPage() {
       </section>
 
       {/* Posts grid */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <section className="w-full px-6 py-20 md:px-8 md:py-28">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <ScrollReveal key={post.slug}>

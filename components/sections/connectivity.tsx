@@ -20,7 +20,7 @@ export function Connectivity() {
 
   return (
     <section className="overflow-hidden border-b border-border bg-white/[0.015]">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6 md:py-20">
+      <div className="w-full px-6 py-16 md:px-8 md:py-20">
         <ScrollReveal className="text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             Trusted by 500+ Indian businesses

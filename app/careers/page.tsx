@@ -123,7 +123,7 @@ export default function CareersPage() {
       </section>
 
       {/* Perks */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <section className="w-full px-6 py-20 md:px-8 md:py-28">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Why join us</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">What you&apos;ll get</h2>
@@ -151,7 +151,7 @@ export default function CareersPage() {
 
       {/* Open Roles */}
       <section className="border-t border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-4 py-20 md:px-6 md:py-28">
+        <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Open positions</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">

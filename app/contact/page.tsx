@@ -93,7 +93,7 @@ export default function ContactPage() {
       </section>
 
       {/* Channels */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <section className="w-full px-6 py-20 md:px-8 md:py-28">
         <div className="grid gap-6 md:grid-cols-3">
           {channels.map((c) => {
             const Icon = c.icon
@@ -119,7 +119,7 @@ export default function ContactPage() {
 
       {/* Quick FAQs */}
       <section className="border-t border-border/50">
-        <div className="mx-auto w-full max-w-3xl px-4 py-20 md:px-6 md:py-28">
+        <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Before you write</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Common questions</h2>

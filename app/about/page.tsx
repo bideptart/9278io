@@ -87,7 +87,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+      <section className="w-full px-6 py-20 md:px-8 md:py-28">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our Mission</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
@@ -104,7 +104,7 @@ export default function AboutPage() {
 
       {/* Values */}
       <section className="border-t border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
+        <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">What drives us</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Our values</h2>
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
       {/* Timeline */}
       <section className="border-t border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-4 py-20 md:px-6 md:py-28">
+        <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">How we got here</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Our journey</h2>
@@ -153,7 +153,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
+      <section className="w-full px-6 pb-24 md:px-8">
         <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">

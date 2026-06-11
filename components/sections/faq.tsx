@@ -13,7 +13,7 @@ export function FAQ() {
   const items = FLAT_FAQ.slice(0, 8)
   return (
     <section id="faq" className="border-b border-border/50">
-      <div className="mx-auto w-full max-w-4xl px-4 py-20 md:px-6 md:py-28">
+      <div className="w-full px-6 py-20 md:px-8 md:py-28">
         <ScrollReveal className="text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary">FAQ</p>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
