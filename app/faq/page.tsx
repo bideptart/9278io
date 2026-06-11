@@ -65,7 +65,7 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <div className="w-full px-6 py-16 md:px-8 md:py-24">
+      <div className="mx-auto w-full max-w-3xl px-6 py-16 md:px-8 md:py-24">
         {FAQ_GROUPS.map((group) => (
           <section key={group.id} id={group.id} className="scroll-mt-24 border-b border-border/50 py-10 first:pt-0 last:border-b-0">
             <ScrollReveal>
@@ -73,13 +73,13 @@ export default function FaqPage() {
             </ScrollReveal>
 
             <ScrollReveal className="mt-6">
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="single" collapsible className="w-full divide-y divide-border/60">
                 {group.items.map((item, i) => (
-                  <AccordionItem key={i} value={`${group.id}-${i}`} className="border-border/60">
-                    <AccordionTrigger className="text-left text-base font-medium hover:no-underline">
+                  <AccordionItem key={i} value={`${group.id}-${i}`} className="border-0">
+                    <AccordionTrigger className="py-5 text-left text-base font-medium hover:no-underline hover:text-primary [&[data-state=open]]:text-primary">
                       {item.q}
                     </AccordionTrigger>
-                    <AccordionContent className="text-pretty leading-relaxed text-muted-foreground">
+                    <AccordionContent className="pb-5 text-pretty leading-relaxed text-muted-foreground">
                       {item.a}
                     </AccordionContent>
                   </AccordionItem>
