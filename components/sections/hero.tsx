@@ -74,7 +74,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.12] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary"
+          className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.12] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
         >
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
           What's inside 9278.io

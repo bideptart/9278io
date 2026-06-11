@@ -38,7 +38,7 @@ export default function FaqPage() {
         />
         <div className="w-full px-6 py-20 md:px-8 md:py-28">
           <ScrollReveal className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-4 py-1.5 text-sm text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Frequently asked questions
             </span>

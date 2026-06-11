@@ -142,7 +142,7 @@ export function Platform() {
 
         {/* Header */}
         <ScrollReveal className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
             <motion.span
               className="h-1.5 w-1.5 rounded-full bg-primary"
               animate={{ opacity: [1, 0.3, 1] }}
