@@ -149,7 +149,13 @@ export function Industries() {
       <div className="w-full px-6 py-20 md:px-8 md:py-28">
 
         <ScrollReveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Industries</p>
+          <motion.span
+            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
+          >
+            <motion.span className="h-1.5 w-1.5 rounded-full bg-primary"
+              animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
+            Industries
+          </motion.span>
           <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
             Built for every Indian industry.
           </h2>

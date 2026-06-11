@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { motion } from "motion/react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { FLAT_FAQ } from "@/lib/faq"
@@ -15,7 +16,13 @@ export function FAQ() {
     <section id="faq" className="border-b border-border/50">
       <div className="w-full px-6 py-20 md:px-8 md:py-28">
         <ScrollReveal className="text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-primary">FAQ</p>
+          <motion.span
+            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
+          >
+            <motion.span className="h-1.5 w-1.5 rounded-full bg-primary"
+              animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
+            FAQ
+          </motion.span>
           <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
             Questions, answered.
           </h2>
