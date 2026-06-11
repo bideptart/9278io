@@ -250,17 +250,17 @@ function BillingVisual() {
   )
 }
 
-/* ── Feature data ── */
+/* ── Feature data — Analytics moved to last (pos 9, full-row) ── */
 const features = [
-  { icon: AudioLines,    label: "Sub-300ms Latency",               color: "text-blue-600",    activeBg: "bg-blue-50 border-blue-200",    visual: <LatencyVisual />,      desc: "WebRTC audio on Indian media network. Conversations feel instant with near-zero perceptible lag for your callers." },
-  { icon: Languages,     label: "10+ Indian Languages",            color: "text-violet-600",  activeBg: "bg-violet-50 border-violet-200", visual: <LanguageVisual />,     desc: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect and switches mid-call." },
-  { icon: MessageCircle, label: "Natural Turn-Taking",             color: "text-cyan-600",    activeBg: "bg-cyan-50 border-cyan-200",     visual: <TurnTakingVisual />,   desc: "Smart endpointing, barge-in detection and interruption handling. The agent listens, pauses and responds like a real person." },
-  { icon: Activity,      label: "Real Time Transcripts & Analytics", color: "text-emerald-600", activeBg: "bg-emerald-50 border-emerald-200", visual: <AnalyticsVisual />, desc: "Speaker labels, sentiment, intents and conversion events — searchable and exportable from day one." },
-  { icon: Network,       label: "Massive Concurrency",             color: "text-orange-600",  activeBg: "bg-orange-50 border-orange-200", visual: <ConcurrencyVisual />,  desc: "Scale from one call to thousands simultaneously. Burst capacity built in — no pre-provisioning or capacity planning needed." },
-  { icon: CalendarClock, label: "Call Scheduling",                 color: "text-purple-600",  activeBg: "bg-purple-50 border-purple-200", visual: <ScheduleVisual />,     desc: "Schedule outbound campaigns by time window or day of week. TRAI calling-window rules enforced automatically." },
-  { icon: PhoneForwarded,label: "Call Forwarding",                 color: "text-teal-600",    activeBg: "bg-teal-50 border-teal-200",     visual: <ForwardingVisual />,   desc: "Route any call to a human agent, department or external number in real time. Define rules by intent, keyword or time." },
-  { icon: Mic,           label: "Call Recording",                  color: "text-red-600",     activeBg: "bg-red-50 border-red-200",       visual: <RecordingVisual />,    desc: "Every call recorded and stored securely. Full playback, download and audit trail available on every plan." },
-  { icon: Timer,         label: "Per Second Billing",              color: "text-indigo-600",  activeBg: "bg-indigo-50 border-indigo-200", visual: <BillingVisual />,      desc: "Pay only for the seconds your agent actually speaks. No minute-rounding, no idle charges, no surprises on your invoice." },
+  { icon: AudioLines,     label: "Sub-300ms Latency",     tag: "Speed",       color: "text-blue-600",    activeBg: "bg-blue-50 border-blue-200",    visual: <LatencyVisual />,      desc: "WebRTC audio on Indian media network. Conversations feel instant with near-zero perceptible lag for your callers." },
+  { icon: Languages,      label: "10+ Indian Languages",  tag: "Multilingual",color: "text-violet-600",  activeBg: "bg-violet-50 border-violet-200", visual: <LanguageVisual />,     desc: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect and switches mid-call." },
+  { icon: MessageCircle,  label: "Natural Turn-Taking",   tag: "AI",          color: "text-cyan-600",    activeBg: "bg-cyan-50 border-cyan-200",     visual: <TurnTakingVisual />,   desc: "Smart endpointing, barge-in detection and interruption handling. The agent listens, pauses and responds like a real person." },
+  { icon: Network,        label: "Massive Concurrency",   tag: "Scale",       color: "text-orange-600",  activeBg: "bg-orange-50 border-orange-200", visual: <ConcurrencyVisual />,  desc: "Scale from one call to thousands simultaneously. Burst capacity built in — no pre-provisioning or capacity planning needed." },
+  { icon: CalendarClock,  label: "Call Scheduling",       tag: "Automation",  color: "text-purple-600",  activeBg: "bg-purple-50 border-purple-200", visual: <ScheduleVisual />,     desc: "Schedule outbound campaigns by time window or day of week. TRAI calling-window rules enforced automatically." },
+  { icon: PhoneForwarded, label: "Call Forwarding",       tag: "Routing",     color: "text-teal-600",    activeBg: "bg-teal-50 border-teal-200",     visual: <ForwardingVisual />,   desc: "Route any call to a human agent, department or external number in real time. Define rules by intent, keyword or time." },
+  { icon: Mic,            label: "Call Recording",        tag: "Security",    color: "text-red-600",     activeBg: "bg-red-50 border-red-200",       visual: <RecordingVisual />,    desc: "Every call recorded and stored securely. Full playback, download and audit trail available on every plan." },
+  { icon: Timer,          label: "Per Second Billing",    tag: "Billing",     color: "text-indigo-600",  activeBg: "bg-indigo-50 border-indigo-200", visual: <BillingVisual />,      desc: "Pay only for the seconds your agent actually speaks. No minute-rounding, no idle charges, no surprises on your invoice." },
+  { icon: Activity,       label: "Real Time Transcripts & Analytics", tag: "Analytics", color: "text-emerald-600", activeBg: "bg-emerald-50 border-emerald-200", visual: <AnalyticsVisual />, desc: "Speaker labels, sentiment, intents and conversion events — searchable and exportable from day one." },
 ]
 
 const AUTO_INTERVAL = 3500
@@ -314,28 +314,44 @@ export function Features() {
                   key={feat.label}
                   type="button"
                   onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
-                  className={`group relative flex items-center gap-2.5 overflow-hidden rounded-xl px-3.5 py-3 text-left transition-all duration-200 ${
+                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3.5 text-left transition-all duration-200 ${
                     isLast ? "col-span-2" : ""
                   } ${
-                    isActive ? "border border-border bg-slate-50 shadow-sm" : "hover:bg-slate-50/70"
+                    isActive
+                      ? "border border-border bg-white shadow-sm"
+                      : "border border-transparent hover:border-border/60 hover:bg-slate-50"
                   }`}
                 >
+                  {/* Active progress bar */}
                   {isActive && (
                     <motion.div
-                      className="absolute bottom-0 left-0 h-0.5 rounded-full bg-primary"
+                      className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary"
                       style={{ width: `${progress * 100}%` }}
                     />
                   )}
-                  <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
-                    isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground group-hover:text-foreground"
+                  {/* Colored left accent bar */}
+                  {isActive && (
+                    <div className={`absolute left-0 top-3 bottom-3 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
+                  )}
+
+                  <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
+                    isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground/60 group-hover:border-border/80 group-hover:text-muted-foreground"
                   }`}>
-                    <Icon className="h-3.5 w-3.5" />
+                    <Icon className="h-4 w-4" />
                   </span>
-                  <span className={`text-xs font-medium leading-tight transition-colors duration-200 ${
-                    isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
-                  }`}>
-                    {feat.label}
-                  </span>
+
+                  <div className="min-w-0">
+                    <p className={`text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                      isActive ? feat.color : "text-muted-foreground/50 group-hover:text-muted-foreground/70"
+                    }`}>
+                      {feat.tag}
+                    </p>
+                    <p className={`text-sm font-semibold leading-tight transition-colors duration-200 ${
+                      isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                    }`}>
+                      {feat.label}
+                    </p>
+                  </div>
                 </button>
               )
             })}
