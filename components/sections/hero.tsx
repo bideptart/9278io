@@ -146,7 +146,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-6 text-xs text-muted-foreground/70"
         >
-          Per-second billing · 15+ Indian languages · Sub-second latency · No contracts
+          Per-second billing · 10+ Indian languages · Sub-second latency · No contracts
         </motion.p>
 
         {/* Demo audio */}

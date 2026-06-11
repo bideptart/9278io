@@ -12,7 +12,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "AI Lead Qualification for Indian Businesses — 9278.io",
   description:
-    "Qualify every inbound lead instantly in Hindi, Tamil, Telugu, and 15+ Indian languages. Route hot leads to your sales team in real time.",
+    "Qualify every inbound lead instantly in Hindi, Tamil, Telugu, and 10+ Indian languages. Route hot leads to your sales team in real time.",
   path: "/use-cases/lead-qualification",
 })
 

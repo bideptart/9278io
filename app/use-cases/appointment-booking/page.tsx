@@ -12,7 +12,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "AI Appointment Booking for Indian Businesses — 9278.io",
   description:
-    "Let AI book, confirm, and remind appointments over phone calls in Hindi and 15+ Indian languages. Works with Google Calendar, Calendly, and custom booking systems.",
+    "Let AI book, confirm, and remind appointments over phone calls in Hindi and 10+ Indian languages. Works with Google Calendar, Calendly, and custom booking systems.",
   path: "/use-cases/appointment-booking",
 })
 
@@ -31,7 +31,7 @@ const stats = [
   { value: "40%", label: "Fewer no-shows with reminder calls" },
   { value: "24/7", label: "Booking availability" },
   { value: "< 2 min", label: "Average booking call length" },
-  { value: "15+", label: "Indian languages" },
+  { value: "10+", label: "Indian languages" },
 ]
 
 export default function AppointmentBookingPage() {

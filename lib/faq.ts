@@ -76,7 +76,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Which Indian languages do you support?",
-        a: "We support 15+ Indian languages including Hindi, Tamil, Telugu, Kannada, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Assamese, Urdu, Rajasthani, Bhojpuri, and Maithili — with native-sounding voices and sub-second latency in all of them.",
+        a: "We support 10+ Indian languages including Hindi, Tamil, Telugu, Kannada, Marathi, Bengali, Gujarati, Punjabi, Malayalam, Odia, Assamese, Urdu, Rajasthani, Bhojpuri, and Maithili — with native-sounding voices and sub-second latency in all of them.",
       },
       {
         q: "Can the agent switch languages mid-call?",

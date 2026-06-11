@@ -12,7 +12,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "Outbound Call Automation for Indian Businesses — 9278.io",
   description:
-    "Run TRAI-compliant outbound calling campaigns in Hindi, Tamil, Telugu, and 15+ Indian languages. EMI reminders, lead follow-ups, appointment confirmations — automated.",
+    "Run TRAI-compliant outbound calling campaigns in Hindi, Tamil, Telugu, and 10+ Indian languages. EMI reminders, lead follow-ups, appointment confirmations — automated.",
   path: "/use-cases/outbound-calls",
 })
 
@@ -31,7 +31,7 @@ const stats = [
   { value: "3×", label: "Higher connect rate vs SMS" },
   { value: "100%", label: "TRAI-compliant DND scrubbing" },
   { value: "₹10", label: "Per minute on Scale plan" },
-  { value: "15+", label: "Indian languages" },
+  { value: "10+", label: "Indian languages" },
 ]
 
 export default function OutboundCallsPage() {

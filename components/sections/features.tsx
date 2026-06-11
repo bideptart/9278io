@@ -156,12 +156,12 @@ export function Features() {
             </BentoCard>
           </ScrollReveal>
 
-          {/* 15+ Languages — spans 2 with auto-looping transcript */}
+          {/* 10+ Languages — spans 2 with auto-looping transcript */}
           <ScrollReveal className="md:col-span-2">
             <BentoCard>
               <CardBadge>Multilingual</CardBadge>
               <CardIcon Icon={Languages} />
-              <h3 className="mt-4 font-bold tracking-tight">15+ Indian Languages</h3>
+              <h3 className="mt-4 font-bold tracking-tight">10+ Indian Languages</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali, Gujarati, Punjabi, Malayalam and more. Auto-detect dialect and switch mid-call.
               </p>

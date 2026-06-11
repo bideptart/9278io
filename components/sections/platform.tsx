@@ -12,7 +12,7 @@ export function Platform() {
             Answer every call like your best front desk.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Greet callers, qualify requests, route to the right team, and book appointments — in 15+ Indian languages.
+            Greet callers, qualify requests, route to the right team, and book appointments — in 10+ Indian languages.
           </p>
         </ScrollReveal>
       </div>

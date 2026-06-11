@@ -12,7 +12,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "AI Customer Support for Indian Businesses — 9278.io",
   description:
-    "Automate tier-1 customer support calls in Hindi, Tamil, Telugu, and 15+ Indian languages. Resolve common queries instantly, escalate only what needs a human.",
+    "Automate tier-1 customer support calls in Hindi, Tamil, Telugu, and 10+ Indian languages. Resolve common queries instantly, escalate only what needs a human.",
   path: "/use-cases/customer-support",
 })
 
@@ -31,7 +31,7 @@ const stats = [
   { value: "80%", label: "Queries resolved without human" },
   { value: "< 1s", label: "Response on Indian networks" },
   { value: "24/7", label: "Support coverage" },
-  { value: "15+", label: "Indian languages" },
+  { value: "10+", label: "Indian languages" },
 ]
 
 export default function CustomerSupportPage() {

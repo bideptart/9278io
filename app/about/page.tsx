@@ -40,7 +40,7 @@ const values = [
 const milestones = [
   { year: "2023", event: "Founded in Bengaluru with a mission to make AI voice accessible in Indian languages." },
   { year: "2024 Q1", event: "Launched Hindi, Tamil, and Telugu voice agents. First 50 customers in BFSI and real estate." },
-  { year: "2024 Q3", event: "Expanded to 15+ Indian languages. Crossed 1 million calls automated." },
+  { year: "2024 Q3", event: "Expanded to 10+ Indian languages. Crossed 1 million calls automated." },
   { year: "2025", event: "Serving 500+ businesses across BFSI, EdTech, e-commerce, and BPO sectors nationwide." },
 ]
 

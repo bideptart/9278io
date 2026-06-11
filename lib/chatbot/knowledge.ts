@@ -82,7 +82,7 @@ Connect your knowledge base; the agent answers from your source of truth.
 Only Indian numbers are available: ₹400/month.
 
 ## Multilingual — speaks the caller's language. Literally.
-Supports **15+ Indian languages**: Hindi, Tamil, Telugu, Kannada, Marathi,
+Supports **10+ Indian languages**: Hindi, Tamil, Telugu, Kannada, Marathi,
 Bengali, Gujarati, Punjabi, Malayalam, Odia, Assamese, Urdu, Rajasthani,
 Bhojpuri, Maithili — plus English.
 

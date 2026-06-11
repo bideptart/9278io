@@ -153,7 +153,7 @@ export function HumanExperience() {
             </motion.div>
           </ScrollReveal>
 
-          {/* ── Card 2: 15+ Indian Languages ── */}
+          {/* ── Card 2: 10+ Indian Languages ── */}
           <ScrollReveal>
             <motion.div
               className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
@@ -164,7 +164,7 @@ export function HumanExperience() {
               <span className="w-fit rounded-full border border-primary/20 bg-primary/[0.08] px-3 py-1 text-xs font-semibold text-primary">
                 Multilingual
               </span>
-              <h3 className="mt-4 text-xl font-bold tracking-tight">15+ Indian Languages</h3>
+              <h3 className="mt-4 text-xl font-bold tracking-tight">10+ Indian Languages</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Native voices with auto-dialect detection. Switch mid-call naturally.
               </p>

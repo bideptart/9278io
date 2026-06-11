@@ -12,7 +12,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "Inbound Call Automation for Indian Businesses — 9278.io",
   description:
-    "Handle every inbound call 24/7 in Hindi, Tamil, Telugu, and 15+ Indian languages. No missed calls, no hold times, no headcount.",
+    "Handle every inbound call 24/7 in Hindi, Tamil, Telugu, and 10+ Indian languages. No missed calls, no hold times, no headcount.",
   path: "/use-cases/inbound-calls",
 })
 
@@ -31,7 +31,7 @@ const stats = [
   { value: "100%", label: "Answer rate — never miss a call" },
   { value: "< 1s", label: "Response latency on Indian networks" },
   { value: "24/7", label: "Availability including holidays" },
-  { value: "15+", label: "Indian languages supported" },
+  { value: "10+", label: "Indian languages supported" },
 ]
 
 export default function InboundCallsPage() {
