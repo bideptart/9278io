@@ -211,7 +211,7 @@ function ForwardingVisual() {
   useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % calls.length), 2200); return () => clearInterval(t) }, [])
   const c = calls[active]
   return (
-    <div className="space-y-1.5">
+    <div className="flex h-full flex-col justify-between gap-3">
       {/* Incoming call card */}
       <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-2">
         <div>
