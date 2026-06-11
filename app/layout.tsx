@@ -5,7 +5,6 @@ import { Suspense } from "react"
 import { SITE } from "@/lib/seo"
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/components/seo/jsonld"
 import { PageviewTracker } from "@/components/analytics/pageview-tracker"
-import { ThemeProvider } from "@/components/theme-provider"
 // Lazy-loaded inside a thin client wrapper — the chat widget pulls in
 // motion + lucide and doesn't need to ship on first paint of every page.
 import { ChatWidgetLazy } from "@/components/chat/chat-widget-lazy"
@@ -56,19 +55,13 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: [
-      { url: "/logo-black.png", media: "(prefers-color-scheme: light)" },
-      { url: "/logo-white.png", media: "(prefers-color-scheme: dark)" },
-    ],
+    icon: "/logo-black.png",
     apple: "/logo-black.png",
   },
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0c18" },
-  ],
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 }
@@ -79,17 +72,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <body className="bg-background font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <OrganizationJsonLd />
-          <WebsiteJsonLd />
-          <Suspense fallback={null}>
-            <PageviewTracker />
-          </Suspense>
-          {children}
-          <ChatWidgetLazy />
-        </ThemeProvider>
+        <OrganizationJsonLd />
+        <WebsiteJsonLd />
+        <Suspense fallback={null}>
+          <PageviewTracker />
+        </Suspense>
+        {children}
+        <ChatWidgetLazy />
       </body>
     </html>
   )

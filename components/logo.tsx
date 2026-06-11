@@ -1,8 +1,4 @@
-"use client"
-
 import Image from "next/image"
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
 type LogoProps = {
@@ -12,17 +8,6 @@ type LogoProps = {
 }
 
 export function Logo({ className, height = 40, priority = false }: LogoProps) {
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Before mount (SSR), default to white logo (dark theme default)
-  const src = mounted && resolvedTheme === "light" ? "/logo-black.png" : "/logo-white.png"
-
-  // Aspect ratio of the logo PNG (500 x 333 ≈ 1.5)
   const width = Math.round(height * 1.5)
 
   return (
@@ -33,7 +18,7 @@ export function Logo({ className, height = 40, priority = false }: LogoProps) {
       style={{ height }}
     >
       <Image
-        src={src}
+        src="/logo-black.png"
         alt="9278.io"
         width={width}
         height={height}

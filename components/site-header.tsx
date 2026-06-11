@@ -1,11 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { useTheme } from "next-themes"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import {
-  Sun, Moon, ChevronDown,
+  ChevronDown,
   PhoneIncoming, PhoneOutgoing, UserCheck, CalendarDays, Headphones,
   Menu, X,
 } from "lucide-react"
@@ -23,16 +22,13 @@ const useCaseLinks = [
 ]
 
 export function SiteHeader() {
-  const { theme, setTheme } = useTheme()
   const pathname = usePathname()
-  const [mounted, setMounted] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 8)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -131,7 +127,7 @@ export function SiteHeader() {
                   className="absolute left-0 top-full z-50 pt-2"
                   style={{ width: "min(300px, calc(100vw - 2rem))" }}
                 >
-                  <div className="overflow-hidden rounded-xl border border-border bg-popover shadow-xl ring-1 ring-black/5 dark:ring-white/5">
+                  <div className="overflow-hidden rounded-xl border border-border bg-popover shadow-xl ring-1 ring-black/5">
                     <div className="p-1.5">
                       {useCaseLinks.map((item) => {
                         const Icon = item.icon
@@ -190,19 +186,6 @@ export function SiteHeader() {
 
         {/* ── Right actions ── */}
         <div className="flex items-center gap-1.5">
-          {/* Theme toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle theme"
-            className="h-9 w-9 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {mounted && theme === "dark"
-              ? <Sun className="h-4 w-4" />
-              : <Moon className="h-4 w-4" />}
-          </Button>
-
           <Button
             asChild
             variant="ghost"
