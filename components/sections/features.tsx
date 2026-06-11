@@ -299,12 +299,12 @@ export function Features() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-[500px_1fr]"
+        <div className="mt-14 grid items-start gap-6 lg:grid-cols-[500px_1fr]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {/* ── Left: 2-column feature grid (2+2+2+2+1) ── */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 content-start gap-2 self-start">
             {features.map((feat, i) => {
               const Icon = feat.icon
               const isActive = i === active
@@ -365,7 +365,7 @@ export function Features() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex h-full flex-col rounded-2xl border border-primary/30 bg-white p-8 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
+              className="flex min-h-[400px] flex-col overflow-hidden rounded-2xl border border-primary/30 bg-white p-8 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
             >
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>
