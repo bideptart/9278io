@@ -73,10 +73,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b transition-all duration-200",
-        scrolled
-          ? "border-border/70 bg-background/97 shadow-sm backdrop-blur-xl"
-          : "border-border/50 bg-background/95 backdrop-blur-md",
+        "sticky top-0 z-40 w-full border-b border-border bg-white transition-shadow duration-200",
+        scrolled ? "shadow-sm" : "",
       )}
     >
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 md:px-6">
@@ -145,7 +143,7 @@ export function SiteHeader() {
                               "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors",
                               active
                                 ? "border-primary/25 bg-primary/[0.1] text-primary"
-                                : "border-border bg-card/50 text-muted-foreground group-hover:border-primary/20 group-hover:bg-primary/[0.07] group-hover:text-primary",
+                                : "border-border bg-white text-muted-foreground group-hover:border-primary/20 group-hover:bg-primary/[0.07] group-hover:text-primary",
                             )}>
                               <Icon className="h-3.5 w-3.5" />
                             </span>

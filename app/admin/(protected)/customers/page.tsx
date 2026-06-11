@@ -21,7 +21,7 @@ export default async function CustomersPage() {
       <div className="mt-8 overflow-hidden rounded-lg border border-border/60">
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-card/40 text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <thead className="bg-white text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-3 font-medium">Customer</th>
                 <th className="px-4 py-3 font-medium">Plan</th>
@@ -41,7 +41,7 @@ export default async function CustomersPage() {
                 </tr>
               )}
               {customers.map((c) => (
-                <tr key={c.id} className="hover:bg-card/30">
+                <tr key={c.id} className="hover:bg-white">
                   <td className="px-4 py-3">
                     <Link href={`/admin/customers/${c.id}`} className="block">
                       <span className="font-medium text-foreground">{c.name || c.email}</span>

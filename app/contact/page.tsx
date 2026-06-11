@@ -75,7 +75,7 @@ export default function ContactPage() {
         />
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               We&apos;d love to hear from you
             </span>
@@ -99,7 +99,7 @@ export default function ContactPage() {
             const Icon = c.icon
             return (
               <ScrollReveal key={c.title}>
-                <div className="flex flex-col gap-5 rounded-2xl border border-border bg-card/50 p-7">
+                <div className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-7">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold tracking-tight">{c.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
                   </div>
-                  <Button asChild variant="outline" className="mt-auto w-fit border-border bg-card/50">
+                  <Button asChild variant="outline" className="mt-auto w-fit border-border bg-white">
                     <a href={c.href}>{c.action}</a>
                   </Button>
                 </div>
@@ -128,7 +128,7 @@ export default function ContactPage() {
           <div className="mt-10 space-y-4">
             {faqs.map((f) => (
               <ScrollReveal key={f.q}>
-                <div className="rounded-2xl border border-border bg-card/50 p-6">
+                <div className="rounded-2xl border border-border bg-white p-6">
                   <h3 className="font-semibold">{f.q}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
                 </div>

@@ -47,7 +47,7 @@ export default async function BlogPage() {
         />
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Guides, case studies &amp; insights
             </span>
@@ -67,11 +67,11 @@ export default async function BlogPage() {
             <ScrollReveal key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group flex h-full flex-col gap-4 rounded-2xl border border-border bg-card/50 p-6 transition-all duration-300 hover:border-primary/20 hover:bg-white/[0.04]"
+                className="group flex h-full flex-col gap-4 rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:border-primary/20 hover:bg-slate-50"
               >
                 <div className="flex items-center justify-between">
                   <span
-                    className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${categoryColors[post.category] ?? "border-white/10 bg-white/[0.04] text-muted-foreground"}`}
+                    className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${categoryColors[post.category] ?? "border-white/10 bg-slate-50 text-muted-foreground"}`}
                   >
                     {post.category}
                   </span>

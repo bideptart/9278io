@@ -88,7 +88,7 @@ export function HumanExperience() {
           {/* ── Card 1: ROI Chart ── spans 2 cols */}
           <ScrollReveal className="md:col-span-2">
             <motion.div
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-slate-50"
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
@@ -156,7 +156,7 @@ export function HumanExperience() {
           {/* ── Card 2: 10+ Indian Languages ── */}
           <ScrollReveal>
             <motion.div
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-slate-50"
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
@@ -193,7 +193,7 @@ export function HumanExperience() {
           {/* ── Card 3: Compliance Badges ── */}
           <ScrollReveal>
             <motion.div
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-slate-50"
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
@@ -234,7 +234,7 @@ export function HumanExperience() {
           {/* ── Card 4: Feature Toggles ── */}
           <ScrollReveal>
             <motion.div
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-slate-50"
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
@@ -280,7 +280,7 @@ export function HumanExperience() {
           {/* ── Card 5: Uptime / India Infra ── */}
           <ScrollReveal>
             <motion.div
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 transition-colors duration-300 hover:border-primary/25 hover:bg-slate-50"
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
@@ -331,7 +331,7 @@ export function HumanExperience() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.6 + i * 0.1, type: "spring", stiffness: 280, damping: 20 }}
-                    className="flex items-center gap-2 rounded-lg border border-border bg-card/50 px-3 py-2"
+                    className="flex items-center gap-2 rounded-lg border border-border bg-white px-3 py-2"
                   >
                     <div className="relative flex h-3 w-3 items-center justify-center">
                       <motion.div

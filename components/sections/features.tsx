@@ -144,7 +144,7 @@ export function Features() {
                     {c}
                   </motion.span>
                 ))}
-                <span className="rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs font-medium text-muted-foreground">
+                <span className="rounded-full border border-border bg-white px-4 py-1.5 text-xs font-medium text-muted-foreground">
                   + all telecom circles
                 </span>
               </div>
@@ -229,7 +229,7 @@ export function Features() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.12 * i }}
-                    className="flex items-center gap-2 rounded-lg border border-border bg-card/50 px-3 py-2 text-xs text-muted-foreground"
+                    className="flex items-center gap-2 rounded-lg border border-border bg-white px-3 py-2 text-xs text-muted-foreground"
                   >
                     <motion.div
                       className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
@@ -386,7 +386,7 @@ export function Features() {
 function BentoCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.div
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 p-6 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04] ${className}`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary/25 hover:shadow-md hover:bg-slate-50 ${className}`}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
     >

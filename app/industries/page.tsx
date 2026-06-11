@@ -37,7 +37,7 @@ export default function IndustriesPage() {
         />
         <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <ScrollReveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Pre-tuned for the calls you actually take
             </span>
@@ -55,7 +55,7 @@ export default function IndustriesPage() {
               <Link
                 key={i.slug}
                 href={`/industries/${i.slug}`}
-                className="group inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                className="group inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
               >
                 <i.icon className="size-3.5 text-primary" aria-hidden />
                 {i.name}
@@ -72,7 +72,7 @@ export default function IndustriesPage() {
       </div>
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-card/30 px-6 py-12 md:px-12 md:py-14">
+        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
               <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">

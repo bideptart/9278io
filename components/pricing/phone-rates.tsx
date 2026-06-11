@@ -6,7 +6,7 @@ import { PHONE_NUMBER_RATES } from "@/lib/pricing"
 
 export function PhoneRates() {
   return (
-    <div className="rounded-2xl border border-border/60 bg-card/30">
+    <div className="rounded-2xl border border-border/60 bg-white">
       <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
         <div className="flex items-center gap-3">
           <Phone className="size-5 text-primary" aria-hidden />

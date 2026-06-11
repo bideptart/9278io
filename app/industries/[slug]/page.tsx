@@ -89,7 +89,7 @@ export default async function IndustryPage({
               </ol>
             </nav>
 
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Icon className="size-3.5 text-primary" aria-hidden />
               {industry.name}
             </span>
@@ -147,7 +147,7 @@ export default async function IndustryPage({
               {industry.sampleLines.map((line, i) => (
                 <li
                   key={i}
-                  className="rounded-xl border border-border/60 bg-card/30 p-4"
+                  className="rounded-xl border border-border/60 bg-white p-4"
                 >
                   <div className="flex items-start gap-3">
                     <MessageSquareQuote className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
@@ -254,7 +254,7 @@ export default async function IndustryPage({
 
 function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
-    <div className="rounded-xl border border-border/60 bg-card/40 p-5">
+    <div className="rounded-xl border border-border/60 bg-white p-5">
       <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
         <Sparkles className="size-4 text-primary" aria-hidden />
         {label}

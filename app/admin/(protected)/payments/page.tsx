@@ -20,7 +20,7 @@ export default async function PaymentsPage() {
       <div className="mt-8 overflow-hidden rounded-lg border border-border/60">
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-card/40 text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <thead className="bg-white text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-3 font-medium">Date</th>
                 <th className="px-4 py-3 font-medium">Customer</th>
@@ -39,7 +39,7 @@ export default async function PaymentsPage() {
                 </tr>
               )}
               {payments.map((p) => (
-                <tr key={p.id} className="hover:bg-card/30">
+                <tr key={p.id} className="hover:bg-white">
                   <td className="px-4 py-3 text-muted-foreground">{formatDateTime(p.created_at)}</td>
                   <td className="px-4 py-3">
                     {p.customer_id ? (

@@ -45,7 +45,7 @@ export default async function CustomerDetailPage({
       </section>
 
       {customer.use_case && (
-        <section className="mt-6 rounded-lg border border-border/60 bg-card/40 p-5">
+        <section className="mt-6 rounded-lg border border-border/60 bg-white p-5">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">Use case</p>
           <p className="mt-2 whitespace-pre-line text-sm leading-relaxed">{customer.use_case}</p>
         </section>
@@ -55,7 +55,7 @@ export default async function CustomerDetailPage({
         <h2 className="text-lg font-semibold tracking-tight">Payments</h2>
         <div className="mt-4 overflow-hidden rounded-lg border border-border/60">
           <table className="min-w-full text-sm">
-            <thead className="bg-card/40 text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <thead className="bg-white text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-3 font-medium">Date</th>
                 <th className="px-4 py-3 font-medium">Description</th>
@@ -92,7 +92,7 @@ export default async function CustomerDetailPage({
         <h2 className="text-lg font-semibold tracking-tight">Phone numbers</h2>
         <div className="mt-4 overflow-hidden rounded-lg border border-border/60">
           <table className="min-w-full text-sm">
-            <thead className="bg-card/40 text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <thead className="bg-white text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-3 font-medium">Region</th>
                 <th className="px-4 py-3 font-medium text-right">Quantity</th>
@@ -133,7 +133,7 @@ export default async function CustomerDetailPage({
 
 function Field({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-border/60 bg-card/40 p-4">
+    <div className="rounded-lg border border-border/60 bg-white p-4">
       <p className="text-xs uppercase tracking-wider text-muted-foreground">{label}</p>
       <p className="mt-2 text-sm">{value}</p>
     </div>

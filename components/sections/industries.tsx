@@ -198,7 +198,7 @@ function FeaturedCard({ item }: { item: typeof featured }) {
   const Icon = item.icon
   return (
     <motion.div
-      className="group relative overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-colors duration-300 hover:border-primary/30 hover:bg-white/[0.04] md:flex md:gap-10"
+      className="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:bg-slate-50 md:flex md:gap-10"
       whileHover={{ y: -3 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
     >
@@ -276,7 +276,7 @@ function IndustryCard({ item }: { item: typeof industries[number] }) {
   const Icon = item.icon
   return (
     <motion.div
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/50 p-6 transition-colors duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary/25 hover:shadow-md hover:bg-slate-50"
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 280, damping: 22 }}
     >

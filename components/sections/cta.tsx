@@ -37,7 +37,7 @@ export function CTA() {
             {badges.map((b) => (
               <span
                 key={b}
-                className="rounded-full border border-border bg-white/[0.04] px-3 py-1 text-xs font-medium text-muted-foreground"
+                className="rounded-full border border-border bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-sm"
               >
                 {b}
               </span>
@@ -61,7 +61,7 @@ export function CTA() {
               asChild
               size="lg"
               variant="outline"
-              className="h-12 rounded-xl border-border bg-white/[0.04] px-8 text-base font-semibold backdrop-blur-sm hover:border-border/80 hover:bg-white/[0.07]"
+              className="h-12 rounded-xl border-border bg-white px-8 text-base font-semibold shadow-sm hover:border-primary/30 hover:bg-slate-50"
             >
               <Link href="/#demo-audio">
                 <PhoneCall className="mr-2 h-4 w-4" />
@@ -72,7 +72,7 @@ export function CTA() {
               asChild
               size="lg"
               variant="ghost"
-              className="h-12 rounded-xl px-8 text-base font-semibold text-muted-foreground hover:bg-white/[0.04] hover:text-foreground"
+              className="h-12 rounded-xl px-8 text-base font-semibold text-muted-foreground hover:bg-slate-100 hover:text-foreground"
             >
               <Link href="/contact">
                 <CalendarDays className="mr-2 h-4 w-4" />
@@ -82,7 +82,7 @@ export function CTA() {
             <Button
               asChild
               size="lg"
-              className="h-12 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_0_32px_oklch(0.78_0.16_195/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_0_48px_oklch(0.78_0.16_195/0.5)]"
+              className="h-12 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_4px_24px_oklch(0.52_0.22_265/0.35)] transition-all hover:bg-primary/90"
             >
               <Link href="/get-started">
                 Build your first agent

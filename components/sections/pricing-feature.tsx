@@ -94,7 +94,7 @@ export function PricingFeature() {
                   className={`group relative flex flex-col overflow-hidden rounded-2xl border p-7 transition-all duration-300 ${
                     plan.highlight
                       ? "border-primary/40 bg-primary/[0.06] shadow-[0_0_40px_oklch(0.78_0.16_195/0.12)]"
-                      : "border-border bg-card/50 hover:border-primary/20 hover:bg-white/[0.04]"
+                      : "border-border bg-white hover:border-primary/20 hover:bg-slate-50"
                   }`}
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 280, damping: 22 }}
@@ -144,7 +144,7 @@ export function PricingFeature() {
                       className={`w-full rounded-xl font-semibold ${
                         plan.highlight
                           ? "bg-primary text-primary-foreground shadow-[0_0_24px_oklch(0.78_0.16_195/0.3)] hover:bg-primary/90"
-                          : "border border-border bg-white/[0.04] text-foreground hover:bg-white/[0.08]"
+                          : "border border-border bg-slate-50 text-foreground hover:bg-slate-100"
                       }`}
                       variant={plan.highlight ? "default" : "outline"}
                     >

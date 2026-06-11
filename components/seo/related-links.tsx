@@ -36,7 +36,7 @@ export function RelatedLinks({
           <li key={l.href}>
             <Link
               href={l.href}
-              className="group flex h-full flex-col justify-between gap-4 rounded-xl border border-border/60 bg-card/30 p-5 transition-colors hover:border-primary/40 hover:bg-card/50"
+              className="group flex h-full flex-col justify-between gap-4 rounded-xl border border-border/60 bg-white p-5 transition-colors hover:border-primary/40 hover:bg-white"
             >
               <div>
                 <p className="text-base font-medium tracking-tight group-hover:text-foreground">{l.title}</p>

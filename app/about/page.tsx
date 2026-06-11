@@ -64,7 +64,7 @@ export default function AboutPage() {
         />
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Our story
             </span>
@@ -115,7 +115,7 @@ export default function AboutPage() {
               const Icon = v.icon
               return (
                 <ScrollReveal key={v.title}>
-                  <div className="rounded-2xl border border-border bg-card/50 p-7">
+                  <div className="rounded-2xl border border-border bg-white p-7">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
                       <Icon className="h-5 w-5" aria-hidden />
                     </span>
@@ -140,7 +140,7 @@ export default function AboutPage() {
           <div className="mt-12 space-y-6">
             {milestones.map((m) => (
               <ScrollReveal key={m.year}>
-                <div className="flex gap-6 rounded-2xl border border-border bg-card/50 p-6">
+                <div className="flex gap-6 rounded-2xl border border-border bg-white p-6">
                   <span className="mt-0.5 shrink-0 rounded-lg border border-primary/20 bg-primary/[0.08] px-3 py-1 text-xs font-bold text-primary">
                     {m.year}
                   </span>
@@ -154,7 +154,7 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-card/30 px-6 py-12 md:px-12 md:py-14">
+        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
               <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">

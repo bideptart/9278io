@@ -61,12 +61,12 @@ export function Connectivity() {
             {integrations.map((name) => (
               <span
                 key={name}
-                className="rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:text-foreground"
+                className="rounded-full border border-border bg-white px-4 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:text-foreground"
               >
                 {name}
               </span>
             ))}
-            <span className="rounded-full border border-border bg-card/50 px-4 py-1.5 text-xs font-medium text-muted-foreground">
+            <span className="rounded-full border border-border bg-white px-4 py-1.5 text-xs font-medium text-muted-foreground">
               +188 more
             </span>
           </ScrollReveal>

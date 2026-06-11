@@ -44,7 +44,7 @@ export default async function PricingPage({
       />
 
       {canceled && (
-        <div className="border-b border-border/60 bg-card/40">
+        <div className="border-b border-border/60 bg-white">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-3 text-sm text-muted-foreground md:px-6">
             <p>Checkout was canceled. You can pick a plan again whenever you&apos;re ready.</p>
           </div>
@@ -58,7 +58,7 @@ export default async function PricingPage({
         />
         <div className="mx-auto w-full max-w-6xl px-4 py-20 md:px-6 md:py-28">
           <ScrollReveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Pay as you go · INR pricing · GST invoices
             </span>
@@ -101,7 +101,7 @@ export default async function PricingPage({
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-card/30 px-6 py-12 md:px-12 md:py-14">
+        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
               <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
@@ -162,7 +162,7 @@ function Stat({
   sub: string
 }) {
   return (
-    <div className="rounded-xl border border-border/60 bg-card/30 p-5">
+    <div className="rounded-xl border border-border/60 bg-white p-5">
       <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
         <Icon className="size-4 text-primary" aria-hidden />
         {label}

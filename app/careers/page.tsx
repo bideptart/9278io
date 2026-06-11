@@ -100,7 +100,7 @@ export default function CareersPage() {
         />
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               We&apos;re hiring
             </span>
@@ -134,7 +134,7 @@ export default function CareersPage() {
             const Icon = p.icon
             return (
               <ScrollReveal key={p.title}>
-                <div className="flex flex-col gap-5 rounded-2xl border border-border bg-card/50 p-7">
+                <div className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-7">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
@@ -162,7 +162,7 @@ export default function CareersPage() {
           <div className="mt-10 space-y-4">
             {openRoles.map((r) => (
               <ScrollReveal key={r.title}>
-                <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-primary/20 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col gap-4 rounded-2xl border border-border bg-white p-6 transition-colors hover:border-primary/20 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="font-semibold">{r.title}</h3>
@@ -181,7 +181,7 @@ export default function CareersPage() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="mt-2 shrink-0 border-border bg-card/50 sm:mt-0"
+                    className="mt-2 shrink-0 border-border bg-white sm:mt-0"
                   >
                     <a href="mailto:careers@9278.io?subject=Application — {r.title}">Apply</a>
                   </Button>
@@ -190,7 +190,7 @@ export default function CareersPage() {
             ))}
           </div>
 
-          <ScrollReveal className="mt-8 rounded-2xl border border-border/60 bg-card/30 p-6 text-center">
+          <ScrollReveal className="mt-8 rounded-2xl border border-border/60 bg-white p-6 text-center">
             <p className="text-muted-foreground">
               Don&apos;t see a perfect fit?{" "}
               <a href="mailto:careers@9278.io" className="text-primary underline-offset-4 hover:underline">

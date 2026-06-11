@@ -60,7 +60,7 @@ export default async function ThanksPage({
         </p>
 
         {plan && (
-          <div className="mt-8 w-full rounded-2xl border border-border/60 bg-card/40 p-6 text-left">
+          <div className="mt-8 w-full rounded-2xl border border-border/60 bg-white p-6 text-left">
             <p className="text-xs uppercase tracking-wider text-muted-foreground">Order</p>
             <div className="mt-3 flex items-baseline justify-between">
               <span className="text-sm">{plan.name} credit</span>

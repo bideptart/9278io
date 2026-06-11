@@ -53,7 +53,7 @@ export default function OutboundCallsPage() {
         />
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-1 text-xs text-muted-foreground">
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Use case
             </span>
@@ -81,7 +81,7 @@ export default function OutboundCallsPage() {
 
       <section className="border-b border-border/50">
         <div className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
-          <div className="grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card/50 md:grid-cols-4 md:divide-y-0">
+          <div className="grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border border-border bg-white md:grid-cols-4 md:divide-y-0">
             {stats.map((s) => (
               <div key={s.label} className="flex flex-col items-center gap-1.5 px-6 py-8 text-center">
                 <span className="text-3xl font-bold tracking-tight text-foreground">{s.value}</span>
@@ -122,7 +122,7 @@ export default function OutboundCallsPage() {
             ].map((card) => {
               const Icon = card.icon
               return (
-                <div key={card.title} className="flex gap-4 rounded-2xl border border-border bg-card/50 p-5">
+                <div key={card.title} className="flex gap-4 rounded-2xl border border-border bg-white p-5">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>
@@ -138,7 +138,7 @@ export default function OutboundCallsPage() {
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-24 md:px-6">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-card/30 px-6 py-12 text-center md:px-12 md:py-14">
+        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 text-center md:px-12 md:py-14">
           <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
             Launch your first outbound campaign today.
           </h3>

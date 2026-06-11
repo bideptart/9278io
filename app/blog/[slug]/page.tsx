@@ -57,7 +57,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           </Link>
         </Button>
 
-        <div className="rounded-2xl border border-border bg-card/50 p-6 md:p-8">
+        <div className="rounded-2xl border border-border bg-white p-6 md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span className="rounded-full border border-primary/20 bg-primary/[0.08] px-2.5 py-0.5 text-xs font-medium text-primary">
               {post.category}
@@ -98,7 +98,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
               [&_.cta]:mt-10 [&_.cta]:rounded-2xl [&_.cta]:border [&_.cta]:border-border [&_.cta]:bg-muted/30 [&_.cta]:px-6 [&_.cta]:py-6
               [&_.cta_h3]:mt-0 [&_.cta_h3]:text-foreground
               [&_.btn]:mt-4 [&_.btn]:inline-flex [&_.btn]:items-center [&_.btn]:justify-center [&_.btn]:rounded-lg [&_.btn]:bg-primary [&_.btn]:px-4 [&_.btn]:py-2.5 [&_.btn]:text-sm [&_.btn]:font-semibold [&_.btn]:text-primary-foreground [&_.btn]:no-underline hover:[&_.btn]:bg-primary/90
-              [&_details]:mt-4 [&_details]:rounded-2xl [&_details]:border [&_details]:border-border [&_details]:bg-card/40 [&_details]:px-5 [&_details]:py-4
+              [&_details]:mt-4 [&_details]:rounded-2xl [&_details]:border [&_details]:border-border [&_details]:bg-white [&_details]:px-5 [&_details]:py-4
               [&_summary]:cursor-pointer [&_summary]:text-foreground [&_summary]:font-medium"
             dangerouslySetInnerHTML={{ __html: post.articleHtml }}
           />

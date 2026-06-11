@@ -284,7 +284,7 @@ export function ChatWidget() {
               transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
               aria-hidden
-              className="fixed inset-0 z-40 bg-background/60 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-background/60 md:hidden"
             />
 
             <motion.aside

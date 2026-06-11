@@ -22,7 +22,7 @@ export default async function PlanDistributionPage() {
           const count = overview.planDistribution.find((r) => r.plan_id === plan.id)?.count ?? 0
           const share = total === 0 ? 0 : Math.round((count / total) * 100)
           return (
-            <div key={plan.id} className="rounded-lg border border-border/60 bg-card/40 p-6">
+            <div key={plan.id} className="rounded-lg border border-border/60 bg-white p-6">
               <div className="flex items-center justify-between">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">{planLabel(plan.id)}</p>
                 <p className="text-xs text-muted-foreground">₹{plan.amountInr} · ₹{plan.ratePerMinInr}/min</p>

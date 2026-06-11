@@ -30,7 +30,7 @@ export default async function AdminOverviewPage() {
         <Stat icon={PhoneCall} label="Active DIDs" value={String(data.activePhoneNumbers)} sub="Numbers in service" />
       </div>
 
-      <section className="mt-10 rounded-lg border border-border/60 bg-card/40 p-6">
+      <section className="mt-10 rounded-lg border border-border/60 bg-white p-6">
         <div className="flex items-end justify-between">
           <div>
             <h2 className="text-lg font-semibold tracking-tight">Revenue · last 30 days</h2>
@@ -42,7 +42,7 @@ export default async function AdminOverviewPage() {
         </div>
       </section>
 
-      <section className="mt-8 rounded-lg border border-border/60 bg-card/40 p-6">
+      <section className="mt-8 rounded-lg border border-border/60 bg-white p-6">
         <h2 className="text-lg font-semibold tracking-tight">Plan distribution</h2>
         <p className="text-sm text-muted-foreground">Active customers grouped by their most recent plan.</p>
         {data.planDistribution.length === 0 ? (
@@ -75,7 +75,7 @@ function Stat({
   sub: string
 }) {
   return (
-    <div className="rounded-lg border border-border/60 bg-card/40 p-5">
+    <div className="rounded-lg border border-border/60 bg-white p-5">
       <div className="flex items-center gap-2 text-muted-foreground">
         <Icon className="h-4 w-4" aria-hidden />
         <p className="text-xs uppercase tracking-wider">{label}</p>

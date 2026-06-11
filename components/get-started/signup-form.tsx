@@ -76,7 +76,7 @@ export function SignupForm() {
           <input type="hidden" name="billingPeriod" value={billingPeriod} />
 
           <div className="mb-4 flex justify-center md:justify-start">
-            <div className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-card/40 p-1">
+            <div className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-white p-1">
               <button
                 type="button"
                 onClick={() => setBillingPeriod("monthly")}
@@ -135,7 +135,7 @@ export function SignupForm() {
                     "group relative rounded-xl border p-5 text-left transition-all",
                     active
                       ? "border-primary/60 bg-primary/[0.06]"
-                      : "border-border/60 bg-card/30 hover:border-border hover:bg-card/50",
+                      : "border-border/60 bg-white hover:border-border hover:bg-white",
                   )}
                   aria-pressed={active}
                 >
@@ -221,7 +221,7 @@ export function SignupForm() {
           </div>
 
           {regionRow && (
-            <div className="mt-4 flex flex-wrap items-center gap-3 rounded-lg border border-border/60 bg-card/30 px-4 py-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3 rounded-lg border border-border/60 bg-white px-4 py-3">
               <Label htmlFor="phoneQty" className="text-sm">
                 Quantity
               </Label>
@@ -267,7 +267,7 @@ export function SignupForm() {
                 name="industry"
                 defaultValue=""
                 className={cn(
-                  "h-10 w-full rounded-md border border-border/60 bg-card/30 px-3 text-sm",
+                  "h-10 w-full rounded-md border border-border/60 bg-white px-3 text-sm",
                   "focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30",
                 )}
               >
@@ -292,7 +292,7 @@ export function SignupForm() {
                 name="useCase"
                 rows={4}
                 placeholder="e.g. Qualify inbound leads from our website, book showings on our calendar, and follow up by SMS the next morning."
-                className="bg-card/30"
+                className="bg-white"
               />
             </div>
           </div>
@@ -307,7 +307,7 @@ export function SignupForm() {
       <aside className="lg:sticky lg:top-24 lg:self-start">
         <motion.div
           layout
-          className="rounded-2xl border border-border/60 bg-card/40 p-6"
+          className="rounded-2xl border border-border/60 bg-white p-6"
         >
           <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
             <Sparkles className="size-3.5 text-primary" aria-hidden />
@@ -403,7 +403,7 @@ function Field({
         type={type}
         placeholder={placeholder}
         required={required}
-        className="bg-card/30"
+        className="bg-white"
       />
       {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
     </div>
@@ -436,7 +436,7 @@ function RegionOption({
         "flex items-start gap-3 rounded-xl border p-4 text-left transition-all",
         active
           ? "border-primary/60 bg-primary/[0.06]"
-          : "border-border/60 bg-card/30 hover:border-border hover:bg-card/50",
+          : "border-border/60 bg-white hover:border-border hover:bg-white",
       )}
     >
       <span

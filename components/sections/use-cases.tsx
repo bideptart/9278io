@@ -56,7 +56,7 @@ export function UseCases() {
             return (
               <StaggerItem key={step.number}>
                 <motion.div
-                  className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-border bg-card/50 p-7 transition-all duration-300 hover:border-primary/25 hover:bg-white/[0.04]"
+                  className="group relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-border bg-white p-7 transition-all duration-300 hover:border-primary/25 hover:bg-slate-50"
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 280, damping: 22 }}
                 >

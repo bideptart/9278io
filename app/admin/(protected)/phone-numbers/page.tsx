@@ -20,7 +20,7 @@ export default async function PhoneNumbersPage() {
             All provisioned DIDs across customers, regions and statuses.
           </p>
         </div>
-        <div className="rounded-md border border-border/60 bg-card/40 px-4 py-2 text-right">
+        <div className="rounded-md border border-border/60 bg-white px-4 py-2 text-right">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">Active MRR</p>
           <p className="text-lg font-semibold tracking-tight">{formatMoney(totalMrr)}</p>
         </div>
@@ -29,7 +29,7 @@ export default async function PhoneNumbersPage() {
       <div className="mt-8 overflow-hidden rounded-lg border border-border/60">
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
-            <thead className="bg-card/40 text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <thead className="bg-white text-left text-xs uppercase tracking-wider text-muted-foreground">
               <tr>
                 <th className="px-4 py-3 font-medium">Customer</th>
                 <th className="px-4 py-3 font-medium">Region</th>
@@ -48,7 +48,7 @@ export default async function PhoneNumbersPage() {
                 </tr>
               )}
               {phones.map((n) => (
-                <tr key={n.id} className="hover:bg-card/30">
+                <tr key={n.id} className="hover:bg-white">
                   <td className="px-4 py-3">
                     <Link href={`/admin/customers/${n.customer_id}`} className="hover:underline">
                       {n.customer_name || n.customer_email || "Customer"}

@@ -17,7 +17,7 @@ export function PlanCards() {
   return (
     <div className="space-y-6">
       <div className="flex justify-center">
-        <div className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-card/40 p-1">
+        <div className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-white p-1">
           <button
             type="button"
             onClick={() => setBillingPeriod("monthly")}
@@ -73,7 +73,7 @@ export function PlanCards() {
                 "relative flex flex-col rounded-2xl border p-7 transition-colors",
                 plan.recommended
                   ? "border-primary/40 bg-gradient-to-b from-primary/[0.06] to-transparent"
-                  : "border-border/60 bg-card/40 hover:border-border",
+                  : "border-border/60 bg-white hover:border-border",
               )}
             >
               {plan.recommended && (

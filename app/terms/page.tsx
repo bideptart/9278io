@@ -212,7 +212,7 @@ export default function TermsPage() {
         ) : null}
 
         {/* Table of contents */}
-        <ScrollReveal className="mb-12 rounded-2xl border border-border bg-card/50 p-6">
+        <ScrollReveal className="mb-12 rounded-2xl border border-border bg-white p-6">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Contents</p>
           <nav className="grid gap-1.5 sm:grid-cols-2">
             {sections.map((s) => (
