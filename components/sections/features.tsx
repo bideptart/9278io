@@ -202,33 +202,63 @@ function ScheduleVisual() {
 
 function ForwardingVisual() {
   const [active, setActive] = useState(0)
-  const routes = [
-    { label: "Hindi caller — Lead intent",    dest: "Sales team",   color: "text-blue-600 bg-blue-50 border-blue-200" },
-    { label: "Tamil caller — Support query",  dest: "Support desk", color: "text-emerald-600 bg-emerald-50 border-emerald-200" },
-    { label: "Marathi — Billing question",    dest: "Billing dept", color: "text-violet-600 bg-violet-50 border-violet-200" },
+  const calls = [
+    { lang: "Hindi",   intent: "Lead",    tag: "bg-blue-100 text-blue-700",   tagIntent: "bg-orange-100 text-orange-700" },
+    { lang: "Tamil",   intent: "Support", tag: "bg-violet-100 text-violet-700", tagIntent: "bg-emerald-100 text-emerald-700" },
+    { lang: "Marathi", intent: "Billing", tag: "bg-pink-100 text-pink-700",   tagIntent: "bg-indigo-100 text-indigo-700" },
   ]
-  useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % routes.length), 2000); return () => clearInterval(t) }, [])
+  const dests = [
+    { name: "Sales Team",   icon: "💼", color: "border-blue-200 bg-blue-50 text-blue-700",    activeRing: "ring-2 ring-blue-400" },
+    { name: "Support Desk", icon: "🎧", color: "border-emerald-200 bg-emerald-50 text-emerald-700", activeRing: "ring-2 ring-emerald-400" },
+    { name: "Billing Dept", icon: "🧾", color: "border-indigo-200 bg-indigo-50 text-indigo-700",  activeRing: "ring-2 ring-indigo-400" },
+  ]
+  useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % calls.length), 2200); return () => clearInterval(t) }, [])
+  const c = calls[active]
   return (
     <div className="space-y-3">
-      <div className="rounded-xl border border-border bg-slate-50 px-4 py-3 text-center">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Incoming call</p>
-        <p className="mt-1 text-sm font-medium text-foreground">Intent + language detected</p>
+      {/* Incoming call card */}
+      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-3">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Incoming call</p>
+          <p className="mt-0.5 font-mono text-sm font-bold text-foreground">+91 98765 43210</p>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <AnimatePresence mode="wait">
+            <motion.span key={c.lang} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
+              className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${c.tag}`}>{c.lang}</motion.span>
+          </AnimatePresence>
+          <AnimatePresence mode="wait">
+            <motion.span key={c.intent} initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
+              className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${c.tagIntent}`}>{c.intent}</motion.span>
+          </AnimatePresence>
+        </div>
       </div>
-      <div className="flex justify-center">
-        <div className="h-5 w-px bg-border" />
+
+      {/* Connector */}
+      <div className="flex flex-col items-center gap-0.5">
+        <div className="h-3 w-px bg-border" />
+        <div className="rounded-full border border-primary/30 bg-primary/[0.08] px-3 py-1 text-[10px] font-semibold text-primary">
+          Rule engine
+        </div>
+        <div className="h-3 w-px bg-border" />
       </div>
-      <div className="space-y-2">
-        {routes.map((r, i) => (
-          <motion.div key={r.label}
-            animate={i === active ? { x: 4 } : { x: 0 }}
-            className={`flex items-center justify-between rounded-xl border px-4 py-2.5 text-xs transition-all duration-300 ${
-              i === active ? r.color : "border-border bg-white text-muted-foreground/40"
-            }`}
+
+      {/* 3-column destination grid */}
+      <div className="grid grid-cols-3 gap-2">
+        {dests.map((d, i) => (
+          <motion.div key={d.name}
+            animate={i === active ? { scale: 1.04 } : { scale: 1 }}
+            transition={{ type: "spring", stiffness: 320, damping: 22 }}
+            className={`flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
           >
-            <span className="font-medium">{r.label}</span>
+            <span className="text-xl">{d.icon}</span>
+            <span className="text-[10px] font-bold leading-tight">{d.name}</span>
             {i === active && (
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-1 font-bold">
-                → {r.dest}
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                className="flex items-center gap-0.5 text-[9px] font-semibold">
+                <motion.span className="h-1.5 w-1.5 rounded-full bg-current"
+                  animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 0.8, repeat: Infinity }} />
+                Active
               </motion.span>
             )}
           </motion.div>
