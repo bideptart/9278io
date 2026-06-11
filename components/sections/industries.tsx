@@ -36,7 +36,7 @@ const featured = {
     { speaker: "Caller", text: "Mujhe apna account balance jaanna hai." },
     { speaker: "Agent", text: "Bilkul! Kripya apna registered mobile number dijiye." },
   ],
-  href: "/use-cases/inbound-calls",
+  href: "/industries",
 }
 
 const industries = [
@@ -86,7 +86,7 @@ const industries = [
       { speaker: "Agent", text: "ನಿಮ್ಮ ಆರ್ಡರ್ ಇಂದು ಡೆಲಿವರಿಗೆ ಹೊರಟಿದೆ!" },
       { speaker: "Caller", text: "ಚೆನ್ನಾಗಿದೆ, ಯಾವ ಸಮಯಕ್ಕೆ ಬರಲಿದೆ?" },
     ],
-    href: "/use-cases/customer-support",
+    href: "/industries/ecommerce",
   },
   {
     icon: Car,

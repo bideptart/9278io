@@ -179,7 +179,6 @@ Customers can top up multiple times. Contact for custom volume pricing beyond â‚
 
 ## Important links
 - Pricing: /pricing
-- Use cases: /use-cases (sub-pages for each)
 - Industries: /industries
 - FAQ: /faq
 - About: /about

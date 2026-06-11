@@ -10,13 +10,6 @@ const nav = {
     { label: "API Docs", href: "https://voice.9278.io/signin" },
     { label: "Dashboard", href: "https://voice.9278.io/signin" },
   ],
-  "Use Cases": [
-    { label: "Inbound Calls", href: "/use-cases/inbound-calls" },
-    { label: "Outbound Calls", href: "/use-cases/outbound-calls" },
-    { label: "Lead Qualification", href: "/use-cases/lead-qualification" },
-    { label: "Appointment Booking", href: "/use-cases/appointment-booking" },
-    { label: "Customer Support", href: "/use-cases/customer-support" },
-  ],
   Industries: [
     { label: "Real Estate", href: "/industries/real-estate" },
     { label: "Legal Services", href: "/industries/legal" },
@@ -78,7 +71,7 @@ export function SiteFooter() {
           </div>
 
           {/* Nav columns */}
-          <div className="grid grid-cols-2 gap-8 md:col-span-9 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 md:col-span-9 md:grid-cols-3">
             {Object.entries(nav).map(([section, links]) => (
               <div key={section}>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/70">{section}</h3>
