@@ -1,59 +1,83 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   AudioLines, Languages, MessageCircle, Activity,
   Network, CalendarClock, PhoneForwarded, Mic, Timer,
+  CheckCircle2, TrendingUp, Zap,
 } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 
-/* ── Per-feature visuals ── */
+/* ══════════════════════════════════════════════════
+   VISUALS
+══════════════════════════════════════════════════ */
 
-const WAVE = [30, 55, 40, 70, 50, 85, 45, 72, 38, 65, 42, 78, 35, 60, 48]
 function LatencyVisual() {
+  const rows = [
+    { label: "Traditional IVR", ms: 2400, color: "bg-red-400" },
+    { label: "Competitor A",    ms: 800,  color: "bg-orange-400" },
+    { label: "9278.io",         ms: 94,   color: "bg-primary" },
+  ]
+  const max = 2400
   return (
-    <div className="flex flex-col items-center justify-center gap-6 py-6">
-      <div className="flex items-end gap-1" style={{ height: 80 }}>
-        {WAVE.map((h, i) => (
-          <motion.div key={i}
-            className={`w-3 rounded-full ${h >= 70 ? "bg-primary" : h >= 50 ? "bg-primary/55" : "bg-primary/25"}`}
-            style={{ height: `${h}%` }}
-            animate={{ scaleY: [1, 1.5, 0.5, 1.3, 0.8, 1] }}
-            transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.07, ease: "easeInOut" }}
-          />
-        ))}
-      </div>
-      <div className="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2">
-        <motion.div className="h-2 w-2 rounded-full bg-primary" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
-        <span className="text-sm font-bold text-primary">94 ms avg latency</span>
+    <div className="space-y-4">
+      <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Latency comparison</p>
+      {rows.map((r, i) => (
+        <div key={r.label} className="space-y-1">
+          <div className="flex items-center justify-between text-xs">
+            <span className={`font-medium ${i === 2 ? "text-primary" : "text-muted-foreground"}`}>{r.label}</span>
+            <span className={`font-bold tabular-nums ${i === 2 ? "text-primary" : "text-muted-foreground"}`}>{r.ms} ms</span>
+          </div>
+          <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+            <motion.div
+              className={`h-full rounded-full ${r.color}`}
+              initial={{ width: 0 }}
+              whileInView={{ width: `${(r.ms / max) * 100}%` }}
+              viewport={{ once: false }}
+              transition={{ duration: 1, delay: i * 0.15, ease: "easeOut" }}
+            />
+          </div>
+        </div>
+      ))}
+      <div className="mt-2 flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/[0.06] px-4 py-2.5">
+        <motion.div className="h-2 w-2 rounded-full bg-primary" animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1, repeat: Infinity }} />
+        <span className="text-sm font-bold text-primary">96% faster than legacy IVR</span>
       </div>
     </div>
   )
 }
 
-const LANGS = ["Hindi", "Tamil", "Telugu", "Kannada", "Marathi", "Bengali", "Gujarati", "Punjabi", "Malayalam", "Odia"]
+const LANGS = [
+  { name: "Hindi",     script: "हिन्दी",   color: "bg-orange-50 text-orange-700 border-orange-200" },
+  { name: "Tamil",     script: "தமிழ்",    color: "bg-red-50 text-red-700 border-red-200" },
+  { name: "Telugu",    script: "తెలుగు",   color: "bg-green-50 text-green-700 border-green-200" },
+  { name: "Kannada",   script: "ಕನ್ನಡ",   color: "bg-purple-50 text-purple-700 border-purple-200" },
+  { name: "Marathi",   script: "मराठी",   color: "bg-blue-50 text-blue-700 border-blue-200" },
+  { name: "Bengali",   script: "বাংলা",   color: "bg-teal-50 text-teal-700 border-teal-200" },
+  { name: "Gujarati",  script: "ગુજરાતી", color: "bg-yellow-50 text-yellow-700 border-yellow-200" },
+  { name: "Punjabi",   script: "ਪੰਜਾਬੀ",  color: "bg-pink-50 text-pink-700 border-pink-200" },
+  { name: "Malayalam", script: "മലയാളം",  color: "bg-indigo-50 text-indigo-700 border-indigo-200" },
+  { name: "Odia",      script: "ଓଡ଼ିଆ",   color: "bg-cyan-50 text-cyan-700 border-cyan-200" },
+]
 function LanguageVisual() {
-  const [idx, setIdx] = useState(0)
-  useEffect(() => { const t = setInterval(() => setIdx(i => (i + 1) % LANGS.length), 700); return () => clearInterval(t) }, [])
+  const [active, setActive] = useState(0)
+  useEffect(() => { const t = setInterval(() => setActive(i => (i + 1) % LANGS.length), 1200); return () => clearInterval(t) }, [])
   return (
-    <div className="flex flex-col items-center gap-6 py-6">
-      <div className="relative flex h-20 w-full items-center justify-center overflow-hidden">
+    <div className="space-y-4">
+      <div className="flex items-center justify-center rounded-2xl border border-border bg-slate-50 py-5">
         <AnimatePresence mode="wait">
-          <motion.p key={idx}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className="text-4xl font-bold text-primary"
-          >{LANGS[idx]}</motion.p>
+          <motion.div key={active} initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} transition={{ duration: 0.25 }} className="text-center">
+            <p className="text-4xl font-bold text-foreground">{LANGS[active].script}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{LANGS[active].name}</p>
+          </motion.div>
         </AnimatePresence>
       </div>
-      <div className="flex flex-wrap justify-center gap-2">
-        {LANGS.slice(0, 8).map((l, i) => (
-          <span key={l} className={`rounded-full px-3 py-1 text-xs font-medium transition-all duration-200 ${
-            i === idx % 8 ? "bg-primary text-white" : "bg-slate-100 text-slate-500"
-          }`}>{l}</span>
+      <div className="flex flex-wrap gap-1.5">
+        {LANGS.map((l, i) => (
+          <span key={l.name} className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold transition-all duration-200 ${
+            i === active ? l.color + " scale-105 shadow-sm" : "border-border bg-white text-muted-foreground/50"
+          }`}>{l.name}</span>
         ))}
       </div>
     </div>
@@ -61,110 +85,117 @@ function LanguageVisual() {
 }
 
 function TurnTakingVisual() {
-  const lines = [
-    { s: "Agent",  t: "नमस्ते! How can I help you today?", d: 0 },
-    { s: "Caller", t: "I need to cancel my appointment.", d: 1.2 },
-    { s: "Agent",  t: "Sure, let me pull that up for you.", d: 2.4 },
-    { s: "Caller", t: "Actually, can I reschedule instead?", d: 3.6 },
-    { s: "Agent",  t: "Of course! What time works for you?", d: 4.8 },
+  const events = [
+    { type: "agent",    text: "नमस्ते! How can I help you today?" },
+    { type: "caller",   text: "I need to cancel my—" },
+    { type: "barge",    text: "Barge-in detected" },
+    { type: "agent",    text: "No problem, I can handle that. Can I get your booking ID?" },
+    { type: "caller",   text: "It's BK-29371. Actually, can I reschedule instead?" },
+    { type: "agent",    text: "Of course! What date works for you?" },
   ]
-  const [key, setKey] = useState(0)
-  useEffect(() => { const t = setInterval(() => setKey(k => k + 1), 8000); return () => clearInterval(t) }, [])
+  const [shown, setShown] = useState(0)
+  useEffect(() => {
+    if (shown >= events.length) return
+    const t = setTimeout(() => setShown(s => s + 1), shown === 0 ? 400 : 900)
+    return () => clearTimeout(t)
+  }, [shown])
+  useEffect(() => { const t = setInterval(() => setShown(0), 9000); return () => clearInterval(t) }, [])
+
   return (
-    <div key={key} className="space-y-2.5 py-4">
-      {lines.map((l, i) => (
-        <motion.div key={i}
-          initial={{ opacity: 0, x: l.s === "Agent" ? -12 : 12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: l.d }}
-          className={`flex ${l.s === "Agent" ? "justify-start" : "justify-end"}`}
-        >
-          <span className={`max-w-[78%] rounded-xl px-3 py-2 text-xs ${
-            l.s === "Agent"
-              ? "bg-primary/[0.1] text-primary"
-              : "bg-slate-100 text-slate-700"
-          }`}>
-            <span className="mr-1.5 text-[9px] font-bold opacity-50">{l.s}</span>{l.t}
-          </span>
+    <div className="space-y-2">
+      {events.slice(0, shown).map((e, i) => (
+        <motion.div key={i} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}
+          className={`flex ${e.type === "caller" ? "justify-end" : "justify-start"}`}>
+          {e.type === "barge" ? (
+            <span className="flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-semibold text-amber-700">
+              <Zap className="h-3 w-3" /> {e.text}
+            </span>
+          ) : (
+            <span className={`max-w-[85%] rounded-xl px-3 py-2 text-xs ${
+              e.type === "agent" ? "bg-primary/[0.1] text-primary" : "bg-slate-100 text-slate-700"
+            }`}>
+              <span className="mr-1 text-[9px] font-bold opacity-50">{e.type === "agent" ? "Agent" : "Caller"}</span>
+              {e.text}
+            </span>
+          )}
         </motion.div>
       ))}
+      {shown < events.length && (
+        <div className="flex justify-start">
+          <span className="inline-flex items-center gap-1 rounded-xl bg-primary/[0.08] px-3 py-2">
+            {[0, 0.15, 0.3].map((d, i) => (
+              <motion.span key={i} className="h-1.5 w-1.5 rounded-full bg-primary/60"
+                animate={{ y: [0, -3, 0] }} transition={{ duration: 0.5, repeat: Infinity, delay: d }} />
+            ))}
+          </span>
+        </div>
+      )}
     </div>
   )
 }
 
-const BARS = [38, 52, 46, 68, 60, 80, 74, 92]
-function AnalyticsVisual() {
-  const [k, setK] = useState(0)
-  useEffect(() => { const t = setInterval(() => setK(x => x + 1), 2800); return () => clearInterval(t) }, [])
+function ConcurrencyVisual() {
+  const [count, setCount] = useState(1)
+  useEffect(() => {
+    const t = setInterval(() => setCount(c => c < 16 ? c + 1 : 1), 400)
+    return () => clearInterval(t)
+  }, [])
   return (
-    <div className="py-4">
-      <div key={k} className="mb-3 flex items-end gap-2" style={{ height: 80 }}>
-        {BARS.map((h, i) => (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-3">
+        <span className="text-sm text-muted-foreground">Active calls</span>
+        <motion.span key={count} initial={{ scale: 1.3 }} animate={{ scale: 1 }} className="text-2xl font-black text-primary">{count.toLocaleString()}</motion.span>
+      </div>
+      <div className="grid grid-cols-8 gap-1.5">
+        {Array.from({ length: 16 }).map((_, i) => (
           <motion.div key={i}
-            className="flex-1 rounded-t-md bg-gradient-to-t from-primary to-primary/40"
-            style={{ height: `${h}%`, originY: 1 }}
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 0.5, delay: 0.04 * i }}
+            className={`aspect-square rounded-md transition-colors duration-200 ${i < count ? "bg-primary" : "bg-primary/10"}`}
+            animate={i < count ? { scale: [1, 1.15, 1] } : {}}
+            transition={{ duration: 0.3, delay: i === count - 1 ? 0 : 0 }}
           />
         ))}
       </div>
-      <div className="flex justify-between text-xs text-muted-foreground">
-        <span>Mon</span>
-        <motion.span key={k} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="font-semibold text-primary">+{BARS[BARS.length-1]}% resolved</motion.span>
-        <span>Sun</span>
-      </div>
-    </div>
-  )
-}
-
-const DOTS = Array.from({ length: 16 })
-function ConcurrencyVisual() {
-  return (
-    <div className="py-4">
-      <div className="grid grid-cols-8 gap-2">
-        {DOTS.map((_, i) => (
-          <motion.div key={i}
-            className="aspect-square rounded-lg bg-primary/20"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ type: "spring", delay: i * 0.04, stiffness: 300, damping: 18 }}
-          >
-            <motion.div className="h-full w-full rounded-lg bg-primary/60"
-              animate={{ opacity: [0.2, 0.9, 0.2], scale: [0.7, 1, 0.7] }}
-              transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
-            />
-          </motion.div>
-        ))}
-      </div>
-      <p className="mt-3 text-center text-xs text-muted-foreground">Each cell = 1 concurrent agent</p>
+      <p className="text-center text-[10px] text-muted-foreground">Each cell = 1 concurrent agent · scales to thousands</p>
     </div>
   )
 }
 
 function ScheduleVisual() {
-  const slots = ["9:00 AM", "10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM", "4:00 PM"]
-  const [booked, setBooked] = useState(1)
-  useEffect(() => { const t = setInterval(() => setBooked(b => (b + 1) % slots.length), 1500); return () => clearInterval(t) }, [])
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+  const slots = [
+    [1, 0, 1, 0, 1],
+    [0, 1, 0, 1, 0],
+    [1, 1, 0, 0, 1],
+  ]
+  const times = ["9 AM", "12 PM", "3 PM"]
   return (
-    <div className="py-4">
-      <div className="grid grid-cols-3 gap-2">
-        {slots.map((s, i) => (
-          <motion.div key={s}
-            animate={i === booked ? { scale: [1, 1.05, 1] } : {}}
-            transition={{ duration: 0.4 }}
-            className={`rounded-lg border px-3 py-2.5 text-center text-xs font-medium transition-all duration-300 ${
-              i === booked ? "border-primary bg-primary text-white shadow-sm" :
-              i < booked ? "border-emerald-200 bg-emerald-50 text-emerald-700" :
-              "border-border bg-slate-50 text-muted-foreground"
-            }`}
-          >
-            {s}
-          </motion.div>
+    <div className="space-y-3">
+      <div className="grid grid-cols-6 gap-1 text-[10px] text-muted-foreground">
+        <span />
+        {days.map(d => <span key={d} className="text-center font-semibold">{d}</span>)}
+        {times.map((t, row) => (
+          <>
+            <span key={t} className="flex items-center text-[10px] text-muted-foreground">{t}</span>
+            {slots[row].map((active, col) => (
+              <motion.div key={col}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ delay: row * 0.1 + col * 0.05 }}
+                className={`rounded-md py-1.5 text-center text-[10px] font-medium ${
+                  active ? "bg-primary text-white" : "bg-slate-100 text-slate-400"
+                }`}
+              >
+                {active ? "●" : "○"}
+              </motion.div>
+            ))}
+          </>
         ))}
       </div>
-      <p className="mt-3 text-center text-xs text-muted-foreground">TRAI calling window enforced</p>
+      <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2">
+        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+        <span className="text-xs font-medium text-emerald-700">TRAI 9 AM – 9 PM window enforced automatically</span>
+      </div>
     </div>
   )
 }
@@ -172,94 +203,168 @@ function ScheduleVisual() {
 function ForwardingVisual() {
   const [active, setActive] = useState(0)
   const routes = [
-    { label: "Sales team", color: "text-blue-600 bg-blue-50 border-blue-200" },
-    { label: "Support desk", color: "text-emerald-600 bg-emerald-50 border-emerald-200" },
-    { label: "Billing dept", color: "text-violet-600 bg-violet-50 border-violet-200" },
+    { label: "Hindi caller — Lead intent",    dest: "Sales team",   color: "text-blue-600 bg-blue-50 border-blue-200" },
+    { label: "Tamil caller — Support query",  dest: "Support desk", color: "text-emerald-600 bg-emerald-50 border-emerald-200" },
+    { label: "Marathi — Billing question",    dest: "Billing dept", color: "text-violet-600 bg-violet-50 border-violet-200" },
   ]
-  useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % routes.length), 1800); return () => clearInterval(t) }, [])
+  useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % routes.length), 2000); return () => clearInterval(t) }, [])
   return (
-    <div className="py-4">
-      <div className="flex flex-col items-center gap-3">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary bg-primary/10">
-          <PhoneForwarded className="h-5 w-5 text-primary" />
-        </div>
-        <div className="flex h-6 w-px bg-border" />
-        <div className="flex flex-col gap-2 w-full">
-          {routes.map((r, i) => (
-            <motion.div key={r.label}
-              animate={i === active ? { x: 4 } : { x: 0 }}
-              className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
-                i === active ? r.color : "border-border bg-slate-50/50 text-muted-foreground/50"
-              }`}
-            >
-              {i === active && <motion.span className="h-1.5 w-1.5 rounded-full bg-current" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 0.8, repeat: Infinity }} />}
-              {r.label}
-            </motion.div>
-          ))}
-        </div>
+    <div className="space-y-3">
+      <div className="rounded-xl border border-border bg-slate-50 px-4 py-3 text-center">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Incoming call</p>
+        <p className="mt-1 text-sm font-medium text-foreground">Intent + language detected</p>
+      </div>
+      <div className="flex justify-center">
+        <div className="h-5 w-px bg-border" />
+      </div>
+      <div className="space-y-2">
+        {routes.map((r, i) => (
+          <motion.div key={r.label}
+            animate={i === active ? { x: 4 } : { x: 0 }}
+            className={`flex items-center justify-between rounded-xl border px-4 py-2.5 text-xs transition-all duration-300 ${
+              i === active ? r.color : "border-border bg-white text-muted-foreground/40"
+            }`}
+          >
+            <span className="font-medium">{r.label}</span>
+            {i === active && (
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-1 font-bold">
+                → {r.dest}
+              </motion.span>
+            )}
+          </motion.div>
+        ))}
       </div>
     </div>
   )
 }
 
 function RecordingVisual() {
-  const [t, setT] = useState(0)
-  useEffect(() => { const id = setInterval(() => setT(x => x + 1), 1000); return () => clearInterval(id) }, [])
-  const mm = String(Math.floor(t / 60)).padStart(2, "0")
-  const ss = String(t % 60).padStart(2, "0")
+  const [secs, setSecs] = useState(0)
+  const [transcript] = useState([
+    { s: "Agent", t: "Your order will arrive by Thursday." },
+    { s: "Caller", t: "Can I change the delivery address?" },
+    { s: "Agent", t: "Of course, what's the new address?" },
+  ])
+  useEffect(() => { const t = setInterval(() => setSecs(x => x + 1), 1000); return () => clearInterval(t) }, [])
+  const mm = String(Math.floor(secs / 60)).padStart(2, "0")
+  const ss = String(secs % 60).padStart(2, "0")
   return (
-    <div className="py-4">
-      <div className="flex items-center justify-between rounded-2xl border border-red-100 bg-red-50 px-5 py-4">
-        <div className="flex items-center gap-3">
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-            <motion.div className="absolute inset-0 rounded-full bg-red-300/40" animate={{ scale: [1, 1.5], opacity: [0.5, 0] }} transition={{ duration: 1.2, repeat: Infinity }} />
-            <div className="h-3 w-3 rounded-full bg-red-500" />
-          </div>
-          <div>
-            <p className="text-sm font-bold text-red-700">REC</p>
-            <p className="font-mono text-lg font-bold text-red-600">{mm}:{ss}</p>
-          </div>
+    <div className="space-y-3">
+      <div className="flex items-center gap-3 rounded-xl border border-red-100 bg-red-50/70 px-4 py-2.5">
+        <div className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-100">
+          <motion.div className="absolute inset-0 rounded-full bg-red-300/40" animate={{ scale: [1, 1.6], opacity: [0.5, 0] }} transition={{ duration: 1.2, repeat: Infinity }} />
+          <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
         </div>
-        <div className="text-right text-xs text-red-400">
-          <p>Encrypted</p>
-          <p>Searchable</p>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-red-700">REC</span>
+            <span className="font-mono text-sm font-bold text-red-600">{mm}:{ss}</span>
+          </div>
+          <p className="text-[10px] text-red-400">Encrypted · AES-256 · Stored in India</p>
         </div>
+        <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold text-red-600">Live</span>
+      </div>
+      <div className="space-y-1.5">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Live transcript</p>
+        {transcript.map((line, i) => (
+          <div key={i} className={`flex gap-2 text-xs ${line.s === "Agent" ? "justify-start" : "justify-end"}`}>
+            <span className={`rounded-lg px-2.5 py-1.5 ${line.s === "Agent" ? "bg-primary/[0.08] text-primary" : "bg-slate-100 text-slate-600"}`}>
+              <span className="mr-1 text-[9px] font-bold opacity-50">{line.s}</span>{line.t}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   )
 }
 
 function BillingVisual() {
-  const [s, setS] = useState(0)
-  useEffect(() => { const t = setInterval(() => setS(x => x + 1), 1000); return () => clearInterval(t) }, [])
-  const cost = (s * 10 / 60).toFixed(4)
+  const [secs, setSecs] = useState(0)
+  useEffect(() => { const t = setInterval(() => setSecs(x => x + 1), 1000); return () => clearInterval(t) }, [])
+  const perSecCost = secs * 10 / 60
+  const perMinCost = Math.ceil(secs / 60) * 10
+  const saved = perMinCost - perSecCost
   return (
-    <div className="py-4">
-      <div className="rounded-2xl border border-primary/15 bg-primary/[0.04] p-5 text-center">
-        <p className="text-xs text-muted-foreground mb-1">Amount charged so far</p>
-        <motion.p key={s} className="text-4xl font-black text-primary" animate={{ scale: [1.04, 1] }} transition={{ duration: 0.2 }}>
-          ₹{cost}
-        </motion.p>
-        <p className="mt-1 text-sm text-muted-foreground">{s} seconds · ₹10/min</p>
-        <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-emerald-600 font-medium">
-          <span>✓</span>
-          <span>No minute-rounding ever</span>
+    <div className="space-y-3">
+      <div className="grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-red-100 bg-red-50 p-3 text-center">
+          <p className="text-[10px] text-red-400">Per-minute billing</p>
+          <p className="mt-1 text-xl font-black text-red-600">₹{perMinCost.toFixed(2)}</p>
+          <p className="text-[10px] text-red-400">{Math.ceil(secs / 60)} min × ₹10</p>
+        </div>
+        <div className="rounded-xl border border-primary/20 bg-primary/[0.06] p-3 text-center">
+          <p className="text-[10px] text-primary/70">Per-second billing</p>
+          <motion.p key={secs} className="mt-1 text-xl font-black text-primary" animate={{ scale: [1.05, 1] }} transition={{ duration: 0.2 }}>
+            ₹{perSecCost.toFixed(3)}
+          </motion.p>
+          <p className="text-[10px] text-primary/70">{secs}s × ₹0.167</p>
+        </div>
+      </div>
+      <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2.5">
+        <TrendingUp className="h-4 w-4 text-emerald-600" />
+        <div>
+          <span className="text-xs font-bold text-emerald-700">Saving ₹{saved.toFixed(2)} right now</span>
+          <p className="text-[10px] text-emerald-600">No minute-rounding, ever</p>
         </div>
       </div>
     </div>
   )
 }
 
-/* ── Feature data — Analytics moved to last (pos 9, full-row) ── */
+const ABAR = [42, 58, 51, 72, 68, 85, 79, 95]
+function AnalyticsVisual() {
+  const [k, setK] = useState(0)
+  useEffect(() => { const t = setInterval(() => setK(x => x + 1), 3000); return () => clearInterval(t) }, [])
+  const metrics = [
+    { label: "Calls resolved",  value: "87%",  up: true,  color: "text-emerald-600 bg-emerald-50" },
+    { label: "Avg call time",   value: "2m 14s", up: false, color: "text-blue-600 bg-blue-50" },
+    { label: "Escalation rate", value: "13%",  up: false, color: "text-orange-600 bg-orange-50" },
+  ]
+  return (
+    <div className="space-y-3">
+      <div className="grid grid-cols-3 gap-2">
+        {metrics.map(m => (
+          <div key={m.label} className={`rounded-xl p-3 text-center ${m.color}`}>
+            <p className="text-lg font-black">{m.value}</p>
+            <p className="mt-0.5 text-[9px] font-medium leading-tight opacity-70">{m.label}</p>
+          </div>
+        ))}
+      </div>
+      <div>
+        <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Weekly resolution rate</p>
+        <div key={k} className="flex items-end gap-1.5" style={{ height: 56 }}>
+          {ABAR.map((h, i) => (
+            <motion.div key={i}
+              className={`flex-1 rounded-t-md ${h >= 85 ? "bg-primary" : h >= 70 ? "bg-primary/65" : "bg-primary/30"}`}
+              style={{ height: `${h}%`, originY: 1 }}
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 0.4, delay: 0.04 * i }}
+            />
+          ))}
+        </div>
+        <div className="mt-1 flex justify-between text-[10px] text-muted-foreground/50">
+          <span>Mon</span>
+          <motion.span key={k} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="font-semibold text-primary">+{ABAR[ABAR.length-1]}% resolved this week</motion.span>
+          <span>Sun</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ══════════════════════════════════════════════════
+   FEATURE DATA
+══════════════════════════════════════════════════ */
 const features = [
-  { icon: AudioLines,     label: "Sub-300ms Latency",     tag: "Speed",       color: "text-blue-600",    activeBg: "bg-blue-50 border-blue-200",    visual: <LatencyVisual />,      desc: "WebRTC audio on Indian media network. Conversations feel instant with near-zero perceptible lag for your callers." },
-  { icon: Languages,      label: "10+ Indian Languages",  tag: "Multilingual",color: "text-violet-600",  activeBg: "bg-violet-50 border-violet-200", visual: <LanguageVisual />,     desc: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect and switches mid-call." },
-  { icon: MessageCircle,  label: "Natural Turn-Taking",   tag: "AI",          color: "text-cyan-600",    activeBg: "bg-cyan-50 border-cyan-200",     visual: <TurnTakingVisual />,   desc: "Smart endpointing, barge-in detection and interruption handling. The agent listens, pauses and responds like a real person." },
-  { icon: Network,        label: "Massive Concurrency",   tag: "Scale",       color: "text-orange-600",  activeBg: "bg-orange-50 border-orange-200", visual: <ConcurrencyVisual />,  desc: "Scale from one call to thousands simultaneously. Burst capacity built in — no pre-provisioning or capacity planning needed." },
-  { icon: CalendarClock,  label: "Call Scheduling",       tag: "Automation",  color: "text-purple-600",  activeBg: "bg-purple-50 border-purple-200", visual: <ScheduleVisual />,     desc: "Schedule outbound campaigns by time window or day of week. TRAI calling-window rules enforced automatically." },
-  { icon: PhoneForwarded, label: "Call Forwarding",       tag: "Routing",     color: "text-teal-600",    activeBg: "bg-teal-50 border-teal-200",     visual: <ForwardingVisual />,   desc: "Route any call to a human agent, department or external number in real time. Define rules by intent, keyword or time." },
-  { icon: Mic,            label: "Call Recording",        tag: "Security",    color: "text-red-600",     activeBg: "bg-red-50 border-red-200",       visual: <RecordingVisual />,    desc: "Every call recorded and stored securely. Full playback, download and audit trail available on every plan." },
-  { icon: Timer,          label: "Per Second Billing",    tag: "Billing",     color: "text-indigo-600",  activeBg: "bg-indigo-50 border-indigo-200", visual: <BillingVisual />,      desc: "Pay only for the seconds your agent actually speaks. No minute-rounding, no idle charges, no surprises on your invoice." },
+  { icon: AudioLines,     label: "Sub-300ms Latency",     tag: "Speed",       color: "text-blue-600",    activeBg: "bg-blue-50 border-blue-200",       visual: <LatencyVisual />,      desc: "WebRTC audio on Indian media network. Conversations feel instant with near-zero perceptible lag." },
+  { icon: Languages,      label: "10+ Indian Languages",  tag: "Multilingual",color: "text-violet-600",  activeBg: "bg-violet-50 border-violet-200",   visual: <LanguageVisual />,     desc: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect and switches mid-call." },
+  { icon: MessageCircle,  label: "Natural Turn-Taking",   tag: "AI",          color: "text-cyan-600",    activeBg: "bg-cyan-50 border-cyan-200",       visual: <TurnTakingVisual />,   desc: "Smart endpointing, barge-in detection and interruption handling. The agent listens and responds like a real person." },
+  { icon: Network,        label: "Massive Concurrency",   tag: "Scale",       color: "text-orange-600",  activeBg: "bg-orange-50 border-orange-200",   visual: <ConcurrencyVisual />,  desc: "Scale from one call to thousands simultaneously. Burst capacity built in — no pre-provisioning needed." },
+  { icon: CalendarClock,  label: "Call Scheduling",       tag: "Automation",  color: "text-purple-600",  activeBg: "bg-purple-50 border-purple-200",   visual: <ScheduleVisual />,     desc: "Schedule outbound campaigns by time window or day of week. TRAI calling-window rules enforced automatically." },
+  { icon: PhoneForwarded, label: "Call Forwarding",       tag: "Routing",     color: "text-teal-600",    activeBg: "bg-teal-50 border-teal-200",       visual: <ForwardingVisual />,   desc: "Route any call to a human agent, department or external number in real time. Define rules by intent, keyword or time." },
+  { icon: Mic,            label: "Call Recording",        tag: "Security",    color: "text-red-600",     activeBg: "bg-red-50 border-red-200",         visual: <RecordingVisual />,    desc: "Every call recorded, encrypted and stored securely. Full playback, download and audit trail on every plan." },
+  { icon: Timer,          label: "Per Second Billing",    tag: "Billing",     color: "text-indigo-600",  activeBg: "bg-indigo-50 border-indigo-200",   visual: <BillingVisual />,      desc: "Pay only for the seconds your agent actually speaks. No minute-rounding, no idle charges, no surprises." },
   { icon: Activity,       label: "Real Time Transcripts & Analytics", tag: "Analytics", color: "text-emerald-600", activeBg: "bg-emerald-50 border-emerald-200", visual: <AnalyticsVisual />, desc: "Speaker labels, sentiment, intents and conversion events — searchable and exportable from day one." },
 ]
 
@@ -270,7 +375,21 @@ export function Features() {
   const [paused, setPaused] = useState(false)
   const [progress, setProgress] = useState(0)
   const startRef = useRef(Date.now())
+  const leftRef = useRef<HTMLDivElement>(null)
+  const [leftHeight, setLeftHeight] = useState<number | undefined>(undefined)
 
+  // Match right panel height to left column height
+  useEffect(() => {
+    const el = leftRef.current
+    if (!el) return
+    const obs = new ResizeObserver(entries => {
+      setLeftHeight(entries[0].contentRect.height)
+    })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  // Auto-advance
   useEffect(() => {
     if (paused) return
     startRef.current = Date.now()
@@ -303,8 +422,8 @@ export function Features() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* ── Left: 2-column feature grid (2+2+2+2+1) ── */}
-          <div className="grid grid-cols-2 content-start gap-2 self-start">
+          {/* ── Left: 2-col grid (2+2+2+2+1) ── */}
+          <div ref={leftRef} className="grid grid-cols-2 content-start gap-2 self-start">
             {features.map((feat, i) => {
               const Icon = feat.icon
               const isActive = i === active
@@ -314,50 +433,33 @@ export function Features() {
                   key={feat.label}
                   type="button"
                   onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
-                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3.5 text-left transition-all duration-200 ${
-                    isLast ? "col-span-2" : ""
-                  } ${
+                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
                     isActive
                       ? "border border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
                       : "border border-primary/15 hover:border-primary/35 hover:bg-slate-50"
                   }`}
                 >
-                  {/* Active progress bar */}
                   {isActive && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary"
-                      style={{ width: `${progress * 100}%` }}
-                    />
+                    <motion.div className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary" style={{ width: `${progress * 100}%` }} />
                   )}
-                  {/* Colored left accent bar */}
                   {isActive && (
-                    <div className={`absolute left-0 top-3 bottom-3 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
+                    <div className={`absolute bottom-3 left-0 top-3 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
                   )}
-
                   <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
-                    isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground/60 group-hover:border-border/80 group-hover:text-muted-foreground"
+                    isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground/60 group-hover:text-muted-foreground"
                   }`}>
                     <Icon className="h-4 w-4" />
                   </span>
-
                   <div className="min-w-0">
-                    <p className={`text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 ${
-                      isActive ? feat.color : "text-muted-foreground/50 group-hover:text-muted-foreground/70"
-                    }`}>
-                      {feat.tag}
-                    </p>
-                    <p className={`text-sm font-semibold leading-tight transition-colors duration-200 ${
-                      isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
-                    }`}>
-                      {feat.label}
-                    </p>
+                    <p className={`text-[11px] font-semibold uppercase tracking-wide ${isActive ? feat.color : "text-muted-foreground/50 group-hover:text-muted-foreground/70"}`}>{feat.tag}</p>
+                    <p className={`text-sm font-semibold leading-tight ${isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>{feat.label}</p>
                   </div>
                 </button>
               )
             })}
           </div>
 
-          {/* ── Right: feature detail ── */}
+          {/* ── Right: feature detail — height locked to left column ── */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -365,19 +467,22 @@ export function Features() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="flex min-h-[400px] flex-col overflow-hidden rounded-2xl border border-primary/30 bg-white p-8 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
+              style={{ height: leftHeight }}
+              className="flex flex-col overflow-hidden rounded-2xl border border-primary/30 bg-white p-7 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
             >
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>
                   <f.icon className="h-5 w-5" />
                 </span>
-                <h3 className="text-xl font-bold tracking-tight text-foreground">{f.label}</h3>
+                <div>
+                  <p className={`text-[10px] font-semibold uppercase tracking-wider ${f.color}`}>{f.tag}</p>
+                  <h3 className="text-lg font-bold tracking-tight text-foreground">{f.label}</h3>
+                </div>
               </div>
 
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
 
-              {/* Visual — flex-1 fills remaining height, centers content */}
-              <div className="mt-4 flex flex-1 flex-col justify-center">
+              <div className="mt-5 flex-1 overflow-hidden">
                 {f.visual}
               </div>
             </motion.div>
