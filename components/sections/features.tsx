@@ -167,7 +167,7 @@ export function Features() {
               </p>
               <div
                 key={transcriptKey}
-                className="mt-6 space-y-2.5 rounded-xl border border-border bg-muted/40 p-4 dark:bg-black/25"
+                className="mt-6 space-y-2.5 rounded-xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4"
               >
                 {transcriptLines.map((line, i) => (
                   <motion.div
@@ -178,12 +178,12 @@ export function Features() {
                     className={`flex text-xs ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
                   >
                     {line.speaker === "Agent" ? (
-                      <span className="max-w-[82%] rounded-lg bg-primary/20 px-3 py-1.5 text-primary ring-1 ring-primary/25 dark:bg-primary/15">
+                      <span className="max-w-[82%] rounded-lg bg-primary/20 px-3 py-1.5 text-primary ring-1 ring-primary/30">
                         <span className="mr-1.5 text-[10px] font-bold opacity-60">Agent</span>
                         {line.text}
                       </span>
                     ) : (
-                      <span className="max-w-[82%] rounded-lg bg-foreground/[0.09] px-3 py-1.5 text-foreground ring-1 ring-foreground/[0.08] dark:bg-white/[0.10] dark:text-muted-foreground dark:ring-white/[0.07]">
+                      <span className="max-w-[82%] rounded-lg bg-white px-3 py-1.5 text-slate-700 shadow-sm ring-1 ring-slate-200">
                         <span className="mr-1.5 text-[10px] font-bold opacity-40">Caller</span>
                         {line.text}
                       </span>

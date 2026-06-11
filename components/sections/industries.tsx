@@ -241,7 +241,7 @@ function FeaturedCard({ item }: { item: typeof featured }) {
         <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
           Live agent preview
         </p>
-        <div className="space-y-2 rounded-xl border border-border bg-muted/40 p-4 dark:bg-black/20">
+        <div className="space-y-2 rounded-xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-4">
           {item.script.map((line, i) => (
             <motion.div
               key={i}
@@ -252,12 +252,12 @@ function FeaturedCard({ item }: { item: typeof featured }) {
               className={`flex text-xs ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
             >
               {line.speaker === "Agent" ? (
-                <span className="max-w-[85%] rounded-lg bg-primary/20 px-3 py-1.5 text-primary ring-1 ring-primary/20">
+                <span className="max-w-[85%] rounded-lg bg-primary/20 px-3 py-1.5 text-primary ring-1 ring-primary/25">
                   <span className="mr-1 text-[9px] font-bold opacity-60">Agent</span>
                   {line.text}
                 </span>
               ) : (
-                <span className="max-w-[85%] rounded-lg bg-foreground/[0.08] px-3 py-1.5 text-foreground ring-1 ring-foreground/[0.07] dark:bg-white/[0.09] dark:text-muted-foreground">
+                <span className="max-w-[85%] rounded-lg bg-white px-3 py-1.5 text-slate-700 shadow-sm ring-1 ring-slate-200">
                   <span className="mr-1 text-[9px] font-bold opacity-40">Caller</span>
                   {line.text}
                 </span>
@@ -308,18 +308,18 @@ function IndustryCard({ item }: { item: typeof industries[number] }) {
       </div>
 
       {/* Mini script */}
-      <div className="mt-4 space-y-1.5 rounded-xl border border-border bg-muted/30 p-3 dark:bg-black/15">
+      <div className="mt-4 space-y-1.5 rounded-xl border border-slate-200 bg-gradient-to-b from-slate-50 to-white p-3">
         {item.script.map((line, i) => (
           <div
             key={i}
             className={`flex text-[10px] ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
           >
             {line.speaker === "Agent" ? (
-              <span className="max-w-[88%] rounded-md bg-primary/15 px-2 py-1 text-primary/90 leading-relaxed">
-                <span className="mr-1 text-[9px] font-bold opacity-50">A</span>{line.text}
+              <span className="max-w-[88%] rounded-md bg-primary/[0.18] px-2 py-1 text-primary leading-relaxed ring-1 ring-primary/20">
+                <span className="mr-1 text-[9px] font-bold opacity-60">A</span>{line.text}
               </span>
             ) : (
-              <span className="max-w-[88%] rounded-md bg-foreground/[0.07] px-2 py-1 text-foreground/80 leading-relaxed dark:bg-white/[0.07] dark:text-muted-foreground">
+              <span className="max-w-[88%] rounded-md bg-white px-2 py-1 text-slate-600 leading-relaxed shadow-sm ring-1 ring-slate-200">
                 <span className="mr-1 text-[9px] font-bold opacity-40">C</span>{line.text}
               </span>
             )}
