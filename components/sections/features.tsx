@@ -211,7 +211,7 @@ function ForwardingVisual() {
   useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % calls.length), 2200); return () => clearInterval(t) }, [])
   const c = calls[active]
   return (
-    <div className="flex h-full flex-col justify-between gap-3">
+    <div className="space-y-2">
       {/* Incoming call card */}
       <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-2">
         <div>
@@ -245,13 +245,13 @@ function ForwardingVisual() {
           <motion.div key={d.name}
             animate={i === active ? { scale: 1.03 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
-            className={`flex flex-col items-center gap-0.5 rounded-xl border py-2 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
+            className={`flex flex-col items-center gap-0.5 rounded-xl border px-2 py-1.5 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
           >
-            <span className="text-base">{d.icon}</span>
+            <span className="text-sm leading-none">{d.icon}</span>
             <span className="text-[10px] font-bold leading-tight">{d.name}</span>
             {i === active && (
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="flex items-center gap-0.5 text-[9px] font-semibold">
+                className="flex items-center gap-0.5 text-[9px] font-semibold leading-none">
                 <motion.span className="h-1 w-1 rounded-full bg-current"
                   animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 0.8, repeat: Infinity }} />
                 Active
