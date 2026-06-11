@@ -10,7 +10,7 @@ const plans = [
   {
     icon: Zap,
     name: "Starter",
-    price: "₹3,000",
+    price: "₹2,999",
     rate: "₹12 / min eff.",
     credit: "250 included min",
     agents: "2 agents",
@@ -30,7 +30,7 @@ const plans = [
   {
     icon: TrendingUp,
     name: "Growth",
-    price: "₹8,800",
+    price: "₹8,799",
     rate: "₹11 / min eff.",
     credit: "800 included min",
     agents: "10 agents",
@@ -51,7 +51,7 @@ const plans = [
   {
     icon: Building2,
     name: "Scale",
-    price: "₹30,000",
+    price: "₹29,999",
     rate: "₹10 / min eff.",
     credit: "3,000 included min",
     agents: "Unlimited",
