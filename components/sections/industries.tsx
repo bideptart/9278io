@@ -185,7 +185,7 @@ function HeroTile({ item }: { item: typeof featured }) {
       <motion.div
         whileHover={{ y: -3 }}
         transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/[0.07] via-white to-white p-7 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
+        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-primary/20 bg-gradient-to-br from-primary/[0.07] via-white to-white p-7 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
       >
         {/* Ambient glow */}
         <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-primary/15 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
@@ -263,7 +263,7 @@ function BentoTile({ item, delay }: { item: typeof industries[number]; delay: nu
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 280, damping: 22 }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white p-5 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:bg-slate-50/70"
+        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-border bg-white p-5 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:bg-slate-50/70"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
