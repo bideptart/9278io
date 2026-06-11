@@ -299,37 +299,39 @@ export function Features() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[300px_1fr]"
+        <div className="mt-14 grid items-start gap-6 lg:grid-cols-[420px_1fr]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* ── Left: feature list ── */}
-          <div className="flex flex-col gap-1">
+          {/* ── Left: 2-column feature grid (2+2+2+2+1) ── */}
+          <div className="grid grid-cols-2 gap-2">
             {features.map((feat, i) => {
               const Icon = feat.icon
               const isActive = i === active
+              const isLast = i === features.length - 1
               return (
                 <button
                   key={feat.label}
                   type="button"
                   onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
-                  className={`group relative flex items-center gap-3 overflow-hidden rounded-xl px-4 py-3 text-left transition-all duration-200 ${
-                    isActive ? "bg-slate-50 border border-border shadow-sm" : "hover:bg-slate-50/60"
+                  className={`group relative flex items-center gap-2.5 overflow-hidden rounded-xl px-3.5 py-3 text-left transition-all duration-200 ${
+                    isLast ? "col-span-2" : ""
+                  } ${
+                    isActive ? "border border-border bg-slate-50 shadow-sm" : "hover:bg-slate-50/70"
                   }`}
                 >
-                  {/* Auto-progress bar */}
                   {isActive && (
                     <motion.div
-                      className="absolute bottom-0 left-0 h-0.5 bg-primary rounded-full"
+                      className="absolute bottom-0 left-0 h-0.5 rounded-full bg-primary"
                       style={{ width: `${progress * 100}%` }}
                     />
                   )}
-                  <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
+                  <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
                     isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground group-hover:text-foreground"
                   }`}>
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-3.5 w-3.5" />
                   </span>
-                  <span className={`text-sm font-medium transition-colors duration-200 ${
+                  <span className={`text-xs font-medium leading-tight transition-colors duration-200 ${
                     isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                   }`}>
                     {feat.label}
@@ -343,13 +345,12 @@ export function Features() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -16 }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               className="flex flex-col rounded-2xl border border-border bg-white p-8 shadow-sm"
             >
-              {/* Header */}
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>
                   <f.icon className="h-5 w-5" />
