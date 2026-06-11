@@ -51,7 +51,7 @@ export function HowItWorks() {
             Every call your business makes.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Inbound front desk, outbound campaigns, follow-ups and reminders — one platform,
+            Inbound front desk, follow-ups and reminders — one platform,
             TRAI-compliant, live in hours.
           </p>
         </ScrollReveal>

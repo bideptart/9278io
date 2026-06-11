@@ -50,7 +50,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Do I need to buy an Indian phone number?",
-        a: "No. You can use our shared connectivity for free for outbound web-call testing and inbound demos. You only need a dedicated DID if you want a real, persistent inbound or branded outbound Indian number.",
+        a: "No. You can use our shared connectivity for free for web-call testing and inbound demos. You only need a dedicated DID if you want a real, persistent branded inbound Indian number.",
       },
       {
         q: "What does an Indian phone number cost?",
@@ -120,7 +120,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "Is 9278.io TRAI compliant?",
-        a: "Yes. We enforce TRAI calling-window rules (no calls before 9 AM or after 9 PM), DND scrubbing before every outbound campaign, and consent capture flows. TRAI compliance is built into every plan — not an add-on.",
+        a: "Yes. We enforce TRAI calling-window rules (no calls before 9 AM or after 9 PM) and consent capture flows. TRAI compliance is built into every plan — not an add-on.",
       },
       {
         q: "Where is my data stored?",
@@ -131,8 +131,8 @@ export const FAQ_GROUPS: FaqGroup[] = [
         a: "Yes. We are aligned with India's Digital Personal Data Protection Act 2023 — data localisation in India, consent management, PII redaction, and the right to erasure are all supported.",
       },
       {
-        q: "How do you handle DNC and consent?",
-        a: "We scrub every outbound number against the National DNC Registry before a call is made. Consent capture flows and configurable calling-window enforcement are included. You're responsible for your campaign's compliance — we provide the guardrails.",
+        q: "How do you handle consent and compliance?",
+        a: "Consent capture flows and configurable calling-window enforcement are included on every plan. You're responsible for your use-case compliance — we provide the guardrails.",
       },
     ],
   },

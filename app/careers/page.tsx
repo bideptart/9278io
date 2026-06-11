@@ -21,7 +21,7 @@ const perks = [
     icon: Zap,
     title: "Solve hard problems",
     description:
-      "Sub-second latency in Hindi and Telugu over Jio and Airtel lines. TRAI-compliant outbound campaigns. Real-time dialect detection. The problems here are genuinely hard.",
+      "Sub-second latency in Hindi and Telugu over Jio and Airtel lines. TRAI-compliant calling at scale. Real-time dialect detection. The problems here are genuinely hard.",
   },
   {
     icon: Users,

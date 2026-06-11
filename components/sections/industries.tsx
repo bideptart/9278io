@@ -12,7 +12,6 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 /* ── Capability tag colours ── */
 const capColors: Record<string, string> = {
   "Inbound":          "border-blue-500/25 bg-blue-500/10 text-blue-600",
-  "Outbound":         "border-orange-500/25 bg-orange-500/10 text-orange-600",
   "24/7 Calling":     "border-green-500/25 bg-green-500/10 text-green-600",
   "Hindi & Regional": "border-primary/25 bg-primary/10 text-primary",
   "Lead Qualify":     "border-purple-500/25 bg-purple-500/10 text-purple-600",
@@ -29,8 +28,8 @@ const featured = {
   tag: "BPO & Call Centers",
   title: "Replace Tier-1 Agents at Scale",
   description:
-    "Automate inbound queues, run outbound campaigns, and slash cost-per-call across all Indian languages. India's BPO sector — fully automated.",
-  caps: ["Inbound", "Outbound", "Hindi & Regional", "TRAI Compliant"],
+    "Automate inbound queues, answer every caller instantly, and slash cost-per-call across all Indian languages. India's BPO sector — fully automated.",
+  caps: ["Inbound", "Hindi & Regional", "TRAI Compliant"],
   script: [
     { speaker: "Agent", text: "नमस्ते! आज मैं आपकी कैसे सहायता कर सकता हूँ?" },
     { speaker: "Caller", text: "Mujhe apna account balance jaanna hai." },
@@ -45,7 +44,7 @@ const industries = [
     tag: "BFSI",
     title: "BFSI & Fintech",
     description: "Lead qualification, loan follow-ups, EMI reminders, and insurance renewals in Hindi and regional languages.",
-    caps: ["Outbound", "EMI Reminder", "Lead Qualify"],
+    caps: ["EMI Reminder", "Lead Qualify"],
     script: [
       { speaker: "Agent", text: "নমস্কার, আপনার EMI আগামীকাল বাকি আছে।" },
       { speaker: "Caller", text: "জি, আমি আগামীকাল পেমেন্ট করব।" },
@@ -69,7 +68,7 @@ const industries = [
     tag: "EdTech",
     title: "EdTech & Coaching",
     description: "Admissions calls, course follow-ups, and fee-payment reminders for India's coaching and e-learning sector.",
-    caps: ["Outbound", "Lead Qualify", "Multilingual"],
+    caps: ["Lead Qualify", "Multilingual"],
     script: [
       { speaker: "Agent", text: "प्रिया, NEET बॅचसाठी प्रवेश घ्यायचा आहे का?" },
       { speaker: "Caller", text: "फी किती आहे ते सांगाल का?" },
@@ -93,7 +92,7 @@ const industries = [
     tag: "Automotive",
     title: "Automotive",
     description: "Service scheduling, test-drive follow-ups, and EMI reminders for dealerships across Tier-1 and Tier-2 cities.",
-    caps: ["Outbound", "Appointment", "EMI Reminder"],
+    caps: ["Appointment", "EMI Reminder"],
     script: [
       { speaker: "Agent", text: "સાહેબ, તમારી કાર સર્વિસ આ અઠવાડિયે બાકી છે." },
       { speaker: "Caller", text: "શનિવારે 11 વાગ્યે બુક કરો." },
@@ -129,7 +128,7 @@ const industries = [
     tag: "Fitness",
     title: "Fitness & Wellness",
     description: "Class bookings, membership renewals, and no-show recovery for gyms, yoga studios, and wellness chains across India.",
-    caps: ["Outbound", "Appointment", "Multilingual"],
+    caps: ["Appointment", "Multilingual"],
     script: [
       { speaker: "Agent", text: "Your membership expires in 3 days, Ankit!" },
       { speaker: "Caller", text: "Renew kar do, 1 saal ka." },

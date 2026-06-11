@@ -73,7 +73,7 @@ Connect your knowledge base; the agent answers from your source of truth.
 ## Telephony — Indian carrier-grade voice, built in
 - Provision Indian DIDs across all major cities and states from **₹400/month**.
 - Routed via TRAI-licensed Tier-1 carriers: **Jio, Airtel, BSNL, Vi**.
-- Inbound + outbound on the same number — no rewiring.
+- One branded number handles every inbound call — no rewiring.
 - SIP trunking + full porting supported. Keep your existing Indian number;
   we handle the carrier paperwork.
 - HD voice codecs with call-quality monitoring and TRAI calling-window
@@ -97,10 +97,7 @@ Bhojpuri, Maithili — plus English.
 - **Inbound — 24/7 virtual front desk.** Greet every caller, answer common
   questions from your knowledge base, route the rest. After-hours, holidays,
   lunch breaks — covered.
-- **Outbound — proactive growth.** Run lead-gen campaigns, revive cold leads,
-  trigger speed-to-lead callbacks the moment a form is submitted.
-  TRAI-compliant, DND-scrubbed, calling-window enforced.
-- **Hybrid — follow-ups and reminders.** Confirm appointments, send reminders,
+- **Follow-ups and reminders.** Confirm appointments, send reminders,
   close loops on calls a human started.
 
 ## Operator tooling
@@ -115,8 +112,8 @@ Bhojpuri, Maithili — plus English.
 
 ## Compliance
 - **TRAI compliant** — calling-window rules enforced (no calls before 9 AM
-  or after 9 PM), DND scrubbing against the National DNC Registry before
-  every outbound campaign, consent capture flows. Built into every plan.
+  or after 9 PM), consent capture flows, and PII redaction.
+  Built into every plan.
 - **DPDP Act 2023 ready** — data localisation in India, consent management,
   PII redaction, right to erasure all supported.
 

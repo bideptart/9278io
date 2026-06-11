@@ -237,7 +237,7 @@ export default async function IndustryPage({
               <Link href="/pricing" className="text-primary underline-offset-4 hover:underline">
                 Growth or Scale
               </Link>{" "}
-              once the inbound and outbound playbooks prove out.
+              once the inbound playbooks prove out.
             </p>
             <p className="text-pretty">
               Curious about voice credit, phone numbers, or compliance? The{" "}

@@ -193,7 +193,7 @@ export function SignupForm() {
         <Section
           number="02"
           title="Add a phone number?"
-          subtitle="Optional. Provision a DID for outbound caller-ID and inbound calls."
+          subtitle="Optional. Provision a branded DID for your inbound calls."
         >
           <input type="hidden" name="phoneRegion" value={region} />
           <input type="hidden" name="phoneQty" value={phoneQty} />

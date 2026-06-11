@@ -32,7 +32,6 @@ export type Industry = {
 /* Capability tag colours — shared with the home-page Industries section. */
 export const CAP_COLORS: Record<string, string> = {
   "Inbound":          "border-blue-500/25 bg-blue-500/10 text-blue-600",
-  "Outbound":         "border-orange-500/25 bg-orange-500/10 text-orange-600",
   "24/7 Calling":     "border-green-500/25 bg-green-500/10 text-green-600",
   "Hindi & Regional": "border-primary/25 bg-primary/10 text-primary",
   "Lead Qualify":     "border-purple-500/25 bg-purple-500/10 text-purple-600",
@@ -142,7 +141,7 @@ export const INDUSTRIES: Industry[] = [
       "I can get you an exchange estimate on your trade-in via Spinny if you share the registration number — got a minute?",
       "Loaner vehicle is confirmed. We'll have it ready when you drop off Tuesday at 7:30am.",
     ],
-    caps: ["Outbound", "Appointment", "EMI Reminder"],
+    caps: ["Appointment", "EMI Reminder"],
     conversation: [
       { speaker: "Agent", text: "સાહેબ, તમારી કાર સર્વિસ આ અઠવાડિયે બાકી છે." },
       { speaker: "Caller", text: "શનિવારે 11 વાગ્યે બુક કરો." },
@@ -194,7 +193,7 @@ export const INDUSTRIES: Industry[] = [
       "Looks like we're still missing your board marksheet. Want me to WhatsApp you the upload link?",
       "Just checking in — the next batch starts on the 22nd. Are you still planning to register?",
     ],
-    caps: ["Outbound", "Lead Qualify", "Multilingual"],
+    caps: ["Lead Qualify", "Multilingual"],
     conversation: [
       { speaker: "Agent", text: "प्रिया, NEET बॅचसाठी प्रवेश घ्यायचा आहे का?" },
       { speaker: "Caller", text: "फी किती आहे ते सांगाल का?" },
@@ -245,7 +244,7 @@ export const INDUSTRIES: Industry[] = [
       "Your trial wraps on Friday. I can lock in the annual plan at ₹14,999 if I do it before Sunday — interested?",
       "We can freeze your membership for up to 90 days at no cost. Want me to set that up?",
     ],
-    caps: ["Outbound", "Appointment", "Multilingual"],
+    caps: ["Appointment", "Multilingual"],
     conversation: [
       { speaker: "Agent", text: "Your membership expires in 3 days, Ankit!" },
       { speaker: "Caller", text: "Renew kar do, 1 saal ka." },
