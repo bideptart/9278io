@@ -467,8 +467,8 @@ export function Features() {
                   onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
                   className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
                     isActive
-                      ? "border border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
-                      : "border border-primary/15 hover:border-primary/35 hover:bg-slate-50"
+                      ? "border-2 border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
+                      : "border-2 border-primary/15 hover:border-primary/35 hover:bg-slate-50"
                   }`}
                 >
                   {isActive && (
@@ -500,7 +500,7 @@ export function Features() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               style={{ height: leftHeight }}
-              className="flex flex-col overflow-hidden rounded-2xl border-2 border-primary/30 bg-white p-7 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
+              className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-7 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
             >
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>

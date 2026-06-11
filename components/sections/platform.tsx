@@ -71,7 +71,7 @@ function LiveCallPanel() {
   }, [])
 
   return (
-    <div className="rounded-2xl border-2 border-border bg-white shadow-[0_8px_40px_oklch(0_0_0/0.08)] overflow-hidden">
+    <div className="rounded-2xl border-[3px] border-border bg-white shadow-[0_8px_40px_oklch(0_0_0/0.08)] overflow-hidden">
       {/* Call header */}
       <div className="flex items-center justify-between border-b border-border bg-slate-50 px-5 py-4">
         <div className="flex items-center gap-3">
