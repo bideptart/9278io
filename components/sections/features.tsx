@@ -211,9 +211,9 @@ function ForwardingVisual() {
   useEffect(() => { const t = setInterval(() => setActive(a => (a + 1) % calls.length), 2200); return () => clearInterval(t) }, [])
   const c = calls[active]
   return (
-    <div className="space-y-2">
+    <div className="space-y-1.5">
       {/* Incoming call card */}
-      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-2.5">
+      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-4 py-2">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Incoming call</p>
           <p className="mt-0.5 font-mono text-sm font-bold text-foreground">+91 98765 43210</p>
@@ -245,9 +245,9 @@ function ForwardingVisual() {
           <motion.div key={d.name}
             animate={i === active ? { scale: 1.03 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
-            className={`flex flex-col items-center gap-1 rounded-xl border py-3 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
+            className={`flex flex-col items-center gap-0.5 rounded-xl border py-2 text-center transition-all duration-300 ${d.color} ${i === active ? d.activeRing : "opacity-50"}`}
           >
-            <span className="text-lg">{d.icon}</span>
+            <span className="text-base">{d.icon}</span>
             <span className="text-[10px] font-bold leading-tight">{d.name}</span>
             {i === active && (
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}
