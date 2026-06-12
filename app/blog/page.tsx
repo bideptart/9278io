@@ -52,7 +52,7 @@ export default async function BlogPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
+        <div className="mx-auto w-full max-w-4xl px-4 pb-20 pt-10 text-center md:px-6 md:pb-28 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
