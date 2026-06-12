@@ -62,7 +62,7 @@ export default async function PricingPage({
               <Sparkles className="size-3.5 text-primary" aria-hidden />
               Pay as you go · INR pricing · GST invoices
             </span>
-            <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">
+            <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
               Pick your plan.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -85,7 +85,7 @@ export default async function PricingPage({
 
       <section id="plans" className="w-full px-6 pb-24 md:px-8">
         <ScrollReveal className="mb-10">
-          <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Pick your plan.</h2>
+          <h2 className="text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick your plan.</h2>
           <p className="mt-3 max-w-2xl text-pretty text-muted-foreground">
             All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as
             wallet credit.
@@ -100,10 +100,10 @@ export default async function PricingPage({
       </section>
 
       <section className="w-full px-6 pb-24 md:px-8">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
+        <ScrollReveal className="rounded-2xl border-[3px] border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
-              <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
+              <h3 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">
                 Try before you commit. Talk to our agent now.
               </h3>
               <p className="mt-3 text-muted-foreground">
@@ -161,12 +161,12 @@ function Stat({
   sub: string
 }) {
   return (
-    <div className="rounded-xl border border-border/60 bg-white p-5">
+    <div className="rounded-xl border-[3px] border-border/60 bg-white p-5">
       <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
         <Icon className="size-4 text-primary" aria-hidden />
         {label}
       </div>
-      <p className="mt-3 text-2xl font-semibold tracking-tight">{value}</p>
+      <p className="mt-3 text-2xl font-bold tracking-tight">{value}</p>
       <p className="mt-1 text-sm text-muted-foreground">{sub}</p>
     </div>
   )

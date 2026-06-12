@@ -70,7 +70,7 @@ export function PlanCards() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4 }}
               className={cn(
-                "relative flex flex-col rounded-2xl border p-7 transition-colors",
+                "relative flex flex-col rounded-2xl border-[3px] p-7 transition-colors",
                 plan.recommended
                   ? "border-primary/40 bg-gradient-to-b from-primary/[0.06] to-transparent"
                   : "border-border/60 bg-white hover:border-border",
@@ -83,12 +83,12 @@ export function PlanCards() {
               )}
 
               <div>
-                <h3 className="text-lg font-semibold tracking-tight">{plan.name}</h3>
+                <h3 className="text-lg font-bold tracking-tight">{plan.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{plan.tagline}</p>
               </div>
 
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="text-5xl font-semibold tracking-tight">₹{amountInr.toLocaleString("en-IN")}</span>
+                <span className="text-5xl font-bold tracking-tight">₹{amountInr.toLocaleString("en-IN")}</span>
                 <span className="text-sm text-muted-foreground">{billingPeriod === "yearly" ? "/yr" : "/mo"}</span>
               </div>
               {billingPeriod === "yearly" && (
