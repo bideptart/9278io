@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Sparkles, Zap, Phone, Headphones } from "lucide-react"
+import { Sparkles, Zap, Headphones } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PlanCards } from "@/components/pricing/plan-cards"
@@ -71,9 +71,8 @@ export default async function PricingPage({
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-3 md:grid-cols-3">
+          <div className="mt-12 grid gap-3 md:grid-cols-2">
             <Stat icon={Zap} label="Voice rate" value="From ₹10 / min" sub="Best rate on the Scale plan." />
-            <Stat icon={Phone} label="Indian numbers" value="₹400 / mo" sub="Available across all states." />
             <Stat
               icon={Headphones}
               label="Minimum top-up"
