@@ -3,7 +3,7 @@
 
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(0.979 0.01 254.6);
   --foreground: oklch(0.13 0.025 255);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.025 255);
