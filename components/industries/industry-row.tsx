@@ -19,12 +19,12 @@ export function IndustryRow({ slug, reverse }: { slug: string; reverse?: boolean
       <div className={cn("grid items-start gap-12 md:grid-cols-2 md:gap-16", reverse && "md:[&>*:first-child]:order-2")}>
         <ScrollReveal>
           <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-lg border border-border/60 bg-white text-primary">
+            <span className="grid size-10 place-items-center rounded-2xl border border-primary/15 bg-primary/[0.07] text-primary">
               <Icon className="size-5" aria-hidden />
             </span>
-            <p className="text-xs font-medium uppercase tracking-widest text-primary">{industry.name}</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">{industry.name}</p>
           </div>
-          <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight md:text-4xl">
             <Link
               href={`/industries/${industry.slug}`}
               className="transition-colors hover:text-primary"
@@ -79,7 +79,7 @@ export function IndustryRow({ slug, reverse }: { slug: string; reverse?: boolean
           <motion.div
             whileHover={{ y: -4 }}
             transition={{ type: "spring", stiffness: 240, damping: 20 }}
-            className="rounded-2xl border border-border/60 bg-white p-6 md:p-8"
+            className="rounded-2xl border-2 border-border/60 bg-white p-6 shadow-sm md:p-8"
           >
             <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
               <Quote className="size-3.5 text-primary" aria-hidden />
