@@ -140,9 +140,11 @@ export default function IndustriesPage() {
             </div>
           </ScrollReveal>
 
-          {INDUSTRIES.map((industry, i) => (
-            <IndustryRow key={industry.slug} slug={industry.slug} reverse={i % 2 === 1} />
-          ))}
+          <div className="space-y-5 pb-20 md:space-y-6 md:pb-24">
+            {INDUSTRIES.map((industry, i) => (
+              <IndustryRow key={industry.slug} slug={industry.slug} reverse={i % 2 === 1} />
+            ))}
+          </div>
         </div>
       </section>
 
