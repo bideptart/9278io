@@ -83,7 +83,7 @@ export default async function PricingPage({
         </div>
       </section>
 
-      <section id="plans" className="w-full px-6 pb-24 md:px-8">
+      <section id="plans" className="w-full border-y border-blue-100 bg-blue-50/70 px-6 pb-24 pt-16 md:px-8 md:pt-20">
         <ScrollReveal className="mb-10">
           <h2 className="text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick your plan.</h2>
           <p className="mt-3 max-w-2xl text-pretty text-muted-foreground">
