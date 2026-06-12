@@ -18,13 +18,6 @@ export const metadata: Metadata = pageSeo({
   path: "/industries",
 })
 
-const HERO_STATS = [
-  { value: "8", label: "verticals pre-tuned" },
-  { value: "< 3s", label: "first response" },
-  { value: "10+", label: "Indian languages" },
-  { value: "₹10 / min", label: "from, all-in" },
-]
-
 export default function IndustriesPage() {
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -53,19 +46,9 @@ export default function IndustriesPage() {
               Built for every kind of phone call.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Pre-tuned scripts, integrations, and compliance guardrails for ten industries — and a configurable engine
-              for everything else. Pick the workflow closest to yours and we&apos;ll have you live in under 5 minutes.
+              One AI voice agent that answers calls, qualifies leads, and books appointments across every industry below
+              — fluent in 10+ Indian languages, on the same simple plans for everyone, live in under 5 minutes.
             </p>
-          </ScrollReveal>
-
-          {/* Stat strip */}
-          <ScrollReveal className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border-2 border-border/70 bg-border/70 sm:grid-cols-4">
-            {HERO_STATS.map((s) => (
-              <div key={s.label} className="bg-white px-4 py-5 text-center">
-                <p className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">{s.value}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
-              </div>
-            ))}
           </ScrollReveal>
         </div>
       </section>
