@@ -37,7 +37,7 @@ You must be 18+ and competent to contract under the Indian Contract Act, 1872. Y
 The Services include, without limitation:
 
 AI voice agents using realtime large-language-model providers (e.g., Google Gemini, OpenAI) for greeting, intent detection, and response generation.
-Inbound and outbound calling on Indian DIDs through TRAI-licensed carriers and Business Solution Providers.
+Inbound calling on Indian DIDs through TRAI-licensed carriers and Business Solution Providers.
 Multilingual text-to-speech and speech-to-text in English and major Indian languages (Hindi, Bengali, Telugu, Marathi, Tamil, Urdu, Gujarati, Kannada, Malayalam, Punjabi, Odia, Assamese).
 Call recording, real-time transcription, and AI-generated call summaries.
 Knowledge-base ingestion and per-number agent configuration.
@@ -85,7 +85,7 @@ We strongly request that you contact us at voice@9278.io before initiating a cha
 8. User Responsibilities & Acceptable Use
 You are solely responsible for the content of calls placed or received through your AI voice agent and for any consents required. You must:
 
-Obtain valid, demonstrable opt-in consent from every End-Recipient before placing any outbound call through 9278.io.
+Obtain valid, demonstrable consent from every End-Recipient where required by applicable law in connection with your use of 9278.io.
 Honour opt-out (DND, "do not call") requests promptly — within 24 hours and in any event before the next contact attempt.
 Identify yourself or your business accurately at the start of every call; no impersonation.
 Configure your agent to disclose, where required by law, that the call is being recorded.
@@ -100,7 +100,7 @@ Designed to harass, threaten, or defraud the End-Recipient.
 We reserve the right to investigate suspected violations and to suspend or terminate accounts found in breach, without refund.
 
 10. Telecom & TRAI Compliance
-All voice traffic dispatched through 9278.io is routed via TRAI-licensed access providers and carrier-grade SIP partners. You are responsible for any required Entity, Header, or Template registrations on the DLT framework (Jio, Airtel, Vi, BSNL) for outbound campaigns. Failure to comply with TRAI / DLT requirements may result in immediate suspension of the Services without refund.
+All voice traffic dispatched through 9278.io is routed via TRAI-licensed access providers and carrier-grade SIP partners. You are responsible for any required Entity, Header, or Template registrations on the DLT framework (Jio, Airtel, Vi, BSNL) where applicable to your account. Failure to comply with TRAI / DLT requirements may result in immediate suspension of the Services without refund.
 
 11. Third-Party Platforms
 Your use of the Services is also subject to the terms of the underlying providers we depend on, including but not limited to Razorpay (payments), Google (Gemini LLM and TTS), OpenAI (fallback LLM and TTS), and our DID carrier partners. We pass through their decisions on rate limits, account suspensions, or policy violations and are not responsible for them.

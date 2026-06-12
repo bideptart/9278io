@@ -42,7 +42,7 @@ Communications you send to our sales, support, billing, or grievance teams (incl
 3.2 Customer Data You Upload to Process
 Voice agent configuration — greeting text, system prompts, persona definitions, and knowledge base entries.
 Per-call audio recordings, transcripts, and AI-generated summaries.
-End-recipient phone numbers and conversation metadata captured during inbound or outbound calls.
+End-recipient phone numbers and conversation metadata captured during inbound calls.
 3.3 Information Collected Automatically
 Device and connection data: IP address, browser type, device identifiers, operating system, time zone, and language settings.
 Usage data: pages visited, features used, API calls made, call statistics, and platform interactions.
@@ -68,7 +68,7 @@ To comply with applicable laws, regulatory obligations, court orders, and lawful
 Our AI voice agents are powered by realtime large-language-model services (currently Google Gemini and OpenAI). When a call is handled by your agent:
 
 The audio stream, transcription, and LLM responses are routed through Meta-hosted, Google-hosted, or OpenAI-hosted infrastructure, plus our own servers, in accordance with each provider's data-handling requirements.
-You confirm that you have obtained valid opt-in consent from every End-Recipient before placing any outbound call via 9278.io.
+You confirm that you have obtained valid consent from every End-Recipient where required by applicable law in connection with your use of 9278.io.
 We do not use End-Recipient voice data, transcripts, or summaries to train any model. They are processed solely to deliver the call, generate the summary, and provide analytics on your behalf.
 Voice and SIP traffic is delivered via TRAI-licensed access providers and Business Solution Providers. We retain consent records, scrubbing logs, and DLT identifiers for the period mandated by TRAI and the relevant operators.
 
