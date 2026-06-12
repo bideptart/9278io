@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Plus } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -99,6 +99,30 @@ export default function IndustriesPage() {
               </ScrollReveal>
             )
           })}
+
+          {/* "Many more" card — completes the row and signals broader coverage */}
+          <ScrollReveal delay={INDUSTRIES.length * 0.04} className="h-full">
+            <Link
+              href="/get-started"
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-dashed border-primary/30 bg-primary/[0.04] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-primary/[0.07]"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex size-11 items-center justify-center rounded-2xl border border-primary/20 bg-white text-primary">
+                  <Plus className="size-5" aria-hidden />
+                </span>
+                <ArrowRight className="size-4 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" aria-hidden />
+              </div>
+
+              <h3 className="mt-4 text-lg font-bold tracking-tight text-primary">Many more</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Security, recruiting, insurance, finance and more — tell us your calls and we&apos;ll tune an agent for you.
+              </p>
+
+              <span className="mt-auto inline-flex items-center gap-1 pt-4 text-[11px] font-semibold uppercase tracking-wider text-primary">
+                Get started
+              </span>
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
