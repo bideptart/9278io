@@ -70,7 +70,7 @@ export function HowItWorks() {
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                   <div className="flex items-start justify-between">
-                    <span className="text-5xl font-black leading-none text-white/10 transition-colors duration-300 group-hover:text-primary/10">{step.number}</span>
+                    <span className="text-5xl font-black leading-none text-white/40 transition-colors duration-300 group-hover:text-primary/40">{step.number}</span>
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/[0.12] text-white transition-colors duration-300 group-hover:border-primary/20 group-hover:bg-primary/[0.08] group-hover:text-primary">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
