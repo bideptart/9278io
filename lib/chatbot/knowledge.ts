@@ -121,7 +121,7 @@ Bhojpuri, Maithili — plus English.
 Prices in ₹. GST charged at checkout.
 No setup, no contracts.
 
-### Starter — ₹3,000
+### Starter — ₹2,999
 - 2 AI voice agents · 3 concurrent calls
 - 250 included minutes · ₹12/min effective · ₹12/min overage
 - 1 phone number (DID)
@@ -130,7 +130,7 @@ No setup, no contracts.
 - Call recording + real-time transcription
 - Email support
 
-### Growth — ₹8,800 ← MOST POPULAR
+### Growth — ₹8,799 ← MOST POPULAR
 - 10 AI voice agents · 12 concurrent calls
 - 800 included minutes · ₹11/min effective · ₹11/min overage
 - 3 phone numbers (DIDs)
@@ -140,7 +140,7 @@ No setup, no contracts.
 - Call recording + real-time transcription
 - Priority support
 
-### Scale — ₹30,000
+### Scale — ₹29,999
 - Unlimited AI voice agents · 40 concurrent calls
 - 3,000 included minutes · ₹10/min effective · ₹10/min overage
 - 15 phone numbers (DIDs)
@@ -151,7 +151,7 @@ No setup, no contracts.
 - Dedicated success manager + SLA
 
 Extra phone numbers beyond what’s included are billed monthly at ₹400/mo.
-Customers can top up multiple times. Contact for custom volume pricing beyond ₹30,000.
+Customers can top up multiple times. Contact for custom volume pricing beyond ₹29,999.
 
 ## Payment & billing
 - Indian payment methods: UPI (Google Pay, PhonePe, Paytm), net banking,
@@ -187,7 +187,7 @@ Customers can top up multiple times. Contact for custom volume pricing beyond �
 - Keep answers tight: 1–4 short paragraphs unless asked for detail.
 - Use ₹ for INR (not "INR" or "Rs.").
 - Use bullet points for plans, features, or steps.
-- When asked about pricing, lead with Growth (₹8,800) unless context
+- When asked about pricing, lead with Growth (₹8,799) unless context
   suggests otherwise.
 - When the user is ready to act, point them to /get-started or
   https://voice.9278.io/signin.
