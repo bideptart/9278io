@@ -54,7 +54,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[360px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.16),transparent_70%)]"
         />
-        <div className="w-full px-6 md:px-8 py-12 md:py-16">
+        <div className="w-full px-6 md:px-12 lg:px-20 py-12 md:py-16">
           <Link
             href="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -84,7 +84,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
 
       {/* ── Hero image ── */}
       {post.heroHtml ? (
-        <div className="w-full px-6 md:px-8 pt-10">
+        <div className="w-full px-6 md:px-12 lg:px-20 pt-10">
           <div
             className="overflow-hidden rounded-3xl border-2 border-border/70 bg-background shadow-sm [&_img]:block [&_img]:h-auto [&_img]:w-full [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
             dangerouslySetInnerHTML={{ __html: post.heroHtml }}
@@ -94,7 +94,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
 
       {/* ── Article body ── */}
       <article
-        className="w-full px-6 md:px-8 py-12 text-base leading-[1.8] text-foreground/80 md:py-16 md:text-[17px]
+        className="w-full px-6 md:px-12 lg:px-20 py-12 text-base leading-[1.8] text-foreground/80 md:py-16 md:text-[17px]
           [&_h2]:mt-12 [&_h2]:scroll-mt-24 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground md:[&_h2]:text-[28px]
           [&_h3]:mt-9 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground
           [&_p]:mt-5
@@ -123,7 +123,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
       />
 
       {/* ── Footer nav ── */}
-      <div className="w-full px-6 md:px-8 pb-20">
+      <div className="w-full px-6 md:px-12 lg:px-20 pb-20">
         <div className="flex items-center justify-between border-t border-border pt-6">
           <Link
             href="/blog"
