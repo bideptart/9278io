@@ -76,7 +76,7 @@ export default async function PricingPage({
             <Stat
               icon={Headphones}
               label="Minimum top-up"
-              value="₹3,000"
+              value="₹2,999"
               sub="GST charged at checkout."
             />
           </div>
