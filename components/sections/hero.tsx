@@ -36,19 +36,19 @@ function AnimatedStat({ numeric, prefix = "", suffix = "", label, decimals = 0 }
 
   return (
     <motion.div onViewportEnter={() => setTriggered(true)} className="flex flex-col items-center gap-1 px-3 py-4 sm:gap-1.5 sm:px-6 sm:py-6">
-      <span className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+      <span className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
         {prefix}{value.toFixed(decimals)}{suffix}
       </span>
-      <span className="text-xs text-white/50">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
     </motion.div>
   )
 }
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-slate-900">
+    <section className="relative overflow-hidden border-b border-border/50">
       {/* Grid background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,oklch(1_0_0/0.04)_1px,transparent_1px),linear-gradient(to_bottom,oklch(1_0_0/0.04)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,oklch(0.52_0.22_265/0.06)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.52_0.22_265/0.06)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
       {/* Glow */}
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-primary/[0.12] blur-[120px]" />
       {/* Floating particles */}
@@ -74,7 +74,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.12] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
+          className="mb-7 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
         >
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
           What's inside 9278.io
@@ -85,7 +85,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mx-auto max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+          className="mx-auto max-w-5xl text-balance text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
         >
           Everything you need to ship a{" "}
           <span className="bg-gradient-to-r from-primary via-[oklch(0.72_0.18_150)] to-primary/60 bg-clip-text text-transparent">
@@ -98,7 +98,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.22 }}
-          className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-white/55 md:text-lg"
+          className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
           Clean per-second billing — no minute-rounding, no hidden markups. Pay only for what your agent actually talks.
         </motion.p>
@@ -124,7 +124,7 @@ export function Hero() {
             asChild
             size="lg"
             variant="outline"
-            className="h-12 rounded-xl border-white/20 bg-white/[0.07] px-8 text-base font-semibold text-white hover:border-white/30 hover:bg-white/[0.12]"
+            className="h-12 rounded-xl border-border bg-white px-8 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
           >
             <a href="#demo-audio">
               <PhoneCall className="mr-2 h-4 w-4" />
@@ -138,7 +138,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-6 text-xs text-white/30"
+          className="mt-6 text-xs text-muted-foreground"
         >
           Per-second billing · 10+ Indian languages · Sub-second latency · No contracts
         </motion.p>
@@ -159,7 +159,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 divide-x divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] md:grid-cols-4 md:divide-y-0"
+          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white md:grid-cols-4 md:divide-y-0"
         >
           {stats.map((stat) => (
             <AnimatedStat key={stat.label} {...stat} />

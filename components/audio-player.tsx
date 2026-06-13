@@ -142,7 +142,7 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] p-5 shadow-[0_0_40px_oklch(0.52_0.22_265/0.12)] backdrop-blur-sm sm:p-6",
+        "relative overflow-hidden rounded-2xl border-2 border-border bg-white p-5 shadow-[0_0_40px_oklch(0.52_0.22_265/0.08)] sm:p-6",
         className,
       )}
     >
@@ -201,8 +201,8 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
                 {title ?? "Hear our agent in action"}
               </p>
             </div>
-            <p className="shrink-0 font-mono text-[11px] tabular-nums text-white/50">
-              {formatTime(current)} <span className="text-white/25">/</span>{" "}
+            <p className="shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground">
+              {formatTime(current)} <span className="text-muted-foreground/50">/</span>{" "}
               {formatTime(duration)}
             </p>
           </div>
@@ -224,7 +224,7 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
                     key={i}
                     className={cn(
                       "block flex-1 rounded-full transition-colors duration-150",
-                      reached ? "bg-primary" : "bg-white/20",
+                      reached ? "bg-primary" : "bg-slate-200",
                     )}
                     style={{ height: `${h}%`, transformOrigin: "center" }}
                     animate={
@@ -266,7 +266,7 @@ export function AudioPlayer({ src, title, className }: AudioPlayerProps) {
           type="button"
           onClick={toggleMute}
           aria-label={muted ? "Unmute" : "Mute"}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white/40 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-slate-100 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
         >
           {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
         </button>
