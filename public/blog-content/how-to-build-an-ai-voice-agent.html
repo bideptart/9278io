@@ -83,114 +83,29 @@ footer.site{border-top:1px solid var(--line);margin-top:3em;padding:26px 0;color
 <div class="meta">By 9278.io Team · 8 June 2026 · 8 min read</div>
 <p class="lead">Two years ago, building a voice agent meant stitching together speech, language, and telephony APIs with a developer. Today you can describe one in plain English and have it live on a phone number by the afternoon. Here's how.</p>
 <div class="author"><div class="av">9</div><div class="t"><b>9278.io Team</b>Voice AI for Indian businesses · Updated 8 June 2026</div></div>
-<figure class="post-hero"><svg viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg" role="img" width="100%" height="auto">
-<defs><linearGradient id="ghow-to-build-an-ai-voice-agent" x1="0" y1="0" x2="1" y2="1">
-<stop offset="0" stop-color="#0a0c18"/><stop offset="1" stop-color="#16234e"/></linearGradient></defs>
-<rect width="1200" height="460" rx="20" fill="url(#ghow-to-build-an-ai-voice-agent)"/>
-<circle cx="1080" cy="90" r="220" fill="#2563eb" opacity="0.12"/>
-<circle cx="150" cy="430" r="180" fill="#2563eb" opacity="0.10"/>
-<rect x="70" y="64" width="102" height="30" rx="15" fill="#2563eb" opacity="0.22"/>
-<text x="86" y="84" font-family="Arial" font-size="15" font-weight="700" fill="#93b4ff" letter-spacing="1">HOW-TO</text>
-<text x="70" y="120" font-family="Arial,Helvetica,sans-serif" font-size="46" font-weight="800" fill="#ffffff" letter-spacing="-1">How to Build an</text><text x="70" y="200" font-family="Arial,Helvetica,sans-serif" font-size="46" font-weight="800" fill="#ffffff" letter-spacing="-1">AI Voice Agent</text><text x="70" y="280" font-family="Arial,Helvetica,sans-serif" font-size="46" font-weight="800" fill="#ffffff" letter-spacing="-1">(No-Code, 2026)</text>
-<rect x="820" y="200" width="12" height="60" rx="6" fill="#60a5fa" opacity="0.49"/><rect x="846" y="170" width="12" height="120" rx="6" fill="#60a5fa" opacity="0.64"/><rect x="872" y="130" width="12" height="200" rx="6" fill="#60a5fa" opacity="0.83"/><rect x="898" y="155" width="12" height="150" rx="6" fill="#60a5fa" opacity="0.71"/><rect x="924" y="185" width="12" height="90" rx="6" fill="#60a5fa" opacity="0.56"/><rect x="950" y="145" width="12" height="170" rx="6" fill="#60a5fa" opacity="0.75"/><rect x="976" y="175" width="12" height="110" rx="6" fill="#60a5fa" opacity="0.61"/><rect x="1002" y="125" width="12" height="210" rx="6" fill="#60a5fa" opacity="0.85"/><rect x="1028" y="165" width="12" height="130" rx="6" fill="#60a5fa" opacity="0.66"/><rect x="1054" y="195" width="12" height="70" rx="6" fill="#60a5fa" opacity="0.52"/><rect x="1080" y="150" width="12" height="160" rx="6" fill="#60a5fa" opacity="0.73"/><rect x="1106" y="180" width="12" height="100" rx="6" fill="#60a5fa" opacity="0.59"/><rect x="1132" y="200" width="12" height="60" rx="6" fill="#60a5fa" opacity="0.49"/>
-<g transform="translate(792,150)" opacity="0.95">
-<rect x="0" y="0" width="74" height="150" rx="16" fill="#101a36" stroke="#2563eb" stroke-width="2"/>
-<rect x="12" y="18" width="50" height="92" rx="6" fill="#0a0c18"/>
-<circle cx="37" cy="128" r="8" fill="#2563eb"/>
-<path d="M24 64 q13 -22 26 0" stroke="#60a5fa" stroke-width="3" fill="none" stroke-linecap="round"/>
-</g>
-<text x="70" y="412" font-family="Arial" font-size="18" font-weight="700" fill="#93b4ff">9278.io</text>
-<text x="138" y="412" font-family="Arial" font-size="16" fill="#9aa7c7">· AI voice agents for Indian businesses</text>
-</svg></figure>
+<figure class="post-hero"><img src="/blog-content/img/how-to-build-an-ai-voice-agent/nocode-hero.webp" alt="How to Build an AI Voice Agent: A No-Code Guide for 2026" loading="lazy" decoding="async" width="1200" height="460"></figure>
 <article>
 
 <h2>Introduction</h2>
 <p>Building an AI voice agent used to be an engineering project. In 2026 it is closer to briefing a new employee. This guide walks through the whole process, step by step, with no code required.</p>
 <h2>Step 1-2: define one job, then brief it</h2>
 <p>Good news up front: in 2026, <strong>building an AI voice agent doesn't require code</strong>. The biggest mistake is asking it to do everything on day one. Pick a single, well-defined job ("call every new website lead and qualify them", or "answer inbound calls after hours and book appointments"). Then write the agent's brief in plain English: its identity ("You are Riya, calling on behalf of [company]"), its goal, the exact questions to ask, its tone and language, and its boundaries (what to do off-script, and when to hand to a human). Write it the way you'd brief a new junior telecaller on day one: specific, concrete, with examples.</p>
-<figure class="post-img"><svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" role="img" width="100%" height="auto">
-<rect width="1000" height="380" rx="18" fill="#f7f9ff" stroke="#e4e7ec" stroke-width="2"/>
-<rect x="0" y="0" width="1000" height="74" rx="18" fill="#0a0c18"/>
-<rect x="0" y="40" width="1000" height="34" fill="#0a0c18"/>
-<circle cx="40" cy="37" r="7" fill="#2563eb"/><circle cx="64" cy="37" r="7" fill="#60a5fa"/><circle cx="88" cy="37" r="7" fill="#93b4ff"/>
-<text x="120" y="44" font-family="Arial" font-size="22" font-weight="700" fill="#ffffff">The build, in four moves</text>
-<line x1="90" y1="230" x2="910.0" y2="230" stroke="#cdd9f7" stroke-width="4"/><circle cx="90.0" cy="230" r="42" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
-<text x="90.0" y="244" font-family="Arial" font-size="34" font-weight="800" fill="#2563eb" text-anchor="middle">1</text>
-<text x="90.0" y="320" font-family="Arial" font-size="19" font-weight="600" fill="#1d2939" text-anchor="middle">Define</text><circle cx="363.3333333333333" cy="230" r="42" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
-<text x="363.3333333333333" y="244" font-family="Arial" font-size="34" font-weight="800" fill="#2563eb" text-anchor="middle">2</text>
-<text x="363.3333333333333" y="320" font-family="Arial" font-size="19" font-weight="600" fill="#1d2939" text-anchor="middle">Brief</text><circle cx="636.6666666666666" cy="230" r="42" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
-<text x="636.6666666666666" y="244" font-family="Arial" font-size="34" font-weight="800" fill="#2563eb" text-anchor="middle">3</text>
-<text x="636.6666666666666" y="320" font-family="Arial" font-size="19" font-weight="600" fill="#1d2939" text-anchor="middle">Test</text><circle cx="910.0" cy="230" r="42" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
-<text x="910.0" y="244" font-family="Arial" font-size="34" font-weight="800" fill="#2563eb" text-anchor="middle">4</text>
-<text x="910.0" y="320" font-family="Arial" font-size="19" font-weight="600" fill="#1d2939" text-anchor="middle">Launch</text>
-</svg><figcaption>A workflow, not a coding project.</figcaption></figure>
+<figure class="post-img"><img src="/blog-content/img/how-to-build-an-ai-voice-agent/step12-hero.webp" alt="A workflow, not a coding project." loading="lazy" decoding="async" width="1200" height="460"><figcaption>A workflow, not a coding project.</figcaption></figure>
 
 <h2>Step 3-4: give it knowledge and tools</h2>
 <p>An agent is only as helpful as what it knows. Connect your documents, pricing, FAQs, product details and policies, so it answers real questions accurately instead of guessing (the platform handles the retrieval, often called RAG, behind the scenes). Then connect the systems your team uses: your CRM to log leads, your calendar to book slots, WhatsApp to send confirmations, a payment link, or your helpdesk. This turns a talking agent into a working one.</p>
 
 <h2>Step 5: test in a sandbox before going live</h2>
 <p>Never put an untested agent on real customers. A good platform gives you a sandbox to run scripted calls, throw edge cases and objections at it, and listen to how it handles Hinglish, interruptions, and awkward questions. Run your real scripts (including messy, mixed-language ones), test interruptions and "let me think" pauses, check it hands off to a human cleanly, and listen for latency. Compare versions, fix the weak spots, and only promote it when it sounds right.</p>
-<figure class="post-img"><svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" role="img" width="100%" height="auto">
-<rect width="1000" height="420" rx="18" fill="#f7f9ff" stroke="#e4e7ec" stroke-width="2"/>
-<rect x="0" y="0" width="1000" height="74" rx="18" fill="#0a0c18"/>
-<rect x="0" y="40" width="1000" height="34" fill="#0a0c18"/>
-<circle cx="40" cy="37" r="7" fill="#2563eb"/><circle cx="64" cy="37" r="7" fill="#60a5fa"/><circle cx="88" cy="37" r="7" fill="#93b4ff"/>
-<text x="120" y="44" font-family="Arial" font-size="22" font-weight="700" fill="#ffffff">Test in a sandbox first</text>
-<g transform="translate(80,140)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Run real, mixed-language scripts</text></g><g transform="translate(80,198)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Test interruptions and pauses</text></g><g transform="translate(80,256)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Check clean handoff to a human</text></g><g transform="translate(80,314)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Listen for latency (long gaps feel robotic)</text></g>
-</svg><figcaption>Never put an untested agent on real customers.</figcaption></figure>
+<figure class="post-img"><img src="/blog-content/img/how-to-build-an-ai-voice-agent/sandbox-hero.webp" alt="Never put an untested agent on real customers." loading="lazy" decoding="async" width="1200" height="460"><figcaption>Never put an untested agent on real customers.</figcaption></figure>
 
 <h2>Step 6: get a number and go live, compliantly</h2>
 <p>Provision an Indian DID number (or port your existing one) and connect it over a carrier. Before you dial real customers commercially, compliance becomes non-negotiable in India: complete DLT/telemarketer registration, turn on DND scrubbing and consent capture, respect the 9am-9pm window for promotional calls, and disclose call recording. Our <a href="/blog/trai-compliant-ai-cold-calling">TRAI compliance guide</a> covers exactly what you need; skipping it can get your lines disconnected.</p>
-<figure class="post-img"><svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" role="img" width="100%" height="auto">
-<rect width="1000" height="420" rx="18" fill="#f7f9ff" stroke="#e4e7ec" stroke-width="2"/>
-<rect x="0" y="0" width="1000" height="74" rx="18" fill="#0a0c18"/>
-<rect x="0" y="40" width="1000" height="34" fill="#0a0c18"/>
-<circle cx="40" cy="37" r="7" fill="#2563eb"/><circle cx="64" cy="37" r="7" fill="#60a5fa"/><circle cx="88" cy="37" r="7" fill="#93b4ff"/>
-<text x="120" y="44" font-family="Arial" font-size="22" font-weight="700" fill="#ffffff">Go live compliantly</text>
-<g transform="translate(770,150)"><path d="M70 0 L140 26 V96 Q140 168 70 196 Q0 168 0 96 V26 Z" fill="#2563eb" opacity="0.10" stroke="#2563eb" stroke-width="2"/>
-<path d="M40 96 l22 22 l44 -52" stroke="#16a34a" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(80,140)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Complete DLT / telemarketer registration</text></g><g transform="translate(80,198)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Turn on DND scrubbing &amp; consent capture</text></g><g transform="translate(80,256)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Respect the 9am-9pm promotional window</text></g><g transform="translate(80,314)">
-<circle cx="14" cy="10" r="15" fill="#16a34a" opacity="0.15"/>
-<path d="M7 10 l5 5 l9 -11" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="42" y="16" font-family="Arial" font-size="19" fill="#1d2939">Disclose call recording</text></g>
-</svg><figcaption>In India this step is non-negotiable before commercial calls.</figcaption></figure>
+<figure class="post-img"><img src="/blog-content/img/how-to-build-an-ai-voice-agent/golive-hero.webp" alt="In India this step is non-negotiable before commercial calls." loading="lazy" decoding="async" width="1200" height="460"><figcaption>In India this step is non-negotiable before commercial calls.</figcaption></figure>
 
 <h2>Step 7: launch small, measure, improve</h2>
 <p>Go live on a slice of traffic, watch the transcripts and outcomes, and tune. Track latency, resolution rate, and cost per outcome (see our <a href="/blog/ai-calling-agent-cost-india">pricing guide</a>). Fine-tune the brief and knowledge based on real calls, then scale up. Because updates take minutes, you can keep improving the agent as you learn what callers actually ask.</p>
-<figure class="post-img"><svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" role="img" width="100%" height="auto">
-<rect width="1000" height="520" rx="18" fill="#f7f9ff" stroke="#e4e7ec" stroke-width="2"/>
-<rect x="0" y="0" width="1000" height="74" rx="18" fill="#0a0c18"/>
-<rect x="0" y="40" width="1000" height="34" fill="#0a0c18"/>
-<circle cx="40" cy="37" r="7" fill="#2563eb"/><circle cx="64" cy="37" r="7" fill="#60a5fa"/><circle cx="88" cy="37" r="7" fill="#93b4ff"/>
-<text x="120" y="44" font-family="Arial" font-size="22" font-weight="700" fill="#ffffff">Launch small, then measure</text>
-<rect x="110" y="178" width="150" height="262" rx="10" fill="#2563eb" opacity="0.55"/>
-<text x="185" y="164" font-family="Arial" font-size="20" font-weight="800" fill="#0a0c18" text-anchor="middle">Watch</text>
-<text x="185" y="470" font-family="Arial" font-size="17" font-weight="600" fill="#1d2939" text-anchor="middle">Latency</text><rect x="320" y="140" width="150" height="300" rx="10" fill="#2563eb" opacity="0.7000000000000001"/>
-<text x="395" y="126" font-family="Arial" font-size="20" font-weight="800" fill="#0a0c18" text-anchor="middle">Track</text>
-<text x="395" y="470" font-family="Arial" font-size="17" font-weight="600" fill="#1d2939" text-anchor="middle">Resolution</text><rect x="530" y="215" width="150" height="225" rx="10" fill="#2563eb" opacity="0.8500000000000001"/>
-<text x="605" y="201" font-family="Arial" font-size="20" font-weight="800" fill="#0a0c18" text-anchor="middle">Compare</text>
-<text x="605" y="470" font-family="Arial" font-size="17" font-weight="600" fill="#1d2939" text-anchor="middle">Cost/outcome</text><line x1="80" y1="440" x2="920" y2="440" stroke="#cdd9f7" stroke-width="3"/><text x="500" y="498" font-family="Arial" font-size="16" fill="#667085" text-anchor="middle">Improve the brief and knowledge from real transcripts</text>
-</svg><figcaption>Tune from real calls before you scale up.</figcaption></figure>
+<figure class="post-img"><img src="/blog-content/img/how-to-build-an-ai-voice-agent/step7-hero.webp" alt="Tune from real calls before you scale up." loading="lazy" decoding="async" width="1200" height="460"><figcaption>Tune from real calls before you scale up.</figcaption></figure>
 
 <h2>Conclusion</h2>
 <p>To finish, keep your first agent narrow, brief it well, test it hard, and build compliance in from day one. Steer clear of these common mistakes and it will work.</p>

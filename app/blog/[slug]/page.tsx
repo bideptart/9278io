@@ -86,7 +86,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
       {post.heroHtml ? (
         <div className="w-full px-6 md:px-8 pt-10">
           <div
-            className="overflow-hidden rounded-3xl border-2 border-border/70 bg-background shadow-sm [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
+            className="overflow-hidden rounded-3xl border-2 border-border/70 bg-background shadow-sm [&_img]:block [&_img]:h-auto [&_img]:w-full [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
             dangerouslySetInnerHTML={{ __html: post.heroHtml }}
           />
         </div>
@@ -107,6 +107,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           [&_th]:bg-slate-50 [&_th]:px-4 [&_th]:py-2.5 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-wide [&_th]:text-foreground
           [&_td]:border-t [&_td]:border-border [&_td]:px-4 [&_td]:py-2.5
           [&_figure]:mt-9 [&_figure]:overflow-hidden [&_figure]:rounded-2xl [&_figure]:border-2 [&_figure]:border-border/70 [&_figure]:bg-background
+          [&_img]:block [&_img]:h-auto [&_img]:w-full
           [&_svg]:block [&_svg]:h-auto [&_svg]:w-full
           [&_figcaption]:px-4 [&_figcaption]:py-3 [&_figcaption]:text-center [&_figcaption]:text-[13px] [&_figcaption]:italic [&_figcaption]:text-muted-foreground
           [&_.callout]:mt-7 [&_.callout]:rounded-2xl [&_.callout]:border [&_.callout]:border-primary/20 [&_.callout]:border-l-4 [&_.callout]:border-l-primary [&_.callout]:bg-primary/[0.06] [&_.callout]:px-5 [&_.callout]:py-4 [&_.callout]:text-foreground/80
