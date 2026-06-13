@@ -317,8 +317,8 @@ export default function SignupWidget() {
 
       {/* Per-second billing callout */}
       <div className="mb-8 flex justify-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm text-sky-800 dark:border-sky-800/40 dark:bg-sky-950/40 dark:text-sky-200">
-          <span>⏱️</span>
+        <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
           <span>
             <strong>Per-second billing</strong> — pay only for the seconds you use. Industry first
             in India.
