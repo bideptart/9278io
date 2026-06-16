@@ -166,9 +166,6 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/careers">View open roles</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
                 <Link href="/contact">Contact us</Link>
               </Button>
             </div>
@@ -182,7 +179,6 @@ export default function AboutPage() {
         links={[
           { href: "/pricing", title: "Pricing in INR", description: "Starter ₹3,000, Growth ₹8,800, Scale ₹30,000. Prices in ₹, billed once as wallet credit." },
           { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, EdTech, and more." },
-          { href: "/careers", title: "Join the team", description: "Open roles in Bengaluru and remote-India." },
         ]}
       />
 
