@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Sparkles, Mail, MessageSquare, Phone, Clock } from "lucide-react"
+import { Mail, MessageSquare, Phone, Clock } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ContactForm } from "@/components/contact/contact-form"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -21,15 +21,15 @@ const channels = [
     icon: Mail,
     title: "Email support",
     description: "For billing, technical issues, and general questions. We respond within one business day.",
-    action: "hello@9278.io",
-    href: "mailto:hello@9278.io",
+    action: "support@9278.io",
+    href: "mailto:support@9278.io",
   },
   {
     icon: MessageSquare,
     title: "Sales & partnerships",
     description: "Custom plans, reseller partnerships, or enterprise onboarding. We'll reply within a few hours.",
-    action: "sales@9278.io",
-    href: "mailto:sales@9278.io",
+    action: "info@9278.io",
+    href: "mailto:info@9278.io",
   },
   {
     icon: Phone,
@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     q: "Can I book a demo call?",
-    a: "Absolutely. Email sales@9278.io with a preferred time and we'll set up a 30-minute walkthrough with a solutions engineer.",
+    a: "Absolutely. Email info@9278.io with a preferred time and we'll set up a 30-minute walkthrough with a solutions engineer.",
   },
 ]
 
@@ -75,11 +75,11 @@ export default function ContactPage() {
         />
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-4 py-1.5 text-sm text-muted-foreground">
-              <Sparkles className="size-3.5 text-primary" aria-hidden />
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               We&apos;d love to hear from you
             </span>
-            <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">Get in touch</h1>
+            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Get in touch</h1>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               Whether you have a question about pricing, want to see a live demo, or need help with your agents — the
               9278.io team is here.
@@ -92,28 +92,48 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Channels */}
-      <section className="w-full px-6 py-20 md:px-8 md:py-28">
-        <div className="grid gap-6 md:grid-cols-3">
-          {channels.map((c) => {
-            const Icon = c.icon
-            return (
-              <ScrollReveal key={c.title}>
-                <div className="flex flex-col gap-5 rounded-2xl border border-border bg-white p-7">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
-                    <Icon className="h-5 w-5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tight">{c.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
-                  </div>
-                  <Button asChild variant="outline" className="mt-auto w-fit border-border bg-white">
-                    <a href={c.href}>{c.action}</a>
-                  </Button>
-                </div>
-              </ScrollReveal>
-            )
-          })}
+      {/* Form + channels */}
+      <section className="w-full px-6 py-16 md:px-8 md:py-20">
+        <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
+          {/* Form */}
+          <div className="lg:col-span-3">
+            <ScrollReveal>
+              <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Send us a message</h2>
+              <p className="mt-2 text-pretty text-muted-foreground">
+                Fill in the form and we&apos;ll get back to you by email, usually within one business day.
+              </p>
+              <div className="mt-6">
+                <ContactForm />
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Channels */}
+          <div className="lg:col-span-2">
+            <ScrollReveal delay={0.08}>
+              <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Other ways to reach us</h2>
+              <p className="mt-2 text-pretty text-muted-foreground">Prefer email, or want to hear it live? Take your pick.</p>
+              <div className="mt-6 space-y-4">
+                {channels.map((c) => {
+                  const Icon = c.icon
+                  return (
+                    <div key={c.title} className="flex gap-4 rounded-2xl border-2 border-border bg-white p-5">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
+                        <Icon className="h-5 w-5" aria-hidden />
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="font-semibold tracking-tight">{c.title}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
+                        <a href={c.href} className="mt-2 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline">
+                          {c.action}
+                        </a>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
