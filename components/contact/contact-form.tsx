@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react"
 import { submitContact, type ContactInput } from "@/app/contact/actions"
 
-const EMPTY: ContactInput = { name: "", email: "", company: "", subject: "", message: "", website: "" }
+const EMPTY: ContactInput = { name: "", email: "", phone: "", company: "", subject: "", message: "", website: "" }
 
 const inputClass =
   "w-full rounded-xl border-2 border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/15"
@@ -102,6 +102,23 @@ export function ContactForm() {
           />
         </div>
         <div>
+          <label htmlFor="cf-phone" className={labelClass}>
+            Mobile number <span className="text-primary">*</span>
+          </label>
+          <input
+            id="cf-phone"
+            name="phone"
+            type="tel"
+            required
+            autoComplete="tel"
+            inputMode="tel"
+            value={form.phone}
+            onChange={(e) => set("phone", e.target.value)}
+            className={inputClass}
+            placeholder="+91 98765 43210"
+          />
+        </div>
+        <div>
           <label htmlFor="cf-company" className={labelClass}>
             Company <span className="text-muted-foreground/60">(optional)</span>
           </label>
@@ -116,7 +133,7 @@ export function ContactForm() {
             placeholder="Company name"
           />
         </div>
-        <div>
+        <div className="sm:col-span-2">
           <label htmlFor="cf-subject" className={labelClass}>
             Subject <span className="text-muted-foreground/60">(optional)</span>
           </label>

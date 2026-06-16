@@ -5,6 +5,7 @@ import nodemailer from "nodemailer"
 export type ContactInput = {
   name: string
   email: string
+  phone: string
   company?: string
   subject?: string
   message: string
@@ -27,6 +28,7 @@ function escapeHtml(s: string) {
 export async function submitContact(input: ContactInput): Promise<ContactState> {
   const name = (input.name ?? "").trim()
   const email = (input.email ?? "").trim()
+  const phone = (input.phone ?? "").trim()
   const company = (input.company ?? "").trim()
   const subject = (input.subject ?? "").trim()
   const message = (input.message ?? "").trim()
@@ -34,11 +36,15 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
   // Silently accept (and drop) anything that trips the honeypot.
   if ((input.website ?? "").trim()) return { status: "success", message: "Thanks! Your message has been sent." }
 
-  if (!name || !email || !message) {
-    return { status: "error", message: "Please fill in your name, email, and message." }
+  if (!name || !email || !phone || !message) {
+    return { status: "error", message: "Please fill in your name, email, mobile number, and message." }
   }
   if (!EMAIL_RE.test(email)) {
     return { status: "error", message: "Please enter a valid email address." }
+  }
+  const phoneDigits = phone.replace(/\D/g, "")
+  if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+    return { status: "error", message: "Please enter a valid mobile number." }
   }
   if (message.length > 5000 || name.length > 200) {
     return { status: "error", message: "That message is a little too long — please shorten it." }
@@ -75,6 +81,7 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
   const text = [
     `Name: ${name}`,
     `Email: ${email}`,
+    `Mobile: ${phone}`,
     company ? `Company: ${company}` : null,
     subject ? `Subject: ${subject}` : null,
     "",
@@ -87,6 +94,7 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
   <h2 style="margin:0 0 16px;font-size:18px">New contact form submission</h2>
   <p style="margin:4px 0"><strong>Name:</strong> ${escapeHtml(name)}</p>
   <p style="margin:4px 0"><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
+  <p style="margin:4px 0"><strong>Mobile:</strong> <a href="tel:${escapeHtml(phone.replace(/\s+/g, ""))}">${escapeHtml(phone)}</a></p>
   ${company ? `<p style="margin:4px 0"><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
   ${subject ? `<p style="margin:4px 0"><strong>Subject:</strong> ${escapeHtml(subject)}</p>` : ""}
   <p style="margin:16px 0 4px"><strong>Message:</strong></p>
