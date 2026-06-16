@@ -44,13 +44,16 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
     return { status: "error", message: "That message is a little too long — please shorten it." }
   }
 
-  const host = process.env.SMTP_HOST
-  const user = process.env.SMTP_USER
+  // Non-secret defaults so deployment only needs the SMTP_PASS secret set.
+  const host = process.env.SMTP_HOST || "smtp.hostinger.com"
+  const port = Number(process.env.SMTP_PORT) || 465
+  const secure = String(process.env.SMTP_SECURE ?? "true") !== "false"
+  const user = process.env.SMTP_USER || "voice@9278.io"
   const pass = process.env.SMTP_PASS
   const to = process.env.CONTACT_TO || user
 
-  if (!host || !user || !pass) {
-    console.error("[contact] SMTP environment variables are not configured")
+  if (!pass) {
+    console.error("[contact] SMTP_PASS is not set — cannot send mail")
     return {
       status: "error",
       message: "Sorry, the contact form is temporarily unavailable. Please email us at support@9278.io.",
@@ -59,9 +62,13 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
 
   const transporter = nodemailer.createTransport({
     host,
-    port: Number(process.env.SMTP_PORT) || 465,
-    secure: String(process.env.SMTP_SECURE ?? "true") !== "false",
+    port,
+    secure,
     auth: { user, pass },
+    // Don't let a slow SMTP server hang the serverless function.
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
   })
 
   const heading = subject || "Website enquiry"

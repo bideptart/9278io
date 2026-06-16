@@ -5,6 +5,9 @@ const nextConfig = {
   // Docker, etc.) and run `node server.js` — no Vercel runtime required.
   output: "standalone",
   allowedDevOrigins: ["192.168.2.84", "192.168.2.18"],
+  // Keep nodemailer out of the bundle so the contact-form server action
+  // runs it as a normal Node require in the serverless/standalone function.
+  serverExternalPackages: ["nodemailer"],
   typescript: {
     ignoreBuildErrors: true,
   },
