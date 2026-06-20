@@ -194,7 +194,7 @@ export function Industries() {
             renderCard={(item) => {
               const Icon = item.icon
               return (
-                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50/60 p-7 ${item.accent}`}>
+                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 p-7 ${item.accent}`}>
                   {/* accent bar (colour = industry accent) */}
                   <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
 
