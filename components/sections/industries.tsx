@@ -4,9 +4,11 @@ import Link from "next/link"
 import {
   Phone, Home, ShoppingBag, Scale,
   GraduationCap, Car, UtensilsCrossed, Dumbbell, Landmark,
+  ArrowRight, type LucideIcon,
 } from "lucide-react"
 import { motion } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { CardStack, type CardStackItem } from "@/components/ui/card-stack"
 
 /* ── Industry data ── */
 const featured = {
@@ -124,7 +126,7 @@ const industries = [
 ]
 
 /* ══════════════════════════════════════════════════
-   Component — airy accent grid
+   Component — 3D fanned card stack
 ══════════════════════════════════════════════════ */
 
 const ACCENTS = [
@@ -137,10 +139,26 @@ const ACCENT_TILES = [
   "bg-pink-50 border-pink-200", "bg-indigo-50 border-indigo-200", "bg-teal-50 border-teal-200",
 ]
 
+type IndustryCard = CardStackItem & {
+  icon: LucideIcon
+  accent: string
+  tile: string
+}
+
+const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
+  id: i,
+  title: ind.title,
+  description: ind.description,
+  tag: ind.tag,
+  href: ind.href,
+  icon: ind.icon,
+  accent: ACCENTS[i % ACCENTS.length],
+  tile: ACCENT_TILES[i % ACCENT_TILES.length],
+}))
+
 export function Industries() {
-  const all = [featured, ...industries]
   return (
-    <section id="industries" className="border-b border-border">
+    <section id="industries" className="overflow-hidden border-b border-border">
       <div className="w-full px-6 py-24 md:px-8 md:py-32">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
@@ -158,40 +176,47 @@ export function Industries() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
-          {all.map((ind, i) => {
-            const Icon = ind.icon
-            const accent = ACCENTS[i % ACCENTS.length]
-            const tile = ACCENT_TILES[i % ACCENT_TILES.length]
-            return (
-              <ScrollReveal
-                key={ind.title}
-                delay={i * 0.04}
-                className={`group relative bg-white transition-colors duration-300 hover:bg-slate-50/50 ${accent}`}
-              >
-                <Link href={ind.href} className="relative block p-7">
-                  {/* accent line draws across the top on hover (colour = industry accent) */}
-                  <span
-                    className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
-                    aria-hidden
-                  />
+        <ScrollReveal className="mt-12">
+          <CardStack
+            items={cards}
+            initialIndex={0}
+            maxVisible={5}
+            cardWidth={440}
+            cardHeight={300}
+            autoAdvance
+            intervalMs={3200}
+            pauseOnHover
+            showDots
+            renderCard={(item) => {
+              const Icon = item.icon
+              return (
+                <div className={`relative flex h-full w-full flex-col bg-white p-7 ${item.accent}`}>
+                  {/* accent bar (colour = industry accent) */}
+                  <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
                   <div className="flex items-center gap-4">
-                    <span
-                      className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${tile} transition-transform duration-300 group-hover:scale-110`}
-                    >
+                    <span className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${item.tile}`}>
                       <Icon className="size-5" aria-hidden />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">{ind.tag}</p>
-                      <h3 className="text-lg font-bold tracking-tight text-foreground">{ind.title}</h3>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">{item.tag}</p>
+                      <h3 className="truncate text-lg font-bold tracking-tight text-foreground">{item.title}</h3>
                     </div>
                   </div>
-                  <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.description}</p>
-                </Link>
-              </ScrollReveal>
-            )
-          })}
-        </div>
+                  <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className="mt-auto inline-flex w-fit items-center gap-1.5 text-sm font-semibold"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Explore <ArrowRight className="size-4" aria-hidden />
+                    </Link>
+                  ) : null}
+                </div>
+              )
+            }}
+          />
+        </ScrollReveal>
       </div>
     </section>
   )
