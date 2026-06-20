@@ -98,7 +98,7 @@ export function LegalPage({ title, lastUpdated, operator, path, body }: LegalPag
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.12),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-6 py-14 md:px-8 md:py-16">
+        <div className="mx-auto w-full max-w-4xl px-6 py-14 text-center md:px-8 md:py-16">
           <ScrollReveal>
             <div>
               <Link
