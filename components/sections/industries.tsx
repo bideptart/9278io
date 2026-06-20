@@ -4,23 +4,9 @@ import Link from "next/link"
 import {
   Phone, Home, ShoppingBag, Scale,
   GraduationCap, Car, UtensilsCrossed, Dumbbell, Landmark,
-  ArrowRight,
 } from "lucide-react"
 import { motion } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-
-/* ── Capability tag colours ── */
-const capColors: Record<string, string> = {
-  "Inbound":          "border-blue-500/25 bg-blue-500/10 text-blue-600",
-  "24/7 Calling":     "border-green-500/25 bg-green-500/10 text-green-600",
-  "Hindi & Regional": "border-primary/25 bg-primary/10 text-primary",
-  "Lead Qualify":     "border-purple-500/25 bg-purple-500/10 text-purple-600",
-  "TRAI Compliant":   "border-red-500/25 bg-red-500/10 text-red-600",
-  "Appointment":      "border-cyan-500/25 bg-cyan-500/10 text-cyan-600",
-  "EMI Reminder":     "border-yellow-500/25 bg-yellow-500/10 text-yellow-600",
-  "DPDP Ready":       "border-pink-500/25 bg-pink-500/10 text-pink-600",
-  "Multilingual":     "border-primary/25 bg-primary/10 text-primary",
-}
 
 /* ── Industry data ── */
 const featured = {
@@ -138,14 +124,24 @@ const industries = [
 ]
 
 /* ══════════════════════════════════════════════════
-   Component — bento grid
+   Component — airy accent grid
 ══════════════════════════════════════════════════ */
 
+const ACCENTS = [
+  "text-blue-600", "text-violet-600", "text-cyan-600", "text-orange-600", "text-emerald-600",
+  "text-purple-600", "text-pink-600", "text-indigo-600", "text-teal-600",
+]
+const ACCENT_TILES = [
+  "bg-blue-50 border-blue-200", "bg-violet-50 border-violet-200", "bg-cyan-50 border-cyan-200",
+  "bg-orange-50 border-orange-200", "bg-emerald-50 border-emerald-200", "bg-purple-50 border-purple-200",
+  "bg-pink-50 border-pink-200", "bg-indigo-50 border-indigo-200", "bg-teal-50 border-teal-200",
+]
+
 export function Industries() {
+  const all = [featured, ...industries]
   return (
     <section id="industries" className="border-b border-border">
       <div className="w-full px-6 py-24 md:px-8 md:py-32">
-
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
@@ -162,151 +158,41 @@ export function Industries() {
           </p>
         </ScrollReveal>
 
-        {/* ── Bento grid ── */}
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(196px,auto)]">
-          <HeroTile item={featured} />
-          {industries.map((item, i) => (
-            <BentoTile key={item.title} item={item} delay={0.04 * (i + 1)} />
-          ))}
+        <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+          {all.map((ind, i) => {
+            const Icon = ind.icon
+            const accent = ACCENTS[i % ACCENTS.length]
+            const tile = ACCENT_TILES[i % ACCENT_TILES.length]
+            return (
+              <ScrollReveal
+                key={ind.title}
+                delay={i * 0.04}
+                className={`group relative bg-white transition-colors duration-300 hover:bg-slate-50/50 ${accent}`}
+              >
+                <Link href={ind.href} className="relative block p-7">
+                  {/* accent line draws across the top on hover (colour = industry accent) */}
+                  <span
+                    className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    aria-hidden
+                  />
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${tile} transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">{ind.tag}</p>
+                      <h3 className="text-lg font-bold tracking-tight text-foreground">{ind.title}</h3>
+                    </div>
+                  </div>
+                  <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.description}</p>
+                </Link>
+              </ScrollReveal>
+            )
+          })}
         </div>
-
       </div>
     </section>
-  )
-}
-
-/* ── Hero tile (2×2) ── */
-
-function HeroTile({ item }: { item: typeof featured }) {
-  const Icon = item.icon
-  return (
-    <ScrollReveal className="h-full sm:col-span-2 lg:row-span-2">
-      <motion.div
-        whileHover={{ y: -3 }}
-        transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-[3px] border-primary/20 bg-gradient-to-br from-primary/[0.07] via-white to-white p-7 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg"
-      >
-        {/* Ambient glow */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-primary/15 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
-
-        <div className="relative flex items-center gap-3">
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-white text-primary shadow-sm">
-            <Icon className="h-6 w-6" aria-hidden />
-          </span>
-          <span className="rounded-full border border-primary/20 bg-primary/[0.08] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-            {item.tag}
-          </span>
-        </div>
-
-        <h3 className="relative mt-4 text-2xl font-bold tracking-tight">{item.title}</h3>
-        <p className="relative mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-
-        <div className="relative mt-4 flex flex-wrap gap-2">
-          {item.caps.map(cap => (
-            <span key={cap} className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${capColors[cap]}`}>
-              {cap}
-            </span>
-          ))}
-        </div>
-
-        {/* Live agent conversation */}
-        <div className="relative mt-auto pt-6">
-          <p className="mb-2.5 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            <motion.span className="h-1.5 w-1.5 rounded-full bg-emerald-500"
-              animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
-            Live agent preview
-          </p>
-          <div className="space-y-2 rounded-2xl border border-slate-200 bg-white/70 p-4 backdrop-blur-sm">
-            {item.script.map((line, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: line.speaker === "Agent" ? -8 : 8 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: 0.15 * i }}
-                className={`flex text-xs ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
-              >
-                {line.speaker === "Agent" ? (
-                  <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-primary/15 px-3 py-1.5 text-primary ring-1 ring-primary/20">
-                    <span className="mr-1 text-[9px] font-bold opacity-60">Agent</span>
-                    {line.text}
-                  </span>
-                ) : (
-                  <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-white px-3 py-1.5 text-slate-700 shadow-sm ring-1 ring-slate-200">
-                    <span className="mr-1 text-[9px] font-bold opacity-40">Caller</span>
-                    {line.text}
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-          <Link
-            href={item.href}
-            className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-primary transition-colors hover:text-primary/80"
-          >
-            Explore industries <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </motion.div>
-    </ScrollReveal>
-  )
-}
-
-/* ── Compact bento tile ── */
-
-function BentoTile({ item, delay }: { item: typeof industries[number]; delay: number }) {
-  const Icon = item.icon
-  const agentLine = item.script.find(l => l.speaker === "Agent")?.text
-  return (
-    <ScrollReveal delay={delay} className="h-full">
-      <motion.div
-        whileHover={{ y: -4 }}
-        transition={{ type: "spring", stiffness: 280, damping: 22 }}
-        className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-[3px] border-border bg-white p-5 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:bg-slate-50/70"
-      >
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/15 bg-primary/[0.07] text-primary transition-colors duration-200 group-hover:border-primary/30 group-hover:bg-primary/[0.12]">
-            <Icon className="h-5 w-5" aria-hidden />
-          </span>
-          <span className="rounded-full border border-border px-2.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-            {item.tag}
-          </span>
-        </div>
-
-        {/* Text */}
-        <h3 className="mt-3.5 text-[15px] font-bold tracking-tight transition-colors group-hover:text-primary">
-          {item.title}
-        </h3>
-        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted-foreground">{item.description}</p>
-
-        {/* Capability tags */}
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {item.caps.map(cap => (
-            <span key={cap} className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${capColors[cap]}`}>
-              {cap}
-            </span>
-          ))}
-        </div>
-
-        {/* Footer: one-line agent quote + CTA */}
-        <div className="mt-auto pt-4">
-          {agentLine && (
-            <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-2.5 py-2">
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-primary/15 text-[9px] font-bold text-primary">A</span>
-              <p className="truncate text-[11px] italic leading-relaxed text-slate-500">{agentLine}</p>
-            </div>
-          )}
-          <Link
-            href={item.href}
-            className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-          >
-            Explore <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </motion.div>
-    </ScrollReveal>
   )
 }
