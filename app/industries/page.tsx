@@ -67,13 +67,15 @@ export default function IndustriesPage() {
 
       {/* ── Bento overview ── */}
       <section className="w-full px-6 py-16 md:px-8 md:py-20">
-        <ScrollReveal className="mb-10">
-          <div className="rounded-2xl border border-primary bg-primary p-7 text-center shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] md:p-9">
-            <h2 className="text-balance text-3xl font-bold tracking-tight text-white md:text-4xl">Browse by industry</h2>
-            <p className="mt-3 text-pretty text-white/70">
-              Tap any vertical to see its playbook, sample calls, and capabilities.
-            </p>
-          </div>
+        <ScrollReveal className="mx-auto mb-12 max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+            Industries
+          </span>
+          <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl">Browse by industry</h2>
+          <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+            Tap any vertical to see its playbook, sample calls, and capabilities.
+          </p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
@@ -147,13 +149,15 @@ export default function IndustriesPage() {
       {/* ── Detailed playbooks ── */}
       <section className="border-y border-border/50 bg-slate-50/50">
         <div className="w-full px-6 md:px-8">
-          <ScrollReveal className="py-16 md:py-20">
-            <div className="rounded-2xl border border-primary bg-primary p-7 text-center shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] md:p-9">
-              <h2 className="text-balance text-3xl font-bold tracking-tight text-white md:text-4xl">Every vertical, in depth.</h2>
-              <p className="mt-3 text-pretty text-white/70">
-                The exact jobs each agent does on day one, and how it sounds on a real call.
-              </p>
-            </div>
+          <ScrollReveal className="mx-auto max-w-2xl py-16 text-center md:py-20">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              Playbooks
+            </span>
+            <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl">Every vertical, in depth.</h2>
+            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+              The exact jobs each agent does on day one, and how it sounds on a real call.
+            </p>
           </ScrollReveal>
 
           <div className="space-y-5 pb-20 md:space-y-6 md:pb-24">
