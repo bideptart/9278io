@@ -67,7 +67,7 @@ export default function LegalIndexPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[340px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.16),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-6 py-14 text-center md:px-8 md:py-16">
+        <div className="w-full px-6 py-14 text-center md:px-12 md:py-16 lg:px-20">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -85,7 +85,7 @@ export default function LegalIndexPage() {
       </section>
 
       {/* Policy groups */}
-      <div className="mx-auto w-full max-w-5xl px-6 py-14 md:px-8 md:py-20">
+      <div className="w-full px-6 py-14 md:px-12 md:py-20 lg:px-20">
         <div className="space-y-12">
           {groups.map((group) => (
             <ScrollReveal key={group.heading}>
