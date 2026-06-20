@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   AudioLines, Languages, MessageCircle, Activity,
   Network, CalendarClock, PhoneForwarded, Mic, Timer,
@@ -394,7 +394,43 @@ const features = [
   { icon: Activity,       label: "Real Time Transcripts & Analytics", tag: "Analytics", color: "text-emerald-600", activeBg: "bg-emerald-50 border-emerald-200", visual: <AnalyticsVisual />, desc: "Speaker labels, sentiment, intents and conversion events — searchable and exportable from day one." },
 ]
 
+const AUTO_INTERVAL = 3500
+
 export function Features() {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const startRef = useRef(Date.now())
+  const leftRef = useRef<HTMLDivElement>(null)
+  const [leftHeight, setLeftHeight] = useState<number | undefined>(undefined)
+
+  // Match right panel height to left column height
+  useEffect(() => {
+    const el = leftRef.current
+    if (!el) return
+    const obs = new ResizeObserver(entries => {
+      setLeftHeight(entries[0].contentRect.height)
+    })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  // Auto-advance
+  useEffect(() => {
+    if (paused) return
+    startRef.current = Date.now()
+    setProgress(0)
+    const raf = requestAnimationFrame(function tick() {
+      const elapsed = Date.now() - startRef.current
+      setProgress(Math.min(elapsed / AUTO_INTERVAL, 1))
+      if (elapsed < AUTO_INTERVAL) requestAnimationFrame(tick)
+      else { setActive(a => (a + 1) % features.length); setProgress(0); startRef.current = Date.now() }
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [active, paused])
+
+  const f = features[active]
+
   return (
     <section id="features" className="border-b border-border">
       <div className="w-full px-6 py-24 md:px-8 md:py-32">
@@ -414,35 +450,75 @@ export function Features() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feat, i) => {
-            const Icon = feat.icon
-            return (
-              <ScrollReveal
-                key={feat.label}
-                delay={i * 0.04}
-                className={`group relative bg-white p-7 transition-colors duration-300 hover:bg-slate-50/50 ${feat.color}`}
-              >
-                {/* accent line draws across the top on hover (colour = feature accent) */}
-                <span
-                  className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
-                  aria-hidden
-                />
-                <div className="relative flex items-center gap-4">
-                  <span
-                    className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${feat.activeBg} transition-transform duration-300 group-hover:scale-110`}
-                  >
-                    <Icon className="size-5" aria-hidden />
+        <div className="mt-14 grid items-start gap-6 lg:grid-cols-[500px_1fr]"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {/* ── Left: 2-col grid (2+2+2+2+1) ── */}
+          <div ref={leftRef} className="grid grid-cols-2 content-start gap-2 self-start">
+            {features.map((feat, i) => {
+              const Icon = feat.icon
+              const isActive = i === active
+              const isLast = i === features.length - 1
+              return (
+                <button
+                  key={feat.label}
+                  type="button"
+                  onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
+                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
+                    isActive
+                      ? "border-2 border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
+                      : "border-2 border-primary/15 hover:border-primary/35 hover:bg-slate-50"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary" style={{ width: `${progress * 100}%` }} />
+                  )}
+                  {isActive && (
+                    <div className={`absolute bottom-3 left-0 top-3 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
+                  )}
+                  <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
+                    isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground/60 group-hover:text-muted-foreground"
+                  }`}>
+                    <Icon className="h-4 w-4" />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">{feat.tag}</p>
-                    <h3 className="text-lg font-bold tracking-tight text-foreground">{feat.label}</h3>
+                    <p className={`text-[11px] font-semibold uppercase tracking-wide ${isActive ? feat.color : "text-muted-foreground/50 group-hover:text-muted-foreground/70"}`}>{feat.tag}</p>
+                    <p className={`text-sm font-semibold leading-tight ${isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}>{feat.label}</p>
                   </div>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* ── Right: feature detail — height locked to left column ── */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              style={{ height: leftHeight }}
+              className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-7 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
+            >
+              <div className="flex items-center gap-3">
+                <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>
+                  <f.icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className={`text-[10px] font-semibold uppercase tracking-wider ${f.color}`}>{f.tag}</p>
+                  <h3 className="text-lg font-bold tracking-tight text-foreground">{f.label}</h3>
                 </div>
-                <p className="relative mt-4 text-sm leading-relaxed text-muted-foreground">{feat.desc}</p>
-              </ScrollReveal>
-            )
-          })}
+              </div>
+
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+
+              <div className="mt-5 flex-1 overflow-hidden">
+                {f.visual}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
