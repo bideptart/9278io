@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import { Menu, X } from "lucide-react"
+import { ArrowRight, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/logo"
@@ -84,9 +84,14 @@ export function SiteHeader() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-[0_0_20px_oklch(0.78_0.16_195/0.3)] transition-all hover:bg-primary/90 hover:shadow-[0_0_28px_oklch(0.78_0.16_195/0.45)] sm:inline-flex"
+            className="hidden rounded-full bg-primary py-2 pl-5 pr-1.5 text-sm font-semibold text-primary-foreground shadow-[0_6px_20px_oklch(0.546_0.215_262.88/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.5)] sm:inline-flex"
           >
-            <Link href="/get-started">Get Started</Link>
+            <Link href="/get-started">
+              Get Started
+              <span className="flex size-6 items-center justify-center rounded-full bg-white/20">
+                <ArrowRight className="size-3.5" aria-hidden />
+              </span>
+            </Link>
           </Button>
 
           {/* Mobile hamburger */}

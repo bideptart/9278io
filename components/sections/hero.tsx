@@ -113,18 +113,20 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            className="h-12 rounded-xl bg-primary px-8 text-base font-semibold text-white shadow-[0_4px_24px_oklch(0.52_0.22_265/0.45)] transition-all hover:bg-primary/90 hover:shadow-[0_4px_32px_oklch(0.52_0.22_265/0.6)]"
+            className="h-12 rounded-full bg-primary py-2 pl-8 pr-2 text-base font-semibold text-white shadow-[0_6px_24px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:bg-primary/90 hover:shadow-[0_8px_32px_oklch(0.546_0.215_262.88/0.6)]"
           >
             <Link href="/get-started">
               Build your first agent
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <span className="flex size-7 items-center justify-center rounded-full bg-white/20">
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </span>
             </Link>
           </Button>
           <Button
             asChild
             size="lg"
             variant="outline"
-            className="h-12 rounded-xl border-border bg-white px-8 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+            className="h-12 rounded-full border-border bg-white px-8 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
           >
             <a href="#demo-audio">
               <PhoneCall className="mr-2 h-4 w-4" />
