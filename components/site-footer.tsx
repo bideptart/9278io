@@ -22,8 +22,13 @@ const nav = {
     { label: "About", href: "/about" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
+  ],
+  Legal: [
     { label: "Terms of Service", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Refund & Cancellation", href: "/refund-policy" },
+    { label: "Grievance Redressal", href: "/grievance-redressal" },
+    { label: "All policies →", href: "/legal" },
   ],
 }
 
@@ -70,7 +75,7 @@ export function SiteFooter() {
           </div>
 
           {/* Nav columns */}
-          <div className="grid grid-cols-2 gap-8 md:col-span-9 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 md:col-span-9 md:grid-cols-4">
             {Object.entries(nav).map(([section, links]) => (
               <div key={section}>
                 <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/70">{section}</h3>
