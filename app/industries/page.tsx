@@ -1,13 +1,24 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Plus } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { IndustryRow } from "@/components/industries/industry-row"
-import { BrowseBento } from "@/components/industries/browse-bento"
-import { INDUSTRIES } from "@/lib/industries"
+import { INDUSTRIES, CAP_COLORS } from "@/lib/industries"
+
+/* Per-industry accent palette for the airy grid. Literal classes so
+   Tailwind's scanner keeps them; child accents use currentColor. */
+const ACCENTS = [
+  "text-blue-600", "text-violet-600", "text-cyan-600", "text-orange-600",
+  "text-emerald-600", "text-purple-600", "text-pink-600", "text-indigo-600", "text-teal-600",
+]
+const ACCENT_TILES = [
+  "bg-blue-50 border-blue-200", "bg-violet-50 border-violet-200", "bg-cyan-50 border-cyan-200",
+  "bg-orange-50 border-orange-200", "bg-emerald-50 border-emerald-200", "bg-purple-50 border-purple-200",
+  "bg-pink-50 border-pink-200", "bg-indigo-50 border-indigo-200", "bg-teal-50 border-teal-200",
+]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -65,7 +76,72 @@ export default function IndustriesPage() {
           </div>
         </ScrollReveal>
 
-        <BrowseBento />
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+          {INDUSTRIES.map((ind, i) => {
+            const Icon = ind.icon
+            const accent = ACCENTS[i % ACCENTS.length]
+            const tile = ACCENT_TILES[i % ACCENT_TILES.length]
+            return (
+              <ScrollReveal
+                key={ind.slug}
+                delay={i * 0.04}
+                className={`group relative bg-white transition-colors duration-300 hover:bg-slate-50/50 ${accent}`}
+              >
+                <Link href={`/industries/${ind.slug}`} className="relative block p-7">
+                  {/* accent line draws across the top on hover (colour = industry accent) */}
+                  <span
+                    className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    aria-hidden
+                  />
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${tile} transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                    <h3 className="min-w-0 text-lg font-bold tracking-tight text-foreground">{ind.name}</h3>
+                  </div>
+                  <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.short}</p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {ind.caps.map((cap) => (
+                      <span
+                        key={cap}
+                        className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${CAP_COLORS[cap]}`}
+                      >
+                        {cap}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              </ScrollReveal>
+            )
+          })}
+
+          {/* "Many more" cell — completes the grid and signals broader coverage */}
+          <ScrollReveal
+            delay={INDUSTRIES.length * 0.04}
+            className="group relative bg-white text-primary transition-colors duration-300 hover:bg-slate-50/50"
+          >
+            <Link href="/get-started" className="relative block p-7">
+              <span
+                className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
+                aria-hidden
+              />
+              <div className="flex items-center gap-4">
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.07] transition-transform duration-300 group-hover:scale-110">
+                  <Plus className="size-5" aria-hidden />
+                </span>
+                <h3 className="min-w-0 text-lg font-bold tracking-tight text-foreground">Many more</h3>
+              </div>
+              <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                Security, recruiting, insurance, finance and more — tell us your calls and we&apos;ll tune an agent for you.
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold">
+                Get started <ArrowRight className="size-4" aria-hidden />
+              </span>
+            </Link>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* ── Detailed playbooks ── */}
