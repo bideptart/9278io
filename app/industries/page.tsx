@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Plus } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { IndustryRow } from "@/components/industries/industry-row"
-import { INDUSTRIES, CAP_COLORS } from "@/lib/industries"
+import { BrowseBento } from "@/components/industries/browse-bento"
+import { INDUSTRIES } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -64,68 +65,7 @@ export default function IndustriesPage() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {INDUSTRIES.map((ind, i) => {
-            const Icon = ind.icon
-            return (
-              <ScrollReveal key={ind.slug} delay={i * 0.04} className="h-full">
-                <Link
-                  href={`/industries/${ind.slug}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md hover:bg-slate-50/60"
-                >
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  <div className="flex items-center justify-between">
-                    <span className="flex size-11 items-center justify-center rounded-2xl border border-primary/15 bg-primary/[0.07] text-primary transition-colors duration-200 group-hover:border-primary/30 group-hover:bg-primary/[0.12]">
-                      <Icon className="size-5" aria-hidden />
-                    </span>
-                    <ArrowRight className="size-4 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" aria-hidden />
-                  </div>
-
-                  <h3 className="mt-4 text-lg font-bold tracking-tight transition-colors group-hover:text-primary">
-                    {ind.name}
-                  </h3>
-                  <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.short}</p>
-
-                  <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                    {ind.caps.map((cap) => (
-                      <span
-                        key={cap}
-                        className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${CAP_COLORS[cap]}`}
-                      >
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
-              </ScrollReveal>
-            )
-          })}
-
-          {/* "Many more" card — completes the row and signals broader coverage */}
-          <ScrollReveal delay={INDUSTRIES.length * 0.04} className="h-full">
-            <Link
-              href="/get-started"
-              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-dashed border-primary/30 bg-primary/[0.04] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-primary/[0.07]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-2xl border border-primary/20 bg-white text-primary">
-                  <Plus className="size-5" aria-hidden />
-                </span>
-                <ArrowRight className="size-4 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100" aria-hidden />
-              </div>
-
-              <h3 className="mt-4 text-lg font-bold tracking-tight text-primary">Many more</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Security, recruiting, insurance, finance and more — tell us your calls and we&apos;ll tune an agent for you.
-              </p>
-
-              <span className="mt-auto inline-flex items-center gap-1 pt-4 text-[11px] font-semibold uppercase tracking-wider text-primary">
-                Get started
-              </span>
-            </Link>
-          </ScrollReveal>
-        </div>
+        <BrowseBento />
       </section>
 
       {/* ── Detailed playbooks ── */}
