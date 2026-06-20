@@ -143,6 +143,8 @@ type IndustryCard = CardStackItem & {
   icon: LucideIcon
   accent: string
   tile: string
+  caps: string[]
+  agentLine?: string
 }
 
 const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
@@ -154,6 +156,8 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
   icon: ind.icon,
   accent: ACCENTS[i % ACCENTS.length],
   tile: ACCENT_TILES[i % ACCENT_TILES.length],
+  caps: ind.caps,
+  agentLine: ind.script.find((l) => l.speaker === "Agent")?.text,
 }))
 
 export function Industries() {
@@ -181,8 +185,8 @@ export function Industries() {
             items={cards}
             initialIndex={0}
             maxVisible={5}
-            cardWidth={440}
-            cardHeight={300}
+            cardWidth={460}
+            cardHeight={372}
             autoAdvance
             intervalMs={3200}
             pauseOnHover
@@ -190,9 +194,11 @@ export function Industries() {
             renderCard={(item) => {
               const Icon = item.icon
               return (
-                <div className={`relative flex h-full w-full flex-col bg-white p-7 ${item.accent}`}>
+                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50/60 p-7 ${item.accent}`}>
                   {/* accent bar (colour = industry accent) */}
                   <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
+
+                  {/* Header */}
                   <div className="flex items-center gap-4">
                     <span className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${item.tile}`}>
                       <Icon className="size-5" aria-hidden />
@@ -202,16 +208,48 @@ export function Industries() {
                       <h3 className="truncate text-lg font-bold tracking-tight text-foreground">{item.title}</h3>
                     </div>
                   </div>
+
+                  {/* Description */}
                   <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                  {item.href ? (
-                    <Link
-                      href={item.href}
-                      className="mt-auto inline-flex w-fit items-center gap-1.5 text-sm font-semibold"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Explore <ArrowRight className="size-4" aria-hidden />
-                    </Link>
+
+                  {/* Capability chips */}
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {item.caps.map((cap) => (
+                      <span
+                        key={cap}
+                        className="rounded-full border border-current/25 bg-current/[0.07] px-2.5 py-0.5 text-[11px] font-semibold"
+                      >
+                        {cap}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Live agent preview */}
+                  {item.agentLine ? (
+                    <div className="mt-4 flex items-start gap-2 rounded-xl border border-border bg-white/70 px-3 py-2.5 backdrop-blur-sm">
+                      <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-current/15 text-[10px] font-bold">
+                        A
+                      </span>
+                      <p className="line-clamp-2 text-[12px] italic leading-relaxed text-slate-500">{item.agentLine}</p>
+                    </div>
                   ) : null}
+
+                  {/* Footer */}
+                  <div className="mt-auto flex items-center justify-between pt-4">
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Explore <ArrowRight className="size-4" aria-hidden />
+                      </Link>
+                    ) : <span />}
+                    <span className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
+                      <span className="size-1.5 rounded-full bg-emerald-500" />
+                      TRAI-compliant
+                    </span>
+                  </div>
                 </div>
               )
             }}
