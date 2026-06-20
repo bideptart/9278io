@@ -421,21 +421,25 @@ export function Features() {
               <ScrollReveal
                 key={feat.label}
                 delay={i * 0.04}
-                className={`group relative bg-white p-8 transition-colors duration-300 hover:bg-slate-50/50 ${feat.color}`}
+                className={`group relative bg-white p-7 transition-colors duration-300 hover:bg-slate-50/50 ${feat.color}`}
               >
                 {/* accent line draws across the top on hover (colour = feature accent) */}
                 <span
                   className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
                   aria-hidden
                 />
-                <span
-                  className={`relative flex size-12 items-center justify-center rounded-2xl border ${feat.activeBg} transition-transform duration-300 group-hover:scale-110`}
-                >
-                  <Icon className="size-5" aria-hidden />
-                </span>
-                <p className="relative mt-6 text-[11px] font-semibold uppercase tracking-[0.14em]">{feat.tag}</p>
-                <h3 className="relative mt-1.5 text-xl font-bold tracking-tight text-foreground">{feat.label}</h3>
-                <p className="relative mt-2.5 text-sm leading-relaxed text-muted-foreground">{feat.desc}</p>
+                <div className="relative flex items-center gap-4">
+                  <span
+                    className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${feat.activeBg} transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">{feat.tag}</p>
+                    <h3 className="text-lg font-bold tracking-tight text-foreground">{feat.label}</h3>
+                  </div>
+                </div>
+                <p className="relative mt-4 text-sm leading-relaxed text-muted-foreground">{feat.desc}</p>
               </ScrollReveal>
             )
           })}
