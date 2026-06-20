@@ -414,23 +414,28 @@ export function Features() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feat, i) => {
             const Icon = feat.icon
             return (
-              <ScrollReveal key={feat.label} delay={i * 0.04} className="h-full">
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                  className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-colors duration-300 hover:border-primary/25 hover:shadow-md"
+              <ScrollReveal
+                key={feat.label}
+                delay={i * 0.04}
+                className={`group relative bg-white p-8 transition-colors duration-300 hover:bg-slate-50/50 ${feat.color}`}
+              >
+                {/* accent line draws across the top on hover (colour = feature accent) */}
+                <span
+                  className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
+                  aria-hidden
+                />
+                <span
+                  className={`relative flex size-12 items-center justify-center rounded-2xl border ${feat.activeBg} transition-transform duration-300 group-hover:scale-110`}
                 >
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-primary/[0.08] text-primary transition-colors duration-300 group-hover:bg-primary/[0.12]">
-                    <Icon className="size-6" aria-hidden />
-                  </span>
-                  <p className="mt-5 text-[11px] font-semibold uppercase tracking-wider text-primary/70">{feat.tag}</p>
-                  <h3 className="mt-1 text-lg font-bold tracking-tight">{feat.label}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feat.desc}</p>
-                </motion.div>
+                  <Icon className="size-5" aria-hidden />
+                </span>
+                <p className="relative mt-6 text-[11px] font-semibold uppercase tracking-[0.14em]">{feat.tag}</p>
+                <h3 className="relative mt-1.5 text-xl font-bold tracking-tight text-foreground">{feat.label}</h3>
+                <p className="relative mt-2.5 text-sm leading-relaxed text-muted-foreground">{feat.desc}</p>
               </ScrollReveal>
             )
           })}
