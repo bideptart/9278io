@@ -84,18 +84,6 @@ export default async function PricingPage({
       </section>
 
       <section id="plans" className="w-full border-y border-blue-100 bg-blue-50/70 px-6 pb-24 pt-16 md:px-8 md:pt-20">
-        <ScrollReveal className="mx-auto mb-12 max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-            Pricing
-          </span>
-          <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick your plan.</h2>
-          <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
-            All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as
-            wallet credit.
-          </p>
-        </ScrollReveal>
-
         <PlanCards />
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
