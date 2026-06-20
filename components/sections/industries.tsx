@@ -188,7 +188,9 @@ export function Industries() {
             cardWidth={460}
             cardHeight={372}
             autoAdvance
-            intervalMs={3200}
+            intervalMs={1600}
+            springStiffness={420}
+            springDamping={32}
             pauseOnHover
             showDots
             renderCard={(item) => {
