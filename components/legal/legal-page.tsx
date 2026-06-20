@@ -100,17 +100,21 @@ export function LegalPage({ title, lastUpdated, operator, path, body }: LegalPag
         />
         <div className="mx-auto w-full max-w-4xl px-6 py-14 md:px-8 md:py-16">
           <ScrollReveal>
-            <Link
-              href="/legal"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="size-4" aria-hidden />
-              All policies
-            </Link>
-            <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              Legal &amp; Compliance
-            </span>
+            <div>
+              <Link
+                href="/legal"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <ArrowLeft className="size-4" aria-hidden />
+                All policies
+              </Link>
+            </div>
+            <div className="mt-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                Legal &amp; Compliance
+              </span>
+            </div>
             <h1 className="mt-5 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">{title}</h1>
             <p className="mt-3 text-sm text-muted-foreground">
               {operator ? `${operator} · ` : ""}Last updated: {lastUpdated}
