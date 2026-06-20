@@ -14,7 +14,7 @@ export function FAQ() {
   const items = FLAT_FAQ.slice(0, 8)
   return (
     <section id="faq" className="border-b border-border/50">
-      <div className="w-full px-6 py-20 md:px-8 md:py-28">
+      <div className="w-full px-6 py-24 md:px-8 md:py-32">
         <ScrollReveal className="text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
@@ -23,7 +23,7 @@ export function FAQ() {
               animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
             FAQ
           </motion.span>
-          <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">
             Questions, answered.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">

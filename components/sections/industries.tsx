@@ -144,7 +144,7 @@ const industries = [
 export function Industries() {
   return (
     <section id="industries" className="border-b border-border">
-      <div className="w-full px-6 py-20 md:px-8 md:py-28">
+      <div className="w-full px-6 py-24 md:px-8 md:py-32">
 
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
@@ -154,7 +154,7 @@ export function Industries() {
               animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
             Industries
           </motion.span>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">
             Built for every Indian industry.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
