@@ -1,7 +1,6 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Hero } from "@/components/sections/hero"
-import { TrustStrip } from "@/components/sections/trust-strip"
 import { PricingFeature } from "@/components/sections/pricing-feature"
 import { Features } from "@/components/sections/features"
 import { Platform } from "@/components/sections/platform"
@@ -22,7 +21,6 @@ export default function HomePage() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <TrustStrip />
         <Platform />
         <Features />
         <HowItWorks />
