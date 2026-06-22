@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import {
   Phone, Home, ShoppingBag, Scale,
@@ -160,7 +161,26 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
   agentLine: ind.script.find((l) => l.speaker === "Agent")?.text,
 }))
 
+/** Fit the fanned cards to the viewport so they stay fully visible on mobile. */
+function useCardSize() {
+  const [size, setSize] = useState({ width: 460, height: 372 })
+  useEffect(() => {
+    const compute = () => {
+      const vw = window.innerWidth
+      const width = Math.min(460, Math.max(260, vw - 40))
+      // Narrow cards wrap more copy, so give them extra height.
+      const height = vw < 640 ? Math.round(width * 1.2) : 372
+      setSize({ width, height })
+    }
+    compute()
+    window.addEventListener("resize", compute)
+    return () => window.removeEventListener("resize", compute)
+  }, [])
+  return size
+}
+
 export function Industries() {
+  const { width: cardWidth, height: cardHeight } = useCardSize()
   return (
     <section id="industries" className="overflow-hidden border-b border-border">
       <div className="w-full px-6 py-24 md:px-8 md:py-32">
@@ -185,8 +205,8 @@ export function Industries() {
             items={cards}
             initialIndex={0}
             maxVisible={5}
-            cardWidth={460}
-            cardHeight={372}
+            cardWidth={cardWidth}
+            cardHeight={cardHeight}
             autoAdvance
             intervalMs={1600}
             springStiffness={420}
