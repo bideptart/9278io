@@ -167,9 +167,9 @@ function useCardSize() {
   useEffect(() => {
     const compute = () => {
       const vw = window.innerWidth
-      const width = Math.min(460, Math.max(260, vw - 40))
-      // Narrow cards wrap more copy, so give them extra height.
-      const height = vw < 640 ? Math.round(width * 1.2) : 372
+      const width = Math.min(460, Math.max(248, vw - 48))
+      // Narrow cards wrap more copy, so give them a touch more height.
+      const height = vw < 640 ? Math.round(width * 0.92) : 372
       setSize({ width, height })
     }
     compute()
@@ -216,30 +216,30 @@ export function Industries() {
             renderCard={(item) => {
               const Icon = item.icon
               return (
-                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 p-7 ${item.accent}`}>
+                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 p-5 sm:p-7 ${item.accent}`}>
                   {/* accent bar (colour = industry accent) */}
                   <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
 
                   {/* Header */}
-                  <div className="flex items-center gap-4">
-                    <span className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${item.tile}`}>
-                      <Icon className="size-5" aria-hidden />
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <span className={`flex size-10 shrink-0 items-center justify-center rounded-2xl border sm:size-12 ${item.tile}`}>
+                      <Icon className="size-4 sm:size-5" aria-hidden />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">{item.tag}</p>
-                      <h3 className="truncate text-lg font-bold tracking-tight text-foreground">{item.title}</h3>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] sm:text-[11px]">{item.tag}</p>
+                      <h3 className="truncate text-base font-bold tracking-tight text-foreground sm:text-lg">{item.title}</h3>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                  <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground sm:mt-4 sm:line-clamp-3 sm:text-sm">{item.description}</p>
 
                   {/* Capability chips */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-4">
                     {item.caps.map((cap) => (
                       <span
                         key={cap}
-                        className="rounded-full border border-current/25 bg-current/[0.07] px-2.5 py-0.5 text-[11px] font-semibold"
+                        className="rounded-full border border-current/25 bg-current/[0.07] px-2 py-0.5 text-[10px] font-semibold sm:px-2.5 sm:text-[11px]"
                       >
                         {cap}
                       </span>
@@ -248,26 +248,26 @@ export function Industries() {
 
                   {/* Live agent preview */}
                   {item.agentLine ? (
-                    <div className="mt-4 flex items-start gap-2 rounded-xl border border-border bg-white/70 px-3 py-2.5 backdrop-blur-sm">
+                    <div className="mt-3 flex items-start gap-2 rounded-xl border border-border bg-white/70 px-3 py-2 backdrop-blur-sm sm:mt-4 sm:py-2.5">
                       <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-current/15 text-[10px] font-bold">
                         A
                       </span>
-                      <p className="line-clamp-2 text-[12px] italic leading-relaxed text-slate-500">{item.agentLine}</p>
+                      <p className="line-clamp-2 text-[11px] italic leading-relaxed text-slate-500 sm:text-[12px]">{item.agentLine}</p>
                     </div>
                   ) : null}
 
                   {/* Footer */}
-                  <div className="mt-auto flex items-center justify-between pt-4">
+                  <div className="mt-auto flex items-center justify-between pt-3 sm:pt-4">
                     {item.href ? (
                       <Link
                         href={item.href}
-                        className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold"
+                        className="inline-flex w-fit items-center gap-1.5 text-[13px] font-semibold sm:text-sm"
                         onClick={(e) => e.stopPropagation()}
                       >
                         Explore <ArrowRight className="size-4" aria-hidden />
                       </Link>
                     ) : <span />}
-                    <span className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
+                    <span className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground sm:text-[11px]">
                       <span className="size-1.5 rounded-full bg-emerald-500" />
                       TRAI-compliant
                     </span>
