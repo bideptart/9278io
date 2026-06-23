@@ -236,23 +236,32 @@ function DashboardPanel() {
 /* ── Audio orb floating above the dashboard ── */
 function AudioOrb() {
   return (
-    <div className="relative flex size-28 items-center justify-center">
+    <div className="relative flex size-32 items-center justify-center">
+      {/* glowing platform under the orb */}
+      <div className="absolute bottom-0 left-1/2 h-5 w-24 -translate-x-1/2 rounded-[50%] bg-primary/40 blur-lg" />
+      {/* expanding pulse rings */}
       {[0, 1].map((i) => (
         <motion.span
           key={i}
-          className="absolute inset-0 rounded-full border border-primary/30"
-          animate={{ scale: [1, 1.7], opacity: [0.55, 0] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut", delay: i * 1.3 }}
+          className="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/30"
+          animate={{ scale: [1, 1.8], opacity: [0.5, 0] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeOut", delay: i * 1.4 }}
         />
       ))}
-      <div className="absolute -left-9 text-primary"><Bars count={5} /></div>
-      <div className="absolute -right-9 text-primary"><Bars count={5} /></div>
+      {/* flanking sound bars */}
+      <div className="absolute -left-12 text-primary/80"><Bars count={6} /></div>
+      <div className="absolute -right-12 text-primary/80"><Bars count={6} /></div>
+      {/* glossy orb */}
       <motion.div
-        animate={{ y: [-4, 4, -4] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative flex size-20 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.72_0.18_150)] shadow-[0_14px_44px_oklch(0.52_0.22_265/0.55)]"
+        animate={{ y: [-5, 5, -5] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+        className="relative flex size-24 items-center justify-center rounded-full shadow-[0_20px_55px_-8px_oklch(0.52_0.22_265/0.6)] ring-1 ring-white/50"
+        style={{
+          background:
+            "radial-gradient(circle at 32% 26%, rgba(255,255,255,0.9), rgba(255,255,255,0) 42%), linear-gradient(150deg, oklch(0.55 0.21 262), oklch(0.7 0.18 150))",
+        }}
       >
-        <Headphones className="size-9 text-white" strokeWidth={1.8} aria-hidden />
+        <Headphones className="size-10 text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]" strokeWidth={1.6} aria-hidden />
       </motion.div>
     </div>
   )
@@ -284,21 +293,24 @@ function HeroVisual() {
     <div className="relative mx-auto w-full max-w-[540px]">
       {/* Orbital rings + ripples — decorative, lg only */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden>
+        {/* soft glow behind everything */}
+        <div className="absolute left-1/2 top-1/3 size-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.12] blur-[90px]" />
+        {/* static orbit paths */}
+        <div className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/15" style={{ width: 660, height: 360 }} />
+        <div className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/10" style={{ width: 520, height: 250 }} />
+        {/* a dot that travels each orbit */}
         <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/15"
-          style={{ width: 640, height: 360 }}
+          className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2"
+          style={{ width: 660, height: 360 }}
           animate={{ rotate: 360 }}
-          transition={{ duration: 44, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-emerald-400/15"
-          style={{ width: 520, height: 480 }}
-          animate={{ rotate: -360 }}
-          transition={{ duration: 56, repeat: Infinity, ease: "linear" }}
-        />
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
-          {[260, 420, 600].map((s) => (
-            <div key={s} className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border border-primary/10" style={{ width: s, height: s }} />
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        >
+          <span className="absolute -top-1 left-1/2 size-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_10px_oklch(0.52_0.22_265/0.8)]" />
+        </motion.div>
+        {/* concentric ripples under the panel */}
+        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
+          {[280, 460, 640].map((s) => (
+            <div key={s} className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border border-primary/[0.08]" style={{ width: s, height: s }} />
           ))}
         </div>
       </div>
