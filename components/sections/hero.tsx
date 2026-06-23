@@ -112,6 +112,24 @@ function Equalizer() {
   )
 }
 
+function Waveform() {
+  // Deterministic per-bar profile so SSR and client match; animation runs after mount.
+  const bars = Array.from({ length: 36 }, (_, i) => 5 + ((i * 13) % 22))
+  return (
+    <div className="flex items-center justify-center gap-[3px] overflow-hidden border-b border-border bg-gradient-to-r from-primary/[0.04] via-primary/[0.09] to-primary/[0.04] px-5 py-3">
+      {bars.map((h, i) => (
+        <motion.span
+          key={i}
+          className="w-[3px] shrink-0 rounded-full bg-gradient-to-t from-primary/40 to-primary"
+          style={{ height: h }}
+          animate={{ scaleY: [0.4, 1.6, 0.7, 1.3, 0.4] }}
+          transition={{ duration: 1 + (i % 6) * 0.18, repeat: Infinity, ease: "easeInOut", delay: (i % 9) * 0.07 }}
+        />
+      ))}
+    </div>
+  )
+}
+
 function LiveMetrics() {
   const [ms, setMs] = useState(288)
   useEffect(() => {
@@ -139,6 +157,7 @@ function LiveMetrics() {
 function LiveCallPanel() {
   const [step, setStep] = useState(0)
   const [tKey, setTKey] = useState(0)
+  const [secs, setSecs] = useState(0)
 
   useEffect(() => {
     const t = setInterval(() => setStep(s => (s + 1) % callSteps.length), 1500)
@@ -148,23 +167,43 @@ function LiveCallPanel() {
     const t = setInterval(() => { setTKey(k => k + 1); setStep(0) }, 10000)
     return () => clearInterval(t)
   }, [])
+  useEffect(() => {
+    const t = setInterval(() => setSecs(s => s + 1), 1000)
+    return () => clearInterval(t)
+  }, [])
+
+  const mm = String(Math.floor(secs / 60)).padStart(2, "0")
+  const ss = String(secs % 60).padStart(2, "0")
 
   return (
     <div className="overflow-hidden rounded-2xl border-[3px] border-border bg-white shadow-[0_8px_40px_oklch(0_0_0/0.08)]">
+      {/* Accent bar */}
+      <div className="h-1 w-full bg-gradient-to-r from-primary via-[oklch(0.72_0.18_150)] to-primary" />
+
       {/* Call header */}
       <div className="flex items-center justify-between border-b border-border bg-slate-50 px-5 py-4">
         <div className="flex items-center gap-3">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border bg-white shadow-sm">
-            <PhoneCall className="h-4 w-4 text-primary" />
-            <motion.span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-500"
-              animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+          <div className="relative flex h-10 w-10 items-center justify-center">
+            {/* pulse rings */}
+            <motion.span className="absolute inset-0 rounded-full bg-primary/20"
+              animate={{ scale: [1, 1.7], opacity: [0.5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }} />
+            <motion.span className="absolute inset-0 rounded-full bg-primary/20"
+              animate={{ scale: [1, 1.7], opacity: [0.5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut", delay: 0.9 }} />
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border bg-white shadow-sm">
+              <PhoneCall className="h-4 w-4 text-primary" />
+              <motion.span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-500"
+                animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+            </div>
           </div>
           <div>
             <p className="text-xs font-bold text-foreground">+91 98765 43210</p>
             <p className="text-[10px] text-muted-foreground">Hindi · Inbound</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <span className="rounded-md bg-white px-1.5 py-0.5 font-mono text-[11px] font-semibold tabular-nums text-foreground ring-1 ring-border">
+            {mm}:{ss}
+          </span>
           <Equalizer />
           <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
             <motion.span className="h-1.5 w-1.5 rounded-full bg-emerald-500" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
@@ -172,6 +211,9 @@ function LiveCallPanel() {
           </span>
         </div>
       </div>
+
+      {/* Live voice waveform */}
+      <Waveform />
 
       {/* Transcript */}
       <div key={tKey} className="space-y-2.5 px-5 py-4">
