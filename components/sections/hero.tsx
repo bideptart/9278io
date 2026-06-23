@@ -427,11 +427,13 @@ export function Hero() {
               {highlights.map((h) => {
                 const Icon = h.icon
                 return (
-                  <div key={h.title} className="flex flex-col items-center gap-1.5 bg-white px-3 py-5 text-center">
-                    <span className={`flex size-9 items-center justify-center rounded-full ${h.tile} ${h.color}`}>
-                      <Icon className="size-4" aria-hidden />
-                    </span>
-                    <span className={`text-lg font-bold ${h.color}`}>{h.stat}</span>
+                  <div key={h.title} className="flex flex-col items-center gap-1 bg-white px-3 py-3.5 text-center">
+                    <div className="flex items-center gap-2">
+                      <span className={`flex size-8 items-center justify-center rounded-full ${h.tile} ${h.color}`}>
+                        <Icon className="size-4" aria-hidden />
+                      </span>
+                      <span className={`text-lg font-bold ${h.color}`}>{h.stat}</span>
+                    </div>
                     <span className="text-[11px] leading-tight text-muted-foreground">{h.title}</span>
                   </div>
                 )
