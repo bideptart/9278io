@@ -107,7 +107,7 @@ function DashboardPanel() {
   ]
 
   return (
-    <div className="flex overflow-hidden rounded-[1.4rem] border border-white/70 bg-white shadow-[0_30px_80px_-24px_oklch(0.52_0.22_265/0.45)] ring-1 ring-black/[0.03]">
+    <div className="flex overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_40px_90px_-26px_oklch(0.52_0.22_265/0.5)] ring-1 ring-black/[0.04]">
       {/* Left nav rail */}
       <div className="hidden w-12 shrink-0 flex-col items-center gap-1.5 border-r border-border/70 bg-slate-50/80 py-4 sm:flex">
         {railIcons.map((Icon, i) => (
@@ -326,12 +326,12 @@ function HeroVisual() {
       ))}
 
       {/* Dashboard */}
-      <div className="relative z-10 lg:pt-10 lg:[perspective:1800px]">
+      <div className="relative z-10 lg:pt-12 lg:[perspective:1700px]">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="lg:[transform:rotateY(-7deg)_rotateX(3deg)]"
+          className="origin-center lg:[transform:rotateY(-9deg)_rotateX(4deg)_scale(1.02)]"
         >
           <DashboardPanel />
         </motion.div>
@@ -347,7 +347,7 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute -top-32 right-0 h-[620px] w-[820px] rounded-full bg-primary/[0.1] blur-[130px]" />
 
       <div className="relative w-full px-6 pb-20 pt-12 md:px-8 md:pb-28 md:pt-16">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
+        <div className="grid items-stretch gap-14 lg:grid-cols-2 lg:gap-12">
 
           {/* ── Left ── */}
           <div className="flex flex-col">
@@ -427,8 +427,8 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* Stats card */}
-            <ScrollReveal className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:grid-cols-4">
+            {/* Stats card — pinned to the bottom so it aligns with the dashboard */}
+            <ScrollReveal className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:grid-cols-4 lg:mt-auto">
               {highlights.map((h) => {
                 const Icon = h.icon
                 return (
@@ -445,7 +445,7 @@ export function Hero() {
           </div>
 
           {/* ── Right: hero visual ── */}
-          <div id="demo-audio" className="scroll-mt-24">
+          <div id="demo-audio" className="flex scroll-mt-24 items-center justify-center lg:pt-8">
             <HeroVisual />
           </div>
         </div>
