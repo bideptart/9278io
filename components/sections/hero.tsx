@@ -341,7 +341,7 @@ export function Hero() {
       {/* Glow */}
       <div aria-hidden className="pointer-events-none absolute -top-32 right-0 h-[620px] w-[820px] rounded-full bg-primary/[0.1] blur-[130px]" />
 
-      <div className="relative w-full px-6 pb-20 pt-12 md:px-8 md:pb-28 md:pt-16">
+      <div className="relative w-full px-6 pb-20 pt-4 md:px-8 md:pb-28 md:pt-6">
         <div className="grid items-stretch gap-14 lg:grid-cols-2 lg:gap-12">
 
           {/* ── Left ── */}
