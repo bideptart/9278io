@@ -36,10 +36,9 @@ const journey = [
 const railIcons = [PhoneCall, MessageSquare, Users, CalendarCheck, BarChart3]
 
 const floatingChips = [
-  { icon: Globe,        title: "10+ Indian", sub: "Languages",     color: "text-blue-600",    pos: "right-0 top-[6%]" },
-  { icon: Headphones,   title: "24/7",       sub: "Always On",     color: "text-emerald-600", pos: "-right-3 top-[32%]" },
-  { icon: CalendarCheck,title: "Smart",      sub: "Appointments",  color: "text-violet-600",  pos: "right-0 top-[58%]" },
-  { icon: ShieldCheck,  title: "Compliant",  sub: "TRAI/DNC/DPDP", color: "text-orange-600",  pos: "right-4 top-[82%]" },
+  { icon: Globe,        title: "10+ Indian", sub: "Languages",    color: "text-blue-600",    pos: "right-0 top-[8%]" },
+  { icon: Headphones,   title: "24/7",       sub: "Always On",    color: "text-emerald-600", pos: "-right-3 top-[40%]" },
+  { icon: CalendarCheck,title: "Smart",      sub: "Appointments", color: "text-violet-600",  pos: "-left-4 top-[58%]" },
 ]
 
 /* ── Small animated audio bars ── */
