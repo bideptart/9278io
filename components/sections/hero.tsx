@@ -116,13 +116,13 @@ function Waveform() {
   // Deterministic per-bar profile so SSR and client match; animation runs after mount.
   const bars = Array.from({ length: 36 }, (_, i) => 5 + ((i * 13) % 22))
   return (
-    <div className="flex items-center justify-center gap-[3px] overflow-hidden border-b border-border bg-gradient-to-r from-primary/[0.04] via-primary/[0.09] to-primary/[0.04] px-5 py-3">
+    <div className="flex h-14 items-end justify-center gap-[3px] overflow-hidden border-b border-border bg-gradient-to-r from-primary/[0.04] via-primary/[0.09] to-primary/[0.04] px-5">
       {bars.map((h, i) => (
         <motion.span
           key={i}
           className="w-[3px] shrink-0 rounded-full bg-gradient-to-t from-primary/40 to-primary"
-          style={{ height: h }}
-          animate={{ scaleY: [0.4, 1.6, 0.7, 1.3, 0.4] }}
+          style={{ height: h, transformOrigin: "bottom" }}
+          animate={{ scaleY: [0.45, 1, 0.65, 0.9, 0.45] }}
           transition={{ duration: 1 + (i % 6) * 0.18, repeat: Infinity, ease: "easeInOut", delay: (i % 9) * 0.07 }}
         />
       ))}
@@ -321,12 +321,12 @@ export function Hero() {
         <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
 
           {/* Left: content */}
-          <div>
+          <div className="flex h-full flex-col">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
             >
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
               AI Voice Receptionist
@@ -415,8 +415,8 @@ export function Hero() {
               })}
             </div>
 
-            {/* Stats strip — sits below the highlights, same column width */}
-            <ScrollReveal className="mt-8 grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white sm:grid-cols-4 sm:divide-y-0">
+            {/* Stats strip — pinned to the bottom so it aligns with the audio demo */}
+            <ScrollReveal className="mt-auto grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white sm:grid-cols-4 sm:divide-y-0">
               {stats.map((stat) => (
                 <AnimatedStat key={stat.label} {...stat} />
               ))}
