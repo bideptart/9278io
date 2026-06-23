@@ -386,7 +386,7 @@ export function Hero() {
         </div>
 
         {/* ── Stats strip ── */}
-        <ScrollReveal className="mx-auto mt-14 grid max-w-3xl grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white md:grid-cols-4 md:divide-y-0">
+        <ScrollReveal className="mt-14 grid max-w-3xl grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white md:grid-cols-4 md:divide-y-0">
           {stats.map((stat) => (
             <AnimatedStat key={stat.label} {...stat} />
           ))}
