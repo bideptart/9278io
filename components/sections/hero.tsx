@@ -36,10 +36,10 @@ const journey = [
 const railIcons = [PhoneCall, MessageSquare, Users, CalendarCheck, BarChart3]
 
 const floatingChips = [
-  { icon: Globe,        title: "10+ Indian", sub: "Languages",        color: "text-blue-600",    pos: "right-[-4%] top-[12%]" },
-  { icon: Headphones,   title: "24/7",       sub: "Always On",        color: "text-emerald-600", pos: "right-[-7%] top-[38%]" },
-  { icon: CalendarCheck,title: "Smart",      sub: "Appointments",     color: "text-violet-600",  pos: "right-[-4%] top-[64%]" },
-  { icon: ShieldCheck,  title: "Compliant",  sub: "TRAI/DNC/DPDP",    color: "text-orange-600",  pos: "right-[2%] bottom-[2%]" },
+  { icon: Globe,        title: "10+ Indian", sub: "Languages",     color: "text-blue-600",    pos: "right-0 top-[6%]" },
+  { icon: Headphones,   title: "24/7",       sub: "Always On",     color: "text-emerald-600", pos: "-right-3 top-[32%]" },
+  { icon: CalendarCheck,title: "Smart",      sub: "Appointments",  color: "text-violet-600",  pos: "right-0 top-[58%]" },
+  { icon: ShieldCheck,  title: "Compliant",  sub: "TRAI/DNC/DPDP", color: "text-orange-600",  pos: "right-4 top-[82%]" },
 ]
 
 /* ── Small animated audio bars ── */
@@ -183,9 +183,6 @@ function DashboardPanel() {
               </div>
             )
           })}
-          <div className="hidden text-primary/70 lg:block">
-            <Bars count={9} />
-          </div>
         </div>
 
         {/* Call journey */}
@@ -290,51 +287,50 @@ function FloatingChip({ chip, index }: { chip: typeof floatingChips[number]; ind
 /* ── Composed hero visual (orb + rings + chips + dashboard) ── */
 function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[540px]">
-      {/* Orbital rings + ripples — decorative, lg only */}
+    <div className="relative mx-auto w-full max-w-[560px] lg:max-w-none">
+      {/* Decorations — centered on the panel (left ~72% of the area), lg only */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden>
-        {/* soft glow behind everything */}
-        <div className="absolute left-1/2 top-1/3 size-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.12] blur-[90px]" />
-        {/* static orbit paths */}
-        <div className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/15" style={{ width: 660, height: 360 }} />
-        <div className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/10" style={{ width: 520, height: 250 }} />
-        {/* a dot that travels each orbit */}
+        <div className="absolute left-[38%] top-[36%] size-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.12] blur-[90px]" />
+        <div className="absolute left-[38%] top-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/15" style={{ width: 600, height: 340 }} />
+        <div className="absolute left-[38%] top-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/10" style={{ width: 460, height: 230 }} />
         <motion.div
-          className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2"
-          style={{ width: 660, height: 360 }}
+          className="absolute left-[38%] top-[38%] -translate-x-1/2 -translate-y-1/2"
+          style={{ width: 600, height: 340 }}
           animate={{ rotate: 360 }}
           transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         >
           <span className="absolute -top-1 left-1/2 size-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_10px_oklch(0.52_0.22_265/0.8)]" />
         </motion.div>
-        {/* concentric ripples under the panel */}
-        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2">
-          {[280, 460, 640].map((s) => (
+        <div className="absolute -bottom-10 left-[38%] -translate-x-1/2">
+          {[260, 420, 580].map((s) => (
             <div key={s} className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border border-primary/[0.08]" style={{ width: s, height: s }} />
           ))}
         </div>
       </div>
 
-      {/* Audio orb */}
-      <div className="absolute -top-14 left-1/2 z-20 hidden -translate-x-1/2 lg:block">
-        <AudioOrb />
-      </div>
-
-      {/* Floating chips */}
+      {/* Floating chips — in the right gutter, beside the panel */}
       {floatingChips.map((chip, i) => (
         <FloatingChip key={chip.title} chip={chip} index={i} />
       ))}
 
-      {/* Dashboard */}
-      <div className="relative z-10 lg:pt-12 lg:[perspective:1700px]">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="origin-center lg:[transform:rotateY(-9deg)_rotateX(4deg)_scale(1.02)]"
-        >
-          <DashboardPanel />
-        </motion.div>
+      {/* Panel + orb — contained to the left ~72% so chips have room on the right */}
+      <div className="relative z-10 w-full lg:w-[74%]">
+        {/* Audio orb floats above the panel */}
+        <div className="absolute -top-6 left-1/2 z-20 hidden -translate-x-1/2 lg:block">
+          <AudioOrb />
+        </div>
+        {/* tilt lives on a static wrapper so the entry animation can't override it */}
+        <div className="lg:pt-24 lg:[perspective:1700px]">
+          <div className="lg:[transform:rotateY(-9deg)_rotateX(4deg)]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <DashboardPanel />
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   )
