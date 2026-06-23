@@ -276,9 +276,9 @@ export function Hero() {
         />
       ))}
 
-      <div className="relative w-full px-6 pb-20 pt-14 md:px-8 md:pb-28 md:pt-20">
+      <div className="relative w-full px-6 pb-20 pt-8 md:px-8 md:pb-28 md:pt-12">
         {/* ── Top: positioning + live call ── */}
-        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16">
 
           {/* Left: content */}
           <div>
@@ -384,9 +384,9 @@ export function Hero() {
           </div>
 
           {/* Right: live agent console + audio demo */}
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal delay={0.2} className="flex h-full flex-col">
             <LiveCallPanel />
-            <div id="demo-audio" className="mt-4 scroll-mt-24">
+            <div id="demo-audio" className="mt-auto scroll-mt-24 pt-4">
               <AudioPlayer src="/audio/demo.mp3" title="Hear our agent in action" />
             </div>
           </ScrollReveal>
