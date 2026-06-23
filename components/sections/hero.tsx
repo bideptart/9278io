@@ -106,7 +106,7 @@ function DashboardPanel() {
   ]
 
   return (
-    <div className="flex overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-[0_40px_90px_-26px_oklch(0.52_0.22_265/0.5)] ring-1 ring-black/[0.04]">
+    <div className="flex overflow-hidden rounded-[2.4rem] border border-white/70 bg-white shadow-[0_44px_100px_-26px_oklch(0.52_0.22_265/0.5)] ring-1 ring-black/[0.04]">
       {/* Left nav rail */}
       <div className="hidden w-12 shrink-0 flex-col items-center gap-1.5 border-r border-border/70 bg-slate-50/80 py-4 sm:flex">
         {railIcons.map((Icon, i) => (
@@ -289,18 +289,18 @@ function HeroVisual() {
     <div className="relative mx-auto w-full max-w-[560px] lg:max-w-none">
       {/* Decorations — centered on the panel (left ~72% of the area), lg only */}
       <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden>
-        <div className="absolute left-[38%] top-[36%] size-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.12] blur-[90px]" />
-        <div className="absolute left-[38%] top-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/15" style={{ width: 600, height: 340 }} />
-        <div className="absolute left-[38%] top-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/10" style={{ width: 460, height: 230 }} />
+        <div className="absolute left-[44%] top-[36%] size-[440px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.12] blur-[90px]" />
+        <div className="absolute left-[44%] top-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/15" style={{ width: 600, height: 340 }} />
+        <div className="absolute left-[44%] top-[38%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-primary/10" style={{ width: 460, height: 230 }} />
         <motion.div
-          className="absolute left-[38%] top-[38%] -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-[44%] top-[38%] -translate-x-1/2 -translate-y-1/2"
           style={{ width: 600, height: 340 }}
           animate={{ rotate: 360 }}
           transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
         >
           <span className="absolute -top-1 left-1/2 size-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_10px_oklch(0.52_0.22_265/0.8)]" />
         </motion.div>
-        <div className="absolute -bottom-10 left-[38%] -translate-x-1/2">
+        <div className="absolute -bottom-10 left-[44%] -translate-x-1/2">
           {[260, 420, 580].map((s) => (
             <div key={s} className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border border-primary/[0.08]" style={{ width: s, height: s }} />
           ))}
@@ -312,15 +312,15 @@ function HeroVisual() {
         <FloatingChip key={chip.title} chip={chip} index={i} />
       ))}
 
-      {/* Panel + orb — contained to the left ~72% so chips have room on the right */}
-      <div className="relative z-10 w-full lg:w-[74%]">
+      {/* Panel + orb — contained to the left so chips have room on the right */}
+      <div className="relative z-10 w-full lg:w-[86%]">
         {/* Audio orb floats above the panel */}
         <div className="absolute -top-6 left-1/2 z-20 hidden -translate-x-1/2 lg:block">
           <AudioOrb />
         </div>
         {/* tilt lives on a static wrapper so the entry animation can't override it */}
-        <div className="lg:pt-24 lg:[perspective:1700px]">
-          <div className="lg:[transform:rotateY(-9deg)_rotateX(4deg)]">
+        <div className="lg:pt-24 lg:[perspective:1800px]">
+          <div className="lg:[transform:rotateY(-8deg)_rotateX(3deg)_scale(1.06)]">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
