@@ -255,8 +255,6 @@ function LiveCallPanel() {
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border/50">
-      {/* Grid background */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,oklch(0.52_0.22_265/0.06)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.52_0.22_265/0.06)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
       {/* Glow */}
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-primary/[0.12] blur-[120px]" />
       {/* Floating particles */}
