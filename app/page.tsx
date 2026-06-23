@@ -3,7 +3,6 @@ import { SiteFooter } from "@/components/site-footer"
 import { Hero } from "@/components/sections/hero"
 import { PricingFeature } from "@/components/sections/pricing-feature"
 import { Features } from "@/components/sections/features"
-import { Platform } from "@/components/sections/platform"
 import { Industries } from "@/components/sections/industries"
 import { HowItWorks } from "@/components/sections/how-it-works"
 import { FAQ } from "@/components/sections/faq"
@@ -21,7 +20,6 @@ export default function HomePage() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <Platform />
         <Features />
         <HowItWorks />
         <Industries />
