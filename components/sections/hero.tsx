@@ -374,6 +374,13 @@ export function Hero() {
                 )
               })}
             </div>
+
+            {/* Stats strip — sits below the highlights, same column width */}
+            <ScrollReveal className="mt-8 grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white sm:grid-cols-4 sm:divide-y-0">
+              {stats.map((stat) => (
+                <AnimatedStat key={stat.label} {...stat} />
+              ))}
+            </ScrollReveal>
           </div>
 
           {/* Right: live agent console + audio demo */}
@@ -384,13 +391,6 @@ export function Hero() {
             </div>
           </ScrollReveal>
         </div>
-
-        {/* ── Stats strip ── */}
-        <ScrollReveal className="mt-14 grid max-w-3xl grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white md:grid-cols-4 md:divide-y-0">
-          {stats.map((stat) => (
-            <AnimatedStat key={stat.label} {...stat} />
-          ))}
-        </ScrollReveal>
       </div>
     </section>
   )
