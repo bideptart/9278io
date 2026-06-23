@@ -95,6 +95,47 @@ function AnimatedStat({ numeric, prefix = "", suffix = "", label, decimals = 0 }
   )
 }
 
+function Equalizer() {
+  const bars = [0.45, 0.8, 0.35, 1, 0.6, 0.85, 0.5]
+  return (
+    <div className="flex h-4 items-end gap-[2px]" aria-hidden>
+      {bars.map((h, i) => (
+        <motion.span
+          key={i}
+          className="w-[2.5px] rounded-full bg-primary"
+          animate={{ scaleY: [h, h * 0.4, h] }}
+          transition={{ duration: 0.6 + i * 0.07, repeat: Infinity, ease: "easeInOut" }}
+          style={{ height: "100%", transformOrigin: "bottom", scaleY: h }}
+        />
+      ))}
+    </div>
+  )
+}
+
+function LiveMetrics() {
+  const [ms, setMs] = useState(288)
+  useEffect(() => {
+    let i = 0
+    const t = setInterval(() => { i += 1; setMs(278 + Math.round(20 * Math.abs(Math.sin(i / 2)))) }, 900)
+    return () => clearInterval(t)
+  }, [])
+  const items = [
+    { label: "Latency", value: `${ms}ms`, accent: "text-primary" },
+    { label: "Confidence", value: "98%", accent: "text-emerald-600" },
+    { label: "Sentiment", value: "Positive", accent: "text-violet-600" },
+  ]
+  return (
+    <div className="grid grid-cols-3 divide-x divide-border border-t border-border bg-slate-50/60">
+      {items.map((m) => (
+        <div key={m.label} className="flex flex-col items-center gap-0.5 px-2 py-2.5">
+          <span className={`text-sm font-bold tabular-nums ${m.accent}`}>{m.value}</span>
+          <span className="text-[9px] font-medium uppercase tracking-wider text-muted-foreground">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function LiveCallPanel() {
   const [step, setStep] = useState(0)
   const [tKey, setTKey] = useState(0)
@@ -123,10 +164,13 @@ function LiveCallPanel() {
             <p className="text-[10px] text-muted-foreground">Hindi · Inbound</p>
           </div>
         </div>
-        <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
-          <motion.span className="h-1.5 w-1.5 rounded-full bg-emerald-500" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
-          Live
-        </span>
+        <div className="flex items-center gap-3">
+          <Equalizer />
+          <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
+            <motion.span className="h-1.5 w-1.5 rounded-full bg-emerald-500" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1, repeat: Infinity }} />
+            Live
+          </span>
+        </div>
       </div>
 
       {/* Transcript */}
@@ -162,6 +206,9 @@ function LiveCallPanel() {
           </span>
         </motion.div>
       </div>
+
+      {/* Live metrics */}
+      <LiveMetrics />
 
       {/* Step pipeline */}
       <div className="border-t border-border px-5 py-4">
@@ -306,9 +353,30 @@ export function Hero() {
             >
               Per-second billing · 10+ Indian languages · Sub-second latency · No contracts
             </motion.p>
+
+            {/* Highlights — fill the left column to balance the console */}
+            <div className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+              {highlights.map((h, i) => {
+                const Icon = h.icon
+                return (
+                  <ScrollReveal key={h.title} delay={0.05 * i} className="flex items-start gap-3.5">
+                    <span className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${h.color}`}>
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className={`text-sm font-bold ${h.statColor}`}>{h.stat}</span>
+                        <span className="font-semibold text-foreground">{h.title}</span>
+                      </div>
+                      <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{h.desc}</p>
+                    </div>
+                  </ScrollReveal>
+                )
+              })}
+            </div>
           </div>
 
-          {/* Right: live call panel + audio demo */}
+          {/* Right: live agent console + audio demo */}
           <ScrollReveal delay={0.2}>
             <LiveCallPanel />
             <div id="demo-audio" className="mt-4 scroll-mt-24">
@@ -317,29 +385,8 @@ export function Hero() {
           </ScrollReveal>
         </div>
 
-        {/* ── Highlights ── */}
-        <div className="mt-16 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-          {highlights.map((h, i) => {
-            const Icon = h.icon
-            return (
-              <ScrollReveal key={h.title} delay={0.05 * i} className="flex items-start gap-4">
-                <span className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${h.color}`}>
-                  <Icon className="h-5 w-5" />
-                </span>
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <span className={`text-sm font-bold ${h.statColor}`}>{h.stat}</span>
-                    <span className="font-semibold text-foreground">{h.title}</span>
-                  </div>
-                  <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{h.desc}</p>
-                </div>
-              </ScrollReveal>
-            )
-          })}
-        </div>
-
         {/* ── Stats strip ── */}
-        <ScrollReveal className="mx-auto mt-12 grid max-w-3xl grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white md:grid-cols-4 md:divide-y-0">
+        <ScrollReveal className="mx-auto mt-14 grid max-w-3xl grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border-2 border-border bg-white md:grid-cols-4 md:divide-y-0">
           {stats.map((stat) => (
             <AnimatedStat key={stat.label} {...stat} />
           ))}
