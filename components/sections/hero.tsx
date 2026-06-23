@@ -231,7 +231,7 @@ export function Hero() {
 
       <div className="relative w-full px-6 pb-20 pt-14 md:px-8 md:pb-28 md:pt-20">
         {/* ── Top: positioning + live call ── */}
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
 
           {/* Left: content */}
           <div>
