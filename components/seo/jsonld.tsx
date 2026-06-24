@@ -19,7 +19,7 @@ export function OrganizationJsonLd() {
         "@type": "Organization",
         name: SITE.name,
         url: SITE.url,
-        logo: absoluteUrl("/9278-logo.png"),
+        logo: absoluteUrl("/darktheme.png"),
         sameAs: ["https://voice.9278.io/signin"],
       }}
     />

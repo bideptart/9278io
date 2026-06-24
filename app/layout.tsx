@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: "/logo-black.png",
-    apple: "/logo-black.png",
+    icon: "/darktheme.png",
+    apple: "/darktheme.png",
   },
 }
 

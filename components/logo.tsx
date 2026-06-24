@@ -8,7 +8,7 @@ type LogoProps = {
 }
 
 export function Logo({ className, height = 40, priority = false }: LogoProps) {
-  const width = Math.round(height * 1.5)
+  const width = Math.round(height * (539 / 462))
 
   return (
     <span
@@ -18,7 +18,7 @@ export function Logo({ className, height = 40, priority = false }: LogoProps) {
       style={{ height }}
     >
       <Image
-        src="/logo-black.png"
+        src="/darktheme.png"
         alt="9278.io"
         width={width}
         height={height}
