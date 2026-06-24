@@ -50,11 +50,11 @@ export default function IndustriesPage() {
         />
         <div className="w-full px-6 pb-20 pt-10 md:px-8 md:pb-28 md:pt-14">
           <ScrollReveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+            <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-2 text-[clamp(9px,2.9vw,13px)] font-semibold uppercase tracking-normal text-primary sm:whitespace-normal sm:px-5 sm:text-sm sm:tracking-wider">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Pre-tuned for the calls you actually take
             </span>
-            <h1 className="mt-6 whitespace-nowrap text-balance text-[4.8vw] font-bold tracking-tight sm:whitespace-normal sm:text-5xl md:text-6xl">
+            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               Built for every kind of phone call.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
