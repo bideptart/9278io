@@ -1,9 +1,7 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Target, Users, Zap, MapPin } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -35,13 +33,6 @@ const values = [
     description:
       "From a single agent booking appointments to a BPO running 1,000 concurrent calls — the same platform handles both. No re-architecture, no ceiling.",
   },
-]
-
-const milestones = [
-  { year: "2023", event: "Founded in Bengaluru with a mission to make AI voice accessible in Indian languages." },
-  { year: "2024 Q1", event: "Launched Hindi, Tamil, and Telugu voice agents. First 50 customers in BFSI and real estate." },
-  { year: "2024 Q3", event: "Expanded to 10+ Indian languages. Crossed 1 million calls automated." },
-  { year: "2025", event: "Serving 500+ businesses across BFSI, EdTech, e-commerce, and BPO sectors nationwide." },
 ]
 
 export default function AboutPage() {
@@ -129,55 +120,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="border-t border-border/50">
-        <div className="w-full px-6 py-20 md:px-8 md:py-28">
-          <ScrollReveal className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">How we got here</p>
-            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Our journey</h2>
-          </ScrollReveal>
-
-          <div className="mt-12 space-y-6">
-            {milestones.map((m) => (
-              <ScrollReveal key={m.year}>
-                <div className="flex gap-6 rounded-2xl border border-border bg-white p-6">
-                  <span className="mt-0.5 shrink-0 rounded-lg border border-primary/20 bg-primary/[0.08] px-3 py-1 text-xs font-bold text-primary">
-                    {m.year}
-                  </span>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{m.event}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="w-full px-6 pb-24 md:px-8">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-xl">
-              <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
-                Want to build with us?
-              </h3>
-              <p className="mt-3 text-muted-foreground">
-                We&apos;re hiring engineers, voice ML researchers, and customer-success leads across India.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/contact">Contact us</Link>
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
       <RelatedLinks
         heading="Explore 9278.io"
         description="Product, pricing, and industries — everything in one place."
         links={[
-          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹3,000, Growth ₹8,800, Scale ₹30,000. Prices in ₹, billed once as wallet credit." },
+          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Prices in ₹, billed once as wallet credit." },
           { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, EdTech, and more." },
         ]}
       />
