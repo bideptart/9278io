@@ -15,7 +15,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — AI voice agents that actually sound human`,
+    default: `${SITE.name} — AI Voice Agents for India`,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE.url,
     siteName: SITE.name,
-    title: `${SITE.name} — AI voice agents that actually sound human`,
+    title: `${SITE.name} — AI Voice Agents for India`,
     description: SITE.description,
     locale: SITE.locale,
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: SITE.twitter,
     creator: SITE.twitter,
-    title: `${SITE.name} — AI voice agents that actually sound human`,
+    title: `${SITE.name} — AI Voice Agents for India`,
     description: SITE.description,
   },
   robots: { index: true, follow: true },
