@@ -113,7 +113,7 @@ export default function LegalIndexPage() {
         </div>
 
         <ScrollReveal className="mt-12 rounded-2xl border-2 border-primary/20 bg-primary/[0.04] p-6 text-sm text-muted-foreground md:p-7">
-          <p>
+          <p className="break-words">
             For privacy or data-protection requests, email{" "}
             <a href="mailto:privacy@9278.io" className="font-semibold text-primary underline-offset-4 hover:underline">
               privacy@9278.io

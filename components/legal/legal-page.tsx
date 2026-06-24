@@ -46,7 +46,7 @@ function parseBody(raw: string): { preamble: string; sections: Section[]; contac
 function ContentBlocks({ text, className }: { text: string; className?: string }) {
   const blocks = text.split(/\n{2,}/).filter((b) => b.trim())
   return (
-    <div className={className ?? "space-y-3 text-sm leading-relaxed text-muted-foreground"}>
+    <div className={`${className ?? "space-y-3 text-sm leading-relaxed text-muted-foreground"} break-words`}>
       {blocks.map((block, bi) => {
         const lines = block.split("\n")
         const bulletStart = lines.findIndex((l) => /^\s*•/.test(l))

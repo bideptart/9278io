@@ -77,7 +77,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
             {post.title}
           </h1>
           {post.lead ? (
-            <p className="mt-5 text-pretty text-lg leading-relaxed text-muted-foreground">{post.lead}</p>
+            <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">{post.lead}</p>
           ) : null}
         </div>
       </header>
@@ -94,7 +94,8 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
 
       {/* ── Article body ── */}
       <article
-        className="w-full px-6 md:px-12 lg:px-20 py-12 text-base leading-[1.8] text-foreground/80 md:py-16 md:text-[17px]
+        className="w-full break-words px-6 md:px-12 lg:px-20 py-12 text-base leading-[1.8] text-foreground/80 md:py-16 md:text-[17px]
+          [&_pre]:mt-5 [&_pre]:max-w-full [&_pre]:overflow-x-auto
           [&_h2]:mt-12 [&_h2]:scroll-mt-24 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground md:[&_h2]:text-[28px]
           [&_h3]:mt-9 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground
           [&_p]:mt-5
