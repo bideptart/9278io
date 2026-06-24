@@ -8,7 +8,7 @@ type LogoProps = {
 }
 
 export function Logo({ className, height = 40, priority = false }: LogoProps) {
-  const width = Math.round(height * (539 / 462))
+  const width = Math.round(height * (422 / 183))
 
   return (
     <span
