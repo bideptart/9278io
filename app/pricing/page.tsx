@@ -62,7 +62,7 @@ export default async function PricingPage({
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Pay as you go · INR pricing · GST invoices
             </span>
-            <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
+            <h1 className="mt-6 whitespace-nowrap text-balance text-3xl font-bold tracking-tight sm:whitespace-normal sm:text-4xl md:text-6xl">
               Pick your plan.
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
