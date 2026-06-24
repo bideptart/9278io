@@ -71,6 +71,13 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
     port,
     secure,
     auth: { user, pass },
+    // Pool so the notification and the acknowledgement reuse ONE connection.
+    // Without this each message opens a fresh TLS+auth handshake, and the
+    // second one (the auto-reply) tends to hit the serverless timeout or get
+    // throttled — which is why the acknowledgement wasn't arriving.
+    pool: true,
+    maxConnections: 1,
+    maxMessages: 100,
     // Don't let a slow SMTP server hang the serverless function.
     connectionTimeout: 10_000,
     greetingTimeout: 10_000,
@@ -150,9 +157,15 @@ export async function submitContact(input: ContactInput): Promise<ContactState> 
       subject: "We've received your message — 9278.io",
       text: ackText,
       html: ackHtml,
+      headers: {
+        "Auto-Submitted": "auto-replied",
+        "X-Auto-Response-Suppress": "All",
+      },
     })
   } catch (err) {
     console.error("[contact] acknowledgement auto-reply failed:", err)
+  } finally {
+    transporter.close()
   }
 
   return { status: "success", message: "Thanks for reaching out! Your message is on its way — we'll get back to you soon." }

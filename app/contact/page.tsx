@@ -16,6 +16,10 @@ export const metadata: Metadata = pageSeo({
   path: "/contact",
 })
 
+// The contact action sends two emails (notification + acknowledgement);
+// give it more than the short default so neither send is cut off.
+export const maxDuration = 30
+
 const channels = [
   {
     icon: Mail,
