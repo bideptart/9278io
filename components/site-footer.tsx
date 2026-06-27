@@ -48,7 +48,7 @@ export function SiteFooter() {
           {/* Brand */}
           <div className="md:col-span-3">
             <Link href="/" aria-label="9278.io home">
-              <Image src="/whitetheme.png" alt="9278.io" width={69} height={30} style={{ height: 30, width: "auto" }} />
+              <Image src="/whitetheme.png" alt="9278.io" width={97} height={42} style={{ height: 42, width: "auto" }} />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
               Native-audio voice agents for Indian businesses. Sub-second latency, self-hosted dashboard,
