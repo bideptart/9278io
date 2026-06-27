@@ -8,11 +8,12 @@ export type BlogPostSummary = {
   category: string
   publishedAt: string
   readTime: string
+  /** Inner HTML of the post's hero figure (an <img> or inline <svg>). */
+  heroHtml: string
 }
 
 export type BlogPost = BlogPostSummary & {
   lead: string
-  heroHtml: string
   articleHtml: string
 }
 
@@ -168,6 +169,7 @@ export async function getAllBlogPostSummaries(): Promise<BlogPostSummary[]> {
         category: normalizeWhitespace(parsed.category),
         publishedAt: normalizeWhitespace(parsed.publishedAt),
         readTime: normalizeWhitespace(parsed.readTime),
+        heroHtml: parsed.heroHtml,
       }
     }),
   )

@@ -74,30 +74,38 @@ export default async function BlogPage() {
           <ScrollReveal className="mb-6">
             <Link
               href={`/blog/${featured.slug}`}
-              className="group block overflow-hidden rounded-3xl border-2 border-primary/20 bg-gradient-to-br from-primary/[0.07] via-white to-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg md:p-10"
+              className="group block overflow-hidden rounded-3xl border-2 border-primary/20 bg-gradient-to-br from-primary/[0.07] via-white to-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
             >
-              <div className="flex items-center gap-3">
-                <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${catClass(featured.category)}`}>
-                  {featured.category}
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">Featured</span>
-              </div>
-              <h2 className="mt-4 max-w-3xl text-balance text-2xl font-bold leading-tight tracking-tight transition-colors group-hover:text-primary md:text-3xl">
-                {featured.title}
-              </h2>
-              <p className="mt-3 max-w-2xl text-pretty leading-relaxed text-muted-foreground">{featured.description}</p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
-                <span>{featured.publishedAt}</span>
-                {featured.readTime ? (
-                  <>
-                    <span aria-hidden>·</span>
-                    <span>{featured.readTime}</span>
-                  </>
-                ) : null}
-                <span className="ml-auto inline-flex items-center gap-1.5 font-semibold text-primary">
-                  Read article
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                </span>
+              <div className="grid items-center gap-2 md:grid-cols-2 md:gap-8">
+                <div className="order-last p-7 md:order-first md:p-10">
+                  <div className="flex items-center gap-3">
+                    <span className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold ${catClass(featured.category)}`}>
+                      {featured.category}
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary">Featured</span>
+                  </div>
+                  <h2 className="mt-4 text-balance text-2xl font-bold leading-tight tracking-tight transition-colors group-hover:text-primary md:text-3xl">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">{featured.description}</p>
+                  <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
+                    <span>{featured.publishedAt}</span>
+                    {featured.readTime ? (
+                      <>
+                        <span aria-hidden>·</span>
+                        <span>{featured.readTime}</span>
+                      </>
+                    ) : null}
+                    <span className="ml-auto inline-flex items-center gap-1.5 font-semibold text-primary">
+                      Read article
+                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className="flex items-center justify-center overflow-hidden p-6 md:py-8 md:pr-8 [&_img]:w-full [&_img]:!rounded-2xl [&_svg]:w-full [&_svg]:!rounded-2xl"
+                  dangerouslySetInnerHTML={{ __html: featured.heroHtml }}
+                />
               </div>
             </Link>
           </ScrollReveal>
@@ -109,27 +117,33 @@ export default async function BlogPage() {
             <ScrollReveal key={post.slug} delay={i * 0.04} className="h-full">
               <Link
                 href={`/blog/${post.slug}`}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-slate-50/60 hover:shadow-md"
+                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md"
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                {/* Hero banner */}
+                <div
+                  className="overflow-hidden border-b border-border bg-gradient-to-br from-slate-50 to-white [&_img]:!block [&_img]:!w-full [&_img]:!rounded-none [&_svg]:block [&_svg]:w-full"
+                  dangerouslySetInnerHTML={{ __html: post.heroHtml }}
+                />
 
-                <div className="flex items-center justify-between">
-                  <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${catClass(post.category)}`}>
-                    {post.category}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{post.publishedAt}</span>
-                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center justify-between">
+                    <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${catClass(post.category)}`}>
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{post.publishedAt}</span>
+                  </div>
 
-                <div className="mt-4 flex-1">
-                  <h2 className="text-base font-bold leading-snug tracking-tight transition-colors group-hover:text-primary">
-                    {post.title}
-                  </h2>
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
-                </div>
+                  <div className="mt-4 flex-1">
+                    <h2 className="text-base font-bold leading-snug tracking-tight transition-colors group-hover:text-primary">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+                  </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
-                  <span>{post.readTime}</span>
-                  <ArrowRight className="size-3.5 text-primary transition-transform group-hover:translate-x-1" aria-hidden />
+                  <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
+                    <span>{post.readTime}</span>
+                    <ArrowRight className="size-3.5 text-primary transition-transform group-hover:translate-x-1" aria-hidden />
+                  </div>
                 </div>
               </Link>
             </ScrollReveal>
