@@ -7,7 +7,6 @@ const nav = {
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/pricing" },
     { label: "FAQ", href: "/faq" },
-    { label: "API Docs", href: "https://voice.9278.io/signin" },
     { label: "Dashboard", href: "https://voice.9278.io/signin" },
   ],
   Industries: [
