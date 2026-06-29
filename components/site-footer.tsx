@@ -1,6 +1,5 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Linkedin, Twitter, Youtube, Instagram } from "lucide-react"
 
 const nav = {
   Platform: [
@@ -31,13 +30,6 @@ const nav = {
   ],
 }
 
-const socials = [
-  { label: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
-  { label: "X / Twitter", icon: Twitter, href: "https://x.com" },
-  { label: "YouTube", icon: Youtube, href: "https://youtube.com" },
-  { label: "Instagram", icon: Instagram, href: "https://instagram.com" },
-]
-
 export function SiteFooter() {
   return (
     <footer className="bg-slate-900">
@@ -53,24 +45,6 @@ export function SiteFooter() {
               Native-audio voice agents for Indian businesses. Sub-second latency, self-hosted dashboard,
               Indian carrier connectivity — without the enterprise vendor markup.
             </p>
-            {/* Social links */}
-            <div className="mt-6 flex items-center gap-3">
-              {socials.map((s) => {
-                const Icon = s.icon
-                return (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-white/40 transition-colors hover:border-primary/40 hover:bg-primary/[0.12] hover:text-primary"
-                  >
-                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                  </a>
-                )
-              })}
-            </div>
           </div>
 
           {/* Nav columns */}

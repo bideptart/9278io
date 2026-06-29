@@ -48,8 +48,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: SITE.twitter,
-    creator: SITE.twitter,
     title: `${SITE.name} — AI Voice Agents for India`,
     description: SITE.description,
   },

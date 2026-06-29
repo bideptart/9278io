@@ -6,7 +6,6 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://9278.io",
   description:
     "Native-audio voice agents for Indian businesses. Sub-second latency on Jio/Airtel/BSNL/Vi, RAG over your docs, and a self-hosted control panel — without the enterprise vendor markup.",
-  twitter: "@9278io",
   locale: "en_IN",
 } as const
 
@@ -46,8 +45,6 @@ export function pageSeo({ title, description, path, image, noindex }: PageSeoInp
     },
     twitter: {
       card: "summary_large_image",
-      site: SITE.twitter,
-      creator: SITE.twitter,
       title,
       description: desc,
       images: [og],
