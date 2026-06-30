@@ -54,7 +54,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[360px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.16),transparent_70%)]"
         />
-        <div className="w-full px-6 md:px-12 lg:px-20 pt-12 pb-6 md:py-16">
+        <div className="mx-auto w-full max-w-5xl px-6 md:px-8 pt-12 pb-6 md:py-16">
           <Link
             href="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -84,9 +84,9 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
 
       {/* ── Hero image ── */}
       {post.heroHtml ? (
-        <div className="w-full px-6 md:px-12 lg:px-20 pt-4 md:pt-10">
+        <div className="mx-auto w-full max-w-5xl px-6 md:px-8 pt-4 md:pt-10">
           <div
-            className="overflow-hidden rounded-3xl border-2 border-border/70 bg-background shadow-sm [&_img]:block [&_img]:h-auto [&_img]:w-full [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
+            className="overflow-hidden rounded-3xl border-2 border-border bg-background shadow-sm [&_img]:block [&_img]:h-auto [&_img]:w-full [&_svg]:block [&_svg]:h-auto [&_svg]:w-full"
             dangerouslySetInnerHTML={{ __html: post.heroHtml }}
           />
         </div>
@@ -94,7 +94,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
 
       {/* ── Article body ── */}
       <article
-        className="w-full break-words px-6 md:px-12 lg:px-20 pb-12 pt-6 text-base leading-[1.8] text-foreground/80 md:py-16 md:text-[17px]
+        className="mx-auto w-full max-w-5xl break-words px-6 md:px-8 pb-12 pt-6 text-base leading-[1.8] text-foreground/80 md:py-16 md:text-[17px]
           [&_pre]:mt-5 [&_pre]:max-w-full [&_pre]:overflow-x-auto
           [&_h2]:mt-12 [&_h2]:scroll-mt-24 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground md:[&_h2]:text-[28px]
           [&_h3]:mt-9 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-foreground
@@ -107,7 +107,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           [&_table]:mt-7 [&_table]:w-full [&_table]:overflow-hidden [&_table]:rounded-xl [&_table]:border [&_table]:border-border [&_table]:text-[15px]
           [&_th]:bg-slate-50 [&_th]:px-4 [&_th]:py-2.5 [&_th]:text-left [&_th]:text-xs [&_th]:font-semibold [&_th]:uppercase [&_th]:tracking-wide [&_th]:text-foreground
           [&_td]:border-t [&_td]:border-border [&_td]:px-4 [&_td]:py-2.5
-          [&_figure]:mt-9 [&_figure]:overflow-hidden [&_figure]:rounded-2xl [&_figure]:border-2 [&_figure]:border-border/70 [&_figure]:bg-background
+          [&_figure]:mt-9 [&_figure]:overflow-hidden [&_figure]:rounded-2xl [&_figure]:border-2 [&_figure]:border-border [&_figure]:bg-background
           [&_img]:block [&_img]:h-auto [&_img]:w-full
           [&_svg]:block [&_svg]:h-auto [&_svg]:w-full
           [&_figcaption]:px-4 [&_figcaption]:py-3 [&_figcaption]:text-center [&_figcaption]:text-[13px] [&_figcaption]:italic [&_figcaption]:text-muted-foreground
@@ -124,7 +124,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
       />
 
       {/* ── Footer nav ── */}
-      <div className="w-full px-6 md:px-12 lg:px-20 pb-20">
+      <div className="mx-auto w-full max-w-5xl px-6 md:px-8 pb-20">
         <div className="flex items-center justify-between border-t border-border pt-6">
           <Link
             href="/blog"
