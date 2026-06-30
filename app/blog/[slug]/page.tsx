@@ -120,7 +120,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           [&_details]:mt-3 [&_details]:rounded-xl [&_details]:border-2 [&_details]:border-border/70 [&_details]:bg-white [&_details]:px-5 [&_details]:py-1
           [&_summary]:cursor-pointer [&_summary]:py-3 [&_summary]:font-semibold [&_summary]:text-foreground
           [&_.faq>h2]:mb-2"
-        dangerouslySetInnerHTML={{ __html: post.articleHtml }}
+        dangerouslySetInnerHTML={{ __html: post.articleHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ') }}
       />
 
       {/* ── Footer nav ── */}

@@ -122,7 +122,7 @@ export default async function BlogPage() {
                 {/* Hero banner */}
                 <div
                   className="overflow-hidden border-b border-border bg-gradient-to-br from-slate-50 to-white [&_img]:!block [&_img]:!w-full [&_img]:!rounded-none [&_svg]:block [&_svg]:w-full"
-                  dangerouslySetInnerHTML={{ __html: post.heroHtml }}
+                  dangerouslySetInnerHTML={{ __html: post.heroHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ') }}
                 />
 
                 <div className="flex flex-1 flex-col p-6">
