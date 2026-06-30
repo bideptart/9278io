@@ -49,10 +49,10 @@ export function SiteFooter() {
               href="https://voice.9278.io/signin"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors hover:border-primary/40 hover:bg-white/[0.1] hover:text-white"
+              className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/80 shadow-[0_0_24px_-2px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:border-primary/50 hover:bg-white/[0.1] hover:text-white hover:shadow-[0_0_32px_0_oklch(0.546_0.215_262.88/0.65)]"
             >
               Customer dashboard
-              <span aria-hidden>↗</span>
+              <span className="text-primary" aria-hidden>↗</span>
             </a>
           </div>
 
