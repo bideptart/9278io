@@ -45,6 +45,15 @@ export function SiteFooter() {
               Native-audio voice agents for Indian businesses. Sub-second latency, self-hosted dashboard,
               Indian carrier connectivity — without the enterprise vendor markup.
             </p>
+            <a
+              href="https://voice.9278.io/signin"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors hover:border-primary/40 hover:bg-white/[0.1] hover:text-white"
+            >
+              Customer dashboard
+              <span aria-hidden>↗</span>
+            </a>
           </div>
 
           {/* Nav columns */}
@@ -74,14 +83,6 @@ export function SiteFooter() {
           <p className="text-xs text-white/30">
             © {new Date().getFullYear()} 9278.io · All rights reserved.
           </p>
-          <a
-            href="https://voice.9278.io/signin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-primary/70 underline-offset-4 transition-colors hover:text-primary hover:underline"
-          >
-            Customer dashboard →
-          </a>
         </div>
       </div>
     </footer>
