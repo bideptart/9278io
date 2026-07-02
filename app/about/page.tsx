@@ -71,7 +71,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <MapPin className="size-4 text-primary" aria-hidden />
-              Bengaluru, India · Data centres in Mumbai &amp; Hyderabad
+              Mumbai
             </div>
           </ScrollReveal>
         </div>
