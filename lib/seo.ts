@@ -1,9 +1,21 @@
 import type { Metadata } from "next"
 
+/**
+ * Canonical site origin used for metadata (canonical URLs, Open Graph,
+ * metadataBase, robots, JSON-LD). A localhost/preview value must never leak
+ * into these, so anything pointing at localhost/127.0.0.1 falls back to the
+ * production domain.
+ */
+function resolveSiteUrl() {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
+  if (raw && !/^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(raw)) return raw
+  return "https://9278.io"
+}
+
 export const SITE = {
   name: "9278.io",
   domain: "9278.io",
-  url: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://9278.io",
+  url: resolveSiteUrl(),
   description:
     "Native-audio voice agents for Indian businesses. Sub-second latency on Jio/Airtel/BSNL/Vi, RAG over your docs, and a self-hosted control panel — without the enterprise vendor markup.",
   locale: "en_IN",
