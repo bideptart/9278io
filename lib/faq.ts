@@ -28,7 +28,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do my voice minutes expire?",
-        a: "Your plan is billed once as wallet credit. You can top up again any time as you scale usage.",
+        a: "Your plan is billed once as wallet credit, and your wallet credit and minutes are valid for 60 days from the date of top-up. You can top up again any time as you scale usage.",
       },
       {
         q: "Can I top up more than ₹30,000?",
@@ -40,7 +40,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       },
       {
         q: "Do you offer refunds?",
-        a: "If you experience a service issue we'll always make it right. Unused credit purchased within the last 14 days is refundable on request.",
+        a: "If you experience a service issue we'll always make it right. Unused wallet credit is refundable on request within 14 days of top-up, less any minutes already consumed; used minutes and number-rental fees are non-refundable. You can cancel any time from your dashboard or by emailing support@9278.io.",
       },
     ],
   },
