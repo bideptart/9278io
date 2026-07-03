@@ -54,6 +54,15 @@ export const metadata: Metadata = {
     description: SITE.description,
   },
   robots: { index: true, follow: true },
+  // Search-engine site verification via the HTML meta-tag method. Paste the
+  // token from Google Search Console / Bing Webmaster Tools into the env var
+  // (no code change needed). Renders nothing until set.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : {},
+  },
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
