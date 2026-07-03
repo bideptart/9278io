@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { formatPlanAgentNoun, formatPlanAgents, planAmountInr, type BillingPeriod, PLANS } from "@/lib/pricing"
 import { getStripe, isStripeConfigured } from "@/lib/stripe"
+import { PurchaseConversion } from "@/components/analytics/purchase-conversion"
 import { pageSeo } from "@/lib/seo"
 
 export const metadata: Metadata = pageSeo({
@@ -26,6 +27,7 @@ export default async function ThanksPage({
   const amountInr = plan ? planAmountInr(plan, billingPeriod) : null
 
   let amountPaid: number | null = null
+  let sessionCurrency: string | null = null
   let customerEmail: string | null = null
   let paid = false
   if (session_id && isStripeConfigured()) {
@@ -33,6 +35,7 @@ export default async function ThanksPage({
       const session = await getStripe().checkout.sessions.retrieve(session_id)
       paid = session.payment_status === "paid" || session.status === "complete"
       amountPaid = typeof session.amount_total === "number" ? session.amount_total / 100 : null
+      sessionCurrency = typeof session.currency === "string" ? session.currency.toUpperCase() : null
       customerEmail =
         session.customer_details?.email ?? (typeof session.customer_email === "string" ? session.customer_email : null)
     } catch {
@@ -43,6 +46,18 @@ export default async function ThanksPage({
   return (
     <main className="min-h-dvh bg-background text-foreground">
       <SiteHeader />
+
+      {/* ── CONVERSION EVENTS (Stripe path): get-started completion + purchase ──
+          Fires GA4 + Google Ads conversions once, only when the payment is
+          confirmed as paid. */}
+      {paid && (
+        <PurchaseConversion
+          value={amountPaid ?? undefined}
+          currency={sessionCurrency ?? "INR"}
+          transactionId={session_id}
+          plan={plan?.name}
+        />
+      )}
 
       <section className="mx-auto flex w-full max-w-2xl flex-col items-center px-4 py-24 text-center md:px-6 md:py-32">
         <span className="grid size-14 place-items-center rounded-full bg-primary/15 text-primary">

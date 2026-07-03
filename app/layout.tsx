@@ -5,6 +5,8 @@ import { Suspense } from "react"
 import { SITE } from "@/lib/seo"
 import { OrganizationJsonLd, WebsiteJsonLd } from "@/components/seo/jsonld"
 import { PageviewTracker } from "@/components/analytics/pageview-tracker"
+import { GoogleTags } from "@/components/analytics/google-tags"
+import { CallTracking } from "@/components/analytics/call-tracking"
 // Lazy-loaded inside a thin client wrapper — the chat widget pulls in
 // motion + lucide and doesn't need to ship on first paint of every page.
 import { ChatWidgetLazy } from "@/components/chat/chat-widget-lazy"
@@ -72,6 +74,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-background font-sans antialiased">
+        {/* GA4 + Google Ads global site tag (next/script, afterInteractive) */}
+        <GoogleTags />
+        {/* Placeholder for a call-tracking provider (no-op until configured) */}
+        <CallTracking />
         <OrganizationJsonLd />
         <WebsiteJsonLd />
         <Suspense fallback={null}>

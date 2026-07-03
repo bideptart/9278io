@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select"
 import { Check, Loader2, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { trackGetStartedComplete, trackPurchaseThenRedirect } from "@/lib/analytics/gtag"
 
 const PORTAL_BASE = "https://voice.9278.io"
 
@@ -236,9 +237,20 @@ export default function SignupWidget() {
           }).then((r) => r.json())
 
           if (v.token) {
-            window.location.href = `${PORTAL_BASE}/dashboard/overview?token=${encodeURIComponent(
+            const redirectUrl = `${PORTAL_BASE}/dashboard/overview?token=${encodeURIComponent(
               v.token,
             )}`
+            // ── CONVERSION EVENTS: get-started completion + purchase ──
+            // Fires GA4 (sign_up + purchase) and the Google Ads conversions,
+            // then redirects to the portal (conversion sent before we leave).
+            trackGetStartedComplete({ plan: selectedPlan.label })
+            trackPurchaseThenRedirect({
+              value: priceFor(selectedPlan),
+              currency: "INR",
+              transactionId: rzpResponse.razorpay_payment_id,
+              plan: selectedPlan.label,
+              redirectUrl,
+            })
           } else {
             setSubmitting(false)
             setError(v.error || "Payment verification failed.")
