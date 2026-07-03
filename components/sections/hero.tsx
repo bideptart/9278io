@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { motion } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { SITE } from "@/lib/seo"
 
 /* ── Data ── */
 const highlights = [
@@ -128,7 +129,9 @@ function DashboardPanel() {
           <div className="flex items-center gap-2.5">
             <span className="flex size-9 items-center justify-center rounded-full border border-border bg-white text-base shadow-sm">🇮🇳</span>
             <div className="leading-tight">
-              <p className="text-[13px] font-bold text-foreground">+91 98765 43210</p>
+              {SITE.heroPhone ? (
+                <p className="text-[13px] font-bold text-foreground">{SITE.heroPhone}</p>
+              ) : null}
               <p className="text-[10px] text-muted-foreground">Hindi · Inbound Call</p>
             </div>
           </div>

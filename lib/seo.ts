@@ -16,6 +16,10 @@ export const SITE = {
   name: "9278.io",
   domain: "9278.io",
   url: resolveSiteUrl(),
+  // Optional real, staffed phone line shown in the homepage hero demo panel.
+  // Sourced from a single env value; when unset (no staffed line) the hero
+  // omits the number entirely rather than showing a placeholder.
+  heroPhone: process.env.NEXT_PUBLIC_HERO_PHONE?.trim() || "",
   description:
     "Native-audio voice agents for Indian businesses. Sub-second latency on Jio/Airtel/BSNL/Vi, RAG over your docs, and a self-hosted control panel — without the enterprise vendor markup.",
   locale: "en_IN",
