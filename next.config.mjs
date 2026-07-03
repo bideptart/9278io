@@ -28,6 +28,21 @@ const nextConfig = {
       "@radix-ui/react-icons",
     ],
   },
+  // Permanent redirect from the non-www apex to the canonical www host, so
+  // every URL resolves to https://www.9278.io. `permanent: true` emits a 308
+  // (the permanent redirect that preserves method; search engines treat it the
+  // same as a 301 for canonicalisation). The host value matches the apex
+  // exactly, so www.9278.io is never redirected onto itself.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "9278.io" }],
+        destination: "https://www.9278.io/:path*",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
