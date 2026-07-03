@@ -3,7 +3,7 @@ import { SITE } from "@/lib/seo"
 import { getAllBlogSlugs } from "@/lib/blog"
 
 /** Sitemaps must list canonical production URLs — never localhost/preview. */
-const BASE = /localhost|127\.0\.0\.1/.test(SITE.url) ? "https://9278.io" : SITE.url
+const BASE = /localhost|127\.0\.0\.1/.test(SITE.url) ? "https://www.9278.io" : SITE.url
 
 export const dynamic = "force-static"
 

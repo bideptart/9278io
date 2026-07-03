@@ -9,7 +9,7 @@ import type { Metadata } from "next"
 function resolveSiteUrl() {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
   if (raw && !/^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(raw)) return raw
-  return "https://9278.io"
+  return "https://www.9278.io"
 }
 
 export const SITE = {
@@ -37,18 +37,19 @@ type PageSeoInput = {
 }
 
 export function pageSeo({ title, description, path, image, noindex }: PageSeoInput): Metadata {
-  const url = absoluteUrl(path)
   const desc = description ?? SITE.description
   const og = image ?? "/opengraph-image"
 
+  // Canonical and OG URLs are RELATIVE — Next resolves them against
+  // metadataBase (https://www.9278.io), so there is no hardcoded origin here.
   return {
     title,
     description: desc,
-    alternates: { canonical: url },
+    alternates: { canonical: path },
     robots: noindex ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
       type: "website",
-      url,
+      url: path,
       siteName: SITE.name,
       title,
       description: desc,

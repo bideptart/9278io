@@ -37,10 +37,10 @@ export const metadata: Metadata = {
   creator: SITE.name,
   publisher: SITE.name,
   generator: "v0.app",
-  alternates: { canonical: SITE.url },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: SITE.url,
+    url: "/",
     siteName: SITE.name,
     title: `${SITE.name} — AI Voice Agents for India`,
     description: SITE.description,
