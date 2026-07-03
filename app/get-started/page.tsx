@@ -63,6 +63,17 @@ export default function GetStartedPage() {
               Already have an account? Sign in
             </a>
           </div>
+
+          {/* Verifiable credibility signals (no fabricated social proof) */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+            {["Data stored in India", "TRAI & DPDP compliant", "GST-compliant invoicing", "Secure Razorpay checkout"].map(
+              (item) => (
+                <span key={item} className="inline-flex items-center gap-1.5">
+                  <Check className="size-4 text-emerald-600" aria-hidden /> {item}
+                </span>
+              ),
+            )}
+          </div>
         </div>
 
         {/* ── Server-rendered plan summary (static pricing, no JS required) ── */}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Mail, MessageSquare, Phone, Clock } from "lucide-react"
+import { Mail, MessageSquare, Phone, Clock, MapPin } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
@@ -12,7 +12,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "Contact us — 9278.io",
   description:
-    "Get in touch with the 9278.io team. Sales, support, partnerships, and press enquiries for India's leading AI voice agent platform.",
+    "Get in touch with the 9278.io team. Sales, support, partnerships, and press enquiries for our AI voice agent platform for Indian businesses.",
   path: "/contact",
 })
 
@@ -41,6 +41,14 @@ const channels = [
     description: "The fastest way to see 9278.io in action — call our demo agent right now and test the experience.",
     action: "Try a live demo",
     href: "/get-started",
+  },
+  {
+    icon: MapPin,
+    title: "Registered office",
+    description:
+      "Swadesh Mobile Private Limited (9278.io) · 1108, Sureshwari Techno IT Park Premises CHS, Link Road, Borivali West, Mumbai, Maharashtra 400092, India.",
+    action: "View on map",
+    href: "https://www.google.com/maps/search/?api=1&query=Sureshwari+Techno+IT+Park+Premises+CHS+Link+Road+Borivali+West+Mumbai+400092",
   },
 ]
 
@@ -128,7 +136,12 @@ export default function ContactPage() {
                       <div className="min-w-0">
                         <h3 className="font-semibold tracking-tight">{c.title}</h3>
                         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
-                        <a href={c.href} className="mt-2 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline">
+                        <a
+                          href={c.href}
+                          target={c.href.startsWith("http") ? "_blank" : undefined}
+                          rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="mt-2 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                        >
                           {c.action}
                         </a>
                       </div>

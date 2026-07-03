@@ -332,8 +332,8 @@ export default function SignupWidget() {
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
           <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
           <span>
-            <strong>Per-second billing</strong> — pay only for the seconds you use. Industry first
-            in India.
+            <strong>Per-second billing</strong> — pay only for the seconds your agent talks,
+            with no minute-rounding.
           </span>
         </div>
       </div>
