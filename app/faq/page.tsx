@@ -3,7 +3,7 @@ import Link from "next/link"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { FAQ_GROUPS, FLAT_FAQ } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
@@ -72,18 +72,7 @@ export default function FaqPage() {
             </ScrollReveal>
 
             <ScrollReveal className="mt-6">
-              <Accordion type="single" collapsible className="w-full divide-y divide-border/60">
-                {group.items.map((item, i) => (
-                  <AccordionItem key={i} value={`${group.id}-${i}`} className="border-0">
-                    <AccordionTrigger className="py-5 text-left text-base font-medium hover:no-underline hover:text-primary [&[data-state=open]]:text-primary">
-                      {item.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-5 text-pretty leading-relaxed text-muted-foreground">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              <FaqAccordion items={group.items} idPrefix={group.id} />
             </ScrollReveal>
           </section>
         ))}

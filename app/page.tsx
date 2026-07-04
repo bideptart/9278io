@@ -6,7 +6,8 @@ import { Features } from "@/components/sections/features"
 import { Industries } from "@/components/sections/industries"
 import { HowItWorks } from "@/components/sections/how-it-works"
 import { FAQ } from "@/components/sections/faq"
-import { ServiceJsonLd } from "@/components/seo/jsonld"
+import { ServiceJsonLd, FaqJsonLd } from "@/components/seo/jsonld"
+import { FLAT_FAQ } from "@/lib/faq"
 
 export default function HomePage() {
   return (
@@ -17,6 +18,8 @@ export default function HomePage() {
         path="/"
         serviceType="AI voice agent platform"
       />
+      {/* FAQPage JSON-LD for the homepage FAQ block — same 8 questions shown below. */}
+      <FaqJsonLd items={FLAT_FAQ.slice(0, 8)} />
       <SiteHeader />
       <main className="flex-1">
         <Hero />
