@@ -24,7 +24,7 @@ const featured = {
     { speaker: "Caller", text: "Mujhe apna account balance jaanna hai." },
     { speaker: "Agent", text: "Bilkul! Kripya apna registered mobile number dijiye." },
   ],
-  href: "/industries",
+  href: "/industries/bpo",
 }
 
 const industries = [
@@ -38,7 +38,7 @@ const industries = [
       { speaker: "Agent", text: "নমস্কার, আপনার EMI আগামীকাল বাকি আছে।" },
       { speaker: "Caller", text: "জি, আমি আগামীকাল পেমেন্ট করব।" },
     ],
-    href: "/industries/legal",
+    href: "/industries/bfsi",
   },
   {
     icon: Home,

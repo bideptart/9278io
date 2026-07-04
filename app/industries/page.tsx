@@ -11,13 +11,14 @@ import { INDUSTRIES, CAP_COLORS } from "@/lib/industries"
 /* Per-industry accent palette for the airy grid. Literal classes so
    Tailwind's scanner keeps them; child accents use currentColor. */
 const ACCENTS = [
-  "text-blue-600", "text-violet-600", "text-cyan-600", "text-orange-600",
-  "text-emerald-600", "text-purple-600", "text-pink-600", "text-indigo-600", "text-teal-600",
+  "text-blue-600", "text-violet-600", "text-cyan-600", "text-orange-600", "text-emerald-600",
+  "text-purple-600", "text-pink-600", "text-indigo-600", "text-teal-600", "text-rose-600", "text-amber-600",
 ]
 const ACCENT_TILES = [
   "bg-blue-50 border-blue-200", "bg-violet-50 border-violet-200", "bg-cyan-50 border-cyan-200",
   "bg-orange-50 border-orange-200", "bg-emerald-50 border-emerald-200", "bg-purple-50 border-purple-200",
   "bg-pink-50 border-pink-200", "bg-indigo-50 border-indigo-200", "bg-teal-50 border-teal-200",
+  "bg-rose-50 border-rose-200", "bg-amber-50 border-amber-200",
 ]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -26,7 +27,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 export const metadata: Metadata = pageSeo({
   title: "Industries we power",
   description:
-    "Pre-tuned AI voice agents for real estate, home services, restaurants, automotive, legal, education, e-commerce, and fitness — live in under 5 minutes.",
+    "Pre-tuned AI voice agents for BFSI, BPO, real estate, home services, restaurants, automotive, legal, education, e-commerce, and fitness — live in under 5 minutes.",
   path: "/industries",
 })
 

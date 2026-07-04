@@ -7,6 +7,8 @@ import {
   GraduationCap,
   ShoppingBag,
   Dumbbell,
+  Landmark,
+  Headphones,
   type LucideIcon,
 } from "lucide-react"
 
@@ -248,6 +250,58 @@ export const INDUSTRIES: Industry[] = [
     conversation: [
       { speaker: "Agent", text: "Your membership expires in 3 days, Ankit!" },
       { speaker: "Caller", text: "Renew kar do, 1 saal ka." },
+    ],
+  },
+  {
+    slug: "bfsi",
+    name: "BFSI & fintech",
+    icon: Landmark,
+    short:
+      "Qualify loan and insurance leads, chase EMI and premium dues, and run KYC and renewal reminders 24/7 — in Hindi and every regional language.",
+    pitch:
+      "Lending, insurance and fintech teams win on speed and compliance. 9278.io answers and places thousands of calls a day — qualifying loan applicants, reminding customers before an EMI or premium lapses, and winning back renewals — with every call recorded, consent-logged, and placed inside TRAI calling windows so your collections and sales stay DPDP-ready.",
+    jobs: [
+      "Qualify personal-loan, home-loan and credit-card leads, routing the hot ones to a human",
+      "Pre-due and overdue EMI reminders with UPI and payment-link follow-through",
+      "Insurance premium-renewal and policy-lapse win-back calls",
+      "KYC and document-collection reminders before disbursal",
+      "Every call recorded and consent-logged inside TRAI calling windows",
+    ],
+    sampleLines: [
+      "नमस्ते, आपकी होम लोन EMI कल देय है — क्या मैं आपको भुगतान लिंक भेज दूँ?",
+      "Quick check before we proceed — is your monthly income above ₹25,000, and do you have six months of salary slips?",
+      "Your policy lapses on the 18th. I can renew it today and keep your no-claim bonus intact — shall I go ahead?",
+    ],
+    caps: ["Lead Qualify", "EMI Reminder", "DPDP Ready"],
+    conversation: [
+      { speaker: "Agent", text: "নমস্কার, আপনার EMI আগামীকাল বাকি আছে।" },
+      { speaker: "Caller", text: "জি, আমি আগামীকাল পেমেন্ট করব।" },
+    ],
+  },
+  {
+    slug: "bpo",
+    name: "BPO & call centres",
+    icon: Headphones,
+    short:
+      "Automate Tier-1 inbound and outbound queues, answer every caller in under three seconds, and cut cost-per-call across all Indian languages — round the clock.",
+    pitch:
+      "Call centres bleed money on Tier-1 volume, attrition, and idle seats. 9278.io handles the repetitive inbound and outbound calls end to end — balance checks, order status, verification, first-level support, and surveys — resolving what it can and warm-transferring only the calls that genuinely need a human, in 10+ Indian languages, 24/7.",
+    jobs: [
+      "Deflect Tier-1 inbound: balance checks, order status, ticket status, and FAQs",
+      "Run outbound verification, feedback, and CSAT survey campaigns at scale",
+      "First-level support with warm transfer to a live agent on escalation",
+      "Up to 40 concurrent calls per number — no extra seats or hardware",
+      "Every call recorded, and outbound placed inside TRAI calling windows",
+    ],
+    sampleLines: [
+      "नमस्ते! मैं आपकी कैसे सहायता कर सकती हूँ — बैलेंस, ऑर्डर स्टेटस, या कुछ और?",
+      "I've pulled up your account — your last recharge of ₹299 is active till the 27th. Anything else?",
+      "This'll take two minutes — on a scale of 1 to 5, how was your recent support experience?",
+    ],
+    caps: ["Inbound", "24/7 Calling", "TRAI Compliant"],
+    conversation: [
+      { speaker: "Agent", text: "नमस्ते! आज मैं आपकी कैसे सहायता कर सकता हूँ?" },
+      { speaker: "Caller", text: "Mujhe apna account balance jaanna hai." },
     ],
   },
 ]
