@@ -27,7 +27,7 @@ export default function GetStartedPage() {
         ]}
       />
 
-      <section className="w-full px-6 py-14 md:px-8 md:py-20">
+      <section className="w-full px-6 pb-14 pt-6 md:px-8 md:pb-20 md:pt-8">
         {/* ── Server-rendered hero: headline, key copy, primary CTA ── */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
