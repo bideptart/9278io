@@ -1,11 +1,9 @@
 "use client"
 
-// Inline signup widget for /get-started — fetches live plans from the
-// voice.9278.io portal, opens Razorpay Checkout, verifies payment, then
-// redirects the customer into the portal already signed-in via ?token=.
-// The customer's phone number is auto-assigned server-side at checkout
-// (no picker UI here). No iframe — fully native, styled with the site's
-// shadcn primitives.
+// Inline signup widget for /get-started — fetches live plans + starter agent
+// templates from voice.9278.io, opens Razorpay Checkout, verifies payment,
+// then redirects the customer into the portal already signed-in via ?token=.
+// The customer's phone number is auto-assigned server-side at checkout.
 
 import { useEffect, useMemo, useState } from "react"
 import Script from "next/script"
@@ -49,6 +47,18 @@ type Plan = {
   perks: string[]
 }
 
+// Starter templates — fetched from the portal so we don't hardcode
+// the catalogue in two places. See server/agent-templates.js.
+type Template = {
+  id: string
+  icon: string
+  iconTone: string
+  title: string
+  badge: string | null
+  subtitle: string
+  tags: string[]
+}
+
 const LANGUAGES: Array<{ value: string; label: string }> = [
   { value: "en-IN", label: "English (India)" },
   { value: "en-US", label: "English (US)" },
@@ -65,7 +75,6 @@ const LANGUAGES: Array<{ value: string; label: string }> = [
 
 const inr = (n: number) => "₹" + Number(n || 0).toLocaleString("en-IN")
 
-// Razorpay's checkout.js attaches a global Razorpay constructor.
 declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,9 +83,6 @@ declare global {
 }
 
 export default function SignupWidget() {
-  // Honor ?plan=…&cycle=… deep-links from the marketing /pricing page so the
-  // customer lands on the exact plan they clicked. Unknown values fall back
-  // to the defaults (Growth, monthly).
   const searchParams = useSearchParams()
   const initialPlanId = (() => {
     const p = searchParams.get("plan")
@@ -87,6 +93,12 @@ export default function SignupWidget() {
 
   const [plans, setPlans] = useState<Plan[]>([])
   const [loadError, setLoadError] = useState<string | null>(null)
+
+  // Templates fetched from the portal. If the fetch fails we hide the picker
+  // rather than blocking the signup — a customer can still sign up without
+  // choosing a template (server defaults will apply).
+  const [templates, setTemplates] = useState<Template[]>([])
+  const [templateId, setTemplateId] = useState<string>("receptionist")
 
   const [cycle, setCycle] = useState<"monthly" | "yearly">(initialCycle)
   const [selectedId, setSelectedId] = useState<string>(initialPlanId)
@@ -101,20 +113,29 @@ export default function SignupWidget() {
     language: "en-IN",
     agentName: "",
     greeting: "",
+    // Optional: number the agent forwards to when it can't handle the call.
+    // Sent to the portal on signup; portal calls MCP set_transfer_number.
+    transferNumber: "",
   })
 
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Load plans on mount. The phone number is auto-assigned by the portal
-  // at checkout — no inventory fetch needed here.
+  // Load plans + templates on mount. Templates come from the portal so a
+  // catalogue update on voice.9278.io reflects here immediately.
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       try {
-        const plansRes = await fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json())
+        const [plansRes, templatesRes] = await Promise.all([
+          fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json()),
+          fetch(`${PORTAL_BASE}/api/agent-templates`)
+            .then((r) => r.json())
+            .catch(() => ({ templates: [] })),
+        ])
         if (cancelled) return
         setPlans(plansRes.plans || [])
+        setTemplates(templatesRes.templates || [])
       } catch (e) {
         if (!cancelled) setLoadError((e as Error).message || "Could not load plans")
       }
@@ -148,6 +169,12 @@ export default function SignupWidget() {
     if (!form.username.trim()) return setError("Pick a username.")
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) return setError("Enter a valid email.")
     if (form.password.length < 8) return setError("Password must be 8+ characters.")
+    // Transfer number is optional. If provided, validate loosely — E.164
+    // or bare digits with at least 6 digits total.
+    const transferDigits = form.transferNumber.replace(/\D+/g, "")
+    if (form.transferNumber.trim() && transferDigits.length < 6) {
+      return setError("Transfer number looks too short. Use E.164 (e.g. +91 98765 43210).")
+    }
 
     setSubmitting(true)
 
@@ -166,15 +193,19 @@ export default function SignupWidget() {
       planAgents: selectedPlan.agents,
       planCycle: cycle,
 
-      // The portal auto-assigns a DID at checkout and bills it as part of
-      // the plan amount — no extra `number` / `numberPrice` payload needed.
+      // Starter template — portal fills in greeting/prompt/kbCompany/voice
+      // /language from the template when those fields are empty. Payload
+      // wins if the customer also supplied a custom greeting below.
+      templateId,
+
+      // Optional call-transfer number — pushed to the agent via MCP after
+      // provisioning finishes.
+      transferNumber: form.transferNumber.trim(),
 
       voice: "Kore",
       language: form.language,
       agentName: form.agentName.trim() || `${form.company.trim()} Receptionist`,
-      greeting:
-        form.greeting.trim() ||
-        `Hi, thanks for calling ${form.company.trim()}. How can I help today?`,
+      greeting: form.greeting.trim(),
       prompt: "",
       kbCompany: "",
       kbFaqs: "",
@@ -240,9 +271,6 @@ export default function SignupWidget() {
             const redirectUrl = `${PORTAL_BASE}/dashboard/overview?token=${encodeURIComponent(
               v.token,
             )}`
-            // ── CONVERSION EVENTS: get-started completion + purchase ──
-            // Fires GA4 (sign_up + purchase) and the Google Ads conversions,
-            // then redirects to the portal (conversion sent before we leave).
             trackGetStartedComplete({ plan: selectedPlan.label })
             trackPurchaseThenRedirect({
               value: priceFor(selectedPlan),
@@ -285,12 +313,10 @@ export default function SignupWidget() {
   }
 
   const planPrice = selectedPlan ? priceFor(selectedPlan) : 0
-  // One DID is included in every plan — no separate line item.
   const totalAmount = planPrice
 
   return (
     <>
-      {/* Razorpay's Checkout SDK — needed before submission. */}
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
 
       {/* Billing cycle toggle */}
@@ -401,6 +427,72 @@ export default function SignupWidget() {
         })}
       </div>
 
+      {/* Template picker — renders only when the portal returned templates */}
+      {templates.length > 0 && (
+        <Card className="mb-10">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Choose a starter template</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Sets your agent&apos;s greeting, behavior, and voice. You can edit anything later in the portal.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+              {templates.map((tpl) => {
+                const selected = templateId === tpl.id
+                return (
+                  <button
+                    key={tpl.id}
+                    type="button"
+                    onClick={() => setTemplateId(tpl.id)}
+                    className={cn(
+                      "text-left rounded-xl border-2 p-4 transition focus:outline-none",
+                      selected
+                        ? "border-violet-500 bg-violet-50/60 dark:bg-violet-500/10"
+                        : "border-border bg-card hover:border-violet-300 hover:bg-violet-50/40 dark:hover:bg-violet-500/5",
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "flex h-9 w-9 items-center justify-center rounded-lg text-lg font-bold",
+                        tpl.iconTone,
+                      )}
+                    >
+                      {tpl.icon}
+                    </div>
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <div className="text-sm font-bold text-foreground">{tpl.title}</div>
+                      {tpl.badge && (
+                        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
+                          {tpl.badge}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-1 text-xs leading-snug text-muted-foreground">
+                      {tpl.subtitle}
+                    </div>
+                    <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                      {tpl.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full bg-muted px-2 py-0.5 text-[10px] text-muted-foreground"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Pick <strong>Blank</strong> if you&apos;d rather start from scratch — nothing is
+              pre-filled in that case.
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Two-column section: form on the left, order summary on the right */}
       <form onSubmit={validateAndSubmit} className="grid gap-6 lg:grid-cols-[1fr_360px]">
         {/* === LEFT: form fields ============================================= */}
@@ -443,8 +535,6 @@ export default function SignupWidget() {
               onChange={updateInput("password")}
             />
 
-            {/* Phone number is auto-assigned by the portal at checkout —
-                the form no longer asks the customer to pick one. */}
             <div className="md:col-span-2 rounded-md border border-dashed border-border bg-muted/20 px-4 py-3 text-xs text-muted-foreground">
               📞 Your phone number is included in the plan and assigned
               automatically at checkout — no separate fee.
@@ -483,12 +573,27 @@ export default function SignupWidget() {
               wrapperClassName="md:col-span-2"
             />
 
+            {/* Call-transfer number — where the AI hands off when it can't help. */}
+            <Field
+              id="transferNumber"
+              label="Call-transfer number (optional)"
+              type="tel"
+              value={form.transferNumber}
+              onChange={updateInput("transferNumber")}
+              placeholder="+91 98765 43210"
+              wrapperClassName="md:col-span-2"
+            />
+            <p className="md:col-span-2 -mt-2 text-xs text-muted-foreground">
+              When the AI needs to hand a caller to a human, it will transfer them to this number.
+              You can add or change this later in your dashboard.
+            </p>
+
             {/* Greeting — multi-line description-style textarea */}
             <div className="md:col-span-2">
               <Label htmlFor="greeting" className="mb-1.5 block">
                 Greeting / description{" "}
                 <span className="font-normal text-muted-foreground">
-                  (optional — what your agent says + how it should behave)
+                  (optional — overrides the template greeting)
                 </span>
               </Label>
               <Textarea
@@ -504,10 +609,9 @@ export default function SignupWidget() {
                 className="min-h-[120px] resize-y"
               />
               <p className="mt-2 text-xs text-muted-foreground">
-                Leave blank to use a friendly default. You can refine this from your dashboard
-                later under <strong>Knowledge &amp; Agent</strong>.
+                Leave blank to use the greeting from your selected template. Refine it any time
+                in <strong>Knowledge &amp; Agent</strong>.
               </p>
-              {/* Spacing below the description field */}
               <div className="h-6" />
             </div>
           </CardContent>
@@ -540,6 +644,14 @@ export default function SignupWidget() {
                 </div>
               </Row>
 
+              {templates.length > 0 && (
+                <Row label="Template">
+                  <span className="font-semibold">
+                    {templates.find((t) => t.id === templateId)?.title || "—"}
+                  </span>
+                </Row>
+              )}
+
               <Row label="Phone number">
                 <span className="text-xs font-medium text-muted-foreground">
                   Assigned at checkout
@@ -554,7 +666,6 @@ export default function SignupWidget() {
 
               <Separator />
 
-              {/* Itemised charges — plan + per-DID activation fee */}
               <Row label={`${selectedPlan?.label || "Plan"} credit`}>
                 <span className="font-semibold">{inr(planPrice)}</span>
               </Row>
