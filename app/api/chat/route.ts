@@ -1,5 +1,6 @@
 import OpenAI from "openai"
 import { CHATBOT_KNOWLEDGE } from "@/lib/chatbot/knowledge"
+import { chatLimiter, enforceRateLimit, getClientIp } from "@/lib/ratelimit"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -34,6 +35,10 @@ function isValidMessage(m: unknown): m is ChatMessage {
 }
 
 export async function POST(req: Request) {
+  // Per-IP rate limit first — 429 before doing any work (10 req/min).
+  const limited = await enforceRateLimit(chatLimiter, getClientIp(req.headers))
+  if (limited) return limited
+
   const apiKey = process.env.NVIDIA_API_KEY
   if (!apiKey) {
     return new Response(

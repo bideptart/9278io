@@ -3,6 +3,7 @@ import { createHash } from "node:crypto"
 import { headers } from "next/headers"
 import { createAdminClient } from "@/lib/supabase/admin"
 import { browserOf, classify, deviceOf, isBotUA, osOf } from "@/lib/analytics/parse"
+import { enforceRateLimit, getClientIp, pageviewLimiter } from "@/lib/ratelimit"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -23,6 +24,10 @@ type Body = {
 const SKIP_PREFIXES = ["/admin", "/api", "/auth", "/_next"]
 
 export async function POST(req: Request) {
+  // Per-IP rate limit (60 req/min) before parsing or touching the database.
+  const limited = await enforceRateLimit(pageviewLimiter, getClientIp(req.headers))
+  if (limited) return limited
+
   let body: Body
   try {
     body = (await req.json()) as Body

@@ -1,6 +1,8 @@
 "use server"
 
 import nodemailer from "nodemailer"
+import { headers } from "next/headers"
+import { contactLimiter, getClientIp } from "@/lib/ratelimit"
 
 export type ContactInput = {
   name: string
@@ -26,6 +28,18 @@ function escapeHtml(s: string) {
 }
 
 export async function submitContact(input: ContactInput): Promise<ContactState> {
+  // Per-IP rate limit (5 submissions / 10 min) before any processing.
+  if (contactLimiter) {
+    const ip = getClientIp(await headers())
+    const { success } = await contactLimiter.limit(ip)
+    if (!success) {
+      return {
+        status: "error",
+        message: "You're sending messages too quickly. Please wait a few minutes and try again.",
+      }
+    }
+  }
+
   const name = (input.name ?? "").trim()
   const email = (input.email ?? "").trim()
   const phone = (input.phone ?? "").trim()
