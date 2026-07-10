@@ -3,12 +3,33 @@ import type { Metadata } from "next"
 /**
  * Canonical site origin used for metadata (canonical URLs, Open Graph,
  * metadataBase, robots, JSON-LD). A localhost/preview value must never leak
- * into these, so anything pointing at localhost/127.0.0.1 falls back to the
- * production domain.
+ * into these.
+ *
+ * - Any valid, non-localhost value passes through unchanged.
+ * - In a production build, a missing or localhost/127.0.0.1 origin throws —
+ *   failing the build loudly rather than silently shipping a localhost
+ *   canonical or og:url.
+ * - Outside production (dev/test), it falls back to the production domain.
  */
 function resolveSiteUrl() {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "")
-  if (raw && !/^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(raw)) return raw
+  const isLocalhost = raw ? /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(raw) : false
+
+  // A valid, non-localhost origin is always trusted.
+  if (raw && !isLocalhost) return raw
+
+  // Production must never fall back to localhost — fail the build instead.
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      raw
+        ? `NEXT_PUBLIC_SITE_URL points at localhost ("${raw}") in a production build. ` +
+          "Set it to the public origin (e.g. https://www.9278.io) so canonical and og:url are correct."
+        : "NEXT_PUBLIC_SITE_URL is required for production builds. " +
+          "Set it to the public origin (e.g. https://www.9278.io) so canonical and og:url are correct.",
+    )
+  }
+
+  // Dev/test only: safe fallback so local work needs no env setup.
   return "https://www.9278.io"
 }
 

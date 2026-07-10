@@ -2,7 +2,12 @@ import { INDUSTRIES } from "@/lib/industries"
 import { SITE } from "@/lib/seo"
 import { getAllBlogSlugs } from "@/lib/blog"
 
-/** Sitemaps must list canonical production URLs — never localhost/preview. */
+// Every <loc> is prefixed with BASE, which MUST always match the canonical www
+// host — the same SITE.url (lib/seo.ts) used by robots.ts, metadataBase, and
+// every canonical/og:url. Sitemaps must list absolute canonical URLs, never an
+// apex or localhost/preview host. In a production build SITE.url is guaranteed
+// non-localhost (resolveSiteUrl() throws otherwise); the localhost guard below
+// is a dev/test-only safety net so a local build still emits www URLs.
 const BASE = /localhost|127\.0\.0\.1/.test(SITE.url) ? "https://www.9278.io" : SITE.url
 
 export const dynamic = "force-static"
