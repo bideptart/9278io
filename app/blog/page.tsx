@@ -103,7 +103,7 @@ export default async function BlogPage() {
                   </div>
                 </div>
                 <div
-                  className="flex items-center justify-center overflow-hidden p-6 md:py-8 md:pr-8 [&_img]:w-full [&_img]:!rounded-2xl [&_svg]:w-full [&_svg]:!rounded-2xl"
+                  className="flex items-center justify-center overflow-hidden p-6 md:py-8 md:pr-8 [&_img]:aspect-[16/9] [&_img]:w-full [&_img]:object-cover [&_img]:!rounded-2xl [&_svg]:aspect-[16/9] [&_svg]:w-full [&_svg]:!rounded-2xl"
                   dangerouslySetInnerHTML={{ __html: featured.heroHtml }}
                 />
               </div>
@@ -121,7 +121,7 @@ export default async function BlogPage() {
               >
                 {/* Hero banner */}
                 <div
-                  className="overflow-hidden border-b border-border bg-gradient-to-br from-slate-50 to-white [&_img]:!block [&_img]:!w-full [&_img]:!rounded-none [&_svg]:block [&_svg]:w-full"
+                  className="overflow-hidden border-b border-border bg-gradient-to-br from-slate-50 to-white [&_img]:!block [&_img]:aspect-[16/9] [&_img]:!w-full [&_img]:object-cover [&_img]:!rounded-none [&_svg]:block [&_svg]:aspect-[16/9] [&_svg]:w-full"
                   dangerouslySetInnerHTML={{ __html: post.heroHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ') }}
                 />
 

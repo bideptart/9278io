@@ -3,6 +3,7 @@
 import * as React from "react"
 import { motion, AnimatePresence, useReducedMotion } from "motion/react"
 import { SquareArrowOutUpRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
@@ -372,14 +373,16 @@ export function CardStack<T extends CardStackItem>({
 function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
   return (
     <div className="relative h-full w-full">
-      {/* image */}
+      {/* image — next/image with `fill` inside this already-sized absolute
+          container, so it reserves space and never shifts layout on load. */}
       <div className="absolute inset-0">
         {item.imageSrc ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={item.imageSrc}
             alt={item.title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(max-width: 640px) 90vw, 520px"
+            className="object-cover"
             draggable={false}
             loading="eager"
           />
