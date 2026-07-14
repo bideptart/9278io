@@ -23,6 +23,9 @@ type Body = {
 
 const SKIP_PREFIXES = ["/admin", "/api", "/auth", "/_next"]
 
+// Emit the missing-salt warning only once per server instance, not per request.
+let warnedMissingSalt = false
+
 export async function POST(req: Request) {
   // Per-IP rate limit (60 req/min) before parsing or touching the database.
   const limited = await enforceRateLimit(pageviewLimiter, getClientIp(req.headers))
@@ -44,6 +47,23 @@ export async function POST(req: Request) {
   }
 
   const h = await headers()
+
+  // The visitor id is a daily-rotating hash of IP+UA keyed by a SECRET salt.
+  // Without a strong, non-public ANALYTICS_SALT that hash would be trivially
+  // reversible, so we skip hashing and the insert entirely rather than fall
+  // back to a public default salt. Warn once so the misconfig is visible.
+  const salt = process.env.ANALYTICS_SALT?.trim()
+  if (!salt) {
+    if (!warnedMissingSalt) {
+      warnedMissingSalt = true
+      console.warn(
+        "[pageview] ANALYTICS_SALT is not set — skipping visitor hashing and pageview inserts. " +
+          "Set a strong random ANALYTICS_SALT in the deployment env to enable analytics.",
+      )
+    }
+    return new NextResponse(null, { status: 204 })
+  }
+
   const ua = h.get("user-agent")
   const isBot = isBotUA(ua)
 
@@ -54,7 +74,6 @@ export async function POST(req: Request) {
     h.get("cf-connecting-ip") ||
     "0.0.0.0"
   const day = new Date().toISOString().slice(0, 10)
-  const salt = process.env.ANALYTICS_SALT ?? "9278-default-salt"
   const visitor_id = createHash("sha256").update(`${ip}|${ua ?? ""}|${day}|${salt}`).digest("hex").slice(0, 32)
 
   // Country: Vercel injects x-vercel-ip-country, Cloudflare injects cf-ipcountry.
