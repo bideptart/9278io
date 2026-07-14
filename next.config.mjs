@@ -57,9 +57,6 @@ const nextConfig = {
   // Keep nodemailer out of the bundle so the contact-form server action
   // runs it as a normal Node require in the serverless/standalone function.
   serverExternalPackages: ["nodemailer"],
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     // Sharp is installed (devDependency); standalone output ships it.
     // Enable Next/Image optimization so logos/screenshots are served as

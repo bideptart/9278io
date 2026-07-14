@@ -72,8 +72,12 @@ export async function startCheckout(input: StartCheckoutInput): Promise<never> {
 
   const stripe = getStripe()
 
-  // Plan credit — one-time
-  const items: Parameters<typeof stripe.checkout.sessions.create>[0]["line_items"] = [
+  // Plan credit — one-time.
+  // Stripe's create() is overloaded, so derive the line-item type from the
+  // method signature rather than the (version-fragile) Checkout namespace path.
+  const items: NonNullable<
+    NonNullable<Parameters<typeof stripe.checkout.sessions.create>[0]>["line_items"]
+  >[number][] = [
     {
       price_data: {
         currency: "usd",
