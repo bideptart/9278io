@@ -38,4 +38,4 @@ for (let i = 0; i < data.length; i += channels) {
 
 const png = await sharp(out, { raw: { width, height, channels: 4 } }).png().toBuffer()
 await writeFile(OUT, png)
-console.log(`[v0] wrote ${OUT} (${width}x${height})`)
+console.log(`[logo] wrote ${OUT} (${width}x${height})`)

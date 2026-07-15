@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
   if (!isSupabaseAdminConfigured()) {
     // Acknowledge so Stripe stops retrying, but log the misconfiguration.
-    console.error("[v0] Stripe webhook received but Supabase admin not configured")
+    console.error("[webhook] Stripe webhook received but Supabase admin not configured")
     return NextResponse.json({ received: true, persisted: false })
   }
 
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
         break
     }
   } catch (err) {
-    console.error("[v0] Webhook handler error:", err)
+    console.error("[webhook] Webhook handler error:", err)
     return NextResponse.json({ error: "handler_error" }, { status: 500 })
   }
 
@@ -95,7 +95,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     .single()
 
   if (customerError || !customer) {
-    console.error("[v0] customers upsert failed", customerError)
+    console.error("[webhook] customers upsert failed", customerError)
     return
   }
 
