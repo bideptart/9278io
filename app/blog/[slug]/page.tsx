@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { getAllBlogSlugs, getBlogPostBySlug } from "@/lib/blog"
+import { sanitizeHtml } from "@/lib/sanitize"
 
 export const dynamic = "force-static"
 export const dynamicParams = true
@@ -87,7 +88,8 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
         <div className="mx-auto w-full max-w-5xl px-6 md:px-8 pt-4 md:pt-10">
           <div
             className="overflow-hidden rounded-3xl border-2 border-border bg-background shadow-sm [&_img]:block [&_img]:aspect-[16/9] [&_img]:h-auto [&_img]:w-full [&_img]:object-cover [&_svg]:block [&_svg]:aspect-[16/9] [&_svg]:h-auto [&_svg]:w-full"
-            dangerouslySetInnerHTML={{ __html: post.heroHtml }}
+            // Sanitized at the injection point — see lib/sanitize.ts.
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.heroHtml) }}
           />
         </div>
       ) : null}
@@ -120,7 +122,11 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           [&_details]:mt-3 [&_details]:rounded-xl [&_details]:border-2 [&_details]:border-border/70 [&_details]:bg-white [&_details]:px-5 [&_details]:py-1
           [&_summary]:cursor-pointer [&_summary]:py-3 [&_summary]:font-semibold [&_summary]:text-foreground
           [&_.faq>h2]:mb-2"
-        dangerouslySetInnerHTML={{ __html: post.articleHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ') }}
+        // sanitizeHtml runs LAST, so it covers the injected loading/decoding
+        // hints too. See the boundary contract in lib/sanitize.ts.
+        dangerouslySetInnerHTML={{
+          __html: sanitizeHtml(post.articleHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ')),
+        }}
       />
 
       {/* ── Footer nav ── */}

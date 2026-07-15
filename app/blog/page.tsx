@@ -8,6 +8,7 @@ import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 import { getAllBlogPostSummaries } from "@/lib/blog"
+import { sanitizeHtml } from "@/lib/sanitize"
 
 export const metadata: Metadata = pageSeo({
   title: "Blog — 9278.io",
@@ -104,7 +105,8 @@ export default async function BlogPage() {
                 </div>
                 <div
                   className="flex items-center justify-center overflow-hidden p-6 md:py-8 md:pr-8 [&_img]:aspect-[16/9] [&_img]:w-full [&_img]:object-cover [&_img]:!rounded-2xl [&_svg]:aspect-[16/9] [&_svg]:w-full [&_svg]:!rounded-2xl"
-                  dangerouslySetInnerHTML={{ __html: featured.heroHtml }}
+                  // Sanitized at the injection point — see lib/sanitize.ts.
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(featured.heroHtml) }}
                 />
               </div>
             </Link>
@@ -122,7 +124,11 @@ export default async function BlogPage() {
                 {/* Hero banner */}
                 <div
                   className="overflow-hidden border-b border-border bg-gradient-to-br from-slate-50 to-white [&_img]:!block [&_img]:aspect-[16/9] [&_img]:!w-full [&_img]:object-cover [&_img]:!rounded-none [&_svg]:block [&_svg]:aspect-[16/9] [&_svg]:w-full"
-                  dangerouslySetInnerHTML={{ __html: post.heroHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ') }}
+                  // sanitizeHtml runs LAST, so it covers the injected
+                  // loading/decoding hints too. See lib/sanitize.ts.
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(post.heroHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ')),
+                  }}
                 />
 
                 <div className="flex flex-1 flex-col p-6">
