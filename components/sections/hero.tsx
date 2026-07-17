@@ -125,7 +125,7 @@ function DashboardPanel() {
       {/* Main */}
       <div className="min-w-0 flex-1">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-border/70 px-4 py-3">
+        <div className="flex items-center justify-between border-b border-border/70 px-4 py-2">
           <div className="flex items-center gap-2.5">
             <span className="flex size-9 items-center justify-center rounded-full border border-border bg-white text-base shadow-sm">🇮🇳</span>
             <div className="leading-tight">
@@ -148,7 +148,7 @@ function DashboardPanel() {
         <Waveform />
 
         {/* Transcript */}
-        <div key={tKey} className="space-y-2 px-4 py-3.5">
+        <div key={tKey} className="space-y-1.5 px-4 py-2">
           {transcript.map((line, i) => (
             <motion.div key={i}
               initial={{ opacity: 0, y: 6 }}
@@ -170,7 +170,7 @@ function DashboardPanel() {
         </div>
 
         {/* Metrics */}
-        <div className="flex items-center gap-2 border-t border-border/70 px-4 py-3">
+        <div className="flex items-center gap-2 border-t border-border/70 px-4 py-2">
           {metrics.map((m) => {
             const Icon = m.icon
             return (
@@ -188,8 +188,8 @@ function DashboardPanel() {
         </div>
 
         {/* Call journey */}
-        <div className="border-t border-border/70 bg-slate-50/50 px-4 py-4">
-          <p className="mb-3 text-[11px] font-semibold text-foreground">Call Journey</p>
+        <div className="border-t border-border/70 bg-slate-50/50 px-4 py-2.5">
+          <p className="mb-1.5 text-[11px] font-semibold text-foreground">Call Journey</p>
           <div className="relative flex items-start justify-between">
             {/* connector line */}
             <div className="absolute left-4 right-4 top-4 h-[2px] -translate-y-1/2 bg-border" aria-hidden />
@@ -322,7 +322,7 @@ function HeroVisual() {
           <AudioOrb />
         </div>
         {/* tilt lives on a static wrapper so the entry animation can't override it */}
-        <div className="lg:pt-24 lg:[perspective:1800px]">
+        <div className="lg:pt-20 lg:[perspective:1800px]">
           <div className="lg:[transform:rotateY(-8deg)_rotateX(3deg)_scale(1.06)]">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -340,11 +340,11 @@ function HeroVisual() {
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border/50 bg-gradient-to-b from-blue-50/50 via-background to-background">
+    <section className="relative flex flex-col overflow-hidden border-b border-border/50 bg-gradient-to-b from-blue-50/50 via-background to-background lg:min-h-[calc(100vh-64px)] lg:justify-center">
       {/* Glow */}
       <div aria-hidden className="pointer-events-none absolute -top-32 right-0 h-[620px] w-[820px] rounded-full bg-primary/[0.1] blur-[130px]" />
 
-      <div className="relative w-full px-6 pb-14 pt-4 md:px-8 md:pb-16 md:pt-6">
+      <div className="relative w-full px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4">
         <div className="grid items-stretch gap-14 lg:grid-cols-2 lg:gap-12">
 
           {/* ── Left ── */}
@@ -363,7 +363,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.2rem]"
+              className="mt-5 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.6rem]"
             >
               Answer every call like your{" "}
               <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
@@ -375,7 +375,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.22 }}
-              className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
+              className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
             >
               AI voice receptionist that greets, understands, qualifies and books — in 10+ Indian languages,
               around the clock.
@@ -385,7 +385,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.32 }}
-              className="mt-8 flex flex-col gap-3 sm:flex-row"
+              className="mt-6 flex flex-col gap-3 sm:flex-row"
             >
               <Button
                 asChild
@@ -416,7 +416,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground"
+              className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground"
             >
               {["Per-second billing", "10+ Indian languages", "No contracts"].map((t) => (
                 <span key={t} className="inline-flex items-center gap-1.5">
@@ -430,7 +430,7 @@ export function Hero() {
               {highlights.map((h) => {
                 const Icon = h.icon
                 return (
-                  <div key={h.title} className="flex flex-col items-center gap-1 bg-white px-3 py-3.5 text-center">
+                  <div key={h.title} className="flex flex-col items-center gap-1 bg-white px-3 py-3 text-center">
                     <div className="flex items-center gap-2">
                       <span className={`flex size-8 items-center justify-center rounded-full ${h.tile} ${h.color}`}>
                         <Icon className="size-4" aria-hidden />
@@ -445,7 +445,7 @@ export function Hero() {
           </div>
 
           {/* ── Right: hero visual ── */}
-          <div id="demo-audio" className="flex scroll-mt-24 items-center justify-center lg:pt-8">
+          <div id="demo-audio" className="flex scroll-mt-24 items-center justify-center lg:pt-2">
             <HeroVisual />
           </div>
         </div>
