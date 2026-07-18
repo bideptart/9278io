@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import {
   PhoneCall, ArrowRight,
@@ -11,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { FeatureGroups } from "@/components/features-page/feature-groups"
+import { AgentShowcase } from "@/components/features-page/agent-showcase"
 
 export const metadata: Metadata = {
   title: "Features — 9278.io",
@@ -58,7 +58,7 @@ export default function FeaturesPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto grid w-full max-w-5xl items-start gap-10 px-6 py-8 md:px-8 md:py-10 lg:grid-cols-2">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-8 md:px-8 md:py-10 lg:grid-cols-[1fr_1.2fr]">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -115,16 +115,7 @@ export default function FeaturesPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.08} className="flex justify-center lg:justify-end">
-            <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-2xl border border-border bg-white shadow-[0_20px_60px_oklch(0.52_0.22_265/0.15)]">
-              <Image
-                src="/india-map.jpg"
-                alt="Map of India"
-                fill
-                sizes="320px"
-                className="object-cover"
-                priority
-              />
-            </div>
+            <AgentShowcase />
           </ScrollReveal>
         </div>
       </section>
@@ -132,15 +123,15 @@ export default function FeaturesPage() {
       {/* Features */}
       <section className="border-b border-border/50">
         <div className="w-full px-6 py-14 md:px-8 md:py-20">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollReveal className="mx-auto max-w-5xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               What's Included
             </span>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl md:whitespace-nowrap">
               Built for India's front desk, not just another voice AI.
             </h2>
-            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-3 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
               From setup to billing, every feature here is designed around how Indian businesses actually operate —
               TRAI-compliant, GST-ready, and priced the way you pay.
             </p>

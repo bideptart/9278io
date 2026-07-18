@@ -2,6 +2,7 @@ import {
   Bot, AudioLines, SlidersHorizontal, BookOpen, Copy, GitBranch,
   FlaskConical, BarChart3, History, PhoneForwarded, BellRing,
   LifeBuoy, Mic, Settings, LayoutDashboard, Fingerprint,
+  PhoneCall, LayoutTemplate,
 } from "lucide-react"
 
 const featureGroups = [
@@ -25,6 +26,8 @@ const featureGroups = [
     heading: "Test & Go Live",
     cards: [
       { icon: FlaskConical, tag: "Testing", tagColor: "bg-teal-50 text-teal-600", title: "Playground / Live Testing", description: "Test your agent's responses in a live sandbox before it ever answers a real call." },
+      { icon: PhoneCall, tag: "Live Call", tagColor: "bg-rose-50 text-rose-600", title: "Live Test Call (Real Number Dial-In)", description: "Dial your agent's real number and hear exactly what your callers hear, live." },
+      { icon: LayoutTemplate, tag: "Templates", tagColor: "bg-cyan-50 text-cyan-600", title: "Ready-Made Setup Templates", description: "Start from Receptionist, Healthcare, Transport, Support, or Blank. Launch in minutes." },
     ],
   },
   {

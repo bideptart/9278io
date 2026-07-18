@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { Check, Zap, TrendingUp, Building2 } from "lucide-react"
 import { motion } from "motion/react"
@@ -11,7 +12,7 @@ const plans = [
   {
     icon: Zap,
     name: "Starter",
-    price: "₹2,999",
+    priceMonthly: 2999,
     rate: "₹12 / min eff.",
     credit: "250 included min",
     agents: "2 agents",
@@ -31,7 +32,7 @@ const plans = [
   {
     icon: TrendingUp,
     name: "Growth",
-    price: "₹8,799",
+    priceMonthly: 8799,
     rate: "₹11 / min eff.",
     credit: "800 included min",
     agents: "10 agents",
@@ -52,7 +53,7 @@ const plans = [
   {
     icon: Building2,
     name: "Scale",
-    price: "₹29,999",
+    priceMonthly: 29999,
     rate: "₹10 / min eff.",
     credit: "3,000 included min",
     agents: "Unlimited",
@@ -71,7 +72,15 @@ const plans = [
   },
 ]
 
+const trustChips = ["TRAI-compliant", "24/7 always on", "Cancel anytime"]
+
+function formatINR(n: number) {
+  return `₹${n.toLocaleString("en-IN")}`
+}
+
 export function PricingFeature() {
+  const [yearly, setYearly] = useState(false)
+
   return (
     <section id="pricing" className="border-b border-border">
       <div className="w-full px-6 py-14 md:px-8 md:py-20">
@@ -92,9 +101,58 @@ export function PricingFeature() {
           </p>
         </ScrollReveal>
 
-        <StaggerGroup className="mx-auto mt-12 max-w-6xl grid gap-5 md:grid-cols-3 md:items-center">
+        {/* Trust chips + billing toggle */}
+        <ScrollReveal className="mt-6 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {trustChips.map((t) => (
+              <span
+                key={t}
+                className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.05] px-3.5 py-1.5 text-xs font-medium text-foreground"
+              >
+                <Check className="h-3.5 w-3.5 text-primary" aria-hidden /> {t}
+              </span>
+            ))}
+          </div>
+
+          <div className="inline-flex items-center gap-1 rounded-full border border-border bg-white p-1 shadow-sm">
+            <button
+              type="button"
+              onClick={() => setYearly(false)}
+              aria-pressed={!yearly}
+              className={cn(
+                "rounded-full px-5 py-1.5 text-sm font-semibold transition-colors",
+                !yearly ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setYearly(true)}
+              aria-pressed={yearly}
+              className={cn(
+                "flex items-center gap-1.5 rounded-full px-5 py-1.5 text-sm font-semibold transition-colors",
+                yearly ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Yearly
+              <span
+                className={cn(
+                  "rounded-full px-1.5 py-0.5 text-[10px] font-bold",
+                  yearly ? "bg-white/20 text-white" : "bg-primary/10 text-primary",
+                )}
+              >
+                Save 20%
+              </span>
+            </button>
+          </div>
+        </ScrollReveal>
+
+        <StaggerGroup className="mx-auto mt-10 max-w-6xl grid gap-5 md:grid-cols-3 md:items-center">
           {plans.map((plan) => {
             const Icon = plan.icon
+            const price = yearly ? Math.round(plan.priceMonthly * 12 * 0.8) : plan.priceMonthly
+            const originalYearly = plan.priceMonthly * 12
             return (
               <StaggerItem key={plan.name}>
                 <div
@@ -128,10 +186,16 @@ export function PricingFeature() {
                       <span className="text-sm font-semibold text-muted-foreground">{plan.name}</span>
                     </div>
 
-                    <div className="mt-3">
-                      <span className="text-3xl font-bold tracking-tight">{plan.price}</span>
-                      <span className="ml-2 text-sm text-muted-foreground">/mo</span>
+                    <div className="mt-3 flex items-end gap-2">
+                      <span className="text-3xl font-bold tracking-tight">{formatINR(price)}</span>
+                      <span className="pb-1 text-sm text-muted-foreground">{yearly ? "/yr" : "/mo"}</span>
                     </div>
+                    {yearly && (
+                      <p className="mt-1 text-[11px] text-muted-foreground">
+                        <span className="line-through">{formatINR(originalYearly)}</span>
+                        <span className="ml-1.5 font-semibold text-emerald-600">Save 20% billed yearly</span>
+                      </p>
+                    )}
 
                     <div className="mt-2 flex flex-wrap gap-2">
                       <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
