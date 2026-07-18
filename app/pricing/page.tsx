@@ -3,7 +3,8 @@ import Link from "next/link"
 import { Zap, Headphones } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { PlanCards } from "@/components/pricing/plan-cards"
+import { PricingCardSection } from "@/components/pricing/pricing-card-section"
+import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
@@ -83,12 +84,16 @@ export default async function PricingPage({
         </div>
       </section>
 
-      <section id="plans" className="w-full border-y border-blue-100 bg-blue-50/70 px-6 pb-24 pt-16 md:px-8 md:pt-20">
-        <PlanCards />
+      <section id="plans" className="w-full border-y border-blue-100 bg-blue-50/70">
+        <PricingCardSection />
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">
+        <p className="mx-auto max-w-7xl px-4 pb-16 text-center text-sm text-muted-foreground sm:px-6 lg:px-8">
           GST charged at checkout. Top-ups available from ₹500. Cancel anytime.
         </p>
+      </section>
+
+      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+        <ComparePlansTable />
       </section>
 
       <section className="w-full px-6 pb-24 md:px-8">

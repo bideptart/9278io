@@ -1,16 +1,16 @@
 "use client"
 
-import { useState } from "react"
-import { ChevronDown } from "lucide-react"
-import { motion } from "motion/react"
-import { cn } from "@/lib/utils"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import type { FaqItem } from "@/lib/faq"
 
 /**
- * Client-rendered FAQ accordion. Answers stay in the DOM at all times (just
- * visually collapsed) so they're still present in view-source and to
- * crawlers — the same SEO property the old <details>-based version had —
- * while the open/close transition is animated instead of snapping instantly.
+ * Radix-driven FAQ accordion. Radix measures each answer's real height
+ * (ResizeObserver) and animates to it via the accordion-down/up keyframes
+ * in globals.css, so the open/close is a smooth height transition instead
+ * of the instant snap a native <details> element gives you.
+ *
+ * type="single" + collapsible keeps exactly one answer open at a time,
+ * closable by clicking it again.
  */
 export function FaqAccordion({
   items,
@@ -21,47 +21,24 @@ export function FaqAccordion({
   idPrefix?: string
   defaultOpenIndex?: number | null
 }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex)
-
-  const toggle = (i: number) => {
-    setOpenIndex((prev) => (prev === i ? null : i))
-  }
+  const defaultValue =
+    defaultOpenIndex != null ? (idPrefix ? `${idPrefix}-${defaultOpenIndex}` : `${defaultOpenIndex}`) : undefined
 
   return (
-    <div className="w-full divide-y divide-border/60">
+    <Accordion type="single" collapsible defaultValue={defaultValue} className="w-full">
       {items.map((item, i) => {
-        const id = idPrefix ? `${idPrefix}-${i}` : `${i}`
-        const isOpen = openIndex === i
+        const value = idPrefix ? `${idPrefix}-${i}` : `${i}`
         return (
-          <div key={id}>
-            <button
-              type="button"
-              onClick={() => toggle(i)}
-              aria-expanded={isOpen}
-              aria-controls={`faq-panel-${id}`}
-              className="flex w-full cursor-pointer items-start justify-between gap-4 py-5 text-left text-base font-medium transition-colors hover:text-primary"
-            >
-              <span className={cn(isOpen && "text-primary")}>{item.q}</span>
-              <ChevronDown
-                className={cn(
-                  "mt-1 size-4 shrink-0 text-muted-foreground transition-transform duration-200",
-                  isOpen && "rotate-180",
-                )}
-                aria-hidden
-              />
-            </button>
-            <motion.div
-              id={`faq-panel-${id}`}
-              initial={false}
-              animate={{ height: isOpen ? "auto" : 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <div className="pb-5 text-pretty leading-relaxed text-muted-foreground">{item.a}</div>
-            </motion.div>
-          </div>
+          <AccordionItem key={value} value={value}>
+            <AccordionTrigger className="py-5 text-base font-medium hover:text-primary hover:no-underline data-[state=open]:text-primary [&>svg]:mt-1 [&>svg]:text-muted-foreground">
+              {item.q}
+            </AccordionTrigger>
+            <AccordionContent className="pb-5 text-pretty leading-relaxed text-muted-foreground">
+              {item.a}
+            </AccordionContent>
+          </AccordionItem>
         )
       })}
-    </div>
+    </Accordion>
   )
 }
