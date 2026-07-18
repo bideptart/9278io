@@ -36,13 +36,17 @@ export function RelatedLinks({
           <li key={l.href}>
             <Link
               href={l.href}
-              className="group flex h-full flex-col justify-between gap-4 rounded-xl border border-border/60 bg-white p-5 transition-colors hover:border-primary/40 hover:bg-white"
+              className="group flex h-full flex-col justify-between gap-4 rounded-xl border border-primary bg-primary p-5 transition-all duration-300 hover:border-border hover:bg-white hover:shadow-md"
             >
               <div>
-                <p className="text-base font-medium tracking-tight group-hover:text-foreground">{l.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{l.description}</p>
+                <p className="text-base font-medium tracking-tight text-white transition-colors duration-300 group-hover:text-foreground">
+                  {l.title}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70 transition-colors duration-300 group-hover:text-muted-foreground">
+                  {l.description}
+                </p>
               </div>
-              <span className="inline-flex items-center gap-1 text-xs text-primary">
+              <span className="inline-flex items-center gap-1 text-xs text-white transition-colors duration-300 group-hover:text-primary">
                 Read more
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </span>
