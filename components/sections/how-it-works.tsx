@@ -10,14 +10,14 @@ const steps = [
     icon: Code2,
     title: "Build",
     description:
-      "Design your agent visually or in plain English. Set system prompt, RAG sources, tools, and personas — no engineering required.",
+      "Write your agent's behavior in plain English, or start from a ready-made template. Paste your website URL to auto-import company facts and FAQs — no engineering required.",
   },
   {
     number: "02",
     icon: FlaskConical,
     title: "Evaluate",
     description:
-      "Sandbox every scenario before going live. Compare versions, run scripted calls, and roll back any update with zero downtime.",
+      "Review and edit your agent's voice, language, and behavior any time in a simple form. Changes save and apply immediately — no redeploy needed.",
   },
   {
     number: "03",
@@ -31,7 +31,7 @@ const steps = [
     icon: BarChart3,
     title: "Optimize",
     description:
-      "Watch P50/P90 latency, transcripts, and AI summaries in your dashboard. Fine-tune on your own call data.",
+      "Track call counts, minutes used, and average call duration in your dashboard. Fine-tune your agent's prompt based on real call data.",
   },
 ]
 

@@ -3,7 +3,7 @@ import Image from "next/image"
 
 const nav = {
   Platform: [
-    { label: "Features", href: "/#features" },
+    { label: "Features", href: "/features" },
     { label: "Pricing", href: "/pricing" },
     { label: "FAQ", href: "/faq" },
     { label: "Dashboard", href: "https://voice.9278.io/signin" },

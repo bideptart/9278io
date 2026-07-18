@@ -200,7 +200,7 @@ export function CardStack<T extends CardStackItem>({
       {/* Stage */}
       <div
         className="relative w-full"
-        style={{ height: Math.max(380, cardHeight + 80) }}
+        style={{ height: Math.max(280, cardHeight + 40) }}
         tabIndex={0}
         onKeyDown={onKeyDown}
       >
@@ -336,7 +336,7 @@ export function CardStack<T extends CardStackItem>({
 
       {/* Dots navigation centered at bottom */}
       {showDots ? (
-        <div className="mt-6 flex items-center justify-center gap-3">
+        <div className="mt-4 flex items-center justify-center gap-3">
           <div className="flex items-center gap-2">
             {items.map((it, idx) => {
               const on = idx === active

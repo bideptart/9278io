@@ -1,6 +1,7 @@
 "use client"
 
 import { Fragment, useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import {
   AudioLines, Languages, MessageCircle, Activity,
   Network, CalendarClock, PhoneForwarded, Mic, Timer,
@@ -404,7 +405,7 @@ export function Features() {
   const leftRef = useRef<HTMLDivElement>(null)
   const [leftHeight, setLeftHeight] = useState<number | undefined>(undefined)
 
-  // Match right panel height to left column height
+  // Measured so the right panel's fixed height (below) can't be shorter than the left grid
   useEffect(() => {
     const el = leftRef.current
     if (!el) return
@@ -432,30 +433,30 @@ export function Features() {
   const f = features[active]
 
   return (
-    <section id="features" className="border-b border-border">
-      <div className="w-full px-6 py-14 md:px-8 md:py-20">
+    <section id="features" className="scroll-mt-16 border-b border-border">
+      <div className="w-full px-6 py-6 md:px-8 md:py-8">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
           >
             <motion.span className="h-1.5 w-1.5 rounded-full bg-primary"
               animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
-            Features
+            Our Features
           </motion.span>
           <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">
             Everything your voice agent needs.
           </h2>
-          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+          <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">
             Built for Indian businesses — low latency, multi-language, TRAI-compliant, priced per second.
           </p>
         </ScrollReveal>
 
-        <div className="mt-14 grid items-start gap-6 lg:grid-cols-[500px_1fr]"
+        <div className="mt-5 grid items-start gap-6 lg:grid-cols-[500px_1fr]"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {/* ── Left: 2-col grid (2+2+2+2+1) ── */}
-          <div ref={leftRef} className="grid grid-cols-2 content-start gap-2 self-start">
+          <div ref={leftRef} className="grid grid-cols-2 content-start gap-1 self-start">
             {features.map((feat, i) => {
               const Icon = feat.icon
               const isActive = i === active
@@ -465,7 +466,7 @@ export function Features() {
                   key={feat.label}
                   type="button"
                   onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
-                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-3.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
+                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-2.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
                     isActive
                       ? "border-2 border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
                       : "border-2 border-primary/15 hover:border-primary/35 hover:bg-slate-50"
@@ -475,9 +476,9 @@ export function Features() {
                     <motion.div className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary" style={{ width: `${progress * 100}%` }} />
                   )}
                   {isActive && (
-                    <div className={`absolute bottom-3 left-0 top-3 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
+                    <div className={`absolute bottom-2.5 left-0 top-2.5 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
                   )}
-                  <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
+                  <span className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
                     isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground/60 group-hover:text-muted-foreground"
                   }`}>
                     <Icon className="h-4 w-4" />
@@ -491,7 +492,9 @@ export function Features() {
             })}
           </div>
 
-          {/* ── Right: feature detail — height locked to left column ── */}
+          {/* ── Right: feature detail — fixed height, generous enough for the
+               tallest visual, so it never grows/shrinks as the carousel
+               auto-advances (that used to shift every section below it). ── */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -499,8 +502,8 @@ export function Features() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              style={{ height: leftHeight }}
-              className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-7 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
+              style={{ height: Math.max(leftHeight ?? 0, 340) }}
+              className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-6 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
             >
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>
@@ -512,13 +515,22 @@ export function Features() {
                 </div>
               </div>
 
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
 
-              <div className="mt-5 flex-1 overflow-hidden">
+              <div className="mt-3 flex-1 overflow-hidden">
                 {f.visual}
               </div>
             </motion.div>
           </AnimatePresence>
+
+          <div className="mt-4">
+            <Link
+              href="/features"
+              className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              See all features →
+            </Link>
+          </div>
         </div>
       </div>
     </section>

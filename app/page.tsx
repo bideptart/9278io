@@ -6,6 +6,7 @@ import { Features } from "@/components/sections/features"
 import { Industries } from "@/components/sections/industries"
 import { HowItWorks } from "@/components/sections/how-it-works"
 import { FAQ } from "@/components/sections/faq"
+import { FinalCta } from "@/components/sections/final-cta"
 import { ServiceJsonLd, FaqJsonLd } from "@/components/seo/jsonld"
 import { FLAT_FAQ } from "@/lib/faq"
 
@@ -28,6 +29,7 @@ export default function HomePage() {
         <Industries />
         <PricingFeature />
         <FAQ />
+        <FinalCta />
       </main>
       <SiteFooter />
     </div>

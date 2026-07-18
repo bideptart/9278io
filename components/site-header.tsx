@@ -61,7 +61,7 @@ export function SiteHeader() {
         {/* ── Desktop nav ── */}
         <nav aria-label="Primary" className="hidden items-center gap-0.5 md:flex">
 
-          {navLink("Features", "/#features")}
+          {navLink("Features", "/features")}
           {navLink("Industries", "/industries")}
           {navLink("Pricing", "/pricing")}
           {navLink("Blog", "/blog")}
@@ -124,7 +124,7 @@ export function SiteHeader() {
           >
             <nav className="flex flex-col gap-0.5 p-4 pb-6">
               <Link
-                href="/#features"
+                href="/features"
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 Features

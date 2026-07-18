@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight, PhoneCall, Globe, Clock, ShieldCheck, Headphones,
-  Zap, Smile, CalendarCheck, Users, MessageSquare, BarChart3, Check,
+  Zap, CalendarCheck, Users, MessageSquare, BarChart3, Check,
 } from "lucide-react"
 import { motion } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
@@ -101,9 +101,8 @@ function DashboardPanel() {
   const ss = String(secs % 60).padStart(2, "0")
 
   const metrics = [
-    { icon: Zap,         value: "281ms",    label: "Latency",    color: "text-primary",     tile: "bg-primary/10" },
-    { icon: ShieldCheck, value: "98%",      label: "Confidence", color: "text-emerald-600", tile: "bg-emerald-50" },
-    { icon: Smile,       value: "Positive", label: "Sentiment",  color: "text-violet-600",  tile: "bg-violet-50" },
+    { icon: Zap,   value: "281ms",      label: "Latency",  color: "text-primary",     tile: "bg-primary/10" },
+    { icon: Clock, value: `${mm}:${ss}`, label: "Duration", color: "text-emerald-600", tile: "bg-emerald-50" },
   ]
 
   return (
@@ -189,7 +188,9 @@ function DashboardPanel() {
 
         {/* Call journey */}
         <div className="border-t border-border/70 bg-slate-50/50 px-4 py-2.5">
-          <p className="mb-1.5 text-[11px] font-semibold text-foreground">Call Journey</p>
+          <p className="mb-1.5 text-[11px] font-semibold text-foreground">
+            Call Journey <span className="font-normal text-muted-foreground">(sample)</span>
+          </p>
           <div className="relative flex items-start justify-between">
             {/* connector line */}
             <div className="absolute left-4 right-4 top-4 h-[2px] -translate-y-1/2 bg-border" aria-hidden />
