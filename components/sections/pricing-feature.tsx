@@ -1,16 +1,18 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { Check, Zap, TrendingUp, Building2 } from "lucide-react"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
+import { cn } from "@/lib/utils"
 
 const plans = [
   {
     icon: Zap,
     name: "Starter",
-    price: "₹2,999",
+    priceMonthly: 2999,
     rate: "₹12 / min eff.",
     credit: "250 included min",
     agents: "2 agents",
@@ -30,7 +32,7 @@ const plans = [
   {
     icon: TrendingUp,
     name: "Growth",
-    price: "₹8,799",
+    priceMonthly: 8799,
     rate: "₹11 / min eff.",
     credit: "800 included min",
     agents: "10 agents",
@@ -51,7 +53,7 @@ const plans = [
   {
     icon: Building2,
     name: "Scale",
-    price: "₹29,999",
+    priceMonthly: 29999,
     rate: "₹10 / min eff.",
     credit: "3,000 included min",
     agents: "Unlimited",
@@ -70,7 +72,15 @@ const plans = [
   },
 ]
 
+const trustChips = ["TRAI-compliant", "24/7 always on", "Cancel anytime"]
+
+function formatINR(n: number) {
+  return `₹${n.toLocaleString("en-IN")}`
+}
+
 export function PricingFeature() {
+  const [yearly, setYearly] = useState(false)
+
   return (
     <section id="pricing" className="border-b border-border">
       <div className="w-full px-6 py-14 md:px-8 md:py-20">
@@ -91,73 +101,136 @@ export function PricingFeature() {
           </p>
         </ScrollReveal>
 
-        <StaggerGroup className="mt-12 grid gap-5 md:grid-cols-3">
+        {/* Trust chips + billing toggle */}
+        <ScrollReveal className="mt-6 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {trustChips.map((t) => (
+              <span
+                key={t}
+                className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.05] px-3.5 py-1.5 text-xs font-medium text-foreground"
+              >
+                <Check className="h-3.5 w-3.5 text-primary" aria-hidden /> {t}
+              </span>
+            ))}
+          </div>
+
+          <div className="inline-flex items-center gap-1 rounded-full border border-border bg-white p-1 shadow-sm">
+            <button
+              type="button"
+              onClick={() => setYearly(false)}
+              aria-pressed={!yearly}
+              className={cn(
+                "rounded-full px-5 py-1.5 text-sm font-semibold transition-colors",
+                !yearly ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              onClick={() => setYearly(true)}
+              aria-pressed={yearly}
+              className={cn(
+                "flex items-center gap-1.5 rounded-full px-5 py-1.5 text-sm font-semibold transition-colors",
+                yearly ? "bg-primary text-white shadow-sm" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Yearly
+              <span
+                className={cn(
+                  "rounded-full px-1.5 py-0.5 text-[10px] font-bold",
+                  yearly ? "bg-white/20 text-white" : "bg-primary/10 text-primary",
+                )}
+              >
+                Save 20%
+              </span>
+            </button>
+          </div>
+        </ScrollReveal>
+
+        <StaggerGroup className="mx-auto mt-10 max-w-6xl grid gap-5 md:grid-cols-3 md:items-center">
           {plans.map((plan) => {
             const Icon = plan.icon
+            const price = yearly ? Math.round(plan.priceMonthly * 12 * 0.8) : plan.priceMonthly
+            const originalYearly = plan.priceMonthly * 12
             return (
               <StaggerItem key={plan.name}>
-                <motion.div
-                  className={`group relative flex flex-col overflow-hidden rounded-2xl border p-7 transition-all duration-300 ${
-                    plan.highlight
-                      ? "border-primary/40 bg-primary/[0.06] shadow-[0_0_40px_oklch(0.78_0.16_195/0.12)]"
-                      : "border-border bg-white hover:border-primary/20 hover:bg-slate-50"
-                  }`}
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                >
-                  {plan.highlight && (
-                    <>
-                      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-                      <span className="absolute right-5 top-5 rounded-full bg-primary px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
-                        Most Popular
-                      </span>
-                    </>
+                <div
+                  className={cn(
+                    "relative md:transition-transform md:duration-300",
+                    plan.highlight ? "md:z-10 md:-my-4 md:scale-[1.06]" : "md:scale-95",
                   )}
+                >
+                  <motion.div
+                    className={`group relative flex flex-col overflow-hidden rounded-2xl border p-5 transition-all duration-300 ${
+                      plan.highlight
+                        ? "border-primary/40 bg-primary/[0.06] shadow-[0_20px_60px_oklch(0.78_0.16_195/0.2)]"
+                        : "border-border bg-white hover:border-primary/20 hover:bg-slate-50"
+                    }`}
+                    whileHover={{ y: -4 }}
+                    transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                  >
+                    {plan.highlight && (
+                      <>
+                        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+                        <span className="absolute right-5 top-5 rounded-full bg-primary px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                          Most Popular
+                        </span>
+                      </>
+                    )}
 
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <span className="text-sm font-semibold text-muted-foreground">{plan.name}</span>
-                  </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
+                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                      <span className="text-sm font-semibold text-muted-foreground">{plan.name}</span>
+                    </div>
 
-                  <div className="mt-5">
-                    <span className="text-4xl font-bold tracking-tight">{plan.price}</span>
-                    <span className="ml-2 text-sm text-muted-foreground">/mo</span>
-                  </div>
+                    <div className="mt-3 flex items-end gap-2">
+                      <span className="text-3xl font-bold tracking-tight">{formatINR(price)}</span>
+                      <span className="pb-1 text-sm text-muted-foreground">{yearly ? "/yr" : "/mo"}</span>
+                    </div>
+                    {yearly && (
+                      <p className="mt-1 text-[11px] text-muted-foreground">
+                        <span className="line-through">{formatINR(originalYearly)}</span>
+                        <span className="ml-1.5 font-semibold text-emerald-600">Save 20% billed yearly</span>
+                      </p>
+                    )}
 
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-                      {plan.rate}
-                    </span>
-                    <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
-                      {plan.credit}
-                    </span>
-                  </div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+                        {plan.rate}
+                      </span>
+                      <span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+                        {plan.credit}
+                      </span>
+                    </div>
 
-                  <ul className="mt-7 flex flex-col gap-2.5">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="mt-4 flex flex-col gap-2">
+                      {plan.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <div className="mt-8">
-                    <Button
-                      asChild
-                      className={`w-full rounded-xl font-semibold ${
-                        plan.highlight
-                          ? "bg-primary text-primary-foreground shadow-[0_0_24px_oklch(0.78_0.16_195/0.3)] hover:bg-primary/90"
-                          : "border border-border bg-slate-50 text-foreground hover:bg-slate-100"
-                      }`}
-                      variant={plan.highlight ? "default" : "outline"}
-                    >
-                      <Link href={plan.href}>{plan.cta}</Link>
-                    </Button>
-                  </div>
-                </motion.div>
+                    <div className="mt-5">
+                      <Button
+                        asChild
+                        size="sm"
+                        className={`w-full rounded-xl font-semibold ${
+                          plan.highlight
+                            ? "bg-primary text-primary-foreground shadow-[0_0_24px_oklch(0.78_0.16_195/0.3)] hover:bg-primary/90"
+                            : "border border-border bg-slate-50 text-foreground hover:bg-slate-100"
+                        }`}
+                        variant={plan.highlight ? "default" : "outline"}
+                      >
+                        <Link href={plan.href}>{plan.cta}</Link>
+                      </Button>
+                    </div>
+                  </motion.div>
+                </div>
               </StaggerItem>
             )
           })}

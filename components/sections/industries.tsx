@@ -163,13 +163,13 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
 
 /** Fit the fanned cards to the viewport so they stay fully visible on mobile. */
 function useCardSize() {
-  const [size, setSize] = useState({ width: 460, height: 372 })
+  const [size, setSize] = useState({ width: 460, height: 280 })
   useEffect(() => {
     const compute = () => {
       const vw = window.innerWidth
       const width = Math.min(460, Math.max(248, vw - 48))
       // Narrow cards wrap more copy, so give them a touch more height.
-      const height = vw < 640 ? Math.round(width * 0.92) : 372
+      const height = vw < 640 ? Math.round(width * 0.92) : 280
       setSize({ width, height })
     }
     compute()
@@ -183,7 +183,7 @@ export function Industries() {
   const { width: cardWidth, height: cardHeight } = useCardSize()
   return (
     <section id="industries" className="overflow-hidden border-b border-border">
-      <div className="w-full px-6 py-14 md:px-8 md:py-20">
+      <div className="w-full px-6 py-8 md:px-8 md:py-10">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
@@ -195,12 +195,12 @@ export function Industries() {
           <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">
             Built for every Indian industry.
           </h2>
-          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+          <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
             Pre-tuned scripts, Indian integrations, and TRAI compliance guardrails for the workflows you actually run.
           </p>
         </ScrollReveal>
 
-        <ScrollReveal className="mt-12">
+        <ScrollReveal className="mt-6">
           <CardStack
             items={cards}
             initialIndex={0}
@@ -216,7 +216,7 @@ export function Industries() {
             renderCard={(item) => {
               const Icon = item.icon
               return (
-                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 p-5 sm:p-7 ${item.accent}`}>
+                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 p-4 sm:p-6 ${item.accent}`}>
                   {/* accent bar (colour = industry accent) */}
                   <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
 
@@ -232,10 +232,10 @@ export function Industries() {
                   </div>
 
                   {/* Description */}
-                  <p className="mt-3 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground sm:mt-4 sm:line-clamp-3 sm:text-sm">{item.description}</p>
+                  <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground sm:mt-3 sm:line-clamp-3 sm:text-sm">{item.description}</p>
 
                   {/* Capability chips */}
-                  <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-4">
+                  <div className="mt-2 flex flex-wrap gap-1.5 sm:mt-3">
                     {item.caps.map((cap) => (
                       <span
                         key={cap}
@@ -248,7 +248,7 @@ export function Industries() {
 
                   {/* Live agent preview */}
                   {item.agentLine ? (
-                    <div className="mt-3 flex items-start gap-2 rounded-xl border border-border bg-white/70 px-3 py-2 backdrop-blur-sm sm:mt-4 sm:py-2.5">
+                    <div className="mt-2 flex items-start gap-2 rounded-xl border border-border bg-white/70 px-3 py-2 backdrop-blur-sm sm:mt-3 sm:py-2">
                       <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-current/15 text-[10px] font-bold">
                         A
                       </span>
@@ -257,7 +257,7 @@ export function Industries() {
                   ) : null}
 
                   {/* Footer */}
-                  <div className="mt-auto flex items-center justify-between pt-3 sm:pt-4">
+                  <div className="mt-auto flex items-center justify-between pt-2 sm:pt-3">
                     {item.href ? (
                       <Link
                         href={item.href}

@@ -8,10 +8,24 @@ import type { FaqItem } from "@/lib/faq"
  * (ResizeObserver) and animates to it via the accordion-down/up keyframes
  * in globals.css, so the open/close is a smooth height transition instead
  * of the instant snap a native <details> element gives you.
+ *
+ * type="single" + collapsible keeps exactly one answer open at a time,
+ * closable by clicking it again.
  */
-export function FaqAccordion({ items, idPrefix }: { items: FaqItem[]; idPrefix?: string }) {
+export function FaqAccordion({
+  items,
+  idPrefix,
+  defaultOpenIndex = null,
+}: {
+  items: FaqItem[]
+  idPrefix?: string
+  defaultOpenIndex?: number | null
+}) {
+  const defaultValue =
+    defaultOpenIndex != null ? (idPrefix ? `${idPrefix}-${defaultOpenIndex}` : `${defaultOpenIndex}`) : undefined
+
   return (
-    <Accordion type="multiple" className="w-full">
+    <Accordion type="single" collapsible defaultValue={defaultValue} className="w-full">
       {items.map((item, i) => {
         const value = idPrefix ? `${idPrefix}-${i}` : `${i}`
         return (
