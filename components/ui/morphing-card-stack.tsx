@@ -328,6 +328,40 @@ export function Component({
           </button>
         </div>
       )}
+
+      {/* Related info below the card on mobile/tablet (side panels only show on lg+) */}
+      {layout === "stack" && (leftInfo || rightInfo) && (
+        <div className="mx-auto grid max-w-md gap-5 px-2 pt-2 sm:grid-cols-2 lg:hidden">
+          {leftInfo ? (
+            <div>
+              {leftInfo.title ? (
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-primary">{leftInfo.title}</p>
+              ) : null}
+              <ul className="mt-2.5 space-y-2">
+                {leftInfo.items.map((it, i) => (
+                  <li key={i} className="border-l-2 border-primary/30 pl-3 text-[13px] leading-snug text-foreground/80">
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+          {rightInfo ? (
+            <div>
+              {rightInfo.title ? (
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-primary">{rightInfo.title}</p>
+              ) : null}
+              <ul className="mt-2.5 space-y-2">
+                {rightInfo.items.map((it, i) => (
+                  <li key={i} className="border-l-2 border-primary/30 pl-3 text-[13px] leading-snug text-foreground/80">
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </div>
+      )}
     </div>
   )
 }
