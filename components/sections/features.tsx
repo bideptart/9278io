@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   AudioLines, Languages, MessageCircle, Activity,
   Network, CalendarClock, PhoneForwarded, Mic, Timer,
@@ -170,8 +170,8 @@ function ScheduleVisual() {
         <span />
         {days.map(d => <span key={d} className="text-center font-semibold">{d}</span>)}
         {times.map((t, row) => (
-          <Fragment key={t}>
-            <span className="flex items-center text-[10px] text-muted-foreground">{t}</span>
+          <>
+            <span key={t} className="flex items-center text-[10px] text-muted-foreground">{t}</span>
             {slots[row].map((active, col) => (
               <motion.div key={col}
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -185,7 +185,7 @@ function ScheduleVisual() {
                 {active ? "●" : "○"}
               </motion.div>
             ))}
-          </Fragment>
+          </>
         ))}
       </div>
       <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2">

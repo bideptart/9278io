@@ -1,12 +1,16 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, BookOpen, CalendarClock, Globe, Tags } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
+import { BlogSearchProvider } from "@/components/blog/blog-search-context"
+import { BlogSearchBar } from "@/components/blog/blog-search-bar"
+import { BlogCategoryFilter } from "@/components/blog/blog-category-filter"
+import { BlogPostGrid } from "@/components/blog/blog-post-grid"
 import { getAllBlogPostSummaries } from "@/lib/blog"
 import { sanitizeHtml } from "@/lib/sanitize"
 
@@ -35,6 +39,8 @@ export default async function BlogPage() {
   const posts = await getAllBlogPostSummaries()
   const featured = posts[0]
   const rest = featured ? posts.slice(1) : posts
+  const topicCount = new Set(posts.map((p) => p.category)).size
+  const latestUpdate = posts[0]?.publishedAt.split(" ").slice(1).join(" ") || ""
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -47,6 +53,7 @@ export default async function BlogPage() {
         ]}
       />
 
+      <BlogSearchProvider>
       {/* ── Hero ── */}
       <section className="relative overflow-hidden border-b border-border/50">
         <div
@@ -59,11 +66,41 @@ export default async function BlogPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Guides, case studies &amp; insights
             </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">The 9278.io Blog</h1>
+            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              The 92
+              <span className="bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text text-transparent">
+                78.io Blog
+              </span>
+            </h1>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               How Indian businesses are automating phone calls, staying TRAI-compliant, and unlocking ROI with AI voice
               agents in Hindi, Tamil, Telugu, and 12 more languages.
             </p>
+
+            <BlogSearchBar />
+
+            <div className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
+                <BookOpen className="mx-auto size-5 text-primary" aria-hidden />
+                <p className="mt-3 text-2xl font-bold tracking-tight">{posts.length}</p>
+                <p className="mt-1 text-xs text-muted-foreground">In-depth guides</p>
+              </div>
+              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
+                <Tags className="mx-auto size-5 text-primary" aria-hidden />
+                <p className="mt-3 text-2xl font-bold tracking-tight">{topicCount}</p>
+                <p className="mt-1 text-xs text-muted-foreground">Topics covered</p>
+              </div>
+              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
+                <Globe className="mx-auto size-5 text-primary" aria-hidden />
+                <p className="mt-3 text-2xl font-bold tracking-tight">15+</p>
+                <p className="mt-1 text-xs text-muted-foreground">Languages</p>
+              </div>
+              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
+                <CalendarClock className="mx-auto size-5 text-primary" aria-hidden />
+                <p className="mt-3 text-2xl font-bold tracking-tight">{latestUpdate || "Live"}</p>
+                <p className="mt-1 text-xs text-muted-foreground">Last updated</p>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -113,49 +150,13 @@ export default async function BlogPage() {
           </ScrollReveal>
         )}
 
+        {/* Categories */}
+        <BlogCategoryFilter totalCount={posts.length} topicCount={topicCount} />
+
         {/* Grid */}
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {rest.map((post, i) => (
-            <ScrollReveal key={post.slug} delay={i * 0.04} className="h-full">
-              <Link
-                href={`/blog/${post.slug}`}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md"
-              >
-                {/* Hero banner */}
-                <div
-                  className="overflow-hidden border-b border-border bg-gradient-to-br from-slate-50 to-white [&_img]:!block [&_img]:aspect-[16/9] [&_img]:!w-full [&_img]:object-cover [&_img]:!rounded-none [&_svg]:block [&_svg]:aspect-[16/9] [&_svg]:w-full"
-                  // sanitizeHtml runs LAST, so it covers the injected
-                  // loading/decoding hints too. See lib/sanitize.ts.
-                  dangerouslySetInnerHTML={{
-                    __html: sanitizeHtml(post.heroHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ')),
-                  }}
-                />
-
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-center justify-between">
-                    <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${catClass(post.category)}`}>
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-muted-foreground">{post.publishedAt}</span>
-                  </div>
-
-                  <div className="mt-4 flex-1">
-                    <h2 className="text-base font-bold leading-snug tracking-tight transition-colors group-hover:text-primary">
-                      {post.title}
-                    </h2>
-                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.description}</p>
-                  </div>
-
-                  <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
-                    <span>{post.readTime}</span>
-                    <ArrowRight className="size-3.5 text-primary transition-transform group-hover:translate-x-1" aria-hidden />
-                  </div>
-                </div>
-              </Link>
-            </ScrollReveal>
-          ))}
-        </div>
+        <BlogPostGrid posts={rest} />
       </section>
+      </BlogSearchProvider>
 
       <RelatedLinks
         heading="Keep exploring"

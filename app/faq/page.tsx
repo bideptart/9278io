@@ -42,7 +42,11 @@ export default function FaqPage() {
               Frequently asked questions
             </span>
             <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">
-              Everything you wanted to know.
+              Everything you{" "}
+              <span className="bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text text-transparent">
+                wanted to know
+              </span>
+              .
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               Pricing, credit expiry, phone numbers, compliance, and account access — all in one place. Still stuck?

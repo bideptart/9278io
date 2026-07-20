@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Zap, Headphones } from "lucide-react"
+import { Zap, Headphones, Mic, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PricingCardSection } from "@/components/pricing/pricing-card-section"
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
+import { AnimatedStatValue } from "@/components/pricing/animated-stat-value"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
@@ -57,28 +58,58 @@ export default async function PricingPage({
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="w-full px-6 pb-20 pt-10 md:px-8 md:pb-28 md:pt-14">
+        <div className="w-full px-6 pb-10 pt-10 md:px-8 md:pb-14 md:pt-14">
           <ScrollReveal className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-2 text-[clamp(9px,2.9vw,13px)] font-semibold uppercase tracking-normal text-primary sm:whitespace-normal sm:px-5 sm:text-sm sm:tracking-wider">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Pay as you go · INR pricing · GST invoices
             </span>
             <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
-              Pick your plan.
+              Pick your{" "}
+              <span className="bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text text-transparent">
+                plan
+              </span>
+              .
             </h1>
             <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once
-              as wallet credit.
+              All plans include inbound calling, call recording, real-time transcription, and per-second billing with
+              no minute-rounding. Prices are in ₹, billed once as wallet credit that stays valid for 60 days — no
+              contracts, no setup fees, cancel anytime.
             </p>
+
+            {/* Point 1: trust bar */}
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {["TRAI-compliant", "Razorpay secured", "DPDP compliant"].map((badge) => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground"
+                >
+                  <ShieldCheck className="size-3.5 text-primary" aria-hidden />
+                  {badge}
+                </span>
+              ))}
+            </div>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-3 md:grid-cols-2">
-            <Stat icon={Zap} label="Voice rate" value="From ₹10 / min" sub="Best rate on the Scale plan." />
+          {/* Point 3: 3-up stat row (was 2-up) */}
+          <div className="mt-12 grid gap-3 md:grid-cols-3">
             <Stat
-              icon={Headphones}
-              label="Minimum top-up"
-              value="₹2,999"
-              sub="GST charged at checkout."
+              icon={Zap}
+              label="Voice rate"
+              // Point 2: animated count-up on the rate figure
+              value={
+                <>
+                  From ₹<AnimatedStatValue value={10} /> / min
+                </>
+              }
+              sub="Best rate on the Scale plan."
+            />
+            <Stat icon={Headphones} label="Minimum top-up" value="₹2,999" sub="GST charged at checkout." />
+            <Stat
+              icon={Mic}
+              label="Included on every plan"
+              value="Call recording"
+              sub="With PII redaction, synced to your dashboard, CRM, or webhook."
             />
           </div>
         </div>
@@ -154,11 +185,11 @@ function Stat({
 }: {
   icon: React.ComponentType<{ className?: string }>
   label: string
-  value: string
+  value: React.ReactNode
   sub: string
 }) {
   return (
-    <div className="rounded-xl border-[3px] border-border/60 bg-white p-5">
+    <div className="rounded-xl border-[3px] border-border/60 bg-white p-5 transition-colors hover:border-primary">
       <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
         <Icon className="size-4 text-primary" aria-hidden />
         {label}
