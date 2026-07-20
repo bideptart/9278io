@@ -404,6 +404,29 @@ export function Features() {
   const startRef = useRef(Date.now())
   const leftRef = useRef<HTMLDivElement>(null)
   const [leftHeight, setLeftHeight] = useState<number | undefined>(undefined)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  // Only match the panel's height to the left grid on desktop (side-by-side).
+  // On mobile they stack, so matching would create a huge empty box.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)")
+    const update = () => setIsDesktop(mq.matches)
+    update()
+    mq.addEventListener("change", update)
+    return () => mq.removeEventListener("change", update)
+  }, [])
+
+  // Keep the active mobile tab centered — scroll ONLY the strip horizontally,
+  // never scrollIntoView (that would yank the whole page to this section).
+  const mobileTabsRef = useRef<(HTMLButtonElement | null)[]>([])
+  const stripRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const strip = stripRef.current
+    const tab = mobileTabsRef.current[active]
+    if (!strip || !tab) return
+    const target = tab.offsetLeft - strip.clientWidth / 2 + tab.clientWidth / 2
+    strip.scrollTo({ left: target, behavior: "smooth" })
+  }, [active])
 
   // Measured so the right panel's fixed height (below) can't be shorter than the left grid
   useEffect(() => {
@@ -455,8 +478,31 @@ export function Features() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* ── Left: 2-col grid (2+2+2+2+1) ── */}
-          <div ref={leftRef} className="grid grid-cols-2 content-start gap-1 self-start">
+          {/* ── Mobile: horizontal scrolling tab strip (keeps each feature
+               visually tied to its detail panel right below) ── */}
+          <div ref={stripRef} className="-mx-6 flex gap-2 overflow-x-auto px-6 pb-1 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
+            {features.map((feat, i) => {
+              const Icon = feat.icon
+              const isActive = i === active
+              return (
+                <button
+                  key={feat.label}
+                  ref={(el) => { mobileTabsRef.current[i] = el }}
+                  type="button"
+                  onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
+                  className={`flex shrink-0 items-center gap-2 rounded-full border-2 px-3.5 py-2 transition-all duration-200 ${
+                    isActive ? `${feat.activeBg} ${feat.color}` : "border-primary/15 text-muted-foreground/70"
+                  }`}
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  <span className="whitespace-nowrap text-xs font-semibold">{feat.label}</span>
+                </button>
+              )
+            })}
+          </div>
+
+          {/* ── Desktop: 2-col grid (2+2+2+2+1) ── */}
+          <div ref={leftRef} className="hidden grid-cols-2 content-start gap-1 self-start lg:grid">
             {features.map((feat, i) => {
               const Icon = feat.icon
               const isActive = i === active
@@ -502,8 +548,8 @@ export function Features() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              style={{ height: Math.max(leftHeight ?? 0, 340) }}
-              className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-6 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)]"
+              style={{ height: isDesktop ? Math.max(leftHeight ?? 0, 340) : 340 }}
+              className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-4 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)] md:p-6"
             >
               <div className="flex items-center gap-3">
                 <span className={`flex h-10 w-10 items-center justify-center rounded-xl border ${f.activeBg} ${f.color}`}>

@@ -166,6 +166,21 @@
 }
 
 
+/* Hero mockup — gentle continuous float for chat bubbles / result card.
+   Two opposite-phase variants create a zig-zag (one bubble drifts up while
+   the neighbour drifts down). Applied on plain divs so it stays independent
+   of framer-motion's transform/layout handling. */
+@keyframes heroFloatUp {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+@keyframes heroFloatDown {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(7px); }
+}
+.hero-float-up   { animation: heroFloatUp 2.8s ease-in-out infinite; will-change: transform; }
+.hero-float-down { animation: heroFloatDown 2.8s ease-in-out infinite 1.4s; will-change: transform; }
+
 /* ── Industries hero illustration — animation ────────────────────────────
    Subtle, professional motion for the conceptual voice-AI graphic.
    All transforms use transform-box: fill-box so SVG elements rotate/scale
@@ -297,6 +312,57 @@
   .ind-glow,
   .ind-ping,
   .ind-shimmer {
+    animation: none;
+  }
+}
+
+/* ── Marquee (auto-scrolling ticker) ─────────────────────────────────── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
+  }
+}
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-vertical {
+    animation: none;
+  }
+}
+
+/* ── Side-list item entrance (re-plays when the active card changes) ──── */
+@keyframes ind-item-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.ind-item-in {
+  animation: ind-item-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ind-item-in {
     animation: none;
   }
 }

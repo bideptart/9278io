@@ -167,9 +167,9 @@ function useCardSize() {
   useEffect(() => {
     const compute = () => {
       const vw = window.innerWidth
-      const width = Math.min(460, Math.max(248, vw - 48))
+      const width = Math.min(560, Math.max(248, vw - 48))
       // Narrow cards wrap more copy, so give them a touch more height.
-      const height = vw < 640 ? Math.round(width * 0.92) : 280
+      const height = vw < 640 ? Math.round(width * 0.92) : 340
       setSize({ width, height })
     }
     compute()
@@ -207,16 +207,23 @@ export function Industries() {
             maxVisible={5}
             cardWidth={cardWidth}
             cardHeight={cardHeight}
+            spreadDeg={0}
+            tiltXDeg={0}
+            depthPx={55}
+            overlap={0.68}
+            activeScale={1}
+            inactiveScale={0.9}
+            activeLiftPx={0}
             autoAdvance
-            intervalMs={1600}
-            springStiffness={420}
-            springDamping={32}
+            intervalMs={2600}
+            springStiffness={340}
+            springDamping={34}
             pauseOnHover
             showDots
-            renderCard={(item) => {
+            renderCard={(item, { active }) => {
               const Icon = item.icon
               return (
-                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 p-4 sm:p-6 ${item.accent}`}>
+                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 ${active ? "px-10 sm:px-16 py-5 sm:py-8" : "px-4 py-4 sm:px-6 sm:py-6"} ${item.accent}`}>
                   {/* accent bar (colour = industry accent) */}
                   <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
 
