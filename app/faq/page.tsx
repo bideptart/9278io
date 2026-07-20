@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { MessageCircleQuestion } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { FaqSearchProvider } from "@/components/faq/faq-search-context"
+import { FaqSearchBar } from "@/components/faq/faq-search-bar"
+import { FaqGroupsList } from "@/components/faq/faq-groups-list"
 import { FAQ_GROUPS, FLAT_FAQ } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/jsonld"
@@ -30,12 +33,13 @@ export default function FaqPage() {
       />
       <FaqJsonLd items={FLAT_FAQ} />
 
+      <FaqSearchProvider>
       <section className="relative overflow-hidden border-b border-border/50">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="w-full px-6 pb-20 pt-10 md:px-8 md:pb-28 md:pt-14">
+        <div className="w-full px-6 pb-10 pt-10 md:px-8 md:pb-14 md:pt-14">
           <ScrollReveal className="text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -48,41 +52,51 @@ export default function FaqPage() {
               </span>
               .
             </h1>
-            <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              Pricing, credit expiry, phone numbers, compliance, and account access — all in one place. Still stuck?
-              The team replies within an hour during business days.
+            <p className="mx-auto mt-5 line-clamp-4 max-w-4xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              Whether you're comparing plans before you sign up or already live and wondering how billing, phone
+              numbers, or compliance actually work day to day, chances are someone asked the same thing before you.
+              We've collected the real questions our team hears most — on pricing, credit expiry, Indian phone
+              numbers, TRAI and DPDP compliance, and account access — answered here in plain language.
             </p>
+
+            <FaqSearchBar />
+
+            <div className="mx-auto mt-6 flex max-w-md items-center justify-center gap-x-6 gap-y-1 text-sm text-muted-foreground">
+              <span><strong className="text-foreground">{FLAT_FAQ.length}+</strong> questions answered</span>
+              <span aria-hidden>·</span>
+              <span><strong className="text-foreground">{FAQ_GROUPS.length}</strong> categories</span>
+              <span aria-hidden>·</span>
+              <span><strong className="text-foreground">&lt;1hr</strong> avg reply</span>
+            </div>
           </ScrollReveal>
 
-          <ScrollReveal className="mt-10 flex flex-wrap justify-center gap-2">
+          <ScrollReveal className="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
             {FAQ_GROUPS.map((g) => (
               <a
                 key={g.id}
                 href={`#${g.id}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
               >
                 {g.title}
               </a>
             ))}
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              <MessageCircleQuestion className="size-3.5" aria-hidden />
+              Still stuck? Talk to us
+            </a>
           </ScrollReveal>
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-3xl px-6 py-16 md:px-8 md:py-24">
-        {FAQ_GROUPS.map((group) => (
-          <section key={group.id} id={group.id} className="scroll-mt-24 border-b border-border/50 py-10 first:pt-0 last:border-b-0">
-            <ScrollReveal>
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{group.title}</h2>
-            </ScrollReveal>
-
-            <ScrollReveal className="mt-6">
-              <FaqAccordion items={group.items} idPrefix={group.id} />
-            </ScrollReveal>
-          </section>
-        ))}
+      <div id="faq-results" className="mx-auto w-full max-w-3xl scroll-mt-24 px-6 pb-16 pt-10 md:px-8 md:pb-24 md:pt-12">
+        <FaqGroupsList groups={FAQ_GROUPS} />
       </div>
+      </FaqSearchProvider>
 
-      <section className="w-full px-6 pb-24 md:px-8">
+      <section id="contact" className="w-full scroll-mt-24 px-6 pb-24 md:px-8">
         <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
