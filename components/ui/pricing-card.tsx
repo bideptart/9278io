@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { motion, type PanInfo } from "motion/react";
 import { cn } from "@/lib/utils"; // Assuming a utility function for class merging
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -72,14 +73,20 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   // --- Mobile card-stack state ---
   // A static layered stack, not a scroll carousel — the active plan is
   // always centered in front with the other two permanently flanking it
-  // 50% behind, on both sides. Switching the active plan is a plain click,
-  // not a scroll/swipe gesture, so there's no scroll-snap or
+  // 50% behind, on both sides. Switching the active plan is a plain click
+  // or a swipe (drag gesture) on the front card — no scroll-snap or
   // IntersectionObserver math to get wrong or glitch mid-gesture.
   const popularIndex = Math.max(0, plans.findIndex((p) => p.isPopular));
   const [activeIndex, setActiveIndex] = React.useState(popularIndex);
   const otherIndices = plans.map((_, i) => i).filter((i) => i !== activeIndex);
   const leftIndex = otherIndices[0];
   const rightIndex = otherIndices[1];
+
+  const SWIPE_THRESHOLD = 60; // px of drag before it counts as a swipe
+  function handleDragEnd(_e: unknown, info: PanInfo) {
+    if (info.offset.x <= -SWIPE_THRESHOLD) setActiveIndex(rightIndex);
+    else if (info.offset.x >= SWIPE_THRESHOLD) setActiveIndex(leftIndex);
+  }
 
   // --- 2.1. Trust badges ---
   const Badges = badges && badges.length > 0 && (
@@ -232,10 +239,20 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
       {/* Active plan — the only card in normal flow, so it defines the stack's height.
           Always fully expanded (matches the reference layout): the front
           card is meant to be the prominent, fully-readable one, while the
-          side cards stay truncated. */}
-      <div className="relative z-20 mx-auto w-[78%]">
+          side cards stay truncated. Swipe left/right on it to switch plans —
+          drag={\"x\"} + dragConstraints snap it back to center on release, so
+          this is a gesture trigger, not a scroll-based carousel. */}
+      <motion.div
+        key={activeIndex}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.15}
+        onDragEnd={handleDragEnd}
+        whileDrag={{ cursor: "grabbing" }}
+        className="relative z-20 mx-auto w-[78%] cursor-grab touch-pan-y"
+      >
         {renderCard(plans[activeIndex], true, plans[activeIndex].isPopular)}
-      </div>
+      </motion.div>
 
       {/* Left plan — permanently tucked ~50% behind the active card */}
       <div
