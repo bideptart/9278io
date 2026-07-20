@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Plus, BookOpen, Sparkles } from "lucide-react"
+import { ArrowRight, BookOpen, Sparkles } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -250,9 +250,9 @@ export default function IndustriesPage() {
       </section>
 
       {/* ── Bento overview — centered classical header ── */}
-      <section className="w-full px-6 py-12 md:px-8 md:py-16">
-        <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto mb-10 max-w-2xl text-center">
+      <section className="w-full px-6 py-10 md:px-8 md:py-14">
+        <div className="mx-auto max-w-7xl">
+          <ScrollReveal className="mx-auto mb-8 max-w-2xl text-center">
             <span className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Industries</span>
             <h2 className="mt-4 text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
               Browse by industry
@@ -268,7 +268,7 @@ export default function IndustriesPage() {
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {INDUSTRIES.map((ind, i) => {
               const Icon = ind.icon
               const accent = ACCENTS[i % ACCENTS.length]
@@ -279,11 +279,11 @@ export default function IndustriesPage() {
                   delay={i * 0.04}
                   className={`group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl ${accent}`}
                 >
-                  <Link href={`/industries/${ind.slug}`} className="relative block p-7">
+                  <Link href={`/industries/${ind.slug}`} className="relative flex h-full flex-col p-6">
                     {/* oversized watermark of the industry icon */}
                     <Icon
                       aria-hidden
-                      className="pointer-events-none absolute -bottom-7 -right-5 size-36 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:opacity-[0.09]"
+                      className="pointer-events-none absolute -bottom-7 -right-5 size-32 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:opacity-[0.09]"
                     />
                     {/* accent colour-wash on hover */}
                     <span
@@ -291,24 +291,25 @@ export default function IndustriesPage() {
                       className="pointer-events-none absolute inset-0 bg-current opacity-0 transition-opacity duration-500 group-hover:opacity-[0.05]"
                     />
 
-                    {/* filled accent icon badge */}
-                    <span className="relative grid size-14 place-items-center rounded-2xl bg-current shadow-lg transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
-                      <Icon className="size-6 text-white" aria-hidden />
-                    </span>
-
-                    <h3 className="relative mt-5 font-serif text-xl font-semibold tracking-tight text-foreground">{ind.name}</h3>
+                    {/* filled accent icon badge + name on one line */}
+                    <div className="relative flex items-center gap-3">
+                      <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-current shadow-md transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
+                        <Icon className="size-5 text-white" aria-hidden />
+                      </span>
+                      <h3 className="min-w-0 font-serif text-lg font-semibold tracking-tight text-foreground">{ind.name}</h3>
+                    </div>
                     {/* accent underline that grows on hover */}
                     <span
                       aria-hidden
-                      className="relative mt-2.5 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
+                      className="relative mt-3 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
                     />
 
-                    <p className="relative mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.short}</p>
-                    <div className="relative mt-5 flex flex-wrap gap-1.5">
+                    <p className="relative mt-3 text-xs leading-snug text-muted-foreground">{ind.short}</p>
+                    <div className="relative mt-auto flex flex-nowrap gap-1 pt-3.5">
                       {ind.caps.map((cap) => (
                         <span
                           key={cap}
-                          className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${CAP_COLORS[cap]}`}
+                          className={`min-w-0 shrink whitespace-nowrap rounded-full border px-1.5 py-0.5 text-center text-[8px] font-medium leading-tight ${CAP_COLORS[cap]}`}
                         >
                           {cap}
                         </span>
@@ -318,43 +319,6 @@ export default function IndustriesPage() {
                 </ScrollReveal>
               )
             })}
-
-            {/* "Many more" cell — completes the grid and signals broader coverage */}
-            <ScrollReveal
-              delay={INDUSTRIES.length * 0.04}
-              className="group relative overflow-hidden rounded-3xl border border-primary/25 bg-white text-primary shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl"
-            >
-              <Link href="/get-started" className="relative block p-7">
-                {/* oversized watermark */}
-                <Plus
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-7 -right-5 size-36 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:rotate-90 group-hover:scale-110 group-hover:opacity-[0.09]"
-                />
-                {/* accent colour-wash on hover */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-current opacity-0 transition-opacity duration-500 group-hover:opacity-[0.05]"
-                />
-
-                {/* filled accent icon badge */}
-                <span className="relative grid size-14 place-items-center rounded-2xl bg-current shadow-lg transition-all duration-500 group-hover:rotate-90 group-hover:scale-110">
-                  <Plus className="size-6 text-white" aria-hidden />
-                </span>
-
-                <h3 className="relative mt-5 font-serif text-xl font-semibold tracking-tight text-foreground">Many more</h3>
-                <span
-                  aria-hidden
-                  className="relative mt-2.5 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
-                />
-
-                <p className="relative mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                  Security, recruiting, insurance, finance and more — tell us your calls and we&apos;ll tune an agent for you.
-                </p>
-                <span className="relative mt-5 inline-flex items-center gap-1.5 text-sm font-semibold">
-                  Get started <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-                </span>
-              </Link>
-            </ScrollReveal>
           </div>
         </div>
       </section>

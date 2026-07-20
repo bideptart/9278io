@@ -315,3 +315,55 @@
     animation: none;
   }
 }
+
+/* ── Marquee (auto-scrolling ticker) ─────────────────────────────────── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
+  }
+}
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-vertical {
+    animation: none;
+  }
+}
+
+/* ── Side-list item entrance (re-plays when the active card changes) ──── */
+@keyframes ind-item-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.ind-item-in {
+  animation: ind-item-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ind-item-in {
+    animation: none;
+  }
+}
+
