@@ -165,3 +165,139 @@
   display: none !important;
 }
 
+
+/* ── Industries hero illustration — animation ────────────────────────────
+   Subtle, professional motion for the conceptual voice-AI graphic.
+   All transforms use transform-box: fill-box so SVG elements rotate/scale
+   about their own centre. Motion is disabled for reduced-motion users. */
+@keyframes ind-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ind-eq {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes ind-core {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+@keyframes ind-node {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
+}
+@keyframes ind-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+@keyframes ind-glow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.09);
+    opacity: 1;
+  }
+}
+@keyframes ind-ping {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.ind-spin-slow {
+  animation: ind-spin 55s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.ind-eq {
+  animation: ind-eq 1.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+.ind-core {
+  animation: ind-core 3.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.ind-node {
+  animation: ind-node 2.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.ind-float {
+  animation: ind-float 4.4s ease-in-out infinite;
+}
+.ind-glow {
+  animation: ind-glow 5.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.ind-ping {
+  animation: ind-ping 2.9s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes ind-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+.ind-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primary) 18%, transparent),
+    var(--primary),
+    color-mix(in oklab, var(--primary) 18%, transparent)
+  );
+  background-size: 200% 100%;
+  animation: ind-shimmer 2.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ind-spin-slow,
+  .ind-eq,
+  .ind-core,
+  .ind-node,
+  .ind-float,
+  .ind-glow,
+  .ind-ping,
+  .ind-shimmer {
+    animation: none;
+  }
+}
+

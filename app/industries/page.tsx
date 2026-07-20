@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Plus } from "lucide-react"
+import { ArrowRight, Plus, BookOpen, Sparkles } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { IndustryRow } from "@/components/industries/industry-row"
+import { PlaybooksCardStack } from "@/components/industries/playbooks-card-stack"
 import { INDUSTRIES, CAP_COLORS } from "@/lib/industries"
 
 /* Per-industry accent palette for the airy grid. Literal classes so
@@ -33,7 +33,7 @@ export const metadata: Metadata = pageSeo({
 
 export default function IndustriesPage() {
   return (
-    <main className="min-h-dvh bg-background text-foreground">
+    <main className="min-h-dvh bg-white text-foreground">
       <SiteHeader />
 
       <BreadcrumbJsonLd
@@ -43,147 +43,384 @@ export default function IndustriesPage() {
         ]}
       />
 
-      {/* ── Hero ── */}
-      <section className="relative overflow-hidden border-b border-border/50">
+      {/* ── Hero — classical light band, left-aligned editorial ── */}
+      <section className="relative overflow-hidden border-b border-slate-200/70 bg-white text-foreground">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[460px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_20%_0%,rgba(79,110,247,0.10),transparent_70%)]"
         />
-        <div className="w-full px-6 pb-20 pt-10 md:px-8 md:pb-28 md:pt-14">
-          <ScrollReveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-2 text-[clamp(9px,2.9vw,13px)] font-semibold uppercase tracking-normal text-primary sm:whitespace-normal sm:px-5 sm:text-sm sm:tracking-wider">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              Pre-tuned for the calls you actually take
-            </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              Built for every kind of phone call.
-            </h1>
-            <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              One AI voice agent that answers calls, qualifies leads, and books appointments across every industry below
-              — fluent in 10+ Indian languages, on the same simple plans for everyone, live in under 5 minutes.
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* ── Bento overview ── */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-20">
-        <ScrollReveal className="mx-auto mb-12 max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-            Industries
-          </span>
-          <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl">Browse by industry</h2>
-          <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
-            Tap any vertical to see its playbook, sample calls, and capabilities.
-          </p>
-        </ScrollReveal>
-
-        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
-          {INDUSTRIES.map((ind, i) => {
-            const Icon = ind.icon
-            const accent = ACCENTS[i % ACCENTS.length]
-            const tile = ACCENT_TILES[i % ACCENT_TILES.length]
-            return (
-              <ScrollReveal
-                key={ind.slug}
-                delay={i * 0.04}
-                className={`group relative bg-white transition-colors duration-300 hover:bg-slate-50/50 ${accent}`}
-              >
-                <Link href={`/industries/${ind.slug}`} className="relative block p-7">
-                  {/* accent line draws across the top on hover (colour = industry accent) */}
-                  <span
-                    className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
-                    aria-hidden
-                  />
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${tile} transition-transform duration-300 group-hover:scale-110`}
-                    >
-                      <Icon className="size-5" aria-hidden />
-                    </span>
-                    <h3 className="min-w-0 text-lg font-bold tracking-tight text-foreground">{ind.name}</h3>
-                  </div>
-                  <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.short}</p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {ind.caps.map((cap) => (
-                      <span
-                        key={cap}
-                        className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${CAP_COLORS[cap]}`}
-                      >
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
-              </ScrollReveal>
-            )
-          })}
-
-          {/* "Many more" cell — completes the grid and signals broader coverage */}
-          <ScrollReveal
-            delay={INDUSTRIES.length * 0.04}
-            className="group relative bg-white text-primary transition-colors duration-300 hover:bg-slate-50/50"
-          >
-            <Link href="/get-started" className="relative block p-7">
-              <span
-                className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100"
-                aria-hidden
-              />
-              <div className="flex items-center gap-4">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.07] transition-transform duration-300 group-hover:scale-110">
-                  <Plus className="size-5" aria-hidden />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04] bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:56px_56px]"
+        />
+        <div className="w-full px-6 pt-8 pb-14 md:px-8 md:pt-10 md:pb-20">
+          <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* Left — copy */}
+            <ScrollReveal>
+              <div className="max-w-3xl">
+                <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-[clamp(9px,2.9vw,12px)] font-semibold uppercase tracking-[0.18em] text-primary sm:whitespace-normal sm:px-5 sm:text-xs">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                  Pre-tuned for the calls you actually take
                 </span>
-                <h3 className="min-w-0 text-lg font-bold tracking-tight text-foreground">Many more</h3>
+                <h1 className="mt-7 text-balance font-serif text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+                  Built for every kind of phone call.
+                </h1>
+                <div className="mt-6 h-px w-28 bg-gradient-to-r from-primary to-transparent" aria-hidden />
+                <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                  One AI voice agent that answers calls, qualifies leads, and books appointments across every industry below
+                  — fluent in 10+ Indian languages, on the same simple plans for everyone, live in under 5 minutes.
+                </p>
               </div>
-              <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                Security, recruiting, insurance, finance and more — tell us your calls and we&apos;ll tune an agent for you.
-              </p>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold">
-                Get started <ArrowRight className="size-4" aria-hidden />
-              </span>
-            </Link>
-          </ScrollReveal>
+            </ScrollReveal>
+
+            {/* Right — modern-classic conceptual illustration */}
+            <ScrollReveal delay={0.12}>
+              <div className="relative mx-auto w-full max-w-lg">
+                <svg
+                  viewBox="0 0 520 500"
+                  role="img"
+                  aria-label="One AI voice agent connecting calls across many industries and Indian languages"
+                  className="h-auto w-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id="ind-wave" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stopColor="#818cf8" />
+                      <stop offset="1" stopColor="#4f46e5" />
+                    </linearGradient>
+                    <linearGradient id="ind-globe" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#eef2ff" />
+                      <stop offset="1" stopColor="#dbe4ff" />
+                    </linearGradient>
+                    <linearGradient id="ind-core" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#ffffff" />
+                      <stop offset="1" stopColor="#f5f7ff" />
+                    </linearGradient>
+                    <radialGradient id="ind-glow" cx="0.5" cy="0.5" r="0.5">
+                      <stop offset="0" stopColor="#6366f1" stopOpacity="0.20" />
+                      <stop offset="1" stopColor="#6366f1" stopOpacity="0" />
+                    </radialGradient>
+                    <filter id="ind-soft" x="-40%" y="-40%" width="180%" height="180%">
+                      <feDropShadow dx="0" dy="10" stdDeviation="14" floodColor="#1e293b" floodOpacity="0.14" />
+                    </filter>
+                    <pattern id="ind-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <circle cx="2" cy="2" r="1.5" fill="#c7d2fe" />
+                    </pattern>
+                  </defs>
+
+                  {/* ambient glow (breathing) */}
+                  <circle cx="260" cy="240" r="235" fill="url(#ind-glow)" className="ind-glow" />
+
+                  {/* decorative dotted panels */}
+                  <rect x="372" y="34" width="118" height="118" rx="10" fill="url(#ind-dots)" opacity="0.7" />
+                  <rect x="34" y="352" width="104" height="96" rx="10" fill="url(#ind-dots)" opacity="0.6" />
+
+                  {/* decorative accents */}
+                  <path d="M470 210 h16 M478 202 v16" stroke="#a5b4fc" strokeWidth="2.5" strokeLinecap="round" />
+                  <path d="M44 150 h14 M51 143 v14" stroke="#a5b4fc" strokeWidth="2.5" strokeLinecap="round" />
+                  <circle cx="430" cy="410" r="4" fill="#c7d2fe" />
+                  <circle cx="96" cy="86" r="4" fill="#c7d2fe" />
+
+                  {/* orbit rings — outer dashed ring slowly rotates */}
+                  <circle
+                    cx="260"
+                    cy="240"
+                    r="188"
+                    fill="none"
+                    stroke="#e2e8f0"
+                    strokeWidth="1.5"
+                    strokeDasharray="2 8"
+                    strokeLinecap="round"
+                    className="ind-spin-slow"
+                  />
+                  <circle cx="260" cy="240" r="132" fill="none" stroke="#dbe4ff" strokeWidth="1.5" />
+
+                  {/* globe */}
+                  <circle cx="260" cy="240" r="82" fill="url(#ind-globe)" stroke="#c7d2fe" strokeWidth="1.5" />
+                  <clipPath id="ind-globe-clip">
+                    <circle cx="260" cy="240" r="82" />
+                  </clipPath>
+                  <g clipPath="url(#ind-globe-clip)" stroke="#a5b4fc" strokeWidth="1" fill="none" opacity="0.75">
+                    <ellipse cx="260" cy="240" rx="28" ry="82" />
+                    <ellipse cx="260" cy="240" rx="56" ry="82" />
+                    <line x1="178" y1="240" x2="342" y2="240" />
+                    <line x1="190" y1="200" x2="330" y2="200" />
+                    <line x1="190" y1="280" x2="330" y2="280" />
+                  </g>
+
+                  {/* connector lines to nodes */}
+                  <g stroke="#c7d2fe" strokeWidth="1.5" strokeDasharray="1.5 6" strokeLinecap="round">
+                    <line x1="260" y1="240" x2="260" y2="108" />
+                    <line x1="260" y1="240" x2="135" y2="207" />
+                    <line x1="260" y1="240" x2="377" y2="294" />
+                    <line x1="260" y1="240" x2="402" y2="122" />
+                    <line x1="260" y1="240" x2="100" y2="331" />
+                  </g>
+
+                  {/* expanding call-signal rings from the core */}
+                  <circle cx="260" cy="240" r="47" fill="none" stroke="#818cf8" strokeWidth="2" className="ind-ping" />
+                  <circle
+                    cx="260"
+                    cy="240"
+                    r="47"
+                    fill="none"
+                    stroke="#818cf8"
+                    strokeWidth="2"
+                    className="ind-ping"
+                    style={{ animationDelay: "1.45s" }}
+                  />
+
+                  {/* central voice-AI core (gentle pulse) */}
+                  <circle
+                    cx="260"
+                    cy="240"
+                    r="47"
+                    fill="url(#ind-core)"
+                    stroke="#e0e7ff"
+                    strokeWidth="1.5"
+                    filter="url(#ind-soft)"
+                    className="ind-core"
+                  />
+                  <g fill="url(#ind-wave)">
+                    {[
+                      { x: 236, y: 230, h: 20, d: "0s" },
+                      { x: 245, y: 223, h: 34, d: "0.2s" },
+                      { x: 254, y: 217, h: 46, d: "0.4s" },
+                      { x: 263, y: 226, h: 28, d: "0.15s" },
+                      { x: 272, y: 220, h: 40, d: "0.35s" },
+                      { x: 281, y: 229, h: 22, d: "0.1s" },
+                    ].map((b, i) => (
+                      <rect
+                        key={i}
+                        x={b.x}
+                        y={b.y}
+                        width="5"
+                        height={b.h}
+                        rx="2.5"
+                        className="ind-eq"
+                        style={{ animationDelay: b.d }}
+                      />
+                    ))}
+                  </g>
+
+                  {/* industry / call nodes on the orbits (pulsing) */}
+                  <g filter="url(#ind-soft)">
+                    <circle cx="260" cy="108" r="15" fill="#ffffff" />
+                    <circle cx="135" cy="207" r="15" fill="#ffffff" />
+                    <circle cx="377" cy="294" r="15" fill="#ffffff" />
+                    <circle cx="402" cy="122" r="13" fill="#ffffff" />
+                    <circle cx="100" cy="331" r="13" fill="#ffffff" />
+                  </g>
+                  {[
+                    { cx: 260, cy: 108, r: 6, fill: "#4f46e5", d: "0s" },
+                    { cx: 135, cy: 207, r: 6, fill: "#0891b2", d: "0.5s" },
+                    { cx: 377, cy: 294, r: 6, fill: "#ea580c", d: "1s" },
+                    { cx: 402, cy: 122, r: 5, fill: "#059669", d: "1.5s" },
+                    { cx: 100, cy: 331, r: 5, fill: "#7c3aed", d: "0.75s" },
+                  ].map((n, i) => (
+                    <circle
+                      key={i}
+                      cx={n.cx}
+                      cy={n.cy}
+                      r={n.r}
+                      fill={n.fill}
+                      className="ind-node"
+                      style={{ animationDelay: n.d }}
+                    />
+                  ))}
+
+                  {/* multilingual script bubbles (floating) */}
+                  <g className="ind-float">
+                    <rect x="96" y="96" width="96" height="34" rx="17" fill="#ffffff" stroke="#e0e7ff" strokeWidth="1" filter="url(#ind-soft)" />
+                    <text x="144" y="118" textAnchor="middle" fontSize="15" fontWeight="600" fill="#4f46e5">नमस्ते</text>
+                  </g>
+                  <g className="ind-float" style={{ animationDelay: "1.4s" }}>
+                    <rect x="338" y="196" width="112" height="34" rx="17" fill="#ffffff" stroke="#e0e7ff" strokeWidth="1" filter="url(#ind-soft)" />
+                    <text x="394" y="218" textAnchor="middle" fontSize="15" fontWeight="600" fill="#0891b2">வணக்கம்</text>
+                  </g>
+                  <g className="ind-float" style={{ animationDelay: "2.6s" }}>
+                    <rect x="196" y="404" width="128" height="34" rx="17" fill="#ffffff" stroke="#e0e7ff" strokeWidth="1" filter="url(#ind-soft)" />
+                    <text x="260" y="426" textAnchor="middle" fontSize="14" fontWeight="600" fill="#334155">Hello · నమస్తే</text>
+                  </g>
+                </svg>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* ── Detailed playbooks ── */}
-      <section className="border-y border-border/50 bg-slate-50/50">
-        <div className="w-full px-6 md:px-8">
-          <ScrollReveal className="mx-auto max-w-2xl py-16 text-center md:py-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              Playbooks
-            </span>
-            <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl">Every vertical, in depth.</h2>
-            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
-              The exact jobs each agent does on day one, and how it sounds on a real call.
+      {/* ── Bento overview — centered classical header ── */}
+      <section className="w-full px-6 py-12 md:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal className="mx-auto mb-10 max-w-2xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Industries</span>
+            <h2 className="mt-4 text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
+              Browse by industry
+            </h2>
+            {/* classical ornamental divider */}
+            <div className="mt-6 flex items-center justify-center gap-3" aria-hidden>
+              <span className="h-px w-14 bg-gradient-to-r from-transparent to-primary/40" />
+              <span className="size-1.5 rotate-45 rounded-[1px] bg-primary/70 motion-safe:animate-pulse" />
+              <span className="h-px w-14 bg-gradient-to-l from-transparent to-primary/40" />
+            </div>
+            <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+              Tap any vertical to see its playbook, sample calls, and capabilities.
             </p>
           </ScrollReveal>
 
-          <div className="space-y-5 pb-20 md:space-y-6 md:pb-24">
-            {INDUSTRIES.map((industry, i) => (
-              <IndustryRow key={industry.slug} slug={industry.slug} reverse={i % 2 === 1} />
-            ))}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {INDUSTRIES.map((ind, i) => {
+              const Icon = ind.icon
+              const accent = ACCENTS[i % ACCENTS.length]
+              const tile = ACCENT_TILES[i % ACCENT_TILES.length]
+              return (
+                <ScrollReveal
+                  key={ind.slug}
+                  delay={i * 0.04}
+                  className={`group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl ${accent}`}
+                >
+                  <Link href={`/industries/${ind.slug}`} className="relative block p-7">
+                    {/* oversized watermark of the industry icon */}
+                    <Icon
+                      aria-hidden
+                      className="pointer-events-none absolute -bottom-7 -right-5 size-36 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:opacity-[0.09]"
+                    />
+                    {/* accent colour-wash on hover */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-current opacity-0 transition-opacity duration-500 group-hover:opacity-[0.05]"
+                    />
+
+                    {/* filled accent icon badge */}
+                    <span className="relative grid size-14 place-items-center rounded-2xl bg-current shadow-lg transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
+                      <Icon className="size-6 text-white" aria-hidden />
+                    </span>
+
+                    <h3 className="relative mt-5 font-serif text-xl font-semibold tracking-tight text-foreground">{ind.name}</h3>
+                    {/* accent underline that grows on hover */}
+                    <span
+                      aria-hidden
+                      className="relative mt-2.5 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
+                    />
+
+                    <p className="relative mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{ind.short}</p>
+                    <div className="relative mt-5 flex flex-wrap gap-1.5">
+                      {ind.caps.map((cap) => (
+                        <span
+                          key={cap}
+                          className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${CAP_COLORS[cap]}`}
+                        >
+                          {cap}
+                        </span>
+                      ))}
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              )
+            })}
+
+            {/* "Many more" cell — completes the grid and signals broader coverage */}
+            <ScrollReveal
+              delay={INDUSTRIES.length * 0.04}
+              className="group relative overflow-hidden rounded-3xl border border-primary/25 bg-white text-primary shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl"
+            >
+              <Link href="/get-started" className="relative block p-7">
+                {/* oversized watermark */}
+                <Plus
+                  aria-hidden
+                  className="pointer-events-none absolute -bottom-7 -right-5 size-36 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:rotate-90 group-hover:scale-110 group-hover:opacity-[0.09]"
+                />
+                {/* accent colour-wash on hover */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-current opacity-0 transition-opacity duration-500 group-hover:opacity-[0.05]"
+                />
+
+                {/* filled accent icon badge */}
+                <span className="relative grid size-14 place-items-center rounded-2xl bg-current shadow-lg transition-all duration-500 group-hover:rotate-90 group-hover:scale-110">
+                  <Plus className="size-6 text-white" aria-hidden />
+                </span>
+
+                <h3 className="relative mt-5 font-serif text-xl font-semibold tracking-tight text-foreground">Many more</h3>
+                <span
+                  aria-hidden
+                  className="relative mt-2.5 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
+                />
+
+                <p className="relative mt-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                  Security, recruiting, insurance, finance and more — tell us your calls and we&apos;ll tune an agent for you.
+                </p>
+                <span className="relative mt-5 inline-flex items-center gap-1.5 text-sm font-semibold">
+                  Get started <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+                </span>
+              </Link>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Detailed playbooks — centered classical header on a clean white band ── */}
+      <section className="border-y border-slate-200/70 bg-white">
+        <div className="w-full px-6 md:px-8">
+          <div className="mx-auto max-w-6xl">
+            <ScrollReveal className="max-w-2xl pt-12 pb-6 text-left md:pt-14 md:pb-8">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm">
+                <BookOpen className="size-3.5" aria-hidden />
+                Playbooks
+              </span>
+              <h2 className="mt-5 text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
+                Every vertical, in depth.
+              </h2>
+              <span aria-hidden className="ind-shimmer mt-6 block h-1 w-24 rounded-full" />
+              <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+                The exact jobs each agent does on day one, and how it sounds on a real call.
+              </p>
+            </ScrollReveal>
+
+            <div className="pb-12 md:pb-16">
+              <PlaybooksCardStack />
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── CTA ── */}
-      <section className="w-full px-6 py-20 md:px-8 md:py-24">
-        <ScrollReveal className="overflow-hidden rounded-3xl border border-primary bg-primary px-6 py-12 shadow-[0_4px_30px_oklch(0.52_0.22_265/0.25)] md:px-12 md:py-14">
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <section className="w-full px-6 py-14 md:px-8 md:py-16">
+        <ScrollReveal className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-500 to-blue-600 px-6 py-12 shadow-2xl shadow-blue-500/30 ring-1 ring-white/10 md:px-14 md:py-14">
+          {/* soft radial glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_80%_at_85%_0%,rgba(255,255,255,0.18),transparent_60%)]"
+          />
+          {/* fine grid texture */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] bg-[size:44px_44px]"
+          />
+          {/* decorative watermark */}
+          <Sparkles
+            aria-hidden
+            className="pointer-events-none absolute -bottom-10 -right-8 size-52 text-white/[0.06]"
+          />
+
+          <div className="relative flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
-              <h3 className="text-balance text-2xl font-bold tracking-tight text-white md:text-3xl">
+              <h3 className="text-balance font-serif text-3xl font-semibold tracking-tight text-white md:text-4xl">
                 Don&apos;t see your industry?
               </h3>
-              <p className="mt-3 text-white/70">
+              {/* classical accent rule */}
+              <div className="mt-5 h-px w-16 bg-white/40" aria-hidden />
+              <p className="mt-5 text-pretty leading-relaxed text-white/75 md:text-lg">
                 We&apos;ve deployed agents in security, recruiting, property management, insurance, finance, and more.
                 Tell us what calls eat your day and we&apos;ll have a prototype in 48 hours.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-white font-semibold text-primary hover:bg-white/90">
+              <Button
+                asChild
+                size="lg"
+                className="bg-white font-semibold text-blue-600 shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-white/90"
+              >
                 <Link href="/get-started">
                   Get started <ArrowRight className="ml-1 size-4" aria-hidden />
                 </Link>
@@ -192,7 +429,7 @@ export default function IndustriesPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                className="border-white/40 bg-white/5 text-white backdrop-blur transition-transform hover:-translate-y-0.5 hover:bg-white/15 hover:text-white"
               >
                 <Link href="/pricing">View pricing</Link>
               </Button>
