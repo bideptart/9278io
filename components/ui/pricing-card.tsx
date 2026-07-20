@@ -172,7 +172,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
 
   // --- 2.4. Final Render ---
   return (
-    <div className={cn("w-full py-12 md:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8", className)} {...props}>
+    <div className={cn("w-full pt-6 pb-12 md:pt-8 md:pb-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8", className)} {...props}>
       {Badges}
       {CycleToggle}
       <section aria-labelledby="pricing-plans">{PricingCards}</section>
