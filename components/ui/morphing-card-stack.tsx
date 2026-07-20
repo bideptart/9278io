@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, type ReactNode } from "react"
+import { useState, useEffect, useRef, type ReactNode } from "react"
 import { motion, AnimatePresence, LayoutGroup, type PanInfo } from "motion/react"
 import { cn } from "@/lib/utils"
 import { Grid3X3, Layers, LayoutList, ChevronLeft, ChevronRight } from "lucide-react"
@@ -39,7 +39,7 @@ const layoutIcons = {
 }
 
 const SWIPE_THRESHOLD = 50
-const AUTO_ADVANCE_MS = 3000
+const AUTO_ADVANCE_MS = 2000
 
 export function Component({
   cards = [],
@@ -53,16 +53,20 @@ export function Component({
   const [activeIndex, setActiveIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [paused, setPaused] = useState(false)
+  const pausedRef = useRef(false)
+  pausedRef.current = paused
 
-  // Auto-advance the stack; pauses while hovering (see mouse handlers below).
+  // Auto-advance the stack; pauses while hovering (checked via ref so the
+  // timer keeps running instead of resetting on every hover).
   useEffect(() => {
-    if (layout !== "stack" || cards.length <= 1 || paused) return
+    if (layout !== "stack" || cards.length <= 1) return
     const id = window.setInterval(() => {
+      if (pausedRef.current) return
       setActiveIndex((prev) => (prev + 1) % cards.length)
       setExpandedCard(null)
     }, AUTO_ADVANCE_MS)
     return () => window.clearInterval(id)
-  }, [layout, cards.length, paused])
+  }, [layout, cards.length])
 
   if (!cards || cards.length === 0) {
     return null
@@ -118,7 +122,7 @@ export function Component({
   }
 
   const containerStyles = {
-    stack: "relative h-[19rem] w-80 sm:h-[21rem] sm:w-96",
+    stack: "relative h-[17rem] w-60 sm:h-[18rem] sm:w-72",
     grid: "grid grid-cols-2 gap-3",
     list: "flex flex-col gap-3",
   }
@@ -132,7 +136,7 @@ export function Component({
 
   return (
     <div
-      className={cn("space-y-4", className)}
+      className={cn("space-y-3", className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -165,38 +169,54 @@ export function Component({
       <LayoutGroup>
         <div className={cn("relative", layout === "stack" && "mx-auto w-fit")}>
           {layout === "stack" && leftInfo && (
-            <div className="pointer-events-none absolute right-full top-1/2 mr-20 hidden w-60 -translate-y-1/2 flex-col gap-3 lg:flex xl:w-72">
+            <div className="pointer-events-none absolute right-full top-1/2 mr-16 hidden w-64 -translate-y-1/2 flex-col gap-3.5 lg:flex xl:mr-20 xl:w-72">
               {leftInfo.title && (
-                <p className="text-right text-[11px] font-semibold uppercase tracking-wider text-primary">
-                  {leftInfo.title}
-                </p>
+                <div className="flex items-center justify-end gap-2">
+                  <p className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-[11px] font-bold uppercase tracking-[0.15em] text-transparent">
+                    {leftInfo.title}
+                  </p>
+                  <span className="h-3.5 w-1 rounded-full bg-gradient-to-b from-sky-400 to-blue-600" aria-hidden />
+                </div>
               )}
-              <ul className="space-y-2.5">
+              <ul key={activeIndex} className="space-y-2.5">
                 {leftInfo.items.map((it, i) => (
                   <li
                     key={i}
-                    className="border-r-2 border-primary/30 pr-3 text-right text-[15px] leading-snug text-foreground/80"
+                    style={{ animationDelay: `${i * 0.08}s` }}
+                    className="ind-item-in flex items-center justify-end gap-3"
                   >
-                    {it}
+                    <span className="text-right text-[13px] font-medium leading-snug text-foreground/85">{it}</span>
+                    <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 font-serif text-xs font-bold text-white shadow-md shadow-blue-500/30">
+                      {i + 1}
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
           {layout === "stack" && rightInfo && (
-            <div className="pointer-events-none absolute left-full top-1/2 ml-20 hidden w-60 -translate-y-1/2 flex-col gap-3 lg:flex xl:w-72">
+            <div className="pointer-events-none absolute left-full top-1/2 ml-16 hidden w-64 -translate-y-1/2 flex-col gap-3.5 lg:flex xl:ml-20 xl:w-72">
               {rightInfo.title && (
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-primary">
-                  {rightInfo.title}
-                </p>
+                <div className="flex items-center gap-2">
+                  <span className="h-3.5 w-1 rounded-full bg-gradient-to-b from-sky-400 to-blue-600" aria-hidden />
+                  <p className="bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-[11px] font-bold uppercase tracking-[0.15em] text-transparent">
+                    {rightInfo.title}
+                  </p>
+                </div>
               )}
-              <ul className="space-y-2.5">
+              <ul key={activeIndex} className="space-y-2.5">
                 {rightInfo.items.map((it, i) => (
                   <li
                     key={i}
-                    className="border-l-2 border-primary/30 pl-3 text-[15px] leading-snug text-foreground/80"
+                    style={{ animationDelay: `${i * 0.08}s` }}
+                    className="ind-item-in relative overflow-hidden rounded-xl border border-slate-200/70 bg-white/80 py-2.5 pl-4 pr-3.5 shadow-sm backdrop-blur-sm"
                   >
-                    {it}
+                    <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-sky-400 to-blue-600" />
+                    <p className="text-[13px] italic leading-snug text-foreground/75">
+                      <span className="mr-0.5 font-serif text-base not-italic text-sky-500">&ldquo;</span>
+                      {it}
+                      <span className="font-serif text-base not-italic text-sky-500">&rdquo;</span>
+                    </p>
                   </li>
                 ))}
               </ul>
@@ -220,11 +240,10 @@ export function Component({
                     x: 0,
                     ...styles,
                   }}
-                  exit={{ opacity: 0, scale: 0.8, x: -200 }}
+                  exit={{ opacity: 0, scale: 0.92 }}
                   transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 25,
+                    duration: 0.38,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                   drag={isTopCard ? "x" : false}
                   dragConstraints={{ left: 0, right: 0 }}
@@ -238,9 +257,9 @@ export function Component({
                     onCardClick?.(card)
                   }}
                   className={cn(
-                    "cursor-pointer rounded-xl border border-border bg-card p-4",
-                    "hover:border-primary/50 transition-colors",
-                    layout === "stack" && "absolute w-72 h-64 sm:w-80 sm:h-72 p-5",
+                    "cursor-pointer rounded-xl border border-white/25 bg-gradient-to-br from-sky-400 to-blue-500 p-4 shadow-lg shadow-blue-500/20",
+                    "hover:border-white/50 transition-colors",
+                    layout === "stack" && "absolute w-56 h-56 sm:w-60 sm:h-60 p-4",
                     layout === "stack" && isTopCard && "cursor-grab active:cursor-grabbing",
                     layout === "grid" && "w-full aspect-square",
                     layout === "list" && "w-full",
@@ -252,18 +271,18 @@ export function Component({
                 >
                   <div className="flex items-start gap-3">
                     {card.icon && (
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/20 text-white ring-1 ring-white/25">
                         {card.icon}
                       </div>
                     )}
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-lg font-semibold text-card-foreground truncate">{card.title}</h3>
+                      <h3 className="text-lg font-bold text-white truncate">{card.title}</h3>
                       <p
                         className={cn(
-                          "text-base text-muted-foreground mt-1.5",
-                          layout === "stack" && "line-clamp-3",
-                          layout === "grid" && "line-clamp-2",
-                          layout === "list" && "line-clamp-1",
+                          "font-medium text-white/90 mt-1.5",
+                          layout === "stack" && "text-[11px] leading-snug",
+                          layout === "grid" && "text-sm line-clamp-2",
+                          layout === "list" && "text-sm line-clamp-1",
                         )}
                       >
                         {card.description}
@@ -271,9 +290,11 @@ export function Component({
                     </div>
                   </div>
 
-                  {isTopCard && (
-                    <div className="absolute bottom-2 left-0 right-0 text-center">
-                      <span className="text-xs text-muted-foreground/50">Swipe to navigate</span>
+                  {layout === "stack" && (
+                    <div className="absolute bottom-4 left-0 right-0 text-center">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-white/90">
+                        View in detail
+                      </span>
                     </div>
                   )}
                 </motion.div>
