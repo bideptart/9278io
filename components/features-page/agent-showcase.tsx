@@ -1,108 +1,130 @@
 "use client"
 
-import { Zap, Globe2, MessageSquare, PhoneForwarded, Mic, Headphones } from "lucide-react"
 import { motion } from "motion/react"
+import { Phone, UserRound, CreditCard, Globe2, MessageSquare, CalendarCheck, Mic, Check } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
-const tasks = [
-  { label: "Answer customer inquiries", status: "In progress", tone: "bg-amber-50 text-amber-700" },
-  { label: "Provide product recommendations", status: "Completed", tone: "bg-emerald-50 text-emerald-700" },
-  { label: "Assist with order processing", status: "Completed", tone: "bg-emerald-50 text-emerald-700" },
-  { label: "Handle billing questions", status: "Queued", tone: "bg-slate-100 text-slate-500" },
+type Node = { x: number; y: number; icon: LucideIcon; delay: number }
+
+/* White icon cards placed around the orb (percent coords) — 3 left, 3 right */
+const nodes: Node[] = [
+  { x: 12, y: 16, icon: Phone, delay: 0 },
+  { x: 6, y: 50, icon: UserRound, delay: 0.6 },
+  { x: 14, y: 84, icon: CalendarCheck, delay: 1.1 },
+  { x: 88, y: 16, icon: CreditCard, delay: 1.4 },
+  { x: 94, y: 50, icon: Globe2, delay: 0.9 },
+  { x: 86, y: 84, icon: MessageSquare, delay: 1.7 },
 ]
 
-const tools = [
-  { icon: Zap, tone: "border-primary/20 bg-primary/[0.08] text-primary" },
-  { icon: Globe2, tone: "border-blue-200 bg-blue-50 text-blue-600" },
-  { icon: MessageSquare, tone: "border-sky-200 bg-sky-50 text-sky-600" },
-  { icon: PhoneForwarded, tone: "border-indigo-200 bg-indigo-50 text-indigo-600" },
-  { icon: Mic, tone: "border-cyan-200 bg-cyan-50 text-cyan-600" },
-]
-
-const stats = [
-  { label: "Response Accuracy", value: "99%", tone: "text-primary" },
-  { label: "Customer Satisfaction", value: "96%", tone: "text-emerald-600" },
-]
+/* Green voice waveform inside the dark orb */
+function OrbWave() {
+  const bars = [10, 18, 26, 14, 22, 12, 20, 26, 16, 22, 12, 18]
+  return (
+    <div className="flex h-9 items-center gap-[3px]" aria-hidden>
+      {bars.map((h, i) => (
+        <motion.span
+          key={i}
+          className="w-[3px] rounded-full bg-primary"
+          style={{ height: h, transformOrigin: "center" }}
+          animate={{ scaleY: [0.3, 1, 0.5, 0.9, 0.3] }}
+          transition={{ duration: 0.9 + (i % 4) * 0.16, repeat: Infinity, ease: "easeInOut", delay: i * 0.07 }}
+        />
+      ))}
+    </div>
+  )
+}
 
 export function AgentShowcase() {
   return (
-    <div className="relative grid w-full max-w-[600px] grid-cols-[1fr_auto_1fr] items-center gap-3">
-      {/* Left: Agent Tasks */}
-      <motion.div
-        initial={{ opacity: 0, x: -8 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-2xl border border-border bg-white p-4 shadow-[0_8px_30px_-12px_oklch(0.13_0.025_255/0.15)]"
-      >
-        <p className="text-sm font-semibold text-foreground">Agent Tasks</p>
-        <p className="mt-0.5 text-[10px] leading-tight text-muted-foreground">Live task queue</p>
-        <div className="mt-3 space-y-2.5">
-          {tasks.map((t) => (
-            <div key={t.label} className="flex items-center justify-between gap-2">
-              <span className="text-[11px] leading-tight text-muted-foreground">{t.label}</span>
-              <span className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold whitespace-nowrap ${t.tone}`}>
-                {t.status}
-              </span>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Center: glowing orb */}
-      <div className="relative flex h-24 w-24 items-center justify-center">
-        {[0, 1].map((i) => (
-          <motion.span
+    <motion.div
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6 }}
+      className="relative mx-auto w-full max-w-[540px] lg:ml-auto lg:-mr-12"
+    >
+      <div className="relative aspect-[7/5] w-full">
+        {/* decorative green blobs */}
+        <div aria-hidden className="pointer-events-none absolute -right-6 -top-6 size-40 rounded-full bg-blue-200/45 blur-2xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-8 -left-6 size-40 rounded-full bg-blue-200/45 blur-2xl" />
+        {/* dotted grid accents */}
+        {[
+          "right-2 top-1 h-10 w-14",
+          "bottom-2 left-1 h-10 w-14",
+        ].map((c, i) => (
+          <div
             key={i}
-            className="absolute h-16 w-16 rounded-full border border-primary/40"
-            animate={{ scale: [1, 1.9], opacity: [0.6, 0] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut", delay: i * 1.3 }}
+            aria-hidden
+            className={`pointer-events-none absolute ${c} opacity-70`}
+            style={{
+              backgroundImage: "radial-gradient(oklch(0.6 0.17 255 / 0.55) 1.2px, transparent 1.2px)",
+              backgroundSize: "9px 9px",
+            }}
           />
         ))}
-        <motion.div
-          animate={{ y: [-3, 3, -3] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="relative flex h-16 w-16 items-center justify-center rounded-full shadow-[0_0_40px_oklch(0.6_0.22_265/0.6)] ring-1 ring-white/50"
-          style={{
-            background:
-              "radial-gradient(circle at 32% 26%, rgba(255,255,255,0.9), rgba(255,255,255,0) 45%), linear-gradient(150deg, oklch(0.75 0.12 235), oklch(0.55 0.2 262))",
-          }}
-        >
-          <Headphones className="h-7 w-7 text-white" strokeWidth={1.6} aria-hidden />
-        </motion.div>
-      </div>
 
-      {/* Right: Voice AI Agent */}
-      <motion.div
-        initial={{ opacity: 0, x: 8 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-2xl border border-border bg-white p-4 shadow-[0_8px_30px_-12px_oklch(0.13_0.025_255/0.15)]"
-      >
-        <div className="flex items-center gap-2">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
-            <Headphones className="h-3 w-3" aria-hidden />
-          </span>
-          <p className="text-sm font-semibold text-foreground">Voice AI Agent</p>
-        </div>
-
-        <p className="mt-2.5 text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Agent Tools</p>
-        <div className="mt-1.5 flex gap-1.5">
-          {tools.map(({ icon: Icon, tone }, i) => (
-            <span key={i} className={`flex h-7 w-7 items-center justify-center rounded-lg border ${tone}`}>
-              <Icon className="h-3.5 w-3.5" aria-hidden />
-            </span>
+        {/* connecting lines */}
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden>
+          {nodes.map((n) => (
+            <g key={n.delay}>
+              <line x1="50" y1="50" x2={n.x} y2={n.y} stroke="oklch(0.5 0.02 260 / 0.35)" strokeWidth="0.4" />
+              <circle cx={n.x} cy={n.y} r="0.9" fill="oklch(0.55 0.2 262)" />
+            </g>
           ))}
-        </div>
+        </svg>
 
-        <p className="mt-3 text-[9px] font-medium uppercase tracking-wide text-muted-foreground">Key Statistics</p>
-        <div className="mt-1.5 space-y-1">
-          {stats.map((s) => (
-            <div key={s.label} className="flex items-center justify-between rounded-lg bg-slate-50 px-2 py-1.5">
-              <span className="text-[10px] leading-tight text-muted-foreground">{s.label}</span>
-              <span className={`text-sm font-bold ${s.tone}`}>{s.value}</span>
+        {/* center dark orb */}
+        <div className="absolute left-1/2 top-1/2 z-10 flex aspect-square w-[36%] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+          {/* soft green glow under orb */}
+          <div aria-hidden className="absolute inset-2 rounded-full bg-primary/30 blur-2xl" />
+          <div
+            className="relative flex h-full w-full items-center justify-center rounded-full ring-1 ring-blue-100"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 30%, #ffffff, oklch(0.94 0.035 250) 52%, oklch(0.86 0.07 255) 100%)",
+              boxShadow:
+                "0 34px 70px -22px oklch(0.55 0.2 262 / 0.45), inset 0 2px 8px rgba(255,255,255,0.85)",
+            }}
+          >
+            {/* concentric rings */}
+            <div className="absolute inset-[9%] rounded-full border border-dashed border-primary/20" />
+            <motion.div
+              className="absolute inset-[20%] rounded-full border border-primary/15"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            />
+            <div className="absolute inset-[32%] rounded-full border border-primary/10" />
+
+            {/* waveform + mic */}
+            <div className="relative flex items-center justify-center">
+              <OrbWave />
+              <span className="absolute flex size-9 items-center justify-center rounded-full bg-white text-primary shadow-[0_4px_12px_-4px_oklch(0.55_0.2_262/0.5)] ring-1 ring-primary/15">
+                <Mic className="size-4" aria-hidden />
+              </span>
             </div>
-          ))}
+          </div>
         </div>
-      </motion.div>
-    </div>
+
+        {/* white icon cards */}
+        {nodes.map((n) => {
+          const Icon = n.icon
+          return (
+            <motion.div
+              key={`card-${n.delay}`}
+              className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${n.x}%`, top: `${n.y}%` }}
+              animate={{ y: [-5, 5, -5] }}
+              transition={{ duration: 4.5 + n.delay, repeat: Infinity, ease: "easeInOut", delay: n.delay }}
+            >
+              <div className="relative flex size-12 items-center justify-center rounded-2xl border border-blue-200 bg-white shadow-[0_14px_34px_-16px_oklch(0.55_0.18_260/0.4)]">
+                <Icon className="size-5 text-blue-400" aria-hidden />
+                <span className="absolute -left-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full bg-primary ring-2 ring-white">
+                  <Check className="size-3 text-white" aria-hidden />
+                </span>
+              </div>
+            </motion.div>
+          )
+        })}
+      </div>
+    </motion.div>
   )
 }

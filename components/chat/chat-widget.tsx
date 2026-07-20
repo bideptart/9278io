@@ -98,10 +98,17 @@ export function ChatWidget() {
     el.scrollTo({ top: el.scrollHeight, behavior: "smooth" })
   }, [messages, open])
 
-  // Focus input when panel opens
+  // Focus input when panel opens.
+  // On mobile we skip auto-focus: focusing the textarea pops the on-screen
+  // keyboard, which resizes the viewport and makes the open feel like it
+  // jumps/stutters. The user taps the field when they're ready to type.
   useEffect(() => {
     if (open) {
       setUnread(false)
+      const isMobile =
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 767px)").matches
+      if (isMobile) return
       // small delay so the slide-in animation finishes
       const t = setTimeout(() => textareaRef.current?.focus(), 250)
       return () => clearTimeout(t)
@@ -271,37 +278,47 @@ export function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Side panel */}
+      {/* Backdrop — mobile overlay only. Cheap to mount, so it stays in
+          AnimatePresence for a clean fade. */}
       <AnimatePresence>
         {open && (
-          <>
-            {/* Backdrop — shown only when the panel overlays (below md) */}
-            <motion.div
-              key="backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setOpen(false)}
-              aria-hidden
-              className="fixed inset-0 z-40 bg-background/60 md:hidden"
-            />
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setOpen(false)}
+            aria-hidden
+            className="fixed inset-0 z-40 bg-background/60 md:hidden"
+          />
+        )}
+      </AnimatePresence>
 
-            <motion.aside
-              key="panel"
-              role="dialog"
-              aria-label="9278.io assistant"
-              aria-modal="true"
-              initial={{ x: "100%", opacity: 0.6 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0.6 }}
-              transition={{ type: "spring", stiffness: 300, damping: 32 }}
-              className="fixed inset-y-0 right-0 z-50 flex w-full flex-col border-l border-border/60 bg-card shadow-2xl md:inset-y-0 md:right-0 md:w-[380px] md:rounded-none md:border-y-0 md:border-l md:shadow-[0_0_60px_oklch(0.78_0.16_195/0.10)] xl:w-[420px]"
-            >
-              {/* Glow halo */}
+      {/* Side panel — ALWAYS mounted (parked off-screen at x:100% when closed)
+          so opening is a pure transform toggle with ZERO mount/render cost.
+          Previously the whole panel mounted on click, blocking the main thread
+          for a frame or two right as the slide started → the "hitch" on open. */}
+      <motion.aside
+        role="dialog"
+        aria-label="9278.io assistant"
+        aria-modal="true"
+        aria-hidden={!open}
+        {...(open ? {} : { inert: true })}
+        initial={false}
+        animate={{ x: open ? 0 : "100%" }}
+        transition={{ type: "tween", duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+        className={cn(
+          "transform-gpu fixed inset-y-0 right-0 z-50 flex w-full flex-col border-l border-border/60 bg-card shadow-2xl [will-change:transform] md:inset-y-0 md:right-0 md:w-[380px] md:rounded-none md:border-y-0 md:border-l md:shadow-[0_0_60px_oklch(0.78_0.16_195/0.10)] xl:w-[420px]",
+          !open && "pointer-events-none",
+        )}
+      >
+              {/* Glow halo — desktop only. On mobile these big blur-3xl layers
+                  are expensive to rasterize on first mount and make the slide-in
+                  hitch, so we skip them below md. */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 overflow-hidden sm:rounded-2xl"
+                className="pointer-events-none absolute inset-0 hidden overflow-hidden sm:rounded-2xl md:block"
               >
                 <div className="absolute -top-24 left-1/2 h-48 w-72 -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
                 <div className="absolute -bottom-24 right-0 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
@@ -425,10 +442,7 @@ export function ChatWidget() {
                   </Link>
                 </div>
               </div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      </motion.aside>
     </>
   )
 }

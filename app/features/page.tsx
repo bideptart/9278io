@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import {
-  PhoneCall, ArrowRight,
+  PhoneCall, ArrowRight, Sparkles,
   Languages, Headphones, Zap, Timer, ShieldCheck,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
@@ -58,21 +58,20 @@ export default function FeaturesPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-8 md:px-8 md:py-10 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-10 md:px-8 md:py-12 lg:min-h-[calc(100vh-150px)] lg:grid-cols-[1fr_1.2fr]">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Features
             </span>
-            <h1 className="mt-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            <h1 className="mt-3 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground md:text-[60px]">
               Everything your voice agent needs.
             </h1>
-            <p className="mt-3 max-w-lg text-pretty text-[18px] leading-relaxed text-muted-foreground">
-              From setup to billing — every tool that comes with your 9278.io AI voice agent, built for Indian
-              businesses. Low latency, multi-language, TRAI-compliant, priced per second.
+            <p className="mt-3 max-w-lg text-pretty text-[17px] leading-relaxed text-muted-foreground">
+              From setup to billing — every tool your 9278.io AI voice agent needs, built for Indian businesses.
             </p>
 
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Button
                 asChild
                 size="lg"
@@ -104,7 +103,7 @@ export default function FeaturesPage() {
                 return (
                   <span
                     key={c.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-white px-3 py-1 text-xs font-medium text-muted-foreground"
                   >
                     <Icon className="h-3.5 w-3.5 text-primary" aria-hidden />
                     {c.label}
@@ -122,7 +121,7 @@ export default function FeaturesPage() {
 
       {/* Features */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 py-10 md:px-8 md:py-14">
           <ScrollReveal className="mx-auto max-w-5xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -143,7 +142,7 @@ export default function FeaturesPage() {
 
       {/* FAQ */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 pb-6 pt-10 md:px-8 md:pb-8 md:pt-14">
           <ScrollReveal className="text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -158,33 +157,77 @@ export default function FeaturesPage() {
             <ScrollReveal>
               <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
             </ScrollReveal>
+
+            <ScrollReveal className="mt-10 flex justify-center">
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                See all FAQs →
+              </Link>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="w-full px-6 py-16 text-center md:px-8 md:py-20">
-        <ScrollReveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-            Get Started
-          </span>
-          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-            Ready to put this to work?
-          </h2>
-          <p className="mx-auto mt-3 max-w-md text-pretty text-muted-foreground">
-            Build your first agent free, or talk to us about what your business needs.
-          </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="rounded-full font-semibold">
-              <Link href="/get-started">Build your first agent</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full font-semibold">
-              <Link href="/contact">
-                <PhoneCall className="mr-2 h-4 w-4" />
-                Talk to sales
-              </Link>
-            </Button>
+      <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-20 md:pt-6">
+        <ScrollReveal className="mx-auto max-w-6xl">
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[oklch(0.64_0.19_245)] via-primary to-[oklch(0.45_0.19_264)] px-8 py-12 shadow-[0_40px_100px_-40px_oklch(0.52_0.22_265/0.6)] md:px-14 md:py-14">
+            {/* faint grid */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-[0.18]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
+                backgroundSize: "44px 44px",
+                maskImage: "radial-gradient(ellipse at center, black 55%, transparent 100%)",
+              }}
+            />
+            {/* soft glows */}
+            <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-white/15 blur-[90px]" />
+            <div aria-hidden className="pointer-events-none absolute -bottom-28 -right-16 size-80 rounded-full bg-[oklch(0.7_0.15_210/0.35)] blur-[100px]" />
+            {/* decorative sparkle */}
+            <Sparkles aria-hidden className="pointer-events-none absolute -right-6 bottom-2 size-48 text-white/[0.06]" strokeWidth={1} />
+
+            <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
+              {/* Left: copy */}
+              <div className="max-w-xl">
+                <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  Ready to put this to work?
+                </h2>
+                <div className="mt-4 h-px w-12 bg-white/40" aria-hidden />
+                <p className="mt-4 text-pretty text-base leading-relaxed text-white/85">
+                  Build your first agent free, or talk to us about what your business needs.
+                </p>
+              </div>
+
+              {/* Right: actions */}
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-full bg-white px-8 text-base font-semibold text-primary shadow-[0_10px_30px_oklch(0.2_0.1_262/0.35)] transition-all hover:bg-white/90"
+                >
+                  <Link href="/get-started">
+                    Build your first agent
+                    <ArrowRight className="ml-1 h-4 w-4" aria-hidden />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-12 rounded-full border-white/40 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur hover:border-white/60 hover:bg-white/20 hover:text-white"
+                >
+                  <Link href="/contact">
+                    <PhoneCall className="mr-2 h-4 w-4" />
+                    Talk to sales
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
       </section>

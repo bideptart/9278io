@@ -122,6 +122,21 @@ export function CardStack<T extends CardStackItem>({
     wrapIndex(initialIndex, len),
   )
   const [hovering, setHovering] = React.useState(false)
+  // Pause autoplay while the user is interacting (drag / tap), then resume
+  // after a short cooldown. Works on touch where pauseOnHover never fires.
+  const [interacting, setInteracting] = React.useState(false)
+  const resumeRef = React.useRef<number | null>(null)
+  const pauseAutoplay = React.useCallback(() => {
+    setInteracting(true)
+    if (resumeRef.current) window.clearTimeout(resumeRef.current)
+    resumeRef.current = window.setTimeout(() => setInteracting(false), 3500)
+  }, [])
+  React.useEffect(
+    () => () => {
+      if (resumeRef.current) window.clearTimeout(resumeRef.current)
+    },
+    [],
+  )
 
   // keep active in bounds if items change
   React.useEffect(() => {
@@ -166,6 +181,7 @@ export function CardStack<T extends CardStackItem>({
     if (reduceMotion) return
     if (!len) return
     if (pauseOnHover && hovering) return
+    if (interacting) return
 
     const id = window.setInterval(
       () => {
@@ -185,6 +201,7 @@ export function CardStack<T extends CardStackItem>({
     loop,
     active,
     next,
+    interacting,
   ])
 
   if (!len) return null
@@ -250,6 +267,7 @@ export function CardStack<T extends CardStackItem>({
                     drag: "x" as const,
                     dragConstraints: { left: 0, right: 0 },
                     dragElastic: 0.18,
+                    onDragStart: () => pauseAutoplay(),
                     onDragEnd: (
                       _e: unknown,
                       info: { offset: { x: number }; velocity: { x: number } },
@@ -270,7 +288,7 @@ export function CardStack<T extends CardStackItem>({
                 <motion.div
                   key={item.id}
                   className={cn(
-                    "absolute bottom-0 rounded-2xl border-4 border-primary/10 overflow-hidden shadow-xl",
+                    "absolute bottom-0 rounded-[28px] border-4 border-primary/10 overflow-hidden shadow-xl",
                     "will-change-transform select-none",
                     isActive
                       ? "cursor-grab active:cursor-grabbing"
@@ -311,7 +329,10 @@ export function CardStack<T extends CardStackItem>({
                   }}
                   // translateZ via style transform (kept stable w/ motion values above)
                   // We apply translateZ by using a CSS transform in a child wrapper.
-                  onClick={() => setActive(i)}
+                  onClick={() => {
+                    setActive(i)
+                    pauseAutoplay()
+                  }}
                   {...dragProps}
                 >
                   <div
@@ -343,7 +364,10 @@ export function CardStack<T extends CardStackItem>({
               return (
                 <button
                   key={it.id}
-                  onClick={() => setActive(idx)}
+                  onClick={() => {
+                    setActive(idx)
+                    pauseAutoplay()
+                  }}
                   className={cn(
                     "h-2 w-2 rounded-full transition",
                     on

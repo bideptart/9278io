@@ -165,3 +165,18 @@
   display: none !important;
 }
 
+
+/* Hero mockup — gentle continuous float for chat bubbles / result card.
+   Two opposite-phase variants create a zig-zag (one bubble drifts up while
+   the neighbour drifts down). Applied on plain divs so it stays independent
+   of framer-motion's transform/layout handling. */
+@keyframes heroFloatUp {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+@keyframes heroFloatDown {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(7px); }
+}
+.hero-float-up   { animation: heroFloatUp 2.8s ease-in-out infinite; will-change: transform; }
+.hero-float-down { animation: heroFloatDown 2.8s ease-in-out infinite 1.4s; will-change: transform; }

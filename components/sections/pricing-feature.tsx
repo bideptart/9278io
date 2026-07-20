@@ -83,7 +83,7 @@ export function PricingFeature() {
 
   return (
     <section id="pricing" className="border-b border-border">
-      <div className="w-full px-6 py-14 md:px-8 md:py-20">
+      <div className="w-full px-6 py-10 md:px-8 md:py-14">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
@@ -148,13 +148,13 @@ export function PricingFeature() {
           </div>
         </ScrollReveal>
 
-        <StaggerGroup className="mx-auto mt-10 max-w-6xl grid gap-5 md:grid-cols-3 md:items-center">
+        <StaggerGroup className="-mx-6 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:max-w-6xl md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:items-center">
           {plans.map((plan) => {
             const Icon = plan.icon
             const price = yearly ? Math.round(plan.priceMonthly * 12 * 0.8) : plan.priceMonthly
             const originalYearly = plan.priceMonthly * 12
             return (
-              <StaggerItem key={plan.name}>
+              <StaggerItem key={plan.name} className="w-[82%] shrink-0 snap-center sm:w-[46%] md:w-auto md:shrink">
                 <div
                   className={cn(
                     "relative md:transition-transform md:duration-300",

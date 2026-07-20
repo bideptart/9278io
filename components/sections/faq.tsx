@@ -14,7 +14,7 @@ export function FAQ() {
   const items = FLAT_FAQ.slice(0, 8)
   return (
     <section id="faq" className="border-b border-border/50">
-      <div className="w-full px-6 py-14 md:px-8 md:py-20">
+      <div className="w-full px-6 pb-6 pt-10 md:px-8 md:pb-8 md:pt-14">
         <ScrollReveal className="text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
