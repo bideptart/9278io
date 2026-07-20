@@ -1,10 +1,13 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Mail, MessageSquare, Phone, Clock, MapPin } from "lucide-react"
+import { Clock } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { ContactForm } from "@/components/contact/contact-form"
+import { ChannelCards } from "@/components/contact/channel-cards"
+import { LiveStatus } from "@/components/contact/live-status"
+import { GradientCta } from "@/components/sections/gradient-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -19,38 +22,6 @@ export const metadata: Metadata = pageSeo({
 // The contact action sends two emails (notification + acknowledgement);
 // give it more than the short default so neither send is cut off.
 export const maxDuration = 30
-
-const channels = [
-  {
-    icon: Mail,
-    title: "Email support",
-    description: "For billing, technical issues, and general questions. We respond within one business day.",
-    action: "support@9278.io",
-    href: "mailto:support@9278.io",
-  },
-  {
-    icon: MessageSquare,
-    title: "Sales & partnerships",
-    description: "Custom plans, reseller partnerships, or enterprise onboarding. We'll reply within a few hours.",
-    action: "info@9278.io",
-    href: "mailto:info@9278.io",
-  },
-  {
-    icon: Phone,
-    title: "Talk to an agent",
-    description: "The fastest way to see 9278.io in action — call our demo agent right now and test the experience.",
-    action: "Try a live demo",
-    href: "/get-started",
-  },
-  {
-    icon: MapPin,
-    title: "Registered office",
-    description:
-      "Swadesh Mobile Private Limited (9278.io) · 1108, Sureshwari Techno IT Park Premises CHS, Link Road, Borivali West, Mumbai, Maharashtra 400092, India.",
-    action: "View on map",
-    href: "https://www.google.com/maps/search/?api=1&query=Sureshwari+Techno+IT+Park+Premises+CHS+Link+Road+Borivali+West+Mumbai+400092",
-  },
-]
 
 const faqs = [
   {
@@ -96,9 +67,12 @@ export default function ContactPage() {
               Whether you have a question about pricing, want to see a live demo, or need help with your agents — the
               9278.io team is here.
             </p>
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <Clock className="size-4 text-primary" aria-hidden />
-              Mon–Sat, 9 AM – 7 PM IST · Critical support 24/7
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
+              <span className="inline-flex items-center gap-2">
+                <Clock className="size-4 text-primary" aria-hidden />
+                Mon–Sat, 9 AM – 7 PM IST · Critical support 24/7
+              </span>
+              <LiveStatus />
             </div>
           </ScrollReveal>
         </div>
@@ -125,31 +99,8 @@ export default function ContactPage() {
             <ScrollReveal delay={0.08}>
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Other ways to reach us</h2>
               <p className="mt-2 text-pretty text-muted-foreground">Prefer email, or want to hear it live? Take your pick.</p>
-              <div className="mt-6 space-y-4">
-                {channels.map((c) => {
-                  const Icon = c.icon
-                  return (
-                    <div key={c.title} className="flex gap-4 rounded-2xl border-2 border-border bg-white p-5">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
-                        <Icon className="h-5 w-5" aria-hidden />
-                      </span>
-                      <div className="min-w-0">
-                        <h3 className="font-semibold tracking-tight">{c.title}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
-                        <a
-                          href={c.href}
-                          target={c.href.startsWith("http") ? "_blank" : undefined}
-                          rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="mt-2 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
-                        >
-                          {c.action}
-                        </a>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
             </ScrollReveal>
+            <ChannelCards />
           </div>
         </div>
       </section>
@@ -183,6 +134,15 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <GradientCta
+        heading="Prefer to just talk to someone?"
+        description="Try our live demo agent right now — no signup, no waiting for an email back."
+        primaryHref="/get-started"
+        primaryLabel="Get started"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
 
       <RelatedLinks
         heading="Useful pages"

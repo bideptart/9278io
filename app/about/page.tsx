@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
-import { Target, Users, Zap, MapPin } from "lucide-react"
+import { Target, Users, Zap, MapPin, Languages, ShieldCheck, PhoneCall } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { GradientCta } from "@/components/sections/gradient-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -13,6 +14,13 @@ export const metadata: Metadata = pageSeo({
     "We're building India's most capable AI voice infrastructure — multilingual, TRAI-compliant, and purpose-built for Indian businesses.",
   path: "/about",
 })
+
+const stats = [
+  { icon: Languages, value: "10+", label: "Indian languages" },
+  { icon: ShieldCheck, value: "TRAI & DPDP", label: "Fully compliant" },
+  { icon: PhoneCall, value: "1,000+", label: "Concurrent calls" },
+  { icon: MapPin, value: "Mumbai & Hyderabad", label: "Data centres" },
+]
 
 const values = [
   {
@@ -53,7 +61,7 @@ export default function AboutPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center md:px-6 md:py-28">
+        <div className="mx-auto w-full max-w-4xl px-4 pb-16 pt-8 text-center md:px-6 md:pb-20 md:pt-10">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -73,40 +81,66 @@ export default function AboutPage() {
               <MapPin className="size-4 text-primary" aria-hidden />
               Mumbai
             </div>
+
+            <div className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+              {stats.map((s) => {
+                const Icon = s.icon
+                return (
+                  <div key={s.label} className="rounded-xl border-[3px] border-border/60 bg-white p-6">
+                    <Icon className="mx-auto size-5 text-primary" aria-hidden />
+                    <p className="mt-3 text-lg font-bold tracking-tight">{s.value}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
+                  </div>
+                )
+              })}
+            </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* Mission */}
-      <section className="w-full px-6 py-20 md:px-8 md:py-28">
+      <section className="w-full px-6 py-14 md:px-8 md:py-20">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our Mission</p>
-          <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
-            Automate every phone call that doesn&apos;t need a human.
+          <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+            Automate every phone call that{" "}
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/50 bg-clip-text text-transparent">
+              doesn&apos;t need a human.
+            </span>
           </h2>
-          <p className="mt-5 text-pretty leading-relaxed text-muted-foreground md:text-lg">
+          <p className="mt-3 text-pretty leading-relaxed text-muted-foreground md:text-lg">
             India has over 1.4 billion people and one of the world&apos;s largest call-centre industries. Most of those
-            calls are repetitive — appointment reminders, lead qualification, order updates, EMI follow-ups. We built
-            9278.io so that a business of any size can deploy a voice agent in minutes, not months, and reclaim the time
-            their team wastes on calls that a well-designed AI handles better.
+            calls are repetitive. We built 9278.io so that a business of any size can deploy a voice agent in
+            minutes, not months, and reclaim the time their team wastes on calls that a well-designed AI handles
+            better.
           </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {["Appointment reminders", "Lead qualification", "Order updates", "EMI follow-ups"].map((c) => (
+              <span
+                key={c}
+                className="rounded-full border border-border/60 bg-white px-3.5 py-1.5 text-sm text-muted-foreground"
+              >
+                {c}
+              </span>
+            ))}
+          </div>
         </ScrollReveal>
       </section>
 
       {/* Values */}
       <section className="border-t border-border/50">
-        <div className="w-full px-6 py-20 md:px-8 md:py-28">
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">What drives us</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Our values</h2>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {values.map((v) => {
               const Icon = v.icon
               return (
-                <ScrollReveal key={v.title}>
-                  <div className="rounded-2xl border border-border bg-white p-7">
+                <ScrollReveal key={v.title} className="h-full">
+                  <div className="h-full rounded-2xl border border-border bg-white p-7">
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
                       <Icon className="h-5 w-5" aria-hidden />
                     </span>
@@ -120,12 +154,22 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <GradientCta
+        heading="Ready to build your first agent?"
+        description="Pick a plan, optionally add a phone number, and start a real test call — most teams are live in under 5 minutes."
+        primaryHref="/get-started"
+        primaryLabel="Get started"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       <RelatedLinks
         heading="Explore 9278.io"
         description="Product, pricing, and industries — everything in one place."
         links={[
           { href: "/pricing", title: "Pricing in INR", description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Prices in ₹, billed once as wallet credit." },
           { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, EdTech, and more." },
+          { href: "/faq", title: "Frequently asked questions", description: "TRAI compliance, Indian languages, billing, and account questions." },
         ]}
       />
 

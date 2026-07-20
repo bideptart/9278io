@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { MessageCircleQuestion } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { GradientCta } from "@/components/sections/gradient-cta"
 import { FaqSearchProvider } from "@/components/faq/faq-search-context"
 import { FaqSearchBar } from "@/components/faq/faq-search-bar"
 import { FaqGroupsList } from "@/components/faq/faq-groups-list"
@@ -96,29 +95,15 @@ export default function FaqPage() {
       </div>
       </FaqSearchProvider>
 
-      <section id="contact" className="w-full scroll-mt-24 px-6 pb-24 md:px-8">
-        <ScrollReveal className="rounded-2xl border border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-xl">
-              <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
-                Still have a question?
-              </h3>
-              <p className="mt-3 text-muted-foreground">
-                Talk to a live 9278.io agent — yes, that&apos;s actually how we do support — or book 20 minutes with a
-                solutions engineer.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/get-started">Get started</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/pricing">View pricing</Link>
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+      <GradientCta
+        id="contact"
+        heading="Still have a question?"
+        description="Talk to a live 9278.io agent — yes, that's actually how we do support — or book 20 minutes with a solutions engineer."
+        primaryHref="/get-started"
+        primaryLabel="Get started"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
 
       <RelatedLinks
         heading="Keep reading"

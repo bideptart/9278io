@@ -1,13 +1,12 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Zap, Headphones, Mic, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PricingCardSection } from "@/components/pricing/pricing-card-section"
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
 import { AnimatedStatValue } from "@/components/pricing/animated-stat-value"
-import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { GradientCta } from "@/components/sections/gradient-cta"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
@@ -127,28 +126,14 @@ export default async function PricingPage({
         <ComparePlansTable />
       </section>
 
-      <section className="w-full px-6 pb-24 md:px-8">
-        <ScrollReveal className="rounded-2xl border-[3px] border-border/60 bg-white px-6 py-12 md:px-12 md:py-14">
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-xl">
-              <h3 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">
-                Try before you commit. Talk to our agent now.
-              </h3>
-              <p className="mt-3 text-muted-foreground">
-                See latency, voice quality, and conversation flow firsthand — then top up only if you love it.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/get-started">Get started</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/#cta">Talk to an agent</Link>
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+      <GradientCta
+        heading="Try before you commit. Talk to our agent now."
+        description="See latency, voice quality, and conversation flow firsthand — then top up only if you love it."
+        primaryHref="/get-started"
+        primaryLabel="Get started"
+        secondaryHref="/#cta"
+        secondaryLabel="Talk to an agent"
+      />
 
       <RelatedLinks
         heading="More on 9278.io"

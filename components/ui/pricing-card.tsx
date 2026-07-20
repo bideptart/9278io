@@ -40,6 +40,8 @@ interface PricingComponentProps extends React.HTMLAttributes<HTMLDivElement> {
 
 // --- 2. Main Component: PricingComponent ---
 
+const FEATURE_PREVIEW_COUNT = 5;
+
 const PricingComponent: React.FC<PricingComponentProps> = ({
   plans,
   billingCycle,
@@ -56,6 +58,28 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   }
 
   const yearlyDiscountPercent = 20;
+  const [expandedIds, setExpandedIds] = React.useState<Set<string>>(new Set());
+
+  function toggleExpanded(id: string) {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  // --- Mobile card-stack state ---
+  // A static layered stack, not a scroll carousel — the active plan is
+  // always centered in front with the other two permanently flanking it
+  // 50% behind, on both sides. Switching the active plan is a plain click,
+  // not a scroll/swipe gesture, so there's no scroll-snap or
+  // IntersectionObserver math to get wrong or glitch mid-gesture.
+  const popularIndex = Math.max(0, plans.findIndex((p) => p.isPopular));
+  const [activeIndex, setActiveIndex] = React.useState(popularIndex);
+  const otherIndices = plans.map((_, i) => i).filter((i) => i !== activeIndex);
+  const leftIndex = otherIndices[0];
+  const rightIndex = otherIndices[1];
 
   // --- 2.1. Trust badges ---
   const Badges = badges && badges.length > 0 && (
@@ -112,70 +136,162 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
     </div>
   );
 
-  // --- 2.3. Pricing Cards ---
-  const PricingCards = (
-    <div className="grid gap-6 md:grid-cols-3 md:gap-5 lg:gap-6">
-      {plans.map((plan) => {
-        const isFeatured = plan.isPopular;
-        const currentPrice = billingCycle === 'monthly' ? plan.priceMonthly : plan.priceYearly;
-        const priceSuffix = billingCycle === 'monthly' ? '/mo' : '/yr';
+  // --- 2.3. A single plan card (shared by the desktop grid and mobile stack) ---
+  // `forceExpanded` controls whether the feature list always shows in full
+  // (desktop: only the popular card; mobile: never, so every card in the
+  // stack stays the same height regardless of which one is active).
+  // `showBadge` is separate — desktop always shows it on the popular plan;
+  // mobile only shows it on whichever card is currently in front, since a
+  // demoted, partially-hidden side card has nowhere clean for it to sit.
+  function renderCard(plan: PriceTier, forceExpanded: boolean = plan.isPopular, showBadge: boolean = plan.isPopular) {
+    const isFeatured = plan.isPopular;
+    const currentPrice = billingCycle === 'monthly' ? plan.priceMonthly : plan.priceYearly;
+    const priceSuffix = billingCycle === 'monthly' ? '/mo' : '/yr';
+    const isExpanded = forceExpanded || expandedIds.has(plan.id);
+    const visibleFeatures = isExpanded ? plan.features : plan.features.slice(0, FEATURE_PREVIEW_COUNT);
+    const hiddenCount = plan.features.length - FEATURE_PREVIEW_COUNT;
 
-        return (
-          <Card
-            key={plan.id}
-            className={cn(
-              "relative flex flex-col rounded-2xl border transition-all duration-300",
-              isFeatured ? "border-2 border-primary shadow-md" : "border-border/60",
-            )}
+    return (
+      <Card
+        className={cn(
+          // min-w-0 stops the Buy button's non-wrapping text from forcing this
+          // card wider than its assigned percentage width (a classic flexbox
+          // min-width:auto issue) — without it, the longer price labels (e.g.
+          // "Buy ₹8,799 now") pushed the whole mobile card past the viewport edge.
+          // Same border width and shadow for every card, popular or not —
+          // only the color differs — so the "Most popular" card is never a
+          // different physical size from the other two.
+          "relative flex h-full min-w-0 flex-col rounded-2xl border-2 bg-white shadow-sm transition-all duration-300",
+          isFeatured ? "border-primary" : "border-border/60",
+        )}
+      >
+        {showBadge && (
+          <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+            Most popular
+          </span>
+        )}
+        <CardHeader className="min-w-0 p-5 pb-0">
+          <CardTitle className="text-lg font-bold">{plan.name}</CardTitle>
+          <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
+          <div className="mt-2">
+            <p className="text-3xl font-extrabold text-foreground">
+              ₹{currentPrice.toLocaleString("en-IN")}
+              <span className="text-base font-normal text-muted-foreground ml-1">{priceSuffix}</span>
+            </p>
+            {plan.priceNote && <p className="mt-1 text-xs text-muted-foreground">{plan.priceNote}</p>}
+          </div>
+        </CardHeader>
+        <CardContent className="min-w-0 flex-grow p-5 pt-2">
+          <ul className="list-none space-y-0">
+            {visibleFeatures.map((feature) => (
+              <li key={feature} className="flex items-start space-x-3 py-1">
+                <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
+                <span className="text-sm text-foreground">{feature}</span>
+              </li>
+            ))}
+          </ul>
+          {!forceExpanded && hiddenCount > 0 && (
+            <button
+              type="button"
+              onClick={() => toggleExpanded(plan.id)}
+              className="mt-2 text-sm font-medium text-primary hover:underline"
+            >
+              {isExpanded ? "Show less" : `+ ${hiddenCount} more features`}
+            </button>
+          )}
+        </CardContent>
+        <CardFooter className="min-w-0 p-5 pt-2">
+          <Button
+            onClick={() => onPlanSelect(plan.id, billingCycle)}
+            className="h-auto min-h-10 w-full whitespace-normal rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+            size="lg"
+            aria-label={`Select ${plan.name} plan for ₹${currentPrice.toLocaleString("en-IN")} ${priceSuffix}`}
           >
-            {isFeatured && (
-              <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                Most popular
-              </span>
-            )}
-            <CardHeader className="p-5 pb-0">
-              <CardTitle className="text-lg font-bold">{plan.name}</CardTitle>
-              <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
-              <div className="mt-2">
-                <p className="text-3xl font-extrabold text-foreground">
-                  ₹{currentPrice.toLocaleString("en-IN")}
-                  <span className="text-base font-normal text-muted-foreground ml-1">{priceSuffix}</span>
-                </p>
-                {plan.priceNote && <p className="mt-1 text-xs text-muted-foreground">{plan.priceNote}</p>}
-              </div>
-            </CardHeader>
-            <CardContent className="flex-grow p-5 pt-2">
-              <ul className="list-none space-y-0">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start space-x-3 py-1">
-                    <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
-                    <span className="text-sm text-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter className="p-5 pt-2">
-              <Button
-                onClick={() => onPlanSelect(plan.id, billingCycle)}
-                className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                size="lg"
-                aria-label={`Select ${plan.name} plan for ₹${currentPrice.toLocaleString("en-IN")} ${priceSuffix}`}
-              >
-                {plan.buttonLabel} ₹{currentPrice.toLocaleString("en-IN")} now
-              </Button>
-            </CardFooter>
-          </Card>
-        );
-      })}
+            {plan.buttonLabel} ₹{currentPrice.toLocaleString("en-IN")} now
+          </Button>
+        </CardFooter>
+      </Card>
+    );
+  }
+
+  // --- 2.4. Desktop grid ---
+  const DesktopCards = (
+    <div className="hidden gap-6 md:grid md:grid-cols-3 md:gap-5 lg:gap-6">
+      {plans.map((plan) => (
+        <div key={plan.id}>{renderCard(plan)}</div>
+      ))}
     </div>
   );
 
-  // --- 2.4. Final Render ---
+  // --- 2.5. Mobile card stack (static layering, no scroll) ---
+  const MobileStack = (
+    // overflow-hidden clips any residual sizing overflow so a card can never
+    // visually bleed past the viewport edge; pt-4 reserves room so the
+    // "Most popular" badge (which sits slightly above its card) isn't clipped.
+    <div className="relative overflow-hidden pt-4 md:hidden">
+      {/* Active plan — the only card in normal flow, so it defines the stack's height.
+          Always fully expanded (matches the reference layout): the front
+          card is meant to be the prominent, fully-readable one, while the
+          side cards stay truncated. */}
+      <div className="relative z-20 mx-auto w-[78%]">
+        {renderCard(plans[activeIndex], true, plans[activeIndex].isPopular)}
+      </div>
+
+      {/* Left plan — permanently tucked ~50% behind the active card */}
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => setActiveIndex(leftIndex)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") setActiveIndex(leftIndex);
+        }}
+        aria-label={`Show ${plans[leftIndex].name} plan`}
+        className="absolute left-0 top-4 z-10 w-[58%] cursor-pointer"
+      >
+        {renderCard(plans[leftIndex], false, false)}
+      </div>
+
+      {/* Right plan — permanently tucked ~50% behind the active card */}
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => setActiveIndex(rightIndex)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") setActiveIndex(rightIndex);
+        }}
+        aria-label={`Show ${plans[rightIndex].name} plan`}
+        className="absolute right-0 top-4 z-10 w-[58%] cursor-pointer"
+      >
+        {renderCard(plans[rightIndex], false, false)}
+      </div>
+
+      {/* Dots — tap to switch which plan is in front */}
+      <div className="relative z-30 mt-4 flex items-center justify-center gap-1.5">
+        {plans.map((plan, i) => (
+          <button
+            key={plan.id}
+            type="button"
+            onClick={() => setActiveIndex(i)}
+            aria-label={`Show ${plan.name} plan`}
+            className={cn(
+              "h-1.5 rounded-full transition-all duration-300",
+              i === activeIndex ? "w-5 bg-primary" : "w-1.5 bg-border",
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  );
+
+  // --- 2.6. Final Render ---
   return (
     <div className={cn("w-full pt-6 pb-12 md:pt-8 md:pb-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8", className)} {...props}>
       {Badges}
       {CycleToggle}
-      <section aria-labelledby="pricing-plans">{PricingCards}</section>
+      <section aria-labelledby="pricing-plans">
+        {MobileStack}
+        {DesktopCards}
+      </section>
     </div>
   );
 };

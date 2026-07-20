@@ -119,7 +119,7 @@ export const PLANS: Plan[] = [
       "Realtime + premium voices",
       "Call recording",
       "Real-time transcription",
-      "Dedicated success manager + SLA",
+      "Dedicated manager + SLA",
     ],
   },
 ]

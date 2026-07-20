@@ -4,6 +4,9 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
+import { ReadingProgress } from "@/components/legal/reading-progress"
+import { TocNav } from "@/components/legal/toc-nav"
+import { BackToTop } from "@/components/legal/back-to-top"
 
 export type LegalPageProps = {
   title: string
@@ -82,6 +85,7 @@ export function LegalPage({ title, lastUpdated, operator, path, body }: LegalPag
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
+      <ReadingProgress />
       <SiteHeader />
 
       <BreadcrumbJsonLd
@@ -137,17 +141,7 @@ export function LegalPage({ title, lastUpdated, operator, path, body }: LegalPag
         {sections.length > 1 ? (
           <ScrollReveal className="mb-12 rounded-2xl border-2 border-border bg-white p-6">
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Contents</p>
-            <nav className="grid gap-1.5 sm:grid-cols-2">
-              {sections.map((s) => (
-                <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
-                >
-                  {s.title}
-                </a>
-              ))}
-            </nav>
+            <TocNav sections={sections} />
           </ScrollReveal>
         ) : null}
 
@@ -175,6 +169,7 @@ export function LegalPage({ title, lastUpdated, operator, path, body }: LegalPag
       </div>
 
       <SiteFooter />
+      <BackToTop />
     </main>
   )
 }
