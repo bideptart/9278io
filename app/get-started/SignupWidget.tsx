@@ -1,7 +1,7 @@
 "use client"
 
-// Inline signup widget for /get-started — fetches live plans + starter agent
-// templates from voice.9278.io, opens Razorpay Checkout, verifies payment,
+// Inline signup widget for /get-started — fetches live plans from
+// voice.9278.io, opens Razorpay Checkout, verifies payment,
 // then redirects the customer into the portal already signed-in via ?token=.
 // The customer's phone number is auto-assigned server-side at checkout.
 
@@ -47,18 +47,6 @@ type Plan = {
   perks: string[]
 }
 
-// Starter templates — fetched from the portal so we don't hardcode
-// the catalogue in two places. See server/agent-templates.js.
-type Template = {
-  id: string
-  icon: string
-  iconTone: string
-  title: string
-  badge: string | null
-  subtitle: string
-  tags: string[]
-}
-
 const LANGUAGES: Array<{ value: string; label: string }> = [
   { value: "en-IN", label: "English (India)" },
   { value: "en-US", label: "English (US)" },
@@ -94,12 +82,6 @@ export default function SignupWidget() {
   const [plans, setPlans] = useState<Plan[]>([])
   const [loadError, setLoadError] = useState<string | null>(null)
 
-  // Templates fetched from the portal. If the fetch fails we hide the picker
-  // rather than blocking the signup — a customer can still sign up without
-  // choosing a template (server defaults will apply).
-  const [templates, setTemplates] = useState<Template[]>([])
-  const [templateId, setTemplateId] = useState<string>("receptionist")
-
   const [cycle, setCycle] = useState<"monthly" | "yearly">(initialCycle)
   const [selectedId, setSelectedId] = useState<string>(initialPlanId)
 
@@ -121,21 +103,14 @@ export default function SignupWidget() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Load plans + templates on mount. Templates come from the portal so a
-  // catalogue update on voice.9278.io reflects here immediately.
+  // Load plans on mount.
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       try {
-        const [plansRes, templatesRes] = await Promise.all([
-          fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json()),
-          fetch(`${PORTAL_BASE}/api/agent-templates`)
-            .then((r) => r.json())
-            .catch(() => ({ templates: [] })),
-        ])
+        const plansRes = await fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json())
         if (cancelled) return
         setPlans(plansRes.plans || [])
-        setTemplates(templatesRes.templates || [])
       } catch (e) {
         if (!cancelled) setLoadError((e as Error).message || "Could not load plans")
       }
@@ -192,11 +167,6 @@ export default function SignupWidget() {
       planRate: selectedPlan.rate,
       planAgents: selectedPlan.agents,
       planCycle: cycle,
-
-      // Starter template — portal fills in greeting/prompt/kbCompany/voice
-      // /language from the template when those fields are empty. Payload
-      // wins if the customer also supplied a custom greeting below.
-      templateId,
 
       // Optional call-transfer number — pushed to the agent via MCP after
       // provisioning finishes.
@@ -427,72 +397,6 @@ export default function SignupWidget() {
         })}
       </div>
 
-      {/* Template picker — renders only when the portal returned templates */}
-      {templates.length > 0 && (
-        <Card className="mb-10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base">Choose a starter template</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Sets your agent&apos;s greeting, behavior, and voice. You can edit anything later in the portal.
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-              {templates.map((tpl) => {
-                const selected = templateId === tpl.id
-                return (
-                  <button
-                    key={tpl.id}
-                    type="button"
-                    onClick={() => setTemplateId(tpl.id)}
-                    className={cn(
-                      "text-left rounded-xl border-2 p-4 transition focus:outline-none",
-                      selected
-                        ? "border-violet-500 bg-violet-50/60 dark:bg-violet-500/10"
-                        : "border-border bg-card hover:border-violet-300 hover:bg-violet-50/40 dark:hover:bg-violet-500/5",
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        "flex h-9 w-9 items-center justify-center rounded-lg text-lg font-bold",
-                        tpl.iconTone,
-                      )}
-                    >
-                      {tpl.icon}
-                    </div>
-                    <div className="mt-3 flex flex-wrap items-center gap-2">
-                      <div className="text-sm font-bold text-foreground">{tpl.title}</div>
-                      {tpl.badge && (
-                        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
-                          {tpl.badge}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-1 text-xs leading-snug text-muted-foreground">
-                      {tpl.subtitle}
-                    </div>
-                    <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                      {tpl.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="rounded-full bg-muted px-2 py-0.5 text-[10px] text-muted-foreground"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Pick <strong>Blank</strong> if you&apos;d rather start from scratch — nothing is
-              pre-filled in that case.
-            </p>
-          </CardContent>
-        </Card>
-      )}
-
       {/* Two-column section: form on the left, order summary on the right */}
       <form onSubmit={validateAndSubmit} className="grid gap-6 lg:grid-cols-[1fr_360px]">
         {/* === LEFT: form fields ============================================= */}
@@ -593,7 +497,7 @@ export default function SignupWidget() {
               <Label htmlFor="greeting" className="mb-1.5 block">
                 Greeting / description{" "}
                 <span className="font-normal text-muted-foreground">
-                  (optional — overrides the template greeting)
+                  (optional)
                 </span>
               </Label>
               <Textarea
@@ -609,7 +513,7 @@ export default function SignupWidget() {
                 className="min-h-[120px] resize-y"
               />
               <p className="mt-2 text-xs text-muted-foreground">
-                Leave blank to use the greeting from your selected template. Refine it any time
+                Leave blank to use the default greeting. Refine it any time
                 in <strong>Knowledge &amp; Agent</strong>.
               </p>
               <div className="h-6" />
@@ -643,14 +547,6 @@ export default function SignupWidget() {
                   )}
                 </div>
               </Row>
-
-              {templates.length > 0 && (
-                <Row label="Template">
-                  <span className="font-semibold">
-                    {templates.find((t) => t.id === templateId)?.title || "—"}
-                  </span>
-                </Row>
-              )}
 
               <Row label="Phone number">
                 <span className="text-xs font-medium text-muted-foreground">
