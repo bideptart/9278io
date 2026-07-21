@@ -12,9 +12,10 @@ declare global {
   }
 }
 
-/* Card face is 380x380 from lg up; below that it fills the column but never
-   exceeds 380px. Sized with classes, not a percentage width — a percentage
-   resolves against the indefinite `auto` grid track and collapses the card. */
+/* Card face follows the artwork's 3:2 shape — 420x280 from lg up; below that
+   it fills the column but never exceeds 420px wide. Sized with classes, not a
+   percentage width: a percentage resolves against the indefinite `auto` grid
+   track and collapses the card. */
 
 interface ImageData {
   title: string
@@ -112,19 +113,27 @@ export function ImageGallery() {
 
   const active = images[opened]
 
+  /* Capitalise each word of the industry name for the headline. Built from the
+     name as authored, not a lowercased copy, so acronyms like BFSI and BPO
+     keep their casing. */
+  const activeTitle = active.title
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+
   return (
     <div className="flex w-full items-center justify-center bg-white font-sans">
       {/* minmax(0,…) tracks + min-w-0 items: without them the card's fixed
           380px width sizes the auto track and the whole grid overflows small
           screens instead of shrinking. */}
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-16">
-        {/* ── the fixed-size card on the left, arrows below it ──────── */}
-        <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-4 lg:mx-0 lg:w-auto lg:justify-self-start">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-[minmax(0,1fr)] items-center gap-8 px-4 pb-2 pt-8 sm:px-6 sm:pb-3 sm:pt-10 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-24">
+        {/* ── the fixed-size card on the left ───────────────────────── */}
+        <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center lg:mx-0 lg:w-auto lg:justify-self-start">
           <div
             // bg is required: while GSAP clips a slide to a circle the rest of
             // the face is transparent, which otherwise shows the page behind.
-            className="relative w-full max-w-[380px] overflow-hidden rounded-[20px] border border-black bg-[#e8f1fd] shadow-[0_2.8px_2.2px_rgba(0,0,0,0.02),0_6.7px_5.3px_rgba(0,0,0,0.028),0_12.5px_10px_rgba(0,0,0,0.035),0_22.3px_17.9px_rgba(0,0,0,0.042),0_41.8px_33.4px_rgba(0,0,0,0.05),0_100px_80px_rgba(0,0,0,0.07)] lg:w-[380px]"
-            style={{ aspectRatio: "1 / 1" }}
+            className="relative w-full max-w-[420px] overflow-hidden rounded-[20px] bg-[#e8f1fd] shadow-[0_1px_2px_rgba(15,23,42,0.04),0_4px_10px_rgba(15,23,42,0.06),0_14px_28px_-6px_rgba(15,23,42,0.10),0_36px_64px_-16px_rgba(15,23,42,0.16)] lg:w-[420px]"
+            style={{ aspectRatio: "3 / 2" }}
           >
             {gsapReady &&
               images.map((image, i) => (
@@ -149,75 +158,83 @@ export function ImageGallery() {
             </div>
           </div>
 
-          {/* Arrows sit in a row under the card. */}
-          <div className="flex items-center justify-center gap-4">
-          <button
-            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-blue-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-blue-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-            onClick={prev}
-            disabled={disabled}
-            aria-label="Previous Image"
-          >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-800 transition-transform duration-300 group-hover:-translate-x-0.5"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-
-          <button
-            className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-blue-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-blue-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-            onClick={next}
-            disabled={disabled}
-            aria-label="Next Image"
-          >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-800 transition-transform duration-300 group-hover:translate-x-0.5"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-          </div>
         </div>
 
-        {/* ── right panel — active slide's headline + what the agent does ── */}
-        <div key={`r-${active.url}`} className="min-w-0 lg:self-start lg:pt-2">
-          {/* Tracks the open card, matching the wording on the artwork. */}
-          <h3 className="ind-item-in text-balance break-words font-serif text-2xl font-bold leading-tight tracking-tight text-blue-600 sm:text-3xl lg:text-4xl">
-            AI voice agents for {active.title.toLowerCase()}
-          </h3>
-          <h4 className="mb-4 mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 lg:mt-20">
-            What the agent does
-          </h4>
-          <ul className="space-y-2.5">
-            {active.jobs.map((text, i) => (
-              <li
-                key={text}
-                className="ind-item-in flex items-start gap-3"
-                style={{ animationDelay: `${i * 0.07}s` }}
+        {/* ── right panel — headline, jobs, then the arrows ─────────── */}
+        {/* self-start pulls the headline level with the top of the card; the
+            min-height matches the card (420 / 1.5 = 280px) so the arrows,
+            pushed down by mt-auto, line up with the card's bottom edge
+            whatever the slide's text length. */}
+        <div className="min-w-0 lg:flex lg:min-h-[280px] lg:flex-col lg:self-start">
+          {/* Keyed so the entrance animation replays when the slide changes;
+              the arrows sit outside it so they are not remounted. */}
+          <div key={`r-${active.url}`}>
+            {/* Tracks the open card, matching the wording on the artwork. */}
+            <h3 className="ind-item-in text-balance break-words font-serif text-2xl font-bold leading-tight tracking-tight text-blue-600 sm:text-3xl xl:whitespace-nowrap xl:text-[34px]">
+              AI Voice Agents For {activeTitle}
+            </h3>
+            <h4 className="mb-4 mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 lg:mt-6">
+              What the agent does
+            </h4>
+            <ul className="space-y-2.5">
+              {active.jobs.map((text, i) => (
+                <li
+                  key={text}
+                  className="ind-item-in flex items-start gap-3"
+                  style={{ animationDelay: `${i * 0.07}s` }}
+                >
+                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-[10px] font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <span className="min-w-0 break-words text-sm leading-snug text-foreground">{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-8 flex items-center gap-4 lg:mt-auto lg:pt-6">
+            <button
+              className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-blue-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-blue-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+              onClick={prev}
+              disabled={disabled}
+              aria-label="Previous Image"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-gray-800 transition-transform duration-300 group-hover:-translate-x-0.5"
               >
-                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-[10px] font-bold text-white">
-                  {i + 1}
-                </span>
-                <span className="min-w-0 break-words text-sm leading-snug text-foreground">{text}</span>
-              </li>
-            ))}
-          </ul>
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <button
+              className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.12)] outline-none transition-all duration-300 ease-out hover:scale-110 hover:bg-white hover:border-blue-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] active:scale-95 focus-visible:ring-4 focus-visible:ring-blue-200 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+              onClick={next}
+              disabled={disabled}
+              aria-label="Next Image"
+            >
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-gray-800 transition-transform duration-300 group-hover:translate-x-0.5"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -243,8 +260,10 @@ function GalleryImage({ url, title, open, inPlace, id, onInPlace, total }: Galle
   const circleRadius = 7
   const defaults = { transformOrigin: "center center" }
   const duration = 0.4
+  // 3:2 to match the artwork, so the image fills the face with no letterbox
+  // and the thumbnail row (cy = height - 30) stays inside the frame.
   const width = 400
-  const height = 400
+  const height = 267
   const scale = 700
 
   const bigSize = circleRadius * scale
@@ -336,14 +355,15 @@ function GalleryImage({ url, title, open, inPlace, id, onInPlace, total }: Galle
         </clipPath>
       </defs>
       <g clipPath={`url(#${id}${inPlace ? "_squareClip" : "_circleClip"})`}>
-        {/* "slice" makes the artwork cover the square card instead of being
-            letterboxed inside it; anchoring left (xMin) keeps the headline and
-            bullet list intact and crops only the illustration side. */}
+        {/* "meet" keeps the whole artwork visible. The card is square but the
+            artwork is 3:2, so "slice" would crop a third off the side and cut
+            the headline; the card's background matches the artwork's, so the
+            letterboxing reads as part of the image. */}
         <image
           width={width}
           height={height}
           href={url}
-          preserveAspectRatio="xMinYMid slice"
+          preserveAspectRatio="xMidYMid meet"
           className="pointer-events-none"
         ></image>
       </g>
@@ -359,8 +379,10 @@ interface TabsProps {
 function Tabs({ images, onSelect }: TabsProps) {
   const gap = 10
   const circleRadius = 7
+  // 3:2 to match the artwork, so the image fills the face with no letterbox
+  // and the thumbnail row (cy = height - 30) stays inside the frame.
   const width = 400
-  const height = 400
+  const height = 267
 
   const getPosX = (i: number) =>
     width / 2 - (images.length * (circleRadius * 2 + gap) - gap) / 2 + i * (circleRadius * 2 + gap)
