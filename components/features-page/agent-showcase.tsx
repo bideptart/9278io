@@ -128,9 +128,9 @@ export function AgentShowcase() {
                 "0 34px 70px -22px oklch(0.55 0.2 262 / 0.45), inset 0 2px 8px rgba(255,255,255,0.85)",
             }}
           >
-            {/* sonar pings + a circular waveform ring instead of static rings —
-                animated with framer-motion (inline styles) rather than a CSS
-                keyframe class, so the motion never depends on a stylesheet rebuild */}
+            {/* sonar pings — animated with framer-motion (inline styles) rather
+                than a CSS keyframe class, so the motion never depends on a
+                stylesheet rebuild */}
             <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
               {[0, 1.3].map((delay) => (
                 <motion.circle
@@ -146,24 +146,6 @@ export function AgentShowcase() {
                   transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut", delay }}
                 />
               ))}
-              {Array.from({ length: 24 }).map((_, i) => {
-                const angle = (360 / 24) * i
-                return (
-                  <g key={i} transform={`rotate(${angle} 50 50)`}>
-                    <motion.rect
-                      x="49"
-                      y="2"
-                      width="2"
-                      height="6"
-                      rx="1"
-                      className="fill-primary/70"
-                      style={{ transformBox: "fill-box", transformOrigin: "center bottom" }}
-                      animate={{ scaleY: [0.5, 1.6, 0.5] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: (i % 8) * 0.09 }}
-                    />
-                  </g>
-                )
-              })}
             </svg>
 
             {/* waveform + mic */}
