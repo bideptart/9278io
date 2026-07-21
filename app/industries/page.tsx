@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PlaybooksCardStack } from "@/components/industries/playbooks-card-stack"
+import { Marquee } from "@/components/ui/marquee"
 import { INDUSTRIES, CAP_COLORS } from "@/lib/industries"
 
 /* Per-industry accent palette for the airy grid. Literal classes so
@@ -31,6 +32,63 @@ export const metadata: Metadata = pageSeo({
   path: "/industries",
 })
 
+/* Single industry tile — shared by the mobile marquee rows and the sm+ grid. */
+function IndustryCard({
+  ind,
+  i,
+  className = "",
+}: {
+  ind: (typeof INDUSTRIES)[number]
+  i: number
+  className?: string
+}) {
+  const Icon = ind.icon
+  const accent = ACCENTS[i % ACCENTS.length]
+  return (
+    <div
+      className={`group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl ${accent} ${className}`}
+    >
+      <Link href={`/industries/${ind.slug}`} className="relative flex h-full flex-col p-6">
+        {/* oversized watermark of the industry icon */}
+        <Icon
+          aria-hidden
+          className="pointer-events-none absolute -bottom-7 -right-5 size-32 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:opacity-[0.09]"
+        />
+        {/* accent colour-wash on hover */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-current opacity-0 transition-opacity duration-500 group-hover:opacity-[0.05]"
+        />
+
+        {/* filled accent icon badge + name on one line */}
+        <div className="relative flex items-center gap-3">
+          <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-current shadow-md transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
+            <Icon className="size-5 text-white" aria-hidden />
+          </span>
+          <h3 className="min-w-0 font-serif text-lg font-semibold tracking-tight text-foreground">{ind.name}</h3>
+        </div>
+        {/* accent underline that grows on hover */}
+        <span
+          aria-hidden
+          className="relative mt-3 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
+        />
+
+        <p className="relative mt-3 text-xs leading-snug text-muted-foreground">{ind.short}</p>
+        <div className="relative mt-auto flex flex-nowrap gap-1 pt-3.5">
+          {ind.caps.map((cap) => (
+            <span
+              key={cap}
+              className={`min-w-0 shrink whitespace-nowrap rounded-full border px-1.5 py-0.5 text-center text-[8px] font-medium leading-tight ${CAP_COLORS[cap]}`}
+            >
+              {cap}
+            </span>
+          ))}
+        </div>
+      </Link>
+    </div>
+  )
+}
+
 export default function IndustriesPage() {
   return (
     <main className="min-h-dvh bg-white text-foreground">
@@ -53,8 +111,8 @@ export default function IndustriesPage() {
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04] bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:56px_56px]"
         />
-        <div className="w-full px-6 pt-8 pb-14 md:px-8 md:pt-10 md:pb-20">
-          <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="w-full px-6 pb-6 pt-6 md:px-8 md:pb-14 md:pt-9">
+          <div className="mx-auto grid max-w-6xl items-start gap-4 lg:grid-cols-2 lg:items-center lg:gap-14">
             {/* Left — copy */}
             <ScrollReveal>
               <div className="max-w-3xl">
@@ -75,7 +133,7 @@ export default function IndustriesPage() {
 
             {/* Right — modern-classic conceptual illustration */}
             <ScrollReveal delay={0.12}>
-              <div className="relative mx-auto w-full max-w-lg">
+              <div className="relative mx-auto -my-6 w-full max-w-[430px] lg:mb-0 lg:ml-auto lg:mr-0 lg:-mt-4 lg:max-w-[500px]">
                 <svg
                   viewBox="0 0 520 500"
                   role="img"
@@ -100,7 +158,7 @@ export default function IndustriesPage() {
                       <stop offset="0" stopColor="#6366f1" stopOpacity="0.20" />
                       <stop offset="1" stopColor="#6366f1" stopOpacity="0" />
                     </radialGradient>
-                    <filter id="ind-soft" x="-40%" y="-40%" width="180%" height="180%">
+                    <filter id="ind-soft" x="-150%" y="-150%" width="400%" height="400%">
                       <feDropShadow dx="0" dy="10" stdDeviation="14" floodColor="#1e293b" floodOpacity="0.14" />
                     </filter>
                     <pattern id="ind-dots" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -268,57 +326,36 @@ export default function IndustriesPage() {
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {INDUSTRIES.map((ind, i) => {
-              const Icon = ind.icon
-              const accent = ACCENTS[i % ACCENTS.length]
-              const tile = ACCENT_TILES[i % ACCENT_TILES.length]
-              return (
-                <ScrollReveal
+          {/* Mobile: two auto-scrolling rows (opposite directions) */}
+          <div className="-mx-6 space-y-4 sm:hidden">
+            <Marquee pauseOnHover className="[--duration:36s] [--gap:1rem] p-0 py-1">
+              {INDUSTRIES.slice(0, Math.ceil(INDUSTRIES.length / 2)).map((ind, i) => (
+                <IndustryCard key={ind.slug} ind={ind} i={i} className="w-[250px] shrink-0" />
+              ))}
+            </Marquee>
+            <Marquee
+              reverse
+              pauseOnHover
+              className="[--duration:36s] [--gap:1rem] p-0 py-1 [&>div]:[animation-direction:reverse]!"
+            >
+              {INDUSTRIES.slice(Math.ceil(INDUSTRIES.length / 2)).map((ind, i) => (
+                <IndustryCard
                   key={ind.slug}
-                  delay={i * 0.04}
-                  className={`group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl ${accent}`}
-                >
-                  <Link href={`/industries/${ind.slug}`} className="relative flex h-full flex-col p-6">
-                    {/* oversized watermark of the industry icon */}
-                    <Icon
-                      aria-hidden
-                      className="pointer-events-none absolute -bottom-7 -right-5 size-32 text-current opacity-[0.05] transition-all duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:opacity-[0.09]"
-                    />
-                    {/* accent colour-wash on hover */}
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute inset-0 bg-current opacity-0 transition-opacity duration-500 group-hover:opacity-[0.05]"
-                    />
+                  ind={ind}
+                  i={i + Math.ceil(INDUSTRIES.length / 2)}
+                  className="w-[250px] shrink-0"
+                />
+              ))}
+            </Marquee>
+          </div>
 
-                    {/* filled accent icon badge + name on one line */}
-                    <div className="relative flex items-center gap-3">
-                      <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-current shadow-md transition-all duration-500 group-hover:-rotate-6 group-hover:scale-110">
-                        <Icon className="size-5 text-white" aria-hidden />
-                      </span>
-                      <h3 className="min-w-0 font-serif text-lg font-semibold tracking-tight text-foreground">{ind.name}</h3>
-                    </div>
-                    {/* accent underline that grows on hover */}
-                    <span
-                      aria-hidden
-                      className="relative mt-3 block h-[3px] w-9 origin-left rounded-full bg-current transition-all duration-500 group-hover:w-16"
-                    />
-
-                    <p className="relative mt-3 text-xs leading-snug text-muted-foreground">{ind.short}</p>
-                    <div className="relative mt-auto flex flex-nowrap gap-1 pt-3.5">
-                      {ind.caps.map((cap) => (
-                        <span
-                          key={cap}
-                          className={`min-w-0 shrink whitespace-nowrap rounded-full border px-1.5 py-0.5 text-center text-[8px] font-medium leading-tight ${CAP_COLORS[cap]}`}
-                        >
-                          {cap}
-                        </span>
-                      ))}
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              )
-            })}
+          {/* sm+: static grid */}
+          <div className="hidden gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            {INDUSTRIES.map((ind, i) => (
+              <ScrollReveal key={ind.slug} delay={i * 0.04} className="h-full">
+                <IndustryCard ind={ind} i={i} className="h-full" />
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
