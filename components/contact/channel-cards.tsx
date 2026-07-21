@@ -56,7 +56,7 @@ const cardVariants = {
 export function ChannelCards() {
   return (
     <motion.div
-      className="mt-6 space-y-4"
+      className="mt-6 flex flex-1 flex-col justify-between gap-3"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
@@ -68,19 +68,19 @@ export function ChannelCards() {
           <motion.div
             key={c.title}
             variants={cardVariants}
-            className="flex gap-4 rounded-2xl border-2 border-border bg-white p-5"
+            className="flex gap-3 rounded-2xl border-2 border-border bg-white p-4"
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
-              <Icon className="h-5 w-5" aria-hidden />
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
+              <Icon className="h-4.5 w-4.5" aria-hidden />
             </span>
             <div className="min-w-0">
               <h3 className="font-semibold tracking-tight">{c.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
+              <p className="mt-0.5 text-sm leading-snug text-muted-foreground">{c.description}</p>
               <a
                 href={c.href}
                 target={c.href.startsWith("http") ? "_blank" : undefined}
                 rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="mt-2 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                className="mt-1.5 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
               >
                 {c.action}
               </a>

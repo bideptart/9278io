@@ -57,7 +57,7 @@ export default function ContactPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-4 py-12 text-center md:px-6 md:py-16">
+        <div className="mx-auto w-full max-w-4xl px-4 py-10 text-center md:px-6 md:py-12">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -80,7 +80,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form + channels */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-20">
+      <section className="w-full px-6 py-10 md:px-8 md:py-14">
         <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
           {/* Form */}
           <div className="lg:col-span-3">
@@ -96,7 +96,7 @@ export default function ContactPage() {
           </div>
 
           {/* Channels */}
-          <div className="lg:col-span-2">
+          <div className="flex flex-col lg:col-span-2">
             <ScrollReveal delay={0.08}>
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Other ways to reach us</h2>
               <p className="mt-2 text-pretty text-muted-foreground">Prefer email, or want to hear it live? Take your pick.</p>
@@ -108,7 +108,7 @@ export default function ContactPage() {
 
       {/* Quick FAQs */}
       <section className="border-t border-border/50">
-        <div className="w-full px-6 py-20 md:px-8 md:py-28">
+        <div className="w-full px-6 py-14 md:px-8 md:py-16">
           <ScrollReveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Before you write</p>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Common questions</h2>
