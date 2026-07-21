@@ -18,6 +18,7 @@ const staticRoutes: Entry[] = [
   { loc: "/", priority: 1.0, changefreq: "weekly" },
   { loc: "/pricing", priority: 0.9, changefreq: "weekly" },
   { loc: "/industries", priority: 0.9, changefreq: "monthly" },
+  { loc: "/features", priority: 0.8, changefreq: "monthly" },
   { loc: "/blog", priority: 0.8, changefreq: "weekly" },
   { loc: "/get-started", priority: 0.8, changefreq: "monthly" },
   { loc: "/faq", priority: 0.7, changefreq: "monthly" },

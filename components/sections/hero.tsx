@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import {
   ArrowRight, PhoneCall, Globe, Clock, ShieldCheck, Check,
   CalendarCheck, IndianRupee, Package, UserRoundCheck,
-  MessageSquare, ChevronLeft, ChevronRight, CheckCircle2,
+  MessageSquare, ChevronLeft, ChevronRight, CheckCircle2, LayoutGrid,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
@@ -568,10 +568,10 @@ export function Hero() {
                 variant="outline"
                 className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
               >
-                <a href="#demo-audio">
-                  <PhoneCall className="mr-2 h-4 w-4" />
-                  Try live demo
-                </a>
+                <Link href="/features">
+                  <LayoutGrid className="mr-2 h-4 w-4" />
+                  Features
+                </Link>
               </Button>
             </motion.div>
 

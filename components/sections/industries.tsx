@@ -215,9 +215,9 @@ export function Industries() {
             inactiveScale={0.9}
             activeLiftPx={0}
             autoAdvance
-            intervalMs={2600}
-            springStiffness={340}
-            springDamping={34}
+            intervalMs={1700}
+            springStiffness={420}
+            springDamping={38}
             pauseOnHover
             showDots
             renderCard={(item, { active }) => {

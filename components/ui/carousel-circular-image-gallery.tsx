@@ -12,24 +12,23 @@ declare global {
   }
 }
 
-/** Fixed card face, as specified by the design. */
-const CARD_SIZE = 244.15
+/* Card face is 380x380 from lg up; below that it fills the column but never
+   exceeds 380px. Sized with classes, not a percentage width — a percentage
+   resolves against the indefinite `auto` grid track and collapses the card. */
 
 interface ImageData {
   title: string
   url: string
-  /** Shown in the panels beside the card for the active slide. */
-  leftItems: string[]
-  rightItems: string[]
+  /** Shown in the panel beside the card for the active slide. */
+  jobs: string[]
 }
 
-/* One slide per industry: the supplied artwork plus the same side content the
+/* One slide per industry: the supplied artwork plus the side content the
    cards carried before. */
 const images: ImageData[] = INDUSTRIES.map((ind) => ({
   title: ind.name,
   url: `/industries/${ind.slug}.jpg`,
-  leftItems: ind.jobs.slice(0, 3),
-  rightItems: ind.sampleLines,
+  jobs: ind.jobs.slice(0, 3),
 }))
 
 // Main component for the Image Gallery
@@ -115,33 +114,17 @@ export function ImageGallery() {
 
   return (
     <div className="flex w-full items-center justify-center bg-white font-sans">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-12 lg:grid-cols-[1fr_auto_1fr]">
-        {/* ── left panel — what the agent does ─────────────────────── */}
-        <div key={`l-${active.url}`} className="lg:text-right">
-          <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">
-            What the agent does
-          </h3>
-          <ul className="space-y-2.5">
-            {active.leftItems.map((text, i) => (
-              <li
-                key={text}
-                className="ind-item-in flex items-start gap-3 lg:flex-row-reverse"
-                style={{ animationDelay: `${i * 0.07}s` }}
-              >
-                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-[10px] font-bold text-white">
-                  {i + 1}
-                </span>
-                <span className="text-sm leading-snug text-foreground">{text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* ── centre — the fixed-size card, arrows pinned to its edges ── */}
-        <div className="mx-auto flex shrink-0 flex-col items-center gap-4">
+      {/* minmax(0,…) tracks + min-w-0 items: without them the card's fixed
+          380px width sizes the auto track and the whole grid overflows small
+          screens instead of shrinking. */}
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-8 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-16">
+        {/* ── the fixed-size card on the left, arrows below it ──────── */}
+        <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-4 lg:mx-0 lg:w-auto lg:justify-self-start">
           <div
-            className="relative overflow-hidden rounded-[20px] shadow-[0_2.8px_2.2px_rgba(0,0,0,0.02),0_6.7px_5.3px_rgba(0,0,0,0.028),0_12.5px_10px_rgba(0,0,0,0.035),0_22.3px_17.9px_rgba(0,0,0,0.042),0_41.8px_33.4px_rgba(0,0,0,0.05),0_100px_80px_rgba(0,0,0,0.07)]"
-            style={{ width: CARD_SIZE, height: CARD_SIZE }}
+            // bg is required: while GSAP clips a slide to a circle the rest of
+            // the face is transparent, which otherwise shows the page behind.
+            className="relative w-full max-w-[380px] overflow-hidden rounded-[20px] border border-black bg-[#e8f1fd] shadow-[0_2.8px_2.2px_rgba(0,0,0,0.02),0_6.7px_5.3px_rgba(0,0,0,0.028),0_12.5px_10px_rgba(0,0,0,0.035),0_22.3px_17.9px_rgba(0,0,0,0.042),0_41.8px_33.4px_rgba(0,0,0,0.05),0_100px_80px_rgba(0,0,0,0.07)] lg:w-[380px]"
+            style={{ aspectRatio: "1 / 1" }}
           >
             {gsapReady &&
               images.map((image, i) => (
@@ -212,27 +195,26 @@ export function ImageGallery() {
           </div>
         </div>
 
-        {/* ── right panel — real phrases it handles ────────────────── */}
-        <div key={`r-${active.url}`}>
-          <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">
-            Real phrases it handles
+        {/* ── right panel — active slide's headline + what the agent does ── */}
+        <div key={`r-${active.url}`} className="min-w-0 lg:self-start lg:pt-2">
+          {/* Tracks the open card, matching the wording on the artwork. */}
+          <h3 className="ind-item-in text-balance break-words font-serif text-2xl font-bold leading-tight tracking-tight text-blue-600 sm:text-3xl lg:text-4xl">
+            AI voice agents for {active.title.toLowerCase()}
           </h3>
+          <h4 className="mb-4 mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 lg:mt-20">
+            What the agent does
+          </h4>
           <ul className="space-y-2.5">
-            {active.rightItems.map((text, i) => (
+            {active.jobs.map((text, i) => (
               <li
                 key={text}
-                className="ind-item-in relative rounded-xl border border-slate-200/80 bg-white/80 py-2.5 pl-4 pr-3 shadow-sm backdrop-blur-sm"
+                className="ind-item-in flex items-start gap-3"
                 style={{ animationDelay: `${i * 0.07}s` }}
               >
-                <span
-                  aria-hidden
-                  className="absolute inset-y-2 left-0 w-[3px] rounded-full bg-gradient-to-b from-sky-400 to-blue-600"
-                />
-                <p className="text-sm italic leading-snug text-muted-foreground">
-                  <span className="font-serif text-sky-500">&ldquo;</span>
-                  {text}
-                  <span className="font-serif text-sky-500">&rdquo;</span>
-                </p>
+                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-[10px] font-bold text-white">
+                  {i + 1}
+                </span>
+                <span className="min-w-0 break-words text-sm leading-snug text-foreground">{text}</span>
               </li>
             ))}
           </ul>
