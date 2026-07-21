@@ -41,8 +41,6 @@ interface PricingComponentProps extends React.HTMLAttributes<HTMLDivElement> {
 
 // --- 2. Main Component: PricingComponent ---
 
-const FEATURE_PREVIEW_COUNT = 5;
-
 const PricingComponent: React.FC<PricingComponentProps> = ({
   plans,
   billingCycle,
@@ -59,16 +57,6 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   }
 
   const yearlyDiscountPercent = 20;
-  const [expandedIds, setExpandedIds] = React.useState<Set<string>>(new Set());
-
-  function toggleExpanded(id: string) {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }
 
   // --- Mobile card-stack state ---
   // A static layered stack, not a scroll carousel — the active plan is
@@ -144,19 +132,13 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   );
 
   // --- 2.3. A single plan card (shared by the desktop grid and mobile stack) ---
-  // `forceExpanded` controls whether the feature list always shows in full
-  // (desktop: only the popular card; mobile: never, so every card in the
-  // stack stays the same height regardless of which one is active).
-  // `showBadge` is separate — desktop always shows it on the popular plan;
-  // mobile only shows it on whichever card is currently in front, since a
-  // demoted, partially-hidden side card has nowhere clean for it to sit.
-  function renderCard(plan: PriceTier, forceExpanded: boolean = plan.isPopular, showBadge: boolean = plan.isPopular) {
+  // `showBadge` — desktop always shows it on the popular plan; mobile only
+  // shows it on whichever card is currently in front, since a demoted,
+  // partially-hidden side card has nowhere clean for it to sit.
+  function renderCard(plan: PriceTier, showBadge: boolean = plan.isPopular) {
     const isFeatured = plan.isPopular;
     const currentPrice = billingCycle === 'monthly' ? plan.priceMonthly : plan.priceYearly;
     const priceSuffix = billingCycle === 'monthly' ? '/mo' : '/yr';
-    const isExpanded = forceExpanded || expandedIds.has(plan.id);
-    const visibleFeatures = isExpanded ? plan.features : plan.features.slice(0, FEATURE_PREVIEW_COUNT);
-    const hiddenCount = plan.features.length - FEATURE_PREVIEW_COUNT;
 
     return (
       <Card
@@ -190,22 +172,13 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         </CardHeader>
         <CardContent className="min-w-0 flex-grow p-5 pt-2">
           <ul className="list-none space-y-0">
-            {visibleFeatures.map((feature) => (
+            {plan.features.map((feature) => (
               <li key={feature} className="flex items-start space-x-3 py-1">
                 <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
                 <span className="text-sm text-foreground">{feature}</span>
               </li>
             ))}
           </ul>
-          {!forceExpanded && hiddenCount > 0 && (
-            <button
-              type="button"
-              onClick={() => toggleExpanded(plan.id)}
-              className="mt-2 text-sm font-medium text-primary hover:underline"
-            >
-              {isExpanded ? "Show less" : `+ ${hiddenCount} more features`}
-            </button>
-          )}
         </CardContent>
         <CardFooter className="min-w-0 p-5 pt-2">
           <Button
@@ -237,11 +210,9 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
     // "Most popular" badge (which sits slightly above its card) isn't clipped.
     <div className="relative overflow-hidden pt-4 md:hidden">
       {/* Active plan — the only card in normal flow, so it defines the stack's height.
-          Always fully expanded (matches the reference layout): the front
-          card is meant to be the prominent, fully-readable one, while the
-          side cards stay truncated. Swipe left/right on it to switch plans —
-          drag={\"x\"} + dragConstraints snap it back to center on release, so
-          this is a gesture trigger, not a scroll-based carousel. */}
+          Swipe left/right on it to switch plans — drag={"x"} + dragConstraints
+          snap it back to center on release, so this is a gesture trigger,
+          not a scroll-based carousel. */}
       <motion.div
         key={activeIndex}
         drag="x"
@@ -251,7 +222,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         whileDrag={{ cursor: "grabbing" }}
         className="relative z-20 mx-auto w-[78%] cursor-grab touch-pan-y"
       >
-        {renderCard(plans[activeIndex], true, plans[activeIndex].isPopular)}
+        {renderCard(plans[activeIndex], plans[activeIndex].isPopular)}
       </motion.div>
 
       {/* Left plan — permanently tucked ~50% behind the active card */}
@@ -265,7 +236,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         aria-label={`Show ${plans[leftIndex].name} plan`}
         className="absolute left-0 top-4 z-10 w-[58%] cursor-pointer"
       >
-        {renderCard(plans[leftIndex], false, false)}
+        {renderCard(plans[leftIndex], false)}
       </div>
 
       {/* Right plan — permanently tucked ~50% behind the active card */}
@@ -279,7 +250,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         aria-label={`Show ${plans[rightIndex].name} plan`}
         className="absolute right-0 top-4 z-10 w-[58%] cursor-pointer"
       >
-        {renderCard(plans[rightIndex], false, false)}
+        {renderCard(plans[rightIndex], false)}
       </div>
 
       {/* Dots — tap to switch which plan is in front */}
