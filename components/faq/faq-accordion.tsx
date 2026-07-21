@@ -25,15 +25,15 @@ export function FaqAccordion({
     defaultOpenIndex != null ? (idPrefix ? `${idPrefix}-${defaultOpenIndex}` : `${defaultOpenIndex}`) : undefined
 
   return (
-    <Accordion type="single" collapsible defaultValue={defaultValue} className="w-full">
+    <Accordion type="single" collapsible defaultValue={defaultValue} className="w-full space-y-4">
       {items.map((item, i) => {
         const value = idPrefix ? `${idPrefix}-${i}` : `${i}`
         return (
           <AccordionItem key={value} value={value}>
-            <AccordionTrigger className="py-5 text-base font-medium hover:text-primary hover:no-underline data-[state=open]:text-primary [&>svg]:mt-1 [&>svg]:text-muted-foreground">
+            <AccordionTrigger className="data-[state=open]:text-primary [&>svg]:text-foreground">
               {item.q}
             </AccordionTrigger>
-            <AccordionContent className="pb-5 text-pretty leading-relaxed text-muted-foreground">
+            <AccordionContent className="text-pretty leading-relaxed text-muted-foreground">
               {item.a}
             </AccordionContent>
           </AccordionItem>
