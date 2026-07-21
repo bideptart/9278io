@@ -133,7 +133,7 @@ export default function IndustriesPage() {
 
             {/* Right — modern-classic conceptual illustration */}
             <ScrollReveal delay={0.12}>
-              <div className="relative mx-auto -my-6 w-full max-w-[430px] lg:mb-0 lg:ml-auto lg:mr-0 lg:-mt-4 lg:max-w-[485px]">
+              <div className="relative -mx-6 -my-6 w-auto max-w-none sm:mx-auto sm:w-full sm:max-w-[430px] lg:mb-0 lg:ml-auto lg:mr-0 lg:-mt-4 lg:max-w-[485px]">
                 <svg
                   viewBox="0 0 520 500"
                   role="img"
