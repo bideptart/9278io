@@ -99,7 +99,7 @@ function FlipCard({ step }: { step: Step }) {
 export function HowItWorks() {
   return (
     <section className="border-b border-border">
-      <div className="w-full px-6 py-14 md:px-8 md:py-20">
+      <div className="w-full px-6 pb-14 pt-6 md:px-8 md:pb-20 md:pt-8">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
             <motion.span
