@@ -268,7 +268,8 @@ export default function IndustriesPage() {
             </p>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          {/* Mobile: swipeable snap-carousel · sm+: static grid */}
+          <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-3 lg:grid-cols-5 [&::-webkit-scrollbar]:hidden">
             {INDUSTRIES.map((ind, i) => {
               const Icon = ind.icon
               const accent = ACCENTS[i % ACCENTS.length]
@@ -277,7 +278,7 @@ export default function IndustriesPage() {
                 <ScrollReveal
                   key={ind.slug}
                   delay={i * 0.04}
-                  className={`group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl ${accent}`}
+                  className={`group relative w-[78%] shrink-0 snap-center overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-current hover:shadow-xl sm:w-auto sm:shrink ${accent}`}
                 >
                   <Link href={`/industries/${ind.slug}`} className="relative flex h-full flex-col p-6">
                     {/* oversized watermark of the industry icon */}
