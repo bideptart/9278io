@@ -135,18 +135,32 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   // `showBadge` — desktop always shows it on the popular plan; mobile only
   // shows it on whichever card is currently in front, since a demoted,
   // partially-hidden side card has nowhere clean for it to sit.
-  // `previewCount` — the two mobile side cards render at a narrower width,
-  // so a full feature list wraps onto more lines and makes that card taller
-  // than the in-flow active card, which grows/shifts the whole stack.
-  // Capping them to a fixed count keeps every side card the same height
-  // regardless of which plan (e.g. Scale, with longer feature text) is
-  // tucked behind. Desktop cards and the active mobile card stay unlimited.
+  // `previewCount` — the two mobile side cards are just a peek, so they're
+  // capped to a fixed feature count: a full list at that narrow 58% width
+  // wraps onto more lines for some plans (e.g. Scale, with longer feature
+  // text) than others, growing one side card past the other. The active
+  // mobile card and both desktop cards show the full feature list.
   const SIDE_CARD_PREVIEW_COUNT = 5;
-  function renderCard(plan: PriceTier, showBadge: boolean = plan.isPopular, previewCount?: number) {
+  // `scrollFeatures` — the mobile active card shows every feature (never
+  // truncated), but that makes its box taller than the two capped side
+  // cards. Instead of cutting anything, the feature list itself scrolls
+  // inside a height matched to the side cards' 5-item preview, so the
+  // outer card box lines up while all features stay reachable.
+  function renderCard(
+    plan: PriceTier,
+    showBadge: boolean = plan.isPopular,
+    previewCount?: number,
+    scrollFeatures = false,
+  ) {
     const isFeatured = plan.isPopular;
     const currentPrice = billingCycle === 'monthly' ? plan.priceMonthly : plan.priceYearly;
     const priceSuffix = billingCycle === 'monthly' ? '/mo' : '/yr';
     const visibleFeatures = previewCount ? plan.features.slice(0, previewCount) : plan.features;
+    // Side/background preview cards keep the button label on one line —
+    // otherwise the Scale plan's longer price ("Buy ₹29,999 now") wraps to
+    // 2 lines at the narrower 58% width while Starter/Growth's shorter
+    // labels don't, growing just that card and breaking the symmetric peek.
+    const isPreview = previewCount !== undefined;
 
     return (
       <Card
@@ -169,21 +183,33 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         )}
         <CardHeader className="min-w-0 p-5 pb-0">
           <CardTitle className="text-lg font-bold">{plan.name}</CardTitle>
-          <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
+          <CardDescription className={cn("text-sm mt-1", isPreview && "truncate")}>{plan.description}</CardDescription>
           <div className="mt-2">
             <p className="text-3xl font-extrabold text-foreground">
               ₹{currentPrice.toLocaleString("en-IN")}
               <span className="text-base font-normal text-muted-foreground ml-1">{priceSuffix}</span>
             </p>
-            {plan.priceNote && <p className="mt-1 text-xs text-muted-foreground">{plan.priceNote}</p>}
+            {plan.priceNote && (
+              <p className={cn("mt-1 text-xs text-muted-foreground", isPreview && "truncate")}>{plan.priceNote}</p>
+            )}
           </div>
         </CardHeader>
         <CardContent className="min-w-0 flex-grow p-5 pt-2">
-          <ul className="list-none space-y-0">
+          <ul
+            className={cn(
+              "list-none space-y-0",
+              scrollFeatures && "max-h-[145px] overflow-y-auto overscroll-contain pr-1 touch-pan-y",
+            )}
+          >
             {visibleFeatures.map((feature) => (
-              <li key={feature} className="flex items-start space-x-3 py-1">
+              <li
+                key={feature}
+                className={cn("flex items-start space-x-3 py-1", isPreview && "min-w-0")}
+              >
                 <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
-                <span className="text-sm text-foreground">{feature}</span>
+                <span className={cn("text-sm text-foreground", isPreview && "min-w-0 flex-1 truncate")}>
+                  {feature}
+                </span>
               </li>
             ))}
           </ul>
@@ -191,7 +217,10 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         <CardFooter className="min-w-0 p-5 pt-2">
           <Button
             onClick={() => onPlanSelect(plan.id, billingCycle)}
-            className="h-auto min-h-10 w-full whitespace-normal rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+            className={cn(
+              "h-auto min-h-10 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90",
+              isPreview ? "whitespace-nowrap text-xs px-3" : "whitespace-normal",
+            )}
             size="lg"
             aria-label={`Select ${plan.name} plan for ₹${currentPrice.toLocaleString("en-IN")} ${priceSuffix}`}
           >
@@ -230,7 +259,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         whileDrag={{ cursor: "grabbing" }}
         className="relative z-20 mx-auto w-[78%] cursor-grab touch-pan-y"
       >
-        {renderCard(plans[activeIndex], plans[activeIndex].isPopular)}
+        {renderCard(plans[activeIndex], plans[activeIndex].isPopular, undefined, true)}
       </motion.div>
 
       {/* Left plan — permanently tucked ~50% behind the active card */}
