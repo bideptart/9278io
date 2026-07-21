@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, BookOpen, Sparkles } from "lucide-react"
+import { ArrowRight, BookOpen, Building2, Sparkles } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -311,7 +311,10 @@ export default function IndustriesPage() {
       <section className="w-full px-6 py-10 md:px-8 md:py-14">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal className="mx-auto mb-8 max-w-2xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-primary">Industries</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm">
+              <Building2 className="size-3.5" aria-hidden />
+              Industries
+            </span>
             <h2 className="mt-4 text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
               Browse by industry
             </h2>
