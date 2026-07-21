@@ -4,11 +4,11 @@ import { ArrowRight, BookOpen, CalendarClock, Globe, Tags } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { GradientCta } from "@/components/sections/gradient-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 import { BlogSearchProvider } from "@/components/blog/blog-search-context"
-import { BlogSearchBar } from "@/components/blog/blog-search-bar"
 import { BlogCategoryFilter } from "@/components/blog/blog-category-filter"
 import { BlogPostGrid } from "@/components/blog/blog-post-grid"
 import { getAllBlogPostSummaries } from "@/lib/blog"
@@ -77,8 +77,6 @@ export default async function BlogPage() {
               agents in Hindi, Tamil, Telugu, and 12 more languages.
             </p>
 
-            <BlogSearchBar />
-
             <div className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
               <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
                 <BookOpen className="mx-auto size-5 text-primary" aria-hidden />
@@ -107,6 +105,9 @@ export default async function BlogPage() {
 
       {/* ── Posts ── */}
       <section className="w-full px-6 pb-16 pt-8 md:px-8 md:pb-20 md:pt-10">
+        {/* Categories */}
+        <BlogCategoryFilter totalCount={posts.length} topicCount={topicCount} />
+
         {/* Featured */}
         {featured && (
           <ScrollReveal className="mb-6">
@@ -150,13 +151,19 @@ export default async function BlogPage() {
           </ScrollReveal>
         )}
 
-        {/* Categories */}
-        <BlogCategoryFilter totalCount={posts.length} topicCount={topicCount} />
-
         {/* Grid */}
         <BlogPostGrid posts={rest} />
       </section>
       </BlogSearchProvider>
+
+      <GradientCta
+        heading="Ready to stop reading and start calling?"
+        description="Pick a plan, optionally add a phone number, and start a real test call — most teams are live in under 5 minutes."
+        primaryHref="/get-started"
+        primaryLabel="Get started"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
 
       <RelatedLinks
         heading="Keep exploring"

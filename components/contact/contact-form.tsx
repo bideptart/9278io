@@ -1,13 +1,14 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "motion/react"
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react"
 import { submitContact, type ContactInput } from "@/app/contact/actions"
 
 const EMPTY: ContactInput = { name: "", email: "", phone: "", company: "", subject: "", message: "", website: "" }
 
 const inputClass =
-  "w-full rounded-xl border-2 border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/15"
+  "w-full rounded-xl border-2 border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/60 focus:border-primary/50 focus:shadow-[0_0_0_4px_oklch(0.52_0.22_265/0.12)]"
 const labelClass = "mb-1.5 block text-sm font-medium text-foreground"
 
 export function ContactForm() {
@@ -42,9 +43,27 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-border bg-white p-8 text-center md:p-10">
-        <span className="flex size-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-          <CheckCircle2 className="size-7" aria-hidden />
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col items-center justify-center rounded-2xl border-2 border-border bg-white p-8 text-center md:p-10"
+      >
+        <span className="relative flex size-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <motion.span
+            initial={{ scale: 1, opacity: 0.5 }}
+            animate={{ scale: 1.8, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="absolute inset-0 rounded-full bg-emerald-300"
+            aria-hidden
+          />
+          <motion.span
+            initial={{ scale: 0, rotate: -45 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.1 }}
+          >
+            <CheckCircle2 className="size-7" aria-hidden />
+          </motion.span>
         </span>
         <h3 className="mt-5 text-xl font-bold tracking-tight">Message sent</h3>
         <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">{message}</p>
@@ -58,7 +77,7 @@ export function ContactForm() {
         >
           Send another message
         </button>
-      </div>
+      </motion.div>
     )
   }
 

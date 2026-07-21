@@ -55,6 +55,9 @@ export function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const abortRef = useRef<AbortController | null>(null)
+  // Tracks which message ids have already played their entrance animation,
+  // so reopening the panel doesn't replay every bubble in the history at once.
+  const seenIds = useRef<Set<string>>(new Set())
 
   // Restore conversation from sessionStorage
   useEffect(() => {
@@ -71,15 +74,31 @@ export function ChatWidget() {
 
   // Toggle a root attribute so global CSS can shift the page content on
   // desktop without each route having to know about the chat state.
+  //
+  // Only *setting* it happens here, on open. The page-shift this attribute
+  // triggers (body padding-right) forces a layout reflow, so removing it
+  // must wait until the panel's exit animation actually finishes (see
+  // onExitComplete below) — otherwise the page snaps back to full width
+  // instantly while the panel is still visibly sliding out, which is what
+  // caused the lag on close.
   useEffect(() => {
     if (typeof document === "undefined") return
-    const root = document.documentElement
-    if (open) root.setAttribute("data-chat-open", "true")
-    else root.removeAttribute("data-chat-open")
-    return () => {
-      root.removeAttribute("data-chat-open")
-    }
+    if (open) document.documentElement.setAttribute("data-chat-open", "true")
   }, [open])
+
+  // Belt-and-suspenders: if the component unmounts entirely while open,
+  // don't leave the page permanently shifted.
+  useEffect(() => {
+    return () => {
+      if (typeof document !== "undefined") document.documentElement.removeAttribute("data-chat-open")
+    }
+  }, [])
+
+  // Mark rendered messages as seen so their entrance animation doesn't replay
+  // the next time the panel opens.
+  useEffect(() => {
+    messages.forEach((m) => seenIds.current.add(m.id))
+  }, [messages])
 
   // Persist conversation
   useEffect(() => {
@@ -91,12 +110,22 @@ export function ChatWidget() {
     }
   }, [messages])
 
-  // Auto-scroll on new content
+  // Auto-scroll on new content — smooth, so streaming replies feel alive.
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
     el.scrollTo({ top: el.scrollHeight, behavior: "smooth" })
-  }, [messages, open])
+  }, [messages])
+
+  // Snap to bottom instantly when the panel opens — running a smooth-scroll
+  // animation at the same time as the panel's slide-in spring is what caused
+  // the visible lag/jank on open.
+  useEffect(() => {
+    if (!open) return
+    const el = scrollRef.current
+    if (!el) return
+    el.scrollTop = el.scrollHeight
+  }, [open])
 
   // Focus input when panel opens.
   // On mobile we skip auto-focus: focusing the textarea pops the on-screen
@@ -308,6 +337,11 @@ export function ChatWidget() {
         initial={false}
         animate={{ x: open ? 0 : "100%" }}
         transition={{ type: "tween", duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+        // The page-shift attribute is only safe to remove once this slide-out
+        // transition actually finishes — see the effect above for why.
+        onAnimationComplete={() => {
+          if (!open && typeof document !== "undefined") document.documentElement.removeAttribute("data-chat-open")
+        }}
         className={cn(
           "transform-gpu fixed inset-y-0 right-0 z-50 flex w-full flex-col border-l border-border/60 bg-card shadow-2xl [will-change:transform] md:inset-y-0 md:right-0 md:w-[380px] md:rounded-none md:border-y-0 md:border-l md:shadow-[0_0_60px_oklch(0.78_0.16_195/0.10)] xl:w-[420px]",
           !open && "pointer-events-none",
@@ -320,8 +354,8 @@ export function ChatWidget() {
                 aria-hidden
                 className="pointer-events-none absolute inset-0 hidden overflow-hidden sm:rounded-2xl md:block"
               >
-                <div className="absolute -top-24 left-1/2 h-48 w-72 -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
-                <div className="absolute -bottom-24 right-0 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
+                <div className="absolute -top-24 left-1/2 h-40 w-60 -translate-x-1/2 rounded-full bg-primary/15 blur-2xl" />
+                <div className="absolute -bottom-24 right-0 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
               </div>
 
               {/* Header — height matches the main site header (h-16) so the
@@ -370,7 +404,7 @@ export function ChatWidget() {
               >
                 <div className="flex flex-col gap-3">
                   {messages.map((m) => (
-                    <MessageBubble key={m.id} message={m} />
+                    <MessageBubble key={m.id} message={m} skipAnimation={seenIds.current.has(m.id)} />
                   ))}
                 </div>
 
@@ -447,11 +481,11 @@ export function ChatWidget() {
   )
 }
 
-function MessageBubble({ message }: { message: Message }) {
+function MessageBubble({ message, skipAnimation }: { message: Message; skipAnimation?: boolean }) {
   const isUser = message.role === "user"
   return (
     <motion.div
-      initial={{ opacity: 0, y: 6 }}
+      initial={skipAnimation ? false : { opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className={cn("flex w-full", isUser ? "justify-end" : "justify-start")}
