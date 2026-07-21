@@ -5,25 +5,35 @@ import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import Image from "next/image"
 import {
-  Phone, PhoneCall, MessageCircle, MessageSquare, Mail, Globe2,
+  Phone, PhoneCall, MessageSquareText, Mail, Globe2,
   Type, Image as ImageIcon, Smile, Mic, Headphones,
 } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
 
-type Row = { avatar: string; channel: LucideIcon; color: string; bg: string; muted?: boolean }
+type IconType = React.ComponentType<{ className?: string; "aria-hidden"?: boolean }>
+
+/** Recognisable WhatsApp glyph (bubble + handset) — Lucide has no brand icons. */
+function WhatsAppIcon({ className }: { className?: string; "aria-hidden"?: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M12 2.5a9.5 9.5 0 0 0-8.16 14.36L2.5 21.5l4.79-1.31A9.5 9.5 0 1 0 12 2.5Zm5.53 13.56c-.23.66-1.35 1.26-1.87 1.34-.48.08-1.08.11-1.74-.11a15.6 15.6 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92s.72-2.07 1-2.35a1.06 1.06 0 0 1 .76-.36c.19 0 .38 0 .55.01.17.01.4-.07.63.48.23.56.79 1.94.86 2.08.07.14.11.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.1 1.63.77 1.91.91.28.14.47.21.53.33.07.13.07.71-.16 1.37Z" />
+    </svg>
+  )
+}
+
+type Row = { avatar: string; channel: IconType; color: string; bg: string; muted?: boolean }
 
 const rows: Row[] = [
   { avatar: "/avatars/priya.jpg", channel: Phone, color: "text-emerald-600", bg: "bg-emerald-50" },
-  { avatar: "/avatars/rahul.jpg", channel: MessageSquare, color: "text-amber-600", bg: "bg-amber-50" },
+  { avatar: "/avatars/rahul.jpg", channel: MessageSquareText, color: "text-amber-600", bg: "bg-amber-50" },
   { avatar: "/avatars/amit.jpg", channel: Mail, color: "text-slate-500", bg: "bg-slate-100", muted: true },
 ]
 
-type Chip = { icon: LucideIcon; label: string; tip: string; color: string; bg: string }
+type Chip = { icon: IconType; label: string; tip: string; color: string; bg: string }
 
 const channels: Chip[] = [
   { icon: Phone, label: "Calls", tip: "Inbound & outbound voice calls in 10+ Indian languages", color: "text-white", bg: "bg-primary" },
-  { icon: MessageCircle, label: "WhatsApp", tip: "Automated WhatsApp follow-ups & confirmations", color: "text-white", bg: "bg-emerald-500" },
-  { icon: MessageSquare, label: "SMS", tip: "Instant SMS reminders & order updates", color: "text-white", bg: "bg-amber-500" },
+  { icon: WhatsAppIcon, label: "WhatsApp", tip: "Automated WhatsApp follow-ups & confirmations", color: "text-white", bg: "bg-emerald-500" },
+  { icon: MessageSquareText, label: "SMS", tip: "Instant SMS reminders & order updates", color: "text-white", bg: "bg-amber-500" },
   { icon: Mail, label: "Email", tip: "Transactional emails for receipts & call summaries", color: "text-white", bg: "bg-slate-500" },
   { icon: Globe2, label: "Web chat", tip: "24/7 website chat handled by the same AI agent", color: "text-white", bg: "bg-violet-500" },
 ]
@@ -63,7 +73,7 @@ export function AgentShowcase() {
   const [activeChannel, setActiveChannel] = useState(0)
 
   useEffect(() => {
-    const id = setInterval(() => setActiveChannel((i) => (i + 1) % channels.length), 3000)
+    const id = setInterval(() => setActiveChannel((i) => (i + 1) % channels.length), 2000)
     return () => clearInterval(id)
   }, [])
 
