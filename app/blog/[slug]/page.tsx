@@ -120,7 +120,8 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           [&_.cta_p]:mt-2 [&_.cta_p]:text-white/70
           [&_.btn]:mt-5 [&_.btn]:inline-flex [&_.btn]:items-center [&_.btn]:justify-center [&_.btn]:rounded-lg [&_.btn]:bg-white [&_.btn]:px-5 [&_.btn]:py-2.5 [&_.btn]:text-sm [&_.btn]:font-semibold [&_.btn]:text-primary [&_.btn]:no-underline hover:[&_.btn]:bg-white/90
           [&_details]:mt-3 [&_details]:rounded-xl [&_details]:border-2 [&_details]:border-border/70 [&_details]:bg-white [&_details]:px-5 [&_details]:py-1
-          [&_summary]:cursor-pointer [&_summary]:py-3 [&_summary]:font-semibold [&_summary]:text-foreground
+          [&_summary]:cursor-pointer [&_summary]:pt-3 [&_summary]:pb-1 [&_summary]:font-semibold [&_summary]:text-foreground
+          [&_details_p]:mt-1
           [&_.faq>h2]:mb-2"
         // sanitizeHtml runs LAST, so it covers the injected loading/decoding
         // hints too. See the boundary contract in lib/sanitize.ts.

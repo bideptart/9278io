@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/contact/contact-form"
 import { ChannelCards } from "@/components/contact/channel-cards"
 import { LiveStatus } from "@/components/contact/live-status"
 import { GradientCta } from "@/components/sections/gradient-cta"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -113,15 +114,10 @@ export default function ContactPage() {
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Common questions</h2>
           </ScrollReveal>
 
-          <div className="mt-10 space-y-4">
-            {faqs.map((f) => (
-              <ScrollReveal key={f.q}>
-                <div className="rounded-2xl border border-border bg-white p-6">
-                  <h3 className="font-semibold">{f.q}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="mx-auto mt-10 max-w-3xl">
+            <ScrollReveal>
+              <FaqAccordion items={faqs} idPrefix="contact" />
+            </ScrollReveal>
             <ScrollReveal>
               <p className="pt-2 text-center text-sm text-muted-foreground">
                 More answers in our{" "}
