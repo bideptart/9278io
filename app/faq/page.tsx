@@ -69,19 +69,19 @@ export default function FaqPage() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal className="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-2.5">
+          <ScrollReveal className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-2.5 sm:flex sm:flex-wrap sm:items-center sm:justify-center">
             {FAQ_GROUPS.map((g) => (
               <a
                 key={g.id}
                 href={`#${g.id}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-border/60 bg-white px-4 py-2 text-center text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
               >
                 {g.title}
               </a>
             ))}
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              className="col-span-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:col-auto"
             >
               <MessageCircleQuestion className="size-3.5" aria-hidden />
               Still stuck? Talk to us
@@ -90,7 +90,7 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <div id="faq-results" className="mx-auto w-full max-w-3xl scroll-mt-24 px-6 pb-16 pt-10 md:px-8 md:pb-24 md:pt-12">
+      <div id="faq-results" className="mx-auto w-full max-w-5xl scroll-mt-24 px-6 pb-16 pt-10 md:px-8 md:pb-24 md:pt-12">
         <FaqGroupsList groups={FAQ_GROUPS} />
       </div>
       </FaqSearchProvider>
