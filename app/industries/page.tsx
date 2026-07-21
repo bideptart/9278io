@@ -111,7 +111,7 @@ export default function IndustriesPage() {
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04] bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:56px_56px]"
         />
-        <div className="w-full px-6 pt-8 pb-14 md:px-8 md:pt-10 md:pb-20">
+        <div className="w-full px-6 pb-12 pt-8 md:px-8 md:pb-14 md:pt-9">
           <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
             {/* Left — copy */}
             <ScrollReveal>
@@ -133,7 +133,7 @@ export default function IndustriesPage() {
 
             {/* Right — modern-classic conceptual illustration */}
             <ScrollReveal delay={0.12}>
-              <div className="relative mx-auto w-full max-w-[430px] lg:ml-auto lg:mr-0 lg:-mt-4">
+              <div className="relative mx-auto w-full max-w-[430px] lg:ml-auto lg:mr-0 lg:-mt-4 lg:max-w-[470px]">
                 <svg
                   viewBox="0 0 520 500"
                   role="img"
@@ -158,7 +158,7 @@ export default function IndustriesPage() {
                       <stop offset="0" stopColor="#6366f1" stopOpacity="0.20" />
                       <stop offset="1" stopColor="#6366f1" stopOpacity="0" />
                     </radialGradient>
-                    <filter id="ind-soft" x="-40%" y="-40%" width="180%" height="180%">
+                    <filter id="ind-soft" x="-150%" y="-150%" width="400%" height="400%">
                       <feDropShadow dx="0" dy="10" stdDeviation="14" floodColor="#1e293b" floodOpacity="0.14" />
                     </filter>
                     <pattern id="ind-dots" width="20" height="20" patternUnits="userSpaceOnUse">
