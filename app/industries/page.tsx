@@ -112,7 +112,7 @@ export default function IndustriesPage() {
           className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04] bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:56px_56px]"
         />
         <div className="w-full px-6 pt-8 pb-14 md:px-8 md:pt-10 md:pb-20">
-          <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
             {/* Left — copy */}
             <ScrollReveal>
               <div className="max-w-3xl">
@@ -133,7 +133,7 @@ export default function IndustriesPage() {
 
             {/* Right — modern-classic conceptual illustration */}
             <ScrollReveal delay={0.12}>
-              <div className="relative mx-auto w-full max-w-lg">
+              <div className="relative mx-auto w-full max-w-[430px] lg:ml-auto lg:mr-0 lg:-mt-4">
                 <svg
                   viewBox="0 0 520 500"
                   role="img"
