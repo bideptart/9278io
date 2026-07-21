@@ -221,17 +221,31 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
           Swipe left/right on it to switch plans — drag={"x"} + dragConstraints
           snap it back to center on release, so this is a gesture trigger,
           not a scroll-based carousel. */}
-      <motion.div
-        key={activeIndex}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.15}
-        onDragEnd={handleDragEnd}
-        whileDrag={{ cursor: "grabbing" }}
-        className="relative z-20 mx-auto w-[78%] cursor-grab touch-pan-y"
-      >
-        {renderCard(plans[activeIndex], plans[activeIndex].isPopular)}
-      </motion.div>
+      {/* Every plan shares one grid cell, so the cell is always as tall as the
+          tallest plan and switching plans no longer resizes the stack (Scale's
+          longer feature text used to make it taller than Starter). Only the
+          active plan is visible; the rest are invisible height-setters —
+          visibility:hidden also keeps their buttons out of the tab order. */}
+      <div className="relative z-20 grid">
+        {plans.map((plan, i) =>
+          i === activeIndex ? null : (
+            <div key={plan.id} aria-hidden className="invisible col-start-1 row-start-1 mx-auto w-[78%]">
+              {renderCard(plan, plan.isPopular)}
+            </div>
+          ),
+        )}
+        <motion.div
+          key={activeIndex}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.15}
+          onDragEnd={handleDragEnd}
+          whileDrag={{ cursor: "grabbing" }}
+          className="col-start-1 row-start-1 mx-auto w-[78%] cursor-grab touch-pan-y"
+        >
+          {renderCard(plans[activeIndex], plans[activeIndex].isPopular)}
+        </motion.div>
+      </div>
 
       {/* Left plan — permanently tucked ~50% behind the active card */}
       <div

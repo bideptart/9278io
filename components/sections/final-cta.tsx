@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { PhoneCall, Sparkles, ArrowRight } from "lucide-react"
+import { LayoutGrid, Sparkles, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 
@@ -56,10 +56,10 @@ export function FinalCta() {
                 variant="outline"
                 className="h-12 rounded-full border-white/40 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur hover:border-white/60 hover:bg-white/20 hover:text-white"
               >
-                <a href="#demo-audio">
-                  <PhoneCall className="mr-2 h-4 w-4" />
-                  Try live demo
-                </a>
+                <Link href="/features">
+                  <LayoutGrid className="mr-2 h-4 w-4" />
+                  Features
+                </Link>
               </Button>
             </div>
           </div>

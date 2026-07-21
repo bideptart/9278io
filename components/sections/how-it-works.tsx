@@ -61,7 +61,7 @@ function FaceContent({ step, dark }: { step: Step; dark?: boolean }) {
           {step.title}
         </h3>
         <p
-          className={`mt-1.5 line-clamp-4 text-xs leading-relaxed md:mt-2 md:line-clamp-none md:text-sm ${
+          className={`mt-1.5 text-xs leading-relaxed md:mt-2 md:text-sm ${
             dark ? "text-muted-foreground" : "text-white/70"
           }`}
         >
@@ -72,23 +72,29 @@ function FaceContent({ step, dark }: { step: Step; dark?: boolean }) {
   )
 }
 
-const faceBase = "flex flex-col gap-3 overflow-hidden rounded-2xl border p-4 md:gap-5 md:p-7"
+/* No `flex` here — each face sets its own display so the mobile `hidden`
+   never fights a `flex` from this shared string. */
+const faceBase = "flex-col gap-3 overflow-hidden rounded-2xl border p-4 md:gap-5 md:p-7"
 
-/* A flip card: blue front flips to a white back on hover. */
+/* A flip card: blue front flips to a white back on hover.
+   The 3D context only exists from md up — phones have no hover, and
+   preserve-3d + backface-visibility force the card onto a GPU layer, which
+   rasterises the text and makes it look blurry. Below md the front face is a
+   plain in-flow card instead. */
 function FlipCard({ step }: { step: Step }) {
   return (
-    <div className="group [perspective:1400px]">
-      <div className="relative min-h-[240px] transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] md:min-h-[300px]">
-        {/* invisible sizer — gives the card its height so both faces can be absolute */}
-        <div aria-hidden className={`invisible ${faceBase} border-transparent`}>
+    <div className="group md:[perspective:1400px]">
+      <div className="relative transition-transform duration-500 md:min-h-[300px] md:[transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)]">
+        {/* invisible sizer — only needed once both faces go absolute (md+) */}
+        <div aria-hidden className={`invisible hidden md:flex ${faceBase} border-transparent`}>
           <FaceContent step={step} />
         </div>
-        {/* front (blue) */}
-        <div className={`absolute inset-0 border-primary bg-primary shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] [backface-visibility:hidden] ${faceBase}`}>
+        {/* front (blue) — in flow on mobile, absolute face on md+ */}
+        <div className={`relative flex border-primary bg-primary shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] md:absolute md:inset-0 md:[backface-visibility:hidden] ${faceBase}`}>
           <FaceContent step={step} />
         </div>
-        {/* back (white) */}
-        <div className={`absolute inset-0 border-border bg-white shadow-md [backface-visibility:hidden] [transform:rotateY(180deg)] ${faceBase}`}>
+        {/* back (white) — md+ only */}
+        <div className={`hidden border-border bg-white shadow-md md:absolute md:inset-0 md:flex md:[backface-visibility:hidden] md:[transform:rotateY(180deg)] ${faceBase}`}>
           <FaceContent step={step} dark />
         </div>
       </div>
@@ -117,7 +123,7 @@ export function HowItWorks() {
           </p>
         </ScrollReveal>
 
-        <StaggerGroup className="relative mt-14 grid grid-cols-2 gap-5 lg:grid-cols-4">
+        <StaggerGroup className="relative mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <StaggerItem key={step.number}>
               <FlipCard step={step} />
