@@ -381,7 +381,7 @@ export default function IndustriesPage() {
               </p>
             </ScrollReveal>
 
-            <div className="pb-12 md:pb-16">
+            <div className="pb-2 md:pb-3">
               <PlaybooksCardStack />
             </div>
           </div>
@@ -423,17 +423,17 @@ export default function IndustriesPage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-white font-semibold text-blue-600 shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-white/90"
+                className="h-auto rounded-full bg-white px-7 py-3.5 text-base font-semibold text-blue-600 shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-white/90 has-[>svg]:px-7"
               >
                 <Link href="/get-started">
-                  Get started <ArrowRight className="ml-1 size-4" aria-hidden />
+                  Get started <ArrowRight className="ml-2 size-4" aria-hidden />
                 </Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/40 bg-white/5 text-white backdrop-blur transition-transform hover:-translate-y-0.5 hover:bg-white/15 hover:text-white"
+                className="h-auto rounded-full border-white/25 bg-white/15 px-7 py-3.5 text-base font-semibold text-white backdrop-blur transition-transform hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/25 hover:text-white"
               >
                 <Link href="/pricing">View pricing</Link>
               </Button>
