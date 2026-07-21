@@ -5,7 +5,16 @@ import { Phone, UserRound, CreditCard, Globe2, MessageSquare, CalendarCheck, Mic
 import type { LucideIcon } from "lucide-react"
 
 type NodeColor = "blue" | "violet" | "amber" | "cyan" | "emerald" | "pink"
-type Node = { x: number; y: number; icon: LucideIcon; delay: number; color: NodeColor; label: string }
+type Node = {
+  x: number
+  y: number
+  icon: LucideIcon
+  delay: number
+  color: NodeColor
+  label: string
+  tip: string
+  side: "above" | "below"
+}
 
 /* Literal classes (not templated) so Tailwind's scanner keeps them. */
 const NODE_STYLES: Record<NodeColor, { border: string; icon: string; badge: string }> = {
@@ -17,14 +26,16 @@ const NODE_STYLES: Record<NodeColor, { border: string; icon: string; badge: stri
   pink: { border: "border-pink-200", icon: "text-pink-600", badge: "bg-pink-600" },
 }
 
-/* White icon cards placed around the orb (percent coords) — 3 left, 3 right */
+/* White icon cards placed around the orb (percent coords) — 3 left, 3 right.
+   tip = one-line hover copy; side = which way the tooltip opens, chosen per
+   row so it never opens off the top/bottom edge of the illustration. */
 const nodes: Node[] = [
-  { x: 12, y: 16, icon: Phone, delay: 0, color: "blue", label: "Calls" },
-  { x: 6, y: 50, icon: UserRound, delay: 0.6, color: "violet", label: "Profiles" },
-  { x: 14, y: 84, icon: CalendarCheck, delay: 1.1, color: "amber", label: "Scheduling" },
-  { x: 88, y: 16, icon: CreditCard, delay: 1.4, color: "cyan", label: "Payments" },
-  { x: 94, y: 50, icon: Globe2, delay: 0.9, color: "emerald", label: "Languages" },
-  { x: 86, y: 84, icon: MessageSquare, delay: 1.7, color: "pink", label: "Messages" },
+  { x: 12, y: 16, icon: Phone, delay: 0, color: "blue", label: "Calls", tip: "Inbound & outbound calls in 10+ Indian languages", side: "above" },
+  { x: 6, y: 50, icon: UserRound, delay: 0.6, color: "violet", label: "Profiles", tip: "Remembers caller history & details automatically", side: "above" },
+  { x: 14, y: 84, icon: CalendarCheck, delay: 1.1, color: "amber", label: "Scheduling", tip: "Books, reschedules & confirms appointments live", side: "above" },
+  { x: 88, y: 16, icon: CreditCard, delay: 1.4, color: "cyan", label: "Payments", tip: "Sends EMI & payment reminders right on schedule", side: "above" },
+  { x: 94, y: 50, icon: Globe2, delay: 0.9, color: "emerald", label: "Languages", tip: "Switches fluently between Hindi, Tamil, Telugu & more", side: "above" },
+  { x: 86, y: 84, icon: MessageSquare, delay: 1.7, color: "pink", label: "Messages", tip: "Follows up over SMS & WhatsApp after every call", side: "above" },
 ]
 
 /* Gentle curved wire from a node to the center orb — bows left-side nodes one
@@ -45,13 +56,13 @@ function curvePath(x: number, y: number) {
 
 /* Green voice waveform inside the dark orb */
 function OrbWave() {
-  const bars = [10, 18, 26, 14, 22, 12, 20, 26, 16, 22, 12, 18]
+  const bars = [14, 25, 36, 19, 30, 16, 27, 36, 22, 30, 16, 25]
   return (
-    <div className="flex h-9 items-center gap-[3px]" aria-hidden>
+    <div className="flex h-12 items-center gap-1" aria-hidden>
       {bars.map((h, i) => (
         <motion.span
           key={i}
-          className="w-[3px] rounded-full bg-primary"
+          className="w-1 rounded-full bg-primary"
           style={{ height: h, transformOrigin: "center" }}
           animate={{ scaleY: [0.3, 1, 0.5, 0.9, 0.3] }}
           transition={{ duration: 0.9 + (i % 4) * 0.16, repeat: Infinity, ease: "easeInOut", delay: i * 0.07 }}
@@ -117,20 +128,49 @@ export function AgentShowcase() {
                 "0 34px 70px -22px oklch(0.55 0.2 262 / 0.45), inset 0 2px 8px rgba(255,255,255,0.85)",
             }}
           >
-            {/* concentric rings */}
-            <div className="absolute inset-[9%] rounded-full border border-dashed border-primary/20" />
-            <motion.div
-              className="absolute inset-[20%] rounded-full border border-primary/15"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            />
-            <div className="absolute inset-[32%] rounded-full border border-primary/10" />
+            {/* sonar pings + a circular waveform ring instead of static rings —
+                animated with framer-motion (inline styles) rather than a CSS
+                keyframe class, so the motion never depends on a stylesheet rebuild */}
+            <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden>
+              {[0, 1.3].map((delay) => (
+                <motion.circle
+                  key={delay}
+                  cx="50"
+                  cy="50"
+                  r="14"
+                  fill="none"
+                  stroke="oklch(0.55 0.2 262 / 0.45)"
+                  strokeWidth="1"
+                  style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                  animate={{ scale: [0.6, 1.7], opacity: [0.55, 0] }}
+                  transition={{ duration: 2.6, repeat: Infinity, ease: "easeOut", delay }}
+                />
+              ))}
+              {Array.from({ length: 24 }).map((_, i) => {
+                const angle = (360 / 24) * i
+                return (
+                  <g key={i} transform={`rotate(${angle} 50 50)`}>
+                    <motion.rect
+                      x="49"
+                      y="2"
+                      width="2"
+                      height="6"
+                      rx="1"
+                      className="fill-primary/70"
+                      style={{ transformBox: "fill-box", transformOrigin: "center bottom" }}
+                      animate={{ scaleY: [0.5, 1.6, 0.5] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: (i % 8) * 0.09 }}
+                    />
+                  </g>
+                )
+              })}
+            </svg>
 
             {/* waveform + mic */}
             <div className="relative flex items-center justify-center">
               <OrbWave />
-              <span className="absolute flex size-9 items-center justify-center rounded-full bg-white text-primary shadow-[0_4px_12px_-4px_oklch(0.55_0.2_262/0.5)] ring-1 ring-primary/15">
-                <Mic className="size-4" aria-hidden />
+              <span className="absolute flex size-12 items-center justify-center rounded-full bg-white text-primary shadow-[0_4px_12px_-4px_oklch(0.55_0.2_262/0.5)] ring-1 ring-primary/15">
+                <Mic className="size-6" aria-hidden />
               </span>
             </div>
           </div>
@@ -149,24 +189,51 @@ export function AgentShowcase() {
           </span>
         </div>
 
-        {/* colour-coded icon cards */}
+        {/* colour-coded icon cards, each with a hover/focus tooltip */}
         {nodes.map((n) => {
           const Icon = n.icon
           const style = NODE_STYLES[n.color]
+          const tipBelow = n.side === "below"
           return (
             <motion.div
               key={`card-${n.delay}`}
-              className="absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
+              className="group absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
               style={{ left: `${n.x}%`, top: `${n.y}%` }}
               animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 4.5 + n.delay, repeat: Infinity, ease: "easeInOut", delay: n.delay }}
             >
-              <div className={`relative flex size-12 items-center justify-center rounded-2xl border bg-white shadow-[0_14px_34px_-16px_oklch(0.55_0.18_260/0.4)] ${style.border}`}>
-                <Icon className={`size-5 ${style.icon}`} aria-hidden />
-                <span className={`absolute -left-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full ring-2 ring-white ${style.badge}`}>
-                  <Check className="size-3 text-white" aria-hidden />
-                </span>
+              <div className="relative">
+                <div
+                  tabIndex={0}
+                  className={`relative flex size-12 items-center justify-center rounded-2xl border bg-white shadow-[0_14px_34px_-16px_oklch(0.55_0.18_260/0.4)] outline-none transition-transform duration-200 hover:scale-110 focus-visible:scale-110 ${style.border}`}
+                >
+                  <Icon className={`size-5 ${style.icon}`} aria-hidden />
+                  <span className={`absolute -left-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full ring-2 ring-white ${style.badge}`}>
+                    <Check className="size-3 text-white" aria-hidden />
+                  </span>
+                </div>
+
+                {/* tooltip */}
+                <div
+                  className={`pointer-events-none absolute left-1/2 z-30 w-44 -translate-x-1/2 opacity-0 transition-all duration-200 ease-out group-hover:opacity-100 group-focus-within:opacity-100 ${
+                    tipBelow
+                      ? "top-[calc(100%+10px)] translate-y-1 group-hover:translate-y-0 group-focus-within:translate-y-0"
+                      : "bottom-[calc(100%+10px)] -translate-y-1 group-hover:translate-y-0 group-focus-within:translate-y-0"
+                  }`}
+                >
+                  <span
+                    aria-hidden
+                    className={`absolute left-1/2 size-2 -translate-x-1/2 rotate-45 border bg-white ${style.border} ${
+                      tipBelow ? "-top-1 border-b-0 border-r-0" : "-bottom-1 border-l-0 border-t-0"
+                    }`}
+                  />
+                  <div className="relative rounded-xl border border-border bg-white px-3 py-2 shadow-lg">
+                    <p className={`text-[11px] font-semibold ${style.icon}`}>{n.label}</p>
+                    <p className="mt-0.5 text-[11px] leading-snug text-muted-foreground">{n.tip}</p>
+                  </div>
+                </div>
               </div>
+
               <span className="rounded-full bg-white/80 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground backdrop-blur-sm">
                 {n.label}
               </span>
