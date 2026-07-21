@@ -135,10 +135,18 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   // `showBadge` — desktop always shows it on the popular plan; mobile only
   // shows it on whichever card is currently in front, since a demoted,
   // partially-hidden side card has nowhere clean for it to sit.
-  function renderCard(plan: PriceTier, showBadge: boolean = plan.isPopular) {
+  // `previewCount` — the two mobile side cards render at a narrower width,
+  // so a full feature list wraps onto more lines and makes that card taller
+  // than the in-flow active card, which grows/shifts the whole stack.
+  // Capping them to a fixed count keeps every side card the same height
+  // regardless of which plan (e.g. Scale, with longer feature text) is
+  // tucked behind. Desktop cards and the active mobile card stay unlimited.
+  const SIDE_CARD_PREVIEW_COUNT = 5;
+  function renderCard(plan: PriceTier, showBadge: boolean = plan.isPopular, previewCount?: number) {
     const isFeatured = plan.isPopular;
     const currentPrice = billingCycle === 'monthly' ? plan.priceMonthly : plan.priceYearly;
     const priceSuffix = billingCycle === 'monthly' ? '/mo' : '/yr';
+    const visibleFeatures = previewCount ? plan.features.slice(0, previewCount) : plan.features;
 
     return (
       <Card
@@ -172,7 +180,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         </CardHeader>
         <CardContent className="min-w-0 flex-grow p-5 pt-2">
           <ul className="list-none space-y-0">
-            {plan.features.map((feature) => (
+            {visibleFeatures.map((feature) => (
               <li key={feature} className="flex items-start space-x-3 py-1">
                 <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
                 <span className="text-sm text-foreground">{feature}</span>
@@ -236,7 +244,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         aria-label={`Show ${plans[leftIndex].name} plan`}
         className="absolute left-0 top-4 z-10 w-[58%] cursor-pointer"
       >
-        {renderCard(plans[leftIndex], false)}
+        {renderCard(plans[leftIndex], false, SIDE_CARD_PREVIEW_COUNT)}
       </div>
 
       {/* Right plan — permanently tucked ~50% behind the active card */}
@@ -250,7 +258,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         aria-label={`Show ${plans[rightIndex].name} plan`}
         className="absolute right-0 top-4 z-10 w-[58%] cursor-pointer"
       >
-        {renderCard(plans[rightIndex], false)}
+        {renderCard(plans[rightIndex], false, SIDE_CARD_PREVIEW_COUNT)}
       </div>
 
       {/* Dots — tap to switch which plan is in front */}
