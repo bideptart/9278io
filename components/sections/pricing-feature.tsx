@@ -65,7 +65,7 @@ const plans = [
       "Inbound calling",
       "Per-second billing (no minute-rounding)",
       "Realtime + premium voices",
-      "Dedicated success manager + SLA",
+      "Success manager + SLA",
     ],
     cta: "Contact sales",
     href: "/get-started",
