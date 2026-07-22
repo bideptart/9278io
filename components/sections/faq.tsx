@@ -32,7 +32,7 @@ export function FAQ() {
           </p>
         </ScrollReveal>
 
-        <div className="mx-auto mt-12 max-w-3xl">
+        <div className="mx-auto mt-12 max-w-5xl">
           <ScrollReveal>
             <FaqAccordion items={items} />
           </ScrollReveal>

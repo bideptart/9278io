@@ -153,7 +153,7 @@ export default function FeaturesPage() {
             </h2>
           </ScrollReveal>
 
-          <div className="mx-auto mt-10 max-w-3xl">
+          <div className="mx-auto mt-10 max-w-5xl">
             <ScrollReveal>
               <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
             </ScrollReveal>
