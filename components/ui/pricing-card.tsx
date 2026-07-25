@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { AnimatedPrice } from "@/components/pricing/animated-price";
 
 // --- 1. Typescript Interfaces (API) ---
 
@@ -186,7 +187,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
           <CardDescription className={cn("text-sm mt-1", isPreview && "truncate")}>{plan.description}</CardDescription>
           <div className="mt-2">
             <p className="text-3xl font-extrabold text-foreground">
-              ₹{currentPrice.toLocaleString("en-IN")}
+              <AnimatedPrice value={currentPrice} />
               <span className="text-base font-normal text-muted-foreground ml-1">{priceSuffix}</span>
             </p>
             {plan.priceNote && (

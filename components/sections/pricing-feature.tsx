@@ -6,6 +6,7 @@ import { Check, Zap, TrendingUp, Building2 } from "lucide-react"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
+import { AnimatedPrice } from "@/components/pricing/animated-price"
 import { cn } from "@/lib/utils"
 
 const plans = [
@@ -187,7 +188,9 @@ export function PricingFeature() {
                     </div>
 
                     <div className="mt-3 flex items-end gap-2">
-                      <span className="text-3xl font-bold tracking-tight">{formatINR(price)}</span>
+                      <span className="text-3xl font-bold tracking-tight">
+                        <AnimatedPrice value={price} />
+                      </span>
                       <span className="pb-1 text-sm text-muted-foreground">{yearly ? "/yr" : "/mo"}</span>
                     </div>
                     {yearly && (
