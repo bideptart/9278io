@@ -2,10 +2,10 @@
 
 import { useLayoutEffect, useRef } from "react"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { Check } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { CAP_COLORS, INDUSTRIES } from "@/lib/industries"
+import { INDUSTRIES } from "@/lib/industries"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -73,56 +73,42 @@ export function IndustryStackCards() {
         const Icon = ind.icon
         const accent = ACCENTS[i % ACCENTS.length]
         const tile = ACCENT_TILES[i % ACCENT_TILES.length]
+        const firstCap = ind.caps[0]
 
         return (
           <div
             key={ind.slug}
-            className="industry-stack-card flex min-h-screen items-center justify-center px-6 py-10 md:px-8"
+            className="industry-stack-card flex min-h-screen items-start justify-center px-6 pt-2 md:px-0 lg:pt-8"
           >
             <Link
               href={`/industries/${ind.slug}`}
-              className="industry-stack-face group relative mx-auto flex min-h-[380px] w-full max-w-4xl origin-top flex-col justify-between overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-7 shadow-2xl shadow-slate-900/10 transition-shadow duration-300 hover:shadow-primary/20 sm:p-10 md:min-h-[420px]"
+              className="industry-stack-face group relative mx-auto flex min-h-[280px] w-full max-w-lg origin-top flex-col overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-2xl shadow-slate-900/10 transition-shadow duration-300 hover:shadow-primary/20 sm:p-8"
             >
-              {/* oversized watermark icon */}
-              <Icon
-                aria-hidden
-                className={`pointer-events-none absolute -bottom-8 -right-6 size-40 opacity-[0.07] transition-transform duration-500 group-hover:scale-110 ${accent}`}
-              />
-
               <div className="relative flex items-start justify-between">
+                <span className={`text-xs font-bold uppercase tracking-[0.2em] ${accent}`}>
+                  Stack &middot; {String(i + 1).padStart(2, "0")}
+                </span>
                 <span
-                  className={`grid size-14 shrink-0 place-items-center rounded-2xl border shadow-sm ${tile} ${accent}`}
+                  className={`grid size-10 shrink-0 place-items-center rounded-xl border shadow-sm ${tile} ${accent}`}
                 >
-                  <Icon className="size-7" aria-hidden />
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/70">
-                  {String(i + 1).padStart(2, "0")} / {String(INDUSTRIES.length).padStart(2, "0")}
+                  <Icon className="size-5" aria-hidden />
                 </span>
               </div>
 
-              <div className="relative mt-6">
-                <h3 className="font-serif text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                  {ind.name}
-                </h3>
-                <p className="mt-3 max-w-xl text-pretty leading-relaxed text-muted-foreground">{ind.short}</p>
+              <h3 className="relative mt-5 font-serif text-2xl font-semibold tracking-tight text-foreground">
+                {ind.name}
+              </h3>
+              <p className="relative mt-3 text-pretty leading-relaxed text-muted-foreground">{ind.short}</p>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {ind.caps.map((cap) => (
-                    <span
-                      key={cap}
-                      className={`rounded-full border px-3 py-1 text-xs font-medium ${CAP_COLORS[cap]}`}
-                    >
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <span
-                className={`relative mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold transition-transform duration-300 group-hover:translate-x-1 ${accent}`}
-              >
-                View playbook <ArrowUpRight className="size-4" aria-hidden />
-              </span>
+              {firstCap && (
+                <>
+                  <span aria-hidden className="relative mt-6 block h-px w-full bg-slate-100" />
+                  <span className={`relative mt-5 inline-flex w-fit items-center gap-2 text-sm font-medium ${accent}`}>
+                    <Check className="size-4 shrink-0 rounded-full border border-current p-0.5" aria-hidden />
+                    {firstCap}
+                  </span>
+                </>
+              )}
             </Link>
           </div>
         )
