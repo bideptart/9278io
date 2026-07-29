@@ -8,9 +8,12 @@ import { cn } from "@/lib/utils"
 // RateByPlanMockup bottom-left) — viewBox is stretched to the container via
 // preserveAspectRatio="none", so exact geometry only needs to look right at
 // that layout, not be reusable elsewhere.
+// Endpoints intentionally land a bit *inside* each card's bounds (not just
+// at its edge) so the line tail is safely hidden under the card's opaque
+// background rather than risking a visible gap from any small mismeasure.
 const PATHS = [
-  "M 470 90 C 360 130, 260 130, 175 175",
-  "M 175 195 C 150 230, 150 270, 165 305",
+  "M 401 130 C 340 155, 260 130, 197 117",
+  "M 57 175 C 60 220, 90 270, 149 308",
 ]
 
 export function MockupStackConnector({ className }: { className?: string }) {
