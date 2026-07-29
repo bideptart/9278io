@@ -9,6 +9,7 @@ import { RateByPlanMockup } from "@/components/pricing/rate-by-plan-mockup"
 import { LiveCostMockup } from "@/components/pricing/live-cost-mockup"
 import { MockupStackConnector } from "@/components/pricing/mockup-stack-connector"
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
+import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { GradientCta } from "@/components/sections/gradient-cta"
 import { Button } from "@/components/ui/button"
@@ -126,8 +127,8 @@ export default async function PricingPage({
             <div className="relative hidden min-h-[360px] lg:block">
               <MockupStackConnector className="absolute inset-0 h-full w-full" />
               <LiveCallMockup className="absolute right-4 top-0" />
-              <LiveCostMockup className="absolute left-2 top-[38%]" />
-              <RateByPlanMockup className="absolute bottom-0 left-0" />
+              <LiveCostMockup className="absolute left-2 top-[18%]" />
+              <RateByPlanMockup className="absolute bottom-0 left-20" />
             </div>
           </div>
         </div>
@@ -143,6 +144,23 @@ export default async function PricingPage({
 
       <section className="w-full px-6 py-16 md:px-8 md:py-24">
         <ComparePlansTable />
+      </section>
+
+      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            Cost comparison
+          </span>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            One agent's salary vs one plan.
+          </h2>
+          <p className="mt-3 text-pretty text-muted-foreground">
+            A single AI voice agent handles what a human hire would — for a fraction of the monthly cost.
+          </p>
+        </ScrollReveal>
+        <div className="mt-10">
+          <CostComparisonStrip />
+        </div>
       </section>
 
       <GradientCta
