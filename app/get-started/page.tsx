@@ -31,7 +31,11 @@ export default function GetStartedPage() {
         {/* ── Server-rendered hero: headline, key copy, primary CTA ── */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
-            Launch your AI voice agent in minutes
+            Launch your{" "}
+            <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+              AI voice agent
+            </span>{" "}
+            in minutes
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
             Pick a credit plan, create your account, and your AI receptionist goes live — answering calls in

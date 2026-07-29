@@ -65,7 +65,10 @@ export default function FeaturesPage() {
               Features
             </span>
             <h1 className="mt-3 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground md:text-[60px]">
-              Everything your voice agent needs.
+              Everything your{" "}
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                voice agent needs.
+              </span>
             </h1>
             <p className="mt-3 max-w-lg text-pretty text-[17px] leading-relaxed text-muted-foreground">
               From setup to billing — every tool your 9278.io AI voice agent needs, built for Indian businesses.

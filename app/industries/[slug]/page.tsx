@@ -99,7 +99,10 @@ export default async function IndustryPage({
               {industry.name}
             </span>
             <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">
-              AI voice agents for {industry.name.toLowerCase()}.
+              AI voice agents for{" "}
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                {industry.name.toLowerCase()}.
+              </span>
             </h1>
             <p className="mt-5 max-w-3xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               {industry.pitch}

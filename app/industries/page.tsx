@@ -121,7 +121,10 @@ export default function IndustriesPage() {
                   Pre-tuned for the calls you actually take
                 </span>
                 <h1 className="mt-7 text-balance font-serif text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-                  Built for every kind of phone call.
+                  Built for every kind of{" "}
+                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                    phone call.
+                  </span>
                 </h1>
                 <div className="mt-6 h-px w-28 bg-gradient-to-r from-primary to-transparent" aria-hidden />
                 <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
