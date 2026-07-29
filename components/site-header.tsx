@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import {
   ArrowRight, ArrowUpRight, ChevronDown, Menu, X,
   Building2, Wrench, Briefcase, ShoppingBag, Sparkles,
+  Info, FileText, Phone,
 } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
@@ -158,11 +159,83 @@ function IndustriesMenu() {
   )
 }
 
+/* ── Company dropdown content ── */
+const COMPANY_LINKS = [
+  { label: "About", href: "/about", icon: Info, desc: "Learn what 9278.io is building and why." },
+  { label: "Blog", href: "/blog", icon: FileText, desc: "Product updates, guides, and company news." },
+  { label: "Contact", href: "/contact", icon: Phone, desc: "Talk to sales or start a free trial." },
+]
+
+function CompanyMenu() {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-2xl">
+      <div className="p-5">
+        <div className="flex items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+            <span className="size-1.5 rounded-full bg-primary" aria-hidden />
+            Company
+          </span>
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+          >
+            Overview <ArrowUpRight className="size-3.5" aria-hidden />
+          </Link>
+        </div>
+
+        <h3 className="mt-3 text-lg font-bold tracking-tight text-foreground">Get to know the team behind 9278.io.</h3>
+        <p className="mt-1 text-sm text-muted-foreground">About, blog, and how to reach us.</p>
+
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          {COMPANY_LINKS.map((c) => {
+            const Icon = c.icon
+            return (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="flex items-start gap-2.5 rounded-xl p-2 transition-colors hover:bg-slate-50"
+              >
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.08] text-primary">
+                  <Icon className="size-4" aria-hidden />
+                </span>
+                <span className="min-w-0 leading-snug">
+                  <span className="block text-sm font-semibold text-foreground">{c.label}</span>
+                  <span className="line-clamp-2 block text-xs text-muted-foreground">{c.desc}</span>
+                </span>
+              </Link>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between gap-3 border-t border-border/60 bg-slate-50/60 px-5 py-3">
+        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Sparkles className="size-4 text-primary" aria-hidden />
+          Every plan includes per-second billing and a 10+ language voice agent.
+        </span>
+        <div className="flex shrink-0 items-center gap-3">
+          <Link href="/pricing" className="text-xs font-semibold text-primary hover:underline">
+            Compare plans
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
+          >
+            Talk to sales <ArrowRight className="size-3.5" aria-hidden />
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function SiteHeader() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [industriesOpen, setIndustriesOpen] = useState(false)
+  const [companyOpen, setCompanyOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -246,7 +319,39 @@ export function SiteHeader() {
           </div>
 
           {navLink("Pricing", "/pricing")}
-          {navLink("Blog", "/blog")}
+
+          <div
+            className="relative"
+            onMouseEnter={() => setCompanyOpen(true)}
+            onMouseLeave={() => setCompanyOpen(false)}
+          >
+            <Link
+              href="/about"
+              className={cn(
+                "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
+                isActive("/about") || isActive("/blog") || isActive("/contact") ? "text-foreground" : "text-muted-foreground",
+                companyOpen ? "bg-blue-600 text-white" : "",
+              )}
+            >
+              Company
+              <ChevronDown className={cn("size-3.5 transition-transform", companyOpen ? "rotate-180" : "")} aria-hidden />
+            </Link>
+            <AnimatePresence>
+              {companyOpen && (
+                <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <CompanyMenu />
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {navLink("FAQ", "/faq")}
         </nav>
 
@@ -316,7 +421,9 @@ export function SiteHeader() {
                 {[
                   { label: "Industries", href: "/industries" },
                   { label: "Pricing", href: "/pricing" },
+                  { label: "About", href: "/about" },
                   { label: "Blog", href: "/blog" },
+                  { label: "Contact", href: "/contact" },
                   { label: "FAQ", href: "/faq" },
                 ].map(item => (
                   <Link
