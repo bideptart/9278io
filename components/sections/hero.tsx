@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -44,8 +44,9 @@ const CALLS = [
     title: "Insurance",
     subtitle: "Motor insurance policy",
     caller: "Rahul",
-    duration: "3m 58s",
-    durationSec: 238,
+    duration: "1:05",
+    durationSec: 65,
+    audioSrc: "/audio/insurance-hindi.mp3",
     completedAt: "May 11, 10:19am",
     status: "Success",
     metrics: [
@@ -67,8 +68,9 @@ const CALLS = [
     title: "E-Commerce",
     subtitle: "Cart abandoned",
     caller: "Ananya",
-    duration: "5m 29s",
-    durationSec: 329,
+    duration: "1:06",
+    durationSec: 66,
+    audioSrc: "/audio/ecommerce-marathi.mp3",
     completedAt: "May 11, 9:52am",
     status: "Success",
     metrics: [
@@ -90,8 +92,9 @@ const CALLS = [
     title: "Customer Support",
     subtitle: "Wallet support",
     caller: "Vikram",
-    duration: "2m 07s",
-    durationSec: 127,
+    duration: "1:03",
+    durationSec: 63,
+    audioSrc: "/audio/support-telugu.mp3",
     completedAt: "May 11, 9:15am",
     status: "Success",
     metrics: [
@@ -282,26 +285,17 @@ function CallDetailCard({ call }: { call: (typeof CALLS)[number] }) {
   const [playing, setPlaying] = useState(false)
   const [elapsed, setElapsed] = useState(0)
   const [copied, setCopied] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   // Reset playback whenever the selected call changes.
   useEffect(() => {
     setPlaying(false)
     setElapsed(0)
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
   }, [call.id])
-
-  useEffect(() => {
-    if (!playing) return
-    const t = setInterval(() => {
-      setElapsed((e) => {
-        if (e >= call.durationSec) {
-          setPlaying(false)
-          return call.durationSec
-        }
-        return e + 1
-      })
-    }, 200) // 5x speed so the demo waveform visibly moves
-    return () => clearInterval(t)
-  }, [playing, call.durationSec])
 
   const progress = elapsed / call.durationSec
   const filledBars = Math.round(progress * waveform.length)
@@ -350,11 +344,29 @@ function CallDetailCard({ call }: { call: (typeof CALLS)[number] }) {
 
       {/* waveform player */}
       <div className="mt-3 flex items-center gap-2.5 rounded-xl border border-border bg-slate-50 px-3 py-2">
+        <audio
+          ref={audioRef}
+          src={call.audioSrc}
+          preload="metadata"
+          onTimeUpdate={(e) => setElapsed(e.currentTarget.currentTime)}
+          onEnded={() => setPlaying(false)}
+        />
         <button
           type="button"
           onClick={() => {
-            if (!playing && elapsed >= call.durationSec) setElapsed(0)
-            setPlaying((p) => !p)
+            const audio = audioRef.current
+            if (!audio) return
+            if (playing) {
+              audio.pause()
+              setPlaying(false)
+            } else {
+              if (elapsed >= call.durationSec) {
+                audio.currentTime = 0
+                setElapsed(0)
+              }
+              audio.play()
+              setPlaying(true)
+            }
           }}
           aria-label={playing ? "Pause" : "Play"}
           className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-transform hover:scale-105"
@@ -374,7 +386,9 @@ function CallDetailCard({ call }: { call: (typeof CALLS)[number] }) {
         <span className="w-9 shrink-0 text-right text-[10px] text-muted-foreground">
           -{formatTime(Math.max(0, call.durationSec - elapsed))}
         </span>
-        <Download className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
+        <a href={call.audioSrc} download aria-label="Download call recording">
+          <Download className="size-3.5 shrink-0 text-muted-foreground transition-colors hover:text-primary" aria-hidden />
+        </a>
       </div>
 
       {/* metric tiles */}
@@ -415,10 +429,28 @@ function CallDetailCard({ call }: { call: (typeof CALLS)[number] }) {
 
 function CallAnalyticsMockup() {
   const [activeId, setActiveId] = useState(CALLS[0].id)
+  const [paused, setPaused] = useState(false)
   const call = CALLS.find((c) => c.id === activeId) ?? CALLS[0]
 
+  // Auto-advance through the recent calls every 2s; pause on hover, and
+  // restart the cycle whenever the user manually picks a call.
+  useEffect(() => {
+    if (paused) return
+    const t = setInterval(() => {
+      setActiveId((id) => {
+        const i = CALLS.findIndex((c) => c.id === id)
+        return CALLS[(i + 1) % CALLS.length].id
+      })
+    }, 2000)
+    return () => clearInterval(t)
+  }, [paused, activeId])
+
   return (
-    <div className="relative grid gap-3 sm:grid-cols-[190px_1fr]">
+    <div
+      className="relative grid gap-3 sm:grid-cols-[190px_1fr]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="flex flex-col gap-3">
         <RecentCallsCard activeId={activeId} onSelect={setActiveId} />
         <TrendsCard />
