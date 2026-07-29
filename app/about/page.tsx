@@ -3,6 +3,7 @@ import { Target, Users, Zap, MapPin, Languages, ShieldCheck, PhoneCall } from "l
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ValuesGrid } from "@/components/about/values-grid"
 import { GradientCta } from "@/components/sections/gradient-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -57,6 +58,7 @@ export default function AboutPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border/50">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] mesh-gradient-bg" />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
@@ -86,8 +88,13 @@ export default function AboutPage() {
               {stats.map((s) => {
                 const Icon = s.icon
                 return (
-                  <div key={s.label} className="rounded-xl border-[3px] border-border/60 bg-white p-6">
-                    <Icon className="mx-auto size-5 text-primary" aria-hidden />
+                  <div
+                    key={s.label}
+                    className="rounded-2xl border border-border/60 bg-white p-6 shadow-[0_16px_34px_-24px_oklch(0.2_0.05_260/0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_20px_45px_-16px_oklch(0.546_0.215_262.88/0.35)]"
+                  >
+                    <span className="mx-auto flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.45)]">
+                      <Icon className="size-5" aria-hidden />
+                    </span>
                     <p className="mt-3 text-lg font-bold tracking-tight">{s.value}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
                   </div>
@@ -118,7 +125,7 @@ export default function AboutPage() {
             {["Appointment reminders", "Lead qualification", "Order updates", "EMI follow-ups"].map((c) => (
               <span
                 key={c}
-                className="rounded-full border border-border/60 bg-white px-3.5 py-1.5 text-sm text-muted-foreground"
+                className="rounded-full border border-border/60 bg-white px-3.5 py-1.5 text-sm text-muted-foreground shadow-sm transition-all duration-300 hover:border-primary/30 hover:bg-primary/[0.06] hover:text-primary"
               >
                 {c}
               </span>
@@ -135,22 +142,13 @@ export default function AboutPage() {
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Our values</h2>
           </ScrollReveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {values.map((v) => {
-              const Icon = v.icon
-              return (
-                <ScrollReveal key={v.title} className="h-full">
-                  <div className="h-full rounded-2xl border border-border bg-white p-7">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
-                      <Icon className="h-5 w-5" aria-hidden />
-                    </span>
-                    <h3 className="mt-5 text-lg font-semibold tracking-tight">{v.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.description}</p>
-                  </div>
-                </ScrollReveal>
-              )
-            })}
-          </div>
+          <ValuesGrid
+            values={values.map((v) => ({
+              icon: <v.icon className="h-5 w-5" aria-hidden />,
+              title: v.title,
+              description: v.description,
+            }))}
+          />
         </div>
       </section>
 

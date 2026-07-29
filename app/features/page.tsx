@@ -1,29 +1,21 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import {
-  PhoneCall, ArrowRight, Sparkles,
-  Languages, Headphones, Zap, Timer, ShieldCheck,
-} from "lucide-react"
+import { PhoneCall, ArrowRight, Sparkles } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { FeatureGroups } from "@/components/features-page/feature-groups"
-import { AgentShowcase } from "@/components/features-page/agent-showcase"
+import { BlueprintHero } from "@/components/features-page/blueprint-hero"
+import { StatBand } from "@/components/features-page/stat-band"
+import { FeatureBento } from "@/components/features-page/feature-bento"
+import { TestimonialsPlaceholder } from "@/components/features-page/testimonials-placeholder"
 
 export const metadata: Metadata = {
   title: "Features — 9278.io",
   robots: { index: false, follow: true },
 }
-
-const trustChips = [
-  { icon: Languages,   label: "10+ Indian Languages" },
-  { icon: Headphones,  label: "24/7 Always On" },
-  { icon: Zap,         label: "Sub-300ms Latency" },
-  { icon: Timer,       label: "Per-Second Billing" },
-  { icon: ShieldCheck, label: "TRAI Compliant" },
-]
 
 const faqs = [
   {
@@ -54,11 +46,22 @@ export default function FeaturesPage() {
       <SiteHeader />
 
       <section className="relative overflow-hidden border-b border-border/50">
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] mesh-gradient-bg" />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-10 md:px-8 md:py-12 lg:min-h-[calc(100vh-150px)] lg:grid-cols-[1fr_1.2fr]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(15,23,42,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.5) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage: "radial-gradient(ellipse at top, black 40%, transparent 85%)",
+          }}
+        />
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-12 md:px-8 md:py-20 lg:grid-cols-[1fr_1.2fr]">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
@@ -96,25 +99,10 @@ export default function FeaturesPage() {
                 </Link>
               </Button>
             </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {trustChips.map((c) => {
-                const Icon = c.icon
-                return (
-                  <span
-                    key={c.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-white px-3 py-1 text-xs font-medium text-muted-foreground"
-                  >
-                    <Icon className="h-3.5 w-3.5 text-primary" aria-hidden />
-                    {c.label}
-                  </span>
-                )
-              })}
-            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.08} className="flex justify-center lg:justify-end">
-            <AgentShowcase />
+            <BlueprintHero />
           </ScrollReveal>
         </div>
       </section>
@@ -140,6 +128,63 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      {/* Stat band */}
+      <section className="border-b border-border/50">
+        <div className="w-full px-6 py-10 md:px-8 md:py-14">
+          <ScrollReveal className="mx-auto max-w-5xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              By the Numbers
+            </span>
+            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
+              Fast, accurate, and always on.
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-10">
+            <StatBand />
+          </div>
+        </div>
+      </section>
+
+      {/* Bento grid */}
+      <section className="border-b border-border/50">
+        <div className="w-full px-6 py-10 md:px-8 md:py-14">
+          <ScrollReveal className="mx-auto max-w-5xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              At a Glance
+            </span>
+            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
+              Every capability, in one view.
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-10">
+            <FeatureBento />
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="border-b border-border/50">
+        <div className="w-full px-6 py-10 md:px-8 md:py-14">
+          <ScrollReveal className="mx-auto max-w-5xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              What Customers Say
+            </span>
+            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
+              Loved by businesses across India.
+            </h2>
+          </ScrollReveal>
+
+          <div className="mt-10">
+            <TestimonialsPlaceholder />
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="border-b border-border/50">
         <div className="w-full px-6 pb-6 pt-10 md:px-8 md:pb-8 md:pt-14">
@@ -155,7 +200,9 @@ export default function FeaturesPage() {
 
           <div className="mx-auto mt-10 max-w-5xl">
             <ScrollReveal>
-              <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
+              <div className="glass-panel rounded-[1.75rem] p-2 shadow-[0_20px_48px_-32px_oklch(0.13_0.025_255/0.35)] transition-shadow hover:shadow-[0_28px_60px_-32px_oklch(0.546_0.215_262.88/0.2)] sm:p-4">
+                <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
+              </div>
             </ScrollReveal>
 
             <ScrollReveal className="mt-10 flex justify-center">
@@ -186,8 +233,8 @@ export default function FeaturesPage() {
               }}
             />
             {/* soft glows */}
-            <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-white/15 blur-[90px]" />
-            <div aria-hidden className="pointer-events-none absolute -bottom-28 -right-16 size-80 rounded-full bg-[oklch(0.7_0.15_210/0.35)] blur-[100px]" />
+            <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-white/15 blur-[90px] motion-safe:animate-breathe" />
+            <div aria-hidden className="pointer-events-none absolute -bottom-28 -right-16 size-80 rounded-full bg-[oklch(0.7_0.15_210/0.35)] blur-[100px] motion-safe:animate-breathe [animation-delay:3s]" />
             {/* decorative sparkle */}
             <Sparkles aria-hidden className="pointer-events-none absolute -right-6 bottom-2 size-48 text-white/[0.06]" strokeWidth={1} />
 
@@ -208,18 +255,18 @@ export default function FeaturesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-full bg-white px-8 text-base font-semibold text-primary shadow-[0_10px_30px_oklch(0.2_0.1_262/0.35)] transition-all hover:bg-white/90"
+                  className="group h-12 rounded-full bg-white px-8 text-base font-semibold text-primary shadow-[0_10px_30px_oklch(0.2_0.1_262/0.35)] transition-all hover:scale-[1.04] hover:bg-white/90"
                 >
                   <Link href="/get-started">
                     Build your first agent
-                    <ArrowRight className="ml-1 h-4 w-4" aria-hidden />
+                    <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-12 rounded-full border-white/40 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur hover:border-white/60 hover:bg-white/20 hover:text-white"
+                  className="h-12 rounded-full border-white/40 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur transition-all hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 hover:text-white"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 h-4 w-4" />

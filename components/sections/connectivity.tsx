@@ -19,15 +19,15 @@ export function Connectivity() {
   const doubled = [...companies, ...companies]
 
   return (
-    <section className="overflow-hidden border-b border-border bg-slate-50/60">
+    <section className="relative overflow-hidden border-b border-border/50 mesh-gradient-bg">
       {/* Trusted by — marquee */}
       <div className="w-full py-8">
         <p className="mb-5 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground/60">
           Trusted by 500+ Indian businesses
         </p>
         <div className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-slate-50/60 to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-slate-50/60 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent" />
           <motion.div
             className="flex gap-10 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
@@ -60,7 +60,7 @@ export function Connectivity() {
           {integrations.map((name) => (
             <span
               key={name}
-              className="rounded-full border border-border bg-white px-3.5 py-1 text-xs font-medium text-muted-foreground shadow-sm transition-all hover:border-primary/30 hover:bg-primary/[0.06] hover:text-primary"
+              className="glass-panel rounded-full px-3.5 py-1 text-xs font-medium text-muted-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:text-primary"
             >
               {name}
             </span>
