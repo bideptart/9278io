@@ -7,7 +7,7 @@ import {
   ArrowRight, PhoneCall, Globe, Clock, ShieldCheck, Check,
   CheckCircle2, LayoutGrid, Copy, Play, Pause, Download,
 } from "lucide-react"
-import { motion } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 
 /* ── Left-column highlights ── */
@@ -171,6 +171,18 @@ function TrendsCard() {
   const h = 56
   const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set())
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
+  const [autoHover, setAutoHover] = useState(true)
+
+  // Auto-cycle the tooltip through each day every 2s so the chart feels
+  // alive without needing a real hover; pauses while the user is hovering.
+  useEffect(() => {
+    if (!autoHover) return
+    const t = setInterval(() => {
+      setHoverIndex((i) => ((i ?? -1) + 1) % days.length)
+    }, 2000)
+    return () => clearInterval(t)
+  }, [autoHover])
+
   return (
     <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-3.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
       <div className="flex items-start justify-between gap-2">
@@ -202,35 +214,18 @@ function TrendsCard() {
           })}
         </div>
       </div>
-      {/* reserved slot for the hover tooltip so it never overlaps the lines below, and never shifts the card's height */}
-      <div className="relative h-11">
-        {hoverIndex !== null && (
-          <div
-            className="pointer-events-none absolute top-0 z-10 w-[84px] rounded-lg border border-border bg-white/95 px-2 py-1 text-[9px] leading-tight shadow-lg backdrop-blur"
-            style={{
-              left: `${Math.min(100 - 84 / 2, Math.max(84 / 2, (hoverIndex / (days.length - 1)) * 100))}%`,
-              transform: "translateX(-50%)",
-            }}
-          >
-            <p className="font-semibold text-foreground">{days[hoverIndex]}</p>
-            {trendSeries
-              .filter((s) => !hiddenSeries.has(s.label))
-              .map((s) => (
-                <p key={s.label} className="text-muted-foreground">
-                  {s.label}: <span className="font-semibold text-foreground">{s.values[hoverIndex]}</span>
-                </p>
-              ))}
-          </div>
-        )}
-      </div>
       <div
-        className="relative"
+        className="relative mt-5"
+        onMouseEnter={() => setAutoHover(false)}
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect()
           const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width))
           setHoverIndex(Math.round(ratio * (days.length - 1)))
         }}
-        onMouseLeave={() => setHoverIndex(null)}
+        onMouseLeave={() => {
+          setHoverIndex(null)
+          setAutoHover(true)
+        }}
       >
         <svg viewBox={`0 0 ${w} ${h}`} className="h-14 w-full overflow-visible">
           {trendSeries
@@ -248,9 +243,9 @@ function TrendsCard() {
             ))}
           {hoverIndex !== null && (
             <>
-              <line
-                x1={(hoverIndex / (days.length - 1)) * w}
-                x2={(hoverIndex / (days.length - 1)) * w}
+              <motion.line
+                animate={{ x1: (hoverIndex / (days.length - 1)) * w, x2: (hoverIndex / (days.length - 1)) * w }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
                 y1={0}
                 y2={h}
                 stroke="oklch(0.7 0 0)"
@@ -260,10 +255,13 @@ function TrendsCard() {
               {trendSeries
                 .filter((s) => !hiddenSeries.has(s.label))
                 .map((s) => (
-                  <circle
+                  <motion.circle
                     key={s.label}
-                    cx={(hoverIndex / (days.length - 1)) * w}
-                    cy={h - (s.values[hoverIndex] / 100) * h}
+                    animate={{
+                      cx: (hoverIndex / (days.length - 1)) * w,
+                      cy: h - (s.values[hoverIndex] / 100) * h,
+                    }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
                     r={2.5}
                     fill={s.stroke}
                   />
@@ -271,6 +269,39 @@ function TrendsCard() {
             </>
           )}
         </svg>
+
+        {/* tooltip — anchored to the hovered point on the topmost visible line, animates smoothly between days */}
+        <AnimatePresence>
+          {hoverIndex !== null && (() => {
+            const visible = trendSeries.filter((s) => !hiddenSeries.has(s.label))
+            const topValue = Math.max(...visible.map((s) => s.values[hoverIndex]))
+            const xPct = (hoverIndex / (days.length - 1)) * 100
+            const yPct = (1 - topValue / 100) * 100
+            return (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, x: "-50%", y: "calc(-100% - 10px)" }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  x: "-50%",
+                  y: "calc(-100% - 10px)",
+                  left: `${Math.min(100 - 84 / 2, Math.max(84 / 2, xPct))}%`,
+                  top: `${yPct}%`,
+                }}
+                exit={{ opacity: 0, scale: 0.9, x: "-50%", y: "calc(-100% - 10px)" }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="pointer-events-none absolute z-10 w-[84px] rounded-lg border border-border bg-white/95 px-2 py-1 text-[9px] leading-tight shadow-lg backdrop-blur"
+              >
+                <p className="font-semibold text-foreground">{days[hoverIndex]}</p>
+                {visible.map((s) => (
+                  <p key={s.label} className="text-muted-foreground">
+                    {s.label}: <span className="font-semibold text-foreground">{s.values[hoverIndex]}</span>
+                  </p>
+                ))}
+              </motion.div>
+            )
+          })()}
+        </AnimatePresence>
       </div>
       <div className="mt-1 flex justify-between text-[9px] text-muted-foreground/70">
         {days.map((d) => (
@@ -301,7 +332,7 @@ function CallDetailCard({ call }: { call: (typeof CALLS)[number] }) {
   const filledBars = Math.round(progress * waveform.length)
 
   return (
-    <div className="flex min-h-[400px] flex-col rounded-2xl border border-blue-100/80 bg-white/95 p-4 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
+    <div className="flex min-h-[300px] flex-col rounded-2xl border border-blue-100/80 bg-white/95 p-4 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
       {/* header */}
       <div className="flex items-center gap-2.5">
         <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-foreground">
