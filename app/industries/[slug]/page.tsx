@@ -105,7 +105,7 @@ function ECommercePage() {
           }}
         />
 
-        <div className="w-full px-6 pt-12 pb-12 md:px-8 md:pt-16 md:pb-16">
+        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
           <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
@@ -173,29 +173,6 @@ function ECommercePage() {
                     View Pricing
                   </Link>
                 </Button>
-              </div>
-
-              {/* Trusted by 10,000+ brands row */}
-              <div className="mt-10 flex items-center gap-3.5">
-                {/* Avatar stack */}
-                <div className="flex -space-x-3">
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-amber-100 to-orange-100 shadow-sm ring-1 ring-slate-200/60">
-                    <img src="/avatars/priya.jpg" alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-sky-100 to-blue-100 shadow-sm ring-1 ring-slate-200/60">
-                    <img src="/avatars/rahul.jpg" alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-emerald-100 to-teal-100 shadow-sm ring-1 ring-slate-200/60">
-                    <img src="/avatars/amit.jpg" alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-blue-600 to-sky-600 text-[11px] font-bold text-white shadow-sm ring-1 ring-blue-200/60">
-                    +10K
-                  </div>
-                </div>
-                <div className="leading-tight">
-                  <p className="text-[13.5px] font-semibold text-slate-800">Trusted by 10,000+ brands</p>
-                  <p className="text-[12.5px] text-slate-500">for smarter customer conversations</p>
-                </div>
               </div>
             </ScrollReveal>
 
@@ -433,6 +410,24 @@ function ECommercePage() {
                       Can you track my order?
                     </span>
                   </div>
+                  <div className="flex text-sm">
+                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
+                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
+                      Sure! Order #4521 shipped yesterday and arrives by 6 PM tomorrow.
+                    </span>
+                  </div>
+                  <div className="flex text-sm justify-end">
+                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-4 py-2.5 text-slate-700 ring-1 ring-slate-200">
+                      <span className="mr-1 text-[10px] font-bold uppercase opacity-40">Customer</span>
+                      Great — can I also return a pair of shoes from my last order?
+                    </span>
+                  </div>
+                  <div className="flex text-sm">
+                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
+                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
+                      Absolutely — I&apos;ll email a prepaid return label right now.
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -527,17 +522,22 @@ function ECommercePage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
+                className="h-auto rounded-full bg-primary px-7 py-3.5 text-base text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
               >
                 <Link href="/get-started?industry=ecommerce">
-                  <Rocket className="mr-1 size-4" aria-hidden />
+                  <Rocket className="mr-1.5 size-5" aria-hidden />
                   Launch a e-commerce agent
-                  <ArrowRight className="ml-1 size-4" aria-hidden />
+                  <ArrowRight className="ml-1.5 size-5" aria-hidden />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="transition-transform hover:-translate-y-0.5">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-auto rounded-full px-7 py-3.5 text-base transition-transform hover:-translate-y-0.5"
+              >
                 <Link href="/faq">
-                  <HelpCircle className="mr-1 size-4" aria-hidden />
+                  <HelpCircle className="mr-1.5 size-5" aria-hidden />
                   Read the FAQ
                 </Link>
               </Button>
@@ -732,9 +732,6 @@ function ECommercePage() {
                       aria-hidden
                       className={`absolute right-0 top-0 h-16 w-16 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
                     />
-                    <span aria-hidden className="absolute right-2.5 top-1.5 text-xs font-bold text-white">
-                      99
-                    </span>
 
                     {/* dotted decoration */}
                     <div aria-hidden className="absolute right-6 top-16 grid grid-cols-4 gap-1.5 opacity-60">
