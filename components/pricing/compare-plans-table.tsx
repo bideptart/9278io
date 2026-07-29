@@ -64,21 +64,22 @@ export function ComparePlansTable() {
         Every plan, side by side.
       </h2>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border border-border/60 bg-white">
+      <div className="mt-8 overflow-hidden rounded-2xl border-2 border-border bg-white shadow-sm">
         <div className="overflow-x-auto">
         <table className="w-full min-w-[640px] border-collapse text-sm">
           <thead>
-            <tr className="border-b border-border/60">
-              <th scope="col" className="px-6 py-4 text-left font-semibold text-foreground/80">
+            <tr className="border-b-2 border-border">
+              <th scope="col" className="border-r border-border/60 px-6 py-4 text-left font-semibold text-foreground/80">
                 Feature
               </th>
-              {orderedPlans.map((plan) => (
+              {orderedPlans.map((plan, colIndex) => (
                 <th
                   key={plan.id}
                   scope="col"
                   className={cn(
-                    "px-6 py-4 text-left font-semibold text-foreground/80",
-                    plan.recommended && "bg-primary/5",
+                    "border-border/60 px-6 py-4 text-left font-semibold text-foreground/80",
+                    colIndex < orderedPlans.length - 1 && "border-r",
+                    plan.recommended && "border-x-2 border-primary/40 bg-primary/[0.07]",
                   )}
                 >
                   <span className="inline-flex items-center gap-2">
@@ -94,35 +95,44 @@ export function ComparePlansTable() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, i) => (
-              <tr
-                key={row.label}
-                className={cn("border-b border-border/60 last:border-b-0", i % 2 === 1 && "bg-muted/20")}
-              >
-                <td className="px-6 py-3 font-medium text-foreground/90 whitespace-nowrap">{row.label}</td>
-                {row.values.map((value, colIndex) => (
+            {rows.map((row, i) => {
+              const isLastRow = i === rows.length - 1
+              return (
+                <tr key={row.label} className={cn("group transition-colors hover:bg-primary/[0.04]", i % 2 === 1 && "bg-muted/30")}>
                   <td
-                    key={colIndex}
                     className={cn(
-                      "px-6 py-3 text-muted-foreground",
-                      orderedPlans[colIndex].recommended && "bg-primary/5",
+                      "border-r border-border/60 px-6 py-3 font-medium text-foreground/90 whitespace-nowrap transition-colors group-hover:border-primary/40",
+                      !isLastRow && "border-b",
                     )}
                   >
-                    {typeof value === "boolean" ? (
-                      value ? (
-                        <Check className="h-4 w-4 text-primary" aria-hidden="true" />
-                      ) : (
-                        <span className="text-muted-foreground/40" aria-hidden="true">
-                          —
-                        </span>
-                      )
-                    ) : (
-                      value
-                    )}
+                    {row.label}
                   </td>
-                ))}
-              </tr>
-            ))}
+                  {row.values.map((value, colIndex) => (
+                    <td
+                      key={colIndex}
+                      className={cn(
+                        "border-border/60 px-6 py-3 text-muted-foreground transition-colors group-hover:border-primary/40",
+                        !isLastRow && "border-b",
+                        colIndex < orderedPlans.length - 1 && "border-r",
+                        orderedPlans[colIndex].recommended && "border-x-2 border-primary/40 bg-primary/[0.07]",
+                      )}
+                    >
+                      {typeof value === "boolean" ? (
+                        value ? (
+                          <Check className="h-4 w-4 text-primary" aria-hidden="true" />
+                        ) : (
+                          <span className="text-muted-foreground/40" aria-hidden="true">
+                            —
+                          </span>
+                        )
+                      ) : (
+                        value
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              )
+            })}
           </tbody>
         </table>
         </div>
