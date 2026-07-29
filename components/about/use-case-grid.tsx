@@ -1,7 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { motion } from "motion/react"
+import { motion, type Variants } from "motion/react"
 
 type UseCase = {
   icon: ReactNode
@@ -9,19 +9,19 @@ type UseCase = {
   caption: string
 }
 
-const container = {
+const container: Variants = {
   hidden: {},
   show: {
     transition: { staggerChildren: 0.06 },
   },
 }
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, x: 12 },
   show: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
 }
 
-const line = {
+const line: Variants = {
   hidden: { scaleY: 0 },
   show: { scaleY: 1, transition: { duration: 0.4, ease: "easeOut" } },
 }
