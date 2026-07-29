@@ -135,21 +135,21 @@ function TurnTakingVisual() {
 }
 
 function ConcurrencyVisual() {
-  const TOTAL = 32
+  const TOTAL = 24
   const [count, setCount] = useState(1)
   useEffect(() => {
     const t = setInterval(() => setCount(c => c < TOTAL ? c + 1 : 1), 250)
     return () => clearInterval(t)
   }, [])
   return (
-    <div className="space-y-2.5">
-      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-3 py-2">
+    <div className="space-y-1.5">
+      <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-3 py-1.5">
         <span className="text-xs text-muted-foreground">Active calls right now</span>
-        <motion.span key={count} initial={{ scale: 1.25 }} animate={{ scale: 1 }} className="text-xl font-black text-primary">{count}</motion.span>
+        <motion.span key={count} initial={{ scale: 1.25 }} animate={{ scale: 1 }} className="text-lg font-black text-primary">{count}</motion.span>
       </div>
       <div className="grid grid-cols-8 gap-1">
         {Array.from({ length: TOTAL }).map((_, i) => (
-          <div key={i} className={`h-7 w-full rounded-md transition-colors duration-200 ${i < count ? "bg-primary" : "bg-primary/10"}`} />
+          <div key={i} className={`h-5 w-full rounded-md transition-colors duration-200 ${i < count ? "bg-primary" : "bg-primary/10"}`} />
         ))}
       </div>
       <p className="text-center text-[10px] text-muted-foreground">Each cell = 1 concurrent agent · scales to thousands</p>
