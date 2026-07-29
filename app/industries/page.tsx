@@ -96,31 +96,37 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* ── Bento overview — centered classical header ── */}
+      {/* ── Bento overview — sticky detail column on the left, stack on the right ── */}
       <section className="w-full bg-white py-10 md:py-14">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <ScrollReveal className="mx-auto mb-4 max-w-2xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm">
-              <Building2 className="size-3.5" aria-hidden />
-              Industries
-            </span>
-            <h2 className="mt-4 text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
-              Browse by industry
-            </h2>
-            {/* classical ornamental divider */}
-            <div className="mt-6 flex items-center justify-center gap-3" aria-hidden>
-              <span className="h-px w-14 bg-gradient-to-r from-transparent to-primary/40" />
-              <span className="size-1.5 rotate-45 rounded-[1px] bg-primary/70 motion-safe:animate-pulse" />
-              <span className="h-px w-14 bg-gradient-to-l from-transparent to-primary/40" />
+          <div className="grid gap-10 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16">
+            {/* Left — sticky details */}
+            <div className="order-1">
+              <ScrollReveal className="lg:sticky lg:top-32">
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm">
+                  <Building2 className="size-3.5" aria-hidden />
+                  Industries
+                </span>
+                <h2 className="mt-4 text-balance font-serif text-4xl font-semibold tracking-tight md:text-5xl">
+                  Browse by <span className="text-primary">industry</span>
+                </h2>
+                {/* classical ornamental divider */}
+                <div className="mt-6 flex items-center gap-3" aria-hidden>
+                  <span className="size-1.5 rotate-45 rounded-[1px] bg-primary/70 motion-safe:animate-pulse" />
+                  <span className="h-px w-14 bg-gradient-to-r from-primary/40 to-transparent" />
+                </div>
+                <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+                  Tap any vertical to see its playbook, sample calls, and capabilities — scroll to stack through all 10.
+                </p>
+              </ScrollReveal>
             </div>
-            <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
-              Tap any vertical to see its playbook, sample calls, and capabilities — scroll to stack through all 10.
-            </p>
-          </ScrollReveal>
-        </div>
 
-        {/* Scroll-driven glass card stack */}
-        <IndustryStackCards />
+            {/* Right — scroll-driven glass card stack */}
+            <div className="order-2">
+              <IndustryStackCards />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ── Detailed playbooks — centered classical header on a clean white band ── */}
