@@ -466,7 +466,7 @@ export function Features() {
               animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
             Our Features
           </motion.span>
-          <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 whitespace-nowrap text-4xl font-bold tracking-tight md:text-5xl">
             Everything your voice agent needs.
           </h2>
           <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">
@@ -502,7 +502,11 @@ export function Features() {
           </div>
 
           {/* ── Desktop: 2-col grid (2+2+2+2+1) ── */}
-          <div ref={leftRef} className="hidden grid-cols-2 content-start gap-1 self-start lg:grid">
+          <div
+            ref={leftRef}
+            className="hidden grid-cols-2 content-start gap-1 self-start lg:grid"
+            style={{ height: 340 }}
+          >
             {features.map((feat, i) => {
               const Icon = feat.icon
               const isActive = i === active
@@ -512,7 +516,8 @@ export function Features() {
                   key={feat.label}
                   type="button"
                   onClick={() => { setActive(i); setProgress(0); startRef.current = Date.now() }}
-                  className={`group relative flex items-start gap-3 overflow-hidden rounded-xl px-4 py-2.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
+                  style={{ height: 65 }}
+                  className={`group relative flex items-center gap-3 overflow-hidden rounded-xl px-4 py-2.5 text-left transition-all duration-200 ${isLast ? "col-span-2" : ""} ${
                     isActive
                       ? "border-2 border-primary/50 bg-white shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.08)]"
                       : "border-2 border-primary/15 hover:border-primary/35 hover:bg-slate-50"
@@ -548,7 +553,7 @@ export function Features() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              style={{ height: isDesktop ? Math.max(leftHeight ?? 0, 340) : 340 }}
+              style={{ height: 340 }}
               className="flex flex-col overflow-hidden rounded-2xl border-[3px] border-primary/30 bg-white p-4 shadow-[0_0_0_3px_oklch(0.52_0.22_265/0.06)] md:p-6"
             >
               <div className="flex items-center gap-3">

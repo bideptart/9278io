@@ -84,7 +84,7 @@ export function PricingFeature() {
 
   return (
     <section id="pricing" className="border-b border-border">
-      <div className="w-full px-6 py-10 md:px-8 md:py-14">
+      <div className="w-full px-6 pb-10 pt-4 md:px-8 md:pb-14 md:pt-6">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
@@ -149,7 +149,7 @@ export function PricingFeature() {
           </div>
         </ScrollReveal>
 
-        <StaggerGroup className="-mx-6 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:max-w-6xl md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:items-center">
+        <StaggerGroup className="-mx-6 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:max-w-6xl md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:items-stretch">
           {plans.map((plan) => {
             const Icon = plan.icon
             const price = yearly ? Math.round(plan.priceMonthly * 12 * 0.8) : plan.priceMonthly
@@ -158,12 +158,12 @@ export function PricingFeature() {
               <StaggerItem key={plan.name} className="w-[82%] shrink-0 snap-center sm:w-[46%] md:w-auto md:shrink">
                 <div
                   className={cn(
-                    "relative md:transition-transform md:duration-300",
-                    plan.highlight ? "md:z-10 md:-my-4 md:scale-[1.06]" : "md:scale-95",
+                    "relative h-full md:transition-transform md:duration-300",
+                    plan.highlight ? "md:z-10" : "",
                   )}
                 >
                   <motion.div
-                    className={`group relative flex flex-col overflow-hidden rounded-2xl border p-5 transition-all duration-300 ${
+                    className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 transition-all duration-300 ${
                       plan.highlight
                         ? "border-primary/40 bg-primary/[0.06] shadow-[0_20px_60px_oklch(0.78_0.16_195/0.2)]"
                         : "border-border bg-white hover:border-primary/20 hover:bg-slate-50"
@@ -209,7 +209,7 @@ export function PricingFeature() {
                       </span>
                     </div>
 
-                    <ul className="mt-4 flex flex-col gap-2">
+                    <ul className="mt-6 flex flex-col gap-3">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
                           <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
@@ -218,7 +218,7 @@ export function PricingFeature() {
                       ))}
                     </ul>
 
-                    <div className="mt-5">
+                    <div className="mt-7">
                       <Button
                         asChild
                         size="sm"
