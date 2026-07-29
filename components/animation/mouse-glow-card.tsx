@@ -12,6 +12,8 @@ type MouseGlowCardProps = {
   tiltStrength?: number
   /** Spotlight radius in pixels */
   glowSize?: number
+  /** Spotlight color, as an oklch() color function string. */
+  glowColor?: string
 }
 
 /**
@@ -21,7 +23,7 @@ type MouseGlowCardProps = {
  * - Renders a soft cyan spotlight that follows the pointer
  * - Lifts on hover
  */
-export function MouseGlowCard({ children, className, tiltStrength = 6, glowSize = 320 }: MouseGlowCardProps) {
+export function MouseGlowCard({ children, className, tiltStrength = 6, glowSize = 320, glowColor = "oklch(0.78 0.16 195 / 0.18)" }: MouseGlowCardProps) {
   const ref = useRef<HTMLDivElement | null>(null)
 
   const mouseX = useMotionValue(0)
@@ -37,7 +39,7 @@ export function MouseGlowCard({ children, className, tiltStrength = 6, glowSize 
   const rotateX = useTransform(sy, [-0.5, 0.5], [tiltStrength, -tiltStrength])
   const rotateY = useTransform(sx, [-0.5, 0.5], [-tiltStrength, tiltStrength])
 
-  const background = useMotionTemplate`radial-gradient(${glowSize}px circle at ${mouseX}px ${mouseY}px, oklch(0.78 0.16 195 / 0.18), transparent 70%)`
+  const background = useMotionTemplate`radial-gradient(${glowSize}px circle at ${mouseX}px ${mouseY}px, ${glowColor}, transparent 70%)`
 
   function handleMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = ref.current
