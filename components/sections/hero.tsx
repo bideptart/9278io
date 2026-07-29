@@ -332,7 +332,7 @@ function CallDetailCard({ call }: { call: (typeof CALLS)[number] }) {
   const filledBars = Math.round(progress * waveform.length)
 
   return (
-    <div className="flex min-h-[300px] flex-col rounded-2xl border border-blue-100/80 bg-white/95 p-4 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
+    <div className="flex h-[375px] flex-col overflow-hidden rounded-2xl border border-blue-100/80 bg-white/95 p-4 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
       {/* header */}
       <div className="flex items-center gap-2.5">
         <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-foreground">
@@ -488,8 +488,8 @@ function CallAnalyticsMockup() {
       </div>
       <motion.div
         key={call.id}
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.2 }}
       >
         <CallDetailCard call={call} />
