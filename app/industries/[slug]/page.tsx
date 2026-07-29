@@ -324,7 +324,7 @@ function ECommercePage() {
       </section>
 
       {/* ─── What agent does + How it sounds ─── */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-20">
+      <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollReveal>
@@ -436,7 +436,7 @@ function ECommercePage() {
       </section>
 
       {/* ─── How teams roll out — two-step process ─── */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+      <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="flex items-start gap-4">
             <span className="relative shrink-0">
@@ -547,7 +547,7 @@ function ECommercePage() {
       </section>
 
       {/* ─── AI agents that grow with you ─── */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-br from-blue-50/60 via-sky-50/40 to-sky-50/50 px-6 py-16 md:px-8 md:py-24">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-blue-50/60 via-sky-50/40 to-sky-50/50 px-6 pb-16 pt-6 md:px-8 md:pb-24 md:pt-8">
         <div aria-hidden className="pointer-events-none absolute -left-24 top-16 -z-10 size-72 rounded-full bg-blue-400/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-24 bottom-0 -z-10 size-80 rounded-full bg-sky-400/15 blur-3xl" />
 
