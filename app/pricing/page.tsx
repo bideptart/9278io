@@ -9,6 +9,7 @@ import { RateByPlanMockup } from "@/components/pricing/rate-by-plan-mockup"
 import { LiveCostMockup } from "@/components/pricing/live-cost-mockup"
 import { MockupStackConnector } from "@/components/pricing/mockup-stack-connector"
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
+import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { GradientCta } from "@/components/sections/gradient-cta"
 import { Button } from "@/components/ui/button"
@@ -57,7 +58,7 @@ export default async function PricingPage({
         </div>
       )}
 
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-background to-background">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
@@ -70,11 +71,10 @@ export default async function PricingPage({
                 Pay as you go · INR pricing · GST invoices
               </span>
               <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
-                Pick your{" "}
-                <span className="bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text text-transparent">
-                  plan
-                </span>{" "}
-                for AI voice agents.
+                Pick your plan for{" "}
+                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                  AI voice agents.
+                </span>
               </h1>
               <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Every plan includes inbound calling, call recording, and real-time transcription with per-second
@@ -127,8 +127,8 @@ export default async function PricingPage({
             <div className="relative hidden min-h-[360px] lg:block">
               <MockupStackConnector className="absolute inset-0 h-full w-full" />
               <LiveCallMockup className="absolute right-4 top-0" />
-              <LiveCostMockup className="absolute left-2 top-[38%]" />
-              <RateByPlanMockup className="absolute bottom-0 left-0" />
+              <LiveCostMockup className="absolute left-2 top-[18%]" />
+              <RateByPlanMockup className="absolute bottom-0 left-20" />
             </div>
           </div>
         </div>
@@ -144,6 +144,23 @@ export default async function PricingPage({
 
       <section className="w-full px-6 py-16 md:px-8 md:py-24">
         <ComparePlansTable />
+      </section>
+
+      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            Cost comparison
+          </span>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            One agent's salary vs one plan.
+          </h2>
+          <p className="mt-3 text-pretty text-muted-foreground">
+            A single AI voice agent handles what a human hire would — for a fraction of the monthly cost.
+          </p>
+        </ScrollReveal>
+        <div className="mt-10">
+          <CostComparisonStrip />
+        </div>
       </section>
 
       <GradientCta

@@ -171,10 +171,7 @@ function CompanyMenu() {
     <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-2xl">
       <div className="p-5">
         <div className="flex items-center justify-between gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
-            <span className="size-1.5 rounded-full bg-primary" aria-hidden />
-            Company
-          </span>
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Our company</p>
           <Link
             href="/about"
             className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"

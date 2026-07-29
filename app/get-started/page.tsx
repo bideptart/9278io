@@ -27,7 +27,7 @@ export default function GetStartedPage() {
         ]}
       />
 
-      <section className="w-full px-6 pb-14 pt-6 md:px-8 md:pb-20 md:pt-8">
+      <section className="w-full border-b border-border/50 bg-gradient-to-b from-blue-50/50 via-background to-background px-6 pb-14 pt-6 md:px-8 md:pb-20 md:pt-8">
         {/* ── Server-rendered hero: headline, key copy, primary CTA ── */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">

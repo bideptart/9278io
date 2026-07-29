@@ -33,7 +33,7 @@ export default function IndustriesPage() {
       />
 
       {/* ── Hero — copy + CTAs on the left, animated live-call mockup on the right ── */}
-      <section className="relative overflow-hidden border-b border-slate-200/70 bg-white text-foreground">
+      <section className="relative overflow-hidden border-b border-slate-200/70 bg-gradient-to-b from-blue-50/50 via-background to-background text-foreground">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_20%_0%,rgba(79,110,247,0.10),transparent_70%)]"
