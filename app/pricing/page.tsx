@@ -12,7 +12,7 @@ import { MockupVerticalConnector } from "@/components/pricing/mockup-vertical-co
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
 import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { Button } from "@/components/ui/button"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { pageSeo } from "@/lib/seo"
@@ -73,7 +73,7 @@ export default async function PricingPage({
               </span>
               <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
                 Pick your plan for{" "}
-                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
                   AI voice agents.
                 </span>
               </h1>
@@ -182,7 +182,7 @@ export default async function PricingPage({
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Try before you commit. Talk to our agent now."
         description="See latency, voice quality, and conversation flow firsthand — then top up only if you love it."
         primaryHref="/get-started"

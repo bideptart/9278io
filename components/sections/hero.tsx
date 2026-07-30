@@ -135,12 +135,12 @@ function RecentCallsCard({
   onSelect: (id: string) => void
 }) {
   return (
-    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-3.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
+    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-2.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur sm:p-3.5">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-bold text-foreground">Recent calls</p>
-        <p className="text-[11px] text-muted-foreground">{CALLS.length}</p>
+        <p className="text-[11px] font-bold text-foreground sm:text-xs">Recent calls</p>
+        <p className="text-[10px] text-muted-foreground sm:text-[11px]">{CALLS.length}</p>
       </div>
-      <div className="mt-2.5 flex flex-col gap-1">
+      <div className="mt-1.5 flex flex-col gap-0.5 sm:mt-2.5 sm:gap-1">
         {CALLS.map((c) => {
           const active = c.id === activeId
           return (
@@ -148,14 +148,14 @@ function RecentCallsCard({
               key={c.id}
               type="button"
               onClick={() => onSelect(c.id)}
-              className={`flex w-full items-center gap-2 rounded-xl px-2 py-1.5 text-left no-underline outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/40 ${active ? "bg-slate-100" : "hover:bg-slate-50"}`}
+              className={`flex w-full items-center gap-2 rounded-xl px-2 py-1 text-left no-underline outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/40 sm:py-1.5 ${active ? "bg-slate-100" : "hover:bg-slate-50"}`}
             >
               <span className={`size-1.5 shrink-0 rounded-full ${active ? "bg-emerald-500" : "bg-emerald-500/60"}`} aria-hidden />
               <div className="min-w-0 flex-1 leading-tight">
-                <p spellCheck={false} className="truncate text-[11px] font-semibold text-foreground no-underline">{c.title}</p>
-                <p spellCheck={false} className="truncate text-[10px] text-muted-foreground no-underline">{c.subtitle}</p>
+                <p spellCheck={false} className="truncate text-[10px] font-semibold text-foreground no-underline sm:text-[11px]">{c.title}</p>
+                <p spellCheck={false} className="truncate text-[9px] text-muted-foreground no-underline sm:text-[10px]">{c.subtitle}</p>
               </div>
-              <span className="shrink-0 text-[10px] text-muted-foreground">{c.duration}</span>
+              <span className="shrink-0 text-[9px] text-muted-foreground sm:text-[10px]">{c.duration}</span>
             </button>
           )
         })}
@@ -184,11 +184,11 @@ function TrendsCard() {
   }, [autoHover])
 
   return (
-    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-3.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
+    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-2.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur sm:p-3.5">
       <div className="flex items-start justify-between gap-2">
         <div className="leading-tight">
-          <p className="text-xs font-bold text-foreground">Trends · last 7 days</p>
-          <p className="text-[10px] text-muted-foreground">Per-metric performance</p>
+          <p className="text-[11px] font-bold text-foreground sm:text-xs">Trends · last 7 days</p>
+          <p className="text-[9px] text-muted-foreground sm:text-[10px]">Per-metric performance</p>
         </div>
         <div className="flex shrink-0 flex-col gap-0.5">
           {trendSeries.map((s) => {
@@ -205,7 +205,7 @@ function TrendsCard() {
                     return next
                   })
                 }
-                className={`flex items-center gap-1 rounded px-1 text-[9px] transition-opacity ${hidden ? "opacity-40" : ""} text-muted-foreground hover:text-foreground`}
+                className={`flex items-center gap-1 rounded px-1 text-[8px] transition-opacity sm:text-[9px] ${hidden ? "opacity-40" : ""} text-muted-foreground hover:text-foreground`}
               >
                 <span className={`size-1.5 rounded-full ${s.color}`} aria-hidden />
                 {s.label}
@@ -215,7 +215,7 @@ function TrendsCard() {
         </div>
       </div>
       <div
-        className="relative mt-5"
+        className="relative mt-3 sm:mt-5"
         onMouseEnter={() => setAutoHover(false)}
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect()
@@ -227,7 +227,7 @@ function TrendsCard() {
           setAutoHover(true)
         }}
       >
-        <svg viewBox={`0 0 ${w} ${h}`} className="h-14 w-full overflow-visible">
+        <svg viewBox={`0 0 ${w} ${h}`} className="h-10 w-full overflow-visible sm:h-14">
           {trendSeries
             .filter((s) => !hiddenSeries.has(s.label))
             .map((s) => (
@@ -478,22 +478,29 @@ function CallAnalyticsMockup() {
 
   return (
     <div
-      className="relative grid gap-3 sm:grid-cols-[190px_1fr]"
+      className="relative grid w-full min-w-0 gap-3 sm:grid-cols-[190px_1fr] sm:grid-rows-2"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex flex-col gap-3">
-        <RecentCallsCard activeId={activeId} onSelect={setActiveId} />
-        <TrendsCard />
+      <div className="order-1 flex w-full min-w-0 justify-center sm:order-none sm:col-start-1 sm:row-start-1 sm:block sm:w-auto">
+        <div className="w-[95%] min-w-0 sm:w-auto">
+          <RecentCallsCard activeId={activeId} onSelect={setActiveId} />
+        </div>
       </div>
       <motion.div
         key={call.id}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.2 }}
+        className="order-2 flex w-full min-w-0 justify-center sm:order-none sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:block sm:w-auto"
       >
-        <CallDetailCard call={call} />
+        <div className="w-[95%] min-w-0 sm:w-auto">
+          <CallDetailCard call={call} />
+        </div>
       </motion.div>
+      <div className="order-3 min-w-0 sm:order-none sm:col-start-1 sm:row-start-2">
+        <TrendsCard />
+      </div>
     </div>
   )
 }
@@ -542,10 +549,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-5 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.6rem]"
+              className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]"
             >
               Answer every call like your{" "}
-              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
                 best front desk.
               </span>
             </motion.h1>
@@ -564,17 +571,17 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.32 }}
-              className="mt-6 flex flex-col gap-3 sm:flex-row"
+              className="mt-6 flex flex-row flex-nowrap items-center gap-1.5 sm:gap-3"
             >
               <Button
                 asChild
                 size="lg"
-                className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] py-2 pl-8 pr-2 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                className="h-10 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-3 py-2 text-xs font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-8 sm:pl-8 sm:pr-2 sm:text-base"
               >
                 <Link href="/get-started">
                   Build your first agent
-                  <span className="flex size-7 items-center justify-center rounded-full bg-white/20">
-                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white/20 sm:size-7">
+                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden />
                   </span>
                 </Link>
               </Button>
@@ -582,10 +589,10 @@ export function Hero() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                className="h-10 shrink-0 rounded-full border-border bg-white px-3 text-xs font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
               >
                 <Link href="/features">
-                  <LayoutGrid className="mr-2 h-4 w-4" />
+                  <LayoutGrid className="mr-1 h-3 w-3 sm:mr-2 sm:h-4 sm:w-4" />
                   Features
                 </Link>
               </Button>
@@ -605,22 +612,24 @@ export function Hero() {
             </motion.div>
 
             {/* Stats card — pinned to the bottom so it aligns with the panel */}
-            <ScrollReveal className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:grid-cols-4">
-              {highlights.map((h) => {
-                const Icon = h.icon
-                return (
-                  <div key={h.title} className="flex flex-col items-center gap-1 bg-white px-3 py-3 text-center">
-                    <div className="flex items-center gap-2">
-                      <span className={`flex size-8 items-center justify-center rounded-full ${h.tile} ${h.color}`}>
-                        <Icon className="size-4" aria-hidden />
-                      </span>
-                      <span className={`text-lg font-bold ${h.color}`}>{h.stat}</span>
+            <div className="w-full flex justify-center sm:block sm:w-auto">
+              <ScrollReveal className="mt-8 grid w-[280px] max-w-full grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:w-full sm:max-w-none sm:grid-cols-4">
+                {highlights.map((h) => {
+                  const Icon = h.icon
+                  return (
+                    <div key={h.title} className="flex flex-col items-center justify-center gap-0.5 bg-white px-1.5 py-1.5 text-center sm:gap-1 sm:px-3 sm:py-3">
+                      <div className="flex items-center justify-center gap-1 sm:gap-2">
+                        <span className={`flex size-5 items-center justify-center rounded-full ${h.tile} ${h.color} sm:size-8`}>
+                          <Icon className="size-2.5 sm:size-4" aria-hidden />
+                        </span>
+                        <span className={`text-xs font-bold ${h.color} sm:text-lg`}>{h.stat}</span>
+                      </div>
+                      <span className="text-[8px] leading-tight text-muted-foreground sm:text-[11px]">{h.title}</span>
                     </div>
-                    <span className="text-[11px] leading-tight text-muted-foreground">{h.title}</span>
-                  </div>
-                )
-              })}
-            </ScrollReveal>
+                  )
+                })}
+              </ScrollReveal>
+            </div>
           </div>
 
           {/* ── Right: hero visual ── */}
