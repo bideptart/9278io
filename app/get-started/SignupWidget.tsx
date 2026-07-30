@@ -48,6 +48,16 @@ type Plan = {
   perks: string[]
 }
 
+// Portal API order isn't guaranteed — force Starter, Growth, Scale
+// left-to-right (matching the pricing page) regardless of response order.
+const PLAN_ORDER: Record<string, number> = { starter: 0, growth: 1, scale: 2 }
+function sortPlans(plans: Plan[]): Plan[] {
+  return [...plans].sort((a, b) => {
+    const key = (p: Plan) => PLAN_ORDER[p.id.toLowerCase()] ?? PLAN_ORDER[p.label.toLowerCase()] ?? 99
+    return key(a) - key(b)
+  })
+}
+
 const LANGUAGES: Array<{ value: string; label: string }> = [
   { value: "en-IN", label: "English (India)" },
   { value: "en-US", label: "English (US)" },
@@ -111,7 +121,7 @@ export default function SignupWidget() {
       try {
         const plansRes = await fetch(`${PORTAL_BASE}/api/plans`).then((r) => r.json())
         if (cancelled) return
-        setPlans(plansRes.plans || [])
+        setPlans(sortPlans(plansRes.plans || []))
       } catch (e) {
         if (!cancelled) setLoadError((e as Error).message || "Could not load plans")
       }
