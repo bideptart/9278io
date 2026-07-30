@@ -67,8 +67,8 @@ export function IndustriesScrollCards({
           <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
           {eyebrow}
         </span>
-        <h2 className="mt-4 text-balance text-2xl font-bold tracking-tight">{heading}</h2>
-        <p className="mx-auto mt-3 max-w-md text-pretty text-sm leading-relaxed text-muted-foreground">{description}</p>
+        <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight">{heading}</h2>
+        <p className="mx-auto mt-3 max-w-md text-pretty leading-relaxed text-muted-foreground">{description}</p>
         <Link
           href={exploreHref}
           className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"

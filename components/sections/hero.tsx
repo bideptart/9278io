@@ -227,7 +227,7 @@ function TrendsCard() {
           setAutoHover(true)
         }}
       >
-        <svg viewBox={`0 0 ${w} ${h}`} className="h-10 w-full overflow-visible sm:h-14">
+        <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="h-14 w-full overflow-visible">
           {trendSeries
             .filter((s) => !hiddenSeries.has(s.label))
             .map((s) => (
@@ -285,7 +285,7 @@ function TrendsCard() {
                   scale: 1,
                   x: "-50%",
                   y: "calc(-100% - 10px)",
-                  left: `${Math.min(100 - 84 / 2, Math.max(84 / 2, xPct))}%`,
+                  left: `clamp(42px, ${xPct}%, calc(100% - 42px))`,
                   top: `${yPct}%`,
                 }}
                 exit={{ opacity: 0, scale: 0.9, x: "-50%", y: "calc(-100% - 10px)" }}

@@ -394,9 +394,7 @@ export function SiteHeader() {
           >
             <Link href="/get-started">
               Get Started
-              <span className="flex size-6 items-center justify-center rounded-full bg-white/20">
-                <ArrowRight className="size-3.5" aria-hidden />
-              </span>
+              <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </Button>
 
