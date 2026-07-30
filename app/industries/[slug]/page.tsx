@@ -29,6 +29,7 @@ import {
   Headphones,
   Building2,
   Briefcase,
+  Wrench,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -1596,6 +1597,512 @@ function RealEstatePage() {
   )
 }
 
+function HomeServicesPage() {
+  const industry = getIndustry("home-services")!
+  const related = INDUSTRIES.filter((i) => i.slug !== "home-services").slice(0, 3)
+  const education = getIndustry("education")
+
+  return (
+    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+      <SiteHeader />
+
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Industries", path: "/industries" },
+          { name: "Home services", path: "/industries/home-services" },
+        ]}
+      />
+      <ServiceJsonLd
+        name="AI voice agents for home services"
+        description={industry.pitch}
+        path="/industries/home-services"
+        serviceType="AI voice agent"
+      />
+
+      {/* ─── Hero ─── */}
+      <section className="relative overflow-hidden bg-white">
+        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
+          <nav aria-label="Breadcrumb" className="mx-auto mb-6 max-w-7xl text-xs text-slate-500">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="hover:text-slate-800">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden>{">"}</li>
+              <li>
+                <Link href="/industries" className="hover:text-slate-800">
+                  Industries
+                </Link>
+              </li>
+              <li aria-hidden>{">"}</li>
+              <li className="text-slate-800">Home services</li>
+            </ol>
+          </nav>
+
+          <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+            {/* Left — copy */}
+            <ScrollReveal>
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[13px] font-medium text-blue-700 shadow-sm">
+                <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+                  <Sparkles className="size-3.5" aria-hidden />
+                </span>
+                AI voice agents for home services
+              </span>
+
+              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
+                AI voice agents
+                <br />
+                built for <span className="text-blue-600">home services.</span>
+              </h1>
+
+              <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
+                {industry.pitch}
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-8">
+                {[
+                  { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
+                  { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
+                  { Icon: TrendingUp, title: "More Jobs Won", desc: "Convert more calls into confirmed jobs" },
+                ].map((f) => (
+                  <div key={f.title} className="flex items-start gap-3">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
+                      <f.Icon className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-[13.5px] font-bold leading-snug text-slate-900">{f.title}</p>
+                      <p className="max-w-[160px] text-[12px] leading-snug text-slate-500">{f.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                >
+                  <Link href="/get-started?industry=home-services">
+                    Get started
+                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                >
+                  <Link href="/pricing">View pricing</Link>
+                </Button>
+              </div>
+            </ScrollReveal>
+
+            {/* Right — hero photo + smarter-calls overlay + live call preview */}
+            <ScrollReveal delay={0.14}>
+              <div className="relative mx-auto w-full max-w-[620px] pb-16">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-600 via-blue-500 to-sky-400 shadow-xl shadow-slate-900/10">
+                  {/* Decorative dotted pattern */}
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-[0.18]"
+                    style={{
+                      backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1.5px, transparent 1.8px)",
+                      backgroundSize: "22px 22px",
+                    }}
+                  />
+                  <div aria-hidden className="absolute -right-14 -top-14 size-64 rounded-full bg-white/10 blur-2xl" />
+                  <div aria-hidden className="absolute -bottom-16 -left-10 size-56 rounded-full bg-blue-900/20 blur-2xl" />
+
+                  {/* Orbiting capability icons */}
+                  <span className="absolute right-10 top-8 grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
+                    <Wrench className="size-5" aria-hidden />
+                  </span>
+                  <span className="absolute right-8 bottom-[38%] grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
+                    <Home className="size-5" aria-hidden />
+                  </span>
+                  <span className="absolute left-8 bottom-[30%] grid size-10 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
+                    <MessageCircle className="size-4.5" aria-hidden />
+                  </span>
+
+                  {/* Ground shadow */}
+                  <div aria-hidden className="absolute bottom-[18%] left-1/2 h-5 w-32 -translate-x-1/2 rounded-full bg-blue-950/25 blur-md" />
+
+                  {/* Robot mascot */}
+                  <div className="absolute bottom-[20%] left-1/2 flex -translate-x-1/2 flex-col items-center">
+                    {/* Antenna */}
+                    <div className="flex flex-col items-center">
+                      <span className="size-2.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" aria-hidden />
+                      <span className="h-4 w-[3px] bg-white/80" aria-hidden />
+                    </div>
+
+                    {/* Head */}
+                    <div className="relative flex h-16 w-20 items-center justify-center gap-3 rounded-2xl bg-white shadow-lg">
+                      <span className="size-3.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" aria-hidden />
+                      <span className="size-3.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" aria-hidden />
+                      <span
+                        aria-hidden
+                        className="absolute bottom-2.5 left-1/2 h-1.5 w-6 -translate-x-1/2 rounded-full border-b-2 border-blue-300"
+                      />
+                    </div>
+
+                    {/* Neck */}
+                    <span className="h-1.5 w-4 bg-slate-200" aria-hidden />
+
+                    {/* Body */}
+                    <div className="relative flex h-20 w-28 items-start justify-center rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200 pt-3 shadow-lg">
+                      {/* Arms */}
+                      <span className="absolute -left-3 top-3 h-10 w-3 rounded-full bg-slate-200" aria-hidden />
+                      <span className="absolute -right-3 top-3 h-10 w-3 rounded-full bg-slate-200" aria-hidden />
+                      {/* Chest panel */}
+                      <span className="grid size-9 place-items-center rounded-full bg-blue-600 text-white shadow-inner">
+                        <Bot className="size-5" aria-hidden />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Live call preview card — overlaps bottom of photo */}
+                <div className="absolute inset-x-4 bottom-8 z-20 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_20px_50px_-20px_rgba(2,6,23,0.35)]">
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                      <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
+                      Live Call Preview
+                    </p>
+                    <div className="flex h-4 items-end gap-[2px]" aria-hidden>
+                      {[6, 10, 7, 12, 8].map((h, i) => (
+                        <span
+                          key={i}
+                          style={{ height: `${h}px`, animationDelay: `${i * 0.12}s` }}
+                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-blue-500 to-sky-400"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 px-4 pb-4">
+                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
+                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
+                        Agent
+                      </span>
+                      <p className="text-[13px] text-blue-900">नमस्ते! आपकी कैसे सेवा कर सकता हूँ?</p>
+                    </div>
+                    <div className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3.5 py-2.5">
+                      <span className="shrink-0 rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-600">
+                        Caller
+                      </span>
+                      <p className="text-[13px] text-slate-600">AC ठंडा नहीं कर रहा, जल्दी मदद चाहिए।</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 bg-emerald-50 px-4 py-3 text-[12.5px] font-semibold text-emerald-700">
+                    <span className="grid size-4 place-items-center rounded-full bg-emerald-100">
+                      <Check className="size-2.5" aria-hidden />
+                    </span>
+                    Job captured &middot; AC Repair &middot; Priority: High
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <ScrollReveal delay={0.15} className="w-full border-t border-slate-100">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-10 sm:grid-cols-4 md:px-8">
+            {[
+              { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },
+              { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-50 text-emerald-600" },
+              { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-50 text-violet-600" },
+              { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-50 text-blue-600" },
+            ].map(({ Icon: StatIcon, label, value, tone }) => (
+              <div key={label} className="flex flex-col items-center gap-2 text-center">
+                <span className={`grid size-11 place-items-center rounded-full ${tone}`}>
+                  <StatIcon className="size-5" aria-hidden />
+                </span>
+                <p className="font-serif text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
+                <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ─── What agent does + How it sounds ─── */}
+      <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
+        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
+          {/* Left — day-one jobs with real photo */}
+          <ScrollReveal>
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+              <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
+                <Wrench className="size-5" aria-hidden />
+              </span>
+              <h2 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+                What the agent does on day one
+              </h2>
+              <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
+
+              <div className="mt-6 overflow-hidden rounded-2xl shadow-md shadow-slate-900/10">
+                <IndustryImage slug="home-services" name="Home services" />
+              </div>
+
+              <ol className="mt-6 space-y-3">
+                {industry.jobs.map((job) => (
+                  <li
+                    key={job}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)]"
+                  >
+                    <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
+                      <Check className="size-3.5" aria-hidden />
+                    </span>
+                    <span className="text-pretty text-[14px] leading-snug text-slate-700">{job}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </ScrollReveal>
+
+          {/* Right — how agent sounds */}
+          <ScrollReveal delay={0.1}>
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+              <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
+                <Volume2 className="size-5" aria-hidden />
+              </span>
+              <h2 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+                How the agent actually sounds
+              </h2>
+              <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
+
+              <p className="mt-4 text-pretty text-[14.5px] leading-relaxed text-slate-600">
+                Real conversations. In your language. With human-like tone and context — built for home service
+                businesses.
+              </p>
+
+              <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_10px_30px_-18px_rgba(2,132,199,0.25)]">
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    aria-label="Play sample"
+                    className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-600/25"
+                  >
+                    <Play className="size-4 fill-white" aria-hidden />
+                  </button>
+                  <div className="flex h-6 flex-1 items-end gap-[2px]" aria-hidden>
+                    {Array.from({ length: 34 }).map((_, i) => (
+                      <span
+                        key={i}
+                        style={{ height: `${6 + ((i * 7) % 18)}px` }}
+                        className={`w-[2px] rounded-full ${i < 10 ? "bg-blue-500" : "bg-slate-200"}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="shrink-0 text-[11px] font-medium text-slate-400">0:00 / 0:32</span>
+                </div>
+
+                <div className="mt-4 space-y-2.5">
+                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
+                    नमस्ते! मैं 9278 का वॉइस असिस्टेंट हूँ। आपको किस प्रकार की सेवा चाहिए?
+                  </p>
+                  <p className="ml-auto max-w-[85%] rounded-xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
+                    मेरा AC काम नहीं कर रहा, ठंडी हवा नहीं आ रही।
+                  </p>
+                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
+                    ठीक है, मैं आपकी जानकारी ले लेता हूँ। कृपया अपना नाम और पता बताइए।
+                  </p>
+                </div>
+
+                <div className="mt-4 flex items-center gap-1.5 border-t border-slate-100 pt-3 text-[12.5px] font-semibold text-blue-600">
+                  <Globe className="size-3.5" aria-hidden />
+                  Supports 20+ Indian Languages
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50/40 p-5">
+                <div className="flex items-center gap-2.5">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
+                    <Sparkles className="size-4" aria-hidden />
+                  </span>
+                  <p className="text-[13.5px] font-bold text-slate-900">Built for every home service call</p>
+                </div>
+
+                <p className="mt-3.5 text-pretty text-[14px] leading-relaxed text-slate-600">
+                  Home service businesses need quick and reliable communication to manage customer requests,
+                  appointments, and support. AI-powered solutions help automate call handling, booking, and
+                  follow-ups, ensuring no lead is missed. From plumbing and electrical services to cleaning and
+                  maintenance, businesses can provide 24/7 assistance and faster response times. This improves
+                  customer satisfaction, streamlines operations, and helps service providers grow more efficiently.
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {["24/7 Assistance", "Faster Response", "No Missed Leads", "Streamlined Ops"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-blue-200/70 bg-white px-3 py-1.5 text-[11.5px] font-semibold text-blue-700 shadow-sm"
+                    >
+                      <Check className="size-3" aria-hidden />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─── CTA banner ─── */}
+      <section className="w-full px-6 py-8 md:px-8 md:py-10">
+        <ScrollReveal className="mx-auto max-w-7xl">
+          <div className="relative flex flex-col items-center gap-6 overflow-hidden rounded-[1.75rem] bg-gradient-to-r from-blue-700 to-blue-600 px-6 py-8 text-center shadow-lg shadow-blue-700/25 sm:flex-row sm:items-center sm:justify-between sm:text-left md:px-10">
+            <div className="flex items-center gap-5">
+              <span className="hidden size-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-white sm:grid">
+                <Bot className="size-7" aria-hidden />
+              </span>
+              <div>
+                <h2 className="text-balance font-serif text-xl font-bold leading-snug text-white sm:text-2xl">
+                  Ready to automate calls and grow your home service business?
+                </h2>
+                <p className="mt-1.5 text-[13.5px] text-blue-100">
+                  Launch your AI voice agent in minutes. No setup headaches.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex shrink-0 flex-wrap justify-center gap-3">
+              <Button
+                asChild
+                size="lg"
+                className="h-auto rounded-full bg-white px-6 py-3 text-[14.5px] font-bold text-blue-700 shadow-md hover:bg-blue-50"
+              >
+                <Link href="/get-started?industry=home-services">
+                  Launch a home services agent
+                  <ArrowRight className="ml-1.5 size-4" aria-hidden />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-auto rounded-full border-white/40 bg-transparent px-6 py-3 text-[14.5px] font-bold text-white hover:bg-white/10"
+              >
+                <Link href="/get-started?industry=home-services">
+                  Talk to our expert
+                  <ArrowRight className="ml-1.5 size-4" aria-hidden />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ─── Other industries we power ─── */}
+      <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
+        <div className="mx-auto max-w-6xl">
+          <ScrollReveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+              Other industries we power
+            </h2>
+            <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
+              Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ...related.map((r) => ({
+                href: `/industries/${r.slug}`,
+                titlePrefix: "AI voice agents for ",
+                highlight: r.name.toLowerCase(),
+                description: r.short,
+                icon: r.icon,
+              })),
+              ...(education
+                ? [
+                    {
+                      href: `/industries/${education.slug}`,
+                      titlePrefix: "AI voice agents for ",
+                      highlight: education.name.toLowerCase(),
+                      description: education.short,
+                      icon: education.icon,
+                    },
+                  ]
+                : []),
+              {
+                href: "/pricing",
+                titlePrefix: "",
+                highlight: "Compare plans and per-minute rates",
+                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
+                icon: TrendingUp,
+              },
+              {
+                href: "/faq",
+                titlePrefix: "",
+                highlight: "FAQ — credit, phone numbers, compliance",
+                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
+                icon: ShieldCheck,
+              },
+            ].map((link, i) => {
+              const a = {
+                border: "border-l-primary",
+                tile: "bg-primary/10 text-primary",
+                text: "text-primary",
+                ribbon: "bg-primary",
+                btn: "bg-primary",
+              }
+              const LinkIcon = link.icon
+
+              return (
+                <ScrollReveal key={link.href} delay={i * 0.08}>
+                  <Link
+                    href={link.href}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                  >
+                    <span
+                      aria-hidden
+                      className={`absolute right-0 top-0 h-10 w-10 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
+                    />
+
+                    <div aria-hidden className="absolute right-4 top-10 grid grid-cols-4 gap-1 opacity-60">
+                      {Array.from({ length: 16 }).map((_, d) => (
+                        <span key={d} className="size-1 rounded-full bg-slate-300" />
+                      ))}
+                    </div>
+
+                    <span className={`grid size-9 place-items-center rounded-lg ${a.tile}`}>
+                      <LinkIcon className="size-4.5" aria-hidden />
+                    </span>
+
+                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                      {link.titlePrefix}
+                      {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
+                    </h3>
+                    <span aria-hidden className={`mt-2 block h-1 w-7 rounded-full ${a.ribbon}`} />
+                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">{link.description}</p>
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className={`text-[12.5px] font-semibold ${a.text}`}>Read more</span>
+                      <span
+                        className={`grid size-7 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
+                      >
+                        <ArrowRight className="size-3" aria-hidden />
+                      </span>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </main>
+  )
+}
+
 export default async function IndustryPage({
   params,
 }: {
@@ -1615,6 +2122,10 @@ export default async function IndustryPage({
 
   if (slug === "bfsi") {
     return <BfsiPage />
+  }
+
+  if (slug === "home-services") {
+    return <HomeServicesPage />
   }
 
   const Icon = industry.icon
