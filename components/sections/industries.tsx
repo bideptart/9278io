@@ -10,6 +10,7 @@ import { IndustriesScrollCards } from "@/components/industries/industries-scroll
 /* ── Industry data ── */
 const featured = {
   icon: Phone,
+  image: undefined as string | undefined,
   tag: "BPO & Call Centers",
   title: "Replace Tier-1 Agents at Scale",
   description:
@@ -170,7 +171,7 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
   tag: ind.tag,
   href: ind.href,
   icon: ind.icon,
-  image: "image" in ind ? ind.image : undefined,
+  image: ind.image,
   accent: ACCENTS[i % ACCENTS.length],
   tile: ACCENT_TILES[i % ACCENT_TILES.length],
   bar: ACCENT_BARS[i % ACCENT_BARS.length],
