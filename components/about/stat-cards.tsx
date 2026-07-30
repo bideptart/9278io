@@ -33,7 +33,7 @@ export function StatCards({ stats }: { stats: Stat[] }) {
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-30px" }}
       className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-1.5 rounded-3xl border border-primary/60 bg-white/40 p-1.5 backdrop-blur-sm sm:grid-cols-4"
     >
       {stats.map((s, i) => (

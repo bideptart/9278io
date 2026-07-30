@@ -545,7 +545,7 @@ export function Hero() {
               className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]"
             >
               Answer every call like your{" "}
-              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                 best front desk.
               </span>
             </motion.h1>

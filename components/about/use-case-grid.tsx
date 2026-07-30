@@ -32,7 +32,7 @@ export function UseCaseGrid({ items }: { items: UseCase[] }) {
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: false, margin: "-60px" }}
+      viewport={{ once: false, margin: "-30px" }}
       className="relative"
     >
       <motion.span
