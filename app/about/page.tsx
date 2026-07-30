@@ -96,7 +96,7 @@ export default function AboutPage() {
             </span>
             <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-6xl">
               We&apos;re making AI voice work for{" "}
-              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                 every Indian business.
               </span>
             </h1>
@@ -130,7 +130,7 @@ export default function AboutPage() {
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our Mission</p>
             <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
               Automate every phone call that{" "}
-              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                 doesn&apos;t need a human.
               </span>
             </h2>

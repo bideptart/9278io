@@ -542,3 +542,33 @@
   }
 }
 
+/* ── Same "flowing dash" effect, for plain CSS-positioned divs (not SVG
+   strokes) — used by the features-page hero's right-angle connector lines.
+   A repeating gradient stands in for the dash pattern; animating its
+   position along the line's own axis gives the moving-dash illusion. ── */
+@keyframes dash-flow-h {
+  to {
+    background-position-x: -12px;
+  }
+}
+@keyframes dash-flow-v {
+  to {
+    background-position-y: -12px;
+  }
+}
+.connector-dash-h {
+  background-image: repeating-linear-gradient(to right, oklch(0.546 0.215 262.88 / 0.6) 0 6px, transparent 6px 12px);
+  animation: dash-flow-h 0.8s linear infinite;
+}
+.connector-dash-v {
+  background-image: repeating-linear-gradient(to bottom, oklch(0.546 0.215 262.88 / 0.6) 0 6px, transparent 6px 12px);
+  animation: dash-flow-v 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connector-dash-h,
+  .connector-dash-v {
+    animation: none;
+  }
+}
+
