@@ -1,99 +1,104 @@
 "use client"
 
+import { motion } from "motion/react"
 import {
   AudioLines, BookOpen, GitBranch, BarChart3, ShieldCheck,
   Timer, Share2, Languages, PhoneForwarded,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import { MouseGlowCard } from "@/components/animation/mouse-glow-card"
-import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
 
-type Tile = {
+type Capability = {
   icon: LucideIcon
   title: string
   description: string
-  span: string
 }
 
-// Every tile below restates a real, already-shipped 9278.io capability —
+// Every capability below restates a real, already-shipped 9278.io feature —
 // sourced from feature-groups.tsx and the Connectivity integrations list —
 // nothing here is a new product claim.
-const tiles: Tile[] = [
+const capabilities: Capability[] = [
   {
     icon: AudioLines,
     title: "Voice AI",
     description: "Choose from ten named voices, each with a personality description and a preview clip.",
-    span: "sm:col-span-2 sm:row-span-2",
   },
   {
     icon: Share2,
     title: "CRM & Integrations",
     description: "Connects with 200+ tools Indian teams already use — Zoho CRM, HubSpot, Razorpay, Tally, and more.",
-    span: "sm:col-span-2",
   },
   {
     icon: BookOpen,
     title: "Knowledge Base",
     description: "Give each agent its own set of company facts, FAQs, and policies to draw on.",
-    span: "",
   },
   {
     icon: GitBranch,
     title: "Automation & Routing",
     description: "Route calls by intent, keyword, or time of day — with fallback rules for the rest.",
-    span: "",
   },
   {
     icon: BarChart3,
     title: "Analytics Dashboard",
     description: "Track call counts, minutes used, and average call duration in one place.",
-    span: "sm:col-span-2",
   },
   {
     icon: ShieldCheck,
     title: "Compliance & Recording",
     description: "Every call recorded and transcribed, with a TRAI-compliant 9AM–9PM calling window built in.",
-    span: "",
   },
   {
     icon: Timer,
     title: "Per-Second Billing",
     description: "Priced per second, not rounded up to the next minute.",
-    span: "",
   },
   {
     icon: Languages,
     title: "10+ Indian Languages",
     description: "Hindi, Bengali, Tamil, Telugu, Marathi, and more — tuned for real Indian accents.",
-    span: "",
   },
   {
     icon: PhoneForwarded,
     title: "Call Transfer",
     description: "Hand off any call to a human number with a custom label you set.",
-    span: "",
   },
 ]
 
+const CENTER = 4 // "Analytics Dashboard" sits in the middle of the 3x3 grid
+
 export function FeatureBento() {
   return (
-    <StaggerGroup className="mx-auto grid max-w-5xl auto-rows-[180px] grid-cols-1 gap-4 sm:grid-cols-4">
-      {tiles.map((t) => {
-        const Icon = t.icon
+    <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+      {capabilities.map((c, i) => {
+        const Icon = c.icon
+        const isCenter = i === CENTER
+        const row = Math.floor(i / 3)
+        const col = i % 3
+        // Percent offset (relative to the card's own size) from this card's grid slot back to the center slot.
+        const dx = isCenter ? 0 : (1 - col) * 100
+        const dy = isCenter ? 0 : (1 - row) * 100
+        // Reveal order radiates outward from the center card, one at a time.
+        const order = isCenter ? 0 : i < CENTER ? i + 1 : i
         return (
-          <StaggerItem key={t.title} className={t.span}>
-            <MouseGlowCard className="flex h-full flex-col justify-between p-5">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">
+          <motion.div
+            key={c.title}
+            className="h-full"
+            style={{ zIndex: isCenter ? 20 : 10 }}
+            initial={{ opacity: 0, scale: isCenter ? 0.85 : 0.3, x: `${dx}%`, y: `${dy}%` }}
+            whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: order * 0.12, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="h-full rounded-2xl border border-border bg-white p-7 shadow-[0_16px_34px_-24px_oklch(0.2_0.05_260/0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_24px_50px_-20px_oklch(0.546_0.215_262.88/0.3)]">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.45)]">
                 <Icon className="size-5" aria-hidden />
               </span>
-              <div>
-                <h3 className="text-sm font-semibold text-foreground">{t.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t.description}</p>
-              </div>
-            </MouseGlowCard>
-          </StaggerItem>
+              <h3 className="mt-5 text-lg font-semibold tracking-tight">{c.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
+            </div>
+          </motion.div>
         )
       })}
-    </StaggerGroup>
+    </div>
   )
 }
