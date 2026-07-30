@@ -478,25 +478,27 @@ function CallAnalyticsMockup() {
 
   return (
     <div
-      className="relative grid w-full min-w-0 gap-3 sm:grid-cols-[190px_1fr]"
+      className="relative grid w-full min-w-0 gap-3 sm:grid-cols-[190px_1fr] sm:grid-rows-2"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex w-full min-w-0 justify-center sm:block sm:w-auto">
-        <div className="flex w-[95%] min-w-0 flex-col gap-3 sm:w-auto">
+      <div className="order-1 flex w-full min-w-0 justify-center sm:order-none sm:col-start-1 sm:row-start-1 sm:block sm:w-auto">
+        <div className="w-[95%] min-w-0 sm:w-auto">
           <RecentCallsCard activeId={activeId} onSelect={setActiveId} />
-          <motion.div
-            key={call.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
-            className="min-w-0"
-          >
-            <CallDetailCard call={call} />
-          </motion.div>
         </div>
       </div>
-      <div className="min-w-0">
+      <motion.div
+        key={call.id}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        className="order-2 flex w-full min-w-0 justify-center sm:order-none sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:block sm:w-auto"
+      >
+        <div className="w-[95%] min-w-0 sm:w-auto">
+          <CallDetailCard call={call} />
+        </div>
+      </motion.div>
+      <div className="order-3 min-w-0 sm:order-none sm:col-start-1 sm:row-start-2">
         <TrendsCard />
       </div>
     </div>
