@@ -25,12 +25,16 @@ export function FaqAccordion({
     defaultOpenIndex != null ? (idPrefix ? `${idPrefix}-${defaultOpenIndex}` : `${defaultOpenIndex}`) : undefined
 
   return (
-    <Accordion type="single" collapsible defaultValue={defaultValue} className="w-full space-y-4">
+    <Accordion type="single" collapsible defaultValue={defaultValue} className="w-full space-y-3">
       {items.map((item, i) => {
         const value = idPrefix ? `${idPrefix}-${i}` : `${i}`
         return (
-          <AccordionItem key={value} value={value}>
-            <AccordionTrigger className="data-[state=open]:text-primary [&>svg]:text-foreground">
+          <AccordionItem
+            key={value}
+            value={value}
+            className="transition-colors hover:border-primary/30 data-[state=open]:border-primary/40 data-[state=open]:shadow-[0_1px_0_0_var(--color-primary)_inset,0_8px_24px_-16px_rgba(37,99,235,0.35)]"
+          >
+            <AccordionTrigger className="data-[state=open]:text-primary [&>svg]:text-muted-foreground data-[state=open]:[&>svg]:text-primary">
               {item.q}
             </AccordionTrigger>
             <AccordionContent className="text-pretty leading-relaxed text-muted-foreground">

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   PhoneCall, ArrowRight, Sparkles,
-  Languages, Headphones, Zap, Timer, ShieldCheck,
+  Languages, Headphones, Zap, Timer, ShieldCheck, MessageCircleQuestion,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -155,13 +155,38 @@ export default function FeaturesPage() {
 
           <div className="mx-auto mt-10 max-w-5xl">
             <ScrollReveal>
-              <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
+              <div className="relative overflow-hidden rounded-[28px] bg-white p-5 shadow-[0_1px_2px_rgba(16,24,40,0.04),0_16px_40px_-22px_rgba(16,24,40,0.32)] ring-1 ring-inset ring-border/70 md:p-7">
+                {/* ambient mesh glow */}
+                <div aria-hidden className="pointer-events-none absolute inset-0">
+                  <div className="absolute -right-20 -top-24 size-72 rounded-full bg-primary/[0.08] blur-3xl" />
+                  <div className="absolute -bottom-24 -left-16 size-56 rounded-full bg-[oklch(0.72_0.15_262.88)]/[0.05] blur-3xl" />
+                </div>
+                <span
+                  aria-hidden
+                  className="absolute inset-x-6 top-0 h-[3px] rounded-full bg-gradient-to-r from-primary/0 via-primary to-primary/0"
+                />
+
+                <div className="relative flex items-center gap-3 border-b border-border/60 pb-5">
+                  <span className="relative flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-inset ring-primary/10">
+                    <span aria-hidden className="absolute inset-0 -z-10 rounded-xl bg-primary/20 blur-md" />
+                    <MessageCircleQuestion className="size-4.5" aria-hidden />
+                  </span>
+                  <h3 className="text-xl font-semibold tracking-tight md:text-2xl">General questions</h3>
+                  <span className="ml-auto rounded-full bg-secondary px-2.5 py-0.5 text-sm tabular-nums text-muted-foreground ring-1 ring-inset ring-border/70">
+                    {faqs.length}
+                  </span>
+                </div>
+
+                <div className="relative mt-5">
+                  <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
+                </div>
+              </div>
             </ScrollReveal>
 
-            <ScrollReveal className="mt-10 flex justify-center">
+            <ScrollReveal className="mt-8 flex justify-center">
               <Link
                 href="/faq"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
               >
                 See all FAQs →
               </Link>
