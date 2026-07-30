@@ -115,7 +115,7 @@ export function HowItWorks() {
             />
             How It Works
           </motion.span>
-          <h2 className="mt-3 whitespace-nowrap text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:whitespace-nowrap sm:text-4xl md:text-5xl">
             Every call your business makes.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">

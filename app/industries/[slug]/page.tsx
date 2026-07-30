@@ -105,7 +105,7 @@ function ECommercePage() {
           }}
         />
 
-        <div className="w-full px-6 pt-12 pb-12 md:px-8 md:pt-16 md:pb-16">
+        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
           <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
@@ -173,29 +173,6 @@ function ECommercePage() {
                     View Pricing
                   </Link>
                 </Button>
-              </div>
-
-              {/* Trusted by 10,000+ brands row */}
-              <div className="mt-10 flex items-center gap-3.5">
-                {/* Avatar stack */}
-                <div className="flex -space-x-3">
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-amber-100 to-orange-100 shadow-sm ring-1 ring-slate-200/60">
-                    <img src="/avatars/priya.jpg" alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-sky-100 to-blue-100 shadow-sm ring-1 ring-slate-200/60">
-                    <img src="/avatars/rahul.jpg" alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-emerald-100 to-teal-100 shadow-sm ring-1 ring-slate-200/60">
-                    <img src="/avatars/amit.jpg" alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="grid size-10 place-items-center overflow-hidden rounded-full border-2 border-white bg-gradient-to-br from-blue-600 to-sky-600 text-[11px] font-bold text-white shadow-sm ring-1 ring-blue-200/60">
-                    +10K
-                  </div>
-                </div>
-                <div className="leading-tight">
-                  <p className="text-[13.5px] font-semibold text-slate-800">Trusted by 10,000+ brands</p>
-                  <p className="text-[12.5px] text-slate-500">for smarter customer conversations</p>
-                </div>
               </div>
             </ScrollReveal>
 
@@ -347,7 +324,7 @@ function ECommercePage() {
       </section>
 
       {/* ─── What agent does + How it sounds ─── */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-20">
+      <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollReveal>
@@ -433,6 +410,24 @@ function ECommercePage() {
                       Can you track my order?
                     </span>
                   </div>
+                  <div className="flex text-sm">
+                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
+                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
+                      Sure! Order #4521 shipped yesterday and arrives by 6 PM tomorrow.
+                    </span>
+                  </div>
+                  <div className="flex text-sm justify-end">
+                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-4 py-2.5 text-slate-700 ring-1 ring-slate-200">
+                      <span className="mr-1 text-[10px] font-bold uppercase opacity-40">Customer</span>
+                      Great — can I also return a pair of shoes from my last order?
+                    </span>
+                  </div>
+                  <div className="flex text-sm">
+                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
+                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
+                      Absolutely — I&apos;ll email a prepaid return label right now.
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -441,7 +436,7 @@ function ECommercePage() {
       </section>
 
       {/* ─── How teams roll out — two-step process ─── */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+      <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="flex items-start gap-4">
             <span className="relative shrink-0">
@@ -527,17 +522,22 @@ function ECommercePage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
+                className="h-auto rounded-full bg-primary px-7 py-3.5 text-base text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
               >
                 <Link href="/get-started?industry=ecommerce">
-                  <Rocket className="mr-1 size-4" aria-hidden />
+                  <Rocket className="mr-1.5 size-5" aria-hidden />
                   Launch a e-commerce agent
-                  <ArrowRight className="ml-1 size-4" aria-hidden />
+                  <ArrowRight className="ml-1.5 size-5" aria-hidden />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="transition-transform hover:-translate-y-0.5">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-auto rounded-full px-7 py-3.5 text-base transition-transform hover:-translate-y-0.5"
+              >
                 <Link href="/faq">
-                  <HelpCircle className="mr-1 size-4" aria-hidden />
+                  <HelpCircle className="mr-1.5 size-5" aria-hidden />
                   Read the FAQ
                 </Link>
               </Button>
@@ -547,7 +547,7 @@ function ECommercePage() {
       </section>
 
       {/* ─── AI agents that grow with you ─── */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-br from-blue-50/60 via-sky-50/40 to-sky-50/50 px-6 py-16 md:px-8 md:py-24">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-blue-50/60 via-sky-50/40 to-sky-50/50 px-6 pb-16 pt-6 md:px-8 md:pb-24 md:pt-8">
         <div aria-hidden className="pointer-events-none absolute -left-24 top-16 -z-10 size-72 rounded-full bg-blue-400/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-24 bottom-0 -z-10 size-80 rounded-full bg-sky-400/15 blur-3xl" />
 
@@ -725,41 +725,38 @@ function ECommercePage() {
                 <ScrollReveal key={link.href} delay={i * 0.08}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-2xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
                   >
                     {/* corner ribbon */}
                     <span
                       aria-hidden
-                      className={`absolute right-0 top-0 h-16 w-16 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
+                      className={`absolute right-0 top-0 h-12 w-12 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
                     />
-                    <span aria-hidden className="absolute right-2.5 top-1.5 text-xs font-bold text-white">
-                      99
-                    </span>
 
                     {/* dotted decoration */}
-                    <div aria-hidden className="absolute right-6 top-16 grid grid-cols-4 gap-1.5 opacity-60">
+                    <div aria-hidden className="absolute right-5 top-12 grid grid-cols-4 gap-1 opacity-60">
                       {Array.from({ length: 16 }).map((_, d) => (
                         <span key={d} className="size-1 rounded-full bg-slate-300" />
                       ))}
                     </div>
 
-                    <span className={`grid size-14 place-items-center rounded-2xl ${a.tile}`}>
-                      <LinkIcon className="size-6" aria-hidden />
+                    <span className={`grid size-11 place-items-center rounded-xl ${a.tile}`}>
+                      <LinkIcon className="size-5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-5 text-balance font-serif text-xl font-bold tracking-tight text-foreground">
+                    <h3 className="mt-4 text-balance font-serif text-lg font-bold tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
-                    <span aria-hidden className={`mt-3 block h-1 w-9 rounded-full ${a.ribbon}`} />
-                    <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">{link.description}</p>
+                    <span aria-hidden className={`mt-2.5 block h-1 w-8 rounded-full ${a.ribbon}`} />
+                    <p className="mt-2.5 text-pretty text-sm leading-relaxed text-muted-foreground">{link.description}</p>
 
-                    <div className="mt-6 flex items-center justify-between">
+                    <div className="mt-5 flex items-center justify-between">
                       <span className={`text-sm font-semibold ${a.text}`}>Read more</span>
                       <span
-                        className={`grid size-9 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
+                        className={`grid size-8 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
                       >
-                        <ArrowRight className="size-4" aria-hidden />
+                        <ArrowRight className="size-3.5" aria-hidden />
                       </span>
                     </div>
                   </Link>

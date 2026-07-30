@@ -61,11 +61,14 @@ export default function GetStartedPage() {
           </div>
 
           {/* Verifiable credibility signals (no fabricated social proof) */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {["Data stored in India", "TRAI & DPDP compliant", "GST-compliant invoicing", "Secure Razorpay checkout"].map(
               (item) => (
-                <span key={item} className="inline-flex items-center gap-1.5">
-                  <Check className="size-4 text-emerald-600" aria-hidden /> {item}
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground"
+                >
+                  <Check className="size-3.5 text-emerald-600" aria-hidden /> {item}
                 </span>
               ),
             )}

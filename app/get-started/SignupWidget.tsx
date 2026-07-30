@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react"
 import Script from "next/script"
 import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { AnimatedPrice } from "@/components/pricing/animated-price"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -352,10 +353,10 @@ export default function SignupWidget() {
                 }
               }}
               className={cn(
-                "relative cursor-pointer transition focus:outline-none",
+                "relative cursor-pointer border-2 transition focus:outline-none",
                 selected
                   ? "border-sky-500 ring-2 ring-sky-500/30"
-                  : "hover:border-sky-300",
+                  : "hover:border-sky-500",
               )}
             >
               {p.tag && (
@@ -369,7 +370,9 @@ export default function SignupWidget() {
               </CardHeader>
               <CardContent>
                 <div className="mb-1">
-                  <span className="text-4xl font-bold tracking-tight">{inr(price)}</span>
+                  <span className="text-4xl font-bold tracking-tight">
+                    <AnimatedPrice value={price} />
+                  </span>
                   <span className="ml-1 text-sm text-muted-foreground">
                     /{cycle === "yearly" ? "yr" : "mo"}
                   </span>

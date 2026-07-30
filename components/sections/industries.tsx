@@ -1,15 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
 import {
   Phone, Home, ShoppingBag, Scale,
   GraduationCap, Car, UtensilsCrossed, Dumbbell, Landmark,
-  ArrowRight, type LucideIcon,
+  type LucideIcon,
 } from "lucide-react"
 import { motion } from "motion/react"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { CardStack, type CardStackItem } from "@/components/ui/card-stack"
+import { IndustriesExpandCards } from "@/components/industries/industries-expand-cards"
 
 /* ── Industry data ── */
 const featured = {
@@ -139,11 +137,21 @@ const ACCENT_TILES = [
   "bg-orange-50 border-orange-200", "bg-emerald-50 border-emerald-200", "bg-purple-50 border-purple-200",
   "bg-pink-50 border-pink-200", "bg-indigo-50 border-indigo-200", "bg-teal-50 border-teal-200",
 ]
+const ACCENT_BARS = [
+  "bg-blue-500", "bg-violet-500", "bg-cyan-500", "bg-orange-500", "bg-emerald-500",
+  "bg-purple-500", "bg-pink-500", "bg-indigo-500", "bg-teal-500",
+]
 
-type IndustryCard = CardStackItem & {
+type IndustryCard = {
+  id: number
+  title: string
+  description: string
+  tag: string
+  href: string
   icon: LucideIcon
   accent: string
   tile: string
+  bar: string
   caps: string[]
   agentLine?: string
 }
@@ -157,30 +165,12 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
   icon: ind.icon,
   accent: ACCENTS[i % ACCENTS.length],
   tile: ACCENT_TILES[i % ACCENT_TILES.length],
+  bar: ACCENT_BARS[i % ACCENT_BARS.length],
   caps: ind.caps,
   agentLine: ind.script.find((l) => l.speaker === "Agent")?.text,
 }))
 
-/** Fit the fanned cards to the viewport so they stay fully visible on mobile. */
-function useCardSize() {
-  const [size, setSize] = useState({ width: 460, height: 280 })
-  useEffect(() => {
-    const compute = () => {
-      const vw = window.innerWidth
-      const width = Math.min(560, Math.max(248, vw - 48))
-      // Narrow cards wrap more copy, so give them a touch more height.
-      const height = vw < 640 ? Math.round(width * 0.92) : 340
-      setSize({ width, height })
-    }
-    compute()
-    window.addEventListener("resize", compute)
-    return () => window.removeEventListener("resize", compute)
-  }, [])
-  return size
-}
-
 export function Industries() {
-  const { width: cardWidth, height: cardHeight } = useCardSize()
   return (
     <section id="industries" className="overflow-hidden border-b border-border">
       <div className="w-full px-6 py-6 md:px-8 md:py-8">
@@ -200,89 +190,8 @@ export function Industries() {
           </p>
         </ScrollReveal>
 
-        <ScrollReveal className="-mt-4">
-          <CardStack
-            items={cards}
-            initialIndex={0}
-            maxVisible={5}
-            cardWidth={cardWidth}
-            cardHeight={cardHeight}
-            spreadDeg={0}
-            tiltXDeg={0}
-            depthPx={55}
-            overlap={0.68}
-            activeScale={1}
-            inactiveScale={0.9}
-            activeLiftPx={0}
-            autoAdvance
-            intervalMs={1700}
-            springStiffness={420}
-            springDamping={38}
-            pauseOnHover
-            showDots
-            renderCard={(item, { active }) => {
-              const Icon = item.icon
-              return (
-                <div className={`relative flex h-full w-full flex-col bg-gradient-to-b from-white to-slate-50 ${active ? "px-10 sm:px-16 py-5 sm:py-8" : "px-4 py-4 sm:px-6 sm:py-6"} ${item.accent}`}>
-                  {/* accent bar (colour = industry accent) */}
-                  <span className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-current" aria-hidden />
-
-                  {/* Header */}
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <span className={`flex size-10 shrink-0 items-center justify-center rounded-2xl border sm:size-12 ${item.tile}`}>
-                      <Icon className="size-4 sm:size-5" aria-hidden />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] sm:text-[11px]">{item.tag}</p>
-                      <h3 className="truncate text-base font-bold tracking-tight text-foreground sm:text-lg">{item.title}</h3>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground sm:mt-3 sm:line-clamp-3 sm:text-sm">{item.description}</p>
-
-                  {/* Capability chips */}
-                  <div className="mt-2 flex flex-wrap gap-1.5 sm:mt-3">
-                    {item.caps.map((cap) => (
-                      <span
-                        key={cap}
-                        className="rounded-full border border-current/25 bg-current/[0.07] px-2 py-0.5 text-[10px] font-semibold sm:px-2.5 sm:text-[11px]"
-                      >
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Live agent preview */}
-                  {item.agentLine ? (
-                    <div className="mt-2 flex items-start gap-2 rounded-xl border border-border bg-white/70 px-3 py-2 backdrop-blur-sm sm:mt-3 sm:py-2">
-                      <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md bg-current/15 text-[10px] font-bold">
-                        A
-                      </span>
-                      <p className="line-clamp-2 text-[11px] italic leading-relaxed text-slate-500 sm:text-[12px]">{item.agentLine}</p>
-                    </div>
-                  ) : null}
-
-                  {/* Footer */}
-                  <div className="mt-auto flex items-center justify-between pt-2 sm:pt-3">
-                    {item.href ? (
-                      <Link
-                        href={item.href}
-                        className="inline-flex w-fit items-center gap-1.5 text-[13px] font-semibold sm:text-sm"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Explore <ArrowRight className="size-4" aria-hidden />
-                      </Link>
-                    ) : <span />}
-                    <span className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground sm:text-[11px]">
-                      <span className="size-1.5 rounded-full bg-emerald-500" />
-                      TRAI-compliant
-                    </span>
-                  </div>
-                </div>
-              )
-            }}
-          />
+        <ScrollReveal className="mt-10">
+          <IndustriesExpandCards items={cards} />
         </ScrollReveal>
       </div>
     </section>
