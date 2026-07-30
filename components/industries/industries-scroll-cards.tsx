@@ -1,7 +1,8 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, type LucideIcon } from "lucide-react"
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react"
 
@@ -11,6 +12,7 @@ export type ScrollCardItem = {
   description: string
   href: string
   icon: LucideIcon
+  image?: string
 }
 
 const CARD_W = 300
@@ -48,7 +50,20 @@ export function IndustriesScrollCards({
     offset: ["start start", "end end"],
   })
 
-  const maxShift = (CARD_W + CARD_GAP) * Math.max(0, items.length - 2)
+  const trackViewportRef = useRef<HTMLDivElement>(null)
+  const [maxShift, setMaxShift] = useState(0)
+
+  useEffect(() => {
+    const el = trackViewportRef.current
+    if (!el) return
+    const trackWidth = items.length * CARD_W + (items.length - 1) * CARD_GAP
+    const update = () => setMaxShift(Math.max(0, trackWidth - el.clientWidth))
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [items.length])
+
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxShift])
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -95,8 +110,12 @@ export function IndustriesScrollCards({
                   </span>
                   <Icon className="size-4 text-muted-foreground" aria-hidden />
                 </div>
-                <div className="mt-2.5 flex h-16 shrink-0 items-center justify-center rounded-2xl bg-slate-50">
-                  <Icon className="size-6 text-primary" aria-hidden />
+                <div className="relative mt-2.5 flex h-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
+                  {item.image ? (
+                    <Image src={item.image} alt={item.title} fill className="object-cover" sizes="280px" />
+                  ) : (
+                    <Icon className="size-6 text-primary" aria-hidden />
+                  )}
                 </div>
                 <h3 className="mt-2.5 text-sm font-bold tracking-tight">{item.title}</h3>
                 <p className="mt-1 line-clamp-3 text-xs leading-relaxed text-muted-foreground">{item.description}</p>
@@ -161,7 +180,7 @@ export function IndustriesScrollCards({
             </div>
 
             {/* Right — sliding card track */}
-            <div className="overflow-hidden">
+            <div ref={trackViewportRef} className="overflow-hidden">
               <motion.div className="flex" style={{ x, gap: CARD_GAP }}>
                 {items.map((item, i) => {
                   const Icon = item.icon
@@ -177,8 +196,12 @@ export function IndustriesScrollCards({
                         </span>
                         <Icon className="size-4 text-muted-foreground" aria-hidden />
                       </div>
-                      <div className="mt-4 flex h-28 shrink-0 items-center justify-center rounded-2xl bg-slate-50">
-                        <Icon className="size-9 text-primary" aria-hidden />
+                      <div className="relative mt-4 flex h-28 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
+                        {item.image ? (
+                          <Image src={item.image} alt={item.title} fill className="object-cover" sizes={`${CARD_W}px`} />
+                        ) : (
+                          <Icon className="size-9 text-primary" aria-hidden />
+                        )}
                       </div>
                       <h3 className="mt-4 text-lg font-bold tracking-tight">{item.title}</h3>
                       <p className="mt-1.5 line-clamp-4 text-sm leading-relaxed text-muted-foreground">{item.description}</p>

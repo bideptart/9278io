@@ -26,6 +26,7 @@ const featured = {
 const industries = [
   {
     icon: Landmark,
+    image: "/images/industries/bfsi.jpg",
     tag: "BFSI",
     title: "BFSI & Fintech",
     description: "Lead qualification, loan follow-ups, EMI reminders, and insurance renewals — in Hindi and regional languages, with every disclosure logged for RBI and IRDAI audit trails.",
@@ -38,6 +39,7 @@ const industries = [
   },
   {
     icon: Home,
+    image: "/images/industries/real-estate.jpg",
     tag: "Real Estate",
     title: "Real Estate",
     description: "Qualify property leads 24/7, book site visits, and follow up in the caller's preferred language — so no enquiry goes cold waiting for a broker to call back.",
@@ -50,6 +52,7 @@ const industries = [
   },
   {
     icon: GraduationCap,
+    image: "/images/industries/education.jpg",
     tag: "EdTech",
     title: "EdTech & Coaching",
     description: "Admissions calls, course follow-ups, and fee-payment reminders for India's coaching and e-learning sector, handled in the parent or student's own regional language.",
@@ -62,6 +65,7 @@ const industries = [
   },
   {
     icon: ShoppingBag,
+    image: "/images/industries/ecommerce.jpg",
     tag: "E-Commerce",
     title: "E-Commerce & D2C",
     description: "Order updates, returns, and post-purchase upsells in Hindi and regional languages — answered 24×7 with zero wait time, even during flash-sale spikes.",
@@ -74,6 +78,7 @@ const industries = [
   },
   {
     icon: Car,
+    image: "/images/industries/automotive.jpg",
     tag: "Automotive",
     title: "Automotive",
     description: "Service scheduling, test-drive follow-ups, and EMI reminders for dealerships across Tier-1 and Tier-2 cities, in the customer's own language every time.",
@@ -86,6 +91,7 @@ const industries = [
   },
   {
     icon: UtensilsCrossed,
+    image: "/images/industries/restaurants.jpg",
     tag: "Restaurants",
     title: "Restaurants & QSR",
     description: "Table reservations, delivery status, and feedback calls for restaurant chains across India — answered instantly during peak dinner-hour rush.",
@@ -98,6 +104,7 @@ const industries = [
   },
   {
     icon: Scale,
+    image: "/images/industries/legal.jpg",
     tag: "Legal",
     title: "Legal Services",
     description: "Client intake, appointment booking, and document follow-ups for law firms, LegalTech, and compliance consultancies — confidential, logged, and DPDP-ready.",
@@ -110,6 +117,7 @@ const industries = [
   },
   {
     icon: Dumbbell,
+    image: "/images/industries/fitness.jpg",
     tag: "Fitness",
     title: "Fitness & Wellness",
     description: "Class bookings, membership renewals, and no-show recovery for gyms, yoga studios, and wellness chains across India — so front-desk staff can focus on members, not the phone.",
@@ -147,6 +155,7 @@ type IndustryCard = {
   tag: string
   href: string
   icon: LucideIcon
+  image?: string
   accent: string
   tile: string
   bar: string
@@ -161,6 +170,7 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
   tag: ind.tag,
   href: ind.href,
   icon: ind.icon,
+  image: "image" in ind ? ind.image : undefined,
   accent: ACCENTS[i % ACCENTS.length],
   tile: ACCENT_TILES[i % ACCENT_TILES.length],
   bar: ACCENT_BARS[i % ACCENT_BARS.length],
