@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Building2, HelpCircle, Rocket, Tag, BookOpen, Info, Mail, Sparkles, Link as LinkIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export type RelatedLink = {
@@ -13,9 +13,24 @@ export type RelatedLink = {
   description: string
 }
 
+// Icon is derived from the href's leading path segment rather than threaded
+// through every page's links array — keeps all 7+ call sites untouched while
+// still giving each card a distinguishing icon.
+function iconForHref(href: string) {
+  if (href.startsWith("/industries")) return Building2
+  if (href.startsWith("/faq")) return HelpCircle
+  if (href.startsWith("/get-started")) return Rocket
+  if (href.startsWith("/pricing")) return Tag
+  if (href.startsWith("/blog")) return BookOpen
+  if (href.startsWith("/about")) return Info
+  if (href.startsWith("/contact")) return Mail
+  if (href.startsWith("/features")) return Sparkles
+  return LinkIcon
+}
+
 const cardVariants = {
-  rest: { rotateX: 0 },
-  flipped: { rotateX: 180 },
+  rest: { rotateX: 0, y: 0 },
+  flipped: { rotateX: 180, y: -4 },
 }
 
 const contentVariants = {
@@ -88,6 +103,7 @@ export function RelatedLinks({
       <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {links.map((l) => {
           const isFlipped = flippedHref === l.href
+          const Icon = iconForHref(l.href)
           return (
             <li key={l.href}>
               <Link
@@ -108,6 +124,14 @@ export function RelatedLinks({
                   transition={flipTransition}
                 >
                   <motion.div variants={contentVariants} transition={flipTransition}>
+                    <span
+                      className={cn(
+                        "mb-3 inline-flex size-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors duration-150 group-hover:bg-primary/10 group-hover:text-primary",
+                        isFlipped && "bg-primary/10 text-primary",
+                      )}
+                    >
+                      <Icon className="size-4" aria-hidden />
+                    </span>
                     <p
                       className={cn(
                         "text-base font-medium tracking-tight text-white transition-colors duration-150 group-hover:text-foreground",
