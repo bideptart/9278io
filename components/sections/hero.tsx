@@ -135,12 +135,12 @@ function RecentCallsCard({
   onSelect: (id: string) => void
 }) {
   return (
-    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-3.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
+    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-2.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur sm:p-3.5">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-bold text-foreground">Recent calls</p>
-        <p className="text-[11px] text-muted-foreground">{CALLS.length}</p>
+        <p className="text-[11px] font-bold text-foreground sm:text-xs">Recent calls</p>
+        <p className="text-[10px] text-muted-foreground sm:text-[11px]">{CALLS.length}</p>
       </div>
-      <div className="mt-2.5 flex flex-col gap-1">
+      <div className="mt-1.5 flex flex-col gap-0.5 sm:mt-2.5 sm:gap-1">
         {CALLS.map((c) => {
           const active = c.id === activeId
           return (
@@ -148,14 +148,14 @@ function RecentCallsCard({
               key={c.id}
               type="button"
               onClick={() => onSelect(c.id)}
-              className={`flex w-full items-center gap-2 rounded-xl px-2 py-1.5 text-left no-underline outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/40 ${active ? "bg-slate-100" : "hover:bg-slate-50"}`}
+              className={`flex w-full items-center gap-2 rounded-xl px-2 py-1 text-left no-underline outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/40 sm:py-1.5 ${active ? "bg-slate-100" : "hover:bg-slate-50"}`}
             >
               <span className={`size-1.5 shrink-0 rounded-full ${active ? "bg-emerald-500" : "bg-emerald-500/60"}`} aria-hidden />
               <div className="min-w-0 flex-1 leading-tight">
-                <p spellCheck={false} className="truncate text-[11px] font-semibold text-foreground no-underline">{c.title}</p>
-                <p spellCheck={false} className="truncate text-[10px] text-muted-foreground no-underline">{c.subtitle}</p>
+                <p spellCheck={false} className="truncate text-[10px] font-semibold text-foreground no-underline sm:text-[11px]">{c.title}</p>
+                <p spellCheck={false} className="truncate text-[9px] text-muted-foreground no-underline sm:text-[10px]">{c.subtitle}</p>
               </div>
-              <span className="shrink-0 text-[10px] text-muted-foreground">{c.duration}</span>
+              <span className="shrink-0 text-[9px] text-muted-foreground sm:text-[10px]">{c.duration}</span>
             </button>
           )
         })}
@@ -184,11 +184,11 @@ function TrendsCard() {
   }, [autoHover])
 
   return (
-    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-3.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur">
+    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-2.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur sm:p-3.5">
       <div className="flex items-start justify-between gap-2">
         <div className="leading-tight">
-          <p className="text-xs font-bold text-foreground">Trends · last 7 days</p>
-          <p className="text-[10px] text-muted-foreground">Per-metric performance</p>
+          <p className="text-[11px] font-bold text-foreground sm:text-xs">Trends · last 7 days</p>
+          <p className="text-[9px] text-muted-foreground sm:text-[10px]">Per-metric performance</p>
         </div>
         <div className="flex shrink-0 flex-col gap-0.5">
           {trendSeries.map((s) => {
@@ -205,7 +205,7 @@ function TrendsCard() {
                     return next
                   })
                 }
-                className={`flex items-center gap-1 rounded px-1 text-[9px] transition-opacity ${hidden ? "opacity-40" : ""} text-muted-foreground hover:text-foreground`}
+                className={`flex items-center gap-1 rounded px-1 text-[8px] transition-opacity sm:text-[9px] ${hidden ? "opacity-40" : ""} text-muted-foreground hover:text-foreground`}
               >
                 <span className={`size-1.5 rounded-full ${s.color}`} aria-hidden />
                 {s.label}
@@ -215,7 +215,7 @@ function TrendsCard() {
         </div>
       </div>
       <div
-        className="relative mt-5"
+        className="relative mt-3 sm:mt-5"
         onMouseEnter={() => setAutoHover(false)}
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect()
@@ -227,7 +227,7 @@ function TrendsCard() {
           setAutoHover(true)
         }}
       >
-        <svg viewBox={`0 0 ${w} ${h}`} className="h-14 w-full overflow-visible">
+        <svg viewBox={`0 0 ${w} ${h}`} className="h-10 w-full overflow-visible sm:h-14">
           {trendSeries
             .filter((s) => !hiddenSeries.has(s.label))
             .map((s) => (
@@ -478,22 +478,27 @@ function CallAnalyticsMockup() {
 
   return (
     <div
-      className="relative grid gap-3 sm:grid-cols-[190px_1fr]"
+      className="relative grid w-full min-w-0 gap-3 sm:grid-cols-[190px_1fr]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex flex-col gap-3">
-        <RecentCallsCard activeId={activeId} onSelect={setActiveId} />
+      <div className="flex w-full min-w-0 justify-center sm:block sm:w-auto">
+        <div className="flex w-[95%] min-w-0 flex-col gap-3 sm:w-auto">
+          <RecentCallsCard activeId={activeId} onSelect={setActiveId} />
+          <motion.div
+            key={call.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="min-w-0"
+          >
+            <CallDetailCard call={call} />
+          </motion.div>
+        </div>
+      </div>
+      <div className="min-w-0">
         <TrendsCard />
       </div>
-      <motion.div
-        key={call.id}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
-      >
-        <CallDetailCard call={call} />
-      </motion.div>
     </div>
   )
 }
