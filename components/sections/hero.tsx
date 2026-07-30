@@ -542,7 +542,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="mt-5 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.6rem]"
+              className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]"
             >
               Answer every call like your{" "}
               <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
@@ -564,17 +564,17 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.32 }}
-              className="mt-6 flex flex-col gap-3 sm:flex-row"
+              className="mt-6 flex flex-row flex-wrap items-center gap-2 sm:gap-3"
             >
               <Button
                 asChild
                 size="lg"
-                className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] py-2 pl-8 pr-2 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:pl-8 sm:pr-2 sm:text-base"
               >
                 <Link href="/get-started">
                   Build your first agent
-                  <span className="flex size-7 items-center justify-center rounded-full bg-white/20">
-                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 sm:size-7">
+                    <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
                   </span>
                 </Link>
               </Button>
@@ -582,10 +582,10 @@ export function Hero() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
               >
                 <Link href="/features">
-                  <LayoutGrid className="mr-2 h-4 w-4" />
+                  <LayoutGrid className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
                   Features
                 </Link>
               </Button>
@@ -605,22 +605,24 @@ export function Hero() {
             </motion.div>
 
             {/* Stats card — pinned to the bottom so it aligns with the panel */}
-            <ScrollReveal className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:grid-cols-4">
-              {highlights.map((h) => {
-                const Icon = h.icon
-                return (
-                  <div key={h.title} className="flex flex-col items-center gap-1 bg-white px-3 py-3 text-center">
-                    <div className="flex items-center gap-2">
-                      <span className={`flex size-8 items-center justify-center rounded-full ${h.tile} ${h.color}`}>
-                        <Icon className="size-4" aria-hidden />
-                      </span>
-                      <span className={`text-lg font-bold ${h.color}`}>{h.stat}</span>
+            <div className="w-full flex justify-center sm:block sm:w-auto">
+              <ScrollReveal className="-ml-10 mt-8 grid w-[280px] max-w-full grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:ml-0 sm:w-full sm:max-w-none sm:grid-cols-4">
+                {highlights.map((h) => {
+                  const Icon = h.icon
+                  return (
+                    <div key={h.title} className="flex flex-col items-center justify-center gap-0.5 bg-white px-1.5 py-1.5 text-center sm:gap-1 sm:px-3 sm:py-3">
+                      <div className="flex items-center justify-center gap-1 sm:gap-2">
+                        <span className={`flex size-5 items-center justify-center rounded-full ${h.tile} ${h.color} sm:size-8`}>
+                          <Icon className="size-2.5 sm:size-4" aria-hidden />
+                        </span>
+                        <span className={`text-xs font-bold ${h.color} sm:text-lg`}>{h.stat}</span>
+                      </div>
+                      <span className="text-[8px] leading-tight text-muted-foreground sm:text-[11px]">{h.title}</span>
                     </div>
-                    <span className="text-[11px] leading-tight text-muted-foreground">{h.title}</span>
-                  </div>
-                )
-              })}
-            </ScrollReveal>
+                  )
+                })}
+              </ScrollReveal>
+            </div>
           </div>
 
           {/* ── Right: hero visual ── */}
