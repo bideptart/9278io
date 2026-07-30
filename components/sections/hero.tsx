@@ -569,17 +569,17 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.32 }}
-              className="mt-6 flex flex-row flex-wrap items-center gap-2 sm:gap-3"
+              className="mt-6 flex flex-row flex-nowrap items-center gap-1.5 sm:gap-3"
             >
               <Button
                 asChild
                 size="lg"
-                className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:pl-8 sm:pr-2 sm:text-base"
+                className="h-10 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-3 py-2 text-xs font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-8 sm:pl-8 sm:pr-2 sm:text-base"
               >
                 <Link href="/get-started">
                   Build your first agent
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 sm:size-7">
-                    <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden />
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white/20 sm:size-7">
+                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" aria-hidden />
                   </span>
                 </Link>
               </Button>
@@ -587,10 +587,10 @@ export function Hero() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
+                className="h-10 shrink-0 rounded-full border-border bg-white px-3 text-xs font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
               >
                 <Link href="/features">
-                  <LayoutGrid className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
+                  <LayoutGrid className="mr-1 h-3 w-3 sm:mr-2 sm:h-4 sm:w-4" />
                   Features
                 </Link>
               </Button>
@@ -611,7 +611,7 @@ export function Hero() {
 
             {/* Stats card — pinned to the bottom so it aligns with the panel */}
             <div className="w-full flex justify-center sm:block sm:w-auto">
-              <ScrollReveal className="-ml-10 mt-8 grid w-[280px] max-w-full grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:ml-0 sm:w-full sm:max-w-none sm:grid-cols-4">
+              <ScrollReveal className="mt-8 grid w-[280px] max-w-full grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:w-full sm:max-w-none sm:grid-cols-4">
                 {highlights.map((h) => {
                   const Icon = h.icon
                   return (
