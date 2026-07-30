@@ -52,7 +52,7 @@ export default function ContactPage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border/50">
+      <section className="relative overflow-hidden border-b border-border/50 bg-gradient-to-b from-blue-50/50 via-background to-background">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
@@ -63,7 +63,12 @@ export default function ContactPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               We&apos;d love to hear from you
             </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Get in touch</h1>
+            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              Get in{" "}
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                touch
+              </span>
+            </h1>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               Whether you have a question about pricing, want to see a live demo, or need help with your agents — the
               9278.io team is here.
@@ -110,7 +115,10 @@ export default function ContactPage() {
       <section className="border-t border-border/50">
         <div className="w-full px-6 py-14 md:px-8 md:py-16">
           <ScrollReveal className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Before you write</p>
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              Before you write
+            </span>
             <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight md:text-4xl">Common questions</h2>
           </ScrollReveal>
 
@@ -118,14 +126,13 @@ export default function ContactPage() {
             <ScrollReveal>
               <FaqAccordion items={faqs} idPrefix="contact" />
             </ScrollReveal>
-            <ScrollReveal>
-              <p className="pt-2 text-center text-sm text-muted-foreground">
-                More answers in our{" "}
-                <Link href="/faq" className="text-primary underline-offset-4 hover:underline">
-                  full FAQ
-                </Link>
-                .
-              </p>
+            <ScrollReveal className="flex justify-center pt-2">
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                See all FAQs →
+              </Link>
             </ScrollReveal>
           </div>
         </div>

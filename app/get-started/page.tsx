@@ -27,11 +27,15 @@ export default function GetStartedPage() {
         ]}
       />
 
-      <section className="w-full px-6 pb-14 pt-6 md:px-8 md:pb-20 md:pt-8">
+      <section className="w-full border-b border-border/50 bg-gradient-to-b from-blue-50/50 via-background to-background px-6 pb-14 pt-6 md:px-8 md:pb-20 md:pt-8">
         {/* ── Server-rendered hero: headline, key copy, primary CTA ── */}
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl">
-            Launch your AI voice agent in minutes
+            Launch your{" "}
+            <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+              AI voice agent
+            </span>{" "}
+            in minutes
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
             Pick a credit plan, create your account, and your AI receptionist goes live — answering calls in
@@ -57,11 +61,14 @@ export default function GetStartedPage() {
           </div>
 
           {/* Verifiable credibility signals (no fabricated social proof) */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
             {["Data stored in India", "TRAI & DPDP compliant", "GST-compliant invoicing", "Secure Razorpay checkout"].map(
               (item) => (
-                <span key={item} className="inline-flex items-center gap-1.5">
-                  <Check className="size-4 text-emerald-600" aria-hidden /> {item}
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground"
+                >
+                  <Check className="size-3.5 text-emerald-600" aria-hidden /> {item}
                 </span>
               ),
             )}

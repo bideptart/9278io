@@ -267,20 +267,20 @@ export function FeatureGroups() {
           {featureGroups.map((g, i) => {
             const on = active === g.id
             return (
-              <div key={g.id} className={cn("rounded-2xl transition-colors", on && "bg-primary/[0.08]")}>
+              <div className={cn("rounded-2xl transition-colors duration-300", on && "glass-panel shadow-[0_10px_30px_-18px_oklch(0.546_0.215_262.88/0.35)]")} key={g.id}>
                 <button
                   type="button"
                   onClick={() => jump(g.id)}
                   aria-current={on ? "true" : undefined}
                   className={cn(
                     "flex w-full items-center gap-3 rounded-2xl px-3 py-2.5 text-left text-base font-semibold transition-colors",
-                    on ? "text-primary" : "text-muted-foreground hover:bg-slate-50 hover:text-foreground",
+                    on ? "text-primary" : "text-muted-foreground hover:bg-primary/[0.05] hover:text-foreground",
                   )}
                 >
                   <span
                     className={cn(
-                      "flex size-8 shrink-0 items-center justify-center rounded-lg border text-sm font-bold transition-colors",
-                      on ? "border-primary bg-primary text-white" : "border-border text-muted-foreground",
+                      "flex size-8 shrink-0 items-center justify-center rounded-lg border text-sm font-bold transition-all duration-300",
+                      on ? "border-primary bg-gradient-to-br from-primary to-[oklch(0.45_0.19_264)] text-white shadow-[0_4px_14px_oklch(0.546_0.215_262.88/0.45)]" : "border-border text-muted-foreground",
                     )}
                   >
                     {i + 1}
@@ -325,19 +325,19 @@ export function FeatureGroups() {
             </div>
             <p className="mt-1 text-sm text-muted-foreground">{g.blurb}</p>
 
-            <div className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-white">
+            <div className="glass-panel mt-4 divide-y divide-border/60 overflow-hidden rounded-[1.75rem] shadow-[0_20px_48px_-32px_oklch(0.13_0.025_255/0.35)] transition-shadow hover:shadow-[0_28px_60px_-32px_oklch(0.13_0.025_255/0.45)]">
               {g.features.map((f) => {
                 const Icon = f.icon
                 const isOpen = open === f.title
                 return (
-                  <div key={f.title} className={cn("transition-colors", isOpen && "bg-primary/[0.03]")}>
+                  <div key={f.title} className={cn("group transition-colors", isOpen && "bg-primary/[0.04]")}>
                     <button
                       type="button"
                       onClick={() => setOpen(isOpen ? null : f.title)}
                       aria-expanded={isOpen}
-                      className="flex w-full items-start gap-3.5 p-4 text-left transition-colors hover:bg-slate-50/70"
+                      className="flex w-full items-start gap-3.5 p-4 text-left transition-colors hover:bg-primary/[0.03]"
                     >
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.08] text-primary">
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.08] text-primary transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
                         <Icon className="size-4" aria-hidden="true" />
                       </span>
                       <div className="min-w-0 flex-1">

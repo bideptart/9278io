@@ -173,8 +173,8 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
           // Same border width and shadow for every card, popular or not —
           // only the color differs — so the "Most popular" card is never a
           // different physical size from the other two.
-          "relative flex h-full min-w-0 flex-col rounded-2xl border-2 bg-white shadow-sm transition-all duration-300",
-          isFeatured ? "border-primary" : "border-border/60",
+          "relative flex h-full min-w-0 flex-col gap-3 rounded-2xl border-2 bg-white py-4 shadow-sm transition-all duration-300",
+          isFeatured ? "border-primary" : "border-border/60 hover:border-primary",
         )}
       >
         {showBadge && (
@@ -182,7 +182,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
             Most popular
           </span>
         )}
-        <CardHeader className="min-w-0 p-5 pb-0">
+        <CardHeader className="min-w-0 p-4 pb-0">
           <CardTitle className="text-lg font-bold">{plan.name}</CardTitle>
           <CardDescription className={cn("text-sm mt-1", isPreview && "truncate")}>{plan.description}</CardDescription>
           <div className="mt-2">
@@ -195,7 +195,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
             )}
           </div>
         </CardHeader>
-        <CardContent className="min-w-0 flex-grow p-5 pt-2">
+        <CardContent className="min-w-0 flex-grow p-4 pt-2">
           <ul
             className={cn(
               "list-none space-y-0",
@@ -205,7 +205,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
             {visibleFeatures.map((feature) => (
               <li
                 key={feature}
-                className={cn("flex items-start space-x-3 py-1", isPreview && "min-w-0")}
+                className={cn("flex items-start space-x-3 py-0.5", isPreview && "min-w-0")}
               >
                 <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
                 <span className={cn("text-sm text-foreground", isPreview && "min-w-0 flex-1 truncate")}>
@@ -215,11 +215,14 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
             ))}
           </ul>
         </CardContent>
-        <CardFooter className="min-w-0 p-5 pt-2">
+        <CardFooter className="min-w-0 p-4 pt-1">
           <Button
             onClick={() => onPlanSelect(plan.id, billingCycle)}
             className={cn(
-              "h-auto min-h-10 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90",
+              "h-auto min-h-10 w-full rounded-full",
+              isFeatured
+                ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                : "border-2 border-border/60 bg-white text-black hover:border-primary hover:bg-primary hover:text-primary-foreground",
               isPreview ? "whitespace-nowrap text-xs px-3" : "whitespace-normal",
             )}
             size="lg"

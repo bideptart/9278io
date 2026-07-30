@@ -8,8 +8,8 @@ import { submitContact, type ContactInput } from "@/app/contact/actions"
 const EMPTY: ContactInput = { name: "", email: "", phone: "", company: "", subject: "", message: "", website: "" }
 
 const inputClass =
-  "w-full rounded-xl border-2 border-border bg-white px-4 py-2.5 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/60 focus:border-primary/50 focus:shadow-[0_0_0_4px_oklch(0.52_0.22_265/0.12)]"
-const labelClass = "mb-1.5 block text-sm font-medium text-foreground"
+  "w-full rounded-xl border-2 border-border bg-white px-3.5 py-2 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/60 focus:border-primary/50 focus:shadow-[0_0_0_4px_oklch(0.52_0.22_265/0.12)]"
+const labelClass = "mb-1 block text-sm font-medium text-foreground"
 
 export function ContactForm() {
   const [form, setForm] = useState<ContactInput>(EMPTY)
@@ -84,10 +84,10 @@ export function ContactForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-2xl border-2 border-border bg-white p-6 shadow-sm md:p-8"
+      className="rounded-2xl border-2 border-border bg-white p-5 shadow-sm md:p-6"
       noValidate
     >
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-3.5 sm:grid-cols-2">
         <div>
           <label htmlFor="cf-name" className={labelClass}>
             Name <span className="text-primary">*</span>
@@ -168,7 +168,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-3.5">
         <label htmlFor="cf-message" className={labelClass}>
           Message <span className="text-primary">*</span>
         </label>
@@ -176,7 +176,7 @@ export function ContactForm() {
           id="cf-message"
           name="message"
           required
-          rows={5}
+          rows={4}
           value={form.message}
           onChange={(e) => set("message", e.target.value)}
           className={`${inputClass} resize-y`}
@@ -208,7 +208,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_4px_16px_oklch(0.52_0.22_265/0.3)] transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_4px_16px_oklch(0.52_0.22_265/0.3)] transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
       >
         {status === "loading" ? (
           <>

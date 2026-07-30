@@ -1,12 +1,18 @@
 import type { Metadata } from "next"
-import { Zap, Headphones, Mic, ShieldCheck } from "lucide-react"
+import Link from "next/link"
+import { ShieldCheck, Lock, Fingerprint, Globe, ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { PricingCardSection } from "@/components/pricing/pricing-card-section"
+import { LiveCallMockup } from "@/components/pricing/live-call-mockup"
+import { RateByPlanMockup } from "@/components/pricing/rate-by-plan-mockup"
+import { LiveCostMockup } from "@/components/pricing/live-cost-mockup"
+import { MockupStackConnector } from "@/components/pricing/mockup-stack-connector"
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
-import { AnimatedStatValue } from "@/components/pricing/animated-stat-value"
+import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { GradientCta } from "@/components/sections/gradient-cta"
+import { Button } from "@/components/ui/button"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
@@ -52,64 +58,78 @@ export default async function PricingPage({
         </div>
       )}
 
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-background to-background">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
         <div className="w-full px-6 pb-10 pt-10 md:px-8 md:pb-14 md:pt-14">
-          <ScrollReveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-2 text-[clamp(9px,2.9vw,13px)] font-semibold uppercase tracking-normal text-primary sm:whitespace-normal sm:px-5 sm:text-sm sm:tracking-wider">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              Pay as you go · INR pricing · GST invoices
-            </span>
-            <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
-              Pick your{" "}
-              <span className="bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text text-transparent">
-                plan
+          <div className="mx-auto grid max-w-7xl items-stretch gap-12 lg:grid-cols-2">
+            <ScrollReveal className="text-center lg:text-left">
+              <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-2 text-[clamp(9px,2.9vw,13px)] font-semibold uppercase tracking-normal text-primary sm:whitespace-normal sm:px-5 sm:text-sm sm:tracking-wider">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                Pay as you go · INR pricing · GST invoices
               </span>
-              .
-            </h1>
-            <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              All plans include inbound calling, call recording, real-time transcription, and per-second billing with
-              no minute-rounding. Prices are in ₹, billed once as wallet credit that stays valid for 60 days — no
-              contracts, no setup fees, cancel anytime.
-            </p>
-
-            {/* Point 1: trust bar */}
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {["TRAI-compliant", "Razorpay secured", "DPDP compliant"].map((badge) => (
-                <span
-                  key={badge}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground"
-                >
-                  <ShieldCheck className="size-3.5 text-primary" aria-hidden />
-                  {badge}
+              <h1 className="mt-6 text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
+                Pick your plan for{" "}
+                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                  AI voice agents.
                 </span>
-              ))}
-            </div>
-          </ScrollReveal>
+              </h1>
+              <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                Every plan includes inbound calling, call recording, and real-time transcription with per-second
+                billing. Pay once in ₹ as wallet credit valid for 60 days — no contracts, no setup fees, cancel
+                anytime.
+              </p>
 
-          {/* Point 3: 3-up stat row (was 2-up) */}
-          <div className="mt-12 grid gap-3 md:grid-cols-3">
-            <Stat
-              icon={Zap}
-              label="Voice rate"
-              // Point 2: animated count-up on the rate figure
-              value={
-                <>
-                  From ₹<AnimatedStatValue value={10} /> / min
-                </>
-              }
-              sub="Best rate on the Scale plan."
-            />
-            <Stat icon={Headphones} label="Minimum top-up" value="₹2,999" sub="GST charged at checkout." />
-            <Stat
-              icon={Mic}
-              label="Included on every plan"
-              value="Call recording"
-              sub="With PII redaction, synced to your dashboard, CRM, or webhook."
-            />
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-8 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                >
+                  <Link href="/get-started">
+                    Get started
+                    <ArrowRight className="ml-1 h-4 w-4" aria-hidden />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                >
+                  <Link href="/#cta">Talk to an agent</Link>
+                </Button>
+              </div>
+
+              {/* Trust badges — tiled to match the stats card below */}
+              <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/60 sm:grid-cols-4">
+                {[
+                  { icon: ShieldCheck, title: "TRAI-compliant", color: "text-blue-600", tile: "bg-blue-50" },
+                  { icon: Lock, title: "Razorpay secured", color: "text-emerald-600", tile: "bg-emerald-50" },
+                  { icon: Fingerprint, title: "DPDP compliant", color: "text-violet-600", tile: "bg-violet-50" },
+                  { icon: Globe, title: "10+ languages", color: "text-orange-600", tile: "bg-orange-50" },
+                ].map((b) => {
+                  const Icon = b.icon
+                  return (
+                    <div key={b.title} className="flex flex-col items-center gap-1.5 bg-white px-3 py-3 text-center">
+                      <span className={`flex size-8 items-center justify-center rounded-full ${b.tile} ${b.color}`}>
+                        <Icon className="size-4" aria-hidden />
+                      </span>
+                      <span className={`text-[11px] font-semibold leading-tight ${b.color}`}>{b.title}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </ScrollReveal>
+
+            <div className="relative hidden min-h-[360px] lg:block">
+              <MockupStackConnector className="absolute inset-0 h-full w-full" />
+              <LiveCallMockup className="absolute right-4 top-0" />
+              <LiveCostMockup className="absolute left-2 top-[18%]" />
+              <RateByPlanMockup className="absolute bottom-0 left-20" />
+            </div>
           </div>
         </div>
       </section>
@@ -124,6 +144,23 @@ export default async function PricingPage({
 
       <section className="w-full px-6 py-16 md:px-8 md:py-24">
         <ComparePlansTable />
+      </section>
+
+      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            Cost comparison
+          </span>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            One agent's salary vs one plan.
+          </h2>
+          <p className="mt-3 text-pretty text-muted-foreground">
+            A single AI voice agent handles what a human hire would — for a fraction of the monthly cost.
+          </p>
+        </ScrollReveal>
+        <div className="mt-10">
+          <CostComparisonStrip />
+        </div>
       </section>
 
       <GradientCta
@@ -159,28 +196,5 @@ export default async function PricingPage({
 
       <SiteFooter />
     </main>
-  )
-}
-
-function Stat({
-  icon: Icon,
-  label,
-  value,
-  sub,
-}: {
-  icon: React.ComponentType<{ className?: string }>
-  label: string
-  value: React.ReactNode
-  sub: string
-}) {
-  return (
-    <div className="rounded-xl border-[3px] border-border/60 bg-white p-5 transition-colors hover:border-primary">
-      <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-        <Icon className="size-4 text-primary" aria-hidden />
-        {label}
-      </div>
-      <p className="mt-3 text-2xl font-bold tracking-tight">{value}</p>
-      <p className="mt-1 text-sm text-muted-foreground">{sub}</p>
-    </div>
   )
 }

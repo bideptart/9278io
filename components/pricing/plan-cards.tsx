@@ -73,7 +73,7 @@ export function PlanCards() {
                 "relative flex flex-col rounded-2xl border-[3px] p-7 transition-colors",
                 plan.recommended
                   ? "border-primary/40 bg-gradient-to-b from-primary/[0.06] to-transparent"
-                  : "border-border/60 bg-white hover:border-border",
+                  : "border-border/60 bg-white hover:border-primary/40",
               )}
             >
               {plan.recommended && (
@@ -121,7 +121,7 @@ export function PlanCards() {
                     "w-full",
                     plan.recommended
                       ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+                      : "border border-border bg-white text-black hover:border-primary hover:text-primary hover:bg-white",
                   )}
                 >
                   <Link

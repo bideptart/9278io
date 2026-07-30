@@ -183,7 +183,7 @@ export function Industries() {
   const { width: cardWidth, height: cardHeight } = useCardSize()
   return (
     <section id="industries" className="overflow-hidden border-b border-border">
-      <div className="w-full px-6 py-8 md:px-8 md:py-10">
+      <div className="w-full px-6 py-6 md:px-8 md:py-8">
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
@@ -200,7 +200,7 @@ export function Industries() {
           </p>
         </ScrollReveal>
 
-        <ScrollReveal className="mt-6">
+        <ScrollReveal className="-mt-4">
           <CardStack
             items={cards}
             initialIndex={0}

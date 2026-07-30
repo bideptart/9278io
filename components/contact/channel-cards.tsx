@@ -73,17 +73,19 @@ export function ChannelCards() {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
               <Icon className="h-4.5 w-4.5" aria-hidden />
             </span>
-            <div className="min-w-0">
-              <h3 className="font-semibold tracking-tight">{c.title}</h3>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-semibold tracking-tight">{c.title}</h3>
+                <a
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="shrink-0 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  {c.action}
+                </a>
+              </div>
               <p className="mt-0.5 text-sm leading-snug text-muted-foreground">{c.description}</p>
-              <a
-                href={c.href}
-                target={c.href.startsWith("http") ? "_blank" : undefined}
-                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="mt-1.5 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
-              >
-                {c.action}
-              </a>
             </div>
           </motion.div>
         )

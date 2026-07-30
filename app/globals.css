@@ -329,6 +329,124 @@
   }
 }
 
+/* ── Fitness page — small CSS-only motion primitives ─────────────────────
+   Wireframe cube + drifting particles (hero), and a per-segment progress
+   fill used by the auto-cycling playbook stage further down the page. */
+@keyframes fit-cube-spin {
+  from { transform: rotateX(-18deg) rotateY(0deg); }
+  to   { transform: rotateX(-18deg) rotateY(360deg); }
+}
+.fit-cube-spin {
+  animation: fit-cube-spin 10s linear infinite;
+  transform-style: preserve-3d;
+}
+@keyframes fit-twinkle {
+  0%, 100% { opacity: 0.25; transform: translateY(0); }
+  50%      { opacity: 1;    transform: translateY(-6px); }
+}
+.fit-twinkle {
+  animation: fit-twinkle 2.4s ease-in-out infinite;
+}
+@keyframes fit-progress-fill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+.fit-progress-fill {
+  animation: fit-progress-fill 2.8s linear forwards;
+}
+
+/* Hero console mockup — the chat thread loops forever: each bubble slides
+   up into view, holds while the conversation reads, then clears so the
+   exchange replays. Staggered per-bubble via inline animation-delay. */
+@keyframes fit-bubble-cycle {
+  0%   { opacity: 0; transform: translateY(10px) scale(0.97); }
+  7%   { opacity: 1; transform: translateY(0) scale(1); }
+  70%  { opacity: 1; transform: translateY(0) scale(1); }
+  80%  { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  100% { opacity: 0; transform: translateY(-8px) scale(0.98); }
+}
+.fit-bubble-cycle {
+  animation: fit-bubble-cycle 7.5s cubic-bezier(0.22, 1, 0.36, 1) infinite both;
+}
+
+/* Three-dot "agent is typing" pulse, looping between bubble turns. */
+@keyframes fit-typing {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30%           { opacity: 1;    transform: translateY(-2px); }
+}
+.fit-typing {
+  animation: fit-typing 1.2s ease-in-out infinite;
+}
+
+/* ── Rollout mockups — looping "it's working" motion ────────────────────
+   Setup card: progress bar fills then resets; language chips pop in on a
+   stagger. Compliance card: each check ticks in, and a soft highlight
+   sweeps down the list like a scan pass. */
+@keyframes fit-progress-loop {
+  0%        { width: 0%; }
+  55%, 88%  { width: 100%; }
+  100%      { width: 0%; }
+}
+.fit-progress-loop {
+  animation: fit-progress-loop 5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes fit-chip-in {
+  0%        { opacity: 0; transform: translateY(4px) scale(0.92); }
+  12%, 86%  { opacity: 1; transform: translateY(0) scale(1); }
+  100%      { opacity: 0; transform: translateY(4px) scale(0.92); }
+}
+.fit-chip-in {
+  animation: fit-chip-in 5s ease-out infinite both;
+}
+
+@keyframes fit-check-in {
+  0%        { opacity: 0; transform: scale(0.6); }
+  12%       { opacity: 1; transform: scale(1.18); }
+  20%, 88%  { opacity: 1; transform: scale(1); }
+  100%      { opacity: 0; transform: scale(0.6); }
+}
+.fit-check-in {
+  animation: fit-check-in 6s cubic-bezier(0.22, 1, 0.36, 1) infinite both;
+}
+
+@keyframes fit-scan {
+  0%        { transform: translateY(-100%); opacity: 0; }
+  12%, 70%  { opacity: 1; }
+  100%      { transform: translateY(300%); opacity: 0; }
+}
+.fit-scan {
+  animation: fit-scan 6s ease-in-out infinite;
+}
+@keyframes fit-blink {
+  0%, 45%, 100% { opacity: 1; }
+  60%, 85%      { opacity: 0.25; }
+}
+.fit-blink {
+  animation: fit-blink 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fit-cube-spin,
+  .fit-twinkle,
+  .fit-bubble-cycle,
+  .fit-typing,
+  .fit-blink,
+  .fit-chip-in,
+  .fit-check-in {
+    animation: none;
+  }
+  .fit-scan {
+    animation: none;
+    opacity: 0;
+  }
+  .fit-progress-fill,
+  .fit-progress-loop {
+    animation: none;
+    width: 100%;
+  }
+}
+
 /* ── Marquee (auto-scrolling ticker) ─────────────────────────────────── */
 @keyframes marquee {
   from {
@@ -360,6 +478,46 @@
   }
 }
 
+/* ── Glassmorphism panel — translucent, blurred, soft-bordered surface.
+   Built from existing --card/--border tokens so it always matches the
+   active theme; no new colors introduced. ─────────────────────────────── */
+.glass-panel {
+  background: color-mix(in oklab, var(--card) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+/* ── Mesh gradient background — soft radial blooms of the brand blue on a
+   white base, for hero/CTA backdrops. Purely additive layer, no new colors
+   (derived from --primary). ───────────────────────────────────────────── */
+.mesh-gradient-bg {
+  background-image:
+    radial-gradient(38% 45% at 12% 8%, color-mix(in oklab, var(--primary) 16%, transparent), transparent 70%),
+    radial-gradient(32% 40% at 88% 18%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 70%),
+    radial-gradient(50% 55% at 50% 100%, color-mix(in oklab, var(--primary) 8%, transparent), transparent 70%);
+}
+
+/* ── Slow "breathing" pulse for ambient glows (CTA/hero backdrops). ────── */
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+.animate-breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathe {
+    animation: none;
+  }
+}
+
 /* ── Side-list item entrance (re-plays when the active card changes) ──── */
 @keyframes ind-item-in {
   0% {
@@ -376,6 +534,23 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .ind-item-in {
+    animation: none;
+  }
+}
+
+/* ── Flowing dash — moves a dashed stroke along its own path to suggest
+   live data flow through a connector line. Position only, no size change. ── */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+.connector-flow {
+  animation: dash-flow 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connector-flow {
     animation: none;
   }
 }
