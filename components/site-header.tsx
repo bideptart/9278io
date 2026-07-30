@@ -32,13 +32,14 @@ const INDUSTRY_GROUPS = [
   {
     label: "Field & Local Services",
     icon: Wrench,
-    subtitle: "Automotive, fitness, logistics",
+    subtitle: "Automotive, fitness, logistics, retail",
     tagline: "Field & local services",
     heading: "Dealerships and studios, always on call.",
-    lead: "Automotive, fitness & wellness, and logistics teams.",
+    lead: "Automotive, fitness & wellness, logistics, and retail teams.",
     slugs: ["automotive", "fitness"],
     items: [
       { slug: "logistics", name: "Logistics", icon: Truck, short: "Dispatch, tracking, and delivery updates." },
+      { slug: "retail-ecom", name: "Retail & eCom", icon: ShoppingCart, short: "Storefronts and D2C support, unified." },
     ],
   },
   {
@@ -57,14 +58,13 @@ const INDUSTRY_GROUPS = [
   {
     label: "Retail & Finance",
     icon: ShoppingBag,
-    subtitle: "E-commerce, BFSI, BPO, retail",
+    subtitle: "E-commerce, BFSI, BPO, finance",
     tagline: "Retail & finance",
     heading: "Software-first teams, covered end to end.",
-    lead: "E-commerce, BFSI & fintech, BPO, finance, and retail teams.",
+    lead: "E-commerce, BFSI & fintech, BPO, and finance teams.",
     slugs: ["ecommerce", "bfsi", "bpo"],
     items: [
       { slug: "finance", name: "Finance", icon: Landmark, short: "Compliant, always-on financial services calls." },
-      { slug: "retail-ecom", name: "Retail & eCom", icon: ShoppingCart, short: "Storefronts and D2C support, unified." },
     ],
   },
 ]
@@ -113,7 +113,7 @@ function IndustriesMenu() {
         </div>
 
         {/* Right: active group detail — fixed height so switching groups never resizes the menu */}
-        <div className="flex h-[340px] flex-col overflow-hidden p-5">
+        <div className="flex h-[260px] flex-col overflow-hidden p-5">
           <div className="flex items-center justify-between gap-3">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
               <span className="size-1.5 rounded-full bg-primary" aria-hidden />
@@ -309,8 +309,9 @@ export function SiteHeader() {
             onMouseEnter={() => setIndustriesOpen(true)}
             onMouseLeave={() => setIndustriesOpen(false)}
           >
-            <Link
-              href="/industries"
+            <button
+              type="button"
+              onClick={() => setIndustriesOpen((o) => !o)}
               className={cn(
                 "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
                 isActive("/industries") ? "text-foreground" : "text-muted-foreground",
@@ -319,7 +320,7 @@ export function SiteHeader() {
             >
               Industries
               <ChevronDown className={cn("size-3.5 transition-transform", industriesOpen ? "rotate-180" : "")} aria-hidden />
-            </Link>
+            </button>
             <AnimatePresence>
               {industriesOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">

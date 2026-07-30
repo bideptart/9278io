@@ -60,9 +60,11 @@ type PageSeoInput = {
   path: string
   image?: string
   noindex?: boolean
+  /** Focus keyword first, followed by supporting keywords. */
+  keywords?: string[]
 }
 
-export function pageSeo({ title, description, path, image, noindex }: PageSeoInput): Metadata {
+export function pageSeo({ title, description, path, image, noindex, keywords }: PageSeoInput): Metadata {
   const desc = description ?? SITE.description
   const og = image ?? "/opengraph-image"
 
@@ -71,6 +73,7 @@ export function pageSeo({ title, description, path, image, noindex }: PageSeoInp
   return {
     title,
     description: desc,
+    ...(keywords ? { keywords } : {}),
     alternates: { canonical: path },
     robots: noindex ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
