@@ -259,7 +259,7 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Qualify loan and insurance leads, chase EMI and premium dues, and run KYC and renewal reminders 24/7 — in Hindi and every regional language.",
     pitch:
-      "Lending, insurance and fintech teams win on speed and compliance. 9278.io answers and places thousands of calls a day — qualifying loan applicants, reminding customers before an EMI or premium lapses, and winning back renewals — with every call recorded, consent-logged, and placed inside TRAI calling windows so your collections and sales stay DPDP-ready.",
+      "Lending, insurance and fintech teams win on speed and compliance. 9278.io answers and places thousands of calls a day — qualifying loan applicants, reminding customers before an EMI or premium lapses, and winning back renewals — with every call recorded and consent-logged inside TRAI calling windows.",
     jobs: [
       "Qualify personal-loan, home-loan and credit-card leads, routing the hot ones to a human",
       "Pre-due and overdue EMI reminders with UPI and payment-link follow-through",
