@@ -316,6 +316,79 @@
   }
 }
 
+/* ── Orbit ring — a set of icons slowly revolving around a fixed centre.
+   The ring rotates full-circle; each icon counter-rotates by the same
+   amount so it stays upright while it travels along the orbit. ────────── */
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.orbit-ring {
+  animation: orbit-spin-reverse 30s linear infinite;
+}
+.orbit-icon-counter {
+  animation: orbit-spin 30s linear infinite;
+}
+.orbit-ring-fast {
+  animation: orbit-spin 20s linear infinite;
+}
+.orbit-icon-counter-fast {
+  animation: orbit-spin-reverse 20s linear infinite;
+}
+.orbit-ring-fastest {
+  animation: orbit-spin-reverse 14s linear infinite;
+}
+.orbit-icon-counter-fastest {
+  animation: orbit-spin 14s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .orbit-icon-counter,
+  .orbit-ring-fast,
+  .orbit-icon-counter-fast,
+  .orbit-ring-fastest,
+  .orbit-icon-counter-fastest {
+    animation: none;
+  }
+}
+
+/* ── Circuit panel — industrial control-panel illustration. A radar-style
+   sweep rotates behind a fixed hub; small pulses travel along right-angle
+   PCB-style traces to each module panel. ───────────────────────────────── */
+@keyframes radar-sweep-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+.radar-sweep {
+  animation: radar-sweep-spin 7s linear infinite;
+}
+.circuit-node-pulse {
+  animation: circuit-pulse 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep,
+  .circuit-node-pulse {
+    animation: none;
+  }
+}
+
 /* ── Fitness page — small CSS-only motion primitives ─────────────────────
    Wireframe cube + drifting particles (hero), and a per-segment progress
    fill used by the auto-cycling playbook stage further down the page. */
