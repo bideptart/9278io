@@ -271,7 +271,7 @@ export function SiteHeader() {
         scrolled ? "shadow-sm" : "",
       )}
     >
-      <div className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 md:px-8">
+      <div className="flex h-20 w-full items-center justify-between px-4 md:grid md:h-16 md:grid-cols-[1fr_auto_1fr] md:px-8">
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center justify-self-start" aria-label="9278.io home">
@@ -368,7 +368,7 @@ export function SiteHeader() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full bg-primary py-2 pl-5 pr-1.5 text-sm font-semibold text-primary-foreground shadow-[0_6px_20px_oklch(0.546_0.215_262.88/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.5)] sm:inline-flex"
+            className="inline-flex h-[36px] w-[120.67px] rounded-full bg-primary px-[10px] py-0 text-[14px] font-semibold text-primary-foreground shadow-[0_6px_20px_oklch(0.546_0.215_262.88/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.5)]"
           >
             <Link href="/get-started">
               Get Started
