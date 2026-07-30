@@ -43,6 +43,7 @@ import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { BfsiPage } from "@/components/industries/bfsi-page"
+import { BpoPage } from "@/components/industries/bpo-page"
 
 export function generateStaticParams() {
   return INDUSTRIES.map((i) => ({ slug: i.slug }))
@@ -2662,6 +2663,10 @@ export default async function IndustryPage({
 
   if (slug === "bfsi") {
     return <BfsiPage />
+  }
+
+  if (slug === "bpo") {
+    return <BpoPage />
   }
 
   if (slug === "home-services") {
