@@ -38,6 +38,7 @@ import { IndustryImage } from "@/components/industries/industry-image"
 import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
+import { BfsiPage } from "@/components/industries/bfsi-page"
 
 export function generateStaticParams() {
   return INDUSTRIES.map((i) => ({ slug: i.slug }))
@@ -1610,6 +1611,10 @@ export default async function IndustryPage({
 
   if (slug === "real-estate") {
     return <RealEstatePage />
+  }
+
+  if (slug === "bfsi") {
+    return <BfsiPage />
   }
 
   const Icon = industry.icon
