@@ -337,7 +337,7 @@ function ECommercePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollReveal>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-sm sm:p-9">
               {/* Shopping bag accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
                 <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-blue-500 to-sky-500 text-white shadow-lg shadow-blue-500/30">
@@ -369,7 +369,7 @@ function ECommercePage() {
 
           {/* Right — how agent sounds */}
           <ScrollReveal delay={0.1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-sky-100 bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-sm sm:p-9">
               {/* Sound-wave accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
                 <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-sky-500 to-blue-500 text-white shadow-lg shadow-sky-500/30">
@@ -474,7 +474,7 @@ function ECommercePage() {
             </div>
 
             <ScrollReveal>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-sm md:p-8">
+              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-blue-600/25">
                     01
@@ -500,7 +500,7 @@ function ECommercePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.12}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-sm md:p-8">
+              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-primary/25">
                     02
@@ -563,7 +563,7 @@ function ECommercePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
