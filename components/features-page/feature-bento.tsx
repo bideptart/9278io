@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "motion/react"
+import { motion, type Variants } from "motion/react"
 import {
   AudioLines, BookOpen, GitBranch, BarChart3, ShieldCheck,
   Timer, Share2, Languages, PhoneForwarded,
@@ -64,31 +64,31 @@ const capabilities: Capability[] = [
   },
 ]
 
-const CENTER = 4 // "Analytics Dashboard" sits in the middle of the 3x3 grid
+const container: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08 },
+  },
+}
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
 
 export function FeatureBento() {
   return (
-    <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
-      {capabilities.map((c, i) => {
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, margin: "-40px" }}
+      className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3"
+    >
+      {capabilities.map((c) => {
         const Icon = c.icon
-        const isCenter = i === CENTER
-        const row = Math.floor(i / 3)
-        const col = i % 3
-        // Percent offset (relative to the card's own size) from this card's grid slot back to the center slot.
-        const dx = isCenter ? 0 : (1 - col) * 100
-        const dy = isCenter ? 0 : (1 - row) * 100
-        // Reveal order radiates outward from the center card, one at a time.
-        const order = isCenter ? 0 : i < CENTER ? i + 1 : i
         return (
-          <motion.div
-            key={c.title}
-            className="h-full"
-            style={{ zIndex: isCenter ? 20 : 10 }}
-            initial={{ opacity: 0, scale: isCenter ? 0.85 : 0.3, x: `${dx}%`, y: `${dy}%` }}
-            whileInView={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: order * 0.12, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.div key={c.title} variants={item} className="h-full">
             <div className="h-full rounded-2xl border border-border bg-white p-7 shadow-[0_16px_34px_-24px_oklch(0.2_0.05_260/0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_24px_50px_-20px_oklch(0.546_0.215_262.88/0.3)]">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.45)]">
                 <Icon className="size-5" aria-hidden />
@@ -99,6 +99,6 @@ export function FeatureBento() {
           </motion.div>
         )
       })}
-    </div>
+    </motion.div>
   )
 }

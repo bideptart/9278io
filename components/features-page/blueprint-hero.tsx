@@ -20,7 +20,17 @@ function Tick({ className }: { className?: string }) {
 }
 
 type Point = { x: number; y: number }
-type Badge = { icon: LucideIcon; label: string; x: number; y: number; check?: boolean; wave?: boolean; path: Point[] }
+type Badge = {
+  icon: LucideIcon
+  label: string
+  x: number
+  y: number
+  check?: boolean
+  wave?: boolean
+  path: Point[]
+  /** Extra px nudge for the label (positive = right, negative = left) — for badges whose default anchor still sits too close to the device card. */
+  labelShift?: number
+}
 
 // Every badge restates a real, already-shipped 9278.io capability — see
 // app/features/page.tsx trust chips and components/sections/features.tsx.
@@ -29,9 +39,9 @@ type Badge = { icon: LucideIcon; label: string; x: number; y: number; check?: bo
 // first point is the badge anchor, last point touches the device.
 const badges: Badge[] = [
   { icon: Ear, label: "AI Voice Agent", x: 24, y: 0, path: [{ x: 20, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 28 }, { x: 40, y: 28 }] },
-  { icon: Volume2, label: "Audio Engine", x: 88, y: 6, wave: true, path: [{ x: 88, y: 10 }, { x: 79, y: 10 }, { x: 79, y: 38 }, { x: 65, y: 38 }] },
-  { icon: PhoneCall, label: "Call Routing", x: 0, y: 40, wave: true, path: [{ x: 0, y: 40 }, { x: 45, y: 40 }] },
-  { icon: ShieldCheck, label: "Compliance Engine", x: 100, y: 46, path: [{ x: 100, y: 46 }, { x: 55, y: 46 }] },
+  { icon: Volume2, label: "Audio Engine", x: 88, y: 6, wave: true, labelShift: 14, path: [{ x: 88, y: 10 }, { x: 79, y: 10 }, { x: 79, y: 38 }, { x: 65, y: 38 }] },
+  { icon: PhoneCall, label: "Call Routing", x: 5, y: 40, wave: true, path: [{ x: 5, y: 40 }, { x: 45, y: 40 }] },
+  { icon: ShieldCheck, label: "Compliance Engine", x: 95, y: 46, path: [{ x: 95, y: 46 }, { x: 55, y: 46 }] },
   { icon: MessageSquare, label: "WhatsApp Assistant", x: 10, y: 93, path: [{ x: 10, y: 93 }, { x: 10, y: 79 }, { x: 42, y: 79 }, { x: 42, y: 81 }] },
   { icon: IndianRupee, label: "Billing Engine", x: 90, y: 90, path: [{ x: 90, y: 90 }, { x: 90, y: 79 }, { x: 58, y: 79 }, { x: 58, y: 81 }] },
 ]
@@ -128,7 +138,7 @@ export function BlueprintHero() {
   const relatedForLap = current.relatedBadges.length ? current.relatedBadges[lap % current.relatedBadges.length] : null
 
   return (
-    <div className="relative mx-auto w-full max-w-[620px] px-6 py-14 sm:px-10 sm:py-16">
+    <div className="relative mx-auto w-full max-w-[620px] px-10 py-14 sm:px-10 sm:py-16">
       {/* ambient background blooms */}
       <div aria-hidden className="pointer-events-none absolute -inset-10 -z-10">
         <div className="absolute left-[4%] top-[2%] size-40 rounded-full bg-primary/15 blur-[80px]" />
@@ -163,6 +173,12 @@ export function BlueprintHero() {
       {badges.map((b, i) => {
         const Icon = b.icon
         const isRelated = i === relatedForLap
+        // A centered label under a badge on the left/right side of the
+        // device card would grow toward the card and overlap it on narrow
+        // screens — anchor those labels to grow away from the card (toward
+        // the open edge) instead of staying centered.
+        const growLeft = b.x < 50 // badge sits left of the card — grow the label further left
+        const growRight = b.x >= 50 // badge sits right of the card — grow the label further right
         return (
           <div
             key={b.label}
@@ -171,14 +187,14 @@ export function BlueprintHero() {
           >
             <div className="relative">
               <div
-                className={`flex size-16 items-center justify-center rounded-full border-2 bg-white transition-[transform,border-color,box-shadow] duration-300 ease-out hover:scale-105 ${
+                className={`flex size-12 items-center justify-center rounded-full border-2 bg-white transition-[transform,border-color,box-shadow] duration-300 ease-out hover:scale-105 sm:size-16 ${
                   isRelated
                     ? "scale-105 border-primary shadow-[0_20px_45px_-8px_oklch(0.546_0.215_262.88/0.75)]"
                     : "border-border/60 shadow-[0_16px_34px_-20px_oklch(0.2_0.05_260/0.4)]"
                 }`}
               >
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.55)] ring-1 ring-white/20">
-                  <Icon className="size-4.5" aria-hidden />
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.55)] ring-1 ring-white/20 sm:size-10">
+                  <Icon className="size-3.5 sm:size-4.5" aria-hidden />
                 </span>
               </div>
               {b.check && (
@@ -186,7 +202,16 @@ export function BlueprintHero() {
                   <Check className="size-2.5" aria-hidden />
                 </span>
               )}
-              <p className="absolute left-1/2 top-full mt-2 w-max max-w-[140px] -translate-x-1/2 text-center text-[10px] font-semibold leading-tight text-foreground">
+              <p
+                style={b.labelShift ? { marginLeft: b.labelShift } : undefined}
+                className={`absolute top-full mt-1.5 w-max max-w-[70px] text-[8px] font-semibold leading-tight text-foreground sm:mt-2 sm:max-w-[140px] sm:text-[10px] ${
+                  growLeft
+                    ? "right-0 text-right"
+                    : growRight
+                      ? "left-0 text-left"
+                      : "left-1/2 -translate-x-1/2 text-center"
+                }`}
+              >
                 {b.label}
               </p>
             </div>
@@ -217,8 +242,9 @@ export function BlueprintHero() {
           })}
         </div>
 
-        {/* content */}
-        <div className="relative flex-1 overflow-hidden p-4 sm:p-5">
+        {/* content — fixed min-height so the card doesn't grow/shrink as the
+            text length varies between states */}
+        <div className="relative flex-1 min-h-[260px] overflow-hidden p-4 sm:min-h-[300px] sm:p-5">
           <div className="relative flex items-center justify-between">
             <div className="flex gap-1" aria-hidden>
               <span className="size-1.5 rounded-full bg-slate-200" />
@@ -250,9 +276,9 @@ export function BlueprintHero() {
               ) : (
                 <motion.div
                   key={`state-icon-${activeIndex}`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   className="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_12px_28px_-10px_oklch(0.546_0.215_262.88/0.55)] ring-1 ring-white/20"
                 >
@@ -277,7 +303,7 @@ export function BlueprintHero() {
             </AnimatePresence>
           </div>
 
-          <div className="relative mt-3 min-h-[2rem]">
+          <div className="relative mt-3 min-h-[2.6rem]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -285,15 +311,15 @@ export function BlueprintHero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.3 }}
-                className="flex items-center gap-2"
+                className="flex items-start gap-2"
               >
-                <current.icon className="size-3.5 shrink-0 text-primary" aria-hidden />
-                <span className="text-[11px] font-medium text-foreground">{current.text}</span>
+                <current.icon className="mt-0.5 size-3.5 shrink-0 text-primary" aria-hidden />
+                <span className="text-[11px] font-medium leading-snug text-foreground">{current.text}</span>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="relative mt-2 min-h-[2.4rem]">
+          <div className="relative mt-2 min-h-[3.2rem]">
             <AnimatePresence mode="wait">
               <motion.p
                 key={`detail-${activeIndex}`}

@@ -25,7 +25,7 @@ export function StaggerGroup({ children, className, stagger = 0.08 }: StaggerPro
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-30px" }}
       variants={{
         hidden: {},
         visible: {
