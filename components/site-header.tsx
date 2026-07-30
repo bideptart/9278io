@@ -32,13 +32,14 @@ const INDUSTRY_GROUPS = [
   {
     label: "Field & Local Services",
     icon: Wrench,
-    subtitle: "Automotive, fitness, logistics",
+    subtitle: "Automotive, fitness, logistics, retail",
     tagline: "Field & local services",
     heading: "Dealerships and studios, always on call.",
-    lead: "Automotive, fitness & wellness, and logistics teams.",
+    lead: "Automotive, fitness & wellness, logistics, and retail teams.",
     slugs: ["automotive", "fitness"],
     items: [
       { slug: "logistics", name: "Logistics", icon: Truck, short: "Dispatch, tracking, and delivery updates." },
+      { slug: "retail-ecom", name: "Retail & eCom", icon: ShoppingCart, short: "Storefronts and D2C support, unified." },
     ],
   },
   {
@@ -57,14 +58,13 @@ const INDUSTRY_GROUPS = [
   {
     label: "Retail & Finance",
     icon: ShoppingBag,
-    subtitle: "E-commerce, BFSI, BPO, retail",
+    subtitle: "E-commerce, BFSI, BPO, finance",
     tagline: "Retail & finance",
     heading: "Software-first teams, covered end to end.",
-    lead: "E-commerce, BFSI & fintech, BPO, finance, and retail teams.",
+    lead: "E-commerce, BFSI & fintech, BPO, and finance teams.",
     slugs: ["ecommerce", "bfsi", "bpo"],
     items: [
       { slug: "finance", name: "Finance", icon: Landmark, short: "Compliant, always-on financial services calls." },
-      { slug: "retail-ecom", name: "Retail & eCom", icon: ShoppingCart, short: "Storefronts and D2C support, unified." },
     ],
   },
 ]
@@ -113,7 +113,7 @@ function IndustriesMenu() {
         </div>
 
         {/* Right: active group detail — fixed height so switching groups never resizes the menu */}
-        <div className="flex h-[340px] flex-col overflow-hidden p-5">
+        <div className="flex h-[260px] flex-col overflow-hidden p-5">
           <div className="flex items-center justify-between gap-3">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
               <span className="size-1.5 rounded-full bg-primary" aria-hidden />
