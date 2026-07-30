@@ -725,38 +725,38 @@ function ECommercePage() {
                 <ScrollReveal key={link.href} delay={i * 0.08}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-2xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
                   >
                     {/* corner ribbon */}
                     <span
                       aria-hidden
-                      className={`absolute right-0 top-0 h-16 w-16 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
+                      className={`absolute right-0 top-0 h-12 w-12 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
                     />
 
                     {/* dotted decoration */}
-                    <div aria-hidden className="absolute right-6 top-16 grid grid-cols-4 gap-1.5 opacity-60">
+                    <div aria-hidden className="absolute right-5 top-12 grid grid-cols-4 gap-1 opacity-60">
                       {Array.from({ length: 16 }).map((_, d) => (
                         <span key={d} className="size-1 rounded-full bg-slate-300" />
                       ))}
                     </div>
 
-                    <span className={`grid size-14 place-items-center rounded-2xl ${a.tile}`}>
-                      <LinkIcon className="size-6" aria-hidden />
+                    <span className={`grid size-11 place-items-center rounded-xl ${a.tile}`}>
+                      <LinkIcon className="size-5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-5 text-balance font-serif text-xl font-bold tracking-tight text-foreground">
+                    <h3 className="mt-4 text-balance font-serif text-lg font-bold tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
-                    <span aria-hidden className={`mt-3 block h-1 w-9 rounded-full ${a.ribbon}`} />
-                    <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">{link.description}</p>
+                    <span aria-hidden className={`mt-2.5 block h-1 w-8 rounded-full ${a.ribbon}`} />
+                    <p className="mt-2.5 text-pretty text-sm leading-relaxed text-muted-foreground">{link.description}</p>
 
-                    <div className="mt-6 flex items-center justify-between">
+                    <div className="mt-5 flex items-center justify-between">
                       <span className={`text-sm font-semibold ${a.text}`}>Read more</span>
                       <span
-                        className={`grid size-9 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
+                        className={`grid size-8 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
                       >
-                        <ArrowRight className="size-4" aria-hidden />
+                        <ArrowRight className="size-3.5" aria-hidden />
                       </span>
                     </div>
                   </Link>
