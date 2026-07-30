@@ -675,18 +675,18 @@ function ECommercePage() {
       </section>
 
       {/* ─── Other industries we power ─── */}
-      <section className="w-full px-6 pb-16 md:px-8 md:pb-24">
+      <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">
+            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
-            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+            <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
           </ScrollReveal>
 
-          <div className="mt-16 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
             {[
               ...related.map((r) => ({
                 href: `/industries/${r.slug}`,
@@ -734,38 +734,38 @@ function ECommercePage() {
                 <ScrollReveal key={link.href} delay={i * 0.08}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
                   >
                     {/* corner ribbon */}
                     <span
                       aria-hidden
-                      className={`absolute right-0 top-0 h-12 w-12 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
+                      className={`absolute right-0 top-0 h-10 w-10 [clip-path:polygon(100%_0,0_0,100%_100%)] ${a.ribbon}`}
                     />
 
                     {/* dotted decoration */}
-                    <div aria-hidden className="absolute right-5 top-12 grid grid-cols-4 gap-1 opacity-60">
+                    <div aria-hidden className="absolute right-4 top-10 grid grid-cols-4 gap-1 opacity-60">
                       {Array.from({ length: 16 }).map((_, d) => (
                         <span key={d} className="size-1 rounded-full bg-slate-300" />
                       ))}
                     </div>
 
-                    <span className={`grid size-11 place-items-center rounded-xl ${a.tile}`}>
-                      <LinkIcon className="size-5" aria-hidden />
+                    <span className={`grid size-9 place-items-center rounded-lg ${a.tile}`}>
+                      <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-4 text-balance font-serif text-lg font-bold tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
-                    <span aria-hidden className={`mt-2.5 block h-1 w-8 rounded-full ${a.ribbon}`} />
-                    <p className="mt-2.5 text-pretty text-sm leading-relaxed text-muted-foreground">{link.description}</p>
+                    <span aria-hidden className={`mt-2 block h-1 w-7 rounded-full ${a.ribbon}`} />
+                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">{link.description}</p>
 
-                    <div className="mt-5 flex items-center justify-between">
-                      <span className={`text-sm font-semibold ${a.text}`}>Read more</span>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className={`text-[12.5px] font-semibold ${a.text}`}>Read more</span>
                       <span
-                        className={`grid size-8 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
+                        className={`grid size-7 shrink-0 place-items-center rounded-full text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5 ${a.btn}`}
                       >
-                        <ArrowRight className="size-3.5" aria-hidden />
+                        <ArrowRight className="size-3" aria-hidden />
                       </span>
                     </div>
                   </Link>
