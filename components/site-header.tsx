@@ -309,8 +309,9 @@ export function SiteHeader() {
             onMouseEnter={() => setIndustriesOpen(true)}
             onMouseLeave={() => setIndustriesOpen(false)}
           >
-            <Link
-              href="/industries"
+            <button
+              type="button"
+              onClick={() => setIndustriesOpen((o) => !o)}
               className={cn(
                 "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
                 isActive("/industries") ? "text-foreground" : "text-muted-foreground",
@@ -319,7 +320,7 @@ export function SiteHeader() {
             >
               Industries
               <ChevronDown className={cn("size-3.5 transition-transform", industriesOpen ? "rotate-180" : "")} aria-hidden />
-            </Link>
+            </button>
             <AnimatePresence>
               {industriesOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">

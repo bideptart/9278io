@@ -18,6 +18,19 @@ export const metadata: Metadata = pageSeo({
   description:
     "Get in touch with the 9278.io team. Sales, support, partnerships, and press enquiries for our AI voice agent platform for Indian businesses.",
   path: "/contact",
+  keywords: [
+    // Focus keyword first
+    "AI receptionist demo",
+    // Supporting keywords
+    "AI voice agent demo",
+    "AI receptionist pricing",
+    "AI voice agent pricing",
+    "talk to AI sales agent",
+    "AI customer support voice",
+    "contact AI voice agent provider",
+    "AI phone answering service",
+    "9278.io support",
+  ],
 })
 
 // The contact action sends two emails (notification + acknowledgement);
@@ -65,7 +78,7 @@ export default function ContactPage() {
             </span>
             <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               Get in{" "}
-              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
                 touch
               </span>
             </h1>
