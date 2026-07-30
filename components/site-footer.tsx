@@ -60,13 +60,13 @@ export function SiteFooter() {
           <div className="grid grid-cols-4 gap-4 md:col-span-9 md:gap-8">
             {Object.entries(nav).map(([section, links]) => (
               <div key={section}>
-                <h3 className="mb-4 text-[8px] font-semibold uppercase tracking-widest text-white/70">{section}</h3>
-                <ul className="mt-3 space-y-0">
+                <h3 className="mb-4 text-[8px] font-semibold uppercase tracking-widest text-white/70 md:text-xs">{section}</h3>
+                <ul className="mt-3 space-y-0 md:space-y-2.5">
                   {links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-block text-[10px] leading-tight text-white/40 transition-colors hover:text-white"
+                        className="inline-block text-[10px] leading-tight text-white/40 transition-colors hover:text-white md:text-sm"
                       >
                         {link.label}
                       </Link>
