@@ -144,7 +144,7 @@ export default function FitnessIndustryPage() {
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.6rem]">
                   AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                     fitness &amp; wellness.
                   </span>
                 </h1>
@@ -310,7 +310,7 @@ export default function FitnessIndustryPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 02</p>
               <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
                 Every answer,{" "}
-                <span className="bg-gradient-to-r from-primary to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                   before you ask
                 </span>
               </h2>
@@ -949,7 +949,7 @@ function SetupMockup({ industryName }: { industryName: string }) {
               <span className="font-semibold text-primary">Ready</span>
             </div>
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
-              <span className="fit-progress-loop block h-full rounded-full bg-gradient-to-r from-primary to-[oklch(0.72_0.18_150)]" />
+              <span className="fit-progress-loop block h-full rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.22_255)]" />
             </div>
           </div>
         </div>
