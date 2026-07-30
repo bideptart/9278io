@@ -1,17 +1,18 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import {
   Bot, AudioLines, SlidersHorizontal, BookOpen, Copy, GitBranch,
   FlaskConical, BarChart3, History, PhoneForwarded, BellRing,
   LifeBuoy, Mic, Settings, LayoutDashboard, Fingerprint,
-  PhoneCall, LayoutTemplate, ChevronDown, Check,
+  PhoneCall, LayoutTemplate, ChevronDown, Check, ArrowRight,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { cn } from "@/lib/utils"
 
-type Feature = { icon: LucideIcon; title: string; description: string; details: string[] }
+type Feature = { icon: LucideIcon; title: string; description: string; details: string[]; href?: string }
 type Group = { id: string; heading: string; blurb: string; features: Feature[] }
 
 const featureGroups: Group[] = [
@@ -29,6 +30,7 @@ const featureGroups: Group[] = [
           "Clone an existing agent to start a new one fast",
           "Assign a different number to each agent",
         ],
+        href: "/features/multi-agent-management",
       },
       {
         icon: AudioLines,
@@ -372,6 +374,17 @@ export function FeatureGroups() {
                               </li>
                             ))}
                           </ul>
+                          {f.href && (
+                            <div className="px-4 pb-4 pl-[66px]">
+                              <Link
+                                href={f.href}
+                                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                              >
+                                Learn more
+                                <ArrowRight className="size-3.5" aria-hidden />
+                              </Link>
+                            </div>
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>
