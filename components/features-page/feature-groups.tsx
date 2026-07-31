@@ -1,17 +1,18 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import {
   Bot, AudioLines, SlidersHorizontal, BookOpen, Copy, GitBranch,
   FlaskConical, BarChart3, History, PhoneForwarded, BellRing,
   LifeBuoy, Mic, Settings, LayoutDashboard, Fingerprint,
-  PhoneCall, LayoutTemplate, ChevronDown, Check,
+  PhoneCall, LayoutTemplate, ChevronDown, Check, ArrowRight,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { cn } from "@/lib/utils"
 
-type Feature = { icon: LucideIcon; title: string; description: string; details: string[] }
+type Feature = { icon: LucideIcon; title: string; description: string; details: string[]; href?: string }
 type Group = { id: string; heading: string; blurb: string; features: Feature[] }
 
 const featureGroups: Group[] = [
@@ -140,6 +141,7 @@ const featureGroups: Group[] = [
           "Spot your busy hours at a glance",
           "Track usage against your plan",
         ],
+        href: "/features/analytics-dashboard",
       },
       {
         icon: History,
@@ -150,6 +152,7 @@ const featureGroups: Group[] = [
           "Filter by date or by agent",
           "Export whenever you need it",
         ],
+        href: "/features/booking-history",
       },
       {
         icon: PhoneForwarded,
@@ -160,6 +163,7 @@ const featureGroups: Group[] = [
           "Add a custom label per transfer",
           "Set fallback numbers for busy lines",
         ],
+        href: "/features/call-transfer-tool",
       },
       {
         icon: BellRing,
@@ -170,6 +174,7 @@ const featureGroups: Group[] = [
           "Never miss a new appointment",
           "Sent the moment it's confirmed",
         ],
+        href: "/features/booking-notifications",
       },
       {
         icon: LifeBuoy,
@@ -180,6 +185,7 @@ const featureGroups: Group[] = [
           "Track status in one place",
           "Full history kept for reference",
         ],
+        href: "/features/support-tickets-system",
       },
       {
         icon: Mic,
@@ -190,6 +196,7 @@ const featureGroups: Group[] = [
           "Play back or download anytime",
           "Review exactly what was said",
         ],
+        href: "/features/call-reports",
       },
     ],
   },
@@ -372,6 +379,17 @@ export function FeatureGroups() {
                               </li>
                             ))}
                           </ul>
+                          {f.href && (
+                            <div className="px-4 pb-4 pl-[66px]">
+                              <Link
+                                href={f.href}
+                                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                              >
+                                Learn more
+                                <ArrowRight className="size-3.5" aria-hidden />
+                              </Link>
+                            </div>
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>

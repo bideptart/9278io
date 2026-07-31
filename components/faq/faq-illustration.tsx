@@ -65,6 +65,13 @@ export function FaqIllustration({
               <stop offset="0%" stopColor="white" stopOpacity="0.35" />
               <stop offset="45%" stopColor="white" stopOpacity="0" />
             </linearGradient>
+            <linearGradient id="rowIcon" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="oklch(0.62 0.19 262.88)" />
+              <stop offset="100%" stopColor="oklch(0.48 0.21 262.88)" />
+            </linearGradient>
+            <filter id="rowShadow" x="-20%" y="-40%" width="140%" height="220%">
+              <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="oklch(0.5 0.1 262.88)" floodOpacity="0.18" />
+            </filter>
           </defs>
 
           {/* ambient shadow under the laptop */}
@@ -95,33 +102,35 @@ export function FaqIllustration({
           </g>
 
           {/* FAQ content on the display */}
-          <text x="128" y="102" fontFamily="ui-sans-serif, system-ui" fontWeight="800" fontSize="24" fill="oklch(0.546 0.215 262.88)">
+          <text x="128" y="100" fontFamily="ui-sans-serif, system-ui" fontWeight="800" fontSize="23" fill="oklch(0.546 0.215 262.88)">
             FAQ
           </text>
+          <rect x="128" y="108" width="26" height="3" rx="1.5" fill="oklch(0.546 0.215 262.88 / 0.5)" />
+
           {[0, 1, 2, 3].map((i) => (
-            <g key={i} transform={`translate(128, ${116 + i * 24})`}>
-              <rect width="144" height="18" rx="7" fill="oklch(0.97 0.01 262.88)" />
-              <circle cx="13" cy="9" r="7" fill="oklch(0.546 0.215 262.88)" />
-              <text x="13" y="12.5" textAnchor="middle" fontFamily="ui-sans-serif, system-ui" fontWeight="700" fontSize="9" fill="white">
+            <g key={i} transform={`translate(128, ${122 + i * 26})`} filter="url(#rowShadow)">
+              <rect width="144" height="19" rx="8" fill="white" stroke="oklch(0.92 0.015 262.88)" />
+              <circle cx="13.5" cy="9.5" r="7.5" fill="url(#rowIcon)" />
+              <text x="13.5" y="13" textAnchor="middle" fontFamily="ui-sans-serif, system-ui" fontWeight="700" fontSize="9" fill="white">
                 ?
               </text>
               {questions[i] ? (
                 <text
-                  x="28"
-                  y="12.5"
+                  x="29"
+                  y="13"
                   textLength="106"
                   lengthAdjust="spacingAndGlyphs"
                   fontFamily="ui-sans-serif, system-ui"
-                  fontWeight="500"
+                  fontWeight="600"
                   fontSize="8.5"
-                  fill="oklch(0.35 0.02 262.88)"
+                  fill="oklch(0.3 0.03 262.88)"
                 >
                   {questions[i]}
                 </text>
               ) : (
                 <>
-                  <rect x="28" y="5" width="90" height="3" rx="1.5" fill="oklch(0.82 0.02 262.88)" />
-                  <rect x="28" y="11" width="60" height="3" rx="1.5" fill="oklch(0.9 0.01 262.88)" />
+                  <rect x="29" y="6" width="90" height="3" rx="1.5" fill="oklch(0.82 0.02 262.88)" />
+                  <rect x="29" y="12" width="60" height="3" rx="1.5" fill="oklch(0.9 0.01 262.88)" />
                 </>
               )}
             </g>

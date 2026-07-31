@@ -34,21 +34,23 @@ export default function FaqPage() {
       />
       <FaqJsonLd items={FLAT_FAQ} />
 
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden border-b border-border/50">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          {/* mesh-gradient blobs — layered, blurred color pools instead of a single flat wash */}
-          <div className="absolute -left-24 -top-32 size-[480px] rounded-full bg-[oklch(0.78_0.16_195)]/30 blur-[110px]" />
-          <div className="absolute -top-20 left-1/3 size-[420px] rounded-full bg-primary/25 blur-[100px]" />
-          <div className="absolute -right-32 top-10 size-[380px] rounded-full bg-[oklch(0.72_0.18_300)]/[0.14] blur-[110px]" />
-          <div className="absolute bottom-0 right-1/4 size-[320px] rounded-full bg-[oklch(0.75_0.14_262.88)]/20 blur-[90px]" />
-          {/* faded grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(37,99,235,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(37,99,235,0.12)_1px,transparent_1px)] bg-[size:44px_44px] [mask-image:radial-gradient(75%_55%_at_50%_0%,black,transparent)]" />
-          {/* scattered accent nodes, scoped to this section only */}
-          <span className="absolute left-[6%] top-[38%] size-1.5 rounded-full bg-primary/40 shadow-[0_0_8px_1px_oklch(0.546_0.215_262.88/0.35)]" />
-          <span className="absolute left-[64%] top-[22%] size-1 rounded-full bg-primary/50 shadow-[0_0_6px_1px_oklch(0.546_0.215_262.88/0.35)]" />
-          <span className="absolute left-[92%] top-[8%] size-1 rounded-full bg-primary/30" />
-          {/* smooth fade into the content below instead of a hard rule */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-background" />
+          {/* base wash — soft white-to-light-blue gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
+          {/* blueprint grid — max contrast, thicker lines, unmistakably visible */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(29,78,216,0.65)_2px,transparent_2px),linear-gradient(to_bottom,rgba(29,78,216,0.65)_2px,transparent_2px)] bg-[size:44px_44px]" />
+          {/* gentle corner gradients, for depth */}
+          <div className="absolute -left-24 -top-24 size-[420px] rounded-full bg-primary/[0.06] blur-[120px]" />
+          <div className="absolute -bottom-24 -right-16 size-[380px] rounded-full bg-primary/[0.05] blur-[120px]" />
+          {/* soft ambient light behind the illustration */}
+          <div className="absolute right-[8%] top-1/2 size-[420px] -translate-y-1/2 rounded-full bg-primary/[0.08] blur-[110px]" />
+          {/* floating accent dots, varied sizes, very low opacity */}
+          <span className="absolute left-[6%] top-[38%] size-1.5 rounded-full bg-primary/20" />
+          <span className="absolute left-[64%] top-[22%] size-1 rounded-full bg-primary/15" />
+          <span className="absolute left-[92%] top-[8%] size-[6px] rounded-full bg-primary/15" />
+          <span className="absolute left-[28%] top-[70%] size-[3px] rounded-full bg-primary/20" />
+          <span className="absolute left-[80%] top-[80%] size-1 rounded-full bg-primary/15" />
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <ScrollReveal className="text-center lg:text-left">
@@ -122,25 +124,29 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <div id="faq-results" className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-8 pt-10 md:px-8 md:pb-12 md:pt-14">
-        <ScrollReveal className="mb-10 md:mb-14">
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-            What's covered
-          </span>
-          <h2 className="mt-2 text-balance text-2xl font-bold tracking-tight md:text-3xl">
-            Six topics. Every real question.
-          </h2>
-          <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-            Jump straight to a topic, or scroll through all {FLAT_FAQ.length}+ answers below.
-          </p>
-        </ScrollReveal>
-        <FaqCategoryGrid groups={FAQ_GROUPS} />
-      </div>
+      <section className="border-b border-border/50">
+        <div id="faq-results" className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+          <ScrollReveal className="mb-10 md:mb-14">
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              What's covered
+            </span>
+            <h2 className="mt-2 text-balance text-2xl font-bold tracking-tight md:text-3xl">
+              Six topics. Every real question.
+            </h2>
+            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              Jump straight to a topic, or scroll through all {FLAT_FAQ.length}+ answers below.
+            </p>
+          </ScrollReveal>
+          <FaqCategoryGrid groups={FAQ_GROUPS} />
+        </div>
+      </section>
 
-      <div className="mx-auto w-full max-w-6xl px-6 pb-20 pt-4 md:px-8 md:pb-28 md:pt-8">
-        <FaqDetailSections groups={FAQ_GROUPS} />
-      </div>
+      <section className="border-b border-border/50">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-20 pt-14 md:px-8 md:pb-28 md:pt-16">
+          <FaqDetailSections groups={FAQ_GROUPS} />
+        </div>
+      </section>
 
       <GradientCta
         id="contact"
