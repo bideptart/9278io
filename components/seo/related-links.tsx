@@ -114,7 +114,7 @@ export function RelatedLinks({
               >
                 <motion.div
                   className={cn(
-                    "relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border border-primary bg-primary p-5",
+                    "relative flex h-full min-h-[126.75px] flex-col justify-between gap-2 overflow-hidden rounded-xl border border-primary bg-primary p-4 sm:gap-4 sm:p-5",
                     "transition-colors duration-150 group-hover:border-border group-hover:bg-white group-hover:shadow-md",
                     isFlipped && "border-border bg-white shadow-md",
                   )}
@@ -139,37 +139,39 @@ export function RelatedLinks({
                   <motion.div variants={contentVariants} transition={flipTransition}>
                     <span
                       className={cn(
-                        "mb-3 inline-flex size-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors duration-150 group-hover:bg-primary/10 group-hover:text-primary",
+                        "mb-2 inline-flex size-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors duration-150 group-hover:bg-primary/10 group-hover:text-primary sm:mb-3",
                         isFlipped && "bg-primary/10 text-primary",
                       )}
                     >
                       <Icon className="size-4" aria-hidden />
                     </span>
+                    <div className="flex items-start justify-between gap-3">
+                      <p
+                        className={cn(
+                          "text-base font-medium tracking-tight text-white transition-colors duration-150 group-hover:text-foreground",
+                          isFlipped && "text-foreground",
+                        )}
+                      >
+                        {l.title}
+                      </p>
+                      <span
+                        className={cn(
+                          "mt-0.5 inline-flex shrink-0 items-center gap-1 text-xs text-white transition-colors duration-150 group-hover:text-primary",
+                          isFlipped && "text-primary",
+                        )}
+                      >
+                        Read more
+                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                      </span>
+                    </div>
                     <p
                       className={cn(
-                        "text-base font-medium tracking-tight text-white transition-colors duration-150 group-hover:text-foreground",
-                        isFlipped && "text-foreground",
-                      )}
-                    >
-                      {l.title}
-                    </p>
-                    <p
-                      className={cn(
-                        "mt-2 text-sm leading-relaxed text-white/70 transition-colors duration-150 group-hover:text-muted-foreground",
+                        "mt-1.5 min-h-[2.75rem] text-sm leading-relaxed text-white/70 transition-colors duration-150 group-hover:text-muted-foreground sm:mt-2",
                         isFlipped && "text-muted-foreground",
                       )}
                     >
                       {l.description}
                     </p>
-                    <span
-                      className={cn(
-                        "mt-4 inline-flex items-center gap-1 text-xs text-white transition-colors duration-150 group-hover:text-primary",
-                        isFlipped && "text-primary",
-                      )}
-                    >
-                      Read more
-                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                    </span>
                   </motion.div>
                 </motion.div>
               </Link>
