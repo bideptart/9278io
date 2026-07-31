@@ -44,24 +44,24 @@ function FaceContent({ step, dark }: { step: Step; dark?: boolean }) {
   return (
     <>
       <div className="flex items-start justify-between">
-        <span className={`text-4xl font-black leading-none md:text-5xl ${dark ? "text-primary/40" : "text-white/40"}`}>
+        <span className={`text-2xl font-black leading-none sm:text-4xl md:text-5xl ${dark ? "text-primary/40" : "text-white/40"}`}>
           {step.number}
         </span>
         <span
-          className={`flex h-8 w-8 items-center justify-center rounded-xl border md:h-10 md:w-10 ${
+          className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-xl border sm:h-8 sm:w-8 md:h-10 md:w-10 ${
             dark ? "border-primary/20 bg-primary/[0.08] text-primary" : "border-white/20 bg-white/[0.12] text-white"
           }`}
         >
-          <Icon className="h-4 w-4 md:h-5 md:w-5" aria-hidden="true" />
+          <Icon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" aria-hidden="true" />
         </span>
       </div>
 
       <div>
-        <h3 className={`text-base font-bold tracking-tight md:text-xl ${dark ? "text-foreground" : "text-white"}`}>
+        <h3 className={`text-sm font-bold tracking-tight sm:text-base md:text-xl ${dark ? "text-foreground" : "text-white"}`}>
           {step.title}
         </h3>
         <p
-          className={`mt-1.5 text-xs leading-relaxed md:mt-2 md:text-sm ${
+          className={`mt-1 text-[11px] leading-relaxed sm:mt-1.5 sm:text-xs md:mt-2 md:text-sm ${
             dark ? "text-muted-foreground" : "text-white/70"
           }`}
         >
@@ -74,7 +74,7 @@ function FaceContent({ step, dark }: { step: Step; dark?: boolean }) {
 
 /* No `flex` here — each face sets its own display so the mobile `hidden`
    never fights a `flex` from this shared string. */
-const faceBase = "flex-col gap-3 overflow-hidden rounded-2xl border p-4 md:gap-5 md:p-7"
+const faceBase = "flex-col gap-2 overflow-hidden rounded-2xl border p-3 sm:gap-3 sm:p-4 md:gap-5 md:p-7"
 
 /* A flip card: blue front flips to a white back on hover.
    The 3D context only exists from md up — phones have no hover, and
@@ -83,14 +83,14 @@ const faceBase = "flex-col gap-3 overflow-hidden rounded-2xl border p-4 md:gap-5
    plain in-flow card instead. */
 function FlipCard({ step }: { step: Step }) {
   return (
-    <div className="group md:[perspective:1400px]">
-      <div className="relative transition-transform duration-500 md:min-h-[300px] md:[transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)]">
+    <div className="group h-full md:[perspective:1400px]">
+      <div className="relative h-full min-h-[190px] transition-transform duration-500 sm:min-h-[210px] md:min-h-[300px] md:[transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)]">
         {/* invisible sizer — only needed once both faces go absolute (md+) */}
         <div aria-hidden className={`invisible hidden md:flex ${faceBase} border-transparent`}>
           <FaceContent step={step} />
         </div>
         {/* front (blue) — in flow on mobile, absolute face on md+ */}
-        <div className={`relative flex border-primary bg-primary shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] md:absolute md:inset-0 md:[backface-visibility:hidden] ${faceBase}`}>
+        <div className={`relative flex h-full border-primary bg-primary shadow-[0_4px_20px_oklch(0.52_0.22_265/0.25)] md:absolute md:inset-0 md:[backface-visibility:hidden] ${faceBase}`}>
           <FaceContent step={step} />
         </div>
         {/* back (white) — md+ only */}
@@ -115,7 +115,7 @@ export function HowItWorks() {
             />
             How It Works
           </motion.span>
-          <h2 className="mt-3 whitespace-nowrap text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:whitespace-nowrap sm:text-4xl md:text-5xl">
             Every call your business makes.
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
@@ -123,9 +123,9 @@ export function HowItWorks() {
           </p>
         </ScrollReveal>
 
-        <StaggerGroup className="relative mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className="relative mt-14 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {steps.map((step) => (
-            <StaggerItem key={step.number}>
+            <StaggerItem key={step.number} className="h-full">
               <FlipCard step={step} />
             </StaggerItem>
           ))}

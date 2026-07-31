@@ -10,7 +10,6 @@ import { FeatureGroups } from "@/components/features-page/feature-groups"
 import { BlueprintHero } from "@/components/features-page/blueprint-hero"
 import { StatBand } from "@/components/features-page/stat-band"
 import { FeatureBento } from "@/components/features-page/feature-bento"
-import { TestimonialsPlaceholder } from "@/components/features-page/testimonials-placeholder"
 
 export const metadata: Metadata = {
   title: "Features — 9278.io",
@@ -152,15 +151,23 @@ export default function FeaturesPage() {
 
       {/* Bento grid */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 py-10 md:px-8 md:py-14">
-          <ScrollReveal className="mx-auto max-w-5xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              At a Glance
-            </span>
-            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
-              Every capability, in one view.
-            </h2>
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+          <ScrollReveal className="mx-auto flex max-w-5xl flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                At a Glance
+              </span>
+              <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-4xl">
+                Every capability,{" "}
+                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                  in one view.
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-pretty leading-relaxed text-muted-foreground md:text-right">
+              Nine capabilities your 9278.io agent ships with today — no add-ons, no upsells.
+            </p>
           </ScrollReveal>
 
           <div className="mt-10">
@@ -169,52 +176,36 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="border-b border-border/50">
-        <div className="w-full px-6 py-10 md:px-8 md:py-14">
-          <ScrollReveal className="mx-auto max-w-5xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              What Customers Say
-            </span>
-            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
-              Loved by businesses across India.
-            </h2>
-          </ScrollReveal>
-
-          <div className="mt-10">
-            <TestimonialsPlaceholder />
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 pb-6 pt-10 md:px-8 md:pb-8 md:pt-14">
-          <ScrollReveal className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              FAQ
-            </span>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-              Questions about what makes us different.
-            </h2>
-          </ScrollReveal>
-
-          <div className="mx-auto mt-10 max-w-5xl">
-            <ScrollReveal>
-              <div className="glass-panel rounded-[1.75rem] p-2 shadow-[0_20px_48px_-32px_oklch(0.13_0.025_255/0.35)] transition-shadow hover:shadow-[0_28px_60px_-32px_oklch(0.546_0.215_262.88/0.2)] sm:p-4">
-                <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <ScrollReveal className="lg:sticky lg:top-24 lg:h-fit">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                FAQ
+              </span>
+              <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
+                Questions about what makes us different.
+              </h2>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/faq"
+                  className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  See all FAQs →
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  Talk to sales
+                </Link>
               </div>
             </ScrollReveal>
 
-            <ScrollReveal className="mt-10 flex justify-center">
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              >
-                See all FAQs →
-              </Link>
+            <ScrollReveal delay={0.08}>
+              <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
             </ScrollReveal>
           </div>
         </div>

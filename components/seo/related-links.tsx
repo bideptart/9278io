@@ -4,8 +4,9 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Building2, HelpCircle, Rocket, Tag, BookOpen, Info, Mail, Sparkles, Link as LinkIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
 
 export type RelatedLink = {
   href: string
@@ -13,9 +14,24 @@ export type RelatedLink = {
   description: string
 }
 
+// Icon is derived from the href's leading path segment rather than threaded
+// through every page's links array — keeps all 7+ call sites untouched while
+// still giving each card a distinguishing icon.
+function iconForHref(href: string) {
+  if (href.startsWith("/industries")) return Building2
+  if (href.startsWith("/faq")) return HelpCircle
+  if (href.startsWith("/get-started")) return Rocket
+  if (href.startsWith("/pricing")) return Tag
+  if (href.startsWith("/blog")) return BookOpen
+  if (href.startsWith("/about")) return Info
+  if (href.startsWith("/contact")) return Mail
+  if (href.startsWith("/features")) return Sparkles
+  return LinkIcon
+}
+
 const cardVariants = {
-  rest: { rotateX: 0 },
-  flipped: { rotateX: 180 },
+  rest: { rotateX: 0, y: 0 },
+  flipped: { rotateX: 180, y: -4 },
 }
 
 const contentVariants = {
@@ -85,11 +101,12 @@ export function RelatedLinks({
         </div>
       </div>
 
-      <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <StaggerGroup className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" stagger={0.1}>
         {links.map((l) => {
           const isFlipped = flippedHref === l.href
+          const Icon = iconForHref(l.href)
           return (
-            <li key={l.href}>
+            <StaggerItem key={l.href}>
               <Link
                 href={l.href}
                 className="group block h-full"
@@ -97,7 +114,7 @@ export function RelatedLinks({
               >
                 <motion.div
                   className={cn(
-                    "flex h-full flex-col justify-between gap-4 rounded-xl border border-primary bg-primary p-5",
+                    "relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border border-primary bg-primary p-5",
                     "transition-colors duration-150 group-hover:border-border group-hover:bg-white group-hover:shadow-md",
                     isFlipped && "border-border bg-white shadow-md",
                   )}
@@ -107,7 +124,27 @@ export function RelatedLinks({
                   variants={cardVariants}
                   transition={flipTransition}
                 >
+                  {/* Faint diagonal-line texture — rest state only, so the
+                      card reads as textured rather than a flat solid block.
+                      Fades out on hover/flip since it'd sit upside-down
+                      against the flipped content otherwise. */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 opacity-100 transition-opacity duration-150 group-hover:opacity-0"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(45deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px, transparent 1px, transparent 13px)",
+                    }}
+                  />
                   <motion.div variants={contentVariants} transition={flipTransition}>
+                    <span
+                      className={cn(
+                        "mb-3 inline-flex size-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors duration-150 group-hover:bg-primary/10 group-hover:text-primary",
+                        isFlipped && "bg-primary/10 text-primary",
+                      )}
+                    >
+                      <Icon className="size-4" aria-hidden />
+                    </span>
                     <p
                       className={cn(
                         "text-base font-medium tracking-tight text-white transition-colors duration-150 group-hover:text-foreground",
@@ -136,10 +173,10 @@ export function RelatedLinks({
                   </motion.div>
                 </motion.div>
               </Link>
-            </li>
+            </StaggerItem>
           )
         })}
-      </ul>
+      </StaggerGroup>
     </section>
   )
 }

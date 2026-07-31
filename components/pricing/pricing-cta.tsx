@@ -1,9 +1,13 @@
+"use client"
+
 import Link from "next/link"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { motion } from "motion/react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ShaderBackground } from "@/components/ui/silk-shader"
 
-type GradientCtaProps = {
+type PricingCtaProps = {
   heading: string
   description: string
   primaryHref: string
@@ -13,9 +17,11 @@ type GradientCtaProps = {
   id?: string
 }
 
-// Same gradient/grid/glow treatment and pill-button styling as the
-// homepage's FinalCta, so every page's closing CTA reads as one system.
-export function GradientCta({
+// Site-wide closing CTA (originally built for /pricing, now the standard
+// CTA everywhere the old static-gradient GradientCta used to be): a live
+// WebGL "Silk" shader background and floating glow orbs instead of a flat
+// gradient.
+export function PricingCta({
   heading,
   description,
   primaryHref,
@@ -23,27 +29,32 @@ export function GradientCta({
   secondaryHref,
   secondaryLabel,
   id,
-}: GradientCtaProps) {
+}: PricingCtaProps) {
   return (
     <section id={id} className="w-full scroll-mt-24 px-6 py-14 md:px-8 md:py-16">
       <ScrollReveal className="mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[oklch(0.64_0.19_245)] via-primary to-[oklch(0.45_0.19_264)] px-8 py-12 shadow-[0_40px_100px_-40px_oklch(0.52_0.22_265/0.6)] md:px-14 md:py-14">
-          {/* faint grid */}
-          <div
+        <div className="relative overflow-hidden rounded-[2rem] bg-primary px-8 py-12 shadow-[0_40px_100px_-40px_oklch(0.52_0.22_265/0.6)] md:px-14 md:py-14">
+          {/* Live WebGL "Silk" shader — replaces the flat gradient with a
+              slowly-shifting animated background. Dark overlay right after
+              it keeps the white heading/body text readable over the
+              shader's lighter passages. */}
+          <ShaderBackground className="pointer-events-none absolute inset-0" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/35 via-black/15 to-black/40" />
+
+          {/* Floating glow orbs */}
+          <motion.div
             aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-[0.18]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-              backgroundSize: "44px 44px",
-              maskImage: "radial-gradient(ellipse at center, black 55%, transparent 100%)",
-            }}
+            className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-white/15 blur-[90px]"
+            animate={{ x: [0, 24, 0], y: [0, 16, 0], opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           />
-          {/* soft glows */}
-          <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-white/15 blur-[90px]" />
-          <div aria-hidden className="pointer-events-none absolute -bottom-28 -right-16 size-80 rounded-full bg-[oklch(0.7_0.15_210/0.35)] blur-[100px]" />
-          {/* decorative sparkle */}
-          <Sparkles aria-hidden className="pointer-events-none absolute -right-6 bottom-2 size-48 text-white/[0.06]" strokeWidth={1} />
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-28 -right-16 size-80 rounded-full bg-[oklch(0.7_0.15_210/0.35)] blur-[100px]"
+            animate={{ x: [0, -20, 0], y: [0, -18, 0], opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+          />
+
 
           <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
             <div className="max-w-xl">

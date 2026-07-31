@@ -13,7 +13,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { AutomotiveDispatchBoard } from "@/components/industries/automotive-dispatch-board"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
@@ -127,7 +127,7 @@ export default function AutomotiveIndustryPage() {
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.4rem]">
                   AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                     dealerships &amp; service centres.
                   </span>
                 </h1>
@@ -573,7 +573,7 @@ export default function AutomotiveIndustryPage() {
       </section>
 
       {/* Closing CTA */}
-      <GradientCta
+      <PricingCta
         heading="Ready to fill every bay and every seat?"
         description="Launch an agent that books test drives, schedules service, and answers parts questions — in 10+ Indian languages, around the clock."
         primaryHref={`/get-started?industry=${industry.slug}`}

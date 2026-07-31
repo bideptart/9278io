@@ -11,7 +11,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { Marquee } from "@/components/ui/marquee"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
@@ -140,7 +140,7 @@ export default function EducationIndustryPage() {
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
                   AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
                     education.
                   </span>
                 </h1>
@@ -454,7 +454,7 @@ export default function EducationIndustryPage() {
                   <figure className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md">
                     <span
                       aria-hidden
-                      className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-gradient-to-b from-primary to-[oklch(0.72_0.18_150)] transition-transform duration-300 group-hover:scale-y-100"
+                      className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-gradient-to-b from-primary to-[oklch(0.5_0.22_255)] transition-transform duration-300 group-hover:scale-y-100"
                     />
                     <Quote className="size-4 text-primary/40" aria-hidden />
                     <blockquote className="mt-2.5 text-pretty leading-relaxed text-foreground/90">{line}</blockquote>
@@ -537,7 +537,7 @@ export default function EducationIndustryPage() {
                       <span className="font-semibold text-primary">Ready</span>
                     </div>
                     <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
-                      <span className="fit-progress-loop block h-full rounded-full bg-gradient-to-r from-primary to-[oklch(0.72_0.18_150)]" />
+                      <span className="fit-progress-loop block h-full rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.22_255)]" />
                     </div>
                   </div>
                 </div>
@@ -787,7 +787,7 @@ export default function EducationIndustryPage() {
       </section>
 
       {/* Closing CTA */}
-      <GradientCta
+      <PricingCta
         heading="Ready to fill every batch?"
         description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
         primaryHref={`/get-started?industry=${industry.slug}`}

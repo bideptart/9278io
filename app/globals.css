@@ -181,6 +181,16 @@
 .hero-float-up   { animation: heroFloatUp 2.8s ease-in-out infinite; will-change: transform; }
 .hero-float-down { animation: heroFloatDown 2.8s ease-in-out infinite 1.4s; will-change: transform; }
 
+/* Hero illustration — a single slow, restrained float. The same minimal
+   motion used for mockups on polished product pages: nothing flashy, just
+   enough drift to read as "alive" without competing with the floating
+   accent cards layered on top of it. */
+@keyframes heroImageFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.hero-image-float { animation: heroImageFloat 5s ease-in-out infinite; will-change: transform; }
+
 /* ── Industries hero illustration — animation ────────────────────────────
    Subtle, professional motion for the conceptual voice-AI graphic.
    All transforms use transform-box: fill-box so SVG elements rotate/scale
@@ -312,6 +322,79 @@
   .ind-glow,
   .ind-ping,
   .ind-shimmer {
+    animation: none;
+  }
+}
+
+/* ── Orbit ring — a set of icons slowly revolving around a fixed centre.
+   The ring rotates full-circle; each icon counter-rotates by the same
+   amount so it stays upright while it travels along the orbit. ────────── */
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.orbit-ring {
+  animation: orbit-spin-reverse 30s linear infinite;
+}
+.orbit-icon-counter {
+  animation: orbit-spin 30s linear infinite;
+}
+.orbit-ring-fast {
+  animation: orbit-spin 20s linear infinite;
+}
+.orbit-icon-counter-fast {
+  animation: orbit-spin-reverse 20s linear infinite;
+}
+.orbit-ring-fastest {
+  animation: orbit-spin-reverse 14s linear infinite;
+}
+.orbit-icon-counter-fastest {
+  animation: orbit-spin 14s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring,
+  .orbit-icon-counter,
+  .orbit-ring-fast,
+  .orbit-icon-counter-fast,
+  .orbit-ring-fastest,
+  .orbit-icon-counter-fastest {
+    animation: none;
+  }
+}
+
+/* ── Circuit panel — industrial control-panel illustration. A radar-style
+   sweep rotates behind a fixed hub; small pulses travel along right-angle
+   PCB-style traces to each module panel. ───────────────────────────────── */
+@keyframes radar-sweep-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+.radar-sweep {
+  animation: radar-sweep-spin 7s linear infinite;
+}
+.circuit-node-pulse {
+  animation: circuit-pulse 2.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep,
+  .circuit-node-pulse {
     animation: none;
   }
 }
@@ -538,6 +621,84 @@
 
 @media (prefers-reduced-motion: reduce) {
   .connector-flow {
+    animation: none;
+  }
+}
+
+/* ── Same "flowing dash" effect, for plain CSS-positioned divs (not SVG
+   strokes) — used by the features-page hero's right-angle connector lines.
+   A repeating gradient stands in for the dash pattern; animating its
+   position along the line's own axis gives the moving-dash illusion. ── */
+@keyframes dash-flow-h {
+  to {
+    background-position-x: -12px;
+  }
+}
+@keyframes dash-flow-v {
+  to {
+    background-position-y: -12px;
+  }
+}
+.connector-dash-h {
+  background-image: repeating-linear-gradient(to right, oklch(0.546 0.215 262.88 / 0.6) 0 6px, transparent 6px 12px);
+  animation: dash-flow-h 0.8s linear infinite;
+}
+.connector-dash-v {
+  background-image: repeating-linear-gradient(to bottom, oklch(0.546 0.215 262.88 / 0.6) 0 6px, transparent 6px 12px);
+  animation: dash-flow-v 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connector-dash-h,
+  .connector-dash-v {
+    animation: none;
+  }
+}
+
+/* ── Rotating border glow — a conic-gradient ring that sweeps around a
+   card's edge on hover, masked down to just the border stroke via
+   mask-composite so the card's own background is untouched. ────────────── */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes border-glow-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    oklch(0.546 0.215 262.88) 12%,
+    oklch(0.72 0.16 220) 20%,
+    transparent 34%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: border-glow-spin 3.2s linear infinite paused;
+  pointer-events: none;
+}
+.glow-border:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-border::before {
     animation: none;
   }
 }

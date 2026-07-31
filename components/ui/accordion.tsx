@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
+import { ChevronRight } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
@@ -39,9 +40,7 @@ function AccordionTrigger({
         )}
         {...props}
       >
-        <svg viewBox="0 0 10 10" fill="currentColor" className="pointer-events-none size-3 shrink-0" aria-hidden="true">
-          <path d="M1 0.5 L9 5 L1 9.5 Z" />
-        </svg>
+        <ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden="true" />
         {children}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
