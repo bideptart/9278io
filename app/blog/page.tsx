@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, CalendarClock, Globe, Tags } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -156,7 +156,7 @@ export default async function BlogPage() {
       </section>
       </BlogSearchProvider>
 
-      <GradientCta
+      <PricingCta
         heading="Ready to stop reading and start calling?"
         description="Pick a plan, optionally add a phone number, and start a real test call — most teams are live in under 5 minutes."
         primaryHref="/get-started"

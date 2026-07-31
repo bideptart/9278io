@@ -655,3 +655,51 @@
   }
 }
 
+/* ── Rotating border glow — a conic-gradient ring that sweeps around a
+   card's edge on hover, masked down to just the border stroke via
+   mask-composite so the card's own background is untouched. ────────────── */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes border-glow-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    oklch(0.546 0.215 262.88) 12%,
+    oklch(0.72 0.16 220) 20%,
+    transparent 34%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: border-glow-spin 3.2s linear infinite paused;
+  pointer-events: none;
+}
+.glow-border:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-border::before {
+    animation: none;
+  }
+}
+

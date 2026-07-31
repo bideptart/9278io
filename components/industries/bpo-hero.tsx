@@ -102,70 +102,70 @@ export function BpoHero({ industry }: { industry: Industry }) {
                   sizes="(min-width: 1024px) 560px, 100vw"
                   className="object-cover"
                 />
+              </div>
 
-                {/* Floating accent cards */}
-                <div className="absolute left-4 top-6 z-20 hero-float-up">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
-                        <CheckCircle2 className="size-5" aria-hidden />
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-bold leading-tight text-slate-800">Call Deflected</p>
-                        <p className="text-[11px] font-medium text-slate-500">Resolved</p>
-                      </div>
+              {/* Floating accent cards — sit outside the image bounds */}
+              <div className="absolute -left-4 top-6 z-20 hero-float-up">
+                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
+                      <CheckCircle2 className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Call Deflected</p>
+                      <p className="text-[11px] font-medium text-slate-500">Resolved</p>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="absolute right-2 top-2 z-20">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
-                    <div className="mt-1.5 flex items-center gap-1.5">
-                      <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
-                      <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
-                        {[7, 11, 6, 13, 9, 14].map((h, i) => (
-                          <span
-                            key={i}
-                            style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
-                            className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-sky-500 to-blue-500"
-                          />
-                        ))}
-                      </div>
+              <div className="absolute -right-4 -top-4 z-20">
+                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
+                  <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
+                  <div className="mt-1.5 flex items-center gap-1.5">
+                    <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
+                    <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
+                      {[7, 11, 6, 13, 9, 14].map((h, i) => (
+                        <span
+                          key={i}
+                          style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
+                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-sky-500 to-blue-500"
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="absolute left-0 top-[48%] z-20 hero-float-down">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                        <Star className="size-5" aria-hidden />
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-bold leading-tight text-slate-800">CSAT Score</p>
-                        <p className="text-[11px] font-medium text-slate-500">4.6 / 5</p>
-                      </div>
+              <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
+                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
+                      <Star className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">CSAT Score</p>
+                      <p className="text-[11px] font-medium text-slate-500">4.6 / 5</p>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="absolute bottom-10 right-0 z-20 hero-float-up">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                        <Headphones className="size-5" aria-hidden />
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-bold leading-tight text-slate-800">Escalation</p>
-                        <p className="text-[11px] font-medium text-slate-500">Routed live</p>
-                      </div>
-                      <span className="ml-1 flex gap-1" aria-hidden>
-                        <span className="size-1.5 rounded-full bg-slate-300" />
-                        <span className="size-1.5 rounded-full bg-slate-300" />
-                        <span className="size-1.5 rounded-full bg-blue-500" />
-                      </span>
+              <div className="absolute -right-6 bottom-10 z-20 hero-float-up">
+                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
+                      <Headphones className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Escalation</p>
+                      <p className="text-[11px] font-medium text-slate-500">Routed live</p>
                     </div>
+                    <span className="ml-1 flex gap-1" aria-hidden>
+                      <span className="size-1.5 rounded-full bg-slate-300" />
+                      <span className="size-1.5 rounded-full bg-slate-300" />
+                      <span className="size-1.5 rounded-full bg-blue-500" />
+                    </span>
                   </div>
                 </div>
               </div>
