@@ -703,3 +703,9 @@
   }
 }
 
+/* Pricing page's CTA only — keeps the call motif at its original position;
+   every other page uses the shared component's default (nudged down). */
+#pricing-cta .cta-call-motif {
+  bottom: 1rem;
+}
+
