@@ -1,6 +1,7 @@
 "use client"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { cn } from "@/lib/utils"
 import type { FaqItem } from "@/lib/faq"
 
 /**
@@ -16,10 +17,12 @@ export function FaqAccordion({
   items,
   idPrefix,
   defaultOpenIndex = null,
+  contentClassName,
 }: {
   items: FaqItem[]
   idPrefix?: string
   defaultOpenIndex?: number | null
+  contentClassName?: string
 }) {
   const defaultValue =
     defaultOpenIndex != null ? (idPrefix ? `${idPrefix}-${defaultOpenIndex}` : `${defaultOpenIndex}`) : undefined
@@ -33,7 +36,7 @@ export function FaqAccordion({
             <AccordionTrigger className="data-[state=open]:text-primary [&>svg]:text-foreground">
               {item.q}
             </AccordionTrigger>
-            <AccordionContent className="text-pretty leading-relaxed text-muted-foreground">
+            <AccordionContent className={cn("text-pretty leading-relaxed text-muted-foreground", contentClassName)}>
               {item.a}
             </AccordionContent>
           </AccordionItem>
