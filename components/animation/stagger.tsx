@@ -18,9 +18,10 @@ type StaggerProps = {
   className?: string
   /** Delay between each direct child */
   stagger?: number
+  role?: string
 }
 
-export function StaggerGroup({ children, className, stagger = 0.08 }: StaggerProps) {
+export function StaggerGroup({ children, className, stagger = 0.08, ...rest }: StaggerProps) {
   return (
     <motion.div
       initial="hidden"
@@ -33,6 +34,7 @@ export function StaggerGroup({ children, className, stagger = 0.08 }: StaggerPro
         },
       }}
       className={cn(className)}
+      {...rest}
     >
       {children}
     </motion.div>
@@ -42,12 +44,14 @@ export function StaggerGroup({ children, className, stagger = 0.08 }: StaggerPro
 export function StaggerItem({
   children,
   className,
+  ...rest
 }: {
   children: React.ReactNode
   className?: string
+  role?: string
 }) {
   return (
-    <motion.div variants={variants} className={cn(className)}>
+    <motion.div variants={variants} className={cn(className)} {...rest}>
       {children}
     </motion.div>
   )

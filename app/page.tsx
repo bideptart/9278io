@@ -6,7 +6,7 @@ import { Features } from "@/components/sections/features"
 import { Industries } from "@/components/sections/industries"
 import { HowItWorks } from "@/components/sections/how-it-works"
 import { FAQ } from "@/components/sections/faq"
-import { FinalCta } from "@/components/sections/final-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { ServiceJsonLd, FaqJsonLd } from "@/components/seo/jsonld"
 import { FLAT_FAQ } from "@/lib/faq"
 
@@ -29,7 +29,14 @@ export default function HomePage() {
         <Industries />
         <PricingFeature />
         <FAQ />
-        <FinalCta />
+        <PricingCta
+          heading="Ready to put this to work?"
+          description="Build your first agent free, or hear it answer a real call right now — in 10+ Indian languages, around the clock."
+          primaryHref="/get-started"
+          primaryLabel="Build your first agent"
+          secondaryHref="/features"
+          secondaryLabel="Features"
+        />
       </main>
       <SiteFooter />
     </div>

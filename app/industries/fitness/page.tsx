@@ -13,42 +13,10 @@ import { Button } from "@/components/ui/button"
 import { Marquee } from "@/components/ui/marquee"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PlaybookStage } from "@/components/industries/playbook-stage"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
-import type { FaqItem } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
-import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
-
-/* Fitness-specific FAQ. Every answer restates facts already published on
-   the pricing page and /faq — plan rates, TRAI windows, language list,
-   integrations — applied to the studio/gym workflows in lib/industries.ts. */
-const FITNESS_FAQ: FaqItem[] = [
-  {
-    q: "Can the agent book classes directly in my studio software?",
-    a: "Yes. Class and trainer bookings write back to the tools you already run — we have native integrations with Zoho CRM, Freshworks, LeadSquared, Razorpay, and the WhatsApp Business API, plus 200+ other tools via webhooks and Zapier. Custom integrations are included on the Growth and Scale plans.",
-  },
-  {
-    q: "How does no-show recovery actually work?",
-    a: "The agent calls members within minutes of a class ending and offers the next open slot. On Growth and Scale it can follow up over the WhatsApp Business API with the confirmation, so the rebooking still lands if the member doesn't pick up.",
-  },
-  {
-    q: "Can members freeze, cancel, or upgrade a membership over the phone?",
-    a: "Yes — freeze, cancel, and upgrade requests ship as standard playbooks. The agent captures the request, confirms the terms you've configured, and writes the change back to your system. Every call is recorded and transcribed in your dashboard, with PII redaction options.",
-  },
-  {
-    q: "Can it ring members about a 6 AM class?",
-    a: "Outbound calls run inside TRAI calling windows — nothing before 9 AM or after 9 PM — so early-morning reminders go out the evening before. Inbound is answered 24/7, so a member can call in and book at any hour.",
-  },
-  {
-    q: "Which languages can it speak to my members in?",
-    a: "10+ Indian languages including Hindi, Tamil, Telugu, Kannada, Marathi, Bengali, Gujarati, Punjabi, Malayalam, and Odia — with native-sounding voices, sub-second latency, and the ability to switch language mid-call.",
-  },
-  {
-    q: "What does this cost for a single studio?",
-    a: "Starter is ₹3,000 billed once as wallet credit — 250 included minutes at ₹12/min. A dedicated Indian number is ₹400/month, and wallet credit is valid for 60 days from top-up. No setup fees and no contracts.",
-  },
-]
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
 /* Trust stats — same real numbers used in the marquee further down this
    page, surfaced early in the hero for immediate credibility. */
@@ -112,25 +80,7 @@ export default function FitnessIndustryPage() {
           aria-hidden
           className="pointer-events-none absolute -top-32 right-0 h-[560px] w-[720px] rounded-full bg-primary/[0.1] blur-[130px]"
         />
-        <div className="relative w-full px-6 pb-16 pt-6 md:px-8 md:pb-20 md:pt-8">
-          <nav aria-label="Breadcrumb" className="mb-6 text-xs text-muted-foreground">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-foreground">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li>
-                <Link href="/industries" className="hover:text-foreground">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li className="text-foreground">{industry.name}</li>
-            </ol>
-          </nav>
-
+        <div className="relative w-full px-6 pb-10 pt-1 md:px-8 md:pb-12 md:pt-2">
           <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
@@ -209,7 +159,7 @@ export default function FitnessIndustryPage() {
       </section>
 
       {/* What it does — unified, auto-cycling playbook + live-call stage */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+      <section className="w-full px-6 py-8 md:px-8 md:py-12">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="max-w-2xl">
             <div className="flex items-center gap-3">
@@ -231,7 +181,7 @@ export default function FitnessIndustryPage() {
       </section>
 
       {/* Why teams switch */}
-      <section className="relative overflow-hidden border-y border-border/50 bg-card/20 py-16 md:py-20">
+      <section className="relative overflow-hidden border-y border-border/50 bg-card/20 py-8 md:py-12">
         <ScrollReveal>
           <Marquee pauseOnHover className="[--duration:28s] [--gap:1.25rem]">
             {[
@@ -260,8 +210,8 @@ export default function FitnessIndustryPage() {
       </section>
 
       {/* Rollout — alternating copy / product-mockup rows */}
-      <section className="w-full px-6 py-16 md:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl space-y-16 md:space-y-24">
+      <section className="w-full px-6 py-8 md:px-8 md:py-12">
+        <div className="mx-auto max-w-6xl space-y-10 md:space-y-14">
           {/* ── Row 1: copy left, setup mockup right ── */}
           <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
             <ScrollReveal>
@@ -357,251 +307,98 @@ export default function FitnessIndustryPage() {
         </div>
       </section>
 
-      {/* Other industries — quote-style cards */}
-      <section className="w-full border-t border-border/50 bg-card/20 px-6 py-16 md:px-8 md:py-24">
+      {/* Other industries — uniform corner-ribbon cards (matches the
+          e-commerce industry page's card style, and the Automotive page's
+          "Other industries" section) instead of the asymmetric bento. */}
+      <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="max-w-2xl">
-            <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">
+          <ScrollReveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
-            <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
           </ScrollReveal>
 
-          {/* Bento grid — one featured dark tile, then supporting tiles */}
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-            {/* ── Featured (dark) — first related industry ── */}
-            {related[0] && (
-              <ScrollReveal className="sm:col-span-2 lg:col-span-4">
-                <Link
-                  href={`/industries/${related[0].slug}`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-[oklch(0.32_0.14_262)] to-primary p-7 shadow-xl transition-transform duration-300 hover:-translate-y-1 md:p-8"
-                >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-white/10 blur-3xl"
-                  />
-                  <span className="grid size-11 place-items-center rounded-xl bg-white/15 text-white backdrop-blur">
-                    {(() => {
-                      const RelIcon = related[0].icon
-                      return <RelIcon className="size-5" aria-hidden />
-                    })()}
-                  </span>
-                  <h3 className="mt-6 text-balance text-xl font-semibold tracking-tight text-white md:text-2xl">
-                    AI voice agents for {related[0].name.toLowerCase()}
-                  </h3>
-                  <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-white/70">
-                    {related[0].short}
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {related[0].caps.map((cap) => (
-                      <span
-                        key={cap}
-                        className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur"
-                      >
-                        {cap}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="mt-auto inline-flex items-center gap-1.5 pt-7 text-sm font-semibold text-white">
-                    Read more
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── Second industry — with a day-one job preview ── */}
-            {related[1] && (
-              <ScrollReveal delay={0.08} className="sm:col-span-2 lg:col-span-2">
-                <Link
-                  href={`/industries/${related[1].slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
-                >
-                  <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                    {(() => {
-                      const RelIcon = related[1].icon
-                      return <RelIcon className="size-5" aria-hidden />
-                    })()}
-                  </span>
-                  <h3 className="mt-5 text-balance text-base font-semibold tracking-tight text-foreground">
-                    AI voice agents for {related[1].name.toLowerCase()}
-                  </h3>
-                  <ul className="mt-4 flex-1 space-y-2">
-                    {related[1].jobs.slice(0, 3).map((job) => (
-                      <li key={job} className="flex items-start gap-2">
-                        <Check className="mt-0.5 size-3.5 shrink-0 text-primary" aria-hidden />
-                        <span className="text-[13px] leading-snug text-muted-foreground">{job}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    Read more
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── Third industry — with a conversation snippet ── */}
-            {related[2] && (
-              <ScrollReveal delay={0.16} className="sm:col-span-1 lg:col-span-2">
-                <Link
-                  href={`/industries/${related[2].slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
-                >
-                  <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                    {(() => {
-                      const RelIcon = related[2].icon
-                      return <RelIcon className="size-5" aria-hidden />
-                    })()}
-                  </span>
-                  <h3 className="mt-5 text-balance text-base font-semibold tracking-tight text-foreground">
-                    AI voice agents for {related[2].name.toLowerCase()}
-                  </h3>
-                  <div className="mt-4 flex-1 space-y-1.5">
-                    {related[2].conversation.slice(0, 2).map((line, i) => (
-                      <div
-                        key={i}
-                        className={`flex ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
-                      >
-                        <span
-                          className={
-                            line.speaker === "Agent"
-                              ? "max-w-[90%] rounded-xl rounded-bl-sm bg-primary/12 px-2.5 py-1.5 text-[11px] leading-snug text-primary"
-                              : "max-w-[90%] rounded-xl rounded-br-sm bg-slate-50 px-2.5 py-1.5 text-[11px] leading-snug text-slate-600 ring-1 ring-slate-200"
-                          }
-                        >
-                          {line.text}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    Read more
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── Education ── */}
-            {education && (
-              <ScrollReveal delay={0.24} className="sm:col-span-1 lg:col-span-2">
-                <Link
-                  href={`/industries/${education.slug}`}
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
-                >
-                  <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                    {(() => {
-                      const EduIcon = education.icon
-                      return <EduIcon className="size-5" aria-hidden />
-                    })()}
-                  </span>
-                  <h3 className="mt-5 text-balance text-base font-semibold tracking-tight text-foreground">
-                    AI voice agents for {education.name.toLowerCase()}
-                  </h3>
-                  <p className="mt-3 flex-1 text-[13px] leading-relaxed text-muted-foreground">{education.short}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    Read more
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── Pricing — big-number tile ── */}
-            <ScrollReveal delay={0.32} className="sm:col-span-2 lg:col-span-2">
-              <Link
-                href="/pricing"
-                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
-              >
-                <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <IndianRupee className="size-5" aria-hidden />
-                </span>
-                <p className="mt-5 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-                  ₹10
-                  <span className="ml-1 text-base font-semibold text-muted-foreground">/min</span>
-                </p>
-                <p className="mt-3 flex-1 text-[13px] leading-relaxed text-muted-foreground">
-                  Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.
-                </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                  Compare plans
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </span>
-              </Link>
-            </ScrollReveal>
-
-            {/* ── FAQ — wide tile with question chips ── */}
-            <ScrollReveal delay={0.4} className="sm:col-span-2 lg:col-span-6">
-              <Link
-                href="/faq"
-                className="group flex h-full flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg md:flex-row md:items-center md:justify-between md:p-7"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                    <LifeBuoy className="size-5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight text-foreground">
-                      FAQ — credit, phone numbers, compliance
-                    </h3>
-                    <p className="mt-1.5 text-pretty text-[13px] leading-relaxed text-muted-foreground">
-                      Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex shrink-0 flex-wrap items-center gap-2">
-                  {["Voice credit", "TRAI windows", "DPDP Act"].map((chip) => (
+          <div className="mt-6 grid gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ...related.map((r) => ({
+                href: `/industries/${r.slug}`,
+                titlePrefix: "AI voice agents for ",
+                highlight: r.name.toLowerCase(),
+                description: r.short,
+                icon: r.icon,
+              })),
+              ...(education
+                ? [
+                    {
+                      href: `/industries/${education.slug}`,
+                      titlePrefix: "AI voice agents for ",
+                      highlight: education.name.toLowerCase(),
+                      description: education.short,
+                      icon: education.icon,
+                    },
+                  ]
+                : []),
+              {
+                href: "/pricing",
+                titlePrefix: "",
+                highlight: "Compare plans and per-minute rates",
+                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
+                icon: IndianRupee,
+              },
+              {
+                href: "/faq",
+                titlePrefix: "",
+                highlight: "FAQ — credit, phone numbers, compliance",
+                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
+                icon: LifeBuoy,
+              },
+            ].map((link, i) => {
+              const LinkIcon = link.icon
+              return (
+                <ScrollReveal key={link.href} delay={i * 0.08}>
+                  <Link
+                    href={link.href}
+                    className="group relative block h-full overflow-hidden rounded-2xl border border-l-4 border-slate-200 border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    {/* corner ribbon */}
                     <span
-                      key={chip}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-muted-foreground"
-                    >
-                      {chip}
+                      aria-hidden
+                      className="absolute right-0 top-0 h-12 w-12 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]"
+                    />
+
+                    {/* dotted decoration */}
+                    <div aria-hidden className="absolute right-4 top-12 grid grid-cols-4 gap-1 opacity-60">
+                      {Array.from({ length: 16 }).map((_, d) => (
+                        <span key={d} className="size-1 rounded-full bg-slate-300" />
+                      ))}
+                    </div>
+
+                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <LinkIcon className="size-4" aria-hidden />
                     </span>
-                  ))}
-                  <ArrowRight
-                    className="size-4 text-primary transition-transform group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
-                </div>
-              </Link>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
 
-      {/* FAQ — fitness-specific, same treatment as the homepage FAQ */}
-      <section id="faq" className="border-b border-border/50">
-        <FaqJsonLd items={FITNESS_FAQ} />
-        <div className="w-full px-6 pb-10 pt-14 md:px-8 md:pb-14 md:pt-20">
-          <ScrollReveal className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              FAQ
-            </span>
-            <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">Questions, answered.</h2>
-            <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              The short version: bookings write back to your studio tools, outbound stays inside TRAI windows, and
-              Starter runs ₹3,000 for 250 minutes. The long version is below.
-            </p>
-          </ScrollReveal>
+                    <h3 className="mt-3 min-h-[2.4rem] text-balance text-[15px] font-semibold leading-snug tracking-tight text-foreground">
+                      {link.titlePrefix}
+                      {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
+                    </h3>
+                    <span aria-hidden className="mt-2 block h-1 w-8 rounded-full bg-primary" />
+                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">
+                      {link.description}
+                    </p>
 
-          <div className="mx-auto mt-12 max-w-5xl">
-            <ScrollReveal>
-              <FaqAccordion items={FITNESS_FAQ} idPrefix="fitness-faq" />
-            </ScrollReveal>
-
-            <ScrollReveal className="mt-10 flex justify-center">
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              >
-                See all FAQs →
-              </Link>
-            </ScrollReveal>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[13px] font-semibold text-primary">Read more</span>
+                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
+                        <ArrowRight className="size-3.5" aria-hidden />
+                      </span>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              )
+            })}
           </div>
         </div>
       </section>
