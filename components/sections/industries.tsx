@@ -10,7 +10,7 @@ import { IndustriesScrollCards } from "@/components/industries/industries-scroll
 /* ── Industry data ── */
 const featured = {
   icon: Phone,
-  image: undefined as string | undefined,
+  image: "/images/industries/bpo.png" as string | undefined,
   tag: "BPO & Call Centers",
   title: "Replace Tier-1 Agents at Scale",
   description:

@@ -137,7 +137,7 @@ export default function ContactPage() {
 
           <div className="mx-auto mt-10 max-w-3xl">
             <ScrollReveal>
-              <FaqAccordion items={faqs} idPrefix="contact" />
+              <FaqAccordion items={faqs} idPrefix="contact" contentClassName="pl-[52px]" />
             </ScrollReveal>
             <ScrollReveal className="flex justify-center pt-2">
               <Link
