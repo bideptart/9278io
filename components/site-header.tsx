@@ -277,19 +277,28 @@ export function SiteHeader() {
       key={href}
       href={href}
       className={cn(
-        "relative rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
+        "group relative rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
         isActive(href) ? "text-foreground" : "text-muted-foreground",
       )}
     >
       {label}
+      <span
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-x-3 -bottom-px h-px origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100",
+          isActive(href) && "scale-x-100",
+        )}
+      />
     </Link>
   )
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b border-border bg-white transition-shadow duration-200",
-        scrolled ? "shadow-sm" : "",
+        "sticky top-0 z-40 w-full transition-all duration-300",
+        scrolled
+          ? "glass-panel border-b border-transparent shadow-[0_8px_30px_-16px_oklch(0.13_0.025_255/0.25)]"
+          : "border-b border-border bg-white",
       )}
     >
       <div className="flex h-20 w-full items-center justify-between px-4 md:grid md:h-16 md:grid-cols-[1fr_auto_1fr] md:px-8">

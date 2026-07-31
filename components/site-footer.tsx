@@ -32,7 +32,8 @@ const nav = {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-slate-900">
+    <footer className="relative bg-slate-900">
+      <div aria-hidden className="h-px w-full bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       <div className="w-full px-6 py-14 md:px-8 md:py-16">
         {/* Top row */}
         <div className="grid gap-10 md:grid-cols-12">

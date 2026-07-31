@@ -1,14 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { LayoutDashboard, Copy, PhoneCall, ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowRight, LayoutDashboard, Copy, PhoneCall, LayoutGrid, IndianRupee, HelpCircle } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { GradientCta } from "@/components/sections/gradient-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
-import { RelatedLinks } from "@/components/seo/related-links"
 import { MultiAgentHub } from "@/components/features-page/multi-agent-hub"
+import { MultiAgentCapabilities } from "@/components/features-page/multi-agent-capabilities"
+import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 
 export const metadata: Metadata = pageSeo({
   title: "Multi-Agent Management — 9278.io Features",
@@ -19,22 +20,61 @@ export const metadata: Metadata = pageSeo({
 
 const capabilities = [
   {
-    icon: LayoutDashboard,
+    icon: <LayoutDashboard className="size-8 shrink-0 text-primary md:size-10" aria-hidden />,
     title: "One dashboard for every agent you run",
     description:
-      "Every agent on your account — however many you create — shows up in the same dashboard. Switch between them without juggling separate logins or tools.",
+      "Every agent on your account — however many you create — shows up in the same dashboard. Switch between them without juggling separate logins or tools. As your team adds more agents for more use cases, none of them fragment the view — it stays one place to check on everything.",
+    points: [
+      "Every agent appears in the same dashboard",
+      "Switch between agents without separate logins",
+      "No extra tools to manage",
+      "Scales as you add more agents, without splitting your view",
+    ],
   },
   {
-    icon: Copy,
+    icon: <Copy className="size-8 shrink-0 text-primary md:size-10" aria-hidden />,
     title: "Clone an existing agent to start a new one fast",
     description:
-      "Already have an agent configured the way you like? Clone it to spin up a new one with the same voice, knowledge base, and call behavior as a starting point, instead of building from scratch.",
+      "Already have an agent configured the way you like? Clone it to spin up a new one with the same voice, knowledge base, and call behavior as a starting point, instead of building from scratch. It's the fastest way to launch a new line of business without redoing setup you've already gotten right.",
+    points: [
+      "Same voice carried over automatically",
+      "Knowledge base copied to the new agent",
+      "Call behavior reused as your starting point",
+      "Skip re-doing setup you've already configured once",
+    ],
   },
   {
-    icon: PhoneCall,
+    icon: <PhoneCall className="size-8 shrink-0 text-primary md:size-10" aria-hidden />,
     title: "Assign a different number to each agent",
     description:
-      "Give each agent its own phone number, so a caller to your sales line and a caller to your support line reach the right agent automatically — no manual routing required.",
+      "Give each agent its own phone number, so a caller to your sales line and a caller to your support line reach the right agent automatically — no manual routing required. Every line stays independent, so each agent can specialize in the conversation it was built for.",
+    points: [
+      "Each agent gets its own dedicated number",
+      "Callers reach the right agent automatically",
+      "No manual call routing needed",
+      "Each line stays specialized to its own agent",
+    ],
+  },
+]
+
+const exploreLinks = [
+  {
+    icon: <LayoutGrid className="size-5" aria-hidden />,
+    href: "/features",
+    title: "All features",
+    description: "Every capability across Build, Train, Test, Operate, and Account.",
+  },
+  {
+    icon: <IndianRupee className="size-5" aria-hidden />,
+    href: "/pricing",
+    title: "Pricing in INR",
+    description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Per-second billing.",
+  },
+  {
+    icon: <HelpCircle className="size-5" aria-hidden />,
+    href: "/faq",
+    title: "Frequently asked questions",
+    description: "TRAI compliance, Indian languages, billing, and account questions.",
   },
 ]
 
@@ -67,16 +107,7 @@ export default function MultiAgentManagementPage() {
         <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-10 px-6 py-10 md:px-8 md:py-14 lg:flex-row lg:items-center lg:gap-10">
           <div className="w-full max-w-2xl text-center lg:max-w-none lg:flex-1 lg:text-left">
             <ScrollReveal>
-              <Link
-                href="/features"
-                className="inline-flex items-center gap-1.5 text-base font-medium transition-colors hover:text-[#2563EB]"
-                style={{ color: "#667085" }}
-              >
-                <ArrowLeft className="size-4" aria-hidden />
-                Back to Features
-              </Link>
-
-              <div className="mt-8 flex justify-center lg:justify-start">
+              <div className="flex justify-center lg:justify-start">
                 <span
                   className="inline-flex h-10 items-center gap-2 rounded-full text-[15px] font-semibold"
                   style={{ backgroundColor: "#EEF4FF", border: "1px solid #BBD1FF", color: "#2563EB", padding: "0 18px" }}
@@ -144,9 +175,9 @@ export default function MultiAgentManagementPage() {
         </div>
       </section>
 
-      {/* Capabilities */}
+      {/* Capabilities intro */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+        <div className="mx-auto flex min-h-[240px] max-w-5xl items-center justify-center px-6 py-14 md:min-h-[280px] md:px-8 md:py-20">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Multi-Agent Management</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
@@ -156,25 +187,11 @@ export default function MultiAgentManagementPage() {
               </span>
             </h2>
           </ScrollReveal>
-
-          <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
-            {capabilities.map((c) => {
-              const Icon = c.icon
-              return (
-                <ScrollReveal key={c.title}>
-                  <div className="h-full rounded-2xl border border-border bg-white p-7 shadow-[0_16px_34px_-24px_oklch(0.2_0.05_260/0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_24px_50px_-20px_oklch(0.546_0.215_262.88/0.3)]">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.45)]">
-                      <Icon className="size-5" aria-hidden />
-                    </span>
-                    <h3 className="mt-5 text-lg font-semibold tracking-tight">{c.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
-                  </div>
-                </ScrollReveal>
-              )
-            })}
-          </div>
         </div>
       </section>
+
+      {/* Capabilities — each one is its own full-width section, alternating background */}
+      <MultiAgentCapabilities capabilities={capabilities} />
 
       <GradientCta
         heading="Ready to manage your agents from one place?"
@@ -185,15 +202,18 @@ export default function MultiAgentManagementPage() {
         secondaryLabel="View pricing"
       />
 
-      <RelatedLinks
-        heading="Explore more of 9278.io"
-        description="See the rest of what's included, or check pricing and common questions."
-        links={[
-          { href: "/features", title: "All features", description: "Every capability across Build, Train, Test, Operate, and Account." },
-          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Per-second billing." },
-          { href: "/faq", title: "Frequently asked questions", description: "TRAI compliance, Indian languages, billing, and account questions." },
-        ]}
-      />
+      <section className="w-full px-6 pb-24 md:px-8" style={{ backgroundColor: "#F7F9FC" }}>
+        <div className="mx-auto max-w-5xl pt-16 md:pt-20">
+          <ScrollReveal>
+            <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
+            <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
+              See the rest of what's included, or check pricing and common questions.
+            </p>
+          </ScrollReveal>
+
+          <MultiAgentExploreLinks links={exploreLinks} />
+        </div>
+      </section>
 
       <SiteFooter />
     </main>
