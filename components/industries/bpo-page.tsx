@@ -12,7 +12,7 @@ import { BpoDetails } from "@/components/industries/bpo-details"
 
 export function BpoPage() {
   const industry = getIndustry("bpo")!
-  const related = INDUSTRIES.filter((i) => i.slug !== "bpo").slice(0, 3)
+  const related = INDUSTRIES.filter((i) => i.slug !== "bpo").slice(0, 4)
 
   return (
     <main className="min-h-dvh bg-white text-slate-900">

@@ -12,7 +12,7 @@ import { BfsiDetails } from "@/components/industries/bfsi-details"
 
 export function BfsiPage() {
   const industry = getIndustry("bfsi")!
-  const related = INDUSTRIES.filter((i) => i.slug !== "bfsi").slice(0, 3)
+  const related = INDUSTRIES.filter((i) => i.slug !== "bfsi").slice(0, 4)
 
   return (
     <main className="min-h-dvh bg-white text-slate-900">
