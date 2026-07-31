@@ -181,6 +181,16 @@
 .hero-float-up   { animation: heroFloatUp 2.8s ease-in-out infinite; will-change: transform; }
 .hero-float-down { animation: heroFloatDown 2.8s ease-in-out infinite 1.4s; will-change: transform; }
 
+/* Hero illustration — a single slow, restrained float. The same minimal
+   motion used for mockups on polished product pages: nothing flashy, just
+   enough drift to read as "alive" without competing with the floating
+   accent cards layered on top of it. */
+@keyframes heroImageFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.hero-image-float { animation: heroImageFloat 5s ease-in-out infinite; will-change: transform; }
+
 /* ── Industries hero illustration — animation ────────────────────────────
    Subtle, professional motion for the conceptual voice-AI graphic.
    All transforms use transform-box: fill-box so SVG elements rotate/scale

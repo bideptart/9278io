@@ -285,13 +285,13 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Automate Tier-1 inbound and outbound queues, answer every caller in under three seconds, and cut cost-per-call across all Indian languages — round the clock.",
     pitch:
-      "Call centres bleed money on Tier-1 volume, attrition, and idle seats. 9278.io handles the repetitive inbound and outbound calls end to end — balance checks, order status, verification, first-level support, and surveys — resolving what it can and warm-transferring only the calls that genuinely need a human, in 10+ Indian languages, 24/7.",
+      "Call centres bleed money on Tier-1 volume and attrition. 9278.io handles the repetitive inbound and outbound calls — balance checks, order status, verification, and surveys — and only escalates the calls that genuinely need a human.",
     jobs: [
-      "Deflect Tier-1 inbound: balance checks, order status, ticket status, and FAQs",
-      "Run outbound verification, feedback, and CSAT survey campaigns at scale",
-      "First-level support with warm transfer to a live agent on escalation",
-      "Up to 40 concurrent calls per number — no extra seats or hardware",
-      "Every call recorded, and outbound placed inside TRAI calling windows",
+      "Tier-1 inbound: balance checks and order status",
+      "Outbound verification and CSAT survey campaigns",
+      "First-level support with warm transfer on escalation",
+      "Up to 40 concurrent calls per number",
+      "Every call recorded inside TRAI calling windows",
     ],
     sampleLines: [
       "नमस्ते! मैं आपकी कैसे सहायता कर सकती हूँ — बैलेंस, ऑर्डर स्टेटस, या कुछ और?",
