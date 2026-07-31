@@ -212,12 +212,13 @@ export default async function PricingPage({
       </section>
 
       <PricingCta
+        id="pricing-cta"
         heading="Try before you commit. Talk to our agent now."
         description="See latency, voice quality, and conversation flow firsthand — then top up only if you love it."
         primaryHref="/get-started"
         primaryLabel="Get started"
-        secondaryHref="/#cta"
-        secondaryLabel="Talk to an agent"
+        secondaryHref="/contact"
+        secondaryLabel="Contact"
       />
 
       <RelatedLinks

@@ -122,6 +122,13 @@
     }
   }
 
+  /* Rotating conic-gradient border sweep, used on the "keep reading" cards. */
+  @keyframes spin-border {
+    to {
+      --angle: 360deg;
+    }
+  }
+
   /* Top-of-page navigation progress bar — sweeps across while a route
      transition is in flight. Used by app/loading.tsx. */
   @keyframes loading-bar {
@@ -149,6 +156,12 @@
       padding-right: 420px;
     }
   }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 /* Hide the native scrollbar inside the chat panel. Mouse-wheel, trackpad,
@@ -701,5 +714,11 @@
   .glow-border::before {
     animation: none;
   }
+}
+
+/* Pricing page's CTA only — keeps the call motif at its original position;
+   every other page uses the shared component's default (nudged down). */
+#pricing-cta .cta-call-motif {
+  bottom: 1rem;
 }
 

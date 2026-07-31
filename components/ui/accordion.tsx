@@ -28,8 +28,12 @@ function AccordionItem({
 function AccordionTrigger({
   className,
   children,
+  icon,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
+  /** Overrides the default triangle indicator, e.g. a Lucide icon. */
+  icon?: React.ReactNode
+}) {
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
@@ -40,7 +44,7 @@ function AccordionTrigger({
         )}
         {...props}
       >
-        <ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden="true" />
+        {icon ?? <ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden="true" />}
         {children}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
