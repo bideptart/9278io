@@ -4,49 +4,17 @@ import Link from "next/link"
 import {
   ArrowRight, Check, Quote, Sparkles,
   GraduationCap, FileCheck, Wallet, CalendarClock, PhoneCall,
-  Inbox, HeartHandshake, Rocket, ShieldCheck,
+  Inbox, HeartHandshake, Rocket, ShieldCheck, IndianRupee,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { Marquee } from "@/components/ui/marquee"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
-import type { FaqItem } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
-import { BreadcrumbJsonLd, FaqJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
-
-/* Education-specific FAQ. Every answer restates facts already published on
-   the pricing page and /faq — plan rates, TRAI windows, integrations, the
-   language list — applied to the admissions workflows in lib/industries.ts. */
-const EDUCATION_FAQ: FaqItem[] = [
-  {
-    q: "How fast does the agent follow up on a new enquiry?",
-    a: "Enquiry-form follow-up fires within 60 seconds of the form landing, while the student is still on your site. Inbound calls are picked up in under 3 seconds, so nothing rolls to voicemail during an admissions rush.",
-  },
-  {
-    q: "Can it chase missing application documents?",
-    a: "Yes. Application status checks and document chasing ship as a standard playbook — the agent calls, tells the student exactly which document is outstanding, and on Growth and Scale sends the upload link over the WhatsApp Business API so it lands in writing too.",
-  },
-  {
-    q: "Does it work with our CRM and admissions software?",
-    a: "Yes. We have native integrations with LeadSquared, Zoho CRM, Freshworks, Razorpay, and the WhatsApp Business API, plus 200+ other tools via webhooks and Zapier. Custom integrations are included on the Growth and Scale plans.",
-  },
-  {
-    q: "Can it call students about fee instalments?",
-    a: "Yes — fee-payment Q&A and instalment reminders are built in, and the agent can answer questions about what's due before it chases payment. Outbound calls stay inside TRAI calling windows (nothing before 9 AM or after 9 PM), and every call is recorded and consent-logged.",
-  },
-  {
-    q: "Which languages can it use with regional students?",
-    a: "10+ Indian languages including Hindi, Marathi, Tamil, Telugu, Kannada, Bengali, Gujarati, Punjabi, Malayalam, and Odia — with native-sounding voices, sub-second latency, and the ability to switch language mid-call if a parent takes over.",
-  },
-  {
-    q: "What does this cost for one coaching centre?",
-    a: "Starter is ₹3,000 billed once as wallet credit — 250 included minutes at ₹12/min. A dedicated Indian number is ₹400/month, and wallet credit is valid for 60 days from top-up. No setup fees and no contracts.",
-  },
-]
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
 /* Live-preview thread. The first two turns are the real Marathi exchange from
    lib/industries.ts; the rest continue the same call through the fee-Q&A and
@@ -127,8 +95,10 @@ export default function EducationIndustryPage() {
   const industry = getIndustry(SLUG)
   if (!industry) notFound()
 
-  // Pick three sibling industries for the related-links module.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  // Four sibling industries — with the pricing and FAQ tiles that fills the
+  // same six-card grid Automotive and Fitness use. (Those pages pull three
+  // siblings plus an Education tile; this page can't link to itself.)
+  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 4)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -156,25 +126,7 @@ export default function EducationIndustryPage() {
           className="pointer-events-none absolute -right-20 top-0 h-[560px] w-[620px] rounded-[45%_55%_50%_50%/50%_45%_55%_50%] bg-primary/[0.07] blur-[60px]"
         />
 
-        <div className="relative w-full px-6 pb-16 pt-6 md:px-8 md:pb-20 md:pt-8">
-          <nav aria-label="Breadcrumb" className="mb-6 text-xs text-muted-foreground">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-foreground">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li>
-                <Link href="/industries" className="hover:text-foreground">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li className="text-foreground">{industry.name}</li>
-            </ol>
-          </nav>
-
+        <div className="relative w-full px-6 pb-10 pt-1 md:px-8 md:pb-12 md:pt-2">
           <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
@@ -246,7 +198,7 @@ export default function EducationIndustryPage() {
 
             {/* ── Right: floating playbook cards ── */}
             <ScrollReveal delay={0.15}>
-              <div aria-hidden className="relative mx-auto aspect-square w-full max-w-[440px]">
+              <div aria-hidden className="relative mx-auto aspect-square w-full max-w-[540px]">
                 {/* decorative dots */}
                 {[
                   { top: "12%", left: "44%", size: "size-2.5" },
@@ -264,14 +216,18 @@ export default function EducationIndustryPage() {
                 <span className="absolute left-[26%] top-[26%] size-24 rotate-12 rounded-[1.75rem] bg-primary/[0.06]" />
                 <span className="absolute bottom-[18%] right-[26%] size-20 -rotate-6 rounded-[1.5rem] bg-[oklch(0.72_0.18_150)]/[0.08]" />
 
-                {/* dotted links from the featured card to the others */}
+                {/* Dotted links from the featured card to the others. The
+                    dashes travel outward along each path (connector-flow →
+                    dash-flow keyframe), so the live call visibly "feeds"
+                    each downstream card. dasharray totals 12 to match the
+                    keyframe's -12 dashoffset, so the loop has no seam. */}
                 <svg
                   viewBox="0 0 400 400"
                   className="pointer-events-none absolute inset-0 h-full w-full"
                   fill="none"
                   stroke="currentColor"
                 >
-                  <g className="text-primary/25" strokeWidth="1.5" strokeDasharray="3 7" strokeLinecap="round">
+                  <g className="connector-flow text-primary/60" strokeWidth="2.5" strokeDasharray="4 8" strokeLinecap="round">
                     <path d="M150 118 C 220 90, 260 90, 300 74" />
                     <path d="M120 150 C 90 220, 88 250, 96 296" />
                     <path d="M158 148 C 230 210, 270 260, 300 316" />
@@ -279,26 +235,26 @@ export default function EducationIndustryPage() {
                 </svg>
 
                 {/* ── Featured: live admissions call ── */}
-                <div className="hero-float-up absolute left-[4%] top-[10%] w-[48%] max-w-[196px]">
-                  <div className="overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-primary to-[oklch(0.42_0.2_262)] p-4 shadow-[0_28px_56px_-18px_oklch(0.52_0.22_265/0.6)] ring-1 ring-white/15">
+                <div className="hero-float-up absolute left-[4%] top-[10%] w-[48%] max-w-[244px]">
+                  <div className="overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-primary to-[oklch(0.42_0.2_262)] p-5 shadow-[0_28px_56px_-18px_oklch(0.52_0.22_265/0.6)] ring-1 ring-white/15">
                     <div className="flex items-center justify-between">
-                      <span className="grid size-9 place-items-center rounded-xl bg-white/20 text-white backdrop-blur">
-                        <GraduationCap className="size-[18px]" />
+                      <span className="grid size-11 place-items-center rounded-xl bg-white/20 text-white backdrop-blur">
+                        <GraduationCap className="size-[22px]" />
                       </span>
-                      <span className="flex items-center gap-1 rounded-full bg-white/20 px-2 py-[3px] text-[8px] font-bold uppercase tracking-wide text-white backdrop-blur">
-                        <span className="fit-blink size-1 rounded-full bg-emerald-300" />
+                      <span className="flex items-center gap-1 rounded-full bg-white/20 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide text-white backdrop-blur">
+                        <span className="fit-blink size-1.5 rounded-full bg-emerald-300" />
                         Live
                       </span>
                     </div>
-                    <p className="mt-3.5 text-[13px] font-semibold leading-tight text-white">Admissions</p>
-                    <p className="mt-0.5 text-[10px] text-white/70">Calling Priya S. · 00:18</p>
+                    <p className="mt-4 text-[16px] font-semibold leading-tight text-white">Admissions</p>
+                    <p className="mt-1 text-[12px] text-white/70">Calling Priya S. · 00:18</p>
                     {/* live waveform */}
-                    <div className="mt-2.5 flex h-4 items-end gap-[2px]">
-                      {[5, 9, 6, 12, 8, 11, 7, 13, 6, 9].map((h, i) => (
+                    <div className="mt-3 flex h-5 items-end gap-[2.5px]">
+                      {[6, 11, 7, 15, 10, 13, 8, 16, 7, 11].map((h, i) => (
                         <span
                           key={i}
                           style={{ height: `${h}px`, animationDelay: `${(i % 5) * 0.11}s` }}
-                          className="ind-eq w-[2px] rounded-full bg-white/75"
+                          className="ind-eq w-[2.5px] rounded-full bg-white/75"
                         />
                       ))}
                     </div>
@@ -307,16 +263,16 @@ export default function EducationIndustryPage() {
 
                 {/* ── Documents: collection progress ── */}
                 <div
-                  className="hero-float-down absolute right-[2%] top-0 w-[46%] max-w-[186px]"
+                  className="hero-float-down absolute right-[2%] top-0 w-[46%] max-w-[234px]"
                   style={{ animationDelay: "0.4s" }}
                 >
-                  <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-4 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
-                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
-                      <FileCheck className="size-[18px]" />
+                  <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
+                    <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <FileCheck className="size-[22px]" />
                     </span>
-                    <p className="mt-3.5 text-[13px] font-semibold leading-tight text-foreground">Documents</p>
-                    <p className="mt-0.5 text-[10px] text-muted-foreground">3 of 4 received</p>
-                    <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                    <p className="mt-4 text-[16px] font-semibold leading-tight text-foreground">Documents</p>
+                    <p className="mt-1 text-[12px] text-muted-foreground">3 of 4 received</p>
+                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100">
                       <span className="fit-progress-loop block h-full rounded-full bg-gradient-to-r from-primary to-[oklch(0.62_0.2_240)]" />
                     </div>
                   </div>
@@ -324,19 +280,19 @@ export default function EducationIndustryPage() {
 
                 {/* ── Fee reminders: instalment status ── */}
                 <div
-                  className="hero-float-down absolute bottom-[8%] left-0 w-[46%] max-w-[186px]"
+                  className="hero-float-down absolute bottom-[8%] left-0 w-[46%] max-w-[234px]"
                   style={{ animationDelay: "1.1s" }}
                 >
-                  <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-4 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
-                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
-                      <Wallet className="size-[18px]" />
+                  <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
+                    <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <Wallet className="size-[22px]" />
                     </span>
-                    <p className="mt-3.5 text-[13px] font-semibold leading-tight text-foreground">Fee reminders</p>
-                    <p className="mt-0.5 text-[10px] text-muted-foreground">Instalment 2 · due Friday</p>
+                    <p className="mt-4 text-[16px] font-semibold leading-tight text-foreground">Fee reminders</p>
+                    <p className="mt-1 text-[12px] text-muted-foreground">Instalment 2 · due Friday</p>
                     <span
-                      className="fit-check-in mt-2.5 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-[3px] text-[9px] font-semibold text-emerald-600"
+                      className="fit-check-in mt-3 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-600"
                     >
-                      <Check className="size-2.5" />
+                      <Check className="size-3" />
                       Reminder sent
                     </span>
                   </div>
@@ -344,21 +300,21 @@ export default function EducationIndustryPage() {
 
                 {/* ── Batch starts: upcoming orientation ── */}
                 <div
-                  className="hero-float-up absolute bottom-[2%] right-[6%] w-[46%] max-w-[186px]"
+                  className="hero-float-up absolute bottom-[2%] right-[6%] w-[46%] max-w-[234px]"
                   style={{ animationDelay: "0.75s" }}
                 >
-                  <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-4 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
-                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
-                      <CalendarClock className="size-[18px]" />
+                  <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
+                    <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <CalendarClock className="size-[22px]" />
                     </span>
-                    <p className="mt-3.5 text-[13px] font-semibold leading-tight text-foreground">Batch starts</p>
-                    <p className="mt-0.5 text-[10px] text-muted-foreground">NEET · 22 Jan</p>
-                    <div className="mt-2.5 flex gap-1">
+                    <p className="mt-4 text-[16px] font-semibold leading-tight text-foreground">Batch starts</p>
+                    <p className="mt-1 text-[12px] text-muted-foreground">NEET · 22 Jan</p>
+                    <div className="mt-3 flex gap-1.5">
                       {["20", "21", "22"].map((d, i) => (
                         <span
                           key={d}
                           style={{ animationDelay: `${i * 0.16}s` }}
-                          className={`fit-chip-in grid h-5 flex-1 place-items-center rounded-md text-[9px] font-semibold ${
+                          className={`fit-chip-in grid h-6 flex-1 place-items-center rounded-md text-[11px] font-semibold ${
                             d === "22" ? "bg-primary text-white" : "bg-slate-100 text-muted-foreground"
                           }`}
                         >
@@ -745,308 +701,93 @@ export default function EducationIndustryPage() {
         </div>
       </section>
 
-      {/* Other industries — asymmetric bento of dark, light and accent tiles */}
-      <section className="w-full border-t border-border/50 bg-card/20 px-6 py-16 md:px-8 md:py-24">
+      {/* Other industries — uniform corner-ribbon cards (same treatment as
+          the Automotive and Fitness pages) instead of the asymmetric bento. */}
+      <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
         <div className="mx-auto max-w-6xl">
-          {/* header: heading left, description right */}
-          <ScrollReveal className="grid gap-6 md:grid-cols-2 md:items-start md:gap-12">
-            <div>
-              <span
-                aria-hidden
-                className="block h-[3px] w-14 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.22_255)]"
-              />
-              <h2 className="mt-5 text-balance text-3xl font-bold leading-tight tracking-tight md:text-4xl">
-                Other industries we power
-              </h2>
-            </div>
-            <p className="text-pretty leading-relaxed text-muted-foreground md:pt-9">
-              Pre-tuned playbooks for the calls your peers in adjacent verticals already automate — same platform, same
-              plans, different scripts.
+          <ScrollReveal className="mx-auto max-w-2xl text-center">
+            <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight md:text-3xl">
+              Other industries we power
+            </h2>
+            <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
+              Pre-tuned playbooks for the calls your peers in adjacent verticals already automate — same platform,
+              same plans, different scripts.
             </p>
           </ScrollReveal>
 
-          <div className="mt-10 grid gap-4 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
-            {/* ── A · featured industry — wide dark tile ── */}
-            {related[0] && (
-              <ScrollReveal className="md:col-span-2">
-                <Link
-                  href={`/industries/${related[0].slug}`}
-                  className="group relative flex h-full min-h-[230px] flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-[oklch(0.3_0.12_262)] to-primary p-7 transition-transform duration-300 hover:-translate-y-1"
-                >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute -right-16 -top-20 size-64 rounded-full bg-white/10 blur-3xl"
-                  />
-                  {/* faint grid */}
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 opacity-[0.15]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px)",
-                      backgroundSize: "40px 40px",
-                      maskImage: "radial-gradient(ellipse at 70% 0%, black 20%, transparent 75%)",
-                    }}
-                  />
-                  <span className="absolute right-7 top-7 grid size-11 place-items-center rounded-xl bg-white/15 text-white backdrop-blur">
-                    {(() => {
-                      const I = related[0].icon
-                      return <I className="size-5" aria-hidden />
-                    })()}
-                  </span>
-                  <div className="relative">
-                    <h3 className="text-balance text-xl font-semibold tracking-tight text-white md:text-2xl">
-                      AI voice agents for {related[0].name.toLowerCase()}
-                    </h3>
-                    <p className="mt-2.5 max-w-md text-pretty text-sm leading-relaxed text-white/70">
-                      {related[0].short}
-                    </p>
-                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
-                      Read more
-                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                    </span>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── B · second industry — tall dark tile with live-call mockup ── */}
-            {related[1] && (
-              <ScrollReveal delay={0.08} className="lg:row-span-2">
-                <Link
-                  href={`/industries/${related[1].slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl bg-slate-900 p-7 transition-transform duration-300 hover:-translate-y-1"
-                >
-                  <h3 className="text-balance text-xl font-semibold tracking-tight text-white">
-                    AI voice agents for {related[1].name.toLowerCase()}
-                  </h3>
-                  <p className="mt-2.5 text-pretty text-sm leading-relaxed text-white/60">{related[1].short}</p>
-
-                  {/* mini live-call panel */}
-                  <div className="mt-7 flex-1">
-                    <div className="hero-float-up rounded-2xl bg-white p-3.5 shadow-2xl">
-                      <div className="flex items-center gap-2">
-                        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary text-white">
-                          <PhoneCall className="size-3.5" aria-hidden />
-                        </span>
-                        <span className="min-w-0 flex-1 leading-tight">
-                          <span className="block text-[11px] font-semibold text-foreground">Inbound call</span>
-                          <span className="block text-[9px] text-muted-foreground">Answered in 2.1s</span>
-                        </span>
-                        <span className="flex h-4 shrink-0 items-end gap-[2px]">
-                          {[5, 9, 6, 11, 7].map((h, i) => (
-                            <span
-                              key={i}
-                              style={{ height: `${h}px`, animationDelay: `${(i % 4) * 0.12}s` }}
-                              className="ind-eq w-[2px] rounded-full bg-primary/70"
-                            />
-                          ))}
-                        </span>
-                      </div>
-                      <div className="mt-3 space-y-1.5">
-                        <span className="block w-[85%] rounded-lg rounded-bl-sm bg-primary/12 px-2.5 py-1.5 text-[10px] leading-snug text-primary">
-                          Thanks for calling — how can I help?
-                        </span>
-                        <span className="ml-auto block w-[70%] rounded-lg rounded-br-sm bg-slate-100 px-2.5 py-1.5 text-[10px] leading-snug text-slate-600">
-                          I need to book a slot.
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
-                    Read more
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── C · third industry — dark tile with connected-node graphic ── */}
-            {related[2] && (
-              <ScrollReveal delay={0.16}>
-                <Link
-                  href={`/industries/${related[2].slug}`}
-                  className="group flex h-full min-h-[230px] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-[oklch(0.26_0.06_262)] to-slate-900 p-7 transition-transform duration-300 hover:-translate-y-1"
-                >
-                  {/* node cluster: this industry linked to its neighbours */}
-                  <div aria-hidden className="relative h-[86px]">
-                    <svg viewBox="0 0 200 86" className="absolute inset-0 h-full w-full">
-                      <g stroke="white" strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="3 5">
-                        <path d="M34 58 L92 26" fill="none" />
-                        <path d="M92 26 L150 56" fill="none" />
-                      </g>
-                    </svg>
-                    {[
-                      { icon: related[2].icon, cls: "left-[6px] top-[38px]", featured: false },
-                      { icon: GraduationCap, cls: "left-[72px] top-[6px]", featured: true },
-                      { icon: related[0]?.icon ?? GraduationCap, cls: "left-[130px] top-[36px]", featured: false },
-                    ].map((n, i) => (
-                      <span
-                        key={i}
-                        style={{ animationDelay: `${i * 0.18}s` }}
-                        className={`fit-chip-in absolute ${n.cls} grid size-10 place-items-center rounded-full ${
-                          n.featured ? "bg-primary text-white" : "bg-white/10 text-white/80 backdrop-blur"
-                        }`}
-                      >
-                        <n.icon className="size-4" />
-                      </span>
-                    ))}
-                  </div>
-
-                  <div>
-                    <h3 className="text-balance text-lg font-semibold tracking-tight text-white">
-                      AI voice agents for {related[2].name.toLowerCase()}
-                    </h3>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white/90">
-                      Read more
-                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                    </span>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            )}
-
-            {/* ── D · pricing — light tile with a falling-rate chart ── */}
-            <ScrollReveal delay={0.24}>
-              <Link
-                href="/pricing"
-                className="group flex h-full min-h-[230px] flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/70 bg-[oklch(0.98_0.008_95)] p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div>
-                  <h3 className="text-balance text-lg font-semibold tracking-tight text-foreground">
-                    Compare plans &amp; per-minute rates
-                  </h3>
-                  <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
-                    Three tiers from ₹3,000 to ₹30,000.
-                  </p>
-                </div>
-
-                {/* rate curve: ₹12 → ₹10 as tiers scale up */}
-                <div aria-hidden className="mt-5">
-                  <svg viewBox="0 0 200 56" className="h-14 w-full" fill="none">
-                    <defs>
-                      <linearGradient id="edu-rate" x1="0" y1="0" x2="1" y2="0">
-                        <stop offset="0" stopColor="oklch(0.546 0.215 262.88)" />
-                        <stop offset="1" stopColor="oklch(0.72 0.18 150)" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M4 12 L100 30 L196 46" stroke="url(#edu-rate)" strokeWidth="2.5" strokeLinecap="round" />
-                    {[
-                      { cx: 4, cy: 12 },
-                      { cx: 100, cy: 30 },
-                      { cx: 196, cy: 46 },
-                    ].map((p, i) => (
-                      <circle key={i} cx={p.cx} cy={p.cy} r="3.5" fill="white" stroke="url(#edu-rate)" strokeWidth="2" />
-                    ))}
-                  </svg>
-                  <div className="mt-1 flex justify-between text-[10px] font-medium text-muted-foreground">
-                    <span>₹12/min</span>
-                    <span>₹11/min</span>
-                    <span className="text-primary">₹10/min</span>
-                  </div>
-                </div>
-
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                  Read more
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </span>
-              </Link>
-            </ScrollReveal>
-
-            {/* ── E · FAQ — wide light tile with topic chips ── */}
-            <ScrollReveal delay={0.32} className="md:col-span-2">
-              <Link
-                href="/faq"
-                className="group flex h-full flex-col gap-5 rounded-2xl border border-slate-200/70 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:flex-row md:items-center md:justify-between"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                    <ShieldCheck className="size-5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="text-balance text-lg font-semibold tracking-tight text-foreground">
-                      FAQ — credit, phone numbers, compliance
-                    </h3>
-                    <p className="mt-1.5 text-pretty text-sm leading-relaxed text-muted-foreground">
-                      Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex shrink-0 flex-wrap items-center gap-2">
-                  {["Voice credit", "TRAI", "DPDP"].map((chip) => (
+          <div className="mt-6 grid gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ...related.map((r) => ({
+                href: `/industries/${r.slug}`,
+                titlePrefix: "AI voice agents for ",
+                highlight: r.name.toLowerCase(),
+                description: r.short,
+                icon: r.icon,
+              })),
+              {
+                href: "/pricing",
+                titlePrefix: "",
+                highlight: "Compare plans and per-minute rates",
+                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
+                icon: IndianRupee,
+              },
+              {
+                href: "/faq",
+                titlePrefix: "",
+                highlight: "FAQ — credit, phone numbers, compliance",
+                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
+                icon: ShieldCheck,
+              },
+            ].map((link, i) => {
+              const LinkIcon = link.icon
+              return (
+                <ScrollReveal key={link.href} delay={i * 0.08}>
+                  <Link
+                    href={link.href}
+                    className="group relative block h-full overflow-hidden rounded-2xl border border-l-4 border-slate-200 border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    {/* corner ribbon */}
                     <span
-                      key={chip}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-muted-foreground"
-                    >
-                      {chip}
+                      aria-hidden
+                      className="absolute right-0 top-0 h-12 w-12 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]"
+                    />
+
+                    {/* dotted decoration */}
+                    <div aria-hidden className="absolute right-4 top-12 grid grid-cols-4 gap-1 opacity-60">
+                      {Array.from({ length: 16 }).map((_, d) => (
+                        <span key={d} className="size-1 rounded-full bg-slate-300" />
+                      ))}
+                    </div>
+
+                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <LinkIcon className="size-4" aria-hidden />
                     </span>
-                  ))}
-                  <ArrowRight
-                    className="size-4 text-primary transition-transform group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
-                </div>
-              </Link>
-            </ScrollReveal>
 
-            {/* ── F · accent CTA tile ── */}
-            <ScrollReveal delay={0.4}>
-              <Link
-                href={`/get-started?industry=${industry.slug}`}
-                className="group relative flex h-full min-h-[150px] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[oklch(0.5_0.21_255)] p-7 shadow-[0_20px_44px_-22px_oklch(0.52_0.22_265/0.7)] transition-transform duration-300 hover:-translate-y-1"
-              >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-12 -left-10 size-44 rounded-full bg-white/10 blur-2xl"
-                />
-                <span className="absolute right-6 top-6 grid size-10 place-items-center rounded-full bg-white text-primary transition-transform duration-300 group-hover:translate-x-0.5">
-                  <ArrowRight className="size-4" aria-hidden />
-                </span>
-                <p className="relative mt-auto max-w-[75%] text-balance text-xl font-semibold leading-snug tracking-tight text-white">
-                  Launch your {industry.name.toLowerCase()} agent today
-                </p>
-              </Link>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+                    <h3 className="mt-3 min-h-[2.4rem] text-balance text-[15px] font-semibold leading-snug tracking-tight text-foreground">
+                      {link.titlePrefix}
+                      {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
+                    </h3>
+                    <span aria-hidden className="mt-2 block h-1 w-8 rounded-full bg-primary" />
+                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">
+                      {link.description}
+                    </p>
 
-      {/* FAQ — education-specific, same treatment as the homepage FAQ */}
-      <section id="faq" className="border-b border-border/50">
-        <FaqJsonLd items={EDUCATION_FAQ} />
-        <div className="w-full px-6 pb-10 pt-14 md:px-8 md:pb-14 md:pt-20">
-          <ScrollReveal className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              FAQ
-            </span>
-            <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">Questions, answered.</h2>
-            <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              The short version: enquiries answered in 60 seconds, outbound inside TRAI windows, and Starter runs ₹3,000
-              for 250 minutes. The long version is below.
-            </p>
-          </ScrollReveal>
-
-          <div className="mx-auto mt-12 max-w-5xl">
-            <ScrollReveal>
-              <FaqAccordion items={EDUCATION_FAQ} idPrefix="education-faq" />
-            </ScrollReveal>
-
-            <ScrollReveal className="mt-10 flex justify-center">
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              >
-                See all FAQs →
-              </Link>
-            </ScrollReveal>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="text-[13px] font-semibold text-primary">Read more</span>
+                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
+                        <ArrowRight className="size-3.5" aria-hidden />
+                      </span>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Closing CTA */}
-      <GradientCta
+      <PricingCta
         heading="Ready to fill every batch?"
         description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
         primaryHref={`/get-started?industry=${industry.slug}`}

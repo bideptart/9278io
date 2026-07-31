@@ -143,6 +143,7 @@ const featureGroups: Group[] = [
           "Spot your busy hours at a glance",
           "Track usage against your plan",
         ],
+        href: "/features/analytics-dashboard",
       },
       {
         icon: History,
@@ -153,6 +154,7 @@ const featureGroups: Group[] = [
           "Filter by date or by agent",
           "Export whenever you need it",
         ],
+        href: "/features/booking-history",
       },
       {
         icon: PhoneForwarded,
@@ -163,6 +165,7 @@ const featureGroups: Group[] = [
           "Add a custom label per transfer",
           "Set fallback numbers for busy lines",
         ],
+        href: "/features/call-transfer-tool",
       },
       {
         icon: BellRing,
@@ -173,6 +176,7 @@ const featureGroups: Group[] = [
           "Never miss a new appointment",
           "Sent the moment it's confirmed",
         ],
+        href: "/features/booking-notifications",
       },
       {
         icon: LifeBuoy,
@@ -183,6 +187,7 @@ const featureGroups: Group[] = [
           "Track status in one place",
           "Full history kept for reference",
         ],
+        href: "/features/support-tickets-system",
       },
       {
         icon: Mic,
@@ -193,6 +198,7 @@ const featureGroups: Group[] = [
           "Play back or download anytime",
           "Review exactly what was said",
         ],
+        href: "/features/call-reports",
       },
     ],
   },

@@ -4,7 +4,7 @@ import { ArrowRight, LayoutGrid, IndianRupee, HelpCircle } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { VoiceSelectionHub } from "@/components/features-page/voice-selection-hub"
@@ -179,7 +179,7 @@ export default function VoiceSelectionPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Ready to give your agent the right voice?"
         description="Build your first agent free, then choose the voice that fits your brand — swap it anytime."
         primaryHref="/get-started"

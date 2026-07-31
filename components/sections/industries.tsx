@@ -5,13 +5,12 @@ import {
   GraduationCap, Car, UtensilsCrossed, Dumbbell, Landmark,
   type LucideIcon,
 } from "lucide-react"
-import { motion } from "motion/react"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { IndustriesExpandCards } from "@/components/industries/industries-expand-cards"
+import { IndustriesScrollCards } from "@/components/industries/industries-scroll-cards"
 
 /* ── Industry data ── */
 const featured = {
   icon: Phone,
+  image: "/images/industries/bpo.png" as string | undefined,
   tag: "BPO & Call Centers",
   title: "Replace Tier-1 Agents at Scale",
   description:
@@ -28,9 +27,10 @@ const featured = {
 const industries = [
   {
     icon: Landmark,
+    image: "/images/industries/bfsi.jpg",
     tag: "BFSI",
     title: "BFSI & Fintech",
-    description: "Lead qualification, loan follow-ups, EMI reminders, and insurance renewals in Hindi and regional languages.",
+    description: "Lead qualification, loan follow-ups, EMI reminders, and insurance renewals — in Hindi and regional languages, with every disclosure logged for RBI and IRDAI audit trails.",
     caps: ["EMI Reminder", "Lead Qualify"],
     script: [
       { speaker: "Agent", text: "নমস্কার, আপনার EMI আগামীকাল বাকি আছে।" },
@@ -40,9 +40,10 @@ const industries = [
   },
   {
     icon: Home,
+    image: "/images/industries/real-estate.jpg",
     tag: "Real Estate",
     title: "Real Estate",
-    description: "Qualify property leads 24/7, book site visits, and follow up in the caller's preferred language.",
+    description: "Qualify property leads 24/7, book site visits, and follow up in the caller's preferred language — so no enquiry goes cold waiting for a broker to call back.",
     caps: ["24/7 Calling", "Lead Qualify", "Appointment"],
     script: [
       { speaker: "Agent", text: "வணக்கம்! நீங்கள் 2BHK அபார்ட்மெண்ட் பார்க்க விரும்புகிறீர்களா?" },
@@ -52,9 +53,10 @@ const industries = [
   },
   {
     icon: GraduationCap,
+    image: "/images/industries/education.jpg",
     tag: "EdTech",
     title: "EdTech & Coaching",
-    description: "Admissions calls, course follow-ups, and fee-payment reminders for India's coaching and e-learning sector.",
+    description: "Admissions calls, course follow-ups, and fee-payment reminders for India's coaching and e-learning sector, handled in the parent or student's own regional language.",
     caps: ["Lead Qualify", "Multilingual"],
     script: [
       { speaker: "Agent", text: "प्रिया, NEET बॅचसाठी प्रवेश घ्यायचा आहे का?" },
@@ -64,9 +66,10 @@ const industries = [
   },
   {
     icon: ShoppingBag,
+    image: "/images/industries/ecommerce.jpg",
     tag: "E-Commerce",
     title: "E-Commerce & D2C",
-    description: "Order updates, returns, and post-purchase upsells in Hindi and regional languages — 24×7, zero wait time.",
+    description: "Order updates, returns, and post-purchase upsells in Hindi and regional languages — answered 24×7 with zero wait time, even during flash-sale spikes.",
     caps: ["Inbound", "24/7 Calling", "Hindi & Regional"],
     script: [
       { speaker: "Agent", text: "ನಿಮ್ಮ ಆರ್ಡರ್ ಇಂದು ಡೆಲಿವರಿಗೆ ಹೊರಟಿದೆ!" },
@@ -76,9 +79,10 @@ const industries = [
   },
   {
     icon: Car,
+    image: "/images/industries/automotive.jpg",
     tag: "Automotive",
     title: "Automotive",
-    description: "Service scheduling, test-drive follow-ups, and EMI reminders for dealerships across Tier-1 and Tier-2 cities.",
+    description: "Service scheduling, test-drive follow-ups, and EMI reminders for dealerships across Tier-1 and Tier-2 cities, in the customer's own language every time.",
     caps: ["Appointment", "EMI Reminder"],
     script: [
       { speaker: "Agent", text: "સાહેબ, તમારી કાર સર્વિસ આ અઠવાડિયે બાકી છે." },
@@ -88,9 +92,10 @@ const industries = [
   },
   {
     icon: UtensilsCrossed,
+    image: "/images/industries/restaurants.jpg",
     tag: "Restaurants",
     title: "Restaurants & QSR",
-    description: "Table reservations, delivery status, and feedback calls for restaurant chains across India.",
+    description: "Table reservations, delivery status, and feedback calls for restaurant chains across India — answered instantly during peak dinner-hour rush.",
     caps: ["Inbound", "24/7 Calling", "Appointment"],
     script: [
       { speaker: "Agent", text: "സ്പൈസ് ഗാർഡനിലേക്ക് സ്വാഗതം! എത്ര പേർക്ക് ടേബിള്‍ വേണം?" },
@@ -100,9 +105,10 @@ const industries = [
   },
   {
     icon: Scale,
+    image: "/images/industries/legal.jpg",
     tag: "Legal",
     title: "Legal Services",
-    description: "Client intake, appointment booking, and document follow-ups for law firms, LegalTech, and compliance consultancies.",
+    description: "Client intake, appointment booking, and document follow-ups for law firms, LegalTech, and compliance consultancies — confidential, logged, and DPDP-ready.",
     caps: ["Inbound", "Appointment", "DPDP Ready"],
     script: [
       { speaker: "Agent", text: "ਸਤ ਸ੍ਰੀ ਅਕਾਲ, ਮੈਂ ਮੁਫ਼ਤ ਕਨਸਲਟੇਸ਼ਨ ਬੁੱਕ ਕਰ ਸਕਦਾ/ਸਕਦੀ ਹਾਂ।" },
@@ -112,9 +118,10 @@ const industries = [
   },
   {
     icon: Dumbbell,
+    image: "/images/industries/fitness.jpg",
     tag: "Fitness",
     title: "Fitness & Wellness",
-    description: "Class bookings, membership renewals, and no-show recovery for gyms, yoga studios, and wellness chains across India.",
+    description: "Class bookings, membership renewals, and no-show recovery for gyms, yoga studios, and wellness chains across India — so front-desk staff can focus on members, not the phone.",
     caps: ["Appointment", "Multilingual"],
     script: [
       { speaker: "Agent", text: "Your membership expires in 3 days, Ankit!" },
@@ -149,6 +156,7 @@ type IndustryCard = {
   tag: string
   href: string
   icon: LucideIcon
+  image?: string
   accent: string
   tile: string
   bar: string
@@ -163,6 +171,7 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
   tag: ind.tag,
   href: ind.href,
   icon: ind.icon,
+  image: ind.image,
   accent: ACCENTS[i % ACCENTS.length],
   tile: ACCENT_TILES[i % ACCENT_TILES.length],
   bar: ACCENT_BARS[i % ACCENT_BARS.length],
@@ -172,27 +181,15 @@ const cards: IndustryCard[] = [featured, ...industries].map((ind, i) => ({
 
 export function Industries() {
   return (
-    <section id="industries" className="overflow-hidden border-b border-border">
-      <div className="w-full px-6 py-6 md:px-8 md:py-8">
-        <ScrollReveal className="mx-auto max-w-2xl text-center">
-          <motion.span
-            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary"
-          >
-            <motion.span className="h-1.5 w-1.5 rounded-full bg-primary"
-              animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
-            Industries
-          </motion.span>
-          <h2 className="mt-3 text-balance text-4xl font-bold tracking-tight md:text-5xl">
-            Built for every Indian industry.
-          </h2>
-          <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
-            Pre-tuned scripts, Indian integrations, and TRAI compliance guardrails for the workflows you actually run.
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal className="mt-10">
-          <IndustriesExpandCards items={cards} />
-        </ScrollReveal>
+    <section id="industries" className="border-b border-border">
+      <div className="w-full px-6 md:px-8 lg:px-12 xl:px-20">
+        <IndustriesScrollCards
+          eyebrow="Industries"
+          heading="Built for every Indian industry."
+          description="Pre-tuned scripts, Indian integrations, and TRAI compliance guardrails for the workflows you actually run — from BPO queues to fitness studios."
+          exploreHref="/industries"
+          items={cards}
+        />
       </div>
     </section>
   )

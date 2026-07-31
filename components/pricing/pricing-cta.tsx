@@ -19,10 +19,10 @@ type PricingCtaProps = {
 
 const BARS = [0.4, 0.8, 0.5, 1, 0.6, 0.9, 0.45, 0.7]
 
-// Pricing-page-only closing CTA — same gradient family as the shared
-// GradientCta (so it still reads as "this brand"), but with a slowly
-// drifting grid, floating glow orbs, and a pulsing call/waveform motif
-// instead of static decoration.
+// Site-wide closing CTA (originally built for /pricing, now the standard
+// CTA everywhere the old static-gradient GradientCta used to be): a live
+// WebGL "Silk" shader background, floating glow orbs, and a pulsing
+// call/waveform motif instead of a flat gradient.
 export function PricingCta({
   heading,
   description,
@@ -57,9 +57,8 @@ export function PricingCta({
             transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
           />
 
-
           {/* Pulsing call motif — ties the CTA back to "talk to our agent" */}
-          <div aria-hidden className="pointer-events-none absolute bottom-6 right-6 hidden flex-col items-end gap-2 sm:flex md:right-10">
+          <div aria-hidden className="cta-call-motif pointer-events-none absolute bottom-2 right-6 hidden flex-col items-end gap-4 sm:flex md:right-10">
             <motion.div
               className="flex size-11 items-center justify-center rounded-full bg-white/15 backdrop-blur"
               animate={{ scale: [1, 1.08, 1] }}
@@ -86,7 +85,7 @@ export function PricingCta({
             </div>
           </div>
 
-          <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
+          <div className="relative flex flex-col gap-8 pb-0 sm:pb-20 md:flex-row md:items-center md:justify-between md:gap-12 lg:pb-0">
             <div className="max-w-xl">
               <h3 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">{heading}</h3>
               <div className="mt-4 h-px w-12 bg-white/40" aria-hidden />

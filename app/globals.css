@@ -122,6 +122,13 @@
     }
   }
 
+  /* Rotating conic-gradient border sweep, used on the "keep reading" cards. */
+  @keyframes spin-border {
+    to {
+      --angle: 360deg;
+    }
+  }
+
   /* Top-of-page navigation progress bar — sweeps across while a route
      transition is in flight. Used by app/loading.tsx. */
   @keyframes loading-bar {
@@ -149,6 +156,12 @@
       padding-right: 420px;
     }
   }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 /* Hide the native scrollbar inside the chat panel. Mouse-wheel, trackpad,
@@ -180,6 +193,16 @@
 }
 .hero-float-up   { animation: heroFloatUp 2.8s ease-in-out infinite; will-change: transform; }
 .hero-float-down { animation: heroFloatDown 2.8s ease-in-out infinite 1.4s; will-change: transform; }
+
+/* Hero illustration — a single slow, restrained float. The same minimal
+   motion used for mockups on polished product pages: nothing flashy, just
+   enough drift to read as "alive" without competing with the floating
+   accent cards layered on top of it. */
+@keyframes heroImageFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+.hero-image-float { animation: heroImageFloat 5s ease-in-out infinite; will-change: transform; }
 
 /* ── Industries hero illustration — animation ────────────────────────────
    Subtle, professional motion for the conceptual voice-AI graphic.
@@ -645,3 +668,75 @@
   }
 }
 
+/* ── Rotating border glow — a conic-gradient ring that sweeps around a
+   card's edge on hover, masked down to just the border stroke via
+   mask-composite so the card's own background is untouched. ────────────── */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes border-glow-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    oklch(0.546 0.215 262.88) 12%,
+    oklch(0.72 0.16 220) 20%,
+    transparent 34%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: border-glow-spin 3.2s linear infinite paused;
+  pointer-events: none;
+}
+.glow-border:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-border::before {
+    animation: none;
+  }
+}
+
+/* Pricing page's CTA only — keeps the call motif at its original position;
+   every other page uses the shared component's default (nudged down). */
+#pricing-cta .cta-call-motif {
+  bottom: 1rem;
+}
+
+
+/* Card glow — a soft rotating gradient halo behind a card, plus a bouncy
+   pop-in for list rows. Used on the enterprise IT details cards. */
+@keyframes cardGlowSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes cardPopIn {
+  0%   { opacity: 0; transform: translateY(14px) scale(0.94); }
+  70%  { opacity: 1; transform: translateY(-2px) scale(1.015); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.card-glow {
+  animation: cardGlowSpin 8s linear infinite;
+  background: conic-gradient(from 0deg, #2563eb, #38bdf8, #a855f7, #38bdf8, #2563eb);
+}
+.card-pop-in {
+  animation: cardPopIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

@@ -204,7 +204,7 @@ function CompanyMenu() {
         <h3 className="mt-3 text-lg font-bold tracking-tight text-foreground">Get to know the team behind 9278.io.</h3>
         <p className="mt-1 text-sm text-muted-foreground">About, blog, and how to reach us.</p>
 
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="mt-4 grid grid-cols-3 gap-3">
           {COMPANY_LINKS.map((c) => {
             const Icon = c.icon
             return (
@@ -353,8 +353,9 @@ export function SiteHeader() {
             onMouseEnter={() => setCompanyOpen(true)}
             onMouseLeave={() => setCompanyOpen(false)}
           >
-            <Link
-              href="/about"
+            <button
+              type="button"
+              onClick={() => setCompanyOpen((o) => !o)}
               className={cn(
                 "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
                 isActive("/about") || isActive("/blog") || isActive("/contact") ? "text-foreground" : "text-muted-foreground",
@@ -363,7 +364,7 @@ export function SiteHeader() {
             >
               Company
               <ChevronDown className={cn("size-3.5 transition-transform", companyOpen ? "rotate-180" : "")} aria-hidden />
-            </Link>
+            </button>
             <AnimatePresence>
               {companyOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
@@ -403,9 +404,7 @@ export function SiteHeader() {
           >
             <Link href="/get-started">
               Get Started
-              <span className="flex size-6 items-center justify-center rounded-full bg-white/20">
-                <ArrowRight className="size-3.5" aria-hidden />
-              </span>
+              <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </Button>
 

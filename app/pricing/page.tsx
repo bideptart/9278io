@@ -13,11 +13,18 @@ import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
 import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { Button } from "@/components/ui/button"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
+import { FAQ_GROUPS } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
+
+// First 6 of the "Billing & credit" FAQ group — real, existing copy from
+// the FAQ page (lib/faq.ts), not new content, so this stays in sync with
+// whatever's answered there instead of drifting out of date separately.
+const PRICING_FAQ_ITEMS = (FAQ_GROUPS.find((g) => g.id === "billing")?.items ?? []).slice(0, 6)
 
 export const metadata: Metadata = pageSeo({
   title: "AI Voice Agent Pricing — plans from ₹10/min",
@@ -129,7 +136,7 @@ export default async function PricingPage({
               <MockupStackConnector className="absolute inset-0 h-full w-full" />
               <LiveCallMockup className="absolute right-4 top-0" />
               <LiveCostMockup className="absolute left-2 top-[18%]" />
-              <RateByPlanMockup className="absolute bottom-0 left-20" />
+              <RateByPlanMockup className="absolute bottom-6 left-28" />
             </div>
 
             {/* Mobile/tablet: same 3 cards, simple vertical stack instead of
@@ -182,13 +189,36 @@ export default async function PricingPage({
         </div>
       </section>
 
+      <section className="w-full px-6 py-12 md:px-8 md:py-16">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            FAQ
+          </span>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Billing questions, answered.
+          </h2>
+          <p className="mt-3 text-pretty text-muted-foreground">
+            The most common questions about how credit, minutes, and invoicing actually work.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal className="mx-auto mt-8 max-w-5xl">
+          <FaqAccordion items={PRICING_FAQ_ITEMS} idPrefix="pricing-faq" />
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            <Link href="/faq" className="font-medium text-primary hover:underline">
+              See all FAQs →
+            </Link>
+          </p>
+        </ScrollReveal>
+      </section>
+
       <PricingCta
+        id="pricing-cta"
         heading="Try before you commit. Talk to our agent now."
         description="See latency, voice quality, and conversation flow firsthand — then top up only if you love it."
         primaryHref="/get-started"
         primaryLabel="Get started"
-        secondaryHref="/#cta"
-        secondaryLabel="Talk to an agent"
+        secondaryHref="/contact"
+        secondaryLabel="Contact"
       />
 
       <RelatedLinks

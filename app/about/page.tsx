@@ -6,7 +6,7 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { ValuesGrid } from "@/components/about/values-grid"
 import { StatCards } from "@/components/about/stat-cards"
 import { UseCaseGrid } from "@/components/about/use-case-grid"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
@@ -172,7 +172,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Ready to build your first agent?"
         description="Pick a plan, optionally add a phone number, and start a real test call — most teams are live in under 5 minutes."
         primaryHref="/get-started"

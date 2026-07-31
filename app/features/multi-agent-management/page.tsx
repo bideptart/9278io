@@ -4,7 +4,7 @@ import { ArrowRight, LayoutDashboard, Copy, PhoneCall, LayoutGrid, IndianRupee, 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { MultiAgentHub } from "@/components/features-page/multi-agent-hub"
@@ -193,7 +193,7 @@ export default function MultiAgentManagementPage() {
       {/* Capabilities — each one is its own full-width section, alternating background */}
       <MultiAgentCapabilities capabilities={capabilities} />
 
-      <GradientCta
+      <PricingCta
         heading="Ready to manage your agents from one place?"
         description="Create your first agent free, then add as many more as your business needs — all from one dashboard."
         primaryHref="/get-started"
