@@ -14,7 +14,7 @@ import { Marquee } from "@/components/ui/marquee"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PlaybookStage } from "@/components/industries/playbook-stage"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import type { FaqItem } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
@@ -607,7 +607,7 @@ export default function FitnessIndustryPage() {
       </section>
 
       {/* Closing CTA */}
-      <GradientCta
+      <PricingCta
         heading="Ready to fill every class?"
         description="Launch an agent that books classes, recovers no-shows, and wins back lapsed members — in 10+ Indian languages, around the clock."
         primaryHref={`/get-started?industry=${industry.slug}`}

@@ -3,7 +3,7 @@ import { MessageCircleQuestion } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FaqSearchProvider } from "@/components/faq/faq-search-context"
 import { FaqSearchBar } from "@/components/faq/faq-search-bar"
 import { FaqGroupsList } from "@/components/faq/faq-groups-list"
@@ -95,7 +95,7 @@ export default function FaqPage() {
       </div>
       </FaqSearchProvider>
 
-      <GradientCta
+      <PricingCta
         id="contact"
         heading="Still have a question?"
         description="Talk to a live 9278.io agent — yes, that's actually how we do support — or book 20 minutes with a solutions engineer."

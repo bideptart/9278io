@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Marquee } from "@/components/ui/marquee"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import type { FaqItem } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
@@ -1046,7 +1046,7 @@ export default function EducationIndustryPage() {
       </section>
 
       {/* Closing CTA */}
-      <GradientCta
+      <PricingCta
         heading="Ready to fill every batch?"
         description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
         primaryHref={`/get-started?industry=${industry.slug}`}
