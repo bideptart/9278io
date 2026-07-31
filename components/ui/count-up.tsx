@@ -15,22 +15,26 @@ type CountUpProps = {
   /** Animation duration in seconds. */
   duration?: number
   className?: string
+  /** Replay the count-up every time it scrolls into view, instead of just once. */
+  once?: boolean
 }
 
-/** Counts up from 0 to `value` once it scrolls into view. */
-export function CountUp({ value, prefix = "", suffix = "", decimals = 0, duration = 1.2, className }: CountUpProps) {
+/** Counts up from 0 to `value` once it scrolls into view (or every time, if `once` is false). */
+export function CountUp({ value, prefix = "", suffix = "", decimals = 0, duration = 1.2, className, once = true }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-10% 0px" })
+  const inView = useInView(ref, { once, margin: "-10% 0px" })
   const count = useMotionValue(0)
   const display = useTransform(count, (latest) =>
     `${prefix}${latest.toLocaleString("en-IN", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })}${suffix}`,
   )
 
   useEffect(() => {
-    if (!inView) return
-    const controls = animate(count, value, { duration, ease: "easeOut" })
-    return controls.stop
-  }, [inView, value, duration, count])
+    if (inView) {
+      const controls = animate(count, value, { duration, ease: "easeOut" })
+      return controls.stop
+    }
+    if (!once) count.set(0)
+  }, [inView, value, duration, count, once])
 
   return (
     <motion.span ref={ref} className={className}>

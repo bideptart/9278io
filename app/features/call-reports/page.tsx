@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -123,7 +123,7 @@ export default function CallReportsPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Hear every call for yourself"
         description="Spin up your first agent and every call comes with a recording and transcript, ready to review."
         primaryHref="/get-started"

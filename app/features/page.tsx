@@ -1,16 +1,16 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PhoneCall, ArrowRight, Sparkles } from "lucide-react"
+import { PhoneCall, ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { FeatureGroups } from "@/components/features-page/feature-groups"
 import { BlueprintHero } from "@/components/features-page/blueprint-hero"
 import { StatBand } from "@/components/features-page/stat-band"
 import { FeatureBento } from "@/components/features-page/feature-bento"
-import { TestimonialsPlaceholder } from "@/components/features-page/testimonials-placeholder"
 
 export const metadata: Metadata = {
   title: "Features — 9278.io",
@@ -152,15 +152,23 @@ export default function FeaturesPage() {
 
       {/* Bento grid */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 py-10 md:px-8 md:py-14">
-          <ScrollReveal className="mx-auto max-w-5xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              At a Glance
-            </span>
-            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
-              Every capability, in one view.
-            </h2>
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+          <ScrollReveal className="mx-auto flex max-w-5xl flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                At a Glance
+              </span>
+              <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-4xl">
+                Every capability,{" "}
+                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                  in one view.
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-pretty leading-relaxed text-muted-foreground md:text-right">
+              Nine capabilities your 9278.io agent ships with today — no add-ons, no upsells.
+            </p>
           </ScrollReveal>
 
           <div className="mt-10">
@@ -169,118 +177,49 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="border-b border-border/50">
-        <div className="w-full px-6 py-10 md:px-8 md:py-14">
-          <ScrollReveal className="mx-auto max-w-5xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              What Customers Say
-            </span>
-            <h2 className="mt-3 text-balance text-2xl font-bold tracking-tight md:text-3xl">
-              Loved by businesses across India.
-            </h2>
-          </ScrollReveal>
-
-          <div className="mt-10">
-            <TestimonialsPlaceholder />
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="border-b border-border/50">
-        <div className="w-full px-6 pb-6 pt-10 md:px-8 md:pb-8 md:pt-14">
-          <ScrollReveal className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-              FAQ
-            </span>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
-              Questions about what makes us different.
-            </h2>
-          </ScrollReveal>
-
-          <div className="mx-auto mt-10 max-w-5xl">
-            <ScrollReveal>
-              <div className="glass-panel rounded-[1.75rem] p-2 shadow-[0_20px_48px_-32px_oklch(0.13_0.025_255/0.35)] transition-shadow hover:shadow-[0_28px_60px_-32px_oklch(0.546_0.215_262.88/0.2)] sm:p-4">
-                <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+          <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <ScrollReveal className="lg:sticky lg:top-24 lg:h-fit">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                FAQ
+              </span>
+              <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
+                Questions about what makes us different.
+              </h2>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/faq"
+                  className="inline-flex items-center gap-2 rounded-full border border-border/60 px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  See all FAQs →
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  Talk to sales
+                </Link>
               </div>
             </ScrollReveal>
 
-            <ScrollReveal className="mt-8 flex justify-center">
-              <Link
-                href="/faq"
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-5 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              >
-                See all FAQs →
-              </Link>
+            <ScrollReveal delay={0.08}>
+              <FaqAccordion items={faqs} idPrefix="features-page" defaultOpenIndex={0} />
             </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-20 md:pt-6">
-        <ScrollReveal className="mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[oklch(0.64_0.19_245)] via-primary to-[oklch(0.45_0.19_264)] px-8 py-12 shadow-[0_40px_100px_-40px_oklch(0.52_0.22_265/0.6)] md:px-14 md:py-14">
-            {/* faint grid */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-[0.18]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-                backgroundSize: "44px 44px",
-                maskImage: "radial-gradient(ellipse at center, black 55%, transparent 100%)",
-              }}
-            />
-            {/* soft glows */}
-            <div aria-hidden className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-white/15 blur-[90px] motion-safe:animate-breathe" />
-            <div aria-hidden className="pointer-events-none absolute -bottom-28 -right-16 size-80 rounded-full bg-[oklch(0.7_0.15_210/0.35)] blur-[100px] motion-safe:animate-breathe [animation-delay:3s]" />
-            {/* decorative sparkle */}
-            <Sparkles aria-hidden className="pointer-events-none absolute -right-6 bottom-2 size-48 text-white/[0.06]" strokeWidth={1} />
-
-            <div className="relative flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
-              {/* Left: copy */}
-              <div className="max-w-xl">
-                <h2 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                  Ready to put this to work?
-                </h2>
-                <div className="mt-4 h-px w-12 bg-white/40" aria-hidden />
-                <p className="mt-4 text-pretty text-base leading-relaxed text-white/85">
-                  Build your first agent free, or talk to us about what your business needs.
-                </p>
-              </div>
-
-              {/* Right: actions */}
-              <div className="flex shrink-0 flex-col gap-3 sm:flex-row md:flex-col lg:flex-row">
-                <Button
-                  asChild
-                  size="lg"
-                  className="group h-12 rounded-full bg-white px-8 text-base font-semibold text-primary shadow-[0_10px_30px_oklch(0.2_0.1_262/0.35)] transition-all hover:scale-[1.04] hover:bg-white/90"
-                >
-                  <Link href="/get-started">
-                    Build your first agent
-                    <ArrowRight className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-12 rounded-full border-white/40 bg-white/10 px-7 text-base font-semibold text-white backdrop-blur transition-all hover:scale-[1.04] hover:border-white/60 hover:bg-white/20 hover:text-white"
-                >
-                  <Link href="/contact">
-                    <PhoneCall className="mr-2 h-4 w-4" />
-                    Talk to sales
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+      <PricingCta
+        heading="Ready to put this to work?"
+        description="Build your first agent free, or talk to us about what your business needs."
+        primaryHref="/get-started"
+        primaryLabel="Build your first agent"
+        secondaryHref="/contact"
+        secondaryLabel="Talk to sales"
+      />
 
       <SiteFooter />
     </main>

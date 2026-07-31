@@ -33,15 +33,21 @@ export function StatCards({ stats }: { stats: Stat[] }) {
       variants={container}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-60px" }}
-      className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-1.5 rounded-3xl border border-border/60 bg-white/40 p-1.5 backdrop-blur-sm sm:grid-cols-4"
+      viewport={{ once: true, margin: "-30px" }}
+      className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-1.5 rounded-3xl border border-primary/60 bg-white/40 p-1.5 backdrop-blur-sm sm:grid-cols-4"
     >
-      {stats.map((s) => (
+      {stats.map((s, i) => (
         <motion.div
           key={s.label}
           variants={item}
           className="group relative flex flex-col items-center gap-2 rounded-2xl px-4 py-6 transition-colors duration-300 hover:bg-primary hover:shadow-[0_8px_24px_-12px_oklch(0.546_0.215_262.88/0.5)]"
         >
+          {i < stats.length - 1 && (
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-6 -right-[3px] hidden w-px bg-primary/50 sm:block"
+            />
+          )}
           <motion.span
             whileHover={{ y: -3 }}
             transition={{ type: "spring", stiffness: 300, damping: 15 }}

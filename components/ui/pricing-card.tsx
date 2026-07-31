@@ -173,7 +173,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
           // Same border width and shadow for every card, popular or not —
           // only the color differs — so the "Most popular" card is never a
           // different physical size from the other two.
-          "relative flex h-full min-w-0 flex-col gap-3 rounded-2xl border-2 bg-white py-4 shadow-sm transition-all duration-300",
+          "glow-border relative flex h-full min-w-0 flex-col gap-3 rounded-2xl border-2 bg-white py-4 shadow-sm transition-all duration-300",
           isFeatured ? "border-primary" : "border-border/60 hover:border-primary",
         )}
       >

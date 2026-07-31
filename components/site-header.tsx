@@ -7,6 +7,7 @@ import {
   ArrowRight, ArrowUpRight, ChevronDown, Menu, X,
   Building2, Wrench, Briefcase, ShoppingBag, Sparkles,
   Info, FileText, Phone,
+  Landmark, Cpu, Truck, Users, Server, ShoppingCart,
 } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
@@ -19,45 +20,60 @@ const INDUSTRY_GROUPS = [
   {
     label: "Core Industries",
     icon: Building2,
-    subtitle: "Real estate, food, home services",
+    subtitle: "Real estate, food, home, SaaS",
     tagline: "Core industries",
     heading: "Local businesses, covered end to end.",
-    lead: "Real estate, restaurants, and home-service teams.",
+    lead: "Real estate, restaurants, home-service, and SaaS teams.",
     slugs: ["real-estate", "home-services", "restaurants"],
+    items: [
+      { slug: "saas-tech", name: "SaaS & Tech", icon: Cpu, short: "Support and onboarding for product teams." },
+    ],
   },
   {
     label: "Field & Local Services",
     icon: Wrench,
-    subtitle: "Automotive, fitness & wellness",
+    subtitle: "Automotive, fitness, logistics, retail",
     tagline: "Field & local services",
     heading: "Dealerships and studios, always on call.",
-    lead: "Automotive service and fitness & wellness teams.",
+    lead: "Automotive, fitness & wellness, logistics, and retail teams.",
     slugs: ["automotive", "fitness"],
+    items: [
+      { slug: "logistics", name: "Logistics", icon: Truck, short: "Dispatch, tracking, and delivery updates." },
+      { slug: "retail-ecom", name: "Retail & eCom", icon: ShoppingCart, short: "Storefronts and D2C support, unified." },
+    ],
   },
   {
     label: "Professional Services",
     icon: Briefcase,
-    subtitle: "Legal, education",
+    subtitle: "Legal, education, enterprise IT",
     tagline: "Professional services",
     heading: "Intake and enrollment, handled right.",
-    lead: "Law firms and education & ed-tech teams.",
+    lead: "Law firms, education, enterprise IT, and remote teams.",
     slugs: ["legal", "education"],
+    items: [
+      { slug: "enterprise-it", name: "Enterprise IT", icon: Server, short: "Internal helpdesk and IT support at scale." },
+      { slug: "remote-teams", name: "Remote Teams", icon: Users, short: "Always-on coverage for distributed teams." },
+    ],
   },
   {
     label: "Retail & Finance",
     icon: ShoppingBag,
-    subtitle: "E-commerce, BFSI, BPO",
+    subtitle: "E-commerce, BFSI, BPO, finance",
     tagline: "Retail & finance",
     heading: "Software-first teams, covered end to end.",
-    lead: "E-commerce, BFSI & fintech, and BPO teams.",
+    lead: "E-commerce, BFSI & fintech, BPO, and finance teams.",
     slugs: ["ecommerce", "bfsi", "bpo"],
+    items: [
+      { slug: "finance", name: "Finance", icon: Landmark, short: "Compliant, always-on financial services calls." },
+    ],
   },
 ]
 
 function IndustriesMenu() {
   const [activeGroup, setActiveGroup] = useState(0)
   const group = INDUSTRY_GROUPS[activeGroup]
-  const items = group.slugs.map((s) => getIndustry(s)).filter(Boolean) as NonNullable<ReturnType<typeof getIndustry>>[]
+  const fromSlugs = group.slugs.map((s) => getIndustry(s)).filter(Boolean) as NonNullable<ReturnType<typeof getIndustry>>[]
+  const items = [...fromSlugs, ...group.items]
 
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-2xl">
@@ -96,8 +112,8 @@ function IndustriesMenu() {
           </div>
         </div>
 
-        {/* Right: active group detail */}
-        <div className="p-5">
+        {/* Right: active group detail — fixed height so switching groups never resizes the menu */}
+        <div className="flex h-[260px] flex-col overflow-hidden p-5">
           <div className="flex items-center justify-between gap-3">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
               <span className="size-1.5 rounded-full bg-primary" aria-hidden />
@@ -114,21 +130,26 @@ function IndustriesMenu() {
           <h3 className="mt-3 text-lg font-bold tracking-tight text-foreground">{group.heading}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{group.lead}</p>
 
-          <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="mt-4 grid grid-cols-2 items-start gap-x-3 gap-y-1">
             {items.map((ind) => {
               const Icon = ind.icon
               return (
                 <Link
                   key={ind.slug}
                   href={`/industries/${ind.slug}`}
-                  className="flex items-start gap-2.5 rounded-xl p-2 transition-colors hover:bg-slate-50"
+                  className="flex h-[62px] items-start gap-2.5 rounded-xl p-1.5 transition-colors hover:bg-slate-50"
                 >
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.08] text-primary">
                     <Icon className="size-4" aria-hidden />
                   </span>
                   <span className="min-w-0 leading-snug">
-                    <span className="block text-sm font-semibold text-foreground">{ind.name}</span>
-                    <span className="line-clamp-2 block text-xs text-muted-foreground">{ind.short}</span>
+                    <span className="block truncate text-sm font-semibold text-foreground">{ind.name}</span>
+                    <span
+                      className="block overflow-hidden text-xs text-muted-foreground"
+                      style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}
+                    >
+                      {ind.short}
+                    </span>
                   </span>
                 </Link>
               )
@@ -271,7 +292,7 @@ export function SiteHeader() {
         scrolled ? "shadow-sm" : "",
       )}
     >
-      <div className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-6 md:px-8">
+      <div className="flex h-20 w-full items-center justify-between px-4 md:grid md:h-16 md:grid-cols-[1fr_auto_1fr] md:px-8">
 
         {/* Logo */}
         <Link href="/" className="flex shrink-0 items-center justify-self-start" aria-label="9278.io home">
@@ -288,8 +309,9 @@ export function SiteHeader() {
             onMouseEnter={() => setIndustriesOpen(true)}
             onMouseLeave={() => setIndustriesOpen(false)}
           >
-            <Link
-              href="/industries"
+            <button
+              type="button"
+              onClick={() => setIndustriesOpen((o) => !o)}
               className={cn(
                 "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
                 isActive("/industries") ? "text-foreground" : "text-muted-foreground",
@@ -298,7 +320,7 @@ export function SiteHeader() {
             >
               Industries
               <ChevronDown className={cn("size-3.5 transition-transform", industriesOpen ? "rotate-180" : "")} aria-hidden />
-            </Link>
+            </button>
             <AnimatePresence>
               {industriesOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
@@ -368,13 +390,11 @@ export function SiteHeader() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full bg-primary py-2 pl-5 pr-1.5 text-sm font-semibold text-primary-foreground shadow-[0_6px_20px_oklch(0.546_0.215_262.88/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.5)] sm:inline-flex"
+            className="inline-flex h-[36px] w-[120.67px] rounded-full bg-primary px-[10px] py-0 text-[14px] font-semibold text-primary-foreground shadow-[0_6px_20px_oklch(0.546_0.215_262.88/0.35)] transition-all hover:bg-primary/90 hover:shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.5)]"
           >
             <Link href="/get-started">
               Get Started
-              <span className="flex size-6 items-center justify-center rounded-full bg-white/20">
-                <ArrowRight className="size-3.5" aria-hidden />
-              </span>
+              <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </Button>
 

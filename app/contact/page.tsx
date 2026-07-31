@@ -7,7 +7,7 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { ContactForm } from "@/components/contact/contact-form"
 import { ChannelCards } from "@/components/contact/channel-cards"
 import { LiveStatus } from "@/components/contact/live-status"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -18,6 +18,19 @@ export const metadata: Metadata = pageSeo({
   description:
     "Get in touch with the 9278.io team. Sales, support, partnerships, and press enquiries for our AI voice agent platform for Indian businesses.",
   path: "/contact",
+  keywords: [
+    // Focus keyword first
+    "AI receptionist demo",
+    // Supporting keywords
+    "AI voice agent demo",
+    "AI receptionist pricing",
+    "AI voice agent pricing",
+    "talk to AI sales agent",
+    "AI customer support voice",
+    "contact AI voice agent provider",
+    "AI phone answering service",
+    "9278.io support",
+  ],
 })
 
 // The contact action sends two emails (notification + acknowledgement);
@@ -124,7 +137,7 @@ export default function ContactPage() {
 
           <div className="mx-auto mt-10 max-w-3xl">
             <ScrollReveal>
-              <FaqAccordion items={faqs} idPrefix="contact" />
+              <FaqAccordion items={faqs} idPrefix="contact" contentClassName="pl-[52px]" />
             </ScrollReveal>
             <ScrollReveal className="flex justify-center pt-2">
               <Link
@@ -138,7 +151,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Prefer to just talk to someone?"
         description="Try our live demo agent right now — no signup, no waiting for an email back."
         primaryHref="/get-started"

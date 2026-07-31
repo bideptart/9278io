@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailUnderlineTabs } from "@/components/features-page/detail-underline-tabs"
 import { HowItWorksRadial } from "@/components/features-page/how-it-works-radial"
 import { SpeedComparisonBars } from "@/components/features-page/speed-comparison-bars"
@@ -219,7 +219,7 @@ export default function BookingNotificationsPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Never miss a booking again"
         description="Spin up your first agent and every confirmed appointment lands straight in your inbox."
         primaryHref="/get-started"

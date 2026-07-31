@@ -104,13 +104,13 @@ export function PricingFeature() {
 
         {/* Trust chips + billing toggle */}
         <ScrollReveal className="mt-6 flex flex-col items-center gap-4">
-          <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="flex flex-nowrap items-center justify-center gap-1 sm:flex-wrap sm:gap-2">
             {trustChips.map((t) => (
               <span
                 key={t}
-                className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.05] px-3.5 py-1.5 text-xs font-medium text-foreground"
+                className="inline-flex shrink-0 items-center gap-1 rounded-full border border-primary/20 bg-primary/[0.05] px-2 py-1 text-[10px] font-medium text-foreground sm:gap-1.5 sm:px-3.5 sm:py-1.5 sm:text-xs"
               >
-                <Check className="h-3.5 w-3.5 text-primary" aria-hidden /> {t}
+                <Check className="h-3 w-3 shrink-0 text-primary sm:h-3.5 sm:w-3.5" aria-hidden /> {t}
               </span>
             ))}
           </div>
@@ -163,7 +163,7 @@ export function PricingFeature() {
                   )}
                 >
                   <motion.div
-                    className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 transition-all duration-300 ${
+                    className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 sm:p-8 ${
                       plan.highlight
                         ? "border-primary/40 bg-primary/[0.06] shadow-[0_20px_60px_oklch(0.78_0.16_195/0.2)]"
                         : "border-border bg-white hover:border-primary/20 hover:bg-slate-50"
@@ -187,7 +187,7 @@ export function PricingFeature() {
                       <span className="text-sm font-semibold text-muted-foreground">{plan.name}</span>
                     </div>
 
-                    <div className="mt-3 flex items-end gap-2">
+                    <div className="mt-2 flex items-end gap-2 sm:mt-3">
                       <span className="text-3xl font-bold tracking-tight">
                         <AnimatedPrice value={price} />
                       </span>
@@ -209,7 +209,7 @@ export function PricingFeature() {
                       </span>
                     </div>
 
-                    <ul className="mt-6 flex flex-col gap-3">
+                    <ul className="mt-4 flex flex-col gap-2 sm:mt-6 sm:gap-3">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-2 text-sm text-muted-foreground">
                           <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
@@ -218,7 +218,7 @@ export function PricingFeature() {
                       ))}
                     </ul>
 
-                    <div className="mt-7">
+                    <div className="mt-5 sm:mt-7">
                       <Button
                         asChild
                         size="sm"

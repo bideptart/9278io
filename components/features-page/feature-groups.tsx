@@ -30,6 +30,7 @@ const featureGroups: Group[] = [
           "Clone an existing agent to start a new one fast",
           "Assign a different number to each agent",
         ],
+        href: "/features/multi-agent-management",
       },
       {
         icon: AudioLines,

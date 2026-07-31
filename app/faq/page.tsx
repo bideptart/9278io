@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FaqCategoryGrid } from "@/components/faq/faq-category-grid"
 import { FaqDetailSections } from "@/components/faq/faq-detail-sections"
 import { FaqIllustration } from "@/components/faq/faq-illustration"
@@ -148,7 +148,7 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         id="contact"
         heading="Still have a question?"
         description="Talk to a live 9278.io agent — yes, that's actually how we do support — or book 20 minutes with a solutions engineer."

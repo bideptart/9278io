@@ -466,7 +466,7 @@ export function Features() {
               animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
             Our Features
           </motion.span>
-          <h2 className="mt-3 whitespace-nowrap text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:whitespace-nowrap sm:text-4xl md:text-5xl">
             Everything your voice agent needs.
           </h2>
           <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">

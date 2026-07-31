@@ -8,20 +8,28 @@ import { LiveCallMockup } from "@/components/pricing/live-call-mockup"
 import { RateByPlanMockup } from "@/components/pricing/rate-by-plan-mockup"
 import { LiveCostMockup } from "@/components/pricing/live-cost-mockup"
 import { MockupStackConnector } from "@/components/pricing/mockup-stack-connector"
+import { MockupVerticalConnector } from "@/components/pricing/mockup-vertical-connector"
 import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
 import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { Button } from "@/components/ui/button"
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
+import { FAQ_GROUPS } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, PricingJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
 
+// First 6 of the "Billing & credit" FAQ group — real, existing copy from
+// the FAQ page (lib/faq.ts), not new content, so this stays in sync with
+// whatever's answered there instead of drifting out of date separately.
+const PRICING_FAQ_ITEMS = (FAQ_GROUPS.find((g) => g.id === "billing")?.items ?? []).slice(0, 6)
+
 export const metadata: Metadata = pageSeo({
-  title: "Pricing — voice AI from ₹10/min",
+  title: "AI Voice Agent Pricing — plans from ₹10/min",
   description:
-    "Pick a plan and get started. Starter ₹3,000, Growth ₹8,800, Scale ₹30,000. All plans include inbound calling, call recording, and real-time transcription. Prices in ₹, billed once as wallet credit.",
+    "AI receptionist and voice agent pricing for Indian businesses. Starter ₹3,000, Growth ₹8,800, Scale ₹30,000/mo. TRAI-compliant, per-second billing, 10+ Indian languages.",
   path: "/pricing",
 })
 
@@ -77,9 +85,9 @@ export default async function PricingPage({
                 </span>
               </h1>
               <p className="mt-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                Every plan includes inbound calling, call recording, and real-time transcription with per-second
-                billing. Pay once in ₹ as wallet credit valid for 60 days — no contracts, no setup fees, cancel
-                anytime.
+                Simple AI receptionist pricing for Indian businesses. Every plan includes inbound calling, call
+                recording, and real-time transcription with per-second billing. Pay once in ₹ as wallet credit
+                valid for 60 days — no contracts, no setup fees, cancel anytime.
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
@@ -130,6 +138,18 @@ export default async function PricingPage({
               <LiveCostMockup className="absolute left-2 top-[18%]" />
               <RateByPlanMockup className="absolute bottom-0 left-20" />
             </div>
+
+            {/* Mobile/tablet: same 3 cards, simple vertical stack instead of
+                the absolute-positioned floating layout (which only fits the
+                lg+ two-column grid), with a short vertical dashed connector
+                between each card instead of the desktop curved-line SVG. */}
+            <div className="flex flex-col items-center lg:hidden">
+              <LiveCallMockup className="relative" />
+              <MockupVerticalConnector />
+              <LiveCostMockup className="relative" />
+              <MockupVerticalConnector />
+              <RateByPlanMockup className="relative" />
+            </div>
           </div>
         </div>
       </section>
@@ -142,11 +162,15 @@ export default async function PricingPage({
         </p>
       </section>
 
-      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+      <section className="w-full px-6 py-12 md:px-8 md:py-16">
         <ComparePlansTable />
       </section>
 
-      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+      <section className="relative w-full overflow-hidden px-6 py-12 md:px-8 md:py-16">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.14),transparent_70%)]"
+        />
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
             Cost comparison
@@ -155,7 +179,9 @@ export default async function PricingPage({
             One agent's salary vs one plan.
           </h2>
           <p className="mt-3 text-pretty text-muted-foreground">
-            A single AI voice agent handles what a human hire would — for a fraction of the monthly cost.
+            A single AI voice agent handles what a human hire would — for a fraction of the monthly cost. No
+            recruiting, training, or turnover to manage, and it never calls in sick. See how the numbers stack up
+            for the plan you're actually considering.
           </p>
         </ScrollReveal>
         <div className="mt-10">
@@ -163,13 +189,36 @@ export default async function PricingPage({
         </div>
       </section>
 
-      <GradientCta
+      <section className="w-full px-6 py-12 md:px-8 md:py-16">
+        <ScrollReveal className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            Pricing FAQ
+          </span>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            Billing questions, answered.
+          </h2>
+          <p className="mt-3 text-pretty text-muted-foreground">
+            The most common questions about how credit, minutes, and invoicing actually work.
+          </p>
+        </ScrollReveal>
+        <ScrollReveal className="mx-auto mt-8 max-w-5xl">
+          <FaqAccordion items={PRICING_FAQ_ITEMS} idPrefix="pricing-faq" />
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            <Link href="/faq" className="font-medium text-primary hover:underline">
+              See all FAQs →
+            </Link>
+          </p>
+        </ScrollReveal>
+      </section>
+
+      <PricingCta
+        id="pricing-cta"
         heading="Try before you commit. Talk to our agent now."
         description="See latency, voice quality, and conversation flow firsthand — then top up only if you love it."
         primaryHref="/get-started"
         primaryLabel="Get started"
-        secondaryHref="/#cta"
-        secondaryLabel="Talk to an agent"
+        secondaryHref="/contact"
+        secondaryLabel="Contact"
       />
 
       <RelatedLinks

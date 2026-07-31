@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { AnalyticsDashboardIllustration } from "@/components/features-page/analytics-dashboard-illustration"
 import { DetailCards } from "@/components/features-page/detail-cards"
@@ -230,7 +230,7 @@ export default function AnalyticsDashboardPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="See it on your own calls"
         description="Spin up your first agent and the Analytics Dashboard starts filling in from your very first call."
         primaryHref="/get-started"

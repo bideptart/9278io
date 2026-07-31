@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
 import { FaqPlainList } from "@/components/features-page/faq-plain-list"
 import { DetailNumberedList } from "@/components/features-page/detail-numbered-list"
@@ -193,7 +193,7 @@ export default function BookingHistoryPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="See it on your own bookings"
         description="Spin up your first agent and every appointment it books shows up here, searchable from day one."
         primaryHref="/get-started"

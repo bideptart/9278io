@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -123,7 +123,7 @@ export default function SupportTicketsSystemPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Get support without leaving your dashboard"
         description="Spin up your first agent and raise a ticket anytime, right from the same place you manage it."
         primaryHref="/get-started"

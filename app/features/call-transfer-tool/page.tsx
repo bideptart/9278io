@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { GradientCta } from "@/components/sections/gradient-cta"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailSplitRows } from "@/components/features-page/detail-split-rows"
 import { HowItWorksZigzag } from "@/components/features-page/how-it-works-zigzag"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
@@ -223,7 +223,7 @@ export default function CallTransferToolPage() {
         </div>
       </section>
 
-      <GradientCta
+      <PricingCta
         heading="Set up your first transfer rule"
         description="Spin up your first agent and connect a fallback number so no call ever hits a wall."
         primaryHref="/get-started"

@@ -56,7 +56,7 @@ const cardVariants = {
 export function ChannelCards() {
   return (
     <motion.div
-      className="mt-6 flex flex-1 flex-col justify-between gap-3"
+      className="mt-6 grid flex-1 grid-cols-2 gap-3 lg:flex lg:flex-col lg:justify-between"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
@@ -68,19 +68,19 @@ export function ChannelCards() {
           <motion.div
             key={c.title}
             variants={cardVariants}
-            className="flex gap-3 rounded-2xl border-2 border-border bg-white p-4"
+            className="flex min-w-0 flex-col gap-2 rounded-2xl border-2 border-border bg-white p-3.5 lg:flex-row lg:gap-3 lg:p-4"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary">
-              <Icon className="h-4.5 w-4.5" aria-hidden />
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary lg:h-10 lg:w-10">
+              <Icon className="h-4 w-4 lg:h-4.5 lg:w-4.5" aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col items-start gap-0.5 lg:flex-row lg:items-start lg:justify-between lg:gap-3">
                 <h3 className="font-semibold tracking-tight">{c.title}</h3>
                 <a
                   href={c.href}
                   target={c.href.startsWith("http") ? "_blank" : undefined}
                   rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="shrink-0 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                  className="truncate text-sm font-semibold text-primary underline-offset-4 hover:underline lg:shrink-0"
                 >
                   {c.action}
                 </a>

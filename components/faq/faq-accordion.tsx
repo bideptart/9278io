@@ -20,6 +20,7 @@ export function FaqAccordion({
   defaultOpenIndex = null,
   itemClassName,
   triggerIcon,
+  contentClassName,
 }: {
   items: FaqItem[]
   idPrefix?: string
@@ -28,6 +29,7 @@ export function FaqAccordion({
   itemClassName?: string
   /** Overrides the default triangle indicator, e.g. a Lucide icon. */
   triggerIcon?: ReactNode
+  contentClassName?: string
 }) {
   const defaultValue =
     defaultOpenIndex != null ? (idPrefix ? `${idPrefix}-${defaultOpenIndex}` : `${defaultOpenIndex}`) : undefined
@@ -51,7 +53,7 @@ export function FaqAccordion({
             >
               {item.q}
             </AccordionTrigger>
-            <AccordionContent className="text-pretty leading-relaxed text-muted-foreground">
+            <AccordionContent className={cn("text-pretty leading-relaxed text-muted-foreground", contentClassName)}>
               {item.a}
             </AccordionContent>
           </AccordionItem>

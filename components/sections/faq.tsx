@@ -34,7 +34,7 @@ export function FAQ() {
 
         <div className="mx-auto mt-12 max-w-5xl">
           <ScrollReveal>
-            <FaqAccordion items={items} />
+            <FaqAccordion items={items} contentClassName="pl-[52px]" />
           </ScrollReveal>
 
           <ScrollReveal className="mt-10 flex justify-center">
