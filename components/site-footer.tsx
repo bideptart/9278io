@@ -13,8 +13,6 @@ const nav = {
     { label: "Legal Services", href: "/industries/legal" },
     { label: "E-Commerce", href: "/industries/ecommerce" },
     { label: "Restaurants", href: "/industries/restaurants" },
-    { label: "Automotive", href: "/industries/automotive" },
-    { label: "Home Services", href: "/industries/home-services" },
     { label: "Explore Industries →", href: "/industries" },
   ],
   Company: [
