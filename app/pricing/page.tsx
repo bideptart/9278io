@@ -136,7 +136,7 @@ export default async function PricingPage({
               <MockupStackConnector className="absolute inset-0 h-full w-full" />
               <LiveCallMockup className="absolute right-4 top-0" />
               <LiveCostMockup className="absolute left-2 top-[18%]" />
-              <RateByPlanMockup className="absolute bottom-0 left-20" />
+              <RateByPlanMockup className="absolute bottom-6 left-28" />
             </div>
 
             {/* Mobile/tablet: same 3 cards, simple vertical stack instead of
