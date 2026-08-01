@@ -70,6 +70,7 @@ const featureGroups: Group[] = [
           "Update answers anytime — no re-training",
           "Each agent answers only from its own knowledge",
         ],
+        href: "/features/knowledge-base",
       },
       {
         icon: Copy,
@@ -80,6 +81,7 @@ const featureGroups: Group[] = [
           "Keep answers consistent across numbers",
           "Edit the template to update everywhere",
         ],
+        href: "/features/knowledge-templates",
       },
       {
         icon: GitBranch,
@@ -90,6 +92,7 @@ const featureGroups: Group[] = [
           "Handle calls differently by time of day",
           "Fallback rules for unmatched calls",
         ],
+        href: "/features/behavior-routing-rules",
       },
     ],
   },

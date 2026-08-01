@@ -282,13 +282,6 @@ export function SiteHeader() {
       )}
     >
       {label}
-      <span
-        aria-hidden
-        className={cn(
-          "pointer-events-none absolute inset-x-3 -bottom-px h-px origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100",
-          isActive(href) && "scale-x-100",
-        )}
-      />
     </Link>
   )
 
