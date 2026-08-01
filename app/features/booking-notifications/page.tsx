@@ -6,18 +6,23 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { DetailUnderlineTabs } from "@/components/features-page/detail-underline-tabs"
+import { DetailSpotlightPanel } from "@/components/features-page/detail-spotlight-panel"
 import { HowItWorksRadial } from "@/components/features-page/how-it-works-radial"
 import { SpeedComparisonBars } from "@/components/features-page/speed-comparison-bars"
-import { FaqQuickLinks } from "@/components/features-page/faq-quick-links"
+import { FaqCardCarousel } from "@/components/features-page/faq-card-carousel"
 import { BookingNotificationsIllustration } from "@/components/features-page/booking-notifications-illustration"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { FAQ_GROUPS } from "@/lib/faq"
 
-const accountFaq = FAQ_GROUPS.find((g) => g.id === "account")!.items.filter((i) =>
-  ["How fast can I be live?", "What support is included?"].includes(i.q),
-)
+const accountFaq = [
+  ...FAQ_GROUPS.find((g) => g.id === "account")!.items.filter((i) =>
+    ["How fast can I be live?", "What support is included?", "Where do I sign in?"].includes(i.q),
+  ),
+  ...FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
+    ["Does it integrate with Indian CRMs and tools?"].includes(i.q),
+  ),
+]
 
 export const metadata: Metadata = pageSeo({
   title: "Booking Notifications",
@@ -168,7 +173,7 @@ export default function BookingNotificationsPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Pick a detail to explore</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <DetailUnderlineTabs items={DETAILS} />
+            <DetailSpotlightPanel items={DETAILS} />
           </div>
         </div>
       </section>
@@ -202,19 +207,19 @@ export default function BookingNotificationsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 text-center md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               Related questions
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Getting set up</h2>
-            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
               Straight from the FAQ — pick one to read the full answer.
             </p>
           </ScrollReveal>
           <div className="mt-8">
-            <FaqQuickLinks items={accountFaq} />
+            <FaqCardCarousel items={accountFaq} />
           </div>
         </div>
       </section>

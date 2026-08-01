@@ -71,7 +71,7 @@ export function SaasAgentConsole() {
           </div>
 
           {/* Main thread */}
-          <div className="flex-1 px-5 py-4">
+          <div className="flex-1 px-5 pt-4 pb-6">
             <div className="flex items-center justify-between">
               <p className="text-[14.5px] font-bold text-slate-800">{CHANNELS[0]}</p>
               <div className="flex items-center gap-1.5">
@@ -85,7 +85,7 @@ export function SaasAgentConsole() {
             </div>
             <p className="text-[12px] text-slate-400">2 agents &middot; 1 live call</p>
 
-            <div ref={scrollRef} className="mt-4 h-[190px] space-y-2.5 overflow-y-auto scroll-smooth pr-1">
+            <div ref={scrollRef} className="mt-4 h-[260px] space-y-2.5 overflow-y-auto scroll-smooth pr-1">
               <AnimatePresence initial={false}>
                 {messages.map((m, i) => (
                   <motion.div

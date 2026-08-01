@@ -20,26 +20,27 @@ const STEP_DURATION = 2600
 /**
  * Circular step wheel — a ring divided into one arc per step. The active
  * arc sweeps in like a countdown (synced to the real auto-advance timer),
- * completed arcs stay solid, and clickable dots below let the reader jump
- * to any step directly (pausing the auto-advance for a while). A
- * completely different geometry from the vertical timeline, horizontal
- * flow, and zigzag path used for "how it works" on the other feature
- * pages — this one is a radial progress indicator, not a row of cards.
+ * completed arcs stay solid. Beside it, all steps are listed at once as
+ * clickable rows — the active row expands to show its description — so
+ * the section reads as a real step list, not just one floating step.
  */
 export function HowItWorksRadial({ steps }: { steps: Step[] }) {
   const [active, setActive] = useState(0)
+  const [cycleKey, setCycleKey] = useState(0)
   const paused = useRef(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (paused.current) return
       setActive((i) => (i + 1) % steps.length)
+      setCycleKey((k) => k + 1)
     }, STEP_DURATION)
     return () => clearInterval(interval)
   }, [steps.length])
 
   function selectStep(i: number) {
     setActive(i)
+    setCycleKey((k) => k + 1)
     paused.current = true
     setTimeout(() => {
       paused.current = false
@@ -52,8 +53,8 @@ export function HowItWorksRadial({ steps }: { steps: Step[] }) {
   const current = steps[active]
 
   return (
-    <div className="mx-auto mt-10 max-w-xl">
-      <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-center sm:justify-center">
+    <div className="mt-10">
+      <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-center">
         <div className="relative shrink-0" style={{ width: SIZE, height: SIZE }}>
           <motion.div
             aria-hidden
@@ -117,46 +118,85 @@ export function HowItWorksRadial({ steps }: { steps: Step[] }) {
               </span>
             </motion.span>
           </AnimatePresence>
+          <p className="absolute -bottom-7 inset-x-0 text-center text-xs font-semibold uppercase tracking-wide text-primary/60">
+            Step {active + 1} of {steps.length}
+          </p>
         </div>
 
-        <div className="min-w-0 flex-1 text-center sm:text-left">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-            >
-              <span className="text-xs font-semibold uppercase tracking-wide text-primary/70">
-                Step {active + 1} of {steps.length}
-              </span>
-              <p className="mt-1 text-lg font-semibold tracking-tight text-foreground">{current.title}</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{current.description}</p>
-            </motion.div>
-          </AnimatePresence>
+        <div className="w-full min-w-0 flex-1">
+          {steps.map((s, i) => {
+            const isActive = i === active
+            const isDone = i < active
+            const isLast = i === steps.length - 1
+            return (
+              <button
+                key={s.title}
+                type="button"
+                onClick={() => selectStep(i)}
+                aria-pressed={isActive}
+                className={cn(
+                  "group relative flex w-full items-start gap-4 overflow-hidden rounded-xl px-4 py-4 text-left transition-all",
+                  isActive ? "bg-primary/[0.05] shadow-[0_1px_2px_rgba(15,23,42,0.04)]" : "hover:bg-slate-50",
+                )}
+              >
+                {isActive && (
+                  <span aria-hidden className="absolute inset-y-1.5 left-0 w-[3px] rounded-r-full bg-primary" />
+                )}
+                {isActive && (
+                  <motion.span
+                    key={cycleKey}
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-[2px] bg-primary/30"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
+                    style={{ transformOrigin: "left" }}
+                  />
+                )}
+                {!isLast && (
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "absolute left-8 top-12 w-px translate-x-[-0.5px] bg-border/70 transition-colors",
+                      isDone && "bg-primary/40",
+                    )}
+                    style={{ height: "calc(100% - 1.25rem)" }}
+                  />
+                )}
+                <span
+                  className={cn(
+                    "relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors",
+                    isActive
+                      ? "bg-primary text-white"
+                      : isDone
+                        ? "bg-primary/15 text-primary"
+                        : "bg-slate-100 text-muted-foreground",
+                  )}
+                >
+                  {isDone ? "✓" : i + 1}
+                </span>
+                <span className="min-w-0 pb-1">
+                  <span
+                    className={cn(
+                      "block text-base font-semibold tracking-tight transition-colors",
+                      isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground",
+                    )}
+                  >
+                    {s.title}
+                  </span>
+                  <span
+                    className={cn(
+                      "mt-1 block text-sm leading-relaxed transition-colors",
+                      isActive ? "text-muted-foreground" : "text-muted-foreground/60",
+                    )}
+                  >
+                    {s.description}
+                  </span>
+                </span>
+              </button>
+            )
+          })}
         </div>
-      </div>
-
-      {/* clickable step dots */}
-      <div className="mt-6 flex items-center justify-center gap-2">
-        {steps.map((s, i) => (
-          <button
-            key={s.title}
-            type="button"
-            onClick={() => selectStep(i)}
-            aria-label={`Go to step ${i + 1}: ${s.title}`}
-            aria-pressed={active === i}
-            className="p-1"
-          >
-            <span
-              className={cn(
-                "block h-1.5 rounded-full transition-all duration-300",
-                active === i ? "w-6 bg-primary" : "w-1.5 bg-border hover:bg-primary/40",
-              )}
-            />
-          </button>
-        ))}
       </div>
     </div>
   )
