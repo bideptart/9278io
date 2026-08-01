@@ -740,3 +740,40 @@
 .card-pop-in {
   animation: cardPopIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+/* Tilt-float — a gentle continuous 3D rotation + rise, like a product card
+   drifting in space rather than a flat element sliding around. Paired with
+   .tilt-shadow (an ellipse beneath the card) so the shadow contracts as the
+   card "lifts", selling the depth. Used on the BFSI rollout illustration. */
+@keyframes tilt-float {
+  0%, 100% {
+    transform: perspective(1200px) rotateX(4deg) rotateY(-5deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1200px) rotateX(-2deg) rotateY(5deg) translateY(-14px);
+  }
+}
+@keyframes tilt-shadow-pulse {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleX(0.82);
+    opacity: 0.28;
+  }
+}
+.tilt-float {
+  animation: tilt-float 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+.tilt-shadow {
+  animation: tilt-shadow-pulse 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-float,
+  .tilt-shadow {
+    animation: none;
+  }
+}

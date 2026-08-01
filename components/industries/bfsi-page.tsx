@@ -1,6 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ShieldCheck, TrendingUp, Zap } from "lucide-react"
+import {
+  ArrowRight,
+  BadgeIndianRupee,
+  CreditCard,
+  Landmark,
+  Rocket,
+  ShieldCheck,
+  TrendingUp,
+  Zap,
+} from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -42,9 +51,23 @@ export function BfsiPage() {
 
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-700 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 motion-safe:animate-pulse" aria-hidden />
-              Rollout playbook
+            {/* All motion is contained to this badge: a light sweep behind
+                the text, a rocket icon that gently bobs, and a pulsing ring
+                radiating from behind it. */}
+            <span className="relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-blue-200/70 bg-white py-2.5 pl-2.5 pr-7 text-base font-semibold uppercase tracking-wider text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent bg-[length:200%_auto] motion-safe:animate-[ind-shimmer_3.2s_linear_infinite]"
+              />
+
+              <span className="relative grid size-9 shrink-0 place-items-center" aria-hidden>
+                <span className="absolute inset-0 rounded-full bg-blue-500/30 motion-safe:animate-[ind-ping_2.4s_ease-out_infinite]" />
+                <span className="relative grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600 motion-safe:animate-[ind-float_3.6s_ease-in-out_infinite]">
+                  <Rocket className="size-5" aria-hidden />
+                </span>
+              </span>
+
+              <span className="relative">Rollout playbook</span>
             </span>
 
             <h2 className="mt-5 text-balance font-serif text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
@@ -99,35 +122,87 @@ export function BfsiPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            <div className="relative mx-auto w-full max-w-[400px]">
-              <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.35)]">
-                <Image
-                  src="/images/bfsi-rollout.png"
-                  alt="How BFSI & fintech teams roll out 9278.io — secure banking, compliance, and analytics workflow"
-                  width={1254}
-                  height={1254}
-                  className="h-auto w-full"
-                  sizes="(min-width: 1024px) 520px, 100vw"
-                />
-              </div>
+            {/* A product card drifting in 3D space — slow continuous tilt +
+                rise, with a shadow beneath that contracts as it lifts and a
+                specular highlight riding along the same axis. Distinct from
+                a flat float/shimmer: this reads as depth, not decoration. */}
+            <div className="relative mx-auto w-full max-w-[400px] pb-6" style={{ perspective: "1200px" }}>
+              <div
+                aria-hidden
+                className="tilt-shadow pointer-events-none absolute inset-x-6 bottom-2 -z-10 h-8 rounded-[50%] bg-blue-950/25 blur-xl"
+              />
 
-              <div className="absolute -left-4 -top-4 z-10 hero-float-up rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
-                <div className="flex items-center gap-2.5">
-                  <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
-                    <ShieldCheck className="size-4" aria-hidden />
+              <div className="tilt-float relative">
+                <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.4)]">
+                  <Image
+                    src="/images/bfsi-rollout.png"
+                    alt="How BFSI & fintech teams roll out 9278.io — secure banking, compliance, and analytics workflow"
+                    width={1254}
+                    height={1254}
+                    className="h-auto w-full"
+                    sizes="(min-width: 1024px) 520px, 100vw"
+                  />
+                  {/* Specular highlight riding diagonally across the surface,
+                      timed to the same 8s cycle as the tilt. */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent bg-[length:220%_220%] motion-safe:animate-[ind-shimmer_8s_ease-in-out_infinite]"
+                  />
+                </div>
+
+                {/* Theme chips pushed out on the Z axis inside the same
+                    preserve-3d group as the card — as it tilts, these visibly
+                    separate from the flat artwork instead of moving with it,
+                    which is what actually reads as "3D" rather than a card
+                    just rotating in place. Positioned to sit near the bank
+                    building, the chart screen, the credit card, and the
+                    coins in the illustration. */}
+                {[
+                  { Icon: Landmark, pos: "left-[8%] top-[22%]", z: 70, delay: "0s" },
+                  { Icon: TrendingUp, pos: "right-[10%] top-[30%]", z: 95, delay: "0.5s" },
+                  { Icon: CreditCard, pos: "left-[12%] bottom-[20%]", z: 55, delay: "1s" },
+                  { Icon: BadgeIndianRupee, pos: "right-[14%] bottom-[26%]", z: 80, delay: "1.5s" },
+                ].map(({ Icon, pos, z, delay }) => (
+                  <span
+                    key={pos}
+                    aria-hidden
+                    style={{ transform: `translateZ(${z}px)`, animationDelay: delay }}
+                    className={`absolute ${pos} z-20 grid size-9 place-items-center rounded-xl border border-white/70 bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-[0_10px_25px_-8px_rgba(37,99,235,0.7)] motion-safe:animate-[ind-float_4.2s_ease-in-out_infinite]`}
+                  >
+                    <Icon className="size-4.5" aria-hidden />
                   </span>
-                  <span className="text-[12px] font-bold text-slate-800">TRAI Compliant</span>
+                ))}
+
+                <div className="absolute -left-4 -top-4 z-10 hero-float-up">
+                <div className="rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 rounded-xl bg-blue-500/25 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite]"
+                      />
+                      <ShieldCheck className="relative size-4" aria-hidden />
+                    </span>
+                    <span className="text-[12px] font-bold text-slate-800">TRAI Compliant</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -right-4 z-10 hero-float-down rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
-                <div className="flex items-center gap-2.5">
-                  <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
-                    <Zap className="size-4" aria-hidden />
-                  </span>
-                  <span className="text-[12px] font-bold text-slate-800">Live in 5 minutes</span>
+              <div className="absolute -bottom-4 -right-4 z-10 hero-float-down">
+                <div className="rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 rounded-xl bg-blue-500/25 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite_1.4s]"
+                      />
+                      <Zap className="relative size-4" aria-hidden />
+                    </span>
+                    <span className="text-[12px] font-bold text-slate-800">Live in 5 minutes</span>
+                  </div>
                 </div>
               </div>
+            </div>
             </div>
           </ScrollReveal>
         </div>
