@@ -303,10 +303,10 @@ const UNIFORMS = {
   offsetX: 0.000,
   offsetY: 0.000,
   drift: 0.000,
-  cursorEnabled: false,
+  cursorEnabled: true,
   cursorEffect: 2.0,
-  cursorStrength: 0.650,
-  cursorRadius: 0.460,
+  cursorStrength: 1.400,
+  cursorRadius: 1.400,
   oklab: 0.0,
   timeScale: 0.860,
 }

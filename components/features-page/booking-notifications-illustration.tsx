@@ -1,26 +1,90 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Bell, Calendar, CheckCircle2, Contact2, Folder, Inbox, Mail, MoveRight, Reply, Sparkles, Trash2, User } from "lucide-react"
-import { MouseGlowCard } from "@/components/animation/mouse-glow-card"
+import { AtSign, Bell, Calendar, Check, MessageCircle, MessageSquare, Send, Smartphone } from "lucide-react"
+import type { ReactNode } from "react"
+
+type Channel = {
+  id: string
+  icon: ReactNode
+  iconBg: string
+  accent: string
+  glow: string
+  title: string
+  detail: string
+  top: number
+  left: number
+  width: number
+  pathD: string
+  dotAt: [number, number]
+}
+
+const CHANNELS: Channel[] = [
+  {
+    id: "email",
+    icon: <AtSign className="size-5" aria-hidden />,
+    iconBg: "bg-gradient-to-br from-blue-500 to-blue-700",
+    accent: "bg-blue-500",
+    glow: "oklch(0.55 0.2 262 / 0.55)",
+    title: "Email Sent",
+    detail: "Booking notification has been emailed",
+    top: 6,
+    left: 232,
+    width: 210,
+    pathD: "M260,165 C268,138 254,112 250,92",
+    dotAt: [255, 122],
+  },
+  {
+    id: "meeting",
+    icon: <Calendar className="size-5" aria-hidden />,
+    iconBg: "bg-gradient-to-br from-emerald-400 to-emerald-600",
+    accent: "bg-emerald-500",
+    glow: "oklch(0.72 0.18 155 / 0.55)",
+    title: "Meeting Booked",
+    detail: "Your agent has booked a new meeting",
+    top: 172,
+    left: 4,
+    width: 186,
+    pathD: "M205,220 C198,212 194,205 190,201",
+    dotAt: [198, 213],
+  },
+  {
+    id: "sms",
+    icon: <MessageSquare className="size-5" aria-hidden />,
+    iconBg: "bg-gradient-to-br from-violet-500 to-violet-700",
+    accent: "bg-violet-500",
+    glow: "oklch(0.55 0.2 300 / 0.55)",
+    title: "SMS Delivered",
+    detail: "Notification SMS has been sent",
+    top: 186,
+    left: 330,
+    width: 182,
+    pathD: "M315,220 C322,213 326,207 330,203",
+    dotAt: [320, 213],
+  },
+  {
+    id: "push",
+    icon: <Smartphone className="size-5" aria-hidden />,
+    iconBg: "bg-gradient-to-br from-amber-400 to-amber-600",
+    accent: "bg-amber-500",
+    glow: "oklch(0.78 0.16 75 / 0.55)",
+    title: "Push Notification",
+    detail: "Push notification has been delivered",
+    top: 344,
+    left: 232,
+    width: 205,
+    pathD: "M260,275 C258,302 284,328 300,344",
+    dotAt: [270, 310],
+  },
+]
 
 /** Gentle continuous float — matches the treatment used across the other feature illustrations. */
-function Float({
-  children,
-  delay = 0,
-  duration = 4.5,
-  className = "",
-}: {
-  children: React.ReactNode
-  delay?: number
-  duration?: number
-  className?: string
-}) {
+function Float({ children, delay = 0, duration = 4.5, className = "" }: { children: ReactNode; delay?: number; duration?: number; className?: string }) {
   return (
     <motion.div
       className={className}
       initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1, y: [-6, 6, -6] }}
+      animate={{ opacity: 1, scale: 1, y: [-5, 5, -5] }}
       transition={{
         opacity: { duration: 0.4, delay, ease: "easeOut" },
         scale: { duration: 0.4, delay, ease: "easeOut" },
@@ -32,151 +96,155 @@ function Float({
   )
 }
 
-const DETAIL_ROWS = [
-  { icon: User, label: "Agent", value: "Ravi Sharma" },
-  { icon: Calendar, label: "Date & Time", value: "May 29, 2025 at 10:30 AM" },
-  { icon: Contact2, label: "Contact", value: "Neha Verma" },
-  { icon: Sparkles, label: "Purpose", value: "Product Demo" },
-]
-
 /**
- * Illustration for the Booking Notifications feature page — an email-inbox
- * card (toolbar, subject line, a confirmation banner, and a booking-detail
- * table) with a "New Booking Alert" toast arriving above it and floating
- * mail-icon badges connected by dashed paths. Same flat-mockup technique
- * used on the Analytics Dashboard and Booking History illustrations,
- * themed around this feature's actual email notification.
+ * Illustration for the Booking Notifications feature page — a central
+ * pulsing bell "hub" with four notification-channel cards (email, SMS,
+ * push, and the meeting-booked event) radiating out on animated dashed
+ * paths, plus three decorative floating channel-icon bubbles and corner
+ * dot grids. Sized to stay fully inside its hero column — every card,
+ * bubble, and orbit ring is placed within the 520×440 canvas so nothing
+ * clips against the page or overlaps fixed chrome.
  */
 export function BookingNotificationsIllustration() {
   return (
-    <div className="relative mx-auto w-full max-w-[500px] lg:mr-4">
-      <motion.div
+    <div className="relative mx-auto h-[440px] w-full max-w-[520px]">
+      {/* corner dot grids */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute inset-8 -z-10 rounded-full bg-primary/20 blur-[60px]"
-        animate={{ opacity: [0.35, 0.6, 0.35] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -right-4 -top-4 -z-10 size-32 opacity-60"
+        style={{
+          backgroundImage: "radial-gradient(oklch(0.6 0.19 262.88 / 0.25) 1.5px, transparent 1.5px)",
+          backgroundSize: "14px 14px",
+        }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-4 -top-2 -z-10 size-40 opacity-60"
+        className="pointer-events-none absolute -bottom-4 -left-4 -z-10 size-32 opacity-60"
         style={{
           backgroundImage: "radial-gradient(oklch(0.6 0.19 262.88 / 0.25) 1.5px, transparent 1.5px)",
           backgroundSize: "14px 14px",
         }}
       />
 
-      {/* inbox card */}
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}>
-        <MouseGlowCard
-          tiltStrength={3}
-          glowSize={280}
-          glowColor="oklch(0.6 0.19 262.88 / 0.16)"
-          className="relative overflow-hidden rounded-3xl border-border/60 bg-white shadow-[0_30px_70px_-30px_oklch(0.2_0.05_260/0.35)] backdrop-blur-0"
-        >
-          {/* toolbar */}
-          <div className="flex items-center justify-between border-b border-border/60 bg-primary/[0.06] px-5 py-3.5">
-            <div className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
-              <Inbox className="size-4 text-primary" aria-hidden />
-              Inbox
-            </div>
-            <div className="flex items-center gap-2.5 text-muted-foreground">
-              <Reply className="size-4" aria-hidden />
-              <Trash2 className="size-4" aria-hidden />
-              <Mail className="size-4" aria-hidden />
-              <Folder className="size-4" aria-hidden />
-            </div>
-          </div>
+      {/* dashed connector paths, hub → each channel card */}
+      <svg aria-hidden viewBox="0 0 520 440" className="pointer-events-none absolute inset-0 size-full">
+        <motion.circle
+          cx={260}
+          cy={220}
+          r={100}
+          fill="none"
+          stroke="oklch(0.7 0.03 262 / 0.35)"
+          strokeWidth={1}
+          strokeDasharray="2 6"
+          style={{ transformOrigin: "260px 220px" }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.circle
+          cx={260}
+          cy={220}
+          r={135}
+          fill="none"
+          stroke="oklch(0.7 0.03 262 / 0.22)"
+          strokeWidth={1}
+          strokeDasharray="2 6"
+          style={{ transformOrigin: "260px 220px" }}
+          animate={{ rotate: -360 }}
+          transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
+        />
+        {CHANNELS.map((c, i) => (
+          <motion.path
+            key={c.id}
+            d={c.pathD}
+            fill="none"
+            stroke="oklch(0.546 0.215 262.88 / 0.4)"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeDasharray="1 9"
+            animate={{ strokeDashoffset: [0, -20] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "linear", delay: i * 0.3 }}
+          />
+        ))}
+        {CHANNELS.map((c, i) => (
+          <motion.circle
+            key={`dot-${c.id}`}
+            cx={c.dotAt[0]}
+            cy={c.dotAt[1]}
+            r={3}
+            fill="oklch(0.546 0.215 262.88 / 0.7)"
+            animate={{ scale: [1, 1.6, 1], opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+            style={{ transformOrigin: `${c.dotAt[0]}px ${c.dotAt[1]}px` }}
+          />
+        ))}
+      </svg>
 
-          <div className="p-6">
-            {/* subject row */}
-            <div className="flex items-start gap-3">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Calendar className="size-5" aria-hidden />
+      {/* central hub */}
+      <div className="absolute" style={{ top: 220 - 55, left: 260 - 55 }}>
+        <motion.div
+          aria-hidden
+          className="absolute inset-[-40px] rounded-full bg-primary/25 blur-[45px]"
+          animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.08, 1] }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="relative flex size-[110px] items-center justify-center rounded-full border border-border/60 bg-white shadow-[0_24px_60px_-24px_oklch(0.2_0.05_260/0.4)]"
+        >
+          <motion.span
+            animate={{ rotate: [0, -12, 10, -6, 0] }}
+            transition={{ duration: 0.7, repeat: Infinity, repeatDelay: 3.6, ease: "easeInOut" }}
+            className="text-primary"
+          >
+            <Bell className="size-9" aria-hidden />
+          </motion.span>
+        </motion.div>
+      </div>
+
+      {/* channel cards */}
+      {CHANNELS.map((c, i) => (
+        <Float key={c.id} delay={0.2 + i * 0.12} duration={4 + i * 0.3} className="absolute z-20 hidden sm:block">
+          <div style={{ position: "relative", top: c.top, left: c.left, width: c.width }}>
+            <div className="relative flex items-center gap-2.5 rounded-2xl border border-border/70 bg-white py-3 pl-4 pr-3 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
+              <span aria-hidden className={`absolute inset-y-0 left-0 w-1 rounded-l-2xl ${c.accent}`} />
+              <span
+                className={`relative flex size-9 shrink-0 items-center justify-center rounded-full text-white shadow-[0_10px_20px_-8px_var(--tw-shadow-color)] ${c.iconBg}`}
+                style={{ ["--tw-shadow-color" as string]: c.glow }}
+              >
+                {c.icon}
               </span>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-2">
-                  <p className="truncate text-sm font-semibold text-foreground">Meeting Booked Successfully</p>
-                  <span className="shrink-0 text-xs text-muted-foreground">10:30 AM</span>
-                </div>
-                <p className="text-xs text-muted-foreground">to you</p>
+                <p className="truncate text-[13px] font-semibold leading-tight text-foreground">{c.title}</p>
+                <p className="truncate text-[11px] leading-snug text-muted-foreground">{c.detail}</p>
               </div>
-            </div>
-
-            {/* confirmation banner */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="mt-4 flex items-start gap-3 rounded-xl bg-emerald-50 p-4"
-            >
-              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600" aria-hidden />
-              <p className="text-xs leading-relaxed text-emerald-900">
-                Your agent has booked a new meeting. Here are the details.
-              </p>
-            </motion.div>
-
-            {/* details table */}
-            <div className="mt-4 space-y-3 rounded-xl border border-border/60 p-4">
-              {DETAIL_ROWS.map((r, i) => {
-                const Icon = r.icon
-                return (
-                  <motion.div
-                    key={r.label}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.35, delay: 0.4 + i * 0.08 }}
-                    className="flex items-center justify-between gap-2 text-xs"
-                  >
-                    <span className="flex items-center gap-2 text-muted-foreground">
-                      <Icon className="size-4" aria-hidden />
-                      {r.label}
-                    </span>
-                    <span className="truncate font-medium text-foreground">{r.value}</span>
-                  </motion.div>
-                )
-              })}
-            </div>
-
-            <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-primary">
-              View all bookings
-              <MoveRight className="size-3.5" aria-hidden />
+              <motion.span
+                className="absolute -right-1.5 -top-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white ring-2 ring-white"
+                animate={{ scale: [1, 1.25, 1] }}
+                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 5.5, ease: "easeOut", delay: i * 0.3 }}
+              >
+                <Check className="size-3" aria-hidden />
+              </motion.span>
             </div>
           </div>
-          <div className="h-6" aria-hidden />
-        </MouseGlowCard>
-      </motion.div>
+        </Float>
+      ))}
 
-      {/* "New Booking Alert" toast, top-right */}
-      <Float delay={0.3} duration={4.4} className="absolute -right-4 -top-10 z-20 hidden sm:block">
-        <div className="flex w-[220px] items-center gap-2.5 rounded-2xl border border-border/70 bg-white px-3.5 py-2.5 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-            <Bell className="size-4" aria-hidden />
-          </span>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between gap-1">
-              <p className="text-[10px] font-semibold text-foreground">New Booking Alert!</p>
-              <span className="text-[8px] text-muted-foreground">now</span>
-            </div>
-            <p className="truncate text-[9px] text-muted-foreground">Your agent booked a meeting</p>
-          </div>
-          <span className="size-1.5 shrink-0 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
-        </div>
-      </Float>
-
-      {/* floating mail-icon badge, top-right */}
-      <Float delay={0.5} duration={4} className="absolute -right-10 top-24 z-20 hidden sm:block">
-        <span className="flex size-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_14px_28px_-12px_rgba(16,185,129,0.5)]">
-          <Mail className="size-5" aria-hidden />
+      {/* decorative floating channel bubbles */}
+      <Float delay={0.5} duration={4.2} className="absolute left-[148px] top-[108px] z-10 hidden sm:block">
+        <span className="flex size-11 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+          <Send className="size-5" aria-hidden />
         </span>
       </Float>
-
-      {/* floating mail-icon badge with unread count, bottom-right */}
-      <Float delay={0.7} duration={4.8} className="absolute -right-8 -bottom-6 z-20 hidden sm:block">
-        <span className="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.45_0.19_264)] text-white shadow-[0_16px_32px_-12px_oklch(0.546_0.215_262.88/0.5)]">
-          <Mail className="size-6" aria-hidden />
-          <span className="absolute -right-1 -top-1 flex size-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white ring-2 ring-white">
-            1
-          </span>
+      <Float delay={0.7} duration={4.6} className="absolute left-[118px] top-[298px] z-10 hidden sm:block">
+        <span className="flex size-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+          <MessageCircle className="size-5" aria-hidden />
+        </span>
+      </Float>
+      <Float delay={0.9} duration={5} className="absolute left-[458px] top-[10px] z-10 hidden sm:block">
+        <span className="flex size-12 items-center justify-center rounded-full bg-violet-100 text-violet-600">
+          <AtSign className="size-6" aria-hidden />
         </span>
       </Float>
     </div>
