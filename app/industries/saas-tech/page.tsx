@@ -91,8 +91,9 @@ export default function SaasTechPage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -111,25 +112,8 @@ export default function SaasTechPage() {
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
         <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <nav aria-label="Breadcrumb" className="mx-auto mb-6 max-w-7xl text-xs text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-slate-800">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li>
-                <Link href="/industries" className="hover:text-slate-800">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li className="text-slate-800">SaaS & Technology</li>
-            </ol>
-          </nav>
 
-          <div className="mx-auto grid max-w-7xl items-end gap-14 lg:grid-cols-2 lg:gap-10">
+          <div className="mx-auto grid max-w-7xl items-start gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[13px] font-medium text-blue-700 shadow-sm">
@@ -139,10 +123,10 @@ export default function SaasTechPage() {
                 AI Voice Agents for SaaS & Technology
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
-                AI voice agents
+              <h1 className="mt-6 text-balance font-serif text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+                AI Voice Agents
                 <br />
-                for <span className="text-blue-600">SaaS teams.</span>
+                for <span className="text-blue-600">SaaS Teams.</span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">{PITCH}</p>
@@ -191,21 +175,8 @@ export default function SaasTechPage() {
             {/* Right — SaaS dashboard illustration + live call preview */}
             <ScrollReveal delay={0.14}>
               <div className="relative mx-auto w-full max-w-[620px]">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 shadow-xl shadow-slate-900/10">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-[0.3]"
-                    style={{
-                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.3) 1.5px, transparent 1.8px)",
-                      backgroundSize: "22px 22px",
-                    }}
-                  />
-
-                  {/* Agent console — dynamic, continuing chat, fills the illustration box */}
-                  <div className="absolute inset-4 flex items-center justify-center">
-                    <SaasAgentConsole />
-                  </div>
-                </div>
+                {/* Agent console — dynamic, continuing chat; the console itself is the card now */}
+                <SaasAgentConsole />
               </div>
             </ScrollReveal>
           </div>
@@ -268,7 +239,7 @@ export default function SaasTechPage() {
 
           {/* Right — smarter support panel with robot */}
           <ScrollReveal delay={0.1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-7 shadow-sm sm:p-9">
               <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 Smarter support.
                 <br />
@@ -322,7 +293,7 @@ export default function SaasTechPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[minmax(0,360px)_1fr]">
           {/* Performance card */}
           <ScrollReveal>
-            <div className="h-full overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-7">
+            <div className="h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
               <div className="flex items-center gap-2.5">
                 <span className="grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <TrendingUp className="size-4.5" aria-hidden />
@@ -421,7 +392,7 @@ export default function SaasTechPage() {
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
             {WHY_ITEMS.map((item, i) => (
               <ScrollReveal key={item.label} delay={i * 0.05}>
-                <div className="flex h-full flex-col items-center gap-3 rounded-2xl bg-white p-4 text-center shadow-sm">
+                <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-blue-400 bg-white p-4 text-center shadow-sm">
                   <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                     <item.Icon className="size-5" aria-hidden />
                   </span>
@@ -578,7 +549,8 @@ export default function SaasTechPage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter />
-    </main>
+    </>
   )
 }

@@ -31,7 +31,8 @@ import {
   Briefcase,
   Wrench,
   Star,
-  Leaf,
+  Droplet,
+  Fan,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -41,6 +42,8 @@ import { IndustryImage } from "@/components/industries/industry-image"
 import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
+import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
+import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -84,8 +87,9 @@ function ECommercePage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -131,10 +135,10 @@ function ECommercePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-serif text-5xl font-extrabold leading-[0.98] tracking-tight text-slate-900 sm:text-[3.4rem] md:text-[4.1rem]">
-                <span className="block font-black">AI voice agents</span>
+              <h1 className="mt-7 text-balance font-serif text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
+                <span className="block font-black">AI Voice Agents</span>
                 <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
-                  for e-commerce.
+                  for E-Commerce.
                 </span>
               </h1>
 
@@ -206,7 +210,7 @@ function ECommercePage() {
                   {/* Overlay Floating Glass Cards (on top of image to ensure exact match) */}
 
                   {/* Top-left: Order Update Processing */}
-                  <div className="absolute left-4 top-6 z-20 hero-float-up">
+                  <div className="absolute -left-4 top-6 z-20 hero-float-up">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <div className="flex items-center gap-3">
                         <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -224,7 +228,7 @@ function ECommercePage() {
                   </div>
 
                   {/* Top-right: AI Voice Agent Listening */}
-                  <div className="absolute right-2 top-2 z-20 ind-float">
+                  <div className="absolute -right-4 -top-4 z-20 ind-float">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <p className="text-[13px] font-bold text-blue-700 leading-tight">AI Voice Agent</p>
                       <div className="mt-1.5 flex items-center gap-1.5">
@@ -250,7 +254,7 @@ function ECommercePage() {
                   </div>
 
                   {/* Middle-left: Returns & Exchange Handled */}
-                  <div className="absolute left-0 top-[48%] z-20 hero-float-down">
+                  <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <div className="flex items-center gap-3">
                         <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -265,7 +269,7 @@ function ECommercePage() {
                   </div>
 
                   {/* Bottom-right: Upsell Opportunity Identified */}
-                  <div className="absolute right-0 bottom-10 z-20 ind-float">
+                  <div className="absolute -right-6 bottom-10 z-20 ind-float">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <div className="flex items-center gap-3">
                         <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -292,7 +296,7 @@ function ECommercePage() {
         {/* ─── Stats bar (directly under hero, inside hero section per reference) ─── */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
           <ScrollReveal className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
                   {
@@ -624,7 +628,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
+              <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
                   <span className="grid size-5 place-items-center rounded-md bg-blue-100 text-blue-600">
                     <ShieldCheck className="size-3" aria-hidden />
@@ -679,6 +683,15 @@ function ECommercePage() {
           </ScrollReveal>
         </div>
       </section>
+
+      <PricingCta
+        heading="Let AI handle calls so your team can focus on growing sales."
+        description="Launch your AI voice agent in minutes. No setup headaches."
+        primaryHref="/get-started?industry=ecommerce"
+        primaryLabel="Launch an e-commerce agent"
+        secondaryHref="/get-started?industry=ecommerce"
+        secondaryLabel="Talk to our expert"
+      />
 
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
@@ -782,8 +795,9 @@ function ECommercePage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
@@ -793,8 +807,9 @@ function RealEstatePage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -838,10 +853,10 @@ function RealEstatePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-serif text-5xl font-extrabold leading-[0.98] tracking-tight text-slate-900 sm:text-[3.4rem] md:text-[4.1rem]">
-                <span className="block font-black">AI voice agents</span>
+              <h1 className="mt-7 text-balance font-serif text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
+                <span className="block font-black">AI Voice Agents</span>
                 <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
-                  for real estate.
+                  for Real Estate.
                 </span>
               </h1>
 
@@ -898,7 +913,7 @@ function RealEstatePage() {
                   <IndustryImage slug="real-estate" name="Real estate" />
                 </div>
 
-                <div className="absolute left-4 top-6 z-20 hero-float-up">
+                <div className="absolute -left-4 top-6 z-20 hero-float-up">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -915,7 +930,7 @@ function RealEstatePage() {
                   </div>
                 </div>
 
-                <div className="absolute right-2 top-2 z-20 ind-float">
+                <div className="absolute -right-4 -top-4 z-20 ind-float">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <p className="text-[13px] font-bold text-blue-700 leading-tight">AI Voice Agent</p>
                     <div className="mt-1.5 flex items-center gap-1.5">
@@ -937,7 +952,7 @@ function RealEstatePage() {
                   </div>
                 </div>
 
-                <div className="absolute left-0 top-[48%] z-20 hero-float-down">
+                <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -951,7 +966,7 @@ function RealEstatePage() {
                   </div>
                 </div>
 
-                <div className="absolute right-0 bottom-10 z-20 ind-float">
+                <div className="absolute -right-6 bottom-10 z-20 ind-float">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -976,7 +991,7 @@ function RealEstatePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollReveal>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Sparkles className="size-3.5" aria-hidden />
                 Day one. Done right.
@@ -1086,7 +1101,7 @@ function RealEstatePage() {
 
           {/* Right — how agent sounds */}
           <ScrollReveal delay={0.1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Volume2 className="size-3.5" aria-hidden />
                 Hear it to believe it
@@ -1454,7 +1469,7 @@ function RealEstatePage() {
           {/* Right — Picture 2: real-time performance recap (real stats, no invented numbers) */}
           <ScrollReveal delay={0.12}>
             <div className="relative">
-              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
+              <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <div className="flex items-center gap-3">
                   <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
                     <TrendingUp className="size-5" aria-hidden />
@@ -1493,6 +1508,15 @@ function RealEstatePage() {
           </ScrollReveal>
         </div>
       </section>
+
+      <PricingCta
+        heading="Let AI handle calls so your team can focus on closing deals."
+        description="Launch your AI voice agent in minutes. No setup headaches."
+        primaryHref="/get-started?industry=real-estate"
+        primaryLabel="Launch a real estate agent"
+        secondaryHref="/get-started?industry=real-estate"
+        secondaryLabel="Talk to our expert"
+      />
 
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
@@ -1596,8 +1620,9 @@ function RealEstatePage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
@@ -1607,8 +1632,9 @@ function HomeServicesPage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -1627,24 +1653,6 @@ function HomeServicesPage() {
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
         <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <nav aria-label="Breadcrumb" className="mx-auto mb-6 max-w-7xl text-xs text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-slate-800">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li>
-                <Link href="/industries" className="hover:text-slate-800">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li className="text-slate-800">Home services</li>
-            </ol>
-          </nav>
-
           <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
@@ -1655,10 +1663,10 @@ function HomeServicesPage() {
                 AI voice agents for home services
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
-                AI voice agents
+              <h1 className="mt-6 text-balance font-serif text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+                AI Voice Agents
                 <br />
-                built for <span className="text-blue-600">home services.</span>
+                Built for <span className="text-blue-600">Home Services.</span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
@@ -1707,106 +1715,81 @@ function HomeServicesPage() {
 
             {/* Right — hero photo + smarter-calls overlay + live call preview */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[620px] pb-16">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-600 via-blue-500 to-sky-400 shadow-xl shadow-slate-900/10">
-                  {/* Decorative dotted pattern */}
+              <div className="relative mx-auto w-full max-w-[620px]">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-blue-400 bg-blue-50/60 shadow-xl shadow-slate-900/10">
                   <div
                     aria-hidden
-                    className="absolute inset-0 opacity-[0.18]"
+                    className="absolute inset-0 opacity-[0.35]"
                     style={{
-                      backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1.5px, transparent 1.8px)",
-                      backgroundSize: "22px 22px",
+                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.25) 1.5px, transparent 1.8px)",
+                      backgroundSize: "20px 20px",
                     }}
                   />
-                  <div aria-hidden className="absolute -right-14 -top-14 size-64 rounded-full bg-white/10 blur-2xl" />
-                  <div aria-hidden className="absolute -bottom-16 -left-10 size-56 rounded-full bg-blue-900/20 blur-2xl" />
+                  {/* Dashed guide circle */}
+                  <div
+                    aria-hidden
+                    className="absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-blue-300/60"
+                  />
 
-                  {/* Orbiting capability icons */}
-                  <span className="absolute right-10 top-8 grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
-                    <Wrench className="size-5" aria-hidden />
-                  </span>
-                  <span className="absolute right-8 bottom-[38%] grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
-                    <Home className="size-5" aria-hidden />
-                  </span>
-                  <span className="absolute left-8 bottom-[30%] grid size-10 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
-                    <MessageCircle className="size-4.5" aria-hidden />
-                  </span>
+                  {/* Home service category badges — 2 upper, 2 side, 2 lower */}
+                  {[
+                    { Icon: Droplet, label: "Plumbing", pos: "left-[18%] top-6", delay: "0s" },
+                    { Icon: Zap, label: "Electrical", pos: "right-[18%] top-6", delay: "0.7s" },
+                    { Icon: Fan, label: "HVAC", pos: "left-3 top-1/2 -translate-y-1/2", delay: "1.4s" },
+                    { Icon: Sparkles, label: "Cleaning", pos: "right-3 top-1/2 -translate-y-1/2", delay: "2.1s" },
+                    { Icon: ShieldCheck, label: "Pest Control", pos: "left-[16%] bottom-6", delay: "2.8s" },
+                    { Icon: Wrench, label: "Appliance Repair", pos: "right-[16%] bottom-6", delay: "3.5s" },
+                  ].map(({ Icon: BadgeIcon, label, pos, delay }) => (
+                    <div
+                      key={label}
+                      className={`ind-float absolute ${pos} flex items-center gap-2 rounded-xl bg-white py-2 pl-2 pr-3 shadow-md`}
+                      style={{ animationDelay: delay }}
+                    >
+                      <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600">
+                        <BadgeIcon className="size-4" aria-hidden />
+                      </span>
+                      <p className="whitespace-nowrap text-[11px] font-bold text-slate-700">{label}</p>
+                    </div>
+                  ))}
 
-                  {/* Ground shadow */}
-                  <div aria-hidden className="absolute bottom-[18%] left-1/2 h-5 w-32 -translate-x-1/2 rounded-full bg-blue-950/25 blur-md" />
-
-                  {/* Robot mascot */}
-                  <div className="absolute bottom-[20%] left-1/2 flex -translate-x-1/2 flex-col items-center">
-                    {/* Antenna */}
-                    <div className="flex flex-col items-center">
-                      <span className="size-2.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" aria-hidden />
-                      <span className="h-4 w-[3px] bg-white/80" aria-hidden />
+                  {/* House group */}
+                  <div className="absolute left-1/2 top-[44%] flex -translate-x-1/2 -translate-y-1/2 items-end">
+                    {/* Left tree */}
+                    <div className="relative mr-2 flex flex-col items-center">
+                      <span aria-hidden className="size-9 rounded-full bg-emerald-500 shadow-md" />
+                      <span aria-hidden className="h-6 w-2 rounded-sm bg-[#8a5a3b]" />
                     </div>
 
-                    {/* Head */}
-                    <div className="relative flex h-16 w-20 items-center justify-center gap-3 rounded-2xl bg-white shadow-lg">
-                      <span className="size-3.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" aria-hidden />
-                      <span className="size-3.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" aria-hidden />
-                      <span
+                    {/* House */}
+                    <div className="relative flex flex-col items-center">
+                      <span aria-hidden className="absolute -top-4 right-7 h-8 w-4 rounded-sm bg-blue-700" />
+                      <div
                         aria-hidden
-                        className="absolute bottom-2.5 left-1/2 h-1.5 w-6 -translate-x-1/2 rounded-full border-b-2 border-blue-300"
+                        className="h-0 w-0 border-b-[64px] border-l-[78px] border-r-[78px] border-b-blue-600 border-l-transparent border-r-transparent drop-shadow-md"
                       />
-                    </div>
-
-                    {/* Neck */}
-                    <span className="h-1.5 w-4 bg-slate-200" aria-hidden />
-
-                    {/* Body */}
-                    <div className="relative flex h-20 w-28 items-start justify-center rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200 pt-3 shadow-lg">
-                      {/* Arms */}
-                      <span className="absolute -left-3 top-3 h-10 w-3 rounded-full bg-slate-200" aria-hidden />
-                      <span className="absolute -right-3 top-3 h-10 w-3 rounded-full bg-slate-200" aria-hidden />
-                      {/* Chest panel */}
-                      <span className="grid size-9 place-items-center rounded-full bg-blue-600 text-white shadow-inner">
-                        <Bot className="size-5" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Live call preview card — overlaps bottom of photo */}
-                <div className="absolute inset-x-4 bottom-8 z-20 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_20px_50px_-20px_rgba(2,6,23,0.35)]">
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                      <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
-                      Live Call Preview
-                    </p>
-                    <div className="flex h-4 items-end gap-[2px]" aria-hidden>
-                      {[6, 10, 7, 12, 8].map((h, i) => (
+                      <div className="relative -mt-1 h-32 w-[9.5rem] rounded-b-xl rounded-t-sm bg-white shadow-xl">
+                        <span aria-hidden className="absolute left-3.5 top-5 size-7 rounded-sm border border-blue-200 bg-blue-100" />
+                        <span aria-hidden className="absolute right-3.5 top-5 size-7 rounded-sm border border-blue-200 bg-blue-100" />
                         <span
-                          key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.12}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-blue-500 to-sky-400"
+                          aria-hidden
+                          className="absolute bottom-0 left-1/2 h-16 w-10 -translate-x-1/2 rounded-t-md bg-blue-600"
                         />
-                      ))}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-2 px-4 pb-4">
-                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
-                        Agent
-                      </span>
-                      <p className="text-[13px] text-blue-900">नमस्ते! आपकी कैसे सेवा कर सकता हूँ?</p>
+                    {/* Attached garage */}
+                    <div className="relative ml-[-2px] flex flex-col items-center">
+                      <div
+                        aria-hidden
+                        className="h-0 w-0 border-b-[34px] border-l-[42px] border-r-[42px] border-b-blue-500 border-l-transparent border-r-transparent"
+                      />
+                      <div className="relative -mt-1 h-20 w-[5.25rem] rounded-b-lg rounded-t-sm bg-white shadow-lg">
+                        <span aria-hidden className="absolute bottom-2 left-1/2 h-14 w-14 -translate-x-1/2 rounded-md border border-blue-200 bg-blue-100" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-600">
-                        Caller
-                      </span>
-                      <p className="text-[13px] text-slate-600">AC ठंडा नहीं कर रहा, जल्दी मदद चाहिए।</p>
-                    </div>
-                  </div>
 
-                  <div className="flex items-center gap-1.5 bg-emerald-50 px-4 py-3 text-[12.5px] font-semibold text-emerald-700">
-                    <span className="grid size-4 place-items-center rounded-full bg-emerald-100">
-                      <Check className="size-2.5" aria-hidden />
-                    </span>
-                    Job captured &middot; AC Repair &middot; Priority: High
+                    {/* Right bush */}
+                    <div aria-hidden className="ml-2 size-7 rounded-full bg-emerald-400 shadow-md" />
                   </div>
                 </div>
               </div>
@@ -1924,7 +1907,7 @@ function HomeServicesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50/40 p-5">
+              <div className="mt-6 rounded-2xl border border-blue-400 bg-blue-50/40 p-5">
                 <div className="flex items-center gap-2.5">
                   <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                     <Sparkles className="size-4" aria-hidden />
@@ -2066,8 +2049,9 @@ function HomeServicesPage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
@@ -2077,8 +2061,9 @@ function RestaurantsPage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -2097,23 +2082,6 @@ function RestaurantsPage() {
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
         <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <nav aria-label="Breadcrumb" className="mx-auto mb-6 max-w-7xl text-xs text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-slate-800">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li>
-                <Link href="/industries" className="hover:text-slate-800">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li className="text-slate-800">Restaurants</li>
-            </ol>
-          </nav>
 
           <div className="mx-auto grid max-w-7xl items-end gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
@@ -2125,10 +2093,10 @@ function RestaurantsPage() {
                 AI voice agents for restaurants
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
-                AI voice agents
+              <h1 className="mt-6 text-balance font-serif text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+                AI Voice Agents
                 <br />
-                for <span className="text-blue-600">restaurants.</span>
+                for <span className="text-blue-600">Restaurants.</span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
@@ -2175,108 +2143,11 @@ function RestaurantsPage() {
               </div>
             </ScrollReveal>
 
-            {/* Right — illustrated hero + live call preview */}
+            {/* Right — reservation form + AI chat assistant */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[620px] pb-12">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-200 via-blue-100 to-sky-100 shadow-xl shadow-slate-900/10">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-[0.35]"
-                    style={{
-                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.3) 1.5px, transparent 1.8px)",
-                      backgroundSize: "22px 22px",
-                    }}
-                  />
-
-                  {/* Copy — top-left */}
-                  <div className="absolute left-6 top-6 max-w-[42%]">
-                    <p className="text-balance font-serif text-xl font-extrabold leading-snug text-slate-900 sm:text-2xl">
-                      Never miss
-                      <br />a reservation
-                      <br />
-                      again.
-                    </p>
-                    <p className="mt-3 text-pretty text-[12.5px] leading-relaxed text-slate-600">
-                      Our AI voice agents talk just like your best host — polite, fast and accurate.
-                    </p>
-                  </div>
-
-                  {/* Concentric rings + chat bubble */}
-                  <div className="absolute right-[18%] top-1/2 grid size-32 -translate-y-1/2 place-items-center rounded-full border border-blue-300/50 sm:size-40">
-                    <div className="absolute inset-3 rounded-full border border-blue-300/50" />
-                    <div className="grid size-16 place-items-center rounded-full bg-gradient-to-br from-blue-700 to-sky-600 text-white shadow-xl shadow-blue-700/40 sm:size-20">
-                      <MessageCircle className="size-8 sm:size-9" aria-hidden />
-                    </div>
-                  </div>
-
-                  {/* Bar-chart accent card */}
-                  <div className="absolute right-4 top-8 flex h-14 items-end gap-1.5 rounded-xl bg-white/70 p-3 shadow-md">
-                    {[8, 16, 11, 20].map((h, i) => (
-                      <span
-                        key={i}
-                        style={{ height: `${h}px`, animationDelay: `${i * 0.15}s` }}
-                        className="ind-eq w-2 rounded-full bg-blue-600"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Calendar badge */}
-                  <div className="absolute right-6 top-24 grid size-11 place-items-center rounded-xl bg-white text-blue-600 shadow-md">
-                    <CalendarCheck className="size-5" aria-hidden />
-                  </div>
-
-                  {/* Plant accent */}
-                  <div className="absolute bottom-16 left-8 grid size-11 place-items-center rounded-full bg-white/70 text-emerald-600 shadow-sm">
-                    <Leaf className="size-5" aria-hidden />
-                  </div>
-                </div>
-
-                {/* Live call preview card — overlaps bottom of hero */}
-                <div className="absolute inset-x-4 bottom-4 z-20 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_20px_50px_-20px_rgba(2,6,23,0.35)]">
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                      <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
-                      Live Call Preview
-                    </p>
-                    <div className="flex h-4 items-end gap-[2px]" aria-hidden>
-                      {[6, 10, 7, 12, 8].map((h, i) => (
-                        <span
-                          key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.12}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-blue-500 to-sky-400"
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 px-4 pb-4">
-                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
-                        Agent
-                      </span>
-                      <p className="text-[13px] text-blue-900">नमस्ते! 9278 में आपका स्वागत है।</p>
-                    </div>
-                    <div className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-600">
-                        Caller
-                      </span>
-                      <p className="text-[13px] text-slate-600">4 लोगों के लिए, आज रात 8 बजे टेबल चाहिए।</p>
-                    </div>
-                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
-                        Agent
-                      </span>
-                      <p className="text-[13px] text-blue-900">ज़रूर! मैं आपके लिए 8 बजे की टेबल बुक कर देता हूँ!</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 bg-emerald-50 px-4 py-3 text-[12.5px] font-semibold text-emerald-700">
-                    <span className="grid size-4 place-items-center rounded-full bg-emerald-100">
-                      <Check className="size-2.5" aria-hidden />
-                    </span>
-                    Job captured &middot; Reservation &middot; Priority: High
-                  </div>
-                </div>
+              <div className="relative mx-auto grid w-full max-w-[620px] gap-5 sm:grid-cols-2">
+                <RestaurantReservationCard />
+                <RestaurantChatCard />
               </div>
             </ScrollReveal>
           </div>
@@ -2285,7 +2156,7 @@ function RestaurantsPage() {
         {/* ─── Smarter operations. Happier guests. ─── */}
         <div className="w-full px-6 pb-4 pt-2 md:px-8">
           <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
               <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div>
                   <h2 className="text-balance font-serif text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -2311,40 +2182,7 @@ function RestaurantsPage() {
                 </div>
 
                 {/* Robot mascot */}
-                <div className="relative flex h-80 items-center justify-center">
-                  <div aria-hidden className="absolute -right-8 -top-8 size-40 rounded-full bg-blue-200/40 blur-2xl" />
-                  <div aria-hidden className="absolute -bottom-4 -left-8 size-36 rounded-full bg-sky-200/40 blur-2xl" />
-                  <div aria-hidden className="absolute bottom-8 h-6 w-44 rounded-full bg-blue-900/15 blur-md" />
-
-                  <div className="relative flex flex-col items-center">
-                    {/* Antenna */}
-                    <span className="size-3 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.7)]" aria-hidden />
-                    <span className="h-6 w-1 bg-blue-300" aria-hidden />
-
-                    {/* Head */}
-                    <div className="relative grid size-32 place-items-center rounded-[2.25rem] bg-gradient-to-br from-white to-blue-50 shadow-lg">
-                      <div className="flex items-center gap-5">
-                        <span className="size-5 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.6)]" aria-hidden />
-                        <span className="size-5 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.6)]" aria-hidden />
-                      </div>
-                      {/* Ear buds */}
-                      <span className="absolute -left-3 top-9 size-4.5 rounded-full bg-blue-300" aria-hidden />
-                      <span className="absolute -right-3 top-9 size-4.5 rounded-full bg-blue-300" aria-hidden />
-                    </div>
-
-                    {/* Neck */}
-                    <span className="h-2.5 w-8 bg-blue-200" aria-hidden />
-
-                    {/* Body */}
-                    <div className="relative flex h-24 w-44 items-start justify-center rounded-[2.25rem] bg-gradient-to-b from-blue-500 to-sky-600 pt-5 shadow-lg">
-                      <span className="absolute -left-4 top-5 h-12 w-4 rounded-full bg-blue-400" aria-hidden />
-                      <span className="absolute -right-4 top-5 h-12 w-4 rounded-full bg-blue-400" aria-hidden />
-                      <span className="grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-inner">
-                        <MessageCircle className="size-5.5" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <RestaurantRobotMascot />
               </div>
             </div>
           </ScrollReveal>
@@ -2435,7 +2273,7 @@ function RestaurantsPage() {
 
         {/* Stats bar */}
         <ScrollReveal delay={0.15} className="mx-auto mt-10 max-w-7xl">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
               {[
                 { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },
@@ -2567,8 +2405,9 @@ function RestaurantsPage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
