@@ -1742,13 +1742,13 @@ function HomeServicesPage() {
                   ].map(({ Icon: BadgeIcon, label, pos, delay }) => (
                     <div
                       key={label}
-                      className={`ind-float absolute ${pos} flex items-center gap-2 rounded-xl bg-white py-2 pl-2 pr-3 shadow-md`}
+                      className={`ind-float absolute ${pos} flex items-center gap-1.5 rounded-xl bg-white p-1.5 shadow-md sm:gap-2 sm:py-2 sm:pl-2 sm:pr-3`}
                       style={{ animationDelay: delay }}
                     >
-                      <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600">
-                        <BadgeIcon className="size-4" aria-hidden />
+                      <span className="grid size-6 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600 sm:size-7">
+                        <BadgeIcon className="size-3.5 sm:size-4" aria-hidden />
                       </span>
-                      <p className="whitespace-nowrap text-[11px] font-bold text-slate-700">{label}</p>
+                      <p className="hidden whitespace-nowrap text-[11px] font-bold text-slate-700 sm:block">{label}</p>
                     </div>
                   ))}
 
@@ -1881,8 +1881,8 @@ function HomeServicesPage() {
                     {Array.from({ length: 34 }).map((_, i) => (
                       <span
                         key={i}
-                        style={{ height: `${6 + ((i * 7) % 18)}px` }}
-                        className={`w-[2px] rounded-full ${i < 10 ? "bg-blue-500" : "bg-slate-200"}`}
+                        style={{ height: `${6 + ((i * 7) % 18)}px`, animationDelay: `${(i % 12) * 0.09}s` }}
+                        className={`ind-eq w-[2px] rounded-full ${i < 10 ? "bg-blue-500" : "bg-slate-200"}`}
                       />
                     ))}
                   </div>
