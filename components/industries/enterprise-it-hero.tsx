@@ -125,12 +125,12 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="relative mx-auto w-full max-w-[720px]">
+            <div className="relative mx-auto w-full max-w-[560px]">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-[85%] rounded-[2.5rem] bg-[radial-gradient(60%_60%_at_50%_20%,rgba(37,99,235,0.16),transparent_70%)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
               />
-              <div className="relative flex aspect-[16/10] w-full items-center justify-center">
+              <div className="relative flex aspect-[4/3] w-full items-center justify-center">
                 <PhoneMockupBasic />
               </div>
             </div>
@@ -138,7 +138,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
         </div>
       </div>
 
-      <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
+      <div className="w-full px-6 pb-10 pt-12 md:px-8 md:pb-14 md:pt-20">
         <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
