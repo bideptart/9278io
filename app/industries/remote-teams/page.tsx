@@ -112,7 +112,7 @@ export default function RemoteTeamsPage() {
                 AI Voice Agents for Remote Teams
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
+              <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
                 AI Voice Agents Built
                 <br />
                 <span className="text-blue-600">for Remote Teams</span>
@@ -238,7 +238,7 @@ export default function RemoteTeamsPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <ScrollReveal className="mx-auto max-w-7xl">
           <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-8">
-            <p className="text-center font-serif text-xl font-bold text-slate-900 sm:text-2xl">
+            <p className="text-center font-sans text-xl font-bold text-slate-900 sm:text-2xl">
               How It Works For Remote Teams
             </p>
 
@@ -269,7 +269,7 @@ export default function RemoteTeamsPage() {
           {/* What your remote agent can do */}
           <ScrollReveal>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
-              <p className="font-serif text-lg font-bold text-slate-900">What Your Remote Agent Can Do</p>
+              <p className="font-sans text-lg font-bold text-slate-900">What Your Remote Agent Can Do</p>
               <ul className="mt-4 space-y-4">
                 {AGENT_CAN_DO.map((item) => (
                   <li key={item.title} className="flex items-start gap-3">
@@ -324,7 +324,7 @@ export default function RemoteTeamsPage() {
           {/* Why remote teams choose 9278.io */}
           <ScrollReveal delay={0.16}>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
-              <p className="font-serif text-lg font-bold text-slate-900">
+              <p className="font-sans text-lg font-bold text-slate-900">
                 Why Remote Teams
                 <br />
                 Choose 9278.io
@@ -361,7 +361,7 @@ export default function RemoteTeamsPage() {
                   <span className="grid size-11 place-items-center rounded-2xl bg-white/10 text-white">
                     <StatIcon className="size-5" aria-hidden />
                   </span>
-                  <p className="font-serif text-xl font-extrabold tracking-tight text-white">{value}</p>
+                  <p className="font-sans text-xl font-extrabold tracking-tight text-white">{value}</p>
                   <p className="text-[12px] font-medium text-blue-100">{label}</p>
                 </div>
               ))}
@@ -374,7 +374,7 @@ export default function RemoteTeamsPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <ScrollReveal className="mx-auto max-w-7xl">
           <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
-            <p className="font-serif text-lg font-bold text-slate-900">Use Cases For Remote Teams</p>
+            <p className="font-sans text-lg font-bold text-slate-900">Use Cases For Remote Teams</p>
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {USE_CASES.map((u) => (
                 <div key={u.label} className="flex items-start gap-2.5 rounded-xl border border-slate-100 p-3">
@@ -401,7 +401,7 @@ export default function RemoteTeamsPage() {
                 <Bot className="size-7" aria-hidden />
               </span>
               <div>
-                <h2 className="text-balance font-serif text-xl font-bold leading-snug text-white sm:text-2xl">
+                <h2 className="text-balance font-sans text-xl font-bold leading-snug text-white sm:text-2xl">
                   Your Remote Team Never Misses A Conversation
                 </h2>
                 <p className="mt-1.5 max-w-md text-[13.5px] text-blue-100">
@@ -439,7 +439,7 @@ export default function RemoteTeamsPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -505,7 +505,7 @@ export default function RemoteTeamsPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
                     </h3>

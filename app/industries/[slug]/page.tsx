@@ -135,7 +135,7 @@ function ECommercePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-serif text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="mt-7 text-balance font-sans text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
                 <span className="block font-black">AI Voice Agents</span>
                 <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
                   for E-Commerce.
@@ -329,7 +329,7 @@ function ECommercePage() {
                       <StatIcon className="size-6" aria-hidden />
                     </span>
                     <div>
-                      <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                      <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
                         {value}
                       </p>
                       <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
@@ -355,7 +355,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
                 What the agent does
                 <br />
                 on day one
@@ -387,7 +387,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
                 How the agent
                 <br />
                 actually sounds
@@ -465,7 +465,7 @@ function ECommercePage() {
               </span>
             </span>
             <div>
-              <h2 className="text-balance font-serif text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              <h2 className="text-balance font-sans text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 How e-commerce
                 <br />
                 teams roll out 9278.io
@@ -577,7 +577,7 @@ function ECommercePage() {
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
-            <h2 className="mt-5 text-balance font-serif text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
+            <h2 className="mt-5 text-balance font-sans text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
               AI agents that{" "}
               <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
                 grow with you
@@ -643,7 +643,7 @@ function ECommercePage() {
                     { label: "Revenue Impact", value: "₹4.2L" },
                   ].map((s) => (
                     <div key={s.label}>
-                      <p className="font-serif text-xl font-bold tracking-tight text-blue-700 sm:text-2xl">
+                      <p className="font-sans text-xl font-bold tracking-tight text-blue-700 sm:text-2xl">
                         {s.value}
                       </p>
                       <p className="mt-1 text-[11px] font-medium leading-snug text-slate-500">{s.label}</p>
@@ -697,7 +697,7 @@ function ECommercePage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -772,7 +772,7 @@ function ECommercePage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -853,7 +853,7 @@ function RealEstatePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-serif text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="mt-7 text-balance font-sans text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
                 <span className="block font-black">AI Voice Agents</span>
                 <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
                   for Real Estate.
@@ -999,7 +999,7 @@ function RealEstatePage() {
 
               <div className="mt-6 flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-balance font-serif text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
+                  <h2 className="text-balance font-sans text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
                     What the agent
                     <br />
                     does on <span className="text-blue-600">day one</span>
@@ -1109,7 +1109,7 @@ function RealEstatePage() {
 
               <div className="mt-6 flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-balance font-serif text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
+                  <h2 className="text-balance font-sans text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
                     How the agent
                     <br />
                     actually <span className="text-blue-600">sounds</span>
@@ -1247,7 +1247,7 @@ function RealEstatePage() {
               </span>
             </span>
             <div>
-              <h2 className="text-balance font-serif text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+              <h2 className="text-balance font-sans text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
                 How real estate
                 <br />
                 teams roll out <span className="text-blue-600">9278.io</span>
@@ -1282,7 +1282,7 @@ function RealEstatePage() {
                   <Home className="size-7" aria-hidden />
                 </span>
 
-                <h3 className="mt-5 text-balance font-serif text-2xl font-bold tracking-tight text-slate-900">
+                <h3 className="mt-5 text-balance font-sans text-2xl font-bold tracking-tight text-slate-900">
                   Start small.
                   <br />
                   Grow fast.
@@ -1347,7 +1347,7 @@ function RealEstatePage() {
                   <MessageCircle className="size-7" aria-hidden />
                 </span>
 
-                <h3 className="mt-5 text-balance font-serif text-2xl font-bold tracking-tight text-slate-900">
+                <h3 className="mt-5 text-balance font-sans text-2xl font-bold tracking-tight text-slate-900">
                   Explore more.
                   <br />
                   Compare with confidence.
@@ -1431,7 +1431,7 @@ function RealEstatePage() {
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
-            <h2 className="mt-5 text-balance font-serif text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
+            <h2 className="mt-5 text-balance font-sans text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
               AI agents that{" "}
               <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
                 grow with you
@@ -1496,7 +1496,7 @@ function RealEstatePage() {
                       <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70">
                         <s.Icon className="size-6" aria-hidden />
                       </span>
-                      <p className="mt-4 font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                      <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                         {s.value}
                       </p>
                       <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
@@ -1522,7 +1522,7 @@ function RealEstatePage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -1597,7 +1597,7 @@ function RealEstatePage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -1663,7 +1663,7 @@ function HomeServicesPage() {
                 AI voice agents for home services
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
                 AI Voice Agents
                 <br />
                 Built for <span className="text-blue-600">Home Services.</span>
@@ -1810,7 +1810,7 @@ function HomeServicesPage() {
                 <span className={`grid size-11 place-items-center rounded-full ${tone}`}>
                   <StatIcon className="size-5" aria-hidden />
                 </span>
-                <p className="font-serif text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
+                <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
                 <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
               </div>
             ))}
@@ -1827,7 +1827,7 @@ function HomeServicesPage() {
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Wrench className="size-5" aria-hidden />
               </span>
-              <h2 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -1858,7 +1858,7 @@ function HomeServicesPage() {
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Volume2 className="size-5" aria-hidden />
               </span>
-              <h2 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -1953,7 +1953,7 @@ function HomeServicesPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -2026,7 +2026,7 @@ function HomeServicesPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -2093,7 +2093,7 @@ function RestaurantsPage() {
                 AI voice agents for restaurants
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
                 AI Voice Agents
                 <br />
                 for <span className="text-blue-600">Restaurants.</span>
@@ -2159,7 +2159,7 @@ function RestaurantsPage() {
             <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
               <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div>
-                  <h2 className="text-balance font-serif text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
+                  <h2 className="text-balance font-sans text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
                     Smarter operations.
                     <br />
                     Happier guests.
@@ -2195,7 +2195,7 @@ function RestaurantsPage() {
           {/* Left — day-one jobs */}
           <ScrollReveal>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -2219,7 +2219,7 @@ function RestaurantsPage() {
           {/* Right — how agent sounds */}
           <ScrollReveal delay={0.1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -2285,7 +2285,7 @@ function RestaurantsPage() {
                   <span className={`grid size-11 place-items-center rounded-2xl ${tone}`}>
                     <StatIcon className="size-5" aria-hidden />
                   </span>
-                  <p className="font-serif text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
+                  <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
                   <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
                 </div>
               ))}
@@ -2307,7 +2307,7 @@ function RestaurantsPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -2382,7 +2382,7 @@ function RestaurantsPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>

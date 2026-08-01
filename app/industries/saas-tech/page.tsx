@@ -123,7 +123,7 @@ export default function SaasTechPage() {
                 AI Voice Agents for SaaS & Technology
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
                 AI Voice Agents
                 <br />
                 for <span className="text-blue-600">SaaS Teams.</span>
@@ -187,7 +187,7 @@ export default function SaasTechPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <ScrollReveal className="mx-auto max-w-7xl">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
-            <h2 className="text-balance font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.75rem]">
+            <h2 className="text-balance font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.75rem]">
               Never lose a customer opportunity.
             </h2>
             <div>
@@ -216,7 +216,7 @@ export default function SaasTechPage() {
           {/* Left — day-one jobs */}
           <ScrollReveal>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the AI Agent Does on Day One
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -240,7 +240,7 @@ export default function SaasTechPage() {
           {/* Right — smarter support panel with robot */}
           <ScrollReveal delay={0.1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 Smarter support.
                 <br />
                 Faster growth.
@@ -315,7 +315,7 @@ export default function SaasTechPage() {
                       <s.Icon className="size-4" aria-hidden />
                     </span>
                     <div>
-                      <p className="font-serif text-lg font-bold tracking-tight text-slate-900">{s.value}</p>
+                      <p className="font-sans text-lg font-bold tracking-tight text-slate-900">{s.value}</p>
                       <p className="text-[11px] font-medium leading-snug text-slate-500">{s.label}</p>
                     </div>
                   </div>
@@ -327,7 +327,7 @@ export default function SaasTechPage() {
           {/* How the agent actually sounds */}
           <ScrollReveal delay={0.1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the Agent Actually Sounds
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -384,7 +384,7 @@ export default function SaasTechPage() {
       <section className="w-full bg-blue-50/40 px-6 py-10 md:px-8 md:py-14">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal>
-            <h2 className="text-balance font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.75rem]">
+            <h2 className="text-balance font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.75rem]">
               Why SaaS Teams Choose 9278.io
             </h2>
           </ScrollReveal>
@@ -413,7 +413,7 @@ export default function SaasTechPage() {
                 <Cpu className="size-7" aria-hidden />
               </span>
               <div>
-                <h2 className="text-balance font-serif text-xl font-bold leading-snug text-white sm:text-2xl">
+                <h2 className="text-balance font-sans text-xl font-bold leading-snug text-white sm:text-2xl">
                   Let AI handle conversations while your team builds products.
                 </h2>
                 <p className="mt-1.5 text-[13.5px] text-blue-100">
@@ -462,7 +462,7 @@ export default function SaasTechPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -528,7 +528,7 @@ export default function SaasTechPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
                     </h3>

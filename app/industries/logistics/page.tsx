@@ -114,7 +114,7 @@ export default function LogisticsPage() {
                 AI Voice Agents for Logistics
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
+              <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
                 AI Voice Agents for
                 <br />
                 <span className="text-blue-600">Logistics &amp; Delivery</span>
@@ -248,7 +248,7 @@ export default function LogisticsPage() {
           {/* What the agent handles */}
           <ScrollReveal>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
-              <p className="font-serif text-lg font-bold text-slate-900">What the agent handles</p>
+              <p className="font-sans text-lg font-bold text-slate-900">What the agent handles</p>
               <ul className="mt-4 space-y-4">
                 {AGENT_HANDLES.map((item) => (
                   <li key={item.text} className="flex items-start gap-3">
@@ -265,7 +265,7 @@ export default function LogisticsPage() {
           {/* Benefits */}
           <ScrollReveal delay={0.08}>
             <div className="flex h-full flex-col rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
-              <p className="font-serif text-lg font-bold text-slate-900">Benefits for your logistics business</p>
+              <p className="font-sans text-lg font-bold text-slate-900">Benefits for your logistics business</p>
               <ul className="mt-4 space-y-3.5">
                 {BENEFITS.map((line) => (
                   <li key={line} className="flex items-start gap-3">
@@ -297,7 +297,7 @@ export default function LogisticsPage() {
           <ScrollReveal delay={0.16}>
             <div className="h-full overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
               <div className="flex items-center justify-between">
-                <p className="font-serif text-lg font-bold text-slate-900">Live agent preview</p>
+                <p className="font-sans text-lg font-bold text-slate-900">Live agent preview</p>
                 <span className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-600">
                   <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
                   Live
@@ -316,7 +316,7 @@ export default function LogisticsPage() {
           {/* Rollout card */}
           <ScrollReveal>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
-              <p className="font-serif text-xl font-bold text-slate-900">How logistics teams roll out 9278.io</p>
+              <p className="font-sans text-xl font-bold text-slate-900">How logistics teams roll out 9278.io</p>
 
               <div className="relative mt-6 grid gap-8 sm:grid-cols-2">
                 <div
@@ -379,7 +379,7 @@ export default function LogisticsPage() {
           {/* Fleet panel */}
           <ScrollReveal delay={0.1}>
             <div className="h-full rounded-[1.75rem] bg-gradient-to-br from-blue-700 to-blue-600 p-6 text-white shadow-lg shadow-blue-700/25 sm:p-7">
-              <p className="font-serif text-xl font-bold">AI agents that move with your fleet</p>
+              <p className="font-sans text-xl font-bold">AI agents that move with your fleet</p>
               <ul className="mt-5 space-y-3">
                 {FLEET_ITEMS.map((line) => (
                   <li key={line} className="flex items-start gap-2.5">
@@ -409,7 +409,7 @@ export default function LogisticsPage() {
                   <span className="grid size-11 place-items-center rounded-2xl bg-blue-50 text-blue-600">
                     <StatIcon className="size-5" aria-hidden />
                   </span>
-                  <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900">{value}</p>
+                  <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900">{value}</p>
                   <p className="text-[12px] font-medium text-slate-500">{label}</p>
                 </div>
               ))}
@@ -422,7 +422,7 @@ export default function LogisticsPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <ScrollReveal className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-5 rounded-[1.75rem] border border-blue-400 bg-white px-6 py-5 shadow-sm sm:flex-row sm:items-center">
-            <p className="shrink-0 font-serif text-lg font-bold text-slate-900">Other use cases</p>
+            <p className="shrink-0 font-sans text-lg font-bold text-slate-900">Other use cases</p>
             <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-5">
               {USE_CASES.map((u) => (
                 <div key={u.label} className="flex items-center gap-2.5">
@@ -446,7 +446,7 @@ export default function LogisticsPage() {
                 <Truck className="size-7" aria-hidden />
               </span>
               <div>
-                <h2 className="text-balance font-serif text-xl font-bold leading-snug text-white sm:text-2xl">
+                <h2 className="text-balance font-sans text-xl font-bold leading-snug text-white sm:text-2xl">
                   Keep Every Delivery On Track
                 </h2>
                 <p className="mt-1.5 max-w-md text-[13.5px] text-blue-100">
@@ -484,7 +484,7 @@ export default function LogisticsPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -550,7 +550,7 @@ export default function LogisticsPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
                     </h3>
