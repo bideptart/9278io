@@ -11,9 +11,12 @@ export type ImageItem = {
   content?: React.ReactNode
 }
 
+// The fan-out geometry (slot position/rotation/scale relative to `active`)
+// is fixed — only which phone sits in which slot advances on a timer, so the
+// structure always looks the same, just with a different phone up front.
 export function PhoneCarousel({
   images,
-  interval = 3200,
+  interval = 2000,
   className,
 }: {
   images: ImageItem[]
@@ -38,13 +41,11 @@ export function PhoneCarousel({
         if (abs > 2) return null
 
         return (
-          <motion.button
+          <motion.div
             key={item.alt + i}
-            type="button"
-            aria-label={item.alt}
-            onClick={() => setActive(i)}
-            className="absolute cursor-pointer"
+            className="absolute"
             style={{ zIndex: 10 - abs }}
+            initial={false}
             animate={{
               x: wrapped * 104,
               scale: wrapped === 0 ? 1 : 0.8 - (abs - 1) * 0.1,
@@ -59,7 +60,7 @@ export function PhoneCarousel({
                   <Image src={item.src} alt={item.alt} fill sizes="172px" className="object-cover" />
                 ) : null)}
             </PhoneFrame>
-          </motion.button>
+          </motion.div>
         )
       })}
     </div>

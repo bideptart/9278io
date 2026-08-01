@@ -31,10 +31,6 @@ export function EnterpriseItDetails({
     <section className="w-full px-6 py-16 md:px-8 md:py-20">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
         <ScrollReveal className="relative overflow-visible">
-          <div
-            aria-hidden
-            className="card-glow pointer-events-none absolute -inset-1 rounded-[2.2rem] opacity-40 blur-lg"
-          />
           <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Server className="size-6" aria-hidden />
           </span>
@@ -71,11 +67,6 @@ export function EnterpriseItDetails({
         </ScrollReveal>
 
         <ScrollReveal delay={0.1} className="relative overflow-visible">
-          <div
-            aria-hidden
-            className="card-glow pointer-events-none absolute -inset-1 rounded-[2.2rem] opacity-40 blur-lg"
-            style={{ animationDirection: "reverse" }}
-          />
           <span className="absolute -top-5 right-6 z-20 hero-float-down grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Volume2 className="size-6" aria-hidden />
           </span>
