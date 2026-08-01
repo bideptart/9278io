@@ -293,7 +293,7 @@ export default function SaasTechPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[minmax(0,360px)_1fr]">
           {/* Performance card */}
           <ScrollReveal>
-            <div className="h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
+            <div className="overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
               <div className="flex items-center gap-2.5">
                 <span className="grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <TrendingUp className="size-4.5" aria-hidden />
