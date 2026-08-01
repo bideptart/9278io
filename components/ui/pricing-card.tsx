@@ -67,9 +67,13 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
   // IntersectionObserver math to get wrong or glitch mid-gesture.
   const popularIndex = Math.max(0, plans.findIndex((p) => p.isPopular));
   const [activeIndex, setActiveIndex] = React.useState(popularIndex);
-  const otherIndices = plans.map((_, i) => i).filter((i) => i !== activeIndex);
-  const leftIndex = otherIndices[0];
-  const rightIndex = otherIndices[1];
+  // Circular prev/next by position, not "whichever two aren't active" — the
+  // latter always returned the two non-active indices in ascending order
+  // regardless of swipe direction, so swiping the same way twice could bounce
+  // between the same two cards and never reach the third (e.g. Growth ->
+  // Scale -> Growth, skipping Starter entirely).
+  const leftIndex = (activeIndex - 1 + plans.length) % plans.length;
+  const rightIndex = (activeIndex + 1) % plans.length;
 
   const SWIPE_THRESHOLD = 60; // px of drag before it counts as a swipe
   function handleDragEnd(_e: unknown, info: PanInfo) {
