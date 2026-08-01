@@ -209,23 +209,23 @@ export default function LogisticsPage() {
                   </div>
 
                   {/* AI Voice Agent badge */}
-                  <div className="absolute right-3 top-3 flex animate-pulse items-center gap-2 rounded-xl bg-white px-3 py-2 shadow-md [animation-duration:2.4s]">
-                    <span className="relative grid size-7 place-items-center rounded-full bg-blue-600 text-white">
+                  <div className="absolute right-2 top-2 flex animate-pulse items-center gap-1.5 rounded-xl bg-white px-1.5 py-1.5 shadow-md [animation-duration:2.4s] sm:right-3 sm:top-3 sm:gap-2 sm:px-3 sm:py-2">
+                    <span className="relative grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white sm:size-7">
                       <span className="absolute inset-0 rounded-full bg-blue-400 animate-ping [animation-duration:1.8s]" aria-hidden />
-                      <Headphones className="relative size-3.5" aria-hidden />
+                      <Headphones className="relative size-3 sm:size-3.5" aria-hidden />
                     </span>
-                    <div>
+                    <div className="hidden sm:block">
                       <p className="text-[11px] font-bold leading-tight text-slate-800">AI Voice Agent</p>
                       <p className="text-[10px] text-slate-500">24/7 Support</p>
                     </div>
                   </div>
 
                   {/* Order tracking timeline panel */}
-                  <div className="absolute left-3 top-3 w-[210px] rounded-2xl bg-white/95 p-4 shadow-lg backdrop-blur">
-                    <p className="text-[13px] font-black uppercase tracking-wide text-slate-900">Order Tracking</p>
-                    <div className="mb-3 mt-1.5 h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 to-blue-100" />
+                  <div className="absolute left-2 top-2 w-[145px] rounded-2xl bg-white/95 p-2.5 shadow-lg backdrop-blur sm:left-3 sm:top-3 sm:w-[210px] sm:p-4">
+                    <p className="text-[10px] font-black uppercase tracking-wide text-slate-900 sm:text-[13px]">Order Tracking</p>
+                    <div className="mb-2 mt-1 h-1 w-10 rounded-full bg-gradient-to-r from-blue-600 to-blue-100 sm:mb-3 sm:mt-1.5 sm:w-16" />
                     <OrderTracking
-                      className="max-w-none [&_svg]:h-5 [&_svg]:w-5 [&_p:first-child]:text-[13px] [&_p:last-child]:text-[11px] [&_.pb-6]:pb-4"
+                      className="max-w-none [&_svg]:h-3.5 [&_svg]:w-3.5 [&_p:first-child]:text-[10px] [&_p:last-child]:text-[8.5px] [&_.pb-6]:pb-2 [&_.ml-3]:ml-1.5 sm:[&_svg]:h-5 sm:[&_svg]:w-5 sm:[&_p:first-child]:text-[13px] sm:[&_p:last-child]:text-[11px] sm:[&_.pb-6]:pb-4 sm:[&_.ml-3]:ml-3"
                       steps={[
                         { name: "Order Placed", timestamp: "9:02 AM", isCompleted: true },
                         { name: "Picked Up", timestamp: "10:15 AM", isCompleted: true },
