@@ -1491,7 +1491,7 @@ function RealEstatePage() {
                   ].map((s) => (
                     <div
                       key={s.label}
-                      className={`w-full max-w-[220px] rounded-2xl p-6 text-center ${s.tone} ${s.label === "First-touch response" ? "border border-blue-400" : ""}`}
+                      className={`w-full max-w-[220px] rounded-2xl border border-blue-400 p-6 text-center ${s.tone}`}
                     >
                       <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70">
                         <s.Icon className="size-6" aria-hidden />
