@@ -295,10 +295,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full transition-all duration-300",
-        scrolled
-          ? "glass-panel border-b border-transparent shadow-[0_8px_30px_-16px_oklch(0.13_0.025_255/0.25)]"
-          : "border-b border-border bg-white",
+        "sticky top-0 z-40 w-full border-b border-border bg-white transition-shadow duration-300",
+        scrolled ? "shadow-[0_8px_30px_-16px_oklch(0.13_0.025_255/0.25)]" : "",
       )}
     >
       <div className="flex h-20 w-full items-center justify-between px-4 md:grid md:h-16 md:grid-cols-[1fr_auto_1fr] md:px-8">
