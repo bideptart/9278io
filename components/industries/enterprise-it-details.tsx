@@ -30,12 +30,12 @@ export function EnterpriseItDetails({
   return (
     <section className="w-full px-6 py-16 md:px-8 md:py-20">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
-        <ScrollReveal className="relative overflow-visible">
+        <ScrollReveal className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Server className="size-6" aria-hidden />
           </span>
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
+          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
             <Server
               aria-hidden
               className="ind-spin-slow pointer-events-none absolute -bottom-10 -right-10 size-48 text-blue-600/[0.06]"
@@ -66,12 +66,12 @@ export function EnterpriseItDetails({
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.1} className="relative overflow-visible">
+        <ScrollReveal delay={0.1} className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-down grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Volume2 className="size-6" aria-hidden />
           </span>
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
+          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
             <Volume2
               aria-hidden
               className="ind-spin-slow pointer-events-none absolute -bottom-10 -right-10 size-48 text-blue-600/[0.06]"
