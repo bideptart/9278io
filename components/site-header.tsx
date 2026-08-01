@@ -204,7 +204,7 @@ function CompanyMenu() {
         <h3 className="mt-3 text-lg font-bold tracking-tight text-foreground">Get to know the team behind 9278.io.</h3>
         <p className="mt-1 text-sm text-muted-foreground">About, blog, and how to reach us.</p>
 
-        <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="mt-4 grid grid-cols-3 gap-3">
           {COMPANY_LINKS.map((c) => {
             const Icon = c.icon
             return (
@@ -277,19 +277,26 @@ export function SiteHeader() {
       key={href}
       href={href}
       className={cn(
-        "relative rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
+        "group relative rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
         isActive(href) ? "text-foreground" : "text-muted-foreground",
       )}
     >
       {label}
+      <span
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute inset-x-3 -bottom-px h-px origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100",
+          isActive(href) && "scale-x-100",
+        )}
+      />
     </Link>
   )
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b border-border bg-white transition-shadow duration-200",
-        scrolled ? "shadow-sm" : "",
+        "sticky top-0 z-40 w-full border-b border-border bg-white transition-shadow duration-300",
+        scrolled ? "shadow-[0_8px_30px_-16px_oklch(0.13_0.025_255/0.25)]" : "",
       )}
     >
       <div className="flex h-20 w-full items-center justify-between px-4 md:grid md:h-16 md:grid-cols-[1fr_auto_1fr] md:px-8">
@@ -344,8 +351,9 @@ export function SiteHeader() {
             onMouseEnter={() => setCompanyOpen(true)}
             onMouseLeave={() => setCompanyOpen(false)}
           >
-            <Link
-              href="/about"
+            <button
+              type="button"
+              onClick={() => setCompanyOpen((o) => !o)}
               className={cn(
                 "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
                 isActive("/about") || isActive("/blog") || isActive("/contact") ? "text-foreground" : "text-muted-foreground",
@@ -354,7 +362,7 @@ export function SiteHeader() {
             >
               Company
               <ChevronDown className={cn("size-3.5 transition-transform", companyOpen ? "rotate-180" : "")} aria-hidden />
-            </Link>
+            </button>
             <AnimatePresence>
               {companyOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">

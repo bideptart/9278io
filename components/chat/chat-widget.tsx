@@ -287,15 +287,8 @@ export function ChatWidget() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Open chat"
-            className="group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_0_32px_oklch(0.78_0.16_195/0.45)] transition-shadow hover:shadow-[0_0_48px_oklch(0.78_0.16_195/0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bottom-6 sm:right-6"
+            className="group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bottom-6 sm:right-6"
           >
-            {/* Pulse */}
-            <motion.span
-              aria-hidden
-              className="absolute inset-0 rounded-full bg-primary/40"
-              animate={{ scale: [1, 1.4], opacity: [0.6, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeOut" }}
-            />
             <MessageSquare className="relative h-6 w-6" />
             {unread && (
               <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5">

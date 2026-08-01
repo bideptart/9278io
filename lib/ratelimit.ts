@@ -38,6 +38,8 @@ export const chatLimiter = makeLimiter(10, "1 m", "rl:chat")
 export const pageviewLimiter = makeLimiter(60, "1 m", "rl:pageview")
 /** Contact form — spam guard: 5 submissions / 10 minutes / IP. */
 export const contactLimiter = makeLimiter(5, "10 m", "rl:contact")
+/** Text-to-speech previews — each call costs against the TTS provider's quota. */
+export const ttsLimiter = makeLimiter(20, "1 m", "rl:tts")
 
 /**
  * Extract the client IP, preferring the left-most x-forwarded-for entry.

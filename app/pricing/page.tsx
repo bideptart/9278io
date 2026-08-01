@@ -136,7 +136,7 @@ export default async function PricingPage({
               <MockupStackConnector className="absolute inset-0 h-full w-full" />
               <LiveCallMockup className="absolute right-4 top-0" />
               <LiveCostMockup className="absolute left-2 top-[18%]" />
-              <RateByPlanMockup className="absolute bottom-0 left-20" />
+              <RateByPlanMockup className="absolute bottom-6 left-28" />
             </div>
 
             {/* Mobile/tablet: same 3 cards, simple vertical stack instead of
@@ -192,7 +192,7 @@ export default async function PricingPage({
       <section className="w-full px-6 py-12 md:px-8 md:py-16">
         <ScrollReveal className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-            Pricing FAQ
+            FAQ
           </span>
           <h2 className="mt-3 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Billing questions, answered.

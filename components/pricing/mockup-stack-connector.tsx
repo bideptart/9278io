@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils"
 // background rather than risking a visible gap from any small mismeasure.
 const PATHS = [
   "M 401 130 C 340 155, 260 130, 197 117",
-  "M 57 175 C 60 220, 90 270, 149 308",
+  "M 57 175 C 60 220, 128 243, 187 281",
 ]
 
 export function MockupStackConnector({ className }: { className?: string }) {

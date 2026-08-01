@@ -41,6 +41,7 @@ const featureGroups: Group[] = [
           "Match the voice tone to your brand",
           "Switch a voice anytime without rebuilding the agent",
         ],
+        href: "/features/voice-selection",
       },
       {
         icon: SlidersHorizontal,
