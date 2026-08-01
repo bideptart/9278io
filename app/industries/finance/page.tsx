@@ -9,6 +9,7 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { FinanceHero } from "@/components/industries/finance-hero"
 import { FinanceDetails } from "@/components/industries/finance-details"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 
@@ -245,36 +246,14 @@ export default function FinancePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="w-full px-6 py-20 md:px-8 md:py-24">
-        <ScrollReveal className="overflow-hidden rounded-3xl border border-primary bg-primary px-6 py-12 shadow-[0_4px_30px_oklch(0.52_0.22_265/0.25)] md:px-12 md:py-14">
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-xl">
-              <h3 className="text-balance text-2xl font-bold tracking-tight text-white md:text-3xl">
-                Ready to launch a finance agent?
-              </h3>
-              <p className="mt-3 text-white/70">
-                Get started with a Starter agent and a single phone number, live in under 5 minutes.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-white font-semibold text-primary hover:bg-white/90">
-                <Link href="/get-started?industry=finance">
-                  Get started <ArrowRight className="ml-1 size-4" aria-hidden />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
-              >
-                <Link href="/industries">Browse all industries</Link>
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+      <PricingCta
+        heading="Ready to launch a finance agent?"
+        description="Get started with a Starter agent and a single phone number, live in under 5 minutes."
+        primaryHref="/get-started?industry=finance"
+        primaryLabel="Get started"
+        secondaryHref="/industries"
+        secondaryLabel="Browse all industries"
+      />
 
       <SiteFooter />
     </main>

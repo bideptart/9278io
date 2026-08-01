@@ -33,6 +33,7 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { RemoteAgentPhoneChat } from "@/components/industries/remote-agent-phone-chat"
 import { WorldMap } from "@/components/ui/map"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 
 export const metadata: Metadata = pageSeo({
   title: "AI voice agents built for remote teams",
@@ -392,48 +393,14 @@ export default function RemoteTeamsPage() {
         </ScrollReveal>
       </section>
 
-      {/* ─── CTA banner ─── */}
-      <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
-        <ScrollReveal className="mx-auto max-w-7xl">
-          <div className="relative flex flex-col items-center gap-6 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-blue-900 to-blue-700 px-6 py-8 text-center shadow-lg shadow-blue-800/25 sm:flex-row sm:items-center sm:justify-between sm:text-left md:px-10">
-            <div className="flex items-center gap-5">
-              <span className="hidden size-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-white sm:grid">
-                <Bot className="size-7" aria-hidden />
-              </span>
-              <div>
-                <h2 className="text-balance font-sans text-xl font-bold leading-snug text-white sm:text-2xl">
-                  Your Remote Team Never Misses A Conversation
-                </h2>
-                <p className="mt-1.5 max-w-md text-[13.5px] text-blue-100">
-                  Deploy AI voice agents that answer instantly, schedule automatically, and support your team around
-                  the clock.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex shrink-0 flex-wrap justify-center gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="h-auto rounded-full bg-white px-6 py-3 text-[14.5px] font-bold text-blue-700 shadow-md hover:bg-blue-50"
-              >
-                <Link href="/get-started?industry=remote-teams">
-                  Launch Your Remote Agent
-                  <ArrowRight className="ml-1.5 size-4" aria-hidden />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-auto rounded-full border-white/40 bg-transparent px-6 py-3 text-[14.5px] font-bold text-white hover:bg-white/10"
-              >
-                <Link href="/pricing">View Pricing</Link>
-              </Button>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
+      <PricingCta
+        heading="Your Remote Team Never Misses A Conversation"
+        description="Deploy AI voice agents that answer instantly, schedule automatically, and support your team around the clock."
+        primaryHref="/get-started?industry=remote-teams"
+        primaryLabel="Launch Your Remote Agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View Pricing"
+      />
 
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
