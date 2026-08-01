@@ -52,6 +52,7 @@ const featureGroups: Group[] = [
           "Choose how interruptions are handled",
           "Define exactly when to transfer to a human",
         ],
+        href: "/features/call-behavior-controls",
       },
     ],
   },

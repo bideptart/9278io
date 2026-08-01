@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react"
+import { Marquee } from "@/components/ui/marquee"
 
 const rowA = ["Hindi", "Bengali", "Tamil", "Telugu", "Marathi", "Gujarati"]
 const rowB = ["Kannada", "Malayalam", "Punjabi", "English", "+more"]
@@ -18,31 +18,24 @@ function Pill({ lang, accentIndex }: { lang: string; accentIndex: number }) {
   )
 }
 
-function Row({ items, duration, reverse }: { items: string[]; duration: number; reverse?: boolean }) {
-  // duplicated so the CSS marquee loop can wrap seamlessly at -100%
-  const looped = [...items, ...items]
-  return (
-    <div
-      className="group relative flex overflow-hidden"
-      style={{ maskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)" }}
-    >
-      <div
-        className="animate-marquee flex shrink-0 gap-3 pr-3 group-hover:[animation-play-state:paused]"
-        style={{ "--duration": `${duration}s`, "--gap": "0.75rem", animationDirection: reverse ? "reverse" : "normal" } as CSSProperties}
-      >
-        {looped.map((lang, i) => (
-          <Pill key={`${lang}-${i}`} lang={lang} accentIndex={i} />
-        ))}
-      </div>
-    </div>
-  )
-}
-
 export function LanguageMarquee() {
   return (
     <div className="mx-auto mt-8 flex max-w-3xl flex-col gap-4">
-      <Row items={rowA} duration={24} />
-      <Row items={rowB} duration={20} reverse />
+      <Marquee pauseOnHover className="[--duration:12s] [--gap:0.75rem]" style={{ maskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)" }}>
+        {rowA.map((lang, i) => (
+          <Pill key={lang} lang={lang} accentIndex={i} />
+        ))}
+      </Marquee>
+      <Marquee
+        pauseOnHover
+        reverse
+        className="[--duration:9s] [--gap:0.75rem]"
+        style={{ maskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)" }}
+      >
+        {rowB.map((lang, i) => (
+          <Pill key={lang} lang={lang} accentIndex={i} />
+        ))}
+      </Marquee>
     </div>
   )
 }

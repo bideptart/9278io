@@ -125,7 +125,7 @@ export default function MultiAgentManagementPage() {
                 <br />
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(90deg, #4F8DFF, #2563EB)",
+                    backgroundImage: "linear-gradient(90deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
