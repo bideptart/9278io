@@ -30,9 +30,11 @@ import {
   Building2,
   Briefcase,
   Wrench,
-  Star,
   Droplet,
   Fan,
+  Search,
+  Bell,
+  MapPin,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -44,6 +46,7 @@ import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
 import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
+import { HomeServicesPhoneChat } from "@/components/industries/home-services-phone-chat"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -1659,7 +1662,7 @@ function HomeServicesPage() {
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
         <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+          <div className="mx-auto grid max-w-7xl items-start gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[13px] font-medium text-blue-700 shadow-sm">
@@ -1722,81 +1725,143 @@ function HomeServicesPage() {
             {/* Right — hero photo + smarter-calls overlay + live call preview */}
             <ScrollReveal delay={0.14}>
               <div className="relative mx-auto w-full max-w-[620px]">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-blue-400 bg-blue-50/60 shadow-xl shadow-slate-900/10">
+                <div className="relative aspect-[4/3.6] overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 shadow-xl shadow-slate-900/10">
+                  {/* Dotted pattern, faded toward the center */}
                   <div
                     aria-hidden
-                    className="absolute inset-0 opacity-[0.35]"
+                    className="absolute inset-0 opacity-[0.22]"
                     style={{
-                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.25) 1.5px, transparent 1.8px)",
-                      backgroundSize: "20px 20px",
+                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.3) 1px, transparent 1.4px)",
+                      backgroundSize: "18px 18px",
+                      maskImage: "radial-gradient(circle at center, transparent 30%, black 75%)",
+                      WebkitMaskImage: "radial-gradient(circle at center, transparent 30%, black 75%)",
                     }}
                   />
-                  {/* Dashed guide circle */}
+                  {/* Soft ambient light blobs */}
+                  <div aria-hidden className="absolute -left-16 -top-16 size-64 rounded-full bg-blue-200/40 blur-3xl" />
+                  <div aria-hidden className="absolute -bottom-20 -right-10 size-72 rounded-full bg-sky-200/40 blur-3xl" />
+                  <div aria-hidden className="absolute left-1/3 top-1/4 size-40 rounded-full bg-white/60 blur-2xl" />
+                  {/* Abstract guide circle */}
                   <div
                     aria-hidden
-                    className="absolute left-1/2 top-1/2 size-56 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-blue-300/60"
+                    className="absolute left-1/2 top-1/2 size-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-200/50"
                   />
 
-                  {/* Home service category badges — 2 upper, 2 side, 2 lower */}
+                  {/* Phone — Home Dashboard (top-left) */}
+                  <div
+                    className="ind-float absolute left-[3%] top-[6%] z-10 hidden w-[170px] -rotate-[9deg] rounded-[1.7rem] border-[5px] border-slate-900 bg-white shadow-2xl sm:block sm:w-[188px]"
+                    style={{ animationDelay: "2.8s" }}
+                  >
+                    <div className="overflow-hidden rounded-[1.1rem]">
+                      <div className="space-y-2.5 px-3 pb-3 pt-3.5">
+                        <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1.5">
+                          <Search className="size-2.5 text-slate-400" aria-hidden />
+                          <span className="text-[7px] text-slate-400">Find any service</span>
+                        </div>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {[Droplet, Zap, Fan, Sparkles].map((CatIcon, i) => (
+                            <div key={i} className="rounded-lg bg-blue-50 py-1.5 text-center">
+                              <CatIcon className="mx-auto size-3 text-blue-600" aria-hidden />
+                            </div>
+                          ))}
+                        </div>
+                        <div className="rounded-xl bg-blue-600 p-2.5 text-white">
+                          <p className="text-[8px] font-bold">15% OFF Today</p>
+                          <p className="text-[6.5px] text-blue-100">Book any service now</p>
+                        </div>
+                        <div className="space-y-1.5">
+                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-1.5">
+                            <p className="text-[6.5px] font-bold text-slate-800">Plumbing Repair</p>
+                            <p className="text-[6.5px] font-bold text-blue-600">₹399</p>
+                          </div>
+                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-1.5">
+                            <p className="text-[6.5px] font-bold text-slate-800">Deep Cleaning</p>
+                            <p className="text-[6.5px] font-bold text-blue-600">₹599</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-around border-t border-slate-100 px-2 py-2">
+                        {[Home, CalendarCheck, MessageCircle, Bell].map((NavIcon, i) => (
+                          <NavIcon key={i} className={`size-3 ${i === 0 ? "text-blue-600" : "text-slate-300"}`} aria-hidden />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Phone — Book Appointment (top-right) */}
+                  <div
+                    className="ind-float absolute right-[7%] top-[11%] z-10 w-[178px] rotate-[11deg] rounded-[1.7rem] border-[5px] border-slate-900 bg-white shadow-2xl sm:w-[196px]"
+                    style={{ animationDelay: "0.9s" }}
+                  >
+                    <div className="space-y-2 px-3 py-3.5">
+                      <p className="text-[7px] font-bold tracking-wide text-slate-400">BOOK APPOINTMENT</p>
+                      <div className="flex items-center gap-1.5 rounded-lg bg-blue-50 p-1.5">
+                        <span className="grid size-6 shrink-0 place-items-center rounded-md bg-blue-100 text-blue-600">
+                          <Droplet className="size-3" aria-hidden />
+                        </span>
+                        <p className="text-[7.5px] font-bold text-slate-800">Plumbing Repair</p>
+                      </div>
+                      <div className="flex items-center gap-1.5 rounded-lg border border-slate-100 p-1.5">
+                        <CalendarCheck className="size-3 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[7px] font-semibold text-slate-700">Tomorrow</p>
+                      </div>
+                      <div className="flex items-center gap-1.5 rounded-lg border border-slate-100 p-1.5">
+                        <Clock className="size-3 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[7px] font-semibold text-slate-700">11:00 AM</p>
+                      </div>
+                      <div className="flex items-center gap-1.5 rounded-lg border border-slate-100 p-1.5">
+                        <MapPin className="size-3 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[7px] font-semibold text-slate-700">12 MG Road, Pune</p>
+                      </div>
+                      <span className="block rounded-full bg-blue-600 py-1.5 text-center text-[7.5px] font-bold text-white">
+                        Confirm Booking
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Phone — AI Assistant (center, focal) */}
+                  <div
+                    className="ind-float absolute left-1/2 top-[47%] z-20 w-[210px] -translate-x-1/2 -translate-y-1/2 rotate-[5deg] rounded-[2rem] border-[5px] border-slate-900 bg-white shadow-2xl sm:w-[236px]"
+                    style={{ animationDelay: "1.4s" }}
+                  >
+                    <div className="px-3.5 pb-3.5 pt-4">
+                      <div className="flex items-center gap-1.5">
+                        <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
+                          <Bot className="size-3" aria-hidden />
+                        </span>
+                        <p className="text-[9px] font-bold text-slate-900">AI Assistant</p>
+                        <span className="ml-auto size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
+                      </div>
+                      <div className="mt-3 rounded-xl bg-slate-50 p-2">
+                        <HomeServicesPhoneChat />
+                      </div>
+                      <div className="mt-2.5 flex flex-wrap gap-1.5">
+                        {["Book Now", "Call Technician", "Reschedule"].map((chip) => (
+                          <span key={chip} className="rounded-full border border-blue-200 px-2 py-1 text-[6.5px] font-semibold text-blue-700">
+                            {chip}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Feature chips, one directly below each phone */}
                   {[
-                    { Icon: Droplet, label: "Plumbing", pos: "left-[18%] top-6", delay: "0s" },
-                    { Icon: Zap, label: "Electrical", pos: "right-[18%] top-6", delay: "0.7s" },
-                    { Icon: Fan, label: "HVAC", pos: "left-3 top-1/2 -translate-y-1/2", delay: "1.4s" },
-                    { Icon: Sparkles, label: "Cleaning", pos: "right-3 top-1/2 -translate-y-1/2", delay: "2.1s" },
-                    { Icon: ShieldCheck, label: "Pest Control", pos: "left-[16%] bottom-6", delay: "2.8s" },
-                    { Icon: Wrench, label: "Appliance Repair", pos: "right-[16%] bottom-6", delay: "3.5s" },
-                  ].map(({ Icon: BadgeIcon, label, pos, delay }) => (
+                    { Icon: Clock, label: "24/7 Availability", pos: "left-[1%] bottom-[7%]", delay: "0.5s" },
+                    { Icon: ShieldCheck, label: "Verified Technicians", pos: "left-1/2 bottom-[2%] -translate-x-1/2", delay: "2s" },
+                    { Icon: CalendarCheck, label: "Instant Booking", pos: "right-[1%] bottom-[7%]", delay: "3.4s" },
+                  ].map(({ Icon: FeatureIcon, label, pos, delay }) => (
                     <div
                       key={label}
-                      className={`ind-float absolute ${pos} flex items-center gap-1.5 rounded-xl bg-white p-1.5 shadow-md sm:gap-2 sm:py-2 sm:pl-2 sm:pr-3`}
+                      className={`ind-float absolute ${pos} z-0 hidden items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2.5 shadow-lg sm:flex`}
                       style={{ animationDelay: delay }}
                     >
-                      <span className="grid size-6 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600 sm:size-7">
-                        <BadgeIcon className="size-3.5 sm:size-4" aria-hidden />
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
+                        <FeatureIcon className="size-4.5" aria-hidden />
                       </span>
-                      <p className="hidden whitespace-nowrap text-[11px] font-bold text-slate-700 sm:block">{label}</p>
+                      <p className="whitespace-nowrap text-[13px] font-bold text-slate-800">{label}</p>
                     </div>
                   ))}
-
-                  {/* House group */}
-                  <div className="absolute left-1/2 top-[44%] flex -translate-x-1/2 -translate-y-1/2 items-end">
-                    {/* Left tree */}
-                    <div className="relative mr-2 flex flex-col items-center">
-                      <span aria-hidden className="size-9 rounded-full bg-emerald-500 shadow-md" />
-                      <span aria-hidden className="h-6 w-2 rounded-sm bg-[#8a5a3b]" />
-                    </div>
-
-                    {/* House */}
-                    <div className="relative flex flex-col items-center">
-                      <span aria-hidden className="absolute -top-4 right-7 h-8 w-4 rounded-sm bg-blue-700" />
-                      <div
-                        aria-hidden
-                        className="h-0 w-0 border-b-[64px] border-l-[78px] border-r-[78px] border-b-blue-600 border-l-transparent border-r-transparent drop-shadow-md"
-                      />
-                      <div className="relative -mt-1 h-32 w-[9.5rem] rounded-b-xl rounded-t-sm bg-white shadow-xl">
-                        <span aria-hidden className="absolute left-3.5 top-5 size-7 rounded-sm border border-blue-200 bg-blue-100" />
-                        <span aria-hidden className="absolute right-3.5 top-5 size-7 rounded-sm border border-blue-200 bg-blue-100" />
-                        <span
-                          aria-hidden
-                          className="absolute bottom-0 left-1/2 h-16 w-10 -translate-x-1/2 rounded-t-md bg-blue-600"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Attached garage */}
-                    <div className="relative ml-[-2px] flex flex-col items-center">
-                      <div
-                        aria-hidden
-                        className="h-0 w-0 border-b-[34px] border-l-[42px] border-r-[42px] border-b-blue-500 border-l-transparent border-r-transparent"
-                      />
-                      <div className="relative -mt-1 h-20 w-[5.25rem] rounded-b-lg rounded-t-sm bg-white shadow-lg">
-                        <span aria-hidden className="absolute bottom-2 left-1/2 h-14 w-14 -translate-x-1/2 rounded-md border border-blue-200 bg-blue-100" />
-                      </div>
-                    </div>
-
-                    {/* Right bush */}
-                    <div aria-hidden className="ml-2 size-7 rounded-full bg-emerald-400 shadow-md" />
-                  </div>
                 </div>
               </div>
             </ScrollReveal>
