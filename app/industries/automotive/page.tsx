@@ -198,6 +198,7 @@ export default function AutomotiveIndustryPage() {
                     height={340}
                     className="h-auto w-full"
                     sizes="(min-width: 1024px) 560px, 90vw"
+                    unoptimized
                     priority
                   />
                 </div>
