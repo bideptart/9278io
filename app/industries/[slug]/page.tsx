@@ -1709,7 +1709,7 @@ function HomeServicesPage() {
 
                   {/* Phone — Home Dashboard (top-left) */}
                   <div
-                    className="ind-float absolute left-[4%] top-[4%] z-10 hidden w-[236px] -rotate-[9deg] rounded-[2.1rem] border border-slate-900 bg-white shadow-2xl sm:block sm:w-[264px]"
+                    className="ind-float absolute left-[4%] top-[4%] z-10 hidden w-[236px] -rotate-[9deg] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:block sm:w-[264px]"
                     style={{ animationDelay: "2.8s" }}
                   >
                     <div className="overflow-hidden rounded-[1.4rem]">
@@ -1750,7 +1750,7 @@ function HomeServicesPage() {
 
                   {/* Phone — Book Appointment (top-right) */}
                   <div
-                    className="ind-float absolute right-[4%] top-[6%] z-30 w-[244px] rotate-[11deg] rounded-[2.1rem] border border-slate-900 bg-white shadow-2xl sm:w-[272px]"
+                    className="ind-float absolute right-[4%] top-[6%] z-30 w-[244px] rotate-[11deg] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:w-[272px]"
                     style={{ animationDelay: "0.9s" }}
                   >
                     <div className="space-y-3.5 px-4 py-6">
