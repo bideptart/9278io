@@ -51,8 +51,8 @@ export function HomeServicesPhoneChat() {
             <p
               className={
                 m.from === "user"
-                  ? "max-w-[82%] rounded-lg rounded-tr-sm bg-blue-600 px-2.5 py-1.5 text-[8.5px] font-medium leading-snug text-white shadow-sm"
-                  : "max-w-[82%] rounded-lg rounded-tl-sm border border-slate-200 bg-white px-2.5 py-1.5 text-[8.5px] font-medium leading-snug text-slate-800 shadow-sm"
+                  ? "max-w-[82%] rounded-lg rounded-tr-sm bg-blue-600 px-2.5 py-1.5 text-[9.5px] font-semibold leading-snug text-white shadow-sm"
+                  : "max-w-[82%] rounded-lg rounded-tl-sm border border-slate-300 bg-white px-2.5 py-1.5 text-[9.5px] font-semibold leading-snug text-slate-900 shadow-sm"
               }
             >
               {m.text}

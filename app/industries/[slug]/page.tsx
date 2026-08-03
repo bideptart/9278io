@@ -46,7 +46,6 @@ import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
 import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
-import { HomeServicesPhoneChat } from "@/components/industries/home-services-phone-chat"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -1725,7 +1724,7 @@ function HomeServicesPage() {
             {/* Right — hero photo + smarter-calls overlay + live call preview */}
             <ScrollReveal delay={0.14}>
               <div className="relative mx-auto w-full max-w-[620px]">
-                <div className="relative aspect-[4/3.6] overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 shadow-xl shadow-slate-900/10">
+                <div className="relative aspect-[4/3.5] overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 shadow-xl shadow-slate-900/10">
                   {/* Dotted pattern, faded toward the center */}
                   <div
                     aria-hidden
@@ -1749,40 +1748,40 @@ function HomeServicesPage() {
 
                   {/* Phone — Home Dashboard (top-left) */}
                   <div
-                    className="ind-float absolute left-[3%] top-[6%] z-10 hidden w-[170px] -rotate-[9deg] rounded-[1.7rem] border-[5px] border-slate-900 bg-white shadow-2xl sm:block sm:w-[188px]"
+                    className="ind-float absolute left-[4%] top-[4%] z-10 hidden w-[236px] -rotate-[9deg] rounded-[2.1rem] border border-slate-900 bg-white shadow-2xl sm:block sm:w-[264px]"
                     style={{ animationDelay: "2.8s" }}
                   >
-                    <div className="overflow-hidden rounded-[1.1rem]">
-                      <div className="space-y-2.5 px-3 pb-3 pt-3.5">
-                        <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1.5">
-                          <Search className="size-2.5 text-slate-400" aria-hidden />
-                          <span className="text-[7px] text-slate-400">Find any service</span>
+                    <div className="overflow-hidden rounded-[1.4rem]">
+                      <div className="space-y-4 px-4 pb-6 pt-6">
+                        <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-2.5">
+                          <Search className="size-3.5 text-slate-500" aria-hidden />
+                          <span className="text-[10px] font-medium text-slate-500">Find any service</span>
                         </div>
-                        <div className="grid grid-cols-4 gap-1.5">
+                        <div className="grid grid-cols-4 gap-2">
                           {[Droplet, Zap, Fan, Sparkles].map((CatIcon, i) => (
-                            <div key={i} className="rounded-lg bg-blue-50 py-1.5 text-center">
-                              <CatIcon className="mx-auto size-3 text-blue-600" aria-hidden />
+                            <div key={i} className="rounded-lg bg-blue-50 py-2.5 text-center">
+                              <CatIcon className="mx-auto size-4 text-blue-600" aria-hidden />
                             </div>
                           ))}
                         </div>
-                        <div className="rounded-xl bg-blue-600 p-2.5 text-white">
-                          <p className="text-[8px] font-bold">15% OFF Today</p>
-                          <p className="text-[6.5px] text-blue-100">Book any service now</p>
+                        <div className="rounded-xl bg-blue-600 p-3.5 text-white">
+                          <p className="text-[11px] font-bold">15% OFF Today</p>
+                          <p className="text-[9.5px] font-medium text-blue-100">Book any service now</p>
                         </div>
-                        <div className="space-y-1.5">
-                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-1.5">
-                            <p className="text-[6.5px] font-bold text-slate-800">Plumbing Repair</p>
-                            <p className="text-[6.5px] font-bold text-blue-600">₹399</p>
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-2.5">
+                            <p className="text-[9.5px] font-bold text-slate-900">Plumbing Repair</p>
+                            <p className="text-[9.5px] font-bold text-blue-600">₹399</p>
                           </div>
-                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-1.5">
-                            <p className="text-[6.5px] font-bold text-slate-800">Deep Cleaning</p>
-                            <p className="text-[6.5px] font-bold text-blue-600">₹599</p>
+                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-2.5">
+                            <p className="text-[9.5px] font-bold text-slate-900">Deep Cleaning</p>
+                            <p className="text-[9.5px] font-bold text-blue-600">₹599</p>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center justify-around border-t border-slate-100 px-2 py-2">
+                      <div className="flex items-center justify-around border-t border-slate-100 px-2 py-3.5">
                         {[Home, CalendarCheck, MessageCircle, Bell].map((NavIcon, i) => (
-                          <NavIcon key={i} className={`size-3 ${i === 0 ? "text-blue-600" : "text-slate-300"}`} aria-hidden />
+                          <NavIcon key={i} className={`size-4 ${i === 0 ? "text-blue-600" : "text-slate-400"}`} aria-hidden />
                         ))}
                       </div>
                     </div>
@@ -1790,58 +1789,32 @@ function HomeServicesPage() {
 
                   {/* Phone — Book Appointment (top-right) */}
                   <div
-                    className="ind-float absolute right-[7%] top-[11%] z-10 w-[178px] rotate-[11deg] rounded-[1.7rem] border-[5px] border-slate-900 bg-white shadow-2xl sm:w-[196px]"
+                    className="ind-float absolute right-[4%] top-[6%] z-30 w-[244px] rotate-[11deg] rounded-[2.1rem] border border-slate-900 bg-white shadow-2xl sm:w-[272px]"
                     style={{ animationDelay: "0.9s" }}
                   >
-                    <div className="space-y-2 px-3 py-3.5">
-                      <p className="text-[7px] font-bold tracking-wide text-slate-400">BOOK APPOINTMENT</p>
-                      <div className="flex items-center gap-1.5 rounded-lg bg-blue-50 p-1.5">
-                        <span className="grid size-6 shrink-0 place-items-center rounded-md bg-blue-100 text-blue-600">
-                          <Droplet className="size-3" aria-hidden />
+                    <div className="space-y-3.5 px-4 py-6">
+                      <p className="text-[10px] font-bold tracking-wide text-slate-500">BOOK APPOINTMENT</p>
+                      <div className="flex items-center gap-2 rounded-lg bg-blue-50 p-2.5">
+                        <span className="grid size-8 shrink-0 place-items-center rounded-md bg-blue-100 text-blue-600">
+                          <Droplet className="size-4" aria-hidden />
                         </span>
-                        <p className="text-[7.5px] font-bold text-slate-800">Plumbing Repair</p>
+                        <p className="text-[10.5px] font-bold text-slate-900">Plumbing Repair</p>
                       </div>
-                      <div className="flex items-center gap-1.5 rounded-lg border border-slate-100 p-1.5">
-                        <CalendarCheck className="size-3 shrink-0 text-blue-600" aria-hidden />
-                        <p className="text-[7px] font-semibold text-slate-700">Tomorrow</p>
+                      <div className="flex items-center gap-2 rounded-lg border border-slate-100 p-2.5">
+                        <CalendarCheck className="size-4 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[10px] font-semibold text-slate-800">Tomorrow</p>
                       </div>
-                      <div className="flex items-center gap-1.5 rounded-lg border border-slate-100 p-1.5">
-                        <Clock className="size-3 shrink-0 text-blue-600" aria-hidden />
-                        <p className="text-[7px] font-semibold text-slate-700">11:00 AM</p>
+                      <div className="flex items-center gap-2 rounded-lg border border-slate-100 p-2.5">
+                        <Clock className="size-4 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[10px] font-semibold text-slate-800">11:00 AM</p>
                       </div>
-                      <div className="flex items-center gap-1.5 rounded-lg border border-slate-100 p-1.5">
-                        <MapPin className="size-3 shrink-0 text-blue-600" aria-hidden />
-                        <p className="text-[7px] font-semibold text-slate-700">12 MG Road, Pune</p>
+                      <div className="flex items-center gap-2 rounded-lg border border-slate-100 p-2.5">
+                        <MapPin className="size-4 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[10px] font-semibold text-slate-800">12 MG Road, Pune</p>
                       </div>
-                      <span className="block rounded-full bg-blue-600 py-1.5 text-center text-[7.5px] font-bold text-white">
+                      <span className="block rounded-full bg-blue-600 py-2.5 text-center text-[10.5px] font-bold text-white">
                         Confirm Booking
                       </span>
-                    </div>
-                  </div>
-
-                  {/* Phone — AI Assistant (center, focal) */}
-                  <div
-                    className="ind-float absolute left-1/2 top-[47%] z-20 w-[210px] -translate-x-1/2 -translate-y-1/2 rotate-[5deg] rounded-[2rem] border-[5px] border-slate-900 bg-white shadow-2xl sm:w-[236px]"
-                    style={{ animationDelay: "1.4s" }}
-                  >
-                    <div className="px-3.5 pb-3.5 pt-4">
-                      <div className="flex items-center gap-1.5">
-                        <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
-                          <Bot className="size-3" aria-hidden />
-                        </span>
-                        <p className="text-[9px] font-bold text-slate-900">AI Assistant</p>
-                        <span className="ml-auto size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
-                      </div>
-                      <div className="mt-3 rounded-xl bg-slate-50 p-2">
-                        <HomeServicesPhoneChat />
-                      </div>
-                      <div className="mt-2.5 flex flex-wrap gap-1.5">
-                        {["Book Now", "Call Technician", "Reschedule"].map((chip) => (
-                          <span key={chip} className="rounded-full border border-blue-200 px-2 py-1 text-[6.5px] font-semibold text-blue-700">
-                            {chip}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   </div>
 
