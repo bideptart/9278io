@@ -13,7 +13,7 @@ export function FinanceDetails({
   conversation: ConversationLine[]
 }) {
   return (
-    <section className="w-full px-6 py-16 md:px-8 md:py-20">
+    <section className="w-full px-6 pb-4 pt-4 md:px-8 md:pb-6 md:pt-6">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
         <ScrollReveal className="relative overflow-visible rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
           <span className="absolute -top-5 right-6 z-10 grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
