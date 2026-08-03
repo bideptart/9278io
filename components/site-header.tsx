@@ -248,12 +248,22 @@ function CompanyMenu() {
   )
 }
 
+// Flattened list of every individual industry page, reused from the same
+// grouped data that powers the desktop mega-menu — so the mobile submenu
+// never drifts out of sync with it.
+const ALL_INDUSTRY_LINKS = INDUSTRY_GROUPS.flatMap((g) => [
+  ...g.slugs.map((s) => getIndustry(s)).filter(Boolean),
+  ...g.items,
+]) as { slug: string; name: string }[]
+
 export function SiteHeader() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [industriesOpen, setIndustriesOpen] = useState(false)
   const [companyOpen, setCompanyOpen] = useState(false)
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false)
+  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -427,35 +437,119 @@ export function SiteHeader() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="overflow-hidden border-t border-border/50 md:hidden"
           >
-            <nav className="flex flex-col gap-0.5 p-4 pb-6">
+            <nav className="flex flex-col gap-2 p-4 pb-6">
               <Link
                 href="/features"
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
               >
                 Features
               </Link>
 
-              <div className="mt-1">
-                {[
-                  { label: "Industries", href: "/industries" },
-                  { label: "Pricing", href: "/pricing" },
-                  { label: "About", href: "/about" },
-                  { label: "Blog", href: "/blog" },
-                  { label: "Contact", href: "/contact" },
-                  { label: "FAQ", href: "/faq" },
-                ].map(item => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              <div className="flex flex-col gap-2">
+                {/* Industries — expands to every individual industry page */}
+                <button
+                  type="button"
+                  onClick={() => setMobileIndustriesOpen((o) => !o)}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                  aria-expanded={mobileIndustriesOpen}
+                >
+                  Industries
+                  <ChevronDown
+                    className={cn("size-3.5 transition-transform", mobileIndustriesOpen ? "rotate-180" : "")}
+                    aria-hidden
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {mobileIndustriesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="py-1 pl-3">
+                        <Link
+                          href="/industries"
+                          className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-muted"
+                        >
+                          All industries →
+                        </Link>
+                        <div className="mt-0.5 grid grid-cols-2 gap-0.5">
+                          {ALL_INDUSTRY_LINKS.map((ind) => (
+                            <Link
+                              key={ind.slug}
+                              href={`/industries/${ind.slug}`}
+                              className="truncate rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                            >
+                              {ind.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <Link
+                  href="/pricing"
+                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                >
+                  Pricing
+                </Link>
+
+                {/* Company — expands to About / Blog / Contact */}
+                <button
+                  type="button"
+                  onClick={() => setMobileCompanyOpen((o) => !o)}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                  aria-expanded={mobileCompanyOpen}
+                >
+                  Company
+                  <ChevronDown
+                    className={cn("size-3.5 transition-transform", mobileCompanyOpen ? "rotate-180" : "")}
+                    aria-hidden
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {mobileCompanyOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-col gap-0.5 py-1 pl-3">
+                        {COMPANY_LINKS.map((c) => (
+                          <Link
+                            key={c.href}
+                            href={c.href}
+                            className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                          >
+                            {c.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <Link
+                  href="/faq"
+                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                >
+                  FAQ
+                </Link>
               </div>
 
               <div className="mt-3 flex flex-col gap-2 border-t border-border/50 pt-4">
-                <Button asChild variant="ghost" size="sm" className="w-full justify-center text-muted-foreground">
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-primary"
+                >
                   <a href="https://voice.9278.io/signin" target="_blank" rel="noopener noreferrer">
                     Sign in
                   </a>

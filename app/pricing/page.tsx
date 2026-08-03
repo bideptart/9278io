@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { ShieldCheck, Lock, Fingerprint, Globe, ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -9,12 +10,22 @@ import { RateByPlanMockup } from "@/components/pricing/rate-by-plan-mockup"
 import { LiveCostMockup } from "@/components/pricing/live-cost-mockup"
 import { MockupStackConnector } from "@/components/pricing/mockup-stack-connector"
 import { MockupVerticalConnector } from "@/components/pricing/mockup-vertical-connector"
-import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
-import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { Button } from "@/components/ui/button"
+
+// Below-the-fold and not needed for first paint — code-split out of the
+// initial client bundle so hydrating the hero/plan cards above the fold
+// doesn't compete with parsing/executing these on the main thread too.
+// ssr stays on (the default) so the content still renders server-side for
+// SEO and no-JS users; only the client bundle is split.
+const ComparePlansTable = dynamic(() =>
+  import("@/components/pricing/compare-plans-table").then((m) => m.ComparePlansTable),
+)
+const CostComparisonStrip = dynamic(() =>
+  import("@/components/pricing/cost-comparison-strip").then((m) => m.CostComparisonStrip),
+)
+const FaqAccordion = dynamic(() => import("@/components/faq/faq-accordion").then((m) => m.FaqAccordion))
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { FAQ_GROUPS } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
