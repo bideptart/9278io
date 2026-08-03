@@ -209,8 +209,17 @@ export function BfsiPage() {
         </div>
       </section>
 
+      <PricingCta
+        heading={`Ready to launch a ${industry.name.toLowerCase()} agent?`}
+        description="Get started with a Starter agent and a single phone number, live in under 5 minutes."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Get started"
+        secondaryHref="/industries"
+        secondaryLabel="Browse all industries"
+      />
+
       {/* ─── Other industries we power ─── */}
-      <section className="w-full px-6 pb-16 md:px-8 md:pb-24">
+      <section className="w-full px-6 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">
@@ -290,15 +299,6 @@ export function BfsiPage() {
           </div>
         </div>
       </section>
-
-      <PricingCta
-        heading={`Ready to launch a ${industry.name.toLowerCase()} agent?`}
-        description="Get started with a Starter agent and a single phone number, live in under 5 minutes."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Get started"
-        secondaryHref="/industries"
-        secondaryLabel="Browse all industries"
-      />
 
       <SiteFooter />
     </main>

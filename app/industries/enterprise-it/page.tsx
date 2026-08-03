@@ -74,7 +74,7 @@ export default function EnterpriseItPage() {
       <EnterpriseItDetails jobs={JOBS} sampleLines={SAMPLE_LINES} conversation={CONVERSATION} />
 
       {/* Rollout playbook */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 pb-4 pt-4 md:px-8 md:pb-6 md:pt-6">
         {/* Ambient blobs drift on offset cycles so the backdrop stays alive. */}
         <div
           aria-hidden
@@ -243,7 +243,7 @@ export default function EnterpriseItPage() {
       </section>
 
       {/* CTA */}
-      <section className="w-full px-6 py-20 md:px-8 md:py-24">
+      <section className="w-full px-6 py-4 md:px-8 md:py-6">
         <ScrollReveal className="overflow-hidden rounded-3xl border border-primary bg-primary px-6 py-12 shadow-[0_4px_30px_oklch(0.52_0.22_265/0.25)] md:px-12 md:py-14">
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
