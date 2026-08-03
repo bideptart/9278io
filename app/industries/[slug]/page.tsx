@@ -203,8 +203,14 @@ function ECommercePage() {
                   <img
                     src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Futuristic%20white%20robot%20with%20purple%20blue%20glowing%20eyes%20wearing%20headset%20standing%20on%20a%20white%20circular%20podium%2C%20surrounded%20by%20four%20floating%20glass%20morphism%20UI%20cards%3A%20shopping%20cart%20order%20update%2C%20package%20returns%2C%20audio%20wave%20listening%2C%20upsell%20chart%20graph.%20Swirling%20orbital%20rings%2C%20sparkle%20particles%2C%20soft%20purple%20blue%20tech%20gradient%20background%2C%20clean%203D%20render%2C%20isometric%20angle&image_size=landscape_4_3"
                     alt="AI Voice Agent for E-commerce — futuristic robot on podium with floating glass cards"
-                    className="w-full rounded-[2rem] object-cover"
+                    className="hero-image-float w-full rounded-[2rem] object-cover"
                     loading="eager"
+                  />
+
+                  {/* Ambient glow pulsing beneath the robot, reinforcing the sense of motion */}
+                  <div
+                    aria-hidden
+                    className="ind-glow pointer-events-none absolute bottom-6 left-1/2 h-10 w-40 -translate-x-1/2 rounded-full bg-indigo-400/30 blur-2xl"
                   />
 
                   {/* Overlay Floating Glass Cards (on top of image to ensure exact match) */}
