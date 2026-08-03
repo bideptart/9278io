@@ -1685,7 +1685,7 @@ function HomeServicesPage() {
             {/* Right — hero photo + smarter-calls overlay + live call preview */}
             <ScrollReveal delay={0.14}>
               <div className="relative mx-auto w-full max-w-[620px]">
-                <div className="relative aspect-[4/3.5] overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 shadow-xl shadow-slate-900/10">
+                <div className="relative flex flex-col items-center gap-5 overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 px-5 py-8 shadow-xl shadow-slate-900/10 sm:block sm:aspect-[4/3.5] sm:px-0 sm:py-0">
                   {/* Dotted pattern, faded toward the center */}
                   <div
                     aria-hidden
@@ -1707,9 +1707,9 @@ function HomeServicesPage() {
                     className="absolute left-1/2 top-1/2 size-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-200/50"
                   />
 
-                  {/* Phone — Home Dashboard (top-left) */}
+                  {/* Phone — Home Dashboard (stacked first on mobile/tablet, top-left floating on sm+) */}
                   <div
-                    className="ind-float absolute left-[4%] top-[4%] z-10 hidden w-[236px] -rotate-[9deg] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:block sm:w-[264px]"
+                    className="ind-float relative z-10 w-full max-w-[280px] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:absolute sm:left-[4%] sm:top-[4%] sm:w-[264px] sm:max-w-none sm:-rotate-[9deg]"
                     style={{ animationDelay: "2.8s" }}
                   >
                     <div className="overflow-hidden rounded-[1.4rem]">
@@ -1748,9 +1748,9 @@ function HomeServicesPage() {
                     </div>
                   </div>
 
-                  {/* Phone — Book Appointment (top-right) */}
+                  {/* Phone — Book Appointment (stacked second on mobile/tablet, top-right floating on sm+) */}
                   <div
-                    className="ind-float absolute right-[4%] top-[6%] z-30 w-[244px] rotate-[11deg] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:w-[272px]"
+                    className="ind-float relative z-30 w-full max-w-[280px] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:absolute sm:right-[4%] sm:top-[6%] sm:w-[272px] sm:max-w-none sm:rotate-[11deg]"
                     style={{ animationDelay: "0.9s" }}
                   >
                     <div className="space-y-3.5 px-4 py-6">
