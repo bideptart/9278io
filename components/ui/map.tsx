@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import DottedMap from "dotted-map";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
 
 interface MapProps {
   dots?: Array<{
@@ -16,6 +17,7 @@ interface MapProps {
   labelClassName?: string;
   animationDuration?: number;
   loop?: boolean;
+  className?: string;
 }
 
 export function WorldMap({
@@ -25,13 +27,17 @@ export function WorldMap({
   labelClassName = "text-sm",
   animationDuration = 2,
   loop = true,
+  className,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
   const { theme } = useTheme();
 
+  // Equirectangular projection so the dotted background lines up with the
+  // lat/lng math in `projectPoint` below — the default (Mercator) projection
+  // stretches high-latitude cities far from where the overlay dots land.
   const map = useMemo(
-    () => new DottedMap({ height: 100, grid: "diagonal" }),
+    () => new DottedMap({ height: 100, grid: "diagonal", projection: { name: "equirectangular" } }),
     []
   );
 
@@ -67,7 +73,7 @@ export function WorldMap({
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
   return (
-    <div className="aspect-[2/1] w-full dark:bg-black bg-white rounded-lg relative font-sans overflow-hidden">
+    <div className={cn("aspect-[2/1] w-full dark:bg-black bg-white rounded-lg relative font-sans overflow-hidden", className)}>
       <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="h-full w-full pointer-events-none select-none object-cover"
@@ -81,7 +87,7 @@ export function WorldMap({
         ref={svgRef}
         viewBox="0 0 800 400"
         className="w-full h-full absolute inset-0 pointer-events-auto select-none"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMax meet"
       >
         <defs>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">

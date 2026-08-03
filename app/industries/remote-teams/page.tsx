@@ -43,7 +43,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "9278.io AI voice agents help remote-first organizations handle employee support, schedule meetings, route requests, and automate communication in 10+ languages. Stay connected with your team and customers 24/7."
+  "9278.io AI voice agents help remote-first organizations handle employee support, schedule meetings, route requests, and automate communication in 10+ languages. Stay connected with your team and customers 24/7. Whether it's a new hire in Bengaluru or a client call in London, every request is picked up in under 3 seconds and routed to the right person. No time zone, holiday, or shift change ever leaves a call unanswered."
 
 const HOW_IT_WORKS = [
   { Icon: Bot, step: "1. Deploy Your Agent", text: "Create your AI voice agent with company knowledge, policies, FAQs and workflows." },
@@ -169,6 +169,7 @@ export default function RemoteTeamsPage() {
               <div className="relative">
                 <div className="overflow-hidden rounded-[1.75rem] border border-blue-400">
                 <WorldMap
+                  className="aspect-[2/1.55]"
                   lineColor="#2563eb"
                   dots={[
                     {
