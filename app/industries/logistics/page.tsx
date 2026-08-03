@@ -191,6 +191,8 @@ export default function LogisticsPage() {
                       strokeWidth="3"
                       strokeDasharray="7 7"
                       strokeLinecap="round"
+                      className="connector-flow"
+                      style={{ animationDirection: "reverse" }}
                     />
                   </svg>
 
@@ -205,8 +207,10 @@ export default function LogisticsPage() {
                   </div>
 
                   {/* Truck on route */}
-                  <div className="absolute left-[63%] top-[63%] grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl bg-blue-600 text-white shadow-xl shadow-blue-600/30 sm:size-14">
-                    <Truck className="size-6 sm:size-7" aria-hidden />
+                  <div className="absolute left-[63%] top-[63%] -translate-x-1/2 -translate-y-1/2">
+                    <div className="ind-truck-drive grid size-12 place-items-center rounded-xl bg-blue-600 text-white shadow-xl shadow-blue-600/30 sm:size-14">
+                      <Truck className="size-6 sm:size-7" aria-hidden />
+                    </div>
                   </div>
 
                   {/* AI Voice Agent badge */}

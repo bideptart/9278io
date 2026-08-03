@@ -296,6 +296,29 @@
 .ind-float {
   animation: ind-float 4.4s ease-in-out infinite;
 }
+@keyframes truck-drive {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(2px, -3px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(0, -1px) rotate(0deg);
+  }
+  75% {
+    transform: translate(-2px, -3px) rotate(2deg);
+  }
+}
+.ind-truck-drive {
+  animation: truck-drive 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ind-truck-drive {
+    animation: none;
+  }
+}
 .ind-glow {
   animation: ind-glow 5.5s ease-in-out infinite;
   transform-box: fill-box;
