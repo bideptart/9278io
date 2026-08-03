@@ -45,15 +45,15 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
           <div>
             <span
               style={{ animationDelay: "0.05s" }}
-              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-1.5 pl-1.5 pr-5 text-[14px] font-medium text-blue-700 shadow-sm backdrop-blur transition-shadow duration-300 hover:shadow-md"
+              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] inline-flex items-center gap-2.5 rounded-full border border-blue-200/70 bg-white/90 py-2 pl-2 pr-6 text-[15px] font-medium text-blue-700 shadow-sm backdrop-blur transition-shadow duration-300 hover:shadow-md"
             >
-              <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
-                <Sparkles className="size-3.5 motion-safe:animate-pulse" aria-hidden />
+              <span className="grid size-7 place-items-center rounded-full bg-blue-100 text-blue-600">
+                <Sparkles className="size-4 motion-safe:animate-pulse" aria-hidden />
               </span>
               AI Voice Agents for IT Teams
             </span>
 
-            <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+            <h1 className="mt-6 text-balance font-serif text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[3rem] md:text-[3.7rem]">
               <span style={{ animationDelay: "0.15s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black">
                 AI voice agents
               </span>
@@ -71,7 +71,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
 
             <p
               style={{ animationDelay: "0.35s" }}
-              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-5 max-w-lg text-pretty text-[15px] leading-[1.65] text-slate-600 md:text-base"
+              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-5 max-w-xl text-pretty text-[16px] leading-[1.7] text-slate-600 md:text-[17px]"
             >
               {pitch}
             </p>
@@ -85,10 +85,10 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
                 <span
                   key={pill.label}
                   style={{ animationDelay: `${0.45 + i * 0.08}s` }}
-                  className={`motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[13px] font-semibold shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${pill.cls}`}
+                  className={`motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] group inline-flex items-center gap-2 rounded-full border px-4.5 py-2.5 text-[14px] font-semibold shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${pill.cls}`}
                 >
                   <pill.Icon
-                    className={`size-4 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 ${pill.icon}`}
+                    className={`size-4.5 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 ${pill.icon}`}
                     aria-hidden
                   />
                   {pill.label}
@@ -99,7 +99,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
             <div style={{ animationDelay: "0.72s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-7 flex flex-wrap items-center gap-3.5">
               <Button
                 asChild
-                className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-6 py-3 text-[14px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
               >
                 <Link href="/get-started?industry=enterprise-it">
                   Get Started
@@ -111,7 +111,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
               <Button
                 asChild
                 variant="outline"
-                className="group h-auto rounded-full border-slate-200 bg-white/95 px-5 py-3 text-[14px] font-bold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                className="group h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
               >
                 <Link href="/pricing">
                   View Pricing
@@ -125,7 +125,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="relative mx-auto w-full max-w-[560px]">
+            <div className="relative mx-auto w-full max-w-[620px]">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-[85%] rounded-[2.5rem] bg-[radial-gradient(60%_60%_at_50%_20%,rgba(37,99,235,0.16),transparent_70%)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
@@ -138,7 +138,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
         </div>
       </div>
 
-      <div className="w-full px-6 pb-10 pt-12 md:px-8 md:pb-14 md:pt-20">
+      <div className="w-full px-6 pb-2 pt-12 md:px-8 md:pb-3 md:pt-20">
         <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
