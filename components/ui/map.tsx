@@ -4,8 +4,18 @@ import { useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import DottedMap from "dotted-map";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+
+// Lat/lng bounds the background dotted map is generated from — `projectPoint`
+// below maps city coordinates using these exact bounds so pins land on the
+// correct spot. The svg viewBox is sized to the same bounds' true aspect
+// ratio so neither layer has to stretch or crop to fill the panel — both
+// letterbox identically (object-contain + preserveAspectRatio meet, same
+// anchor), which keeps continent shapes undistorted.
+const MAP_REGION = { lat: { min: -56, max: 75 }, lng: { min: -180, max: 180 } };
+const VIEWBOX_WIDTH = 800;
+const VIEWBOX_HEIGHT =
+  VIEWBOX_WIDTH * ((MAP_REGION.lat.max - MAP_REGION.lat.min) / (MAP_REGION.lng.max - MAP_REGION.lng.min));
 
 interface MapProps {
   dots?: Array<{
@@ -31,29 +41,28 @@ export function WorldMap({
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
-  const { theme } = useTheme();
 
   // Equirectangular projection so the dotted background lines up with the
   // lat/lng math in `projectPoint` below — the default (Mercator) projection
   // stretches high-latitude cities far from where the overlay dots land.
   const map = useMemo(
-    () => new DottedMap({ height: 100, grid: "diagonal", projection: { name: "equirectangular" } }),
+    () => new DottedMap({ height: 100, grid: "diagonal", region: MAP_REGION, projection: { name: "equirectangular" } }),
     []
   );
 
   const svgMap = useMemo(
     () => map.getSVG({
       radius: 0.22,
-      color: theme === "dark" ? "#60A5FA80" : "#1E3A8ACC",
+      color: "#1E3A8ACC",
       shape: "circle",
-      backgroundColor: theme === "dark" ? "black" : "white",
+      backgroundColor: "white",
     }),
-    [map, theme]
+    [map]
   );
 
   const projectPoint = (lat: number, lng: number) => {
-    const x = (lng + 180) * (800 / 360);
-    const y = (90 - lat) * (400 / 180);
+    const x = ((lng - MAP_REGION.lng.min) / (MAP_REGION.lng.max - MAP_REGION.lng.min)) * VIEWBOX_WIDTH;
+    const y = ((MAP_REGION.lat.max - lat) / (MAP_REGION.lat.max - MAP_REGION.lat.min)) * VIEWBOX_HEIGHT;
     return { x, y };
   };
 
@@ -62,7 +71,7 @@ export function WorldMap({
     end: { x: number; y: number }
   ) => {
     const midX = (start.x + end.x) / 2;
-    const midY = Math.min(start.y, end.y) - 50;
+    const midY = Math.min(start.y, end.y) - 50 * (VIEWBOX_HEIGHT / 400);
     return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
   };
 
@@ -73,21 +82,21 @@ export function WorldMap({
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
   return (
-    <div className={cn("aspect-[2/1] w-full dark:bg-black bg-white rounded-lg relative font-sans overflow-hidden", className)}>
+    <div className={cn("aspect-[2/1] w-full bg-white rounded-lg relative font-sans overflow-hidden", className)}>
       <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="h-full w-full pointer-events-none select-none object-cover"
+        className="h-full w-full pointer-events-none select-none object-contain object-center"
         alt="world map"
-        height="495"
-        width="1056"
+        height={Math.round(1056 * (VIEWBOX_HEIGHT / VIEWBOX_WIDTH))}
+        width={1056}
         draggable={false}
         priority
       />
       <svg
         ref={svgRef}
-        viewBox="0 0 800 400"
+        viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         className="w-full h-full absolute inset-0 pointer-events-auto select-none"
-        preserveAspectRatio="xMidYMax meet"
+        preserveAspectRatio="xMidYMid meet"
       >
         <defs>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -231,7 +240,7 @@ export function WorldMap({
                       className="block"
                     >
                       <div className="flex items-center justify-center h-full">
-                        <span className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-blue-900 dark:text-white border border-blue-100 dark:border-gray-700 shadow-sm`}>
+                        <span className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 text-blue-900 border border-blue-100 shadow-sm`}>
                           {dot.start.label}
                         </span>
                       </div>
@@ -298,7 +307,7 @@ export function WorldMap({
                       className="block"
                     >
                       <div className="flex items-center justify-center h-full">
-                        <span className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-blue-900 dark:text-white border border-blue-100 dark:border-gray-700 shadow-sm`}>
+                        <span className={`${labelClassName} font-medium px-2 py-0.5 rounded-md bg-white/95 text-blue-900 border border-blue-100 shadow-sm`}>
                           {dot.end.label}
                         </span>
                       </div>
@@ -318,7 +327,7 @@ export function WorldMap({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute bottom-4 left-4 bg-white/90 dark:bg-black/90 text-blue-900 dark:text-white px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-sm sm:hidden border border-blue-100 dark:border-gray-700"
+            className="absolute bottom-4 left-4 bg-white/90 text-blue-900 px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-sm sm:hidden border border-blue-100"
           >
             {hoveredLocation}
           </motion.div>
