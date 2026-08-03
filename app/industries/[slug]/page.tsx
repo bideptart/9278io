@@ -1803,28 +1803,36 @@ function HomeServicesPage() {
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.15} className="w-full border-t border-slate-100">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-10 sm:grid-cols-4 md:px-8">
-            {[
-              { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },
-              { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-50 text-emerald-600" },
-              { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-50 text-violet-600" },
-              { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-50 text-blue-600" },
-            ].map(({ Icon: StatIcon, label, value, tone }) => (
-              <div key={label} className="flex flex-col items-center gap-2 text-center">
-                <span className={`grid size-11 place-items-center rounded-full ${tone}`}>
-                  <StatIcon className="size-5" aria-hidden />
-                </span>
-                <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
-                <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
+        <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
+          <ScrollReveal delay={0.15} className="mx-auto max-w-7xl">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+              <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+                {[
+                  { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-100 text-blue-600" },
+                  { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-100 text-emerald-600" },
+                  { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-100 text-violet-600" },
+                  { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-100 text-blue-600" },
+                ].map(({ Icon: StatIcon, label, value, tone }) => (
+                  <div key={label} className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
+                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl ${tone}`}>
+                      <StatIcon className="size-6" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                        {value}
+                      </p>
+                      <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </ScrollReveal>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* ─── What agent does + How it sounds ─── */}
-      <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
+      <section className="w-full px-6 pb-8 md:px-8 md:pb-10">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs with real photo */}
           <ScrollReveal>
