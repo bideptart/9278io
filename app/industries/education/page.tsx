@@ -701,6 +701,16 @@ export default function EducationIndustryPage() {
         </div>
       </section>
 
+      {/* Closing CTA */}
+      <PricingCta
+        heading="Ready to fill every batch?"
+        description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* Other industries — uniform corner-ribbon cards (same treatment as
           the Automotive and Fitness pages) instead of the asymmetric bento. */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
@@ -785,16 +795,6 @@ export default function EducationIndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* Closing CTA */}
-      <PricingCta
-        heading="Ready to fill every batch?"
-        description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

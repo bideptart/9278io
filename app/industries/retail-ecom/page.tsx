@@ -211,6 +211,16 @@ export default function RetailEcomPage() {
         </div>
       </section>
 
+      {/* ══ Closing CTA ══ */}
+      <PricingCta
+        heading="Put an agent on your support line."
+        description="Answer order, product, returns and store questions on every call — 24/7, in 10+ Indian languages, even on your busiest day."
+        primaryHref="/get-started?industry=retail-ecom"
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* ══ Other industries ══ */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
         <div className="mx-auto max-w-6xl">
@@ -291,16 +301,6 @@ export default function RetailEcomPage() {
           </div>
         </div>
       </section>
-
-      {/* ══ Closing CTA ══ */}
-      <PricingCta
-        heading="Put an agent on your support line."
-        description="Answer order, product, returns and store questions on every call — 24/7, in 10+ Indian languages, even on your busiest day."
-        primaryHref="/get-started?industry=retail-ecom"
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

@@ -307,6 +307,16 @@ export default function FitnessIndustryPage() {
         </div>
       </section>
 
+      {/* Closing CTA */}
+      <PricingCta
+        heading="Ready to fill every class?"
+        description="Launch an agent that books classes, recovers no-shows, and wins back lapsed members — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* Other industries — uniform corner-ribbon cards (matches the
           e-commerce industry page's card style, and the Automotive page's
           "Other industries" section) instead of the asymmetric bento. */}
@@ -403,15 +413,6 @@ export default function FitnessIndustryPage() {
         </div>
       </section>
 
-      {/* Closing CTA */}
-      <PricingCta
-        heading="Ready to fill every class?"
-        description="Launch an agent that books classes, recovers no-shows, and wins back lapsed members — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>
