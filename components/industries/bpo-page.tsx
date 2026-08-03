@@ -9,7 +9,6 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { BpoHero } from "@/components/industries/bpo-hero"
 import { BpoDetails } from "@/components/industries/bpo-details"
-import { PricingCta } from "@/components/pricing/pricing-cta"
 
 export function BpoPage() {
   const industry = getIndustry("bpo")!
@@ -37,7 +36,7 @@ export function BpoPage() {
       <BpoDetails industry={industry} />
 
       {/* Internal contextual links */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 py-16 md:px-8 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 pb-4 pt-0 md:px-8 md:pb-6 md:pt-1">
         <div aria-hidden className="pointer-events-none absolute -left-24 top-10 -z-10 size-80 rounded-full bg-blue-400/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 -z-10 size-96 rounded-full bg-sky-400/15 blur-3xl" />
 
@@ -147,17 +146,39 @@ export function BpoPage() {
         </div>
       </section>
 
-      <PricingCta
-        heading={`Ready to launch a ${industry.name.toLowerCase()} agent?`}
-        description="Get started with a Starter agent and a single phone number, live in under 5 minutes."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Get started"
-        secondaryHref="/industries"
-        secondaryLabel="Browse all industries"
-      />
+      {/* CTA */}
+      <section className="w-full px-6 pb-4 pt-4 md:px-8 md:pb-6 md:pt-6">
+        <ScrollReveal className="overflow-hidden rounded-3xl border border-primary bg-primary px-6 py-12 shadow-[0_4px_30px_oklch(0.52_0.22_265/0.25)] md:px-12 md:py-14">
+          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-xl">
+              <h3 className="text-balance text-2xl font-bold tracking-tight text-white md:text-3xl">
+                Ready to launch a {industry.name.toLowerCase()} agent?
+              </h3>
+              <p className="mt-3 text-white/70">
+                Get started with a Starter agent and a single phone number, live in under 5 minutes.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-white font-semibold text-primary hover:bg-white/90">
+                <Link href={`/get-started?industry=${industry.slug}`}>
+                  Get started <ArrowRight className="ml-1 size-4" aria-hidden />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              >
+                <Link href="/industries">Browse all industries</Link>
+              </Button>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
 
       {/* ─── Other industries we power ─── */}
-      <section className="w-full px-6 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
+      <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">

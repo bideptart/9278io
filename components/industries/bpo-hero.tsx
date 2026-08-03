@@ -240,7 +240,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
         </div>
       </div>
 
-      <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
+      <div className="w-full px-6 pb-2 md:px-8 md:pb-3">
         <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
