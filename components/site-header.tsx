@@ -262,8 +262,10 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
   const [industriesOpen, setIndustriesOpen] = useState(false)
   const [companyOpen, setCompanyOpen] = useState(false)
-  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false)
-  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false)
+  // Only one mobile submenu open at a time — opening one closes the other.
+  const [mobileExpanded, setMobileExpanded] = useState<"industries" | "company" | null>(null)
+  const mobileIndustriesOpen = mobileExpanded === "industries"
+  const mobileCompanyOpen = mobileExpanded === "company"
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -271,9 +273,10 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Close mobile menu on route change
+  // Close mobile menu (and any expanded submenu) on route change
   useEffect(() => {
     setMobileOpen(false)
+    setMobileExpanded(null)
   }, [pathname])
 
   const isActive = (href: string) => {
@@ -437,10 +440,10 @@ export function SiteHeader() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="overflow-hidden border-t border-border/50 md:hidden"
           >
-            <nav className="flex flex-col gap-2 p-4 pb-6">
+            <nav className="flex max-h-[calc(100dvh-5rem)] flex-col gap-2 overflow-y-auto overscroll-contain p-4 pb-6">
               <Link
                 href="/features"
-                className="rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                className="rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
               >
                 Features
               </Link>
@@ -449,8 +452,8 @@ export function SiteHeader() {
                 {/* Industries — expands to every individual industry page */}
                 <button
                   type="button"
-                  onClick={() => setMobileIndustriesOpen((o) => !o)}
-                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                  onClick={() => setMobileExpanded((s) => (s === "industries" ? null : "industries"))}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
                   aria-expanded={mobileIndustriesOpen}
                 >
                   Industries
@@ -468,10 +471,10 @@ export function SiteHeader() {
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="py-1 pl-3">
+                      <div className="py-1">
                         <Link
                           href="/industries"
-                          className="block rounded-lg px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-muted"
+                          className="block rounded-lg px-3 py-2 text-center text-sm font-semibold text-primary transition-colors hover:text-primary/70"
                         >
                           All industries →
                         </Link>
@@ -480,7 +483,7 @@ export function SiteHeader() {
                             <Link
                               key={ind.slug}
                               href={`/industries/${ind.slug}`}
-                              className="truncate rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                              className="truncate rounded-lg px-3 py-2 text-center text-sm text-muted-foreground transition-colors hover:text-primary"
                             >
                               {ind.name}
                             </Link>
@@ -493,7 +496,7 @@ export function SiteHeader() {
 
                 <Link
                   href="/pricing"
-                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
                 >
                   Pricing
                 </Link>
@@ -501,8 +504,8 @@ export function SiteHeader() {
                 {/* Company — expands to About / Blog / Contact */}
                 <button
                   type="button"
-                  onClick={() => setMobileCompanyOpen((o) => !o)}
-                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                  onClick={() => setMobileExpanded((s) => (s === "company" ? null : "company"))}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
                   aria-expanded={mobileCompanyOpen}
                 >
                   Company
@@ -520,12 +523,12 @@ export function SiteHeader() {
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="flex flex-col gap-0.5 py-1 pl-3">
+                      <div className="flex flex-col gap-0.5 py-1">
                         {COMPANY_LINKS.map((c) => (
                           <Link
                             key={c.href}
                             href={c.href}
-                            className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                            className="rounded-lg px-3 py-2 text-center text-sm text-muted-foreground transition-colors hover:text-primary"
                           >
                             {c.label}
                           </Link>
@@ -537,7 +540,7 @@ export function SiteHeader() {
 
                 <Link
                   href="/faq"
-                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-foreground"
+                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
                 >
                   FAQ
                 </Link>
