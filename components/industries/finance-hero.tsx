@@ -105,7 +105,7 @@ export function FinanceHero({ pitch }: { pitch: string }) {
               </div>
 
               {/* Floating accent cards — sit outside the image bounds */}
-              <div className="absolute -left-4 top-6 z-20 hero-float-up">
+              <div className="absolute -left-4 -top-4 z-20 hero-float-up">
                 <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
                   <div className="flex items-center gap-3">
                     <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
