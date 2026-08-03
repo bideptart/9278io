@@ -1,31 +1,31 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, PhoneCall, Check } from "lucide-react"
+import { ArrowRight, Settings, PhoneCall, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { RoutingRuleChips } from "@/components/features-page/routing-rule-chips"
-import { CallRoutingDecisionTree } from "@/components/features-page/call-routing-decision-tree"
+import { AccountSettingsHero } from "@/components/features-page/account-settings-hero"
+import { AccountSettingsToggleList } from "@/components/features-page/account-settings-toggle-list"
+import { AccountSettingsFlow } from "@/components/features-page/account-settings-flow"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
 import { FaqSwitcher } from "@/components/features-page/faq-switcher"
-import { LiveRuleMatchHero } from "@/components/features-page/live-rule-match-hero"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { FAQ_GROUPS } from "@/lib/faq"
 
-const agentsFaq = FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
-  ["Can the agent transfer to a human?", "Does it integrate with Indian CRMs and tools?"].includes(i.q),
+const accountFaq = FAQ_GROUPS.find((g) => g.id === "account")!.items.filter((i) =>
+  ["Where do I sign in?", "What support is included?"].includes(i.q),
 )
 
 export const metadata: Metadata = pageSeo({
-  title: "Behavior & Routing Rules",
-  description: "Decide how calls get classified and routed by intent, keyword, or time of day.",
-  path: "/features/behavior-routing-rules",
+  title: "Account Settings",
+  description: "Manage billing, team access, and account details in one place.",
+  path: "/features/account-settings",
 })
 
-export default function BehaviorRoutingRulesPage() {
+export default function AccountSettingsPage() {
   return (
     <main className="relative min-h-dvh bg-background text-foreground">
       <SiteHeader />
@@ -34,7 +34,7 @@ export default function BehaviorRoutingRulesPage() {
         items={[
           { name: "Home", path: "/" },
           { name: "Features", path: "/features" },
-          { name: "Behavior & Routing Rules", path: "/features/behavior-routing-rules" },
+          { name: "Account Settings", path: "/features/account-settings" },
         ]}
       />
 
@@ -44,30 +44,25 @@ export default function BehaviorRoutingRulesPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-0 md:px-8 md:pb-16 md:pt-0 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-10 pt-2 md:px-8 md:pb-14 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
-            <ScrollReveal className="-mt-4 md:-mt-8">
+            <ScrollReveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-                Train &amp; Configure
+                <Settings className="size-3.5" aria-hidden />
+                Account &amp; Overview
               </span>
-              <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Behavior
-                <span
-                  className="block"
-                  style={{
-                    backgroundImage: "linear-gradient(90deg, #2563EB, #0EA5E9, #10B981)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  &amp; Routing Rules
+              <h1 className="text-balance font-semibold tracking-tight" style={{ fontSize: "36px", margin: "12px 0px 0px" }}>
+                Account{" "}
+                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                  Settings
                 </span>
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                Decide how calls get classified and routed by intent, keyword, or time of day — so every
-                call ends up exactly where it should. No manual sorting, no missed calls after hours.
+                Manage billing, team access, and account details in one place — every change applies
+                across your account instantly. Invite teammates, set who can edit what, and keep every
+                invoice a click away. Security settings stay visible too, so nothing important gets
+                buried in a menu.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -94,9 +89,13 @@ export default function BehaviorRoutingRulesPage() {
                 </Button>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                {["Route by intent or keyword", "Time-of-day aware", "Fallback rule included"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Billing & invoices", "Team access", "Account security"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
                     <Check className="size-3.5 text-primary" aria-hidden />
                     {t}
                   </span>
@@ -106,7 +105,7 @@ export default function BehaviorRoutingRulesPage() {
           </div>
 
           <ScrollReveal delay={0.08}>
-            <LiveRuleMatchHero />
+            <AccountSettingsHero />
           </ScrollReveal>
         </div>
       </section>
@@ -118,13 +117,9 @@ export default function BehaviorRoutingRulesPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               What you get
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Rules that decide where a call goes</h2>
-            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-              Write it once as a plain IF / THEN rule — the agent checks every call against it before it
-              even answers.
-            </p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Everything your account needs, in one place</h2>
           </ScrollReveal>
-          <RoutingRuleChips />
+          <AccountSettingsToggleList />
         </div>
       </section>
 
@@ -135,9 +130,9 @@ export default function BehaviorRoutingRulesPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               How it works
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">From ring to the right destination</h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Change it once, it's live everywhere</h2>
           </ScrollReveal>
-          <CallRoutingDecisionTree />
+          <AccountSettingsFlow />
         </div>
       </section>
 
@@ -148,21 +143,21 @@ export default function BehaviorRoutingRulesPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               Why it matters
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Every call, routed on purpose</h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">One place for the whole account</h2>
           </ScrollReveal>
           <div className="mt-8">
             <ComparisonPanel
-              withoutTitle="Without behavior & routing rules"
+              withoutTitle="Without unified account settings"
               withoutPoints={[
-                "Every call follows the same flow, regardless of intent",
-                "After-hours calls get treated the same as business hours",
-                "Unmatched calls have nowhere defined to go",
+                "Billing, team, and security scattered across emails",
+                "No clear view of who has access to what",
+                "Changes take support tickets to update",
               ]}
-              withTitle="With Behavior & Routing Rules"
+              withTitle="With Account Settings"
               withPoints={[
-                "Calls route automatically by intent or keyword",
-                "Time-of-day rules send after-hours calls the right way",
-                "A fallback rule catches anything unmatched",
+                "Billing, team, and security in one dashboard",
+                "See exactly who has access, at a glance",
+                "Update anything yourself, instantly",
               ]}
             />
           </div>
@@ -176,13 +171,13 @@ export default function BehaviorRoutingRulesPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               Related questions
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Routing, answered</h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Account settings, answered</h2>
             <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
               Straight from the FAQ — pick a question to see the answer.
             </p>
           </ScrollReveal>
           <div className="mt-8">
-            <FaqSwitcher items={agentsFaq} />
+            <FaqSwitcher items={accountFaq} />
           </div>
           <Link
             href="/faq"
@@ -195,8 +190,8 @@ export default function BehaviorRoutingRulesPage() {
       </section>
 
       <PricingCta
-        heading="Ready to set your routing rules?"
-        description="Build your first agent free, then define how calls get classified and routed — by intent, keyword, or time of day."
+        heading="Ready to take control of your account?"
+        description="Build your first agent free, then manage billing, team access, and security from one settings page."
         primaryHref="/get-started"
         primaryLabel="Get started"
         secondaryHref="/features"

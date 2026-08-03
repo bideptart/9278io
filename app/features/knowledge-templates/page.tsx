@@ -2,25 +2,19 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
-  Copy,
   Layers,
-  Pencil,
-  FilePlus,
-  Users,
-  RefreshCw,
   PhoneCall,
-  Check,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { DetailCards } from "@/components/features-page/detail-cards"
-import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
+import { TemplateBenefitsTimeline } from "@/components/features-page/template-benefits-timeline"
+import { TemplateHowItWorksFlow } from "@/components/features-page/template-how-it-works"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
 import { FaqSwitcher } from "@/components/features-page/faq-switcher"
-import { KnowledgeTemplatesPanel } from "@/components/features-page/knowledge-templates-panel"
+import { KnowledgeTemplatesHeroIllustration } from "@/components/features-page/knowledge-templates-hero-illustration"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { FAQ_GROUPS } from "@/lib/faq"
@@ -34,42 +28,6 @@ export const metadata: Metadata = pageSeo({
   description: "Save a knowledge setup once and reuse it across multiple agents or numbers.",
   path: "/features/knowledge-templates",
 })
-
-const DETAILS = [
-  {
-    icon: <Copy className="size-5" aria-hidden />,
-    title: "Build once, apply to many agents",
-    description: "Set up a knowledge base a single time, then apply it to every agent that needs it.",
-  },
-  {
-    icon: <Layers className="size-5" aria-hidden />,
-    title: "Keep answers consistent across numbers",
-    description: "Every agent using a template answers the same way, on every number.",
-  },
-  {
-    icon: <Pencil className="size-5" aria-hidden />,
-    title: "Edit the template to update everywhere",
-    description: "Change the template once and every agent using it updates automatically.",
-  },
-]
-
-const STEPS = [
-  {
-    icon: <FilePlus className="size-5" aria-hidden />,
-    title: "Build a template once",
-    description: "Set up the knowledge base for a role — support, sales, front desk — a single time.",
-  },
-  {
-    icon: <Users className="size-5" aria-hidden />,
-    title: "Apply it to any agent",
-    description: "Attach the template to as many agents or numbers as you need, in a couple of clicks.",
-  },
-  {
-    icon: <RefreshCw className="size-5" aria-hidden />,
-    title: "Edit once, update everywhere",
-    description: "Change the template and every agent using it reflects the update immediately.",
-  },
-]
 
 export default function KnowledgeTemplatesPage() {
   return (
@@ -86,15 +44,15 @@ export default function KnowledgeTemplatesPage() {
 
       <section className="relative flex flex-col border-b border-border/50">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
-          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#F3EEFF]" />
+          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-[#7C3AED]/[0.07] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-2 md:px-8 md:pb-24 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#7C3AED]/20 bg-[#7C3AED]/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-[#7C3AED]">
+                <Layers className="size-3.5" aria-hidden />
                 Train &amp; Configure
               </span>
               <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
@@ -108,11 +66,11 @@ export default function KnowledgeTemplatesPage() {
                 template, and every agent using it updates together.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3 pb-1">
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-7 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                  className="h-12 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#4F8DFF] px-7 text-base font-semibold text-white shadow-[0_8px_28px_rgba(124,58,237,0.45)] transition-all hover:shadow-[0_10px_36px_rgba(124,58,237,0.6)]"
                 >
                   <Link href="/get-started">
                     Build your first agent
@@ -123,7 +81,7 @@ export default function KnowledgeTemplatesPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-[#7C3AED]/30 hover:bg-slate-50"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 size-4" />
@@ -131,26 +89,17 @@ export default function KnowledgeTemplatesPage() {
                   </Link>
                 </Button>
               </div>
-
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                {["Build once, reuse anywhere", "Stays in sync across agents", "One edit updates every agent"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
-                    <Check className="size-3.5 text-primary" aria-hidden />
-                    {t}
-                  </span>
-                ))}
-              </div>
             </ScrollReveal>
           </div>
 
           <ScrollReveal delay={0.08}>
-            <KnowledgeTemplatesPanel />
+            <KnowledgeTemplatesHeroIllustration />
           </ScrollReveal>
         </div>
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -158,14 +107,12 @@ export default function KnowledgeTemplatesPage() {
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">One template, every agent that needs it</h2>
           </ScrollReveal>
-          <div className="mt-10">
-            <DetailCards items={DETAILS} />
-          </div>
+          <TemplateBenefitsTimeline />
         </div>
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -173,12 +120,12 @@ export default function KnowledgeTemplatesPage() {
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Build once, apply everywhere</h2>
           </ScrollReveal>
-          <HowItWorksFlow steps={STEPS} />
+          <TemplateHowItWorksFlow />
         </div>
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -206,7 +153,7 @@ export default function KnowledgeTemplatesPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />

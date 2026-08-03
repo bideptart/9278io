@@ -149,7 +149,7 @@ export default function CallBehaviorControlsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -164,7 +164,7 @@ export default function CallBehaviorControlsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -177,7 +177,7 @@ export default function CallBehaviorControlsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -205,7 +205,7 @@ export default function CallBehaviorControlsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-4xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
