@@ -31,7 +31,7 @@ import {
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
 import { SaasAgentConsole } from "@/components/industries/saas-agent-console"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
@@ -46,7 +46,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "Convert trials, qualify leads, onboard customers, and resolve support requests 24/7 with AI voice agents that sound natural and respond instantly. Built for startups, SaaS platforms, software providers, and technology companies."
+  "Convert trials, qualify leads, onboard customers, and resolve support requests 24/7 with AI voice agents that sound natural and respond instantly. Built for startups, SaaS platforms, software providers, and technology companies. Every trial user, demo request, and support ticket is picked up in under 3 seconds — no missed signals during a product launch or a traffic spike."
 
 const DAY_ONE_JOBS = [
   { Icon: UserCheck, text: "Qualifies inbound SaaS leads automatically" },
@@ -221,19 +221,19 @@ export default function SaasTechPage() {
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
 
-              <ol className="mt-6 space-y-3">
+              <StaggerGroup className="mt-6 space-y-3" stagger={0.08}>
                 {DAY_ONE_JOBS.map((job) => (
-                  <li
+                  <StaggerItem
                     key={job.text}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)]"
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
                       <job.Icon className="size-4" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14px] leading-snug text-slate-700">{job.text}</span>
-                  </li>
+                  </StaggerItem>
                 ))}
-              </ol>
+              </StaggerGroup>
             </div>
           </ScrollReveal>
 
@@ -247,24 +247,24 @@ export default function SaasTechPage() {
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
 
-              <p className="mt-4 text-pretty text-[14px] leading-relaxed text-slate-600">
+              <p className="mt-5 max-w-md text-pretty text-[17px] leading-relaxed text-slate-600">
                 Your AI voice agent acts as a sales rep, onboarding specialist, and support assistant — available
                 around the clock.
               </p>
 
-              <ul className="mt-5 space-y-2.5">
+              <StaggerGroup className="mt-7 max-w-md space-y-5" stagger={0.08}>
                 {SUPPORT_ITEMS.map((line) => (
-                  <li key={line} className="flex items-center gap-2.5">
-                    <span className="grid size-5 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
-                      <Check className="size-3" aria-hidden />
+                  <StaggerItem key={line} className="flex items-center gap-3.5">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
+                      <Check className="size-4" aria-hidden />
                     </span>
-                    <span className="text-pretty text-[13.5px] leading-snug text-slate-700">{line}</span>
-                  </li>
+                    <span className="text-pretty text-[17px] leading-snug text-slate-700">{line}</span>
+                  </StaggerItem>
                 ))}
-              </ul>
+              </StaggerGroup>
 
-              {/* Robot mascot */}
-              <div className="relative mt-6 flex h-28 items-center justify-end">
+              {/* Robot mascot — sits in the empty space beside the checklist */}
+              <div className="absolute bottom-9 right-7 hidden items-center justify-end sm:right-9 lg:flex">
                 <div aria-hidden className="absolute right-6 -top-2 size-24 rounded-full bg-blue-200/40 blur-2xl" />
                 <div className="relative flex flex-col items-center">
                   <span className="size-2 rounded-full bg-blue-500" aria-hidden />
