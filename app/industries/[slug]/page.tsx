@@ -147,7 +147,8 @@ function ECommercePage() {
               <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
                 D2C brands hit support volume spikes the moment they hit a marketing milestone. 9278.io absorbs the
                 surge — order status, returns, sizing, and post-purchase upsells — and only escalates the genuinely
-                angry customers to a human.
+                angry customers to a human. Every call is picked up in under 3 seconds, in the customer's own
+                language, so a flash sale or a viral post never turns into a wave of missed calls and lost orders.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -205,7 +206,7 @@ function ECommercePage() {
                   <img
                     src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Futuristic%20white%20robot%20with%20purple%20blue%20glowing%20eyes%20wearing%20headset%20standing%20on%20a%20white%20circular%20podium%2C%20surrounded%20by%20four%20floating%20glass%20morphism%20UI%20cards%3A%20shopping%20cart%20order%20update%2C%20package%20returns%2C%20audio%20wave%20listening%2C%20upsell%20chart%20graph.%20Swirling%20orbital%20rings%2C%20sparkle%20particles%2C%20soft%20purple%20blue%20tech%20gradient%20background%2C%20clean%203D%20render%2C%20isometric%20angle&image_size=landscape_4_3"
                     alt="AI Voice Agent for E-commerce — futuristic robot on podium with floating glass cards"
-                    className="hero-image-float w-full rounded-[2rem] object-cover"
+                    className="hero-image-float aspect-[4/3.3] w-full rounded-[2rem] object-cover"
                     loading="eager"
                   />
 
