@@ -11,7 +11,7 @@ import {
   Bot, Mic, SlidersHorizontal, GraduationCap, BookOpen, Route,
   Rocket, PhoneCall, LayoutTemplate, Activity, BarChart3, History,
   PhoneForwarded, BellRing, Ticket, FileBarChart, UserCog, Settings,
-  LayoutDashboard,
+  LayoutDashboard, PlayCircle,
 } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
@@ -224,6 +224,7 @@ const FEATURE_GROUPS = [
     items: [
       { slug: "live-test-call", name: "Live Test Call", icon: PhoneCall, short: "Dial in and test your agent on a real number." },
       { slug: "setup-templates", name: "Setup Templates", icon: LayoutTemplate, short: "Ready-made templates to launch faster." },
+      { slug: "playground-live-testing", name: "Playground & Live Testing", icon: PlayCircle, short: "Try your agent live in an interactive playground." },
     ],
   },
   {
