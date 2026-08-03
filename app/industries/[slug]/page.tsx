@@ -46,6 +46,7 @@ import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
 import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
+import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -1000,7 +1001,7 @@ function RealEstatePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollReveal>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Sparkles className="size-3.5" aria-hidden />
                 Day one. Done right.
@@ -1048,69 +1049,63 @@ function RealEstatePage() {
                     Icon: Phone,
                     tone: "bg-emerald-100 text-emerald-600",
                     title: "Capture & qualify leads instantly",
-                    desc: "Answer calls from Housing.com, MagicBricks, 99acres and more in under 3 seconds.",
                   },
                   {
                     Icon: Users,
                     tone: "bg-violet-100 text-violet-600",
                     title: "Qualify with the right info",
-                    desc: "Understand budget, timeline, loan status and buyer intent — naturally.",
                   },
                   {
                     Icon: CalendarCheck,
                     tone: "bg-blue-100 text-blue-600",
                     title: "Book & manage site visits",
-                    desc: "Check availability and book visits directly on your team calendar.",
                   },
                   {
                     Icon: MessageCircle,
                     tone: "bg-orange-100 text-orange-600",
                     title: "Follow up, every time",
-                    desc: "Send listing follow-ups via SMS and WhatsApp without your team lifting a finger.",
                   },
                   {
                     Icon: Headphones,
                     tone: "bg-emerald-100 text-emerald-600",
                     title: "Nurture while you're busy",
-                    desc: "Keep warm buyers engaged live on the call until they're ready to talk.",
                   },
                 ].map((step, i) => (
                   <li key={step.title} className="relative flex items-start gap-4">
                     <span aria-hidden className="relative z-10 mt-1 size-2.5 shrink-0 rounded-full bg-blue-600 ring-4 ring-blue-50" />
-                    <div className="flex-1 rounded-2xl border border-blue-100/70 bg-white px-5 py-4 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)]">
-                      <div className="flex items-center gap-3">
-                        <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${step.tone}`}>
-                          <step.Icon className="size-4.5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[11px] font-bold text-blue-600">
-                            {String(i + 1).padStart(2, "0")}
-                          </p>
-                          <p className="text-[15px] font-bold leading-snug text-slate-900">{step.title}</p>
-                        </div>
+                    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)]">
+                      <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${step.tone}`}>
+                        <step.Icon className="size-4.5" aria-hidden />
+                      </span>
+                      <div>
+                        <p className="text-[11px] font-bold text-blue-600">
+                          {String(i + 1).padStart(2, "0")}
+                        </p>
+                        <p className="text-[15px] font-bold leading-snug text-slate-900">{step.title}</p>
                       </div>
-                      <p className="mt-2 text-pretty text-[13.5px] leading-relaxed text-slate-500">{step.desc}</p>
                     </div>
                   </li>
                 ))}
               </ol>
 
-              <Button
-                asChild
-                size="lg"
-                className="group mt-8 h-auto w-full rounded-full bg-gradient-to-r from-blue-600 to-sky-600 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/35"
-              >
-                <Link href="/get-started?industry=real-estate">
-                  Launch a real estate agent
-                  <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </Link>
-              </Button>
+              <div className="mt-auto pt-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group h-auto w-full rounded-full bg-gradient-to-r from-blue-600 to-sky-600 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/35"
+                >
+                  <Link href="/get-started?industry=real-estate">
+                    Launch a real estate agent
+                    <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
 
           {/* Right — how agent sounds */}
           <ScrollReveal delay={0.1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Volume2 className="size-3.5" aria-hidden />
                 Hear it to believe it
@@ -1169,63 +1164,15 @@ function RealEstatePage() {
                   </span>
                 </div>
 
-                <div className="space-y-4 p-5">
-                  <div className="flex items-start gap-2.5">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
-                      <Bot className="size-4" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Agent</p>
-                      <p className="mt-0.5 max-w-[90%] rounded-2xl rounded-tl-sm bg-blue-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-800">
-                        {industry.sampleLines[0]}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start justify-end gap-2.5">
-                    <div className="text-right">
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Customer</p>
-                      <p className="mt-0.5 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-700">
-                        Not yet, just started looking.
-                      </p>
-                    </div>
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-500">
-                      <UserCheck className="size-4" aria-hidden />
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-2.5">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
-                      <Bot className="size-4" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Agent</p>
-                      <p className="mt-0.5 max-w-[90%] rounded-2xl rounded-tl-sm bg-blue-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-800">
-                        {industry.sampleLines[1]}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start justify-end gap-2.5">
-                    <div className="text-right">
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Customer</p>
-                      <p className="mt-0.5 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-700">
-                        Not pre-approved yet, actually.
-                      </p>
-                    </div>
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-500">
-                      <UserCheck className="size-4" aria-hidden />
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-2.5">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
-                      <Bot className="size-4" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Agent</p>
-                      <p className="mt-0.5 max-w-[90%] rounded-2xl rounded-tl-sm bg-blue-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-800">
-                        No problem! I can connect you with one. {industry.sampleLines[2]}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <ConversationPreviewChat
+                  messages={[
+                    { from: "agent", text: industry.sampleLines[0] },
+                    { from: "customer", text: "Not yet, just started looking." },
+                    { from: "agent", text: industry.sampleLines[1] },
+                    { from: "customer", text: "Not pre-approved yet, actually." },
+                    { from: "agent", text: `No problem! I can connect you with one. ${industry.sampleLines[2]}` },
+                  ]}
+                />
 
                 <div className="grid grid-cols-3 divide-x divide-slate-100 border-t border-slate-100">
                   {[
@@ -1239,6 +1186,19 @@ function RealEstatePage() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              <div className="mt-auto pt-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group h-auto w-full rounded-full bg-gradient-to-r from-blue-600 to-sky-600 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/35"
+                >
+                  <Link href="/get-started?industry=real-estate">
+                    Hear a live demo call
+                    <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
+                </Button>
               </div>
             </div>
           </ScrollReveal>
