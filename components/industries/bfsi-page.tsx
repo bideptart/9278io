@@ -1,15 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import {
-  ArrowRight,
-  BadgeIndianRupee,
-  CreditCard,
-  Landmark,
-  Rocket,
-  ShieldCheck,
-  TrendingUp,
-  Zap,
-} from "lucide-react"
+import { ArrowRight, Rocket, ShieldCheck, TrendingUp, Zap } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -46,7 +37,7 @@ export function BfsiPage() {
       <BfsiDetails industry={industry} />
 
       {/* Internal contextual links */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 py-16 md:px-8 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 pb-4 pt-0 md:px-8 md:pb-6 md:pt-1">
         <div aria-hidden className="pointer-events-none absolute -left-24 top-10 -z-10 size-80 rounded-full bg-blue-400/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 -z-10 size-96 rounded-full bg-sky-400/15 blur-3xl" />
 
@@ -123,58 +114,19 @@ export function BfsiPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            {/* A product card drifting in 3D space — slow continuous tilt +
-                rise, with a shadow beneath that contracts as it lifts and a
-                specular highlight riding along the same axis. Distinct from
-                a flat float/shimmer: this reads as depth, not decoration. */}
-            <div className="relative mx-auto w-full max-w-[400px] pb-6" style={{ perspective: "1200px" }}>
-              <div
-                aria-hidden
-                className="tilt-shadow pointer-events-none absolute inset-x-6 bottom-2 -z-10 h-8 rounded-[50%] bg-blue-950/25 blur-xl"
-              />
+            <div className="relative mx-auto w-full max-w-[400px]">
+              <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.4)]">
+                <Image
+                  src="/images/bfsi-rollout.png"
+                  alt="How BFSI & fintech teams roll out 9278.io — secure banking, compliance, and analytics workflow"
+                  width={1254}
+                  height={1254}
+                  className="h-auto w-full"
+                  sizes="(min-width: 1024px) 520px, 100vw"
+                />
+              </div>
 
-              <div className="tilt-float relative">
-                <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.4)]">
-                  <Image
-                    src="/images/bfsi-rollout.png"
-                    alt="How BFSI & fintech teams roll out 9278.io — secure banking, compliance, and analytics workflow"
-                    width={1254}
-                    height={1254}
-                    className="h-auto w-full"
-                    sizes="(min-width: 1024px) 520px, 100vw"
-                  />
-                  {/* Specular highlight riding diagonally across the surface,
-                      timed to the same 8s cycle as the tilt. */}
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent bg-[length:220%_220%] motion-safe:animate-[ind-shimmer_8s_ease-in-out_infinite]"
-                  />
-                </div>
-
-                {/* Theme chips pushed out on the Z axis inside the same
-                    preserve-3d group as the card — as it tilts, these visibly
-                    separate from the flat artwork instead of moving with it,
-                    which is what actually reads as "3D" rather than a card
-                    just rotating in place. Positioned to sit near the bank
-                    building, the chart screen, the credit card, and the
-                    coins in the illustration. */}
-                {[
-                  { Icon: Landmark, pos: "left-[8%] top-[22%]", z: 70, delay: "0s" },
-                  { Icon: TrendingUp, pos: "right-[10%] top-[30%]", z: 95, delay: "0.5s" },
-                  { Icon: CreditCard, pos: "left-[12%] bottom-[20%]", z: 55, delay: "1s" },
-                  { Icon: BadgeIndianRupee, pos: "right-[14%] bottom-[26%]", z: 80, delay: "1.5s" },
-                ].map(({ Icon, pos, z, delay }) => (
-                  <span
-                    key={pos}
-                    aria-hidden
-                    style={{ transform: `translateZ(${z}px)`, animationDelay: delay }}
-                    className={`absolute ${pos} z-20 grid size-9 place-items-center rounded-xl border border-white/70 bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-[0_10px_25px_-8px_rgba(37,99,235,0.7)] motion-safe:animate-[ind-float_4.2s_ease-in-out_infinite]`}
-                  >
-                    <Icon className="size-4.5" aria-hidden />
-                  </span>
-                ))}
-
-                <div className="absolute -left-4 -top-4 z-10 hero-float-up">
+              <div className="absolute -left-4 -top-4 z-10 hero-float-up">
                 <div className="rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
                   <div className="flex items-center gap-2.5">
                     <span className="relative grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
@@ -204,7 +156,6 @@ export function BfsiPage() {
                 </div>
               </div>
             </div>
-            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -219,7 +170,7 @@ export function BfsiPage() {
       />
 
       {/* ─── Other industries we power ─── */}
-      <section className="w-full px-6 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
+      <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">
