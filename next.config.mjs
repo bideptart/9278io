@@ -25,14 +25,18 @@ const cspDirectives = [
   "frame-src 'self' https://checkout.razorpay.com https://api.razorpay.com https://*.razorpay.com https://js.stripe.com https://hooks.stripe.com",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
-  "upgrade-insecure-requests",
-].join("; ")
+]
 
 // Report-Only by default so violations are surfaced (browser console) without
 // breaking anything. Once the reports are clean, set CSP_ENFORCE=true to switch
 // the header to the enforcing `Content-Security-Policy` — no code change needed.
-const cspHeaderName =
-  process.env.CSP_ENFORCE === "true" ? "Content-Security-Policy" : "Content-Security-Policy-Report-Only"
+const cspEnforced = process.env.CSP_ENFORCE === "true"
+const cspHeaderName = cspEnforced ? "Content-Security-Policy" : "Content-Security-Policy-Report-Only"
+
+// 'upgrade-insecure-requests' only has an effect on an enforcing policy —
+// browsers ignore it (with a console warning) when sent as Report-Only, so
+// it's added just for the enforcing header to avoid that noise.
+const cspDirectivesFinal = (cspEnforced ? [...cspDirectives, "upgrade-insecure-requests"] : cspDirectives).join("; ")
 
 const securityHeaders = [
   // Force HTTPS for two years incl. subdomains; eligible for the preload list.
@@ -44,7 +48,7 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: 'camera=(), microphone=(), geolocation=(), browsing-topics=(), payment=(self "https://checkout.razorpay.com" "https://js.stripe.com")',
   },
-  { key: cspHeaderName, value: cspDirectives },
+  { key: cspHeaderName, value: cspDirectivesFinal },
 ]
 
 /** @type {import('next').NextConfig} */
