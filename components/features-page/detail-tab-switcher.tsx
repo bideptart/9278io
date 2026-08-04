@@ -24,7 +24,7 @@ export function DetailTabSwitcher({ items }: { items: DetailItem[] }) {
   const [paused, setPaused] = useState(false)
   const [runId, setRunId] = useState(0)
   const current = items[active]
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>()
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
     if (paused) return
