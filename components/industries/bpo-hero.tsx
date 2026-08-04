@@ -11,7 +11,6 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import AutoTextRoll from "@/components/ui/auto-text-roll"
 import type { Industry } from "@/lib/industries"
 
 const HERO_STATS = [
@@ -71,30 +70,17 @@ export function BpoHero({ industry }: { industry: Industry }) {
             <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
               <span
                 style={{ animationDelay: "0.15s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block"
+                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black"
               >
-                <AutoTextRoll intervalMs={2000} className="font-black">
-                  AI Voice Agents
-                </AutoTextRoll>
+                AI Voice Agents
               </span>
-              {/* Two animations, two elements — the wrapper does the entrance
-                  fade, the inner span runs the looping gradient sweep. */}
               <span
                 style={{ animationDelay: "0.25s" }}
                 className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
               >
-                <AutoTextRoll
-                  intervalMs={2000}
-                  className="bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]"
-                >
-                  For BPO &amp;
-                </AutoTextRoll>
-                <AutoTextRoll
-                  intervalMs={2000}
-                  className="bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]"
-                >
-                  Call Centres.
-                </AutoTextRoll>
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                  For BPO &amp; Call Centres.
+                </span>
               </span>
             </h1>
 

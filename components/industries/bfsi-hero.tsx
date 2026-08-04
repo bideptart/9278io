@@ -78,7 +78,7 @@ export function BfsiHero({ industry }: { industry: Industry }) {
                 style={{ animationDelay: "0.25s" }}
                 className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
               >
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]">
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
                   For BFSI &amp; Fintech.
                 </span>
               </span>
