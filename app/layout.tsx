@@ -86,7 +86,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="bg-background font-sans antialiased">
+      <body className="bg-background font-sans antialiased" suppressHydrationWarning>
         {/* GA4 + Google Ads global site tag (next/script, afterInteractive) */}
         <GoogleTags />
         {/* Placeholder for a call-tracking provider (no-op until configured) */}

@@ -77,12 +77,12 @@ export default function VoiceSelectionPage() {
                 BUILD &amp; SETUP
               </span>
 
-              <h1 className="mt-8 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>Voice</span>
                 <br />
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(90deg, #2563EB, #0EA5E9, #10B981)",
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",

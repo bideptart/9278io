@@ -64,8 +64,18 @@ export default function CallReportsPage() {
             <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.08] text-primary">
               <Mic className="size-6" aria-hidden />
             </span>
-            <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              Call Reports (Recordings / Transcripts)
+            <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <span style={{ color: "#0F172A" }}>Call</span>{" "}
+              <span
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                Reports (Recordings / Transcripts)
+              </span>
             </h1>
             <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               Every call is recorded and transcribed, with playback and download built in — so you can

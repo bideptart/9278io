@@ -2,6 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
+  HelpCircle,
+  IndianRupee,
+  LayoutGrid,
   PhoneCall,
   PhoneForwarded,
   PhoneOutgoing,
@@ -18,15 +21,31 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailSplitRows } from "@/components/features-page/detail-split-rows"
 import { HowItWorksZigzag } from "@/components/features-page/how-it-works-zigzag"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
-import { FaqSwitcher } from "@/components/features-page/faq-switcher"
+import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { CallTransferIllustration } from "@/components/features-page/call-transfer-illustration"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
-import { FAQ_GROUPS } from "@/lib/faq"
 
-const agentsFaq = FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
-  ["Can the agent transfer to a human?", "Does it integrate with Indian CRMs and tools?"].includes(i.q),
-)
+const exploreLinks = [
+  {
+    icon: <LayoutGrid className="size-5" aria-hidden />,
+    href: "/features",
+    title: "All features",
+    description: "Every capability across Build, Train, Test, Operate, and Account.",
+  },
+  {
+    icon: <IndianRupee className="size-5" aria-hidden />,
+    href: "/pricing",
+    title: "Pricing in INR",
+    description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Per-second billing.",
+  },
+  {
+    icon: <HelpCircle className="size-5" aria-hidden />,
+    href: "/faq",
+    title: "Frequently asked questions",
+    description: "TRAI compliance, Indian languages, billing, and account questions.",
+  },
+]
 
 export const metadata: Metadata = pageSeo({
   title: "Call Transfer Tool",
@@ -102,8 +121,18 @@ export default function CallTransferToolPage() {
               <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.08] text-primary">
                 <PhoneForwarded className="size-6" aria-hidden />
               </span>
-              <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Call Transfer Tool
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>Call</span>{" "}
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Transfer Tool
+                </span>
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Hand off any call to a human number with a custom label you set — so when your agent hits its
@@ -198,31 +227,6 @@ export default function CallTransferToolPage() {
         </div>
       </section>
 
-      <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
-          <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-              Related questions
-            </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Handoffs, answered</h2>
-            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-              Straight from the FAQ — pick a question to see the answer.
-            </p>
-          </ScrollReveal>
-          <div className="mt-8">
-            <FaqSwitcher items={agentsFaq} />
-          </div>
-          <Link
-            href="/faq"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-          >
-            See all FAQs
-            <ArrowRight className="size-3.5" aria-hidden />
-          </Link>
-        </div>
-      </section>
-
       <PricingCta
         heading="Set up your first transfer rule"
         description="Spin up your first agent and connect a fallback number so no call ever hits a wall."
@@ -231,6 +235,18 @@ export default function CallTransferToolPage() {
         secondaryHref="/features"
         secondaryLabel="Back to Features"
       />
+
+      <section className="border-b border-border/50">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+          <ScrollReveal>
+            <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
+            <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
+              See the rest of what's included, or check pricing and common questions.
+            </p>
+          </ScrollReveal>
+          <MultiAgentExploreLinks links={exploreLinks} />
+        </div>
+      </section>
 
       <SiteFooter />
     </main>

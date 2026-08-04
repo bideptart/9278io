@@ -9,6 +9,9 @@ import {
   PhoneCall,
   UserCheck,
   Check,
+  LayoutGrid,
+  IndianRupee,
+  HelpCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
@@ -18,15 +21,31 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailCards } from "@/components/features-page/detail-cards"
 import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
-import { FaqSwitcher } from "@/components/features-page/faq-switcher"
+import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { CallBehaviorPanel } from "@/components/features-page/call-behavior-panel"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
-import { FAQ_GROUPS } from "@/lib/faq"
 
-const agentsFaq = FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
-  ["Can the agent transfer to a human?", "Can I record and transcribe every call?"].includes(i.q),
-)
+const exploreLinks = [
+  {
+    icon: <LayoutGrid className="size-5" aria-hidden />,
+    href: "/features",
+    title: "All features",
+    description: "Every capability across Build, Train, Test, Operate, and Account.",
+  },
+  {
+    icon: <IndianRupee className="size-5" aria-hidden />,
+    href: "/pricing",
+    title: "Pricing in INR",
+    description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Per-second billing.",
+  },
+  {
+    icon: <HelpCircle className="size-5" aria-hidden />,
+    href: "/faq",
+    title: "Frequently asked questions",
+    description: "TRAI compliance, Indian languages, billing, and account questions.",
+  },
+]
 
 export const metadata: Metadata = pageSeo({
   title: "Call Behavior Controls",
@@ -92,13 +111,20 @@ export default function CallBehaviorControlsPage() {
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-2 md:px-8 md:pb-24 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
                 Build &amp; Setup
               </span>
-              <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 Call{" "}
-                <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
                   Behavior Controls
                 </span>
               </h1>
@@ -204,31 +230,6 @@ export default function CallBehaviorControlsPage() {
         </div>
       </section>
 
-      <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
-          <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-              Related questions
-            </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Call behavior, answered</h2>
-            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-              Straight from the FAQ — pick a question to see the answer.
-            </p>
-          </ScrollReveal>
-          <div className="mt-8">
-            <FaqSwitcher items={agentsFaq} />
-          </div>
-          <Link
-            href="/faq"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-          >
-            See all FAQs
-            <ArrowRight className="size-3.5" aria-hidden />
-          </Link>
-        </div>
-      </section>
-
       <PricingCta
         heading="Ready to set your agent's call behavior?"
         description="Build your first agent free, then configure its greeting, interruption handling, and handoff rules — all in one place."
@@ -237,6 +238,18 @@ export default function CallBehaviorControlsPage() {
         secondaryHref="/features"
         secondaryLabel="Back to Features"
       />
+
+      <section className="border-b border-border/50">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+          <ScrollReveal>
+            <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
+            <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
+              See the rest of what's included, or check pricing and common questions.
+            </p>
+          </ScrollReveal>
+          <MultiAgentExploreLinks links={exploreLinks} />
+        </div>
+      </section>
 
       <SiteFooter />
     </main>
