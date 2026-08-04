@@ -198,6 +198,7 @@ export default function AutomotiveIndustryPage() {
                     height={340}
                     className="h-auto w-full"
                     sizes="(min-width: 1024px) 560px, 90vw"
+                    unoptimized
                     priority
                   />
                 </div>
@@ -476,6 +477,16 @@ export default function AutomotiveIndustryPage() {
         </div>
       </section>
 
+      {/* Closing CTA */}
+      <PricingCta
+        heading="Ready to fill every bay and every seat?"
+        description="Launch an agent that books test drives, schedules service, and answers parts questions — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* Other industries — uniform corner-ribbon cards, matching the
           card style already used elsewhere in the project (e-commerce's
           industry page) rather than the asymmetric bento used before. */}
@@ -571,16 +582,6 @@ export default function AutomotiveIndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* Closing CTA */}
-      <PricingCta
-        heading="Ready to fill every bay and every seat?"
-        description="Launch an agent that books test drives, schedules service, and answers parts questions — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

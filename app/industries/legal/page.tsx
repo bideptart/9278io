@@ -421,6 +421,16 @@ export default function LegalIndustryPage() {
         </div>
       </section>
 
+      {/* ══ Closing CTA ══ */}
+      <PricingCta
+        heading="Put an agent on your intake line."
+        description="Answer every enquiry, capture the facts your advocates need, and book the consult — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* ══ Other industries — same uniform corner-ribbon cards the
              automotive, fitness and education pages use ══ */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
@@ -505,16 +515,6 @@ export default function LegalIndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* ══ Closing CTA ══ */}
-      <PricingCta
-        heading="Put an agent on your intake line."
-        description="Answer every enquiry, capture the facts your advocates need, and book the consult — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

@@ -53,7 +53,8 @@ export function TtsComparison() {
         variants={winCardVariants}
         initial="hidden"
         animate={state}
-        className="relative h-full rounded-2xl border-2 bg-white p-7 md:p-8 transition-transform duration-300 hover:-translate-y-1"
+        whileHover={{ y: -4, transition: { duration: 0.25, ease: "easeOut" } }}
+        className="relative h-full rounded-2xl border-2 bg-white p-7 md:p-8"
         style={{ borderColor: "#2563EB" }}
       >
         <motion.div

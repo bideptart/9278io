@@ -30,8 +30,11 @@ import {
   Building2,
   Briefcase,
   Wrench,
-  Star,
-  Leaf,
+  Droplet,
+  Fan,
+  Search,
+  Bell,
+  MapPin,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -41,6 +44,9 @@ import { IndustryImage } from "@/components/industries/industry-image"
 import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
+import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
+import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
+import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -84,8 +90,9 @@ function ECommercePage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -131,17 +138,18 @@ function ECommercePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-serif text-5xl font-extrabold leading-[0.98] tracking-tight text-slate-900 sm:text-[3.4rem] md:text-[4.1rem]">
-                <span className="block font-black">AI voice agents</span>
+              <h1 className="mt-7 text-balance font-sans text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
+                <span className="block font-black">AI Voice Agents</span>
                 <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
-                  for e-commerce.
+                  for E-Commerce.
                 </span>
               </h1>
 
               <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
                 D2C brands hit support volume spikes the moment they hit a marketing milestone. 9278.io absorbs the
                 surge — order status, returns, sizing, and post-purchase upsells — and only escalates the genuinely
-                angry customers to a human.
+                angry customers to a human. Every call is picked up in under 3 seconds, in the customer's own
+                language, so a flash sale or a viral post never turns into a wave of missed calls and lost orders.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -199,14 +207,20 @@ function ECommercePage() {
                   <img
                     src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Futuristic%20white%20robot%20with%20purple%20blue%20glowing%20eyes%20wearing%20headset%20standing%20on%20a%20white%20circular%20podium%2C%20surrounded%20by%20four%20floating%20glass%20morphism%20UI%20cards%3A%20shopping%20cart%20order%20update%2C%20package%20returns%2C%20audio%20wave%20listening%2C%20upsell%20chart%20graph.%20Swirling%20orbital%20rings%2C%20sparkle%20particles%2C%20soft%20purple%20blue%20tech%20gradient%20background%2C%20clean%203D%20render%2C%20isometric%20angle&image_size=landscape_4_3"
                     alt="AI Voice Agent for E-commerce — futuristic robot on podium with floating glass cards"
-                    className="w-full rounded-[2rem] object-cover"
+                    className="hero-image-float aspect-[4/3.3] w-full rounded-[2rem] object-cover"
                     loading="eager"
+                  />
+
+                  {/* Ambient glow pulsing beneath the robot, reinforcing the sense of motion */}
+                  <div
+                    aria-hidden
+                    className="ind-glow pointer-events-none absolute bottom-6 left-1/2 h-10 w-40 -translate-x-1/2 rounded-full bg-indigo-400/30 blur-2xl"
                   />
 
                   {/* Overlay Floating Glass Cards (on top of image to ensure exact match) */}
 
                   {/* Top-left: Order Update Processing */}
-                  <div className="absolute left-4 top-6 z-20 hero-float-up">
+                  <div className="absolute -left-4 top-6 z-20 hero-float-up">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <div className="flex items-center gap-3">
                         <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -224,7 +238,7 @@ function ECommercePage() {
                   </div>
 
                   {/* Top-right: AI Voice Agent Listening */}
-                  <div className="absolute right-2 top-2 z-20 ind-float">
+                  <div className="absolute -right-4 -top-4 z-20 ind-float">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <p className="text-[13px] font-bold text-blue-700 leading-tight">AI Voice Agent</p>
                       <div className="mt-1.5 flex items-center gap-1.5">
@@ -250,7 +264,7 @@ function ECommercePage() {
                   </div>
 
                   {/* Middle-left: Returns & Exchange Handled */}
-                  <div className="absolute left-0 top-[48%] z-20 hero-float-down">
+                  <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <div className="flex items-center gap-3">
                         <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -265,7 +279,7 @@ function ECommercePage() {
                   </div>
 
                   {/* Bottom-right: Upsell Opportunity Identified */}
-                  <div className="absolute right-0 bottom-10 z-20 ind-float">
+                  <div className="absolute -right-6 bottom-10 z-20 ind-float">
                     <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                       <div className="flex items-center gap-3">
                         <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -292,7 +306,7 @@ function ECommercePage() {
         {/* ─── Stats bar (directly under hero, inside hero section per reference) ─── */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
           <ScrollReveal className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
                   {
@@ -325,7 +339,7 @@ function ECommercePage() {
                       <StatIcon className="size-6" aria-hidden />
                     </span>
                     <div>
-                      <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                      <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
                         {value}
                       </p>
                       <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
@@ -351,7 +365,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
                 What the agent does
                 <br />
                 on day one
@@ -383,7 +397,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.75rem]">
                 How the agent
                 <br />
                 actually sounds
@@ -461,7 +475,7 @@ function ECommercePage() {
               </span>
             </span>
             <div>
-              <h2 className="text-balance font-serif text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              <h2 className="text-balance font-sans text-3xl font-bold tracking-tight text-foreground md:text-4xl">
                 How e-commerce
                 <br />
                 teams roll out 9278.io
@@ -573,7 +587,7 @@ function ECommercePage() {
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
-            <h2 className="mt-5 text-balance font-serif text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
+            <h2 className="mt-5 text-balance font-sans text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
               AI agents that{" "}
               <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
                 grow with you
@@ -624,7 +638,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
+              <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
                   <span className="grid size-5 place-items-center rounded-md bg-blue-100 text-blue-600">
                     <ShieldCheck className="size-3" aria-hidden />
@@ -639,7 +653,7 @@ function ECommercePage() {
                     { label: "Revenue Impact", value: "₹4.2L" },
                   ].map((s) => (
                     <div key={s.label}>
-                      <p className="font-serif text-xl font-bold tracking-tight text-blue-700 sm:text-2xl">
+                      <p className="font-sans text-xl font-bold tracking-tight text-blue-700 sm:text-2xl">
                         {s.value}
                       </p>
                       <p className="mt-1 text-[11px] font-medium leading-snug text-slate-500">{s.label}</p>
@@ -680,11 +694,20 @@ function ECommercePage() {
         </div>
       </section>
 
+      <PricingCta
+        heading="Let AI handle calls so your team can focus on growing sales."
+        description="Launch your AI voice agent in minutes. No setup headaches."
+        primaryHref="/get-started?industry=ecommerce"
+        primaryLabel="Launch an e-commerce agent"
+        secondaryHref="/get-started?industry=ecommerce"
+        secondaryLabel="Talk to our expert"
+      />
+
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -759,7 +782,7 @@ function ECommercePage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -782,8 +805,9 @@ function ECommercePage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
@@ -793,8 +817,9 @@ function RealEstatePage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -838,10 +863,10 @@ function RealEstatePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-serif text-5xl font-extrabold leading-[0.98] tracking-tight text-slate-900 sm:text-[3.4rem] md:text-[4.1rem]">
-                <span className="block font-black">AI voice agents</span>
+              <h1 className="mt-7 text-balance font-sans text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
+                <span className="block font-black">AI Voice Agents</span>
                 <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
-                  for real estate.
+                  for Real Estate.
                 </span>
               </h1>
 
@@ -898,7 +923,7 @@ function RealEstatePage() {
                   <IndustryImage slug="real-estate" name="Real estate" />
                 </div>
 
-                <div className="absolute left-4 top-6 z-20 hero-float-up">
+                <div className="absolute -left-4 top-6 z-20 hero-float-up">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -915,7 +940,7 @@ function RealEstatePage() {
                   </div>
                 </div>
 
-                <div className="absolute right-2 top-2 z-20 ind-float">
+                <div className="absolute -right-4 -top-4 z-20 ind-float">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <p className="text-[13px] font-bold text-blue-700 leading-tight">AI Voice Agent</p>
                     <div className="mt-1.5 flex items-center gap-1.5">
@@ -937,7 +962,7 @@ function RealEstatePage() {
                   </div>
                 </div>
 
-                <div className="absolute left-0 top-[48%] z-20 hero-float-down">
+                <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -951,7 +976,7 @@ function RealEstatePage() {
                   </div>
                 </div>
 
-                <div className="absolute right-0 bottom-10 z-20 ind-float">
+                <div className="absolute -right-6 bottom-10 z-20 ind-float">
                   <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
                     <div className="flex items-center gap-3">
                       <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
@@ -976,7 +1001,7 @@ function RealEstatePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollReveal>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Sparkles className="size-3.5" aria-hidden />
                 Day one. Done right.
@@ -984,7 +1009,7 @@ function RealEstatePage() {
 
               <div className="mt-6 flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-balance font-serif text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
+                  <h2 className="text-balance font-sans text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
                     What the agent
                     <br />
                     does on <span className="text-blue-600">day one</span>
@@ -1024,69 +1049,63 @@ function RealEstatePage() {
                     Icon: Phone,
                     tone: "bg-emerald-100 text-emerald-600",
                     title: "Capture & qualify leads instantly",
-                    desc: "Answer calls from Housing.com, MagicBricks, 99acres and more in under 3 seconds.",
                   },
                   {
                     Icon: Users,
                     tone: "bg-violet-100 text-violet-600",
                     title: "Qualify with the right info",
-                    desc: "Understand budget, timeline, loan status and buyer intent — naturally.",
                   },
                   {
                     Icon: CalendarCheck,
                     tone: "bg-blue-100 text-blue-600",
                     title: "Book & manage site visits",
-                    desc: "Check availability and book visits directly on your team calendar.",
                   },
                   {
                     Icon: MessageCircle,
                     tone: "bg-orange-100 text-orange-600",
                     title: "Follow up, every time",
-                    desc: "Send listing follow-ups via SMS and WhatsApp without your team lifting a finger.",
                   },
                   {
                     Icon: Headphones,
                     tone: "bg-emerald-100 text-emerald-600",
                     title: "Nurture while you're busy",
-                    desc: "Keep warm buyers engaged live on the call until they're ready to talk.",
                   },
                 ].map((step, i) => (
                   <li key={step.title} className="relative flex items-start gap-4">
                     <span aria-hidden className="relative z-10 mt-1 size-2.5 shrink-0 rounded-full bg-blue-600 ring-4 ring-blue-50" />
-                    <div className="flex-1 rounded-2xl border border-blue-100/70 bg-white px-5 py-4 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)]">
-                      <div className="flex items-center gap-3">
-                        <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${step.tone}`}>
-                          <step.Icon className="size-4.5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[11px] font-bold text-blue-600">
-                            {String(i + 1).padStart(2, "0")}
-                          </p>
-                          <p className="text-[15px] font-bold leading-snug text-slate-900">{step.title}</p>
-                        </div>
+                    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)]">
+                      <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${step.tone}`}>
+                        <step.Icon className="size-4.5" aria-hidden />
+                      </span>
+                      <div>
+                        <p className="text-[11px] font-bold text-blue-600">
+                          {String(i + 1).padStart(2, "0")}
+                        </p>
+                        <p className="text-[15px] font-bold leading-snug text-slate-900">{step.title}</p>
                       </div>
-                      <p className="mt-2 text-pretty text-[13.5px] leading-relaxed text-slate-500">{step.desc}</p>
                     </div>
                   </li>
                 ))}
               </ol>
 
-              <Button
-                asChild
-                size="lg"
-                className="group mt-8 h-auto w-full rounded-full bg-gradient-to-r from-blue-600 to-sky-600 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/35"
-              >
-                <Link href="/get-started?industry=real-estate">
-                  Launch a real estate agent
-                  <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                </Link>
-              </Button>
+              <div className="mt-auto pt-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group h-auto w-full rounded-full bg-gradient-to-r from-blue-600 to-sky-600 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/35"
+                >
+                  <Link href="/get-started?industry=real-estate">
+                    Launch a real estate agent
+                    <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </ScrollReveal>
 
           {/* Right — how agent sounds */}
           <ScrollReveal delay={0.1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-7 shadow-sm sm:p-9">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Volume2 className="size-3.5" aria-hidden />
                 Hear it to believe it
@@ -1094,7 +1113,7 @@ function RealEstatePage() {
 
               <div className="mt-6 flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-balance font-serif text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
+                  <h2 className="text-balance font-sans text-[1.9rem] font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-3xl">
                     How the agent
                     <br />
                     actually <span className="text-blue-600">sounds</span>
@@ -1145,63 +1164,15 @@ function RealEstatePage() {
                   </span>
                 </div>
 
-                <div className="space-y-4 p-5">
-                  <div className="flex items-start gap-2.5">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
-                      <Bot className="size-4" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Agent</p>
-                      <p className="mt-0.5 max-w-[90%] rounded-2xl rounded-tl-sm bg-blue-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-800">
-                        {industry.sampleLines[0]}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start justify-end gap-2.5">
-                    <div className="text-right">
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Customer</p>
-                      <p className="mt-0.5 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-700">
-                        Not yet, just started looking.
-                      </p>
-                    </div>
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-500">
-                      <UserCheck className="size-4" aria-hidden />
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-2.5">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
-                      <Bot className="size-4" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Agent</p>
-                      <p className="mt-0.5 max-w-[90%] rounded-2xl rounded-tl-sm bg-blue-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-800">
-                        {industry.sampleLines[1]}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start justify-end gap-2.5">
-                    <div className="text-right">
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Customer</p>
-                      <p className="mt-0.5 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-700">
-                        Not pre-approved yet, actually.
-                      </p>
-                    </div>
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-500">
-                      <UserCheck className="size-4" aria-hidden />
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-2.5">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
-                      <Bot className="size-4" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-wide text-slate-400">Agent</p>
-                      <p className="mt-0.5 max-w-[90%] rounded-2xl rounded-tl-sm bg-blue-50 px-3.5 py-2 text-[13.5px] leading-relaxed text-slate-800">
-                        No problem! I can connect you with one. {industry.sampleLines[2]}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <ConversationPreviewChat
+                  messages={[
+                    { from: "agent", text: industry.sampleLines[0] },
+                    { from: "customer", text: "Not yet, just started looking." },
+                    { from: "agent", text: industry.sampleLines[1] },
+                    { from: "customer", text: "Not pre-approved yet, actually." },
+                    { from: "agent", text: `No problem! I can connect you with one. ${industry.sampleLines[2]}` },
+                  ]}
+                />
 
                 <div className="grid grid-cols-3 divide-x divide-slate-100 border-t border-slate-100">
                   {[
@@ -1215,6 +1186,19 @@ function RealEstatePage() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              <div className="mt-auto pt-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group h-auto w-full rounded-full bg-gradient-to-r from-blue-600 to-sky-600 py-3.5 text-[15px] font-bold text-white shadow-lg shadow-blue-600/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-blue-600/35"
+                >
+                  <Link href="/get-started?industry=real-estate">
+                    Hear a live demo call
+                    <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  </Link>
+                </Button>
               </div>
             </div>
           </ScrollReveal>
@@ -1232,7 +1216,7 @@ function RealEstatePage() {
               </span>
             </span>
             <div>
-              <h2 className="text-balance font-serif text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+              <h2 className="text-balance font-sans text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
                 How real estate
                 <br />
                 teams roll out <span className="text-blue-600">9278.io</span>
@@ -1267,7 +1251,7 @@ function RealEstatePage() {
                   <Home className="size-7" aria-hidden />
                 </span>
 
-                <h3 className="mt-5 text-balance font-serif text-2xl font-bold tracking-tight text-slate-900">
+                <h3 className="mt-5 text-balance font-sans text-2xl font-bold tracking-tight text-slate-900">
                   Start small.
                   <br />
                   Grow fast.
@@ -1332,7 +1316,7 @@ function RealEstatePage() {
                   <MessageCircle className="size-7" aria-hidden />
                 </span>
 
-                <h3 className="mt-5 text-balance font-serif text-2xl font-bold tracking-tight text-slate-900">
+                <h3 className="mt-5 text-balance font-sans text-2xl font-bold tracking-tight text-slate-900">
                   Explore more.
                   <br />
                   Compare with confidence.
@@ -1416,7 +1400,7 @@ function RealEstatePage() {
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
-            <h2 className="mt-5 text-balance font-serif text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
+            <h2 className="mt-5 text-balance font-sans text-4xl font-bold tracking-tight text-slate-900 sm:text-[2.6rem]">
               AI agents that{" "}
               <span className="bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent">
                 grow with you
@@ -1454,7 +1438,7 @@ function RealEstatePage() {
           {/* Right — Picture 2: real-time performance recap (real stats, no invented numbers) */}
           <ScrollReveal delay={0.12}>
             <div className="relative">
-              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
+              <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <div className="flex items-center gap-3">
                   <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
                     <TrendingUp className="size-5" aria-hidden />
@@ -1476,12 +1460,12 @@ function RealEstatePage() {
                   ].map((s) => (
                     <div
                       key={s.label}
-                      className={`w-full max-w-[220px] rounded-2xl p-6 text-center ${s.tone} ${s.label === "First-touch response" ? "border border-blue-400" : ""}`}
+                      className={`w-full max-w-[220px] rounded-2xl border border-blue-400 p-6 text-center ${s.tone}`}
                     >
                       <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70">
                         <s.Icon className="size-6" aria-hidden />
                       </span>
-                      <p className="mt-4 font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                      <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                         {s.value}
                       </p>
                       <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
@@ -1494,11 +1478,20 @@ function RealEstatePage() {
         </div>
       </section>
 
+      <PricingCta
+        heading="Let AI handle calls so your team can focus on closing deals."
+        description="Launch your AI voice agent in minutes. No setup headaches."
+        primaryHref="/get-started?industry=real-estate"
+        primaryLabel="Launch a real estate agent"
+        secondaryHref="/get-started?industry=real-estate"
+        secondaryLabel="Talk to our expert"
+      />
+
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -1573,7 +1566,7 @@ function RealEstatePage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -1596,8 +1589,9 @@ function RealEstatePage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
@@ -1607,8 +1601,9 @@ function HomeServicesPage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -1627,25 +1622,7 @@ function HomeServicesPage() {
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
         <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <nav aria-label="Breadcrumb" className="mx-auto mb-6 max-w-7xl text-xs text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-slate-800">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li>
-                <Link href="/industries" className="hover:text-slate-800">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li className="text-slate-800">Home services</li>
-            </ol>
-          </nav>
-
-          <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+          <div className="mx-auto grid max-w-7xl items-start gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[13px] font-medium text-blue-700 shadow-sm">
@@ -1655,10 +1632,10 @@ function HomeServicesPage() {
                 AI voice agents for home services
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
-                AI voice agents
+              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+                AI Voice Agents
                 <br />
-                built for <span className="text-blue-600">home services.</span>
+                Built for <span className="text-blue-600">Home Services.</span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
@@ -1707,107 +1684,118 @@ function HomeServicesPage() {
 
             {/* Right — hero photo + smarter-calls overlay + live call preview */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[620px] pb-16">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-600 via-blue-500 to-sky-400 shadow-xl shadow-slate-900/10">
-                  {/* Decorative dotted pattern */}
+              <div className="relative mx-auto w-full max-w-[620px]">
+                <div className="relative flex flex-col items-center gap-5 overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 px-5 py-8 shadow-xl shadow-slate-900/10 sm:block sm:aspect-[4/3.5] sm:px-0 sm:py-0">
+                  {/* Dotted pattern, faded toward the center */}
                   <div
                     aria-hidden
-                    className="absolute inset-0 opacity-[0.18]"
+                    className="absolute inset-0 opacity-[0.22]"
                     style={{
-                      backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.9) 1.5px, transparent 1.8px)",
-                      backgroundSize: "22px 22px",
+                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.3) 1px, transparent 1.4px)",
+                      backgroundSize: "18px 18px",
+                      maskImage: "radial-gradient(circle at center, transparent 30%, black 75%)",
+                      WebkitMaskImage: "radial-gradient(circle at center, transparent 30%, black 75%)",
                     }}
                   />
-                  <div aria-hidden className="absolute -right-14 -top-14 size-64 rounded-full bg-white/10 blur-2xl" />
-                  <div aria-hidden className="absolute -bottom-16 -left-10 size-56 rounded-full bg-blue-900/20 blur-2xl" />
+                  {/* Soft ambient light blobs */}
+                  <div aria-hidden className="absolute -left-16 -top-16 size-64 rounded-full bg-blue-200/40 blur-3xl" />
+                  <div aria-hidden className="absolute -bottom-20 -right-10 size-72 rounded-full bg-sky-200/40 blur-3xl" />
+                  <div aria-hidden className="absolute left-1/3 top-1/4 size-40 rounded-full bg-white/60 blur-2xl" />
+                  {/* Abstract guide circle */}
+                  <div
+                    aria-hidden
+                    className="absolute left-1/2 top-1/2 size-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-200/50"
+                  />
 
-                  {/* Orbiting capability icons */}
-                  <span className="absolute right-10 top-8 grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
-                    <Wrench className="size-5" aria-hidden />
-                  </span>
-                  <span className="absolute right-8 bottom-[38%] grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
-                    <Home className="size-5" aria-hidden />
-                  </span>
-                  <span className="absolute left-8 bottom-[30%] grid size-10 place-items-center rounded-full bg-white text-blue-600 shadow-lg">
-                    <MessageCircle className="size-4.5" aria-hidden />
-                  </span>
-
-                  {/* Ground shadow */}
-                  <div aria-hidden className="absolute bottom-[18%] left-1/2 h-5 w-32 -translate-x-1/2 rounded-full bg-blue-950/25 blur-md" />
-
-                  {/* Robot mascot */}
-                  <div className="absolute bottom-[20%] left-1/2 flex -translate-x-1/2 flex-col items-center">
-                    {/* Antenna */}
-                    <div className="flex flex-col items-center">
-                      <span className="size-2.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" aria-hidden />
-                      <span className="h-4 w-[3px] bg-white/80" aria-hidden />
+                  {/* Phone — Home Dashboard (stacked first on mobile/tablet, top-left floating on sm+) */}
+                  <div
+                    className="ind-float relative z-10 w-full max-w-[280px] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:absolute sm:left-[4%] sm:top-[4%] sm:w-[264px] sm:max-w-none sm:-rotate-[9deg]"
+                    style={{ animationDelay: "2.8s" }}
+                  >
+                    <div className="overflow-hidden rounded-[1.4rem]">
+                      <div className="space-y-4 px-4 pb-6 pt-6">
+                        <div className="flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-2.5">
+                          <Search className="size-3.5 text-slate-500" aria-hidden />
+                          <span className="text-[10px] font-medium text-slate-500">Find any service</span>
+                        </div>
+                        <div className="grid grid-cols-4 gap-2">
+                          {[Droplet, Zap, Fan, Sparkles].map((CatIcon, i) => (
+                            <div key={i} className="rounded-lg bg-blue-50 py-2.5 text-center">
+                              <CatIcon className="mx-auto size-4 text-blue-600" aria-hidden />
+                            </div>
+                          ))}
+                        </div>
+                        <div className="rounded-xl bg-blue-600 p-3.5 text-white">
+                          <p className="text-[11px] font-bold">15% OFF Today</p>
+                          <p className="text-[9.5px] font-medium text-blue-100">Book any service now</p>
+                        </div>
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-2.5">
+                            <p className="text-[9.5px] font-bold text-slate-900">Plumbing Repair</p>
+                            <p className="text-[9.5px] font-bold text-blue-600">₹399</p>
+                          </div>
+                          <div className="flex items-center justify-between rounded-lg border border-slate-100 p-2.5">
+                            <p className="text-[9.5px] font-bold text-slate-900">Deep Cleaning</p>
+                            <p className="text-[9.5px] font-bold text-blue-600">₹599</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-around border-t border-slate-100 px-2 py-3.5">
+                        {[Home, CalendarCheck, MessageCircle, Bell].map((NavIcon, i) => (
+                          <NavIcon key={i} className={`size-4 ${i === 0 ? "text-blue-600" : "text-slate-400"}`} aria-hidden />
+                        ))}
+                      </div>
                     </div>
+                  </div>
 
-                    {/* Head */}
-                    <div className="relative flex h-16 w-20 items-center justify-center gap-3 rounded-2xl bg-white shadow-lg">
-                      <span className="size-3.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" aria-hidden />
-                      <span className="size-3.5 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" aria-hidden />
-                      <span
-                        aria-hidden
-                        className="absolute bottom-2.5 left-1/2 h-1.5 w-6 -translate-x-1/2 rounded-full border-b-2 border-blue-300"
-                      />
-                    </div>
-
-                    {/* Neck */}
-                    <span className="h-1.5 w-4 bg-slate-200" aria-hidden />
-
-                    {/* Body */}
-                    <div className="relative flex h-20 w-28 items-start justify-center rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200 pt-3 shadow-lg">
-                      {/* Arms */}
-                      <span className="absolute -left-3 top-3 h-10 w-3 rounded-full bg-slate-200" aria-hidden />
-                      <span className="absolute -right-3 top-3 h-10 w-3 rounded-full bg-slate-200" aria-hidden />
-                      {/* Chest panel */}
-                      <span className="grid size-9 place-items-center rounded-full bg-blue-600 text-white shadow-inner">
-                        <Bot className="size-5" aria-hidden />
+                  {/* Phone — Book Appointment (stacked second on mobile/tablet, top-right floating on sm+) */}
+                  <div
+                    className="ind-float relative z-30 w-full max-w-[280px] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:absolute sm:right-[4%] sm:top-[6%] sm:w-[272px] sm:max-w-none sm:rotate-[11deg]"
+                    style={{ animationDelay: "0.9s" }}
+                  >
+                    <div className="space-y-3.5 px-4 py-6">
+                      <p className="text-[10px] font-bold tracking-wide text-slate-500">BOOK APPOINTMENT</p>
+                      <div className="flex items-center gap-2 rounded-lg bg-blue-50 p-2.5">
+                        <span className="grid size-8 shrink-0 place-items-center rounded-md bg-blue-100 text-blue-600">
+                          <Droplet className="size-4" aria-hidden />
+                        </span>
+                        <p className="text-[10.5px] font-bold text-slate-900">Plumbing Repair</p>
+                      </div>
+                      <div className="flex items-center gap-2 rounded-lg border border-slate-100 p-2.5">
+                        <CalendarCheck className="size-4 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[10px] font-semibold text-slate-800">Tomorrow</p>
+                      </div>
+                      <div className="flex items-center gap-2 rounded-lg border border-slate-100 p-2.5">
+                        <Clock className="size-4 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[10px] font-semibold text-slate-800">11:00 AM</p>
+                      </div>
+                      <div className="flex items-center gap-2 rounded-lg border border-slate-100 p-2.5">
+                        <MapPin className="size-4 shrink-0 text-blue-600" aria-hidden />
+                        <p className="text-[10px] font-semibold text-slate-800">12 MG Road, Pune</p>
+                      </div>
+                      <span className="block rounded-full bg-blue-600 py-2.5 text-center text-[10.5px] font-bold text-white">
+                        Confirm Booking
                       </span>
                     </div>
                   </div>
-                </div>
 
-                {/* Live call preview card — overlaps bottom of photo */}
-                <div className="absolute inset-x-4 bottom-8 z-20 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_20px_50px_-20px_rgba(2,6,23,0.35)]">
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                      <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
-                      Live Call Preview
-                    </p>
-                    <div className="flex h-4 items-end gap-[2px]" aria-hidden>
-                      {[6, 10, 7, 12, 8].map((h, i) => (
-                        <span
-                          key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.12}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-blue-500 to-sky-400"
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 px-4 pb-4">
-                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
-                        Agent
+                  {/* Feature chips, one directly below each phone */}
+                  {[
+                    { Icon: Clock, label: "24/7 Availability", pos: "left-[1%] bottom-[7%]", delay: "0.5s" },
+                    { Icon: ShieldCheck, label: "Verified Technicians", pos: "left-1/2 bottom-[2%] -translate-x-1/2", delay: "2s" },
+                    { Icon: CalendarCheck, label: "Instant Booking", pos: "right-[1%] bottom-[7%]", delay: "3.4s" },
+                  ].map(({ Icon: FeatureIcon, label, pos, delay }) => (
+                    <div
+                      key={label}
+                      className={`ind-float absolute ${pos} z-0 hidden items-center gap-2 rounded-full border border-blue-100 bg-white px-4 py-2.5 shadow-lg sm:flex`}
+                      style={{ animationDelay: delay }}
+                    >
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
+                        <FeatureIcon className="size-4.5" aria-hidden />
                       </span>
-                      <p className="text-[13px] text-blue-900">नमस्ते! आपकी कैसे सेवा कर सकता हूँ?</p>
+                      <p className="whitespace-nowrap text-[13px] font-bold text-slate-800">{label}</p>
                     </div>
-                    <div className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-600">
-                        Caller
-                      </span>
-                      <p className="text-[13px] text-slate-600">AC ठंडा नहीं कर रहा, जल्दी मदद चाहिए।</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 bg-emerald-50 px-4 py-3 text-[12.5px] font-semibold text-emerald-700">
-                    <span className="grid size-4 place-items-center rounded-full bg-emerald-100">
-                      <Check className="size-2.5" aria-hidden />
-                    </span>
-                    Job captured &middot; AC Repair &middot; Priority: High
-                  </div>
+                  ))}
                 </div>
               </div>
             </ScrollReveal>
@@ -1815,28 +1803,36 @@ function HomeServicesPage() {
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.15} className="w-full border-t border-slate-100">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-10 sm:grid-cols-4 md:px-8">
-            {[
-              { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },
-              { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-50 text-emerald-600" },
-              { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-50 text-violet-600" },
-              { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-50 text-blue-600" },
-            ].map(({ Icon: StatIcon, label, value, tone }) => (
-              <div key={label} className="flex flex-col items-center gap-2 text-center">
-                <span className={`grid size-11 place-items-center rounded-full ${tone}`}>
-                  <StatIcon className="size-5" aria-hidden />
-                </span>
-                <p className="font-serif text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
-                <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
+        <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
+          <ScrollReveal delay={0.15} className="mx-auto max-w-7xl">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+              <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+                {[
+                  { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-100 text-blue-600" },
+                  { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-100 text-emerald-600" },
+                  { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-100 text-violet-600" },
+                  { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-100 text-blue-600" },
+                ].map(({ Icon: StatIcon, label, value, tone }) => (
+                  <div key={label} className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
+                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl ${tone}`}>
+                      <StatIcon className="size-6" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                        {value}
+                      </p>
+                      <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </ScrollReveal>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* ─── What agent does + How it sounds ─── */}
-      <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
+      <section className="w-full px-6 pb-8 md:px-8 md:pb-10">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs with real photo */}
           <ScrollReveal>
@@ -1844,7 +1840,7 @@ function HomeServicesPage() {
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Wrench className="size-5" aria-hidden />
               </span>
-              <h2 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -1875,7 +1871,7 @@ function HomeServicesPage() {
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Volume2 className="size-5" aria-hidden />
               </span>
-              <h2 className="mt-4 font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="mt-4 font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -1898,8 +1894,8 @@ function HomeServicesPage() {
                     {Array.from({ length: 34 }).map((_, i) => (
                       <span
                         key={i}
-                        style={{ height: `${6 + ((i * 7) % 18)}px` }}
-                        className={`w-[2px] rounded-full ${i < 10 ? "bg-blue-500" : "bg-slate-200"}`}
+                        style={{ height: `${6 + ((i * 7) % 18)}px`, animationDelay: `${(i % 12) * 0.09}s` }}
+                        className={`ind-eq w-[2px] rounded-full ${i < 10 ? "bg-blue-500" : "bg-slate-200"}`}
                       />
                     ))}
                   </div>
@@ -1924,7 +1920,7 @@ function HomeServicesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50/40 p-5">
+              <div className="mt-6 rounded-2xl border border-blue-400 bg-blue-50/40 p-5">
                 <div className="flex items-center gap-2.5">
                   <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                     <Sparkles className="size-4" aria-hidden />
@@ -1970,7 +1966,7 @@ function HomeServicesPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -2043,7 +2039,7 @@ function HomeServicesPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -2066,8 +2062,9 @@ function HomeServicesPage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 
@@ -2077,8 +2074,9 @@ function RestaurantsPage() {
   const education = getIndustry("education")
 
   return (
-    <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+    <>
       <SiteHeader />
+      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
 
       <BreadcrumbJsonLd
         items={[
@@ -2097,23 +2095,6 @@ function RestaurantsPage() {
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
         <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <nav aria-label="Breadcrumb" className="mx-auto mb-6 max-w-7xl text-xs text-slate-500">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-slate-800">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li>
-                <Link href="/industries" className="hover:text-slate-800">
-                  Industries
-                </Link>
-              </li>
-              <li aria-hidden>{">"}</li>
-              <li className="text-slate-800">Restaurants</li>
-            </ol>
-          </nav>
 
           <div className="mx-auto grid max-w-7xl items-end gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
@@ -2125,10 +2106,10 @@ function RestaurantsPage() {
                 AI voice agents for restaurants
               </span>
 
-              <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
-                AI voice agents
+              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
+                AI Voice Agents
                 <br />
-                for <span className="text-blue-600">restaurants.</span>
+                for <span className="text-blue-600">Restaurants.</span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
@@ -2175,108 +2156,11 @@ function RestaurantsPage() {
               </div>
             </ScrollReveal>
 
-            {/* Right — illustrated hero + live call preview */}
+            {/* Right — reservation form + AI chat assistant */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[620px] pb-12">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-200 via-blue-100 to-sky-100 shadow-xl shadow-slate-900/10">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-[0.35]"
-                    style={{
-                      backgroundImage: "radial-gradient(circle, rgba(37,99,235,0.3) 1.5px, transparent 1.8px)",
-                      backgroundSize: "22px 22px",
-                    }}
-                  />
-
-                  {/* Copy — top-left */}
-                  <div className="absolute left-6 top-6 max-w-[42%]">
-                    <p className="text-balance font-serif text-xl font-extrabold leading-snug text-slate-900 sm:text-2xl">
-                      Never miss
-                      <br />a reservation
-                      <br />
-                      again.
-                    </p>
-                    <p className="mt-3 text-pretty text-[12.5px] leading-relaxed text-slate-600">
-                      Our AI voice agents talk just like your best host — polite, fast and accurate.
-                    </p>
-                  </div>
-
-                  {/* Concentric rings + chat bubble */}
-                  <div className="absolute right-[18%] top-1/2 grid size-32 -translate-y-1/2 place-items-center rounded-full border border-blue-300/50 sm:size-40">
-                    <div className="absolute inset-3 rounded-full border border-blue-300/50" />
-                    <div className="grid size-16 place-items-center rounded-full bg-gradient-to-br from-blue-700 to-sky-600 text-white shadow-xl shadow-blue-700/40 sm:size-20">
-                      <MessageCircle className="size-8 sm:size-9" aria-hidden />
-                    </div>
-                  </div>
-
-                  {/* Bar-chart accent card */}
-                  <div className="absolute right-4 top-8 flex h-14 items-end gap-1.5 rounded-xl bg-white/70 p-3 shadow-md">
-                    {[8, 16, 11, 20].map((h, i) => (
-                      <span
-                        key={i}
-                        style={{ height: `${h}px`, animationDelay: `${i * 0.15}s` }}
-                        className="ind-eq w-2 rounded-full bg-blue-600"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Calendar badge */}
-                  <div className="absolute right-6 top-24 grid size-11 place-items-center rounded-xl bg-white text-blue-600 shadow-md">
-                    <CalendarCheck className="size-5" aria-hidden />
-                  </div>
-
-                  {/* Plant accent */}
-                  <div className="absolute bottom-16 left-8 grid size-11 place-items-center rounded-full bg-white/70 text-emerald-600 shadow-sm">
-                    <Leaf className="size-5" aria-hidden />
-                  </div>
-                </div>
-
-                {/* Live call preview card — overlaps bottom of hero */}
-                <div className="absolute inset-x-4 bottom-4 z-20 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_20px_50px_-20px_rgba(2,6,23,0.35)]">
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                      <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
-                      Live Call Preview
-                    </p>
-                    <div className="flex h-4 items-end gap-[2px]" aria-hidden>
-                      {[6, 10, 7, 12, 8].map((h, i) => (
-                        <span
-                          key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.12}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-blue-500 to-sky-400"
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 px-4 pb-4">
-                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
-                        Agent
-                      </span>
-                      <p className="text-[13px] text-blue-900">नमस्ते! 9278 में आपका स्वागत है।</p>
-                    </div>
-                    <div className="flex items-center gap-2.5 rounded-xl bg-slate-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-slate-200 px-2 py-0.5 text-[10px] font-bold uppercase text-slate-600">
-                        Caller
-                      </span>
-                      <p className="text-[13px] text-slate-600">4 लोगों के लिए, आज रात 8 बजे टेबल चाहिए।</p>
-                    </div>
-                    <div className="flex items-center gap-2.5 rounded-xl bg-blue-50 px-3.5 py-2.5">
-                      <span className="shrink-0 rounded-md bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase text-white">
-                        Agent
-                      </span>
-                      <p className="text-[13px] text-blue-900">ज़रूर! मैं आपके लिए 8 बजे की टेबल बुक कर देता हूँ!</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 bg-emerald-50 px-4 py-3 text-[12.5px] font-semibold text-emerald-700">
-                    <span className="grid size-4 place-items-center rounded-full bg-emerald-100">
-                      <Check className="size-2.5" aria-hidden />
-                    </span>
-                    Job captured &middot; Reservation &middot; Priority: High
-                  </div>
-                </div>
+              <div className="relative mx-auto grid w-full max-w-[620px] gap-5 sm:grid-cols-2">
+                <RestaurantReservationCard />
+                <RestaurantChatCard />
               </div>
             </ScrollReveal>
           </div>
@@ -2285,10 +2169,10 @@ function RestaurantsPage() {
         {/* ─── Smarter operations. Happier guests. ─── */}
         <div className="w-full px-6 pb-4 pt-2 md:px-8">
           <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
               <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div>
-                  <h2 className="text-balance font-serif text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
+                  <h2 className="text-balance font-sans text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
                     Smarter operations.
                     <br />
                     Happier guests.
@@ -2311,40 +2195,7 @@ function RestaurantsPage() {
                 </div>
 
                 {/* Robot mascot */}
-                <div className="relative flex h-80 items-center justify-center">
-                  <div aria-hidden className="absolute -right-8 -top-8 size-40 rounded-full bg-blue-200/40 blur-2xl" />
-                  <div aria-hidden className="absolute -bottom-4 -left-8 size-36 rounded-full bg-sky-200/40 blur-2xl" />
-                  <div aria-hidden className="absolute bottom-8 h-6 w-44 rounded-full bg-blue-900/15 blur-md" />
-
-                  <div className="relative flex flex-col items-center">
-                    {/* Antenna */}
-                    <span className="size-3 rounded-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,0.7)]" aria-hidden />
-                    <span className="h-6 w-1 bg-blue-300" aria-hidden />
-
-                    {/* Head */}
-                    <div className="relative grid size-32 place-items-center rounded-[2.25rem] bg-gradient-to-br from-white to-blue-50 shadow-lg">
-                      <div className="flex items-center gap-5">
-                        <span className="size-5 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.6)]" aria-hidden />
-                        <span className="size-5 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.6)]" aria-hidden />
-                      </div>
-                      {/* Ear buds */}
-                      <span className="absolute -left-3 top-9 size-4.5 rounded-full bg-blue-300" aria-hidden />
-                      <span className="absolute -right-3 top-9 size-4.5 rounded-full bg-blue-300" aria-hidden />
-                    </div>
-
-                    {/* Neck */}
-                    <span className="h-2.5 w-8 bg-blue-200" aria-hidden />
-
-                    {/* Body */}
-                    <div className="relative flex h-24 w-44 items-start justify-center rounded-[2.25rem] bg-gradient-to-b from-blue-500 to-sky-600 pt-5 shadow-lg">
-                      <span className="absolute -left-4 top-5 h-12 w-4 rounded-full bg-blue-400" aria-hidden />
-                      <span className="absolute -right-4 top-5 h-12 w-4 rounded-full bg-blue-400" aria-hidden />
-                      <span className="grid size-11 place-items-center rounded-full bg-white text-blue-600 shadow-inner">
-                        <MessageCircle className="size-5.5" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <RestaurantRobotMascot />
               </div>
             </div>
           </ScrollReveal>
@@ -2357,7 +2208,7 @@ function RestaurantsPage() {
           {/* Left — day-one jobs */}
           <ScrollReveal>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -2381,7 +2232,7 @@ function RestaurantsPage() {
           {/* Right — how agent sounds */}
           <ScrollReveal delay={0.1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
-              <h2 className="font-serif text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
+              <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
@@ -2435,7 +2286,7 @@ function RestaurantsPage() {
 
         {/* Stats bar */}
         <ScrollReveal delay={0.15} className="mx-auto mt-10 max-w-7xl">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
               {[
                 { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },
@@ -2447,7 +2298,7 @@ function RestaurantsPage() {
                   <span className={`grid size-11 place-items-center rounded-2xl ${tone}`}>
                     <StatIcon className="size-5" aria-hidden />
                   </span>
-                  <p className="font-serif text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
+                  <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
                   <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
                 </div>
               ))}
@@ -2469,7 +2320,7 @@ function RestaurantsPage() {
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance font-serif text-[1.6rem] font-semibold tracking-tight md:text-3xl">
+            <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
@@ -2544,7 +2395,7 @@ function RestaurantsPage() {
                       <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-3 text-balance font-serif text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className={a.text}>{link.highlight}</span> : link.highlight}
                     </h3>
@@ -2567,8 +2418,9 @@ function RestaurantsPage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
+      <SiteFooter />
+    </>
   )
 }
 

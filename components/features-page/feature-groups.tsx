@@ -52,6 +52,7 @@ const featureGroups: Group[] = [
           "Choose how interruptions are handled",
           "Define exactly when to transfer to a human",
         ],
+        href: "/features/call-behavior-controls",
       },
     ],
   },
@@ -69,6 +70,7 @@ const featureGroups: Group[] = [
           "Update answers anytime — no re-training",
           "Each agent answers only from its own knowledge",
         ],
+        href: "/features/knowledge-base",
       },
       {
         icon: Copy,
@@ -79,6 +81,7 @@ const featureGroups: Group[] = [
           "Keep answers consistent across numbers",
           "Edit the template to update everywhere",
         ],
+        href: "/features/knowledge-templates",
       },
       {
         icon: GitBranch,
@@ -89,6 +92,7 @@ const featureGroups: Group[] = [
           "Handle calls differently by time of day",
           "Fallback rules for unmatched calls",
         ],
+        href: "/features/behavior-routing-rules",
       },
     ],
   },
@@ -117,6 +121,7 @@ const featureGroups: Group[] = [
           "Verify voice, latency, and answers",
           "Confirm routing works end to end",
         ],
+        href: "/features/live-test-call",
       },
       {
         icon: LayoutTemplate,
@@ -127,6 +132,7 @@ const featureGroups: Group[] = [
           "Receptionist, Healthcare, Transport, Support, or Blank",
           "Customize everything after launching",
         ],
+        href: "/features/setup-templates",
       },
     ],
   },
@@ -217,6 +223,7 @@ const featureGroups: Group[] = [
           "Add or remove team access",
           "Update account details anytime",
         ],
+        href: "/features/account-settings",
       },
       {
         icon: LayoutDashboard,
@@ -227,6 +234,7 @@ const featureGroups: Group[] = [
           "Quick links to what matters most",
           "Account health at a glance",
         ],
+        href: "/features/dashboard-overview",
       },
       {
         icon: Fingerprint,
@@ -237,6 +245,7 @@ const featureGroups: Group[] = [
           "Define how it introduces itself",
           "Keep branding consistent across calls",
         ],
+        href: "/features/identity-setup",
       },
     ],
   },

@@ -82,7 +82,7 @@ export default function VoiceSelectionPage() {
                 <br />
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(90deg, #4F8DFF, #2563EB)",
+                    backgroundImage: "linear-gradient(90deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -167,15 +167,20 @@ export default function VoiceSelectionPage() {
         </div>
       </section>
 
-      {/* Feature list — numbered steps in a 3-up row, connected by a spine */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 md:py-24">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Voice Selection</p>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick it, hear it, ship it.</h2>
-          </ScrollReveal>
+      {/* Feature list — numbered steps in a 3-up row, connected by a spine.
+          Section is taller than the viewport with a sticky inner panel, so
+          it stays pinned in place while the step sequence plays out and only
+          scrolls away once there's no more extra height left to consume. */}
+      <section className="relative bg-white" style={{ height: "170vh" }}>
+        <div className="sticky top-0 flex min-h-screen w-full items-center">
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:px-12 md:py-24">
+            <ScrollReveal className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary">Voice Selection</p>
+              <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick it, hear it, ship it.</h2>
+            </ScrollReveal>
 
-          <VoiceSelectionSteps />
+            <VoiceSelectionSteps />
+          </div>
         </div>
       </section>
 

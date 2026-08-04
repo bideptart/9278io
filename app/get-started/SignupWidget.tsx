@@ -298,7 +298,9 @@ export default function SignupWidget() {
 
   return (
     <>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
+      {/* lazyOnload — not needed until the user actually clicks Buy, so it
+          shouldn't compete with this page's own hydration for main-thread time. */}
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
 
       {/* Billing cycle toggle */}
       <div className="mb-8 flex justify-center">
