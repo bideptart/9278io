@@ -18,7 +18,7 @@ const SAMPLE_ICONS = [Headphones, Wallet, Star]
 
 export function BpoDetails({ industry }: { industry: Industry }) {
   return (
-    <section className="w-full px-6 py-16 md:px-8 md:py-20">
+    <section className="w-full px-6 pb-4 pt-16 md:px-8 md:pb-6 md:pt-20">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
         <ScrollReveal className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">

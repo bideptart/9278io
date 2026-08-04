@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import OrbitCarousel from "@/components/ui/orbiting-carousel-with-animated-icons"
 import type { Industry } from "@/lib/industries"
 
 const HERO_STATS = [
@@ -41,7 +41,7 @@ export function BfsiHero({ industry }: { industry: Industry }) {
       />
 
       <div className="w-full px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
           {/* Each block enters on its own short delay so the column builds up
               top-to-bottom instead of arriving as one slab. */}
           <div className="relative">
@@ -68,18 +68,11 @@ export function BfsiHero({ industry }: { industry: Industry }) {
               <span className="relative">AI Voice Agents for Lending &amp; Insurance</span>
             </span>
 
-            <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
-              <span style={{ animationDelay: "0.15s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black">
-                AI voice agents
-              </span>
-              {/* Two animations, two elements — the wrapper does the entrance
-                  fade, the inner span runs the looping gradient sweep. */}
-              <span
-                style={{ animationDelay: "0.25s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
-              >
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]">
-                  for bfsi &amp; fintech.
+            <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                  For BFSI &amp; Fintech.
                 </span>
               </span>
             </h1>
@@ -140,108 +133,13 @@ export function BfsiHero({ industry }: { industry: Industry }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="group relative mx-auto w-full max-w-[560px]">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(37,99,235,0.2),transparent_70%)] motion-safe:animate-[breathe_8s_ease-in-out_infinite]"
-              />
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_30px_70px_-25px_rgba(37,99,235,0.55)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_40px_90px_-25px_rgba(37,99,235,0.65)]">
-                <Image
-                  src="/images/bfsi-hero.png"
-                  alt="AI voice agent for BFSI & fintech — bank, secure wallet, and growth analytics"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                />
-              </div>
-
-              {/* Floating accent cards — sit outside the image bounds, each
-                  with its own float rhythm plus a hover lift of its own. */}
-              <div className="absolute -left-4 top-6 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-amber-500/10 to-amber-500/20 text-amber-600">
-                      <Bell className="size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">EMI Reminder</p>
-                      <p className="text-[11px] font-medium text-slate-500">Sent</p>
-                    </div>
-                    <span className="relative ml-1 grid size-4 place-items-center rounded-full bg-emerald-500">
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 rounded-full bg-emerald-500/60 motion-safe:animate-[ind-ping_2.6s_ease-out_infinite]"
-                      />
-                      <svg viewBox="0 0 24 24" className="relative size-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -right-4 -top-4 z-20 transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
-                  <div className="mt-1.5 flex items-center gap-1.5">
-                    <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
-                    <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
-                      {[7, 11, 6, 13, 9, 14].map((h, i) => (
-                        <span
-                          key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-sky-500 to-blue-500"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -left-6 top-[48%] z-20 hero-float-down transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 rounded-xl bg-blue-500/15 motion-safe:animate-[ind-ping_3.2s_ease-out_infinite]"
-                      />
-                      <ShieldCheck className="relative size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">KYC Verified</p>
-                      <p className="text-[11px] font-medium text-slate-500">Completed</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -right-6 bottom-10 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
-                      <BadgeIndianRupee className="size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Policy Renewal</p>
-                      <p className="text-[11px] font-medium text-slate-500">Secured</p>
-                    </div>
-                    <span className="ml-1 flex gap-1" aria-hidden>
-                      <span className="size-1.5 rounded-full bg-slate-300" />
-                      <span className="size-1.5 rounded-full bg-slate-300" />
-                      <span className="size-1.5 animate-pulse rounded-full bg-blue-500" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <OrbitCarousel />
           </ScrollReveal>
         </div>
       </div>
 
-      <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
+      <div className="w-full px-6 pb-2 md:px-8 md:pb-3">
+        <ScrollReveal delay={0.1} className="mx-auto max-w-6xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {HERO_STATS.map((s, i) => (

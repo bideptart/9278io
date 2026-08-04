@@ -40,7 +40,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
       />
 
       <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
           {/* Each block enters on its own short delay so the column builds up
               top-to-bottom instead of arriving as one slab. */}
           <div className="relative">
@@ -67,33 +67,23 @@ export function BpoHero({ industry }: { industry: Industry }) {
               <span className="relative">AI Voice Agents for Call Centres</span>
             </span>
 
-            <h1 className="mt-7 font-serif font-extrabold leading-[0.98] tracking-tight text-slate-900">
-              <span
-                style={{ animationDelay: "0.15s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block text-5xl font-black sm:text-[3.4rem] md:text-[4.1rem]"
-              >
-                AI voice agents
-              </span>
-              {/* Two animations, two elements — the wrapper does the entrance
-                  fade, the inner span runs the looping gradient sweep. */}
-              <span
-                style={{ animationDelay: "0.25s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
-              >
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text text-3xl font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite] sm:text-[2.6rem] md:text-[3.1rem]">
-                  for BPO &amp; call centres.
+            <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                  For BPO &amp; Call Centres.
                 </span>
               </span>
             </h1>
 
             <p
               style={{ animationDelay: "0.35s" }}
-              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg"
+              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-5 max-w-lg text-pretty text-[15px] leading-[1.65] text-slate-600 md:text-base"
             >
               {industry.pitch}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               {[
                 { Icon: Headphones, label: "Inbound", cls: "border-slate-200/80 bg-white/95 text-blue-700", icon: "text-blue-600" },
                 { Icon: CheckCircle2, label: "24/7 Calling", cls: "border-emerald-200/70 bg-emerald-50/90 text-emerald-700", icon: "text-emerald-600" },
@@ -115,11 +105,11 @@ export function BpoHero({ industry }: { industry: Industry }) {
 
             <div
               style={{ animationDelay: "0.72s" }}
-              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-9 flex flex-wrap items-center gap-3.5"
+              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-7 flex flex-wrap items-center gap-3.5"
             >
               <Button
                 asChild
-                className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-6 py-3 text-[14px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
               >
                 <Link href={`/get-started?industry=${industry.slug}`}>
                   Get Started
@@ -131,7 +121,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
               <Button
                 asChild
                 variant="outline"
-                className="group h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                className="group h-auto rounded-full border-slate-200 bg-white/95 px-5 py-3 text-[14px] font-bold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
               >
                 <Link href="/pricing">
                   View Pricing
@@ -181,7 +171,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 </div>
               </div>
 
-              <div className="absolute -right-4 -top-4 z-20 transition-transform duration-300 hover:-translate-y-1">
+              <div className="absolute -right-4 -top-4 z-20 motion-safe:animate-breathe transition-transform duration-300 hover:-translate-y-1">
                 <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
                   <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
                   <div className="mt-1.5 flex items-center gap-1.5">
@@ -217,11 +207,15 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 </div>
               </div>
 
-              <div className="absolute -right-6 bottom-10 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
+              <div className="absolute -right-6 bottom-10 z-20 hero-wobble transition-transform duration-300 hover:-translate-y-1">
                 <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
                   <div className="flex items-center gap-3">
-                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                      <Headphones className="size-5" aria-hidden />
+                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 rounded-xl bg-blue-500/15 motion-safe:animate-[ind-ping_3.6s_ease-out_infinite_0.6s]"
+                      />
+                      <Headphones className="relative size-5" aria-hidden />
                     </span>
                     <div>
                       <p className="text-[12.5px] font-bold leading-tight text-slate-800">Escalation</p>
@@ -240,8 +234,8 @@ export function BpoHero({ industry }: { industry: Industry }) {
         </div>
       </div>
 
-      <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
+      <div className="w-full px-6 pb-2 md:px-8 md:pb-3">
+        <ScrollReveal delay={0.1} className="mx-auto max-w-6xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {HERO_STATS.map((s, i) => (

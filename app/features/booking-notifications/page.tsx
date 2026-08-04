@@ -1,18 +1,6 @@
 ﻿import type { Metadata } from "next"
 import Link from "next/link"
-import {
-  ArrowRight,
-  BellRing,
-  CalendarCheck2,
-  HelpCircle,
-  History,
-  Inbox,
-  IndianRupee,
-  LayoutGrid,
-  Mail,
-  PhoneCall,
-  Zap,
-} from "lucide-react"
+import { ArrowRight, CalendarCheck2, ChevronRight, History, Inbox, Mail, PhoneCall, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -21,30 +9,19 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailSpotlightPanel } from "@/components/features-page/detail-spotlight-panel"
 import { HowItWorksRadial } from "@/components/features-page/how-it-works-radial"
 import { SpeedComparisonBars } from "@/components/features-page/speed-comparison-bars"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { BookingNotificationsIllustration } from "@/components/features-page/booking-notifications-illustration"
-import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
+import { FAQ_GROUPS } from "@/lib/faq"
 
-const exploreLinks = [
-  {
-    icon: <LayoutGrid className="size-5" aria-hidden />,
-    href: "/features",
-    title: "All features",
-    description: "Every capability across Build, Train, Test, Operate, and Account.",
-  },
-  {
-    icon: <IndianRupee className="size-5" aria-hidden />,
-    href: "/pricing",
-    title: "Pricing in INR",
-    description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Per-second billing.",
-  },
-  {
-    icon: <HelpCircle className="size-5" aria-hidden />,
-    href: "/faq",
-    title: "Frequently asked questions",
-    description: "TRAI compliance, Indian languages, billing, and account questions.",
-  },
+const accountFaq = [
+  ...FAQ_GROUPS.find((g) => g.id === "account")!.items.filter((i) =>
+    ["How fast can I be live?", "What support is included?", "Where do I sign in?"].includes(i.q),
+  ),
+  ...FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
+    ["Does it integrate with Indian CRMs and tools?"].includes(i.q),
+  ),
 ]
 
 export const metadata: Metadata = pageSeo({
@@ -135,29 +112,15 @@ export default function BookingNotificationsPage() {
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
-            <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-              <Link href="/features" className="hover:text-primary">
-                Features
-              </Link>{" "}
-              <span aria-hidden>/</span> <span className="text-foreground">Booking Notifications</span>
+            <nav aria-label="Breadcrumb">
+              <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
+                Operate &amp; Monitor
+              </span>
             </nav>
 
             <ScrollReveal className="mt-6">
-              <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.08] text-primary">
-                <BellRing className="size-6" aria-hidden />
-              </span>
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                <span style={{ color: "#0F172A" }}>Booking</span>{" "}
-                <span
-                  style={{
-                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  Notifications
-                </span>
+              <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+                Booking Notifications
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Get an email the moment your agent books a meeting or appointment — so you're always the first
@@ -239,6 +202,36 @@ export default function BookingNotificationsPage() {
         </div>
       </section>
 
+      <section className="border-b border-border/50">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+          <ScrollReveal>
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              Related questions
+            </span>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Getting set up</h2>
+            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              Straight from the FAQ — pick a question to see the answer.
+            </p>
+          </ScrollReveal>
+          <div className="mx-auto mt-8 max-w-2xl">
+            <FaqAccordion
+              items={accountFaq}
+              idPrefix="booking-notifications"
+              itemClassName="border-border/60 border-l-4 border-l-transparent bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-l-primary hover:shadow-[0_12px_28px_-16px_rgba(15,23,42,0.15)]"
+              triggerIcon={<ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden />}
+            />
+            <Link
+              href="/faq"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+            >
+              See all FAQs
+              <ArrowRight className="size-3.5" aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <PricingCta
         heading="Never miss a booking again"
         description="Spin up your first agent and every confirmed appointment lands straight in your inbox."
@@ -247,18 +240,6 @@ export default function BookingNotificationsPage() {
         secondaryHref="/features"
         secondaryLabel="Back to Features"
       />
-
-      <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
-          <ScrollReveal>
-            <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
-            <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
-              See the rest of what's included, or check pricing and common questions.
-            </p>
-          </ScrollReveal>
-          <MultiAgentExploreLinks links={exploreLinks} />
-        </div>
-      </section>
 
       <SiteFooter />
     </main>

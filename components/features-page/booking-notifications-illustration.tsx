@@ -133,9 +133,10 @@ export function BookingNotificationsIllustration() {
           cy={220}
           r={100}
           fill="none"
-          stroke="oklch(0.7 0.03 262 / 0.35)"
-          strokeWidth={1}
-          strokeDasharray="2 6"
+          stroke="oklch(0.55 0.16 262 / 0.4)"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeDasharray={`0.1 ${(2 * Math.PI * 100) / 40}`}
           style={{ transformOrigin: "260px 220px" }}
           animate={{ rotate: 360 }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -145,9 +146,10 @@ export function BookingNotificationsIllustration() {
           cy={220}
           r={135}
           fill="none"
-          stroke="oklch(0.7 0.03 262 / 0.22)"
-          strokeWidth={1}
-          strokeDasharray="2 6"
+          stroke="oklch(0.55 0.16 262 / 0.25)"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeDasharray={`0.1 ${(2 * Math.PI * 135) / 52}`}
           style={{ transformOrigin: "260px 220px" }}
           animate={{ rotate: -360 }}
           transition={{ duration: 55, repeat: Infinity, ease: "linear" }}

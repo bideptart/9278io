@@ -39,7 +39,7 @@ import {
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { IndustryImage } from "@/components/industries/industry-image"
 import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
@@ -47,6 +47,8 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
 import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
 import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
+import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
+import { EcommercePerformanceChart } from "@/components/industries/ecommerce-performance-chart"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -305,7 +307,7 @@ function ECommercePage() {
 
         {/* ─── Stats bar (directly under hero, inside hero section per reference) ─── */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-          <ScrollReveal className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
@@ -333,9 +335,13 @@ function ECommercePage() {
                     value: "99.9%",
                     iconBg: "bg-blue-100 text-blue-600",
                   },
-                ].map(({ Icon: StatIcon, label, value, iconBg }) => (
-                  <div key={label} className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
-                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl ${iconBg}`}>
+                ].map(({ Icon: StatIcon, label, value, iconBg }, i) => (
+                  <ScrollStepItem
+                    key={label}
+                    index={i}
+                    className="group flex items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-blue-50/40 sm:px-6 sm:py-5"
+                  >
+                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${iconBg}`}>
                       <StatIcon className="size-6" aria-hidden />
                     </span>
                     <div>
@@ -344,11 +350,11 @@ function ECommercePage() {
                       </p>
                       <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
                     </div>
-                  </div>
+                  </ScrollStepItem>
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -356,7 +362,7 @@ function ECommercePage() {
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-sm sm:p-9">
               {/* Shopping bag accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
@@ -371,24 +377,25 @@ function ECommercePage() {
                 on day one
               </h2>
 
-              <ol className="mt-8 space-y-3.5">
-                {industry.jobs.map((job) => (
-                  <li
+              <div className="mt-8 space-y-3.5">
+                {industry.jobs.map((job, i) => (
+                  <ScrollStepItem
                     key={job}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white/90 px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)] backdrop-blur"
+                    index={i}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white/90 px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-600 text-white shadow-md shadow-blue-500/25">
                       <Check className="size-3.5" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14.5px] leading-relaxed text-slate-700">{job}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-sm sm:p-9">
               {/* Sound-wave accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
@@ -426,48 +433,27 @@ function ECommercePage() {
                   </div>
                 </div>
 
-                <div className="space-y-2.5 p-5">
-                  <div className="flex text-sm">
-                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
-                      👋 Hello! What can I help you with today?
-                    </span>
-                  </div>
-                  <div className="flex text-sm justify-end">
-                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-4 py-2.5 text-slate-700 ring-1 ring-slate-200">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-40">Customer</span>
-                      Can you track my order?
-                    </span>
-                  </div>
-                  <div className="flex text-sm">
-                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
-                      Sure! Order #4521 shipped yesterday and arrives by 6 PM tomorrow.
-                    </span>
-                  </div>
-                  <div className="flex text-sm justify-end">
-                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-4 py-2.5 text-slate-700 ring-1 ring-slate-200">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-40">Customer</span>
-                      Great — can I also return a pair of shoes from my last order?
-                    </span>
-                  </div>
-                  <div className="flex text-sm">
-                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
-                      Absolutely — I&apos;ll email a prepaid return label right now.
-                    </span>
-                  </div>
-                </div>
+                <SoundSampleChat
+                  labeled
+                  height={230}
+                  messages={[
+                    { from: "agent", text: "👋 Hello! What can I help you with today?" },
+                    { from: "customer", text: "Can you track my order?" },
+                    { from: "agent", text: "Sure! Order #4521 shipped yesterday and arrives by 6 PM tomorrow." },
+                    { from: "customer", text: "Great — can I also return a pair of shoes from my last order?" },
+                    { from: "agent", text: "Absolutely — I'll email a prepaid return label right now." },
+                  ]}
+                />
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
       {/* ─── How teams roll out — two-step process ─── */}
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="flex items-start gap-4">
+          <ScrollStepItem className="flex items-start gap-4">
             <span className="relative shrink-0">
               <span aria-hidden className="absolute -left-4 top-1 h-10 w-px bg-primary" />
               <span className="grid size-14 place-items-center rounded-full border border-primary/20 bg-white text-primary shadow-sm">
@@ -482,7 +468,7 @@ function ECommercePage() {
               </h2>
               <span aria-hidden className="mt-4 block h-1 w-16 rounded-full bg-primary" />
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="relative mt-10 grid gap-8 md:grid-cols-2 md:gap-10">
             {/* connector arrow between the two phases (desktop) */}
@@ -493,8 +479,8 @@ function ECommercePage() {
               <ArrowRight className="size-5" />
             </div>
 
-            <ScrollReveal>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
+            <ScrollStepItem index={0}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-blue-600/25">
                     01
@@ -517,10 +503,10 @@ function ECommercePage() {
                   once the inbound playbooks prove out.
                 </p>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
 
-            <ScrollReveal delay={0.12}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
+            <ScrollStepItem index={1}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-primary/25">
                     02
@@ -543,10 +529,10 @@ function ECommercePage() {
                   we support to compare playbooks.
                 </p>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
           </div>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollStepItem>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
                 asChild
@@ -571,7 +557,7 @@ function ECommercePage() {
                 </Link>
               </Button>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -582,7 +568,7 @@ function ECommercePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
@@ -594,21 +580,21 @@ function ECommercePage() {
               </span>
             </h2>
 
-            <ul className="mt-7 space-y-3.5">
+            <div className="mt-7 space-y-3.5">
               {[
                 "Lower support costs",
                 "Happier customers",
                 "Higher repeat purchases",
                 "Always-on availability",
-              ].map((line) => (
-                <li key={line} className="flex items-center gap-3.5">
+              ].map((line, i) => (
+                <ScrollStepItem key={line} index={i} className="flex items-center gap-3.5">
                   <span className="grid size-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-600 text-white shadow-md shadow-blue-500/25">
                     <Check className="size-3.5" aria-hidden />
                   </span>
                   <span className="text-pretty text-[15px] leading-relaxed text-slate-700 font-medium">{line}</span>
-                </li>
+                </ScrollStepItem>
               ))}
-            </ul>
+            </div>
 
             <Button
               asChild
@@ -620,10 +606,10 @@ function ECommercePage() {
                 <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
             </Button>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — performance dashboard mock */}
-          <ScrollReveal delay={0.12}>
+          <ScrollStepItem index={1}>
             <div className="relative">
               {/* +32% floating badge */}
               <div className="absolute -bottom-5 -right-3 z-20 hero-float-up">
@@ -646,51 +632,10 @@ function ECommercePage() {
                   Real-time performance
                 </p>
 
-                <div className="mt-6 grid grid-cols-3 gap-5">
-                  {[
-                    { label: "Conversations", value: "12,450" },
-                    { label: "Customer Satisfaction", value: "98.2%" },
-                    { label: "Revenue Impact", value: "₹4.2L" },
-                  ].map((s) => (
-                    <div key={s.label}>
-                      <p className="font-sans text-xl font-bold tracking-tight text-blue-700 sm:text-2xl">
-                        {s.value}
-                      </p>
-                      <p className="mt-1 text-[11px] font-medium leading-snug text-slate-500">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Fake area chart */}
-                <div className="mt-7 h-32 w-full">
-                  <svg viewBox="0 0 400 120" className="h-full w-full" aria-hidden>
-                    <defs>
-                      <linearGradient id="ecomArea" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="rgb(139,92,246)" stopOpacity="0.35" />
-                        <stop offset="100%" stopColor="rgb(99,102,241)" stopOpacity="0" />
-                      </linearGradient>
-                      <linearGradient id="ecomLine" x1="0" x2="1" y1="0" y2="0">
-                        <stop offset="0%" stopColor="rgb(139,92,246)" />
-                        <stop offset="100%" stopColor="rgb(99,102,241)" />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M0,90 C40,85 60,70 90,68 C120,66 140,82 170,70 C200,58 220,45 250,42 C280,39 300,55 330,40 C360,25 380,20 400,15 L400,120 L0,120 Z"
-                      fill="url(#ecomArea)"
-                    />
-                    <path
-                      d="M0,90 C40,85 60,70 90,68 C120,66 140,82 170,70 C200,58 220,45 250,42 C280,39 300,55 330,40 C360,25 380,20 400,15"
-                      fill="none"
-                      stroke="url(#ecomLine)"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
+                <EcommercePerformanceChart />
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -1042,7 +987,7 @@ function RealEstatePage() {
                 </div>
               </div>
 
-              <ol className="relative mt-8 space-y-4">
+              <div className="relative mt-8 space-y-4">
                 <span aria-hidden className="absolute left-[22px] top-3 bottom-3 w-px bg-blue-200/70" />
                 {[
                   {
@@ -1071,9 +1016,9 @@ function RealEstatePage() {
                     title: "Nurture while you're busy",
                   },
                 ].map((step, i) => (
-                  <li key={step.title} className="relative flex items-start gap-4">
+                  <ScrollStepItem key={step.title} index={i} className="relative flex items-start gap-4">
                     <span aria-hidden className="relative z-10 mt-1 size-2.5 shrink-0 rounded-full bg-blue-600 ring-4 ring-blue-50" />
-                    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)]">
+                    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10">
                       <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${step.tone}`}>
                         <step.Icon className="size-4.5" aria-hidden />
                       </span>
@@ -1084,9 +1029,9 @@ function RealEstatePage() {
                         <p className="text-[15px] font-bold leading-snug text-slate-900">{step.title}</p>
                       </div>
                     </div>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
 
               <div className="mt-auto pt-8">
                 <Button
@@ -1237,7 +1182,7 @@ function RealEstatePage() {
             </div>
 
             {/* Card 01 — Start small. Grow fast. */}
-            <ScrollReveal>
+            <ScrollStepItem index={0}>
               <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
                 <span
                   aria-hidden
@@ -1299,10 +1244,10 @@ function RealEstatePage() {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
 
             {/* Card 02 — Explore more. Compare with confidence. */}
-            <ScrollReveal delay={0.12}>
+            <ScrollStepItem index={1}>
               <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
                 <span
                   aria-hidden
@@ -1356,7 +1301,7 @@ function RealEstatePage() {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
           </div>
 
           <ScrollReveal delay={0.2}>
@@ -1440,8 +1385,9 @@ function RealEstatePage() {
             <div className="relative">
               <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <div className="flex items-center gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
-                    <TrendingUp className="size-5" aria-hidden />
+                  <span className="ind-float relative grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
+                    <span aria-hidden className="absolute inset-0 rounded-2xl bg-blue-500 motion-safe:animate-ping" style={{ animationDuration: "2.4s", opacity: 0.35 }} />
+                    <TrendingUp className="relative size-5" aria-hidden />
                   </span>
                   <div>
                     <p className="text-[15px] font-bold text-slate-900">Real-Time Performance</p>
@@ -1457,19 +1403,20 @@ function RealEstatePage() {
                     { Icon: Phone, tone: "bg-emerald-50 text-emerald-600", label: "Concurrent calls", value: "Up to 40" },
                     { Icon: Wallet, tone: "bg-violet-50 text-violet-600", label: "Per-minute rate", value: "From ₹10" },
                     { Icon: ShieldCheck, tone: "bg-orange-50 text-orange-600", label: "Uptime reliability", value: "99.9%" },
-                  ].map((s) => (
-                    <div
-                      key={s.label}
-                      className={`w-full max-w-[220px] rounded-2xl border border-blue-400 p-6 text-center ${s.tone}`}
-                    >
-                      <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70">
-                        <s.Icon className="size-6" aria-hidden />
-                      </span>
-                      <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-                        {s.value}
-                      </p>
-                      <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
-                    </div>
+                  ].map((s, i) => (
+                    <ScrollStepItem key={s.label} index={i} className="w-full max-w-[220px]">
+                      <div
+                        className={`group w-full rounded-2xl border border-blue-400 p-6 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-600/15 ${s.tone}`}
+                      >
+                        <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                          <s.Icon className="size-6" aria-hidden />
+                        </span>
+                        <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                          {s.value}
+                        </p>
+                        <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
+                      </div>
+                    </ScrollStepItem>
                   ))}
                 </div>
               </div>
@@ -1685,7 +1632,7 @@ function HomeServicesPage() {
             {/* Right — hero photo + smarter-calls overlay + live call preview */}
             <ScrollReveal delay={0.14}>
               <div className="relative mx-auto w-full max-w-[620px]">
-                <div className="relative aspect-[4/3.5] overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 shadow-xl shadow-slate-900/10">
+                <div className="relative flex flex-col items-center gap-5 overflow-hidden rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white via-blue-50/40 to-blue-100/50 px-5 py-8 shadow-xl shadow-slate-900/10 sm:block sm:aspect-[4/3.5] sm:px-0 sm:py-0">
                   {/* Dotted pattern, faded toward the center */}
                   <div
                     aria-hidden
@@ -1707,9 +1654,9 @@ function HomeServicesPage() {
                     className="absolute left-1/2 top-1/2 size-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue-200/50"
                   />
 
-                  {/* Phone — Home Dashboard (top-left) */}
+                  {/* Phone — Home Dashboard (stacked first on mobile/tablet, top-left floating on sm+) */}
                   <div
-                    className="ind-float absolute left-[4%] top-[4%] z-10 hidden w-[236px] -rotate-[9deg] rounded-[2.1rem] border border-slate-900 bg-white shadow-2xl sm:block sm:w-[264px]"
+                    className="ind-float relative z-10 w-full max-w-[280px] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:absolute sm:left-[4%] sm:top-[4%] sm:w-[264px] sm:max-w-none sm:-rotate-[9deg]"
                     style={{ animationDelay: "2.8s" }}
                   >
                     <div className="overflow-hidden rounded-[1.4rem]">
@@ -1748,9 +1695,9 @@ function HomeServicesPage() {
                     </div>
                   </div>
 
-                  {/* Phone — Book Appointment (top-right) */}
+                  {/* Phone — Book Appointment (stacked second on mobile/tablet, top-right floating on sm+) */}
                   <div
-                    className="ind-float absolute right-[4%] top-[6%] z-30 w-[244px] rotate-[11deg] rounded-[2.1rem] border border-slate-900 bg-white shadow-2xl sm:w-[272px]"
+                    className="ind-float relative z-30 w-full max-w-[280px] rounded-[2.1rem] border border-blue-600 bg-white shadow-2xl sm:absolute sm:right-[4%] sm:top-[6%] sm:w-[272px] sm:max-w-none sm:rotate-[11deg]"
                     style={{ animationDelay: "0.9s" }}
                   >
                     <div className="space-y-3.5 px-4 py-6">
@@ -1803,31 +1750,39 @@ function HomeServicesPage() {
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.15} className="w-full border-t border-slate-100">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-8 px-6 py-10 sm:grid-cols-4 md:px-8">
-            {[
-              { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },
-              { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-50 text-emerald-600" },
-              { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-50 text-violet-600" },
-              { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-50 text-blue-600" },
-            ].map(({ Icon: StatIcon, label, value, tone }) => (
-              <div key={label} className="flex flex-col items-center gap-2 text-center">
-                <span className={`grid size-11 place-items-center rounded-full ${tone}`}>
-                  <StatIcon className="size-5" aria-hidden />
-                </span>
-                <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
-                <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
+        <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
+          <ScrollReveal delay={0.15} className="mx-auto max-w-7xl">
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+              <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+                {[
+                  { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-100 text-blue-600" },
+                  { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-100 text-emerald-600" },
+                  { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-100 text-violet-600" },
+                  { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-100 text-blue-600" },
+                ].map(({ Icon: StatIcon, label, value, tone }) => (
+                  <div key={label} className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
+                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl ${tone}`}>
+                      <StatIcon className="size-6" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
+                        {value}
+                      </p>
+                      <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </ScrollReveal>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* ─── What agent does + How it sounds ─── */}
-      <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
+      <section className="w-full px-6 pb-8 md:px-8 md:pb-10">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs with real photo */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Wrench className="size-5" aria-hidden />
@@ -1841,24 +1796,25 @@ function HomeServicesPage() {
                 <IndustryImage slug="home-services" name="Home services" />
               </div>
 
-              <ol className="mt-6 space-y-3">
-                {industry.jobs.map((job) => (
-                  <li
+              <div className="mt-6 space-y-3">
+                {industry.jobs.map((job, i) => (
+                  <ScrollStepItem
                     key={job}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)]"
+                    index={i}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-3.5" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14px] leading-snug text-slate-700">{job}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Volume2 className="size-5" aria-hidden />
@@ -1894,17 +1850,13 @@ function HomeServicesPage() {
                   <span className="shrink-0 text-[11px] font-medium text-slate-400">0:00 / 0:32</span>
                 </div>
 
-                <div className="mt-4 space-y-2.5">
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    नमस्ते! मैं 9278 का वॉइस असिस्टेंट हूँ। आपको किस प्रकार की सेवा चाहिए?
-                  </p>
-                  <p className="ml-auto max-w-[85%] rounded-xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    मेरा AC काम नहीं कर रहा, ठंडी हवा नहीं आ रही।
-                  </p>
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    ठीक है, मैं आपकी जानकारी ले लेता हूँ। कृपया अपना नाम और पता बताइए।
-                  </p>
-                </div>
+                <SoundSampleChat
+                  messages={[
+                    { from: "agent", text: "नमस्ते! मैं 9278 का वॉइस असिस्टेंट हूँ। आपको किस प्रकार की सेवा चाहिए?" },
+                    { from: "customer", text: "मेरा AC काम नहीं कर रहा, ठंडी हवा नहीं आ रही।" },
+                    { from: "agent", text: "ठीक है, मैं आपकी जानकारी ले लेता हूँ। कृपया अपना नाम और पता बताइए।" },
+                  ]}
+                />
 
                 <div className="mt-4 flex items-center gap-1.5 border-t border-slate-100 pt-3 text-[12.5px] font-semibold text-blue-600">
                   <Globe className="size-3.5" aria-hidden />
@@ -1941,7 +1893,7 @@ function HomeServicesPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -2160,8 +2112,8 @@ function RestaurantsPage() {
 
         {/* ─── Smarter operations. Happier guests. ─── */}
         <div className="w-full px-6 pb-4 pt-2 md:px-8">
-          <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
+          <ScrollStepItem index={0} className="mx-auto max-w-7xl">
+            <div className="group relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm transition-shadow duration-300 hover:shadow-[0_25px_60px_-25px_rgba(2,132,199,0.4)] sm:p-11">
               <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div>
                   <h2 className="text-balance font-sans text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -2169,28 +2121,28 @@ function RestaurantsPage() {
                     <br />
                     Happier guests.
                   </h2>
-                  <ul className="mt-6 space-y-4">
+                  <div className="mt-6 space-y-4">
                     {[
                       "Reduce no-shows with confirmations",
                       "Upsell specials & events",
                       "Answer menu and hours instantly",
                       "Free up your team to focus on guests",
-                    ].map((line) => (
-                      <li key={line} className="flex items-center gap-3.5">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
+                    ].map((line, i) => (
+                      <ScrollStepItem key={line} index={i} className="flex items-center gap-3.5">
+                        <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-500/25 transition-transform duration-300 group-hover:scale-105">
                           <Check className="size-4" aria-hidden />
                         </span>
                         <span className="text-pretty text-[15.5px] leading-snug text-slate-700">{line}</span>
-                      </li>
+                      </ScrollStepItem>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 {/* Robot mascot */}
                 <RestaurantRobotMascot />
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -2198,31 +2150,32 @@ function RestaurantsPage() {
       <section className="w-full px-6 pt-8 pb-8 md:px-8 md:pt-10 md:pb-10">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
 
-              <ol className="mt-6 space-y-3">
-                {industry.jobs.map((job) => (
-                  <li
+              <div className="mt-6 space-y-3">
+                {industry.jobs.map((job, i) => (
+                  <ScrollStepItem
                     key={job}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)]"
+                    index={i}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-3.5" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14px] leading-snug text-slate-700">{job}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
@@ -2255,17 +2208,13 @@ function RestaurantsPage() {
                   <span className="shrink-0 text-[11px] font-medium text-slate-400">0:00 / 0:32</span>
                 </div>
 
-                <div className="mt-4 space-y-2.5">
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    नमस्ते! 9278 में आपका स्वागत है। मैं आपकी किस प्रकार मदद कर सकता हूँ?
-                  </p>
-                  <p className="ml-auto max-w-[85%] rounded-xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    4 लोगों के लिए, आज रात 8 बजे टेबल चाहिए।
-                  </p>
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    ज़रूर! मैं आपके लिए 8 बजे की टेबल बुक कर देता हूँ। क्या कोई खास पसंद है?
-                  </p>
-                </div>
+                <SoundSampleChat
+                  messages={[
+                    { from: "agent", text: "नमस्ते! 9278 में आपका स्वागत है। मैं आपकी किस प्रकार मदद कर सकता हूँ?" },
+                    { from: "customer", text: "4 लोगों के लिए, आज रात 8 बजे टेबल चाहिए।" },
+                    { from: "agent", text: "ज़रूर! मैं आपके लिए 8 बजे की टेबल बुक कर देता हूँ। क्या कोई खास पसंद है?" },
+                  ]}
+                />
 
                 <div className="mt-4 flex items-center gap-1.5 border-t border-slate-100 pt-3 text-[12.5px] font-semibold text-blue-600">
                   <Globe className="size-3.5" aria-hidden />
@@ -2273,11 +2222,11 @@ function RestaurantsPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.15} className="mx-auto mt-10 max-w-7xl">
+        <div className="mx-auto mt-10 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
               {[
@@ -2285,18 +2234,18 @@ function RestaurantsPage() {
                 { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-50 text-emerald-600" },
                 { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-50 text-violet-600" },
                 { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-50 text-blue-600" },
-              ].map(({ Icon: StatIcon, label, value, tone }) => (
-                <div key={label} className="flex flex-col items-center gap-2 px-5 py-5 text-center">
-                  <span className={`grid size-11 place-items-center rounded-2xl ${tone}`}>
+              ].map(({ Icon: StatIcon, label, value, tone }, i) => (
+                <ScrollStepItem key={label} index={i} className="group flex flex-col items-center gap-2 px-5 py-5 text-center transition-colors duration-300 hover:bg-blue-50/40">
+                  <span className={`grid size-11 place-items-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${tone}`}>
                     <StatIcon className="size-5" aria-hidden />
                   </span>
                   <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
                   <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       <PricingCta

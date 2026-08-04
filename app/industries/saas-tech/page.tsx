@@ -31,8 +31,9 @@ import {
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
+import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { SaasAgentConsole } from "@/components/industries/saas-agent-console"
+import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
@@ -185,7 +186,7 @@ export default function SaasTechPage() {
 
       {/* ─── Never lose a customer opportunity ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal className="mx-auto max-w-7xl">
+        <ScrollStepItem className="mx-auto max-w-7xl">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-start">
             <h2 className="text-balance font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.75rem]">
               Never lose a customer opportunity.
@@ -195,50 +196,51 @@ export default function SaasTechPage() {
                 AI agents answer product questions, qualify inbound leads, book demos, recover abandoned trials, and
                 guide customers through onboarding — without human intervention.
               </p>
-              <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-                {OPPORTUNITY_ITEMS.map((line) => (
-                  <li key={line} className="flex items-center gap-2.5">
+              <div className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                {OPPORTUNITY_ITEMS.map((line, i) => (
+                  <ScrollStepItem key={line} index={i} className="flex items-center gap-2.5">
                     <span className="grid size-5 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-3" aria-hidden />
                     </span>
                     <span className="text-pretty text-[13.5px] leading-snug text-slate-700">{line}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
-        </ScrollReveal>
+        </ScrollStepItem>
       </section>
 
       {/* ─── What the AI agent does + Smarter support ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the AI Agent Does on Day One
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
 
-              <StaggerGroup className="mt-6 space-y-3" stagger={0.08}>
-                {DAY_ONE_JOBS.map((job) => (
-                  <StaggerItem
+              <div className="mt-6 space-y-3">
+                {DAY_ONE_JOBS.map((job, i) => (
+                  <ScrollStepItem
                     key={job.text}
+                    index={i}
                     className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
                       <job.Icon className="size-4" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14px] leading-snug text-slate-700">{job.text}</span>
-                  </StaggerItem>
+                  </ScrollStepItem>
                 ))}
-              </StaggerGroup>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — smarter support panel with robot */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 Smarter support.
@@ -252,16 +254,16 @@ export default function SaasTechPage() {
                 around the clock.
               </p>
 
-              <StaggerGroup className="mt-7 max-w-md space-y-5" stagger={0.08}>
-                {SUPPORT_ITEMS.map((line) => (
-                  <StaggerItem key={line} className="flex items-center gap-3.5">
+              <div className="mt-7 max-w-md space-y-5">
+                {SUPPORT_ITEMS.map((line, i) => (
+                  <ScrollStepItem key={line} index={i} className="flex items-center gap-3.5">
                     <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-4" aria-hidden />
                     </span>
                     <span className="text-pretty text-[17px] leading-snug text-slate-700">{line}</span>
-                  </StaggerItem>
+                  </ScrollStepItem>
                 ))}
-              </StaggerGroup>
+              </div>
 
               {/* Robot mascot — sits in the empty space beside the checklist */}
               <div className="absolute bottom-9 right-7 hidden items-center justify-end sm:right-9 lg:flex">
@@ -284,7 +286,7 @@ export default function SaasTechPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -292,7 +294,7 @@ export default function SaasTechPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[minmax(0,360px)_1fr]">
           {/* Performance card */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
               <div className="flex items-center gap-2.5">
                 <span className="grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
@@ -309,23 +311,23 @@ export default function SaasTechPage() {
                   { Icon: MessageCircle, value: "98%", label: "Customer satisfaction" },
                   { Icon: ShieldCheck, value: "99.9%", label: "Uptime" },
                   { Icon: Globe, value: "10+", label: "Languages supported" },
-                ].map((s) => (
-                  <div key={s.label} className="flex items-start gap-2.5">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
+                ].map((s, i) => (
+                  <ScrollStepItem key={s.label} index={i} className="group flex items-start gap-2.5">
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                       <s.Icon className="size-4" aria-hidden />
                     </span>
                     <div>
                       <p className="font-sans text-lg font-bold tracking-tight text-slate-900">{s.value}</p>
                       <p className="text-[11px] font-medium leading-snug text-slate-500">{s.label}</p>
                     </div>
-                  </div>
+                  </ScrollStepItem>
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* How the agent actually sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the Agent Actually Sounds
@@ -353,52 +355,46 @@ export default function SaasTechPage() {
                   <span className="shrink-0 text-[11px] font-medium text-slate-400">0:00 / 0:32</span>
                 </div>
 
-                <div className="mt-4 space-y-2.5">
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-slate-50 border border-slate-200 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    Hi, I&apos;m evaluating your software for my team.
-                  </p>
-                  <p className="ml-auto max-w-[90%] rounded-xl rounded-tr-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    Great! I&apos;d be happy to help. How many users are you planning to onboard?
-                  </p>
-                  <p className="max-w-[85%] rounded-xl rounded-tl-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    Around 50 employees.
-                  </p>
-                  <p className="ml-auto max-w-[90%] rounded-xl rounded-tr-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    Perfect. Based on that size, our Growth plan would be a good fit. Would you like me to schedule a
-                    personalized demo?
-                  </p>
-                  <p className="max-w-[85%] rounded-xl rounded-tl-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    Yes, tomorrow afternoon.
-                  </p>
-                  <p className="ml-auto max-w-[90%] rounded-xl rounded-tr-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    Done! I&apos;ve booked your demo and sent the calendar invite.
-                  </p>
-                </div>
+                <SoundSampleChat
+                  agentSide="right"
+                  height={280}
+                  messages={[
+                    { from: "customer", text: "Hi, I'm evaluating your software for my team." },
+                    { from: "agent", text: "Great! I'd be happy to help. How many users are you planning to onboard?" },
+                    { from: "customer", text: "Around 50 employees." },
+                    {
+                      from: "agent",
+                      text: "Perfect. Based on that size, our Growth plan would be a good fit. Would you like me to schedule a personalized demo?",
+                    },
+                    { from: "customer", text: "Yes, tomorrow afternoon." },
+                    { from: "agent", text: "Done! I've booked your demo and sent the calendar invite." },
+                  ]}
+                />
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
       {/* ─── Why SaaS teams choose 9278.io ─── */}
       <section className="w-full bg-blue-50/40 px-6 py-10 md:px-8 md:py-14">
         <div className="mx-auto max-w-7xl">
-          <ScrollReveal>
+          <ScrollStepItem>
             <h2 className="text-balance font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-[1.75rem]">
               Why SaaS Teams Choose 9278.io
             </h2>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
             {WHY_ITEMS.map((item, i) => (
-              <ScrollReveal key={item.label} delay={i * 0.05}>
-                <div className="flex h-full flex-col items-center gap-3 rounded-2xl border border-blue-400 bg-white p-4 text-center shadow-sm">
-                  <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <ScrollStepItem key={item.label} index={i}>
+                <div className="group flex h-full flex-col items-center gap-3 rounded-2xl border border-blue-400 bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-600/15">
+                  <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                     <item.Icon className="size-5" aria-hidden />
                   </span>
                   <p className="text-[12px] font-semibold leading-snug text-slate-700">{item.label}</p>
                 </div>
-              </ScrollReveal>
+              </ScrollStepItem>
             ))}
           </div>
         </div>

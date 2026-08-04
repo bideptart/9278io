@@ -58,7 +58,7 @@ export function FinanceHero({ pitch }: { pitch: string }) {
       ))}
 
       <div className="w-full px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
           {/* Each block enters on its own short delay so the column builds up
               top-to-bottom instead of arriving as one slab. */}
           <div className="relative">
@@ -85,18 +85,11 @@ export function FinanceHero({ pitch }: { pitch: string }) {
               <span className="relative">AI Voice Agents for Finance Teams</span>
             </span>
 
-            <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
-              <span style={{ animationDelay: "0.15s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black">
-                AI voice agents
-              </span>
-              {/* Two animations, two elements — the wrapper does the entrance
-                  fade, the inner span runs the looping gradient sweep. */}
-              <span
-                style={{ animationDelay: "0.25s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
-              >
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]">
-                  for finance.
+            <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                  For Finance.
                 </span>
               </span>
             </h1>
@@ -259,8 +252,8 @@ export function FinanceHero({ pitch }: { pitch: string }) {
         </div>
       </div>
 
-      <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
+      <div className="w-full px-6 pb-2 pt-8 md:px-8 md:pb-3 md:pt-10">
+        <ScrollReveal delay={0.1} className="mx-auto max-w-6xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {HERO_STATS.map((s, i) => (

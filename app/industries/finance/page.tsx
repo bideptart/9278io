@@ -68,7 +68,7 @@ export default function FinancePage() {
       <FinanceDetails jobs={JOBS} sampleLines={SAMPLE_LINES} conversation={CONVERSATION} />
 
       {/* Rollout playbook */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 py-16 md:px-8 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 pb-4 pt-6 md:px-8 md:pb-6 md:pt-8">
         <div aria-hidden className="pointer-events-none absolute -left-24 top-10 -z-10 size-80 rounded-full bg-blue-400/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 -z-10 size-96 rounded-full bg-sky-400/15 blur-3xl" />
 
@@ -174,7 +174,7 @@ export default function FinancePage() {
       />
 
       {/* Other industries we power */}
-      <section className="w-full px-6 pb-16 pt-16 md:px-8 md:pb-24 md:pt-24">
+      <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">

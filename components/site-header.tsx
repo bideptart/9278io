@@ -8,6 +8,10 @@ import {
   Building2, Wrench, Briefcase, ShoppingBag, Sparkles,
   Info, FileText, Phone,
   Landmark, Cpu, Truck, Users, Server, ShoppingCart,
+  Bot, Mic, SlidersHorizontal, GraduationCap, BookOpen, Route,
+  Rocket, PhoneCall, LayoutTemplate, Activity, BarChart3, History,
+  PhoneForwarded, BellRing, Ticket, FileBarChart, UserCog, Settings,
+  LayoutDashboard, PlayCircle,
 } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
@@ -180,6 +184,190 @@ function IndustriesMenu() {
   )
 }
 
+/* ── Features mega-menu content, grouped by where each feature sits in the
+   product lifecycle: set up an agent, train it, test it, run it day to day,
+   then manage the account around it. ── */
+const FEATURE_GROUPS = [
+  {
+    label: "Agent Setup",
+    icon: Bot,
+    subtitle: "Multi-agent, voices, call rules",
+    tagline: "Agent setup",
+    heading: "Configure how your agents work.",
+    lead: "Run multiple agents, pick a voice, and set call behavior.",
+    items: [
+      { slug: "multi-agent-management", name: "Multi-Agent Management", icon: Users, short: "Run and manage multiple AI agents from one account." },
+      { slug: "voice-selection", name: "Voice Selection", icon: Mic, short: "Choose a natural, human-like voice for your agent." },
+      { slug: "call-behavior-controls", name: "Call Behavior Controls", icon: SlidersHorizontal, short: "Fine-tune how your agent handles every call." },
+    ],
+  },
+  {
+    label: "Train & Configure",
+    icon: GraduationCap,
+    subtitle: "Knowledge, templates, routing",
+    tagline: "Train & configure",
+    heading: "Teach your agent what it needs to know.",
+    lead: "Knowledge base, reusable templates, and routing rules.",
+    items: [
+      { slug: "knowledge-base", name: "Knowledge Base", icon: BookOpen, short: "Give each agent its own company-specific knowledge." },
+      { slug: "knowledge-templates", name: "Knowledge Templates", icon: FileText, short: "Reusable knowledge templates across agents." },
+      { slug: "behavior-routing-rules", name: "Behavior & Routing Rules", icon: Route, short: "Control how calls are routed and handled." },
+    ],
+  },
+  {
+    label: "Test & Go Live",
+    icon: Rocket,
+    subtitle: "Live test calls, setup templates",
+    tagline: "Test & go live",
+    heading: "Try it before you launch.",
+    lead: "Real test calls and ready-made setup templates.",
+    items: [
+      { slug: "live-test-call", name: "Live Test Call", icon: PhoneCall, short: "Dial in and test your agent on a real number." },
+      { slug: "setup-templates", name: "Setup Templates", icon: LayoutTemplate, short: "Ready-made templates to launch faster." },
+      { slug: "playground-live-testing", name: "Playground & Live Testing", icon: PlayCircle, short: "Try your agent live in an interactive playground." },
+    ],
+  },
+  {
+    label: "Operate & Monitor",
+    icon: Activity,
+    subtitle: "Analytics, bookings, tickets, reports",
+    tagline: "Operate & monitor",
+    heading: "Keep every call and booking on track.",
+    lead: "Analytics, bookings, transfers, notifications, tickets, and reports.",
+    items: [
+      { slug: "analytics-dashboard", name: "Analytics Dashboard", icon: BarChart3, short: "Real-time insights into every call." },
+      { slug: "booking-history", name: "Booking History", icon: History, short: "Full history of every booking made." },
+      { slug: "call-transfer-tool", name: "Call Transfer Tool", icon: PhoneForwarded, short: "Transfer live calls to your team seamlessly." },
+      { slug: "booking-notifications", name: "Booking Notifications", icon: BellRing, short: "Automatic alerts for every new booking." },
+      { slug: "support-tickets-system", name: "Support Tickets", icon: Ticket, short: "Auto-generate support tickets from calls." },
+      { slug: "call-reports", name: "Call Reports", icon: FileBarChart, short: "Recordings and transcripts for every call." },
+    ],
+  },
+  {
+    label: "Account & Overview",
+    icon: UserCog,
+    subtitle: "Settings, dashboard, identity",
+    tagline: "Account & overview",
+    heading: "Everything about your account, in one place.",
+    lead: "Account settings, dashboard overview, and agent identity.",
+    items: [
+      { slug: "account-settings", name: "Account Settings", icon: Settings, short: "Manage your billing, team, and preferences." },
+      { slug: "dashboard-overview", name: "Dashboard Overview", icon: LayoutDashboard, short: "A birds-eye view of your whole account." },
+      { slug: "identity-setup", name: "Agent Identity Setup", icon: UserCog, short: "Name, greeting, and personality for your agent." },
+    ],
+  },
+]
+
+function FeaturesMenu() {
+  const [activeGroup, setActiveGroup] = useState(0)
+  const group = FEATURE_GROUPS[activeGroup]
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-2xl">
+      <div className="grid grid-cols-[220px_1fr]">
+        {/* Left: group list */}
+        <div className="border-r border-border/60 bg-slate-50/60 p-4">
+          <div className="flex items-center justify-between px-1">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Features</p>
+            <p className="text-[11px] text-muted-foreground">{FEATURE_GROUPS.length} groups</p>
+          </div>
+          <div className="mt-2 flex flex-col gap-1">
+            {FEATURE_GROUPS.map((g, i) => {
+              const Icon = g.icon
+              const active = i === activeGroup
+              return (
+                <button
+                  key={g.label}
+                  type="button"
+                  onMouseEnter={() => setActiveGroup(i)}
+                  onFocus={() => setActiveGroup(i)}
+                  className={cn(
+                    "flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-left transition-colors",
+                    active ? "bg-white shadow-sm ring-1 ring-border" : "hover:bg-white/70",
+                  )}
+                >
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.08] text-primary">
+                    <Icon className="size-4" aria-hidden />
+                  </span>
+                  <span className="min-w-0 leading-tight">
+                    <span className="block truncate text-[13px] font-semibold text-foreground">{g.label}</span>
+                    <span className="block truncate text-[11px] text-muted-foreground">{g.subtitle}</span>
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Right: active group detail — fixed height (tall enough for the
+            largest group, 6 items) so switching groups never resizes the menu */}
+        <div className="flex h-[300px] flex-col overflow-hidden p-5">
+          <div className="flex items-center justify-between gap-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary">
+              <span className="size-1.5 rounded-full bg-primary" aria-hidden />
+              {group.tagline}
+            </span>
+            <Link
+              href="/features"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Overview <ArrowUpRight className="size-3.5" aria-hidden />
+            </Link>
+          </div>
+
+          <h3 className="mt-3 text-lg font-bold tracking-tight text-foreground">{group.heading}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{group.lead}</p>
+
+          <div className="mt-4 grid grid-cols-2 items-start gap-x-3 gap-y-1 overflow-y-auto">
+            {group.items.map((f) => {
+              const Icon = f.icon
+              return (
+                <Link
+                  key={f.slug}
+                  href={`/features/${f.slug}`}
+                  className="flex h-[62px] items-start gap-2.5 rounded-xl p-1.5 transition-colors hover:bg-slate-50"
+                >
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.08] text-primary">
+                    <Icon className="size-4" aria-hidden />
+                  </span>
+                  <span className="min-w-0 leading-snug">
+                    <span className="block truncate text-sm font-semibold text-foreground">{f.name}</span>
+                    <span
+                      className="block overflow-hidden text-xs text-muted-foreground"
+                      style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}
+                    >
+                      {f.short}
+                    </span>
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between gap-3 border-t border-border/60 bg-slate-50/60 px-5 py-3">
+        <span className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Sparkles className="size-4 text-primary" aria-hidden />
+          Every plan includes per-second billing and a 10+ language voice agent.
+        </span>
+        <div className="flex shrink-0 items-center gap-3">
+          <Link href="/pricing" className="text-xs font-semibold text-primary hover:underline">
+            Compare plans
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
+          >
+            Talk to sales <ArrowRight className="size-3.5" aria-hidden />
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ── Company dropdown content ── */
 const COMPANY_LINKS = [
   { label: "About", href: "/about", icon: Info, desc: "Learn what 9278.io is building and why." },
@@ -256,14 +444,20 @@ const ALL_INDUSTRY_LINKS = INDUSTRY_GROUPS.flatMap((g) => [
   ...g.items,
 ]) as { slug: string; name: string }[]
 
+// Same flattening for the Features mega-menu's mobile submenu — one
+// continuous 2-column grid of all 17 pages, matching the Industries pattern.
+const ALL_FEATURE_LINKS = FEATURE_GROUPS.flatMap((g) => g.items)
+
 export function SiteHeader() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [featuresOpen, setFeaturesOpen] = useState(false)
   const [industriesOpen, setIndustriesOpen] = useState(false)
   const [companyOpen, setCompanyOpen] = useState(false)
-  // Only one mobile submenu open at a time — opening one closes the other.
-  const [mobileExpanded, setMobileExpanded] = useState<"industries" | "company" | null>(null)
+  // Only one mobile submenu open at a time — opening one closes the others.
+  const [mobileExpanded, setMobileExpanded] = useState<"features" | "industries" | "company" | null>(null)
+  const mobileFeaturesOpen = mobileExpanded === "features"
   const mobileIndustriesOpen = mobileExpanded === "industries"
   const mobileCompanyOpen = mobileExpanded === "company"
 
@@ -315,7 +509,38 @@ export function SiteHeader() {
         {/* ── Desktop nav ── */}
         <nav aria-label="Primary" className="hidden items-center justify-self-center gap-3 md:flex">
 
-          {navLink("Features", "/features")}
+          <div
+            className="relative"
+            onMouseEnter={() => setFeaturesOpen(true)}
+            onMouseLeave={() => setFeaturesOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setFeaturesOpen((o) => !o)}
+              className={cn(
+                "relative flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-600 hover:text-white",
+                isActive("/features") ? "text-foreground" : "text-muted-foreground",
+                featuresOpen ? "bg-blue-600 text-white" : "",
+              )}
+            >
+              Features
+              <ChevronDown className={cn("size-3.5 transition-transform", featuresOpen ? "rotate-180" : "")} aria-hidden />
+            </button>
+            <AnimatePresence>
+              {featuresOpen && (
+                <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
+                  <motion.div
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <FeaturesMenu />
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
 
           <div
             className="relative"
@@ -434,19 +659,69 @@ export function SiteHeader() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-border/50 md:hidden"
+            // Opacity only — see the fade-only note on the submenu motion.divs
+            // below: a height:0->"auto" animation locks in its measured height
+            // once (when this panel first opens, before any submenu inside it
+            // has expanded), and never re-measures afterward. Expanding a
+            // submenu later then grows past that locked height and gets
+            // clipped by this wrapper's own overflow-hidden. The inner <nav>
+            // already has its own max-height + scroll, so this wrapper doesn't
+            // need to animate height at all.
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15, ease: "easeInOut" }}
+            className="border-t border-border/50 md:hidden"
           >
             <nav className="flex max-h-[calc(100dvh-5rem)] flex-col gap-2 overflow-y-auto overscroll-contain p-4 pb-6">
-              <Link
-                href="/features"
-                className="rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
+              {/* Features — expands to every feature page, grouped by lifecycle stage */}
+              <button
+                type="button"
+                onClick={() => setMobileExpanded((s) => (s === "features" ? null : "features"))}
+                className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
+                aria-expanded={mobileFeaturesOpen}
               >
                 Features
-              </Link>
+                <ChevronDown
+                  className={cn("size-3.5 transition-transform", mobileFeaturesOpen ? "rotate-180" : "")}
+                  aria-hidden
+                />
+              </button>
+              <AnimatePresence initial={false}>
+                {mobileFeaturesOpen && (
+                  <motion.div
+                    // Fade only, no height animation — animating height: 0 -> "auto"
+                    // via Framer Motion measures scrollHeight once and can under-measure
+                    // wrapping/truncating grid content, silently clipping items past
+                    // whatever height it locked in (with overflow-hidden making the
+                    // clipped items invisible rather than just off-screen/scrollable).
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15, ease: "easeInOut" }}
+                  >
+                    <div className="py-1">
+                      <Link
+                        href="/features"
+                        className="block rounded-lg px-3 py-2 text-center text-sm font-semibold text-primary transition-colors hover:text-primary/70"
+                      >
+                        All features →
+                      </Link>
+                      <div className="mt-0.5 grid grid-cols-2 gap-0.5">
+                        {ALL_FEATURE_LINKS.map((f) => (
+                          <Link
+                            key={f.slug}
+                            href={`/features/${f.slug}`}
+                            className="truncate rounded-lg px-3 py-2 text-center text-sm text-muted-foreground transition-colors hover:text-primary"
+                          >
+                            {f.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <div className="flex flex-col gap-2">
                 {/* Industries — expands to every individual industry page */}
@@ -465,11 +740,10 @@ export function SiteHeader() {
                 <AnimatePresence initial={false}>
                   {mobileIndustriesOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15, ease: "easeInOut" }}
                     >
                       <div className="py-1">
                         <Link
@@ -517,11 +791,10 @@ export function SiteHeader() {
                 <AnimatePresence initial={false}>
                   {mobileCompanyOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.15, ease: "easeInOut" }}
                     >
                       <div className="flex flex-col gap-0.5 py-1">
                         {COMPANY_LINKS.map((c) => (

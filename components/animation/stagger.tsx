@@ -56,3 +56,38 @@ export function StaggerItem({
     </motion.div>
   )
 }
+
+/**
+ * Unlike StaggerItem (which needs a StaggerGroup ancestor and fires all
+ * children together once the group scrolls into view), each ScrollStepItem
+ * has its own `whileInView` trigger — so in a tall list, later rows reveal
+ * only once you've actually scrolled down to them, not all at once.
+ *
+ * `once: false` makes it reversible: scrolling back up past a row plays the
+ * reveal in reverse (fades/slides back to `initial`), then it replays
+ * forward again if you scroll back down to it.
+ */
+export function ScrollStepItem({
+  children,
+  className,
+  index = 0,
+  ...rest
+}: {
+  children: React.ReactNode
+  className?: string
+  index?: number
+  role?: string
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: "-60px" }}
+      transition={{ duration: 0.45, delay: (index % 5) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className={cn(className)}
+      {...rest}
+    >
+      {children}
+    </motion.div>
+  )
+}

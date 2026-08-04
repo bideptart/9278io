@@ -1,74 +1,68 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import {
-  ArrowRight,
-  CalendarCheck2,
-  ChevronRight,
-  Download,
-  PhoneCall,
-  Search,
-  SlidersHorizontal,
-} from "lucide-react"
+import { ArrowRight, Bot, ChevronRight, MessageSquareText, PhoneCall, Sparkles, Wand2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
+import { DetailFanStack } from "@/components/features-page/detail-fan-stack"
+import { HowItWorksConsole } from "@/components/features-page/how-it-works-console"
+import { TestingImpactBand } from "@/components/features-page/testing-impact-band"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
-import { DetailNumberedList } from "@/components/features-page/detail-numbered-list"
-import { BookingHistoryIllustration } from "@/components/features-page/booking-history-illustration"
+import { PlaygroundIllustration } from "@/components/features-page/playground-illustration"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { FAQ_GROUPS } from "@/lib/faq"
 
-const agentsFaq = FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
-  ["Does it integrate with Indian CRMs and tools?", "Can the agent transfer to a human?"].includes(i.q),
-)
+const testingFaq = [
+  ...FAQ_GROUPS.find((g) => g.id === "account")!.items.filter((i) => ["How fast can I be live?"].includes(i.q)),
+  ...FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) => ["How many concurrent AI agents do I get?"].includes(i.q)),
+]
 
 export const metadata: Metadata = pageSeo({
-  title: "Booking History",
-  description: "See every appointment your agent has booked, in one searchable list.",
-  path: "/features/booking-history",
+  title: "Playground / Live Testing",
+  description: "Test your agent's responses in a live sandbox before it ever answers a real call.",
+  path: "/features/playground-live-testing",
 })
 
 const DETAILS = [
   {
-    icon: <Search className="size-5" aria-hidden />,
-    title: "Every appointment in one searchable list",
-    description: "Every booking your agents make lands in a single list you can search in seconds.",
+    icon: <MessageSquareText className="size-5" aria-hidden />,
+    title: "Chat with your agent in a safe sandbox",
+    description: "Send test messages and see exactly how your agent would respond to a real caller.",
   },
   {
-    icon: <SlidersHorizontal className="size-5" aria-hidden />,
-    title: "Filter by date or by agent",
-    description: "Narrow down to a date range or a specific agent to see exactly what you're looking for.",
+    icon: <Wand2 className="size-5" aria-hidden />,
+    title: "Tweak prompts and see results instantly",
+    description: "Adjust your agent's instructions and immediately test the new behavior in the same session.",
   },
   {
-    icon: <Download className="size-5" aria-hidden />,
-    title: "Export whenever you need it",
-    description: "Pull the list out anytime — for reporting, reconciliation, or sharing with your team.",
+    icon: <Sparkles className="size-5" aria-hidden />,
+    title: "Catch gaps before going live",
+    description: "Find the questions your agent doesn't handle well yet, before a real customer ever asks them.",
   },
 ]
 
 const STEPS = [
   {
-    icon: <CalendarCheck2 className="size-5" aria-hidden />,
-    title: "Every booking logs itself",
-    description: "The moment your agent confirms an appointment, it's added to the list — no manual entry.",
+    icon: <Bot className="size-3.5" aria-hidden />,
+    title: "open sandbox --agent=receptionist",
+    description: "Launch the playground for the agent you want to test.",
   },
   {
-    icon: <Search className="size-5" aria-hidden />,
-    title: "Search and filter instantly",
-    description: "Find any booking by date or agent in seconds, without scrolling through call recordings.",
+    icon: <MessageSquareText className="size-3.5" aria-hidden />,
+    title: "send \"can I book for tomorrow?\"",
+    description: "Type any message a real caller might say, and send it.",
   },
   {
-    icon: <Download className="size-5" aria-hidden />,
-    title: "Export whenever you need it",
-    description: "Pull the list out for reporting or reconciliation, anytime — no waiting on support.",
+    icon: <Sparkles className="size-3.5" aria-hidden />,
+    title: "review response --latency --accuracy",
+    description: "Check the reply, response time, and whether the info was correct.",
   },
 ]
 
-export default function BookingHistoryPage() {
+export default function PlaygroundLiveTestingPage() {
   return (
     <main className="relative min-h-dvh bg-background text-foreground">
       <SiteHeader />
@@ -77,7 +71,7 @@ export default function BookingHistoryPage() {
         items={[
           { name: "Home", path: "/" },
           { name: "Features", path: "/features" },
-          { name: "Booking History", path: "/features/booking-history" },
+          { name: "Playground / Live Testing", path: "/features/playground-live-testing" },
         ]}
       />
 
@@ -91,17 +85,17 @@ export default function BookingHistoryPage() {
           <div>
             <nav aria-label="Breadcrumb">
               <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
-                Operate &amp; Monitor
+                Test &amp; Go Live
               </span>
             </nav>
 
             <ScrollReveal className="mt-6">
               <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Booking History
+                Playground / Live Testing
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                See every appointment your agent has booked, in one searchable list — no digging through call
-                recordings or chasing down what got confirmed.
+                Test your agent&apos;s responses in a live sandbox before it ever answers a real call — tweak,
+                retest, and catch the gaps while it's still safe to.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -131,55 +125,66 @@ export default function BookingHistoryPage() {
           </div>
 
           <ScrollReveal delay={0.08} className="hidden lg:block">
-            <BookingHistoryIllustration />
+            <PlaygroundIllustration />
           </ScrollReveal>
         </div>
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               What you get
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Every booking, always findable</h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">A safe place to test everything</h2>
           </ScrollReveal>
-          <div className="mt-8">
-            <DetailNumberedList items={DETAILS} />
-          </div>
+          <DetailFanStack items={DETAILS} />
         </div>
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               How it works
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">From confirmed call to searchable record</h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Test it like a command line</h2>
           </ScrollReveal>
-          <HowItWorksFlow steps={STEPS} />
+          <HowItWorksConsole steps={STEPS} />
         </div>
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
+          <ScrollReveal>
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              Why it matters
+            </span>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Nothing goes live by accident</h2>
+          </ScrollReveal>
+          <TestingImpactBand />
+        </div>
+      </section>
+
+      <section className="border-b border-border/50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               Related questions
             </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Where bookings fit in</h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Testing and launch, answered</h2>
             <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-              Straight from the FAQ — no separate lookup needed.
+              Straight from the FAQ — pick a question to see the answer.
             </p>
           </ScrollReveal>
           <div className="mx-auto mt-8 max-w-2xl">
             <FaqAccordion
-              items={agentsFaq}
-              idPrefix="booking-history"
+              items={testingFaq}
+              idPrefix="playground-live-testing"
               itemClassName="border-border/60 border-l-4 border-l-transparent bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-l-primary hover:shadow-[0_12px_28px_-16px_rgba(15,23,42,0.15)]"
               triggerIcon={<ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden />}
             />
@@ -195,8 +200,8 @@ export default function BookingHistoryPage() {
       </section>
 
       <PricingCta
-        heading="See it on your own bookings"
-        description="Spin up your first agent and every appointment it books shows up here, searchable from day one."
+        heading="Test it yourself before it ever answers a real call"
+        description="Spin up your first agent and try it in the sandbox — no real caller until you're ready."
         primaryHref="/get-started"
         primaryLabel="Get started"
         secondaryHref="/features"
