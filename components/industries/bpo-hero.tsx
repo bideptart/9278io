@@ -68,16 +68,8 @@ export function BpoHero({ industry }: { industry: Industry }) {
             </span>
 
             <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
-              <span
-                style={{ animationDelay: "0.15s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black"
-              >
-                AI Voice Agents
-              </span>
-              <span
-                style={{ animationDelay: "0.25s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
-              >
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
                 <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
                   For BPO &amp; Call Centres.
                 </span>
