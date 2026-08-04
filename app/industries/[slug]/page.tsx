@@ -39,7 +39,7 @@ import {
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { IndustryImage } from "@/components/industries/industry-image"
 import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
@@ -1042,7 +1042,7 @@ function RealEstatePage() {
                 </div>
               </div>
 
-              <ol className="relative mt-8 space-y-4">
+              <div className="relative mt-8 space-y-4">
                 <span aria-hidden className="absolute left-[22px] top-3 bottom-3 w-px bg-blue-200/70" />
                 {[
                   {
@@ -1071,9 +1071,9 @@ function RealEstatePage() {
                     title: "Nurture while you're busy",
                   },
                 ].map((step, i) => (
-                  <li key={step.title} className="relative flex items-start gap-4">
+                  <ScrollStepItem key={step.title} index={i} className="relative flex items-start gap-4">
                     <span aria-hidden className="relative z-10 mt-1 size-2.5 shrink-0 rounded-full bg-blue-600 ring-4 ring-blue-50" />
-                    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)]">
+                    <div className="flex flex-1 items-center gap-3 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10">
                       <span className={`grid size-9 shrink-0 place-items-center rounded-xl ${step.tone}`}>
                         <step.Icon className="size-4.5" aria-hidden />
                       </span>
@@ -1084,9 +1084,9 @@ function RealEstatePage() {
                         <p className="text-[15px] font-bold leading-snug text-slate-900">{step.title}</p>
                       </div>
                     </div>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
 
               <div className="mt-auto pt-8">
                 <Button
@@ -1237,7 +1237,7 @@ function RealEstatePage() {
             </div>
 
             {/* Card 01 — Start small. Grow fast. */}
-            <ScrollReveal>
+            <ScrollStepItem index={0}>
               <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
                 <span
                   aria-hidden
@@ -1299,10 +1299,10 @@ function RealEstatePage() {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
 
             {/* Card 02 — Explore more. Compare with confidence. */}
-            <ScrollReveal delay={0.12}>
+            <ScrollStepItem index={1}>
               <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
                 <span
                   aria-hidden
@@ -1356,7 +1356,7 @@ function RealEstatePage() {
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
           </div>
 
           <ScrollReveal delay={0.2}>
@@ -1440,8 +1440,9 @@ function RealEstatePage() {
             <div className="relative">
               <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <div className="flex items-center gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
-                    <TrendingUp className="size-5" aria-hidden />
+                  <span className="ind-float relative grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
+                    <span aria-hidden className="absolute inset-0 rounded-2xl bg-blue-500 motion-safe:animate-ping" style={{ animationDuration: "2.4s", opacity: 0.35 }} />
+                    <TrendingUp className="relative size-5" aria-hidden />
                   </span>
                   <div>
                     <p className="text-[15px] font-bold text-slate-900">Real-Time Performance</p>
@@ -1457,19 +1458,20 @@ function RealEstatePage() {
                     { Icon: Phone, tone: "bg-emerald-50 text-emerald-600", label: "Concurrent calls", value: "Up to 40" },
                     { Icon: Wallet, tone: "bg-violet-50 text-violet-600", label: "Per-minute rate", value: "From ₹10" },
                     { Icon: ShieldCheck, tone: "bg-orange-50 text-orange-600", label: "Uptime reliability", value: "99.9%" },
-                  ].map((s) => (
-                    <div
-                      key={s.label}
-                      className={`w-full max-w-[220px] rounded-2xl border border-blue-400 p-6 text-center ${s.tone}`}
-                    >
-                      <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70">
-                        <s.Icon className="size-6" aria-hidden />
-                      </span>
-                      <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-                        {s.value}
-                      </p>
-                      <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
-                    </div>
+                  ].map((s, i) => (
+                    <ScrollStepItem key={s.label} index={i} className="w-full max-w-[220px]">
+                      <div
+                        className={`group w-full rounded-2xl border border-blue-400 p-6 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-600/15 ${s.tone}`}
+                      >
+                        <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                          <s.Icon className="size-6" aria-hidden />
+                        </span>
+                        <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                          {s.value}
+                        </p>
+                        <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
+                      </div>
+                    </ScrollStepItem>
                   ))}
                 </div>
               </div>
