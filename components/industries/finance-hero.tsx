@@ -85,9 +85,9 @@ export function FinanceHero({ pitch }: { pitch: string }) {
               <span className="relative">AI Voice Agents for Finance Teams</span>
             </span>
 
-            <h1 className="mt-6 text-balance font-serif text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+            <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
               <span style={{ animationDelay: "0.15s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black">
-                AI voice agents
+                AI Voice Agents
               </span>
               {/* Two animations, two elements — the wrapper does the entrance
                   fade, the inner span runs the looping gradient sweep. */}
@@ -96,7 +96,7 @@ export function FinanceHero({ pitch }: { pitch: string }) {
                 className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
               >
                 <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]">
-                  for finance.
+                  For Finance.
                 </span>
               </span>
             </h1>
