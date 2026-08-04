@@ -49,6 +49,7 @@ import { RestaurantReservationCard, RestaurantChatCard } from "@/components/indu
 import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { EcommercePerformanceChart } from "@/components/industries/ecommerce-performance-chart"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -2247,6 +2248,13 @@ function RestaurantsPage() {
           </div>
         </div>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/restaurants-robots.png"
+        alt="AI robot staff serving guests in a futuristic restaurant"
+        heading="Service that never slows down."
+        paragraph="From the moment a call comes in to the moment a table is confirmed, 9278.io keeps the conversation moving — taking reservations, answering menu questions, and handling last-minute changes so your floor staff can stay focused on the guests right in front of them."
+      />
 
       <PricingCta
         heading="Let AI handle calls so your team can focus on great hospitality."
