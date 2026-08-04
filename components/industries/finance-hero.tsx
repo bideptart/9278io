@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import ImageCollageHero from "@/components/ui/image-collage-hero-9"
 
 const HERO_STATS = [
   { icon: BadgeIndianRupee, iconBg: "bg-blue-100 text-blue-600", value: "< 3 Seconds", label: "First-touch response" },
@@ -159,101 +159,7 @@ export function FinanceHero({ pitch }: { pitch: string }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="group relative mx-auto w-full max-w-[560px]">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(37,99,235,0.2),transparent_70%)] motion-safe:animate-[breathe_8s_ease-in-out_infinite]"
-              />
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_30px_70px_-25px_rgba(37,99,235,0.55)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_40px_90px_-25px_rgba(37,99,235,0.65)]">
-                <Image
-                  src="/images/finance-hero.png"
-                  alt="AI voice agent for finance — bank, secure payments, and analytics"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                />
-              </div>
-
-              {/* Floating accent cards — sit outside the image bounds, each
-                  with its own float rhythm plus a hover lift of its own. */}
-              <div className="absolute -left-4 -top-4 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 rounded-xl bg-emerald-500/25 motion-safe:animate-[ind-ping_2.6s_ease-out_infinite]"
-                      />
-                      <CheckCircle2 className="relative size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Invoice Approved</p>
-                      <p className="text-[11px] font-medium text-slate-500">Sent</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -right-4 -top-4 z-20 transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
-                  <div className="mt-1.5 flex items-center gap-1.5">
-                    <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
-                    <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
-                      {[7, 11, 6, 13, 9, 14].map((h, i) => (
-                        <span
-                          key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-sky-500 to-blue-500"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -left-6 top-[48%] z-20 hero-float-down transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 rounded-xl bg-blue-500/15 motion-safe:animate-[ind-ping_3.2s_ease-out_infinite]"
-                      />
-                      <FileText className="relative size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Expense Report</p>
-                      <p className="text-[11px] font-medium text-slate-500">Ready</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -right-6 bottom-10 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 rounded-xl bg-emerald-500/20 motion-safe:animate-[ind-ping_3.6s_ease-out_infinite]"
-                      />
-                      <BadgeIndianRupee className="relative size-5" aria-hidden />
-                    </span>
-                    <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Payment</p>
-                      <p className="text-[11px] font-medium text-slate-500">Confirmed</p>
-                    </div>
-                    <span className="ml-1 flex gap-1" aria-hidden>
-                      <span className="size-1.5 rounded-full bg-slate-300" />
-                      <span className="size-1.5 rounded-full bg-slate-300" />
-                      <span className="size-1.5 animate-pulse rounded-full bg-blue-500" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ImageCollageHero />
           </ScrollReveal>
         </div>
       </div>
