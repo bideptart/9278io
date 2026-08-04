@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, BellRing, CalendarCheck2, History, Inbox, Mail, PhoneCall, Zap } from "lucide-react"
+import { ArrowRight, CalendarCheck2, ChevronRight, History, Inbox, Mail, PhoneCall, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -9,7 +9,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailSpotlightPanel } from "@/components/features-page/detail-spotlight-panel"
 import { HowItWorksRadial } from "@/components/features-page/how-it-works-radial"
 import { SpeedComparisonBars } from "@/components/features-page/speed-comparison-bars"
-import { FaqCardCarousel } from "@/components/features-page/faq-card-carousel"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { BookingNotificationsIllustration } from "@/components/features-page/booking-notifications-illustration"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -112,18 +112,14 @@ export default function BookingNotificationsPage() {
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
-            <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-              <Link href="/features" className="hover:text-primary">
-                Features
-              </Link>{" "}
-              <span aria-hidden>/</span> <span className="text-foreground">Booking Notifications</span>
+            <nav aria-label="Breadcrumb">
+              <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
+                Operate &amp; Monitor
+              </span>
             </nav>
 
             <ScrollReveal className="mt-6">
-              <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.08] text-primary">
-                <BellRing className="size-6" aria-hidden />
-              </span>
-              <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
                 Booking Notifications
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -207,19 +203,31 @@ export default function BookingNotificationsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 text-center md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
               Related questions
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Getting set up</h2>
-            <p className="mx-auto mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-              Straight from the FAQ — pick one to read the full answer.
+            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              Straight from the FAQ — pick a question to see the answer.
             </p>
           </ScrollReveal>
-          <div className="mt-8">
-            <FaqCardCarousel items={accountFaq} />
+          <div className="mx-auto mt-8 max-w-2xl">
+            <FaqAccordion
+              items={accountFaq}
+              idPrefix="booking-notifications"
+              itemClassName="border-border/60 border-l-4 border-l-transparent bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-l-primary hover:shadow-[0_12px_28px_-16px_rgba(15,23,42,0.15)]"
+              triggerIcon={<ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden />}
+            />
+            <Link
+              href="/faq"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+            >
+              See all FAQs
+              <ArrowRight className="size-3.5" aria-hidden />
+            </Link>
           </div>
         </div>
       </section>

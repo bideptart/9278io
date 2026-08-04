@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
+  ChevronRight,
   PhoneCall,
   PhoneForwarded,
   PhoneOutgoing,
@@ -18,7 +19,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { DetailSplitRows } from "@/components/features-page/detail-split-rows"
 import { HowItWorksZigzag } from "@/components/features-page/how-it-works-zigzag"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
-import { FaqSwitcher } from "@/components/features-page/faq-switcher"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { CallTransferIllustration } from "@/components/features-page/call-transfer-illustration"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -91,18 +92,14 @@ export default function CallTransferToolPage() {
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
-            <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-              <Link href="/features" className="hover:text-primary">
-                Features
-              </Link>{" "}
-              <span aria-hidden>/</span> <span className="text-foreground">Call Transfer Tool</span>
+            <nav aria-label="Breadcrumb">
+              <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
+                Operate &amp; Monitor
+              </span>
             </nav>
 
             <ScrollReveal className="mt-6">
-              <span className="inline-flex size-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/[0.08] text-primary">
-                <PhoneForwarded className="size-6" aria-hidden />
-              </span>
-              <h1 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
                 Call Transfer Tool
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -210,16 +207,21 @@ export default function CallTransferToolPage() {
               Straight from the FAQ — pick a question to see the answer.
             </p>
           </ScrollReveal>
-          <div className="mt-8">
-            <FaqSwitcher items={agentsFaq} />
+          <div className="mx-auto mt-8 max-w-2xl">
+            <FaqAccordion
+              items={agentsFaq}
+              idPrefix="call-transfer-tool"
+              itemClassName="border-border/60 border-l-4 border-l-transparent bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-l-primary hover:shadow-[0_12px_28px_-16px_rgba(15,23,42,0.15)]"
+              triggerIcon={<ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden />}
+            />
+            <Link
+              href="/faq"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+            >
+              See all FAQs
+              <ArrowRight className="size-3.5" aria-hidden />
+            </Link>
           </div>
-          <Link
-            href="/faq"
-            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-          >
-            See all FAQs
-            <ArrowRight className="size-3.5" aria-hidden />
-          </Link>
         </div>
       </section>
 

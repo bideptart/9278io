@@ -106,6 +106,7 @@ const featureGroups: Group[] = [
           "Tweak prompts and see results instantly",
           "Catch gaps before going live",
         ],
+        href: "/features/playground-live-testing",
       },
       {
         icon: PhoneCall,

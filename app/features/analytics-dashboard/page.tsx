@@ -102,19 +102,14 @@ export default function AnalyticsDashboardPage() {
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
-            <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
-              <Link href="/features" className="hover:text-primary">
-                Features
-              </Link>{" "}
-              <span aria-hidden>/</span> <span className="text-foreground">Analytics Dashboard</span>
+            <nav aria-label="Breadcrumb">
+              <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
+                Operate &amp; Monitor
+              </span>
             </nav>
 
             <ScrollReveal className="mt-6">
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
-                Feature spotlight
-              </span>
-              <h1 className="mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
                 Analytics Dashboard
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -212,7 +207,7 @@ export default function AnalyticsDashboardPage() {
               Straight from the FAQ — no separate lookup needed.
             </p>
           </ScrollReveal>
-          <ScrollReveal delay={0.06} className="mt-8">
+          <ScrollReveal delay={0.06} className="mx-auto mt-8 max-w-2xl">
             <FaqAccordion
               items={billingFaq}
               idPrefix="analytics-dashboard"
