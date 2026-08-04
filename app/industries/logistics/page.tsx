@@ -25,7 +25,7 @@ import {
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { LogisticsLivePreview } from "@/components/industries/logistics-live-preview"
@@ -251,36 +251,40 @@ export default function LogisticsPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
           {/* What the agent handles */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
               <p className="font-sans text-lg font-bold text-slate-900">What the agent handles</p>
-              <ul className="mt-4 space-y-4">
-                {AGENT_HANDLES.map((item) => (
-                  <li key={item.text} className="flex items-start gap-3">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600">
+              <div className="mt-4 space-y-4">
+                {AGENT_HANDLES.map((item, i) => (
+                  <ScrollStepItem
+                    key={item.text}
+                    index={i}
+                    className="group flex items-start gap-3 rounded-xl transition-all duration-300 hover:-translate-x-0.5"
+                  >
+                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110">
                       <item.Icon className="size-4" aria-hidden />
                     </span>
                     <span className="text-pretty text-[13.5px] leading-snug text-slate-700">{item.text}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ul>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Benefits */}
-          <ScrollReveal delay={0.08}>
+          <ScrollStepItem index={1}>
             <div className="flex h-full flex-col rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
               <p className="font-sans text-lg font-bold text-slate-900">Benefits for your logistics business</p>
-              <ul className="mt-4 space-y-3.5">
-                {BENEFITS.map((line) => (
-                  <li key={line} className="flex items-start gap-3">
+              <div className="mt-4 space-y-3.5">
+                {BENEFITS.map((line, i) => (
+                  <ScrollStepItem key={line} index={i} className="flex items-start gap-3">
                     <span className="grid size-5 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-3" aria-hidden />
                     </span>
                     <span className="text-pretty text-[13.5px] leading-snug text-slate-700">{line}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ul>
+              </div>
 
               {/* Decorative package/globe illustration */}
               <div className="relative mt-auto flex h-40 items-end justify-center pt-8">
@@ -296,10 +300,10 @@ export default function LogisticsPage() {
                 </span>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Live agent preview */}
-          <ScrollReveal delay={0.16}>
+          <ScrollStepItem index={2}>
             <div className="h-full overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
               <div className="flex items-center justify-between">
                 <p className="font-sans text-lg font-bold text-slate-900">Live agent preview</p>
@@ -311,7 +315,7 @@ export default function LogisticsPage() {
 
               <LogisticsLivePreview />
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -319,7 +323,7 @@ export default function LogisticsPage() {
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_360px]">
           {/* Rollout card */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
               <p className="font-sans text-xl font-bold text-slate-900">How logistics teams roll out 9278.io</p>
 
@@ -332,11 +336,11 @@ export default function LogisticsPage() {
                   <ArrowRight className="size-4" />
                 </div>
 
-                <div>
+                <ScrollStepItem index={0} className="group">
                   <span className="grid size-8 place-items-center rounded-full bg-blue-600 text-[12px] font-bold text-white">
                     01
                   </span>
-                  <div className="relative mt-4 flex h-28 items-center justify-center overflow-hidden rounded-2xl bg-blue-50">
+                  <div className="relative mt-4 flex h-28 items-center justify-center overflow-hidden rounded-2xl bg-blue-50 transition-transform duration-300 group-hover:scale-[1.02]">
                     <div className="relative flex flex-col items-center">
                       <div className="grid size-14 place-items-center rounded-2xl bg-white shadow-md">
                         <Headphones className="size-6 text-blue-600" aria-hidden />
@@ -351,13 +355,13 @@ export default function LogisticsPage() {
                     Deploy a shipment support agent with your delivery workflows, customer FAQs, and operational
                     processes. Go live in hours with no complex setup.
                   </p>
-                </div>
+                </ScrollStepItem>
 
-                <div>
+                <ScrollStepItem index={1} className="group">
                   <span className="grid size-8 place-items-center rounded-full bg-blue-600 text-[12px] font-bold text-white">
                     02
                   </span>
-                  <div className="relative mt-4 flex h-28 items-center justify-center overflow-hidden rounded-2xl bg-blue-50">
+                  <div className="relative mt-4 flex h-28 items-center justify-center overflow-hidden rounded-2xl bg-blue-50 transition-transform duration-300 group-hover:scale-[1.02]">
                     <div className="flex h-16 w-10 flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-slate-900 bg-white p-1.5">
                       <div className="flex h-4 items-end gap-[1.5px]" aria-hidden>
                         {[3, 6, 4, 7, 5].map((h, i) => (
@@ -376,31 +380,35 @@ export default function LogisticsPage() {
                     Handle tracking requests, delivery confirmations, and driver updates automatically while
                     reducing manual call volume.
                   </p>
-                </div>
+                </ScrollStepItem>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Fleet panel */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="h-full rounded-[1.75rem] bg-gradient-to-br from-blue-700 to-blue-600 p-6 text-white shadow-lg shadow-blue-700/25 sm:p-7">
               <p className="font-sans text-xl font-bold">AI agents that move with your fleet</p>
-              <ul className="mt-5 space-y-3">
-                {FLEET_ITEMS.map((line) => (
-                  <li key={line} className="flex items-start gap-2.5">
+              <div className="mt-5 space-y-3">
+                {FLEET_ITEMS.map((line, i) => (
+                  <ScrollStepItem
+                    key={line}
+                    index={i}
+                    className="flex items-start gap-2.5 transition-transform duration-300 hover:translate-x-1"
+                  >
                     <span className="grid size-5 shrink-0 place-items-center rounded-full bg-white/15 text-white">
                       <Check className="size-3" aria-hidden />
                     </span>
                     <span className="text-pretty text-[13.5px] leading-snug text-blue-50">{line}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ul>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.15} className="mx-auto mt-8 max-w-7xl">
+        <div className="mx-auto mt-8 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-5 sm:divide-x sm:divide-y-0">
               {[
@@ -409,37 +417,45 @@ export default function LogisticsPage() {
                 { Icon: Globe, label: "Indian languages supported", value: "10+" },
                 { Icon: ShieldCheck, label: "Reliable call handling", value: "99.9%" },
                 { Icon: Users, label: "Concurrent delivery inquiries", value: "Up to 40" },
-              ].map(({ Icon: StatIcon, label, value }) => (
-                <div key={label} className="flex flex-col items-center gap-2 px-5 py-5 text-center">
-                  <span className="grid size-11 place-items-center rounded-2xl bg-blue-50 text-blue-600">
+              ].map(({ Icon: StatIcon, label, value }, i) => (
+                <ScrollStepItem
+                  key={label}
+                  index={i}
+                  className="group flex flex-col items-center gap-2 px-5 py-5 text-center transition-colors duration-300 hover:bg-blue-50/40"
+                >
+                  <span className="grid size-11 place-items-center rounded-2xl bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                     <StatIcon className="size-5" aria-hidden />
                   </span>
                   <p className="font-sans text-xl font-extrabold tracking-tight text-slate-900">{value}</p>
                   <p className="text-[12px] font-medium text-slate-500">{label}</p>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       {/* ─── Other use cases ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal className="mx-auto max-w-7xl">
+        <ScrollStepItem className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-5 rounded-[1.75rem] border border-blue-400 bg-white px-6 py-5 shadow-sm sm:flex-row sm:items-center">
             <p className="shrink-0 font-sans text-lg font-bold text-slate-900">Other use cases</p>
             <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-5">
-              {USE_CASES.map((u) => (
-                <div key={u.label} className="flex items-center gap-2.5">
-                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600">
+              {USE_CASES.map((u, i) => (
+                <ScrollStepItem
+                  key={u.label}
+                  index={i}
+                  className="group flex items-center gap-2.5 transition-transform duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110">
                     <u.Icon className="size-4.5" aria-hidden />
                   </span>
                   <span className="text-[12.5px] font-semibold leading-snug text-slate-700">{u.label}</span>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </ScrollStepItem>
       </section>
 
       <PricingCta
