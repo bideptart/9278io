@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import AutoTextRoll from "@/components/ui/auto-text-roll"
 import type { Industry } from "@/lib/industries"
 
 const HERO_STATS = [
@@ -70,9 +71,11 @@ export function BpoHero({ industry }: { industry: Industry }) {
             <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
               <span
                 style={{ animationDelay: "0.15s" }}
-                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block font-black"
+                className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] block"
               >
-                AI Voice Agents
+                <AutoTextRoll intervalMs={2000} className="font-black">
+                  AI Voice Agents
+                </AutoTextRoll>
               </span>
               {/* Two animations, two elements — the wrapper does the entrance
                   fade, the inner span runs the looping gradient sweep. */}
@@ -80,9 +83,18 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 style={{ animationDelay: "0.25s" }}
                 className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-1 block"
               >
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]">
-                  For BPO &amp; Call Centres.
-                </span>
+                <AutoTextRoll
+                  intervalMs={2000}
+                  className="bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]"
+                >
+                  For BPO &amp;
+                </AutoTextRoll>
+                <AutoTextRoll
+                  intervalMs={2000}
+                  className="bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-[length:200%_auto] bg-clip-text font-black text-transparent motion-safe:animate-[ind-shimmer_6s_linear_infinite]"
+                >
+                  Call Centres.
+                </AutoTextRoll>
               </span>
             </h1>
 
@@ -181,7 +193,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 </div>
               </div>
 
-              <div className="absolute -right-4 -top-4 z-20 transition-transform duration-300 hover:-translate-y-1">
+              <div className="absolute -right-4 -top-4 z-20 motion-safe:animate-breathe transition-transform duration-300 hover:-translate-y-1">
                 <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
                   <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
                   <div className="mt-1.5 flex items-center gap-1.5">
@@ -217,11 +229,15 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 </div>
               </div>
 
-              <div className="absolute -right-6 bottom-10 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
+              <div className="absolute -right-6 bottom-10 z-20 hero-wobble transition-transform duration-300 hover:-translate-y-1">
                 <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
                   <div className="flex items-center gap-3">
-                    <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                      <Headphones className="size-5" aria-hidden />
+                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 rounded-xl bg-blue-500/15 motion-safe:animate-[ind-ping_3.6s_ease-out_infinite_0.6s]"
+                      />
+                      <Headphones className="relative size-5" aria-hidden />
                     </span>
                     <div>
                       <p className="text-[12.5px] font-bold leading-tight text-slate-800">Escalation</p>
