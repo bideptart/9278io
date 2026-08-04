@@ -48,6 +48,7 @@ import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-
 import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
 import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
+import { EcommercePerformanceChart } from "@/components/industries/ecommerce-performance-chart"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -631,48 +632,7 @@ function ECommercePage() {
                   Real-time performance
                 </p>
 
-                <div className="mt-6 grid grid-cols-3 gap-5">
-                  {[
-                    { label: "Conversations", value: "12,450" },
-                    { label: "Customer Satisfaction", value: "98.2%" },
-                    { label: "Revenue Impact", value: "₹4.2L" },
-                  ].map((s) => (
-                    <div key={s.label}>
-                      <p className="font-sans text-xl font-bold tracking-tight text-blue-700 sm:text-2xl">
-                        {s.value}
-                      </p>
-                      <p className="mt-1 text-[11px] font-medium leading-snug text-slate-500">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Fake area chart */}
-                <div className="mt-7 h-32 w-full">
-                  <svg viewBox="0 0 400 120" className="h-full w-full" aria-hidden>
-                    <defs>
-                      <linearGradient id="ecomArea" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="rgb(139,92,246)" stopOpacity="0.35" />
-                        <stop offset="100%" stopColor="rgb(99,102,241)" stopOpacity="0" />
-                      </linearGradient>
-                      <linearGradient id="ecomLine" x1="0" x2="1" y1="0" y2="0">
-                        <stop offset="0%" stopColor="rgb(139,92,246)" />
-                        <stop offset="100%" stopColor="rgb(99,102,241)" />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d="M0,90 C40,85 60,70 90,68 C120,66 140,82 170,70 C200,58 220,45 250,42 C280,39 300,55 330,40 C360,25 380,20 400,15 L400,120 L0,120 Z"
-                      fill="url(#ecomArea)"
-                    />
-                    <path
-                      d="M0,90 C40,85 60,70 90,68 C120,66 140,82 170,70 C200,58 220,45 250,42 C280,39 300,55 330,40 C360,25 380,20 400,15"
-                      fill="none"
-                      stroke="url(#ecomLine)"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
+                <EcommercePerformanceChart />
               </div>
             </div>
           </ScrollStepItem>
