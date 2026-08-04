@@ -436,18 +436,6 @@ function CompanyMenu() {
   )
 }
 
-// Flattened list of every individual industry page, reused from the same
-// grouped data that powers the desktop mega-menu — so the mobile submenu
-// never drifts out of sync with it.
-const ALL_INDUSTRY_LINKS = INDUSTRY_GROUPS.flatMap((g) => [
-  ...g.slugs.map((s) => getIndustry(s)).filter(Boolean),
-  ...g.items,
-]) as { slug: string; name: string }[]
-
-// Same flattening for the Features mega-menu's mobile submenu — one
-// continuous 2-column grid of all 17 pages, matching the Industries pattern.
-const ALL_FEATURE_LINKS = FEATURE_GROUPS.flatMap((g) => g.items)
-
 export function SiteHeader() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -460,6 +448,16 @@ export function SiteHeader() {
   const mobileFeaturesOpen = mobileExpanded === "features"
   const mobileIndustriesOpen = mobileExpanded === "industries"
   const mobileCompanyOpen = mobileExpanded === "company"
+  // Second level, nested inside Features/Industries — only one category open
+  // at a time, reset whenever the top-level section changes.
+  const [mobileCategoryOpen, setMobileCategoryOpen] = useState<string | null>(null)
+  const toggleMobileSection = (section: "features" | "industries" | "company") => {
+    setMobileExpanded((s) => (s === section ? null : section))
+    setMobileCategoryOpen(null)
+  }
+  const toggleMobileCategory = (label: string) => {
+    setMobileCategoryOpen((c) => (c === label ? null : label))
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -471,6 +469,7 @@ export function SiteHeader() {
   useEffect(() => {
     setMobileOpen(false)
     setMobileExpanded(null)
+    setMobileCategoryOpen(null)
   }, [pathname])
 
   const isActive = (href: string) => {
@@ -524,16 +523,16 @@ export function SiteHeader() {
               )}
             >
               Features
-              <ChevronDown className={cn("size-3.5 transition-transform", featuresOpen ? "rotate-180" : "")} aria-hidden />
+              <ChevronDown className={cn("size-3.5 transition-transform duration-300 ease-out", featuresOpen ? "rotate-180" : "")} aria-hidden />
             </button>
             <AnimatePresence>
               {featuresOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
                   <motion.div
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
+                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <FeaturesMenu />
                   </motion.div>
@@ -557,16 +556,16 @@ export function SiteHeader() {
               )}
             >
               Industries
-              <ChevronDown className={cn("size-3.5 transition-transform", industriesOpen ? "rotate-180" : "")} aria-hidden />
+              <ChevronDown className={cn("size-3.5 transition-transform duration-300 ease-out", industriesOpen ? "rotate-180" : "")} aria-hidden />
             </button>
             <AnimatePresence>
               {industriesOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
                   <motion.div
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
+                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <IndustriesMenu />
                   </motion.div>
@@ -592,16 +591,16 @@ export function SiteHeader() {
               )}
             >
               Company
-              <ChevronDown className={cn("size-3.5 transition-transform", companyOpen ? "rotate-180" : "")} aria-hidden />
+              <ChevronDown className={cn("size-3.5 transition-transform duration-300 ease-out", companyOpen ? "rotate-180" : "")} aria-hidden />
             </button>
             <AnimatePresence>
               {companyOpen && (
                 <div className="fixed left-1/2 top-16 z-50 mt-2 w-[min(94vw,1020px)] -translate-x-1/2">
                   <motion.div
-                    initial={{ opacity: 0, y: -6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.15 }}
+                    initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <CompanyMenu />
                   </motion.div>
@@ -667,141 +666,213 @@ export function SiteHeader() {
             // clipped by this wrapper's own overflow-hidden. The inner <nav>
             // already has its own max-height + scroll, so this wrapper doesn't
             // need to animate height at all.
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             className="border-t border-border/50 md:hidden"
           >
-            <nav className="flex max-h-[calc(100dvh-5rem)] flex-col gap-2 overflow-y-auto overscroll-contain p-4 pb-6">
-              {/* Features — expands to every feature page, grouped by lifecycle stage */}
-              <button
-                type="button"
-                onClick={() => setMobileExpanded((s) => (s === "features" ? null : "features"))}
-                className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
-                aria-expanded={mobileFeaturesOpen}
-              >
-                Features
-                <ChevronDown
-                  className={cn("size-3.5 transition-transform", mobileFeaturesOpen ? "rotate-180" : "")}
-                  aria-hidden
-                />
-              </button>
-              <AnimatePresence initial={false}>
-                {mobileFeaturesOpen && (
-                  <motion.div
-                    // Fade only, no height animation — animating height: 0 -> "auto"
-                    // via Framer Motion measures scrollHeight once and can under-measure
-                    // wrapping/truncating grid content, silently clipping items past
-                    // whatever height it locked in (with overflow-hidden making the
-                    // clipped items invisible rather than just off-screen/scrollable).
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.15, ease: "easeInOut" }}
-                  >
-                    <div className="py-1">
-                      <Link
-                        href="/features"
-                        className="block rounded-lg px-3 py-2 text-center text-sm font-semibold text-primary transition-colors hover:text-primary/70"
-                      >
-                        All features →
-                      </Link>
-                      <div className="mt-0.5 grid grid-cols-2 gap-0.5">
-                        {ALL_FEATURE_LINKS.map((f) => (
-                          <Link
-                            key={f.slug}
-                            href={`/features/${f.slug}`}
-                            className="truncate rounded-lg px-3 py-2 text-center text-sm text-muted-foreground transition-colors hover:text-primary"
-                          >
-                            {f.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <div className="flex flex-col gap-2">
-                {/* Industries — expands to every individual industry page */}
+            <nav className="flex max-h-[calc(100dvh-5rem)] flex-col overflow-y-auto overscroll-contain px-4 pb-6">
+              {/* Features — top-level dropdown; each category inside is its
+                  own nested dropdown (category -> pages), matching the
+                  requested two-level accordion pattern. */}
+              <div className="border-b border-border/50">
                 <button
                   type="button"
-                  onClick={() => setMobileExpanded((s) => (s === "industries" ? null : "industries"))}
-                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
+                  onClick={() => toggleMobileSection("features")}
+                  className="flex w-full items-center justify-between py-3.5 text-left text-[15px] font-semibold text-foreground transition-colors hover:text-primary"
+                  aria-expanded={mobileFeaturesOpen}
+                >
+                  Features
+                  <ChevronDown
+                    className={cn("size-4 text-muted-foreground transition-transform duration-300 ease-out", mobileFeaturesOpen ? "rotate-180" : "")}
+                    aria-hidden
+                  />
+                </button>
+                <AnimatePresence initial={false}>
+                  {mobileFeaturesOpen && (
+                    <motion.div
+                      // Fade only, no height animation — animating height: 0 -> "auto"
+                      // via Framer Motion measures scrollHeight once and can under-measure
+                      // wrapping/truncating grid content, silently clipping items past
+                      // whatever height it locked in (with overflow-hidden making the
+                      // clipped items invisible rather than just off-screen/scrollable).
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <div className="pb-2">
+                        <Link
+                          href="/features"
+                          className="block py-2 text-sm font-semibold text-primary transition-colors hover:text-primary/70"
+                        >
+                          All features →
+                        </Link>
+                        {FEATURE_GROUPS.map((g) => {
+                          const catKey = `features:${g.label}`
+                          const catOpen = mobileCategoryOpen === catKey
+                          return (
+                            <div key={g.label} className="border-t border-border/30">
+                              <button
+                                type="button"
+                                onClick={() => toggleMobileCategory(catKey)}
+                                className="flex w-full items-center justify-between py-2.5 text-left text-sm font-semibold text-foreground/80 transition-colors hover:text-primary"
+                                aria-expanded={catOpen}
+                              >
+                                {g.label}
+                                <ChevronDown
+                                  className={cn("size-3.5 text-muted-foreground transition-transform duration-300 ease-out", catOpen ? "rotate-180" : "")}
+                                  aria-hidden
+                                />
+                              </button>
+                              <AnimatePresence initial={false}>
+                                {catOpen && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: -6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -6 }}
+                                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                                  >
+                                    <div className="flex flex-col gap-0.5 pb-2">
+                                      {g.items.map((f) => (
+                                        <Link
+                                          key={f.slug}
+                                          href={`/features/${f.slug}`}
+                                          className="rounded-lg px-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                                        >
+                                          {f.name}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Industries — same two-level pattern */}
+              <div className="border-b border-border/50">
+                <button
+                  type="button"
+                  onClick={() => toggleMobileSection("industries")}
+                  className="flex w-full items-center justify-between py-3.5 text-left text-[15px] font-semibold text-foreground transition-colors hover:text-primary"
                   aria-expanded={mobileIndustriesOpen}
                 >
                   Industries
                   <ChevronDown
-                    className={cn("size-3.5 transition-transform", mobileIndustriesOpen ? "rotate-180" : "")}
+                    className={cn("size-4 text-muted-foreground transition-transform duration-300 ease-out", mobileIndustriesOpen ? "rotate-180" : "")}
                     aria-hidden
                   />
                 </button>
                 <AnimatePresence initial={false}>
                   {mobileIndustriesOpen && (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15, ease: "easeInOut" }}
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="py-1">
+                      <div className="pb-2">
                         <Link
                           href="/industries"
-                          className="block rounded-lg px-3 py-2 text-center text-sm font-semibold text-primary transition-colors hover:text-primary/70"
+                          className="block py-2 text-sm font-semibold text-primary transition-colors hover:text-primary/70"
                         >
                           All industries →
                         </Link>
-                        <div className="mt-0.5 grid grid-cols-2 gap-0.5">
-                          {ALL_INDUSTRY_LINKS.map((ind) => (
-                            <Link
-                              key={ind.slug}
-                              href={`/industries/${ind.slug}`}
-                              className="truncate rounded-lg px-3 py-2 text-center text-sm text-muted-foreground transition-colors hover:text-primary"
-                            >
-                              {ind.name}
-                            </Link>
-                          ))}
-                        </div>
+                        {INDUSTRY_GROUPS.map((g) => {
+                          const catKey = `industries:${g.label}`
+                          const catOpen = mobileCategoryOpen === catKey
+                          const items = [...g.slugs.map((s) => getIndustry(s)).filter(Boolean), ...g.items] as {
+                            slug: string
+                            name: string
+                          }[]
+                          return (
+                            <div key={g.label} className="border-t border-border/30">
+                              <button
+                                type="button"
+                                onClick={() => toggleMobileCategory(catKey)}
+                                className="flex w-full items-center justify-between py-2.5 text-left text-sm font-semibold text-foreground/80 transition-colors hover:text-primary"
+                                aria-expanded={catOpen}
+                              >
+                                {g.label}
+                                <ChevronDown
+                                  className={cn("size-3.5 text-muted-foreground transition-transform duration-300 ease-out", catOpen ? "rotate-180" : "")}
+                                  aria-hidden
+                                />
+                              </button>
+                              <AnimatePresence initial={false}>
+                                {catOpen && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: -6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -6 }}
+                                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                                  >
+                                    <div className="flex flex-col gap-0.5 pb-2">
+                                      {items.map((ind) => (
+                                        <Link
+                                          key={ind.slug}
+                                          href={`/industries/${ind.slug}`}
+                                          className="rounded-lg px-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                                        >
+                                          {ind.name}
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          )
+                        })}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
+              </div>
 
-                <Link
-                  href="/pricing"
-                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
-                >
-                  Pricing
-                </Link>
+              <Link
+                href="/pricing"
+                className="block border-b border-border/50 py-3.5 text-[15px] font-semibold text-foreground transition-colors hover:text-primary"
+              >
+                Pricing
+              </Link>
 
-                {/* Company — expands to About / Blog / Contact */}
+              {/* Company — single-level dropdown (About / Blog / Contact only, no nested categories) */}
+              <div className="border-b border-border/50">
                 <button
                   type="button"
-                  onClick={() => setMobileExpanded((s) => (s === "company" ? null : "company"))}
-                  className="flex w-full items-center justify-center gap-1.5 rounded-xl border border-border px-3 py-3 text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
+                  onClick={() => toggleMobileSection("company")}
+                  className="flex w-full items-center justify-between py-3.5 text-left text-[15px] font-semibold text-foreground transition-colors hover:text-primary"
                   aria-expanded={mobileCompanyOpen}
                 >
                   Company
                   <ChevronDown
-                    className={cn("size-3.5 transition-transform", mobileCompanyOpen ? "rotate-180" : "")}
+                    className={cn("size-4 text-muted-foreground transition-transform duration-300 ease-out", mobileCompanyOpen ? "rotate-180" : "")}
                     aria-hidden
                   />
                 </button>
                 <AnimatePresence initial={false}>
                   {mobileCompanyOpen && (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15, ease: "easeInOut" }}
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="flex flex-col gap-0.5 py-1">
+                      <div className="flex flex-col pb-2">
                         {COMPANY_LINKS.map((c) => (
                           <Link
                             key={c.href}
                             href={c.href}
-                            className="rounded-lg px-3 py-2 text-center text-sm text-muted-foreground transition-colors hover:text-primary"
+                            className="py-2 text-sm text-muted-foreground transition-colors hover:text-primary"
                           >
                             {c.label}
                           </Link>
@@ -810,28 +881,28 @@ export function SiteHeader() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-
-                <Link
-                  href="/faq"
-                  className="block rounded-xl border border-border px-3 py-3 text-center text-base font-semibold text-foreground/80 transition-colors hover:border-primary hover:bg-muted hover:text-primary"
-                >
-                  FAQ
-                </Link>
               </div>
 
-              <div className="mt-3 flex flex-col gap-2 border-t border-border/50 pt-4">
+              <Link
+                href="/faq"
+                className="block border-b border-border/50 py-3.5 text-[15px] font-semibold text-foreground transition-colors hover:text-primary"
+              >
+                FAQ
+              </Link>
+
+              <div className="mt-4 flex flex-col gap-2.5">
                 <Button
                   asChild
                   variant="ghost"
                   size="sm"
-                  className="w-full justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-primary"
+                  className="h-11 w-full justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                 >
                   <a href="https://voice.9278.io/signin" target="_blank" rel="noopener noreferrer">
                     Sign in
                   </a>
                 </Button>
-                <Button asChild size="sm" className="w-full bg-primary font-semibold text-primary-foreground">
-                  <Link href="/get-started">Get Started →</Link>
+                <Button asChild size="sm" className="h-11 w-full rounded-full bg-primary font-semibold text-primary-foreground">
+                  <Link href="/get-started">Get Started Free Trial</Link>
                 </Button>
               </div>
             </nav>
