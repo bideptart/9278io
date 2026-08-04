@@ -47,6 +47,7 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
 import { RestaurantReservationCard, RestaurantChatCard } from "@/components/industries/restaurant-reservation-widget"
 import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
+import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -1837,7 +1838,7 @@ function HomeServicesPage() {
       <section className="w-full px-6 pb-8 md:px-8 md:pb-10">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs with real photo */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Wrench className="size-5" aria-hidden />
@@ -1851,24 +1852,25 @@ function HomeServicesPage() {
                 <IndustryImage slug="home-services" name="Home services" />
               </div>
 
-              <ol className="mt-6 space-y-3">
-                {industry.jobs.map((job) => (
-                  <li
+              <div className="mt-6 space-y-3">
+                {industry.jobs.map((job, i) => (
+                  <ScrollStepItem
                     key={job}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)]"
+                    index={i}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-3.5" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14px] leading-snug text-slate-700">{job}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Volume2 className="size-5" aria-hidden />
@@ -1904,17 +1906,13 @@ function HomeServicesPage() {
                   <span className="shrink-0 text-[11px] font-medium text-slate-400">0:00 / 0:32</span>
                 </div>
 
-                <div className="mt-4 space-y-2.5">
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    नमस्ते! मैं 9278 का वॉइस असिस्टेंट हूँ। आपको किस प्रकार की सेवा चाहिए?
-                  </p>
-                  <p className="ml-auto max-w-[85%] rounded-xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    मेरा AC काम नहीं कर रहा, ठंडी हवा नहीं आ रही।
-                  </p>
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    ठीक है, मैं आपकी जानकारी ले लेता हूँ। कृपया अपना नाम और पता बताइए।
-                  </p>
-                </div>
+                <SoundSampleChat
+                  messages={[
+                    { from: "agent", text: "नमस्ते! मैं 9278 का वॉइस असिस्टेंट हूँ। आपको किस प्रकार की सेवा चाहिए?" },
+                    { from: "customer", text: "मेरा AC काम नहीं कर रहा, ठंडी हवा नहीं आ रही।" },
+                    { from: "agent", text: "ठीक है, मैं आपकी जानकारी ले लेता हूँ। कृपया अपना नाम और पता बताइए।" },
+                  ]}
+                />
 
                 <div className="mt-4 flex items-center gap-1.5 border-t border-slate-100 pt-3 text-[12.5px] font-semibold text-blue-600">
                   <Globe className="size-3.5" aria-hidden />
@@ -1951,7 +1949,7 @@ function HomeServicesPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
