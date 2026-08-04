@@ -2168,8 +2168,8 @@ function RestaurantsPage() {
 
         {/* ─── Smarter operations. Happier guests. ─── */}
         <div className="w-full px-6 pb-4 pt-2 md:px-8">
-          <ScrollReveal delay={0.1} className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm sm:p-11">
+          <ScrollStepItem index={0} className="mx-auto max-w-7xl">
+            <div className="group relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm transition-shadow duration-300 hover:shadow-[0_25px_60px_-25px_rgba(2,132,199,0.4)] sm:p-11">
               <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div>
                   <h2 className="text-balance font-sans text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -2177,28 +2177,28 @@ function RestaurantsPage() {
                     <br />
                     Happier guests.
                   </h2>
-                  <ul className="mt-6 space-y-4">
+                  <div className="mt-6 space-y-4">
                     {[
                       "Reduce no-shows with confirmations",
                       "Upsell specials & events",
                       "Answer menu and hours instantly",
                       "Free up your team to focus on guests",
-                    ].map((line) => (
-                      <li key={line} className="flex items-center gap-3.5">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
+                    ].map((line, i) => (
+                      <ScrollStepItem key={line} index={i} className="flex items-center gap-3.5">
+                        <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-500/25 transition-transform duration-300 group-hover:scale-105">
                           <Check className="size-4" aria-hidden />
                         </span>
                         <span className="text-pretty text-[15.5px] leading-snug text-slate-700">{line}</span>
-                      </li>
+                      </ScrollStepItem>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
                 {/* Robot mascot */}
                 <RestaurantRobotMascot />
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -2206,31 +2206,32 @@ function RestaurantsPage() {
       <section className="w-full px-6 pt-8 pb-8 md:px-8 md:pt-10 md:pb-10">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
               <span aria-hidden className="mt-3 block h-1 w-14 rounded-full bg-blue-600" />
 
-              <ol className="mt-6 space-y-3">
-                {industry.jobs.map((job) => (
-                  <li
+              <div className="mt-6 space-y-3">
+                {industry.jobs.map((job, i) => (
+                  <ScrollStepItem
                     key={job}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)]"
+                    index={i}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                       <Check className="size-3.5" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14px] leading-snug text-slate-700">{job}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
@@ -2263,17 +2264,13 @@ function RestaurantsPage() {
                   <span className="shrink-0 text-[11px] font-medium text-slate-400">0:00 / 0:32</span>
                 </div>
 
-                <div className="mt-4 space-y-2.5">
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    नमस्ते! 9278 में आपका स्वागत है। मैं आपकी किस प्रकार मदद कर सकता हूँ?
-                  </p>
-                  <p className="ml-auto max-w-[85%] rounded-xl rounded-tr-sm border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-slate-700">
-                    4 लोगों के लिए, आज रात 8 बजे टेबल चाहिए।
-                  </p>
-                  <p className="max-w-[90%] rounded-xl rounded-tl-sm bg-blue-50 px-3.5 py-2.5 text-[13.5px] leading-relaxed text-blue-800">
-                    ज़रूर! मैं आपके लिए 8 बजे की टेबल बुक कर देता हूँ। क्या कोई खास पसंद है?
-                  </p>
-                </div>
+                <SoundSampleChat
+                  messages={[
+                    { from: "agent", text: "नमस्ते! 9278 में आपका स्वागत है। मैं आपकी किस प्रकार मदद कर सकता हूँ?" },
+                    { from: "customer", text: "4 लोगों के लिए, आज रात 8 बजे टेबल चाहिए।" },
+                    { from: "agent", text: "ज़रूर! मैं आपके लिए 8 बजे की टेबल बुक कर देता हूँ। क्या कोई खास पसंद है?" },
+                  ]}
+                />
 
                 <div className="mt-4 flex items-center gap-1.5 border-t border-slate-100 pt-3 text-[12.5px] font-semibold text-blue-600">
                   <Globe className="size-3.5" aria-hidden />
@@ -2281,11 +2278,11 @@ function RestaurantsPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.15} className="mx-auto mt-10 max-w-7xl">
+        <div className="mx-auto mt-10 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
               {[
@@ -2293,18 +2290,18 @@ function RestaurantsPage() {
                 { Icon: BarChart3, label: "Concurrent calls", value: "Up to 40", tone: "bg-emerald-50 text-emerald-600" },
                 { Icon: Clock, label: "Always available", value: "24/7", tone: "bg-violet-50 text-violet-600" },
                 { Icon: ShieldCheck, label: "Uptime reliability", value: "99.9%", tone: "bg-blue-50 text-blue-600" },
-              ].map(({ Icon: StatIcon, label, value, tone }) => (
-                <div key={label} className="flex flex-col items-center gap-2 px-5 py-5 text-center">
-                  <span className={`grid size-11 place-items-center rounded-2xl ${tone}`}>
+              ].map(({ Icon: StatIcon, label, value, tone }, i) => (
+                <ScrollStepItem key={label} index={i} className="group flex flex-col items-center gap-2 px-5 py-5 text-center transition-colors duration-300 hover:bg-blue-50/40">
+                  <span className={`grid size-11 place-items-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${tone}`}>
                     <StatIcon className="size-5" aria-hidden />
                   </span>
                   <p className="font-sans text-2xl font-extrabold tracking-tight text-slate-900">{value}</p>
                   <p className="text-[12.5px] font-medium text-slate-500">{label}</p>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       <PricingCta
