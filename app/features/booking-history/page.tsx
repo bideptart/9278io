@@ -3,8 +3,10 @@ import Link from "next/link"
 import {
   ArrowRight,
   CalendarCheck2,
-  ChevronRight,
   Download,
+  HelpCircle,
+  IndianRupee,
+  LayoutGrid,
   PhoneCall,
   Search,
   SlidersHorizontal,
@@ -15,16 +17,32 @@ import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { DetailNumberedList } from "@/components/features-page/detail-numbered-list"
 import { BookingHistoryIllustration } from "@/components/features-page/booking-history-illustration"
+import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
-import { FAQ_GROUPS } from "@/lib/faq"
 
-const agentsFaq = FAQ_GROUPS.find((g) => g.id === "agents")!.items.filter((i) =>
-  ["Does it integrate with Indian CRMs and tools?", "Can the agent transfer to a human?"].includes(i.q),
-)
+const exploreLinks = [
+  {
+    icon: <LayoutGrid className="size-5" aria-hidden />,
+    href: "/features",
+    title: "All features",
+    description: "Every capability across Build, Train, Test, Operate, and Account.",
+  },
+  {
+    icon: <IndianRupee className="size-5" aria-hidden />,
+    href: "/pricing",
+    title: "Pricing in INR",
+    description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Per-second billing.",
+  },
+  {
+    icon: <HelpCircle className="size-5" aria-hidden />,
+    href: "/faq",
+    title: "Frequently asked questions",
+    description: "TRAI compliance, Indian languages, billing, and account questions.",
+  },
+]
 
 export const metadata: Metadata = pageSeo({
   title: "Booking History",
@@ -96,8 +114,18 @@ export default function BookingHistoryPage() {
             </nav>
 
             <ScrollReveal className="mt-6">
-              <h1 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Booking History
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>Booking</span>{" "}
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  History
+                </span>
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 See every appointment your agent has booked, in one searchable list — no digging through call
@@ -164,36 +192,6 @@ export default function BookingHistoryPage() {
         </div>
       </section>
 
-      <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
-          <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-              Related questions
-            </span>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Where bookings fit in</h2>
-            <p className="mt-2 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-              Straight from the FAQ — no separate lookup needed.
-            </p>
-          </ScrollReveal>
-          <div className="mx-auto mt-8 max-w-2xl">
-            <FaqAccordion
-              items={agentsFaq}
-              idPrefix="booking-history"
-              itemClassName="border-border/60 border-l-4 border-l-transparent bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-l-primary hover:shadow-[0_12px_28px_-16px_rgba(15,23,42,0.15)]"
-              triggerIcon={<ChevronRight className="pointer-events-none size-4 shrink-0" aria-hidden />}
-            />
-            <Link
-              href="/faq"
-              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-            >
-              See all FAQs
-              <ArrowRight className="size-3.5" aria-hidden />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <PricingCta
         heading="See it on your own bookings"
         description="Spin up your first agent and every appointment it books shows up here, searchable from day one."
@@ -202,6 +200,18 @@ export default function BookingHistoryPage() {
         secondaryHref="/features"
         secondaryLabel="Back to Features"
       />
+
+      <section className="border-b border-border/50">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+          <ScrollReveal>
+            <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
+            <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
+              See the rest of what's included, or check pricing and common questions.
+            </p>
+          </ScrollReveal>
+          <MultiAgentExploreLinks links={exploreLinks} />
+        </div>
+      </section>
 
       <SiteFooter />
     </main>
