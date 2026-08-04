@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { TicketStepReveal } from "@/components/features-page/ticket-step-reveal"
 import { SupportBentoGrid } from "@/components/features-page/support-bento-grid"
 import { TicketActivityFeed } from "@/components/features-page/ticket-activity-feed"
@@ -196,6 +197,8 @@ export default function SupportTicketsSystemPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Get support without leaving your dashboard"

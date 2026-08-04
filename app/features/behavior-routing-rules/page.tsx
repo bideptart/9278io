@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { RoutingRuleChips } from "@/components/features-page/routing-rule-chips"
 import { CallRoutingDecisionTree } from "@/components/features-page/call-routing-decision-tree"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
@@ -184,6 +185,8 @@ export default function BehaviorRoutingRulesPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to set your routing rules?"

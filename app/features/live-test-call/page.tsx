@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { LiveTestCallHero } from "@/components/features-page/live-test-call-hero"
 import { LiveTestCallChecklist } from "@/components/features-page/live-test-call-checklist"
 import { LiveTestCallTimeline } from "@/components/features-page/live-test-call-timeline"
@@ -180,6 +181,8 @@ export default function LiveTestCallPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to hear your agent live?"

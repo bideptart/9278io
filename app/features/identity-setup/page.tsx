@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { IdentitySetupHero } from "@/components/features-page/identity-setup-hero"
 import { IdentityCardStack } from "@/components/features-page/identity-card-stack"
 import { IdentityWizard } from "@/components/features-page/identity-wizard"
@@ -181,6 +182,8 @@ export default function IdentitySetupPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to give your agent an identity?"

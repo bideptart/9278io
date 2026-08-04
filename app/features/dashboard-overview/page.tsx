@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { DashboardOverviewHero } from "@/components/features-page/dashboard-overview-hero"
 import { DashboardOverviewStats } from "@/components/features-page/dashboard-overview-stats"
 import { DashboardBootSequence } from "@/components/features-page/dashboard-boot-sequence"
@@ -180,6 +181,8 @@ export default function DashboardOverviewPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to see your account at a glance?"

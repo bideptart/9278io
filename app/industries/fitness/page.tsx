@@ -92,9 +92,16 @@ export default function FitnessIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.6rem]">
-                  AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
                     fitness &amp; wellness.
                   </span>
                 </h1>

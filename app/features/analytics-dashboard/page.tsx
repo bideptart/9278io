@@ -19,6 +19,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { AnalyticsDashboardIllustration } from "@/components/features-page/analytics-dashboard-illustration"
 import { DetailCards } from "@/components/features-page/detail-cards"
 import { HowItWorksTimeline } from "@/components/features-page/how-it-works-timeline"
@@ -216,6 +217,8 @@ export default function AnalyticsDashboardPage() {
           <HowItWorksTimeline steps={STEPS} />
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="See it on your own calls"

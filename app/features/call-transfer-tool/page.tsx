@@ -18,6 +18,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { DetailSplitRows } from "@/components/features-page/detail-split-rows"
 import { HowItWorksZigzag } from "@/components/features-page/how-it-works-zigzag"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
@@ -222,6 +223,8 @@ export default function CallTransferToolPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Set up your first transfer rule"

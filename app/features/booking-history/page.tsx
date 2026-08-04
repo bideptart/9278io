@@ -16,6 +16,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
 import { DetailNumberedList } from "@/components/features-page/detail-numbered-list"
 import { BookingHistoryIllustration } from "@/components/features-page/booking-history-illustration"
@@ -191,6 +192,8 @@ export default function BookingHistoryPage() {
           <HowItWorksFlow steps={STEPS} />
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="See it on your own bookings"

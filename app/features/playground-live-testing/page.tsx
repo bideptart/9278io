@@ -16,6 +16,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { DetailFanStack } from "@/components/features-page/detail-fan-stack"
 import { HowItWorksConsole } from "@/components/features-page/how-it-works-console"
 import { TestingImpactBand } from "@/components/features-page/testing-impact-band"
@@ -203,6 +204,8 @@ export default function PlaygroundLiveTestingPage() {
           <TestingImpactBand />
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Test it yourself before it ever answers a real call"

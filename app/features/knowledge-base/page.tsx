@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { KnowledgeBaseHeroIllustration } from "@/components/features-page/knowledge-base-hero-illustration"
 import { KnowledgeCategoryShowcase } from "@/components/features-page/knowledge-category-showcase"
@@ -183,6 +184,8 @@ export default function KnowledgeBasePage() {
           </ScrollReveal>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to give your agent its own knowledge base?"

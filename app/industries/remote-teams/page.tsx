@@ -113,10 +113,19 @@ export default function RemoteTeamsPage() {
                 AI Voice Agents for Remote Teams
               </span>
 
-              <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl">
-                AI Voice Agents Built
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents Built</span>
                 <br />
-                <span className="text-blue-600">for Remote Teams</span>
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  for Remote Teams
+                </span>
               </h1>
 
               <p className="mt-5 text-pretty text-[16px] font-bold leading-snug text-slate-800">

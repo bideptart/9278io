@@ -140,9 +140,17 @@ function ECommercePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-sans text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
-                <span className="block font-black">AI Voice Agents</span>
-                <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
+                <br />
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
                   for E-Commerce.
                 </span>
               </h1>
@@ -808,9 +816,17 @@ function RealEstatePage() {
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-7 text-balance font-sans text-3xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-4xl">
-                <span className="block font-black">AI Voice Agents</span>
-                <span className="block mt-1 bg-gradient-to-r from-blue-600 via-sky-600 to-blue-600 bg-clip-text text-transparent font-black">
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
+                <br />
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
                   for Real Estate.
                 </span>
               </h1>
@@ -1579,10 +1595,19 @@ function HomeServicesPage() {
                 AI voice agents for home services
               </span>
 
-              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
-                AI Voice Agents
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents Built for</span>
                 <br />
-                Built for <span className="text-blue-600">Home Services.</span>
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Home Services.
+                </span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
@@ -2050,10 +2075,19 @@ function RestaurantsPage() {
                 AI voice agents for restaurants
               </span>
 
-              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
-                AI Voice Agents
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>
                 <br />
-                for <span className="text-blue-600">Restaurants.</span>
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Restaurants.
+                </span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
@@ -2455,8 +2489,18 @@ export default async function IndustryPage({
                 </span>
                 AI voice agents for {industry.name.toLowerCase()}
               </span>
-              <h1 className="mt-6 text-balance font-serif text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                AI voice agents <span className="text-primary">for {industry.name.toLowerCase()}.</span>
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI voice agents</span>{" "}
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  for {industry.name.toLowerCase()}.
+                </span>
               </h1>
               <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 {industry.pitch}

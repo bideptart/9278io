@@ -13,6 +13,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { TemplateBenefitsTimeline } from "@/components/features-page/template-benefits-timeline"
 import { TemplateHowItWorksFlow } from "@/components/features-page/template-how-it-works"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
@@ -177,6 +178,8 @@ export default function KnowledgeTemplatesPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to build a reusable knowledge template?"

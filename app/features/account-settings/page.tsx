@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { AccountSettingsHero } from "@/components/features-page/account-settings-hero"
 import { AccountSettingsToggleList } from "@/components/features-page/account-settings-toggle-list"
 import { AccountSettingsFlow } from "@/components/features-page/account-settings-flow"
@@ -186,6 +187,8 @@ export default function AccountSettingsPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to take control of your account?"

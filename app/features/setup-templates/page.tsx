@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { SetupTemplatesLaptopHero } from "@/components/features-page/setup-templates-laptop-hero"
 import { TemplateGrid } from "@/components/features-page/template-grid"
 import { TemplateLaunchFlow } from "@/components/features-page/template-launch-flow"
@@ -180,6 +181,8 @@ export default function SetupTemplatesPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to launch from a template?"

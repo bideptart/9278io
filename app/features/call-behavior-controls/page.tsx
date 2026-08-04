@@ -18,6 +18,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { DetailCards } from "@/components/features-page/detail-cards"
 import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
@@ -229,6 +230,8 @@ export default function CallBehaviorControlsPage() {
           </div>
         </div>
       </section>
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to set your agent's call behavior?"

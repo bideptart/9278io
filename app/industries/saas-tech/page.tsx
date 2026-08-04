@@ -124,10 +124,19 @@ export default function SaasTechPage() {
                 AI Voice Agents for SaaS & Technology
               </span>
 
-              <h1 className="mt-6 text-balance font-sans text-3xl font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl">
-                AI Voice Agents
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>
                 <br />
-                for <span className="text-blue-600">SaaS Teams.</span>
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  SaaS Teams.
+                </span>
               </h1>
 
               <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">{PITCH}</p>

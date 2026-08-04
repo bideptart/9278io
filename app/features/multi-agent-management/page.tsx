@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { MultiAgentHub } from "@/components/features-page/multi-agent-hub"
@@ -192,6 +193,8 @@ export default function MultiAgentManagementPage() {
 
       {/* Capabilities — each one is its own full-width section, alternating background */}
       <MultiAgentCapabilities capabilities={capabilities} />
+
+      <FeatureImageSection />
 
       <PricingCta
         heading="Ready to manage your agents from one place?"
