@@ -27,7 +27,7 @@ import {
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
@@ -238,7 +238,7 @@ export default function RemoteTeamsPage() {
 
       {/* ─── How it works ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal className="mx-auto max-w-7xl">
+        <ScrollStepItem className="mx-auto max-w-7xl">
           <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-8">
             <p className="text-center font-sans text-xl font-bold text-slate-900 sm:text-2xl">
               How It Works For Remote Teams
@@ -246,50 +246,54 @@ export default function RemoteTeamsPage() {
 
             <div className="relative mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {HOW_IT_WORKS.map((step, i) => (
-                <div key={step.step} className="relative text-center">
+                <ScrollStepItem key={step.step} index={i} className="group relative text-center">
                   {i < HOW_IT_WORKS.length - 1 && (
                     <div
                       aria-hidden
                       className="absolute left-1/2 top-6 hidden h-px w-full border-t border-dashed border-blue-300 lg:block"
                     />
                   )}
-                  <span className="relative z-10 mx-auto grid size-12 place-items-center rounded-full bg-blue-600 text-white shadow-md">
+                  <span className="relative z-10 mx-auto grid size-12 place-items-center rounded-full bg-blue-600 text-white shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                     <step.Icon className="size-5.5" aria-hidden />
                   </span>
                   <p className="mt-4 text-[14px] font-bold text-slate-900">{step.step}</p>
                   <p className="mt-1.5 text-pretty text-[12.5px] leading-relaxed text-slate-500">{step.text}</p>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </ScrollStepItem>
       </section>
 
       {/* ─── What agent can do + phone mockup + Why choose ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_340px_1fr]">
           {/* What your remote agent can do */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
               <p className="font-sans text-lg font-bold text-slate-900">What Your Remote Agent Can Do</p>
-              <ul className="mt-4 space-y-4">
-                {AGENT_CAN_DO.map((item) => (
-                  <li key={item.title} className="flex items-start gap-3">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600">
+              <div className="mt-4 space-y-4">
+                {AGENT_CAN_DO.map((item, i) => (
+                  <ScrollStepItem
+                    key={item.title}
+                    index={i}
+                    className="group flex items-start gap-3 rounded-xl transition-all duration-300 hover:-translate-x-0.5"
+                  >
+                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110">
                       <item.Icon className="size-4" aria-hidden />
                     </span>
                     <div>
                       <p className="text-[13.5px] font-bold text-slate-900">{item.title}</p>
                       <p className="text-pretty text-[12.5px] leading-snug text-slate-500">{item.text}</p>
                     </div>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ul>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Phone mockup */}
-          <ScrollReveal delay={0.08} className="hidden h-full self-start lg:block">
+          <ScrollStepItem index={1} className="hidden h-full self-start lg:block">
             <div className="mx-auto flex h-full w-[300px] flex-col overflow-hidden rounded-[2.25rem] border-[6px] border-slate-900 bg-slate-900 shadow-2xl">
               <div className="flex min-h-0 flex-1 flex-col rounded-[1.75rem] bg-white">
                 <div className="flex items-center justify-between px-4 pt-4 text-[11px] font-semibold text-slate-500">
@@ -321,35 +325,39 @@ export default function RemoteTeamsPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Why remote teams choose 9278.io */}
-          <ScrollReveal delay={0.16}>
+          <ScrollStepItem index={2}>
             <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
               <p className="font-sans text-lg font-bold text-slate-900">
                 Why Remote Teams
                 <br />
                 Choose 9278.io
               </p>
-              <ul className="mt-4 space-y-4">
-                {WHY_CHOOSE.map((item) => (
-                  <li key={item.title} className="flex items-start gap-3">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600">
+              <div className="mt-4 space-y-4">
+                {WHY_CHOOSE.map((item, i) => (
+                  <ScrollStepItem
+                    key={item.title}
+                    index={i}
+                    className="group flex items-start gap-3 rounded-xl transition-all duration-300 hover:-translate-x-0.5"
+                  >
+                    <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110">
                       <item.Icon className="size-4" aria-hidden />
                     </span>
                     <div>
                       <p className="text-[13.5px] font-bold text-slate-900">{item.title}</p>
                       <p className="text-pretty text-[12.5px] leading-snug text-slate-500">{item.text}</p>
                     </div>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ul>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
 
         {/* Stats bar */}
-        <ScrollReveal delay={0.2} className="mx-auto mt-8 max-w-7xl">
+        <div className="mx-auto mt-8 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-r from-blue-800 to-blue-700 px-3 py-3 shadow-lg shadow-blue-800/25">
             <div className="grid grid-cols-2 divide-y divide-white/15 sm:grid-cols-5 sm:divide-x sm:divide-y-0">
               {[
@@ -358,40 +366,48 @@ export default function RemoteTeamsPage() {
                 { Icon: Globe, label: "Languages Supported", value: "10+" },
                 { Icon: Users, label: "Concurrent Calls", value: "Up to 40" },
                 { Icon: ShieldCheck, label: "Reliable Uptime", value: "99.9%" },
-              ].map(({ Icon: StatIcon, label, value }) => (
-                <div key={label} className="flex flex-col items-center gap-2 px-5 py-5 text-center">
-                  <span className="grid size-11 place-items-center rounded-2xl bg-white/10 text-white">
+              ].map(({ Icon: StatIcon, label, value }, i) => (
+                <ScrollStepItem
+                  key={label}
+                  index={i}
+                  className="group flex flex-col items-center gap-2 px-5 py-5 text-center transition-colors duration-300 hover:bg-white/5"
+                >
+                  <span className="grid size-11 place-items-center rounded-2xl bg-white/10 text-white transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                     <StatIcon className="size-5" aria-hidden />
                   </span>
                   <p className="font-sans text-xl font-extrabold tracking-tight text-white">{value}</p>
                   <p className="text-[12px] font-medium text-blue-100">{label}</p>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       {/* ─── Use cases for remote teams ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
-        <ScrollReveal className="mx-auto max-w-7xl">
+        <ScrollStepItem className="mx-auto max-w-7xl">
           <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
             <p className="font-sans text-lg font-bold text-slate-900">Use Cases For Remote Teams</p>
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              {USE_CASES.map((u) => (
-                <div key={u.label} className="flex items-start gap-2.5 rounded-xl border border-slate-100 p-3">
-                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600">
+              {USE_CASES.map((u, i) => (
+                <ScrollStepItem
+                  key={u.label}
+                  index={i}
+                  className="group flex items-start gap-2.5 rounded-xl border border-slate-100 p-3 transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
+                >
+                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-110">
                     <u.Icon className="size-4.5" aria-hidden />
                   </span>
                   <div>
                     <p className="text-[13px] font-bold text-slate-900">{u.label}</p>
                     <p className="text-pretty text-[11.5px] leading-snug text-slate-500">{u.text}</p>
                   </div>
-                </div>
+                </ScrollStepItem>
               ))}
             </div>
           </div>
-        </ScrollReveal>
+        </ScrollStepItem>
       </section>
 
       <PricingCta
