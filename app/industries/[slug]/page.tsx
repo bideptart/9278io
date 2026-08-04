@@ -306,7 +306,7 @@ function ECommercePage() {
 
         {/* ─── Stats bar (directly under hero, inside hero section per reference) ─── */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-          <ScrollReveal className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
@@ -334,9 +334,13 @@ function ECommercePage() {
                     value: "99.9%",
                     iconBg: "bg-blue-100 text-blue-600",
                   },
-                ].map(({ Icon: StatIcon, label, value, iconBg }) => (
-                  <div key={label} className="flex items-center gap-4 px-5 py-4 sm:px-6 sm:py-5">
-                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl ${iconBg}`}>
+                ].map(({ Icon: StatIcon, label, value, iconBg }, i) => (
+                  <ScrollStepItem
+                    key={label}
+                    index={i}
+                    className="group flex items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-blue-50/40 sm:px-6 sm:py-5"
+                  >
+                    <span className={`grid size-11 shrink-0 place-items-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6 ${iconBg}`}>
                       <StatIcon className="size-6" aria-hidden />
                     </span>
                     <div>
@@ -345,11 +349,11 @@ function ECommercePage() {
                       </p>
                       <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{label}</p>
                     </div>
-                  </div>
+                  </ScrollStepItem>
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -357,7 +361,7 @@ function ECommercePage() {
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-sm sm:p-9">
               {/* Shopping bag accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
@@ -372,24 +376,25 @@ function ECommercePage() {
                 on day one
               </h2>
 
-              <ol className="mt-8 space-y-3.5">
-                {industry.jobs.map((job) => (
-                  <li
+              <div className="mt-8 space-y-3.5">
+                {industry.jobs.map((job, i) => (
+                  <ScrollStepItem
                     key={job}
-                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white/90 px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)] backdrop-blur"
+                    index={i}
+                    className="flex items-center gap-3.5 rounded-2xl border border-blue-100/70 bg-white/90 px-5 py-3.5 shadow-[0_2px_10px_-4px_rgba(2,132,199,0.1)] backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
                   >
                     <span className="grid size-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-600 text-white shadow-md shadow-blue-500/25">
                       <Check className="size-3.5" aria-hidden />
                     </span>
                     <span className="text-pretty text-[14.5px] leading-relaxed text-slate-700">{job}</span>
-                  </li>
+                  </ScrollStepItem>
                 ))}
-              </ol>
+              </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-sm sm:p-9">
               {/* Sound-wave accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
@@ -427,48 +432,27 @@ function ECommercePage() {
                   </div>
                 </div>
 
-                <div className="space-y-2.5 p-5">
-                  <div className="flex text-sm">
-                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
-                      👋 Hello! What can I help you with today?
-                    </span>
-                  </div>
-                  <div className="flex text-sm justify-end">
-                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-4 py-2.5 text-slate-700 ring-1 ring-slate-200">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-40">Customer</span>
-                      Can you track my order?
-                    </span>
-                  </div>
-                  <div className="flex text-sm">
-                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
-                      Sure! Order #4521 shipped yesterday and arrives by 6 PM tomorrow.
-                    </span>
-                  </div>
-                  <div className="flex text-sm justify-end">
-                    <span className="max-w-[85%] rounded-2xl rounded-br-sm bg-slate-50 px-4 py-2.5 text-slate-700 ring-1 ring-slate-200">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-40">Customer</span>
-                      Great — can I also return a pair of shoes from my last order?
-                    </span>
-                  </div>
-                  <div className="flex text-sm">
-                    <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-blue-800 ring-1 ring-blue-100">
-                      <span className="mr-1 text-[10px] font-bold uppercase opacity-70">Agent</span>
-                      Absolutely — I&apos;ll email a prepaid return label right now.
-                    </span>
-                  </div>
-                </div>
+                <SoundSampleChat
+                  labeled
+                  height={230}
+                  messages={[
+                    { from: "agent", text: "👋 Hello! What can I help you with today?" },
+                    { from: "customer", text: "Can you track my order?" },
+                    { from: "agent", text: "Sure! Order #4521 shipped yesterday and arrives by 6 PM tomorrow." },
+                    { from: "customer", text: "Great — can I also return a pair of shoes from my last order?" },
+                    { from: "agent", text: "Absolutely — I'll email a prepaid return label right now." },
+                  ]}
+                />
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
       {/* ─── How teams roll out — two-step process ─── */}
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="flex items-start gap-4">
+          <ScrollStepItem className="flex items-start gap-4">
             <span className="relative shrink-0">
               <span aria-hidden className="absolute -left-4 top-1 h-10 w-px bg-primary" />
               <span className="grid size-14 place-items-center rounded-full border border-primary/20 bg-white text-primary shadow-sm">
@@ -483,7 +467,7 @@ function ECommercePage() {
               </h2>
               <span aria-hidden className="mt-4 block h-1 w-16 rounded-full bg-primary" />
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="relative mt-10 grid gap-8 md:grid-cols-2 md:gap-10">
             {/* connector arrow between the two phases (desktop) */}
@@ -494,8 +478,8 @@ function ECommercePage() {
               <ArrowRight className="size-5" />
             </div>
 
-            <ScrollReveal>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
+            <ScrollStepItem index={0}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-blue-600/25">
                     01
@@ -518,10 +502,10 @@ function ECommercePage() {
                   once the inbound playbooks prove out.
                 </p>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
 
-            <ScrollReveal delay={0.12}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
+            <ScrollStepItem index={1}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-primary/25">
                     02
@@ -544,10 +528,10 @@ function ECommercePage() {
                   we support to compare playbooks.
                 </p>
               </div>
-            </ScrollReveal>
+            </ScrollStepItem>
           </div>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollStepItem>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
                 asChild
@@ -572,7 +556,7 @@ function ECommercePage() {
                 </Link>
               </Button>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -583,7 +567,7 @@ function ECommercePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
@@ -595,21 +579,21 @@ function ECommercePage() {
               </span>
             </h2>
 
-            <ul className="mt-7 space-y-3.5">
+            <div className="mt-7 space-y-3.5">
               {[
                 "Lower support costs",
                 "Happier customers",
                 "Higher repeat purchases",
                 "Always-on availability",
-              ].map((line) => (
-                <li key={line} className="flex items-center gap-3.5">
+              ].map((line, i) => (
+                <ScrollStepItem key={line} index={i} className="flex items-center gap-3.5">
                   <span className="grid size-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-600 text-white shadow-md shadow-blue-500/25">
                     <Check className="size-3.5" aria-hidden />
                   </span>
                   <span className="text-pretty text-[15px] leading-relaxed text-slate-700 font-medium">{line}</span>
-                </li>
+                </ScrollStepItem>
               ))}
-            </ul>
+            </div>
 
             <Button
               asChild
@@ -621,10 +605,10 @@ function ECommercePage() {
                 <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
             </Button>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — performance dashboard mock */}
-          <ScrollReveal delay={0.12}>
+          <ScrollStepItem index={1}>
             <div className="relative">
               {/* +32% floating badge */}
               <div className="absolute -bottom-5 -right-3 z-20 hero-float-up">
@@ -691,7 +675,7 @@ function ECommercePage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 

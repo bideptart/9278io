@@ -13,12 +13,15 @@ export function SoundSampleChat({
   intervalMs = 2400,
   height = 140,
   agentSide = "left",
+  labeled = false,
 }: {
   messages: SoundSampleMessage[]
   intervalMs?: number
   height?: number
   /** Which side agent bubbles render on — customer bubbles take the other side. */
   agentSide?: "left" | "right"
+  /** Adds a small uppercase Agent/Customer tag and a ring-style bubble (matches the e-commerce hero preview). */
+  labeled?: boolean
 }) {
   const [count, setCount] = useState(1)
   const [cycle, setCycle] = useState(0)
@@ -45,11 +48,42 @@ export function SoundSampleChat({
   const agentOnRight = agentSide === "right"
 
   return (
-    <div ref={scrollRef} className="mt-4 space-y-2.5 overflow-hidden" style={{ height }}>
+    <div
+      ref={scrollRef}
+      className={labeled ? "space-y-2.5 overflow-hidden p-5" : "mt-4 space-y-2.5 overflow-hidden"}
+      style={{ height }}
+    >
       <AnimatePresence initial={false}>
         {messages.map((m, i) => {
           const onRight = m.from === "agent" ? agentOnRight : !agentOnRight
           const isBlue = m.from === "agent"
+
+          if (labeled) {
+            return (
+              <motion.div
+                key={`${cycle}-${i}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className={`flex text-sm ${onRight ? "justify-end" : ""}`}
+              >
+                <span
+                  className={[
+                    "max-w-[85%] px-4 py-2.5",
+                    onRight ? "rounded-2xl rounded-br-sm" : "rounded-2xl rounded-bl-sm",
+                    isBlue ? "bg-blue-50 text-blue-800 ring-1 ring-blue-100" : "bg-slate-50 text-slate-700 ring-1 ring-slate-200",
+                  ].join(" ")}
+                >
+                  <span className={`mr-1 text-[10px] font-bold uppercase ${isBlue ? "opacity-70" : "opacity-40"}`}>
+                    {m.from === "agent" ? "Agent" : "Customer"}
+                  </span>
+                  {m.text}
+                </span>
+              </motion.div>
+            )
+          }
+
           return (
             <motion.p
               key={`${cycle}-${i}`}
