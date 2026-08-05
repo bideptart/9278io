@@ -9,25 +9,25 @@ const TESTIMONIALS = [
     image: "/avatars/amit.jpg",
     name: "Amit Shah",
     role: "Founder, Shah Real Estate",
-    quote: "Our agent picks up every enquiry now, even after the office shuts. Site visits book themselves.",
+    quote: "The 9278.io dashboard shows me call volume and busy hours at a glance — I stopped guessing when to staff up.",
   },
   {
     image: "/avatars/priya.jpg",
     name: "Priya Nair",
     role: "Ops Lead, Priya Dental Care",
-    quote: "Setup took an afternoon, not a sprint. Patients get the same warm greeting on every single call.",
+    quote: "We track every agent's minutes against our plan right inside 9278.io. No surprise overages anymore.",
   },
   {
     image: "/avatars/rahul.jpg",
     name: "Rahul Mehta",
     role: "CX Manager, Aarav Motors",
-    quote: "Call volume doubled during the festive sale and nobody noticed — every caller still got through instantly.",
+    quote: "Analytics Dashboard on 9278.io updates in real time — I can see call spikes the moment they happen, not the next morning.",
   },
   {
     image: "/avatars/sneha.avif",
     name: "Sneha Iyer",
     role: "Founder, Sneha Wellness Studio",
-    quote: "No more missed class bookings. The agent handles renewals and no-shows while we focus on members.",
+    quote: "One dashboard, every agent's numbers. 9278.io made it obvious which hours actually need coverage.",
   },
 ]
 
