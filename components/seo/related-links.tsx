@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { MouseGlowCard } from "@/components/animation/mouse-glow-card"
 import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
 
@@ -41,7 +41,7 @@ export function RelatedLinks({
         {links.map((l, i) => (
           <StaggerItem key={l.href} role="listitem">
             <Link href={l.href} className="block h-full">
-              <MouseGlowCard className="h-full rounded-2xl bg-card p-6 shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition-shadow duration-300 group-hover:shadow-[0_24px_48px_-20px_oklch(0.546_0.215_262.88/0.35)]">
+              <MouseGlowCard className="h-full rounded-2xl bg-card p-5 shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition-shadow duration-300 group-hover:shadow-[0_24px_48px_-20px_oklch(0.546_0.215_262.88/0.35)]">
                 {/* animated conic-gradient border ring, only visible on hover */}
                 <div
                   aria-hidden
@@ -66,24 +66,20 @@ export function RelatedLinks({
                 </div>
 
                 <div className="relative flex h-full flex-col">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="font-mono text-xs tracking-wide text-muted-foreground/60 tabular-nums">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-secondary text-muted-foreground ring-1 ring-inset ring-border transition-all duration-200 group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary">
-                      <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:rotate-45" aria-hidden />
+                  <span className="font-mono text-xs tracking-wide text-muted-foreground/60 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+
+                  <div className="mt-3 flex items-start justify-between gap-3">
+                    <p className="text-base font-semibold tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
+                      {l.title}
+                    </p>
+                    <span className="mt-0.5 flex shrink-0 items-center gap-1 text-sm font-medium text-foreground">
+                      Read more
+                      <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
                     </span>
                   </div>
-
-                  <p className="mt-5 text-base font-semibold tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
-                    {l.title}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{l.description}</p>
-
-                  <span className="mt-auto flex items-center gap-1.5 pt-6 text-sm font-medium text-foreground">
-                    Read more
-                    <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-                  </span>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{l.description}</p>
                 </div>
               </MouseGlowCard>
             </Link>
