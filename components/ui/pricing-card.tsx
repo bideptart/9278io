@@ -195,7 +195,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
             Most popular
           </span>
         )}
-        <CardHeader className="min-w-0 p-4 pb-0">
+        <CardHeader className="min-w-0 px-3 pt-3 pb-0">
           <CardTitle className="text-lg font-bold">{plan.name}</CardTitle>
           <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
           <div className="mt-2">
@@ -216,7 +216,7 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
             ))}
           </ul>
         </CardContent>
-        <CardFooter className="min-w-0 p-4 pt-1">
+        <CardFooter className="min-w-0 px-3 pb-3 pt-1">
           <Button
             onClick={() => onPlanSelect(plan.id, billingCycle)}
             className={cn(
@@ -246,13 +246,16 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
 
   // --- 2.5. Mobile slider (native scroll-snap, one full card per view) ---
   const MobileStack = (
-    // pt-4 reserves room so the "Most popular" badge (which sits slightly
-    // above its card) isn't clipped by the track's own overflow.
-    <div className="pt-4 md:hidden">
+    <div className="md:hidden">
       <div
         ref={trackRef}
         onScroll={handleScroll}
-        className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-[5%] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        // pt-4 reserves room *inside* the scrolling box so the "Most popular"
+        // badge (which sits slightly above its card via -top-3) isn't clipped —
+        // setting overflow-x without an explicit overflow-y makes the browser
+        // treat overflow-y as clipped too, so padding on an ancestor outside
+        // this element doesn't give the badge any room; it has to be here.
+        className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-[5%] pb-1 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {plans.map((plan, i) => (
           <div key={plan.id} className="w-[90%] flex-none snap-center">

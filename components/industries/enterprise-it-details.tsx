@@ -28,7 +28,7 @@ export function EnterpriseItDetails({
   conversation: ConversationLine[]
 }) {
   return (
-    <section className="w-full px-6 py-16 md:px-8 md:py-20">
+    <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
         <ScrollReveal className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">

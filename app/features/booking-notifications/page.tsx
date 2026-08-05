@@ -242,16 +242,19 @@ export default function BookingNotificationsPage() {
             role: "Instant email",
             name: "Notified the moment it's booked",
             quote: "An email lands the moment your agent books a meeting or appointment — no checking in required.",
+            image: "/images/booking-notifications-instant-email.webp",
           },
           {
             role: "Never miss one",
             name: "Every agent, every booking",
             quote: "Fires for every agent on your account, from your 1st booking to your 1,000th, with nothing to configure.",
+            image: "/images/booking-notifications-never-miss-one.webp",
           },
           {
             role: "No delay",
             name: "Sent the second it's confirmed",
             quote: "No batching or hourly digest — the notification goes out as soon as the booking is locked in.",
+            image: "/images/booking-notifications-no-delay.webp",
           },
         ]}
       />

@@ -201,16 +201,19 @@ export default function MultiAgentManagementPage() {
             role: "One dashboard",
             name: "Every agent, one account",
             quote: "However many agents you create — sales, support, dispatch — they all show up in the same 9278.io dashboard. No juggling separate logins.",
+            image: "/images/features/multi-agent-management/multi-agent-management-01-one-dashboard.png",
           },
           {
             role: "Fast cloning",
             name: "Clone an agent in minutes",
             quote: "Start a new agent from one you've already configured — same voice, same knowledge base, same call behavior — instead of rebuilding from scratch.",
+            image: "/images/features/multi-agent-management/multi-agent-management-02-fast-cloning.png",
           },
           {
             role: "Dedicated numbers",
             name: "One number per agent",
             quote: "Give every agent its own phone number so a caller to sales and a caller to support each reach the right agent automatically.",
+            image: "/images/features/multi-agent-management/multi-agent-management-03-dedicated-numbers.png",
           },
         ]}
       />

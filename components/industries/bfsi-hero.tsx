@@ -56,30 +56,27 @@ export function BfsiHero({ industry }: { industry: Industry }) {
                 the status icon pulses, and the whole pill gently bobs. */}
             <span
               style={{ animationDelay: "0.05s" }}
-              className="relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-blue-200/70 bg-white/90 py-2.5 pl-2.5 pr-7 text-base font-medium text-blue-700 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md motion-safe:[animation:reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both,ind-float_4.4s_ease-in-out_infinite_0.6s]"
+              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-blue-200/70 bg-white/90 py-1.5 pl-1.5 pr-5 text-[14px] font-medium text-blue-700 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both]"
             >
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/25 to-transparent bg-[length:200%_auto] motion-safe:animate-[ind-shimmer_3.4s_linear_infinite]"
               />
-              <span className="relative grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
-                <Sparkles className="size-5 motion-safe:animate-pulse" aria-hidden />
+              <span className="relative grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+                <Sparkles className="size-3.5 motion-safe:animate-pulse" aria-hidden />
               </span>
               <span className="relative">AI Voice Agents for Lending &amp; Insurance</span>
             </span>
 
-            <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-              <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
-              <br />
-              <span
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                For BFSI &amp; Fintech.
+            <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
+                <span
+                  className="inline bg-gradient-to-r from-blue-600 via-sky-500 to-emerald-500 bg-clip-text font-black text-transparent"
+                  style={{ WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}
+                >
+                  For BFSI &amp; Fintech.
+                </span>
               </span>
             </h1>
 

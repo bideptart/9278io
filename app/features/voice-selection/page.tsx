@@ -192,16 +192,19 @@ export default function VoiceSelectionPage() {
             role: "Preview first",
             name: "Hear it before you assign it",
             quote: "Play a real clip of any voice and compare them side by side before choosing.",
+            image: "/images/features/voice-selection/voice-selection-01-preview-first.png",
           },
           {
             role: "A personality each",
             name: "Ten voices, ten distinct tones",
             quote: "Every named voice comes with its own personality description, so the tone matches your brand.",
+            image: "/images/features/voice-selection/voice-selection-02-personality-each.png",
           },
           {
             role: "Switch anytime",
             name: "Change it with no rebuild",
             quote: "Swap an agent's voice whenever you want — knowledge base, routing, and behavior stay exactly as they were.",
+            image: "/images/features/voice-selection/voice-selection-03-switch-anytime.png",
           },
         ]}
       />
