@@ -1,34 +1,12 @@
-"use client"
-
-import { motion } from "motion/react"
-
 // Right-column image collage from the "hero-section-9" pattern, extracted
 // as a standalone piece so it can drop into an existing hero's visual slot
 // without duplicating that hero's own title/subtitle/CTA markup.
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 },
-  },
-}
-
-const imageVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-}
-
-const floatingVariants = {
-  animate: {
-    y: [0, -8, 0],
-    transition: { duration: 3, repeat: Infinity, ease: "easeInOut" as const },
-  },
-}
+//
+// Deliberately built from the same plain-CSS animation classes already
+// used across every other industry hero on this site (reveal fade-in,
+// hero-float-up/down, a hover lift with a deeper shadow) rather than a
+// new custom effect — so it matches the site's own established,
+// professional visual language exactly instead of introducing a new one.
 
 const DEFAULT_IMAGES = [
   { src: "/images/finance-voice-agent-1.png", alt: "AI voice agent answering a finance call — account balance, transactions, and investment overview" },
@@ -38,55 +16,42 @@ const DEFAULT_IMAGES = [
 
 export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?: { src: string; alt: string }[] }) {
   return (
-    <motion.div
-      className="relative h-[400px] w-full sm:h-[500px]"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Decorative shapes */}
-      <motion.div
-        className="absolute -top-4 left-1/4 h-16 w-16 rounded-full bg-blue-200/50"
-        variants={floatingVariants}
-        animate="animate"
-      />
-      <motion.div
-        className="absolute bottom-0 right-1/4 h-12 w-12 rounded-lg bg-sky-200/50"
-        variants={floatingVariants}
-        animate="animate"
-        style={{ transitionDelay: "0.5s" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-4 h-6 w-6 rounded-full bg-emerald-200/50"
-        variants={floatingVariants}
-        animate="animate"
-        style={{ transitionDelay: "1s" }}
-      />
+    <div className="relative h-[400px] w-full sm:h-[500px]">
+      <div
+        style={{ animationDelay: "0.1s" }}
+        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute left-1/2 top-0 w-52 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
+      >
+        <div
+          className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
+          style={{ aspectRatio: "758 / 548" }}
+        >
+          <img src={images[0].src} alt={images[0].alt} className="h-full w-full rounded-xl object-contain" />
+        </div>
+      </div>
 
-      {/* Images — each box matches its image's real aspect ratio, and
-          object-contain guarantees the full frame is always visible with
-          no cropping, regardless of ratio. */}
-      <motion.div
-        className="absolute left-1/2 top-0 w-52 -translate-x-1/2 rounded-2xl bg-white p-2 shadow-lg sm:w-72"
-        style={{ transformOrigin: "bottom center", aspectRatio: "758 / 548" }}
-        variants={imageVariants}
+      <div
+        style={{ animationDelay: "0.25s" }}
+        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-down absolute right-0 top-1/3 w-44 transition-transform duration-300 hover:-translate-y-1 sm:w-64"
       >
-        <img src={images[0].src} alt={images[0].alt} className="h-full w-full rounded-xl object-contain" />
-      </motion.div>
-      <motion.div
-        className="absolute right-0 top-1/3 w-44 rounded-2xl bg-white p-2 shadow-lg sm:w-64"
-        style={{ transformOrigin: "left center", aspectRatio: "772 / 548" }}
-        variants={imageVariants}
+        <div
+          className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
+          style={{ aspectRatio: "772 / 548" }}
+        >
+          <img src={images[1].src} alt={images[1].alt} className="h-full w-full rounded-xl object-contain" />
+        </div>
+      </div>
+
+      <div
+        style={{ animationDelay: "0.4s" }}
+        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute -left-2 bottom-6 h-24 transition-transform duration-300 hover:-translate-y-1 sm:h-32"
       >
-        <img src={images[1].src} alt={images[1].alt} className="h-full w-full rounded-xl object-contain" />
-      </motion.div>
-      <motion.div
-        className="absolute -left-2 bottom-6 h-24 rounded-2xl bg-white p-1 shadow-lg sm:h-32"
-        style={{ transformOrigin: "top right", aspectRatio: "1536 / 470", width: "auto" }}
-        variants={imageVariants}
-      >
-        <img src={images[2].src} alt={images[2].alt} className="h-full w-full rounded-xl object-contain" />
-      </motion.div>
-    </motion.div>
+        <div
+          className="h-full overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-1 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
+          style={{ aspectRatio: "1536 / 470", width: "auto" }}
+        >
+          <img src={images[2].src} alt={images[2].alt} className="h-full w-full rounded-xl object-contain" />
+        </div>
+      </div>
+    </div>
   )
 }
