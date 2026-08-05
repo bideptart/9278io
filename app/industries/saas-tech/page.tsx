@@ -34,6 +34,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { SaasAgentConsole } from "@/components/industries/saas-agent-console"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
@@ -408,6 +409,13 @@ export default function SaasTechPage() {
           </div>
         </div>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/saas-tech.png"
+        alt="AI voice agent handling SaaS customer conversations"
+        heading="Support that scales with your product."
+        paragraph="From trial signups to renewal calls, 9278.io picks up every conversation instantly — answering product questions, qualifying leads, and routing the right calls to your team, so support never becomes the bottleneck to growth."
+      />
 
       <PricingCta
         heading="Let AI handle conversations while your team builds products."
