@@ -132,7 +132,7 @@ export default function RemoteTeamsPage() {
                 Keep your workforce connected with AI voice agents that answer every call instantly, 24/7.
               </p>
 
-              <p className="mt-4 max-w-lg text-pretty text-[15px] leading-relaxed text-slate-600">{PITCH}</p>
+              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 {[

@@ -139,7 +139,7 @@ export default function SaasTechPage() {
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">{PITCH}</p>
+              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
 
               <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-5 sm:flex sm:flex-wrap">
                 {[
