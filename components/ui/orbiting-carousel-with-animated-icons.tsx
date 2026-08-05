@@ -260,6 +260,11 @@ export default function OrbitCarousel() {
           const rotation = getRotation(i)
           const isActive = i === activeIndex
 
+          // The active item is already shown large in the center card — keep
+          // it out of the ring so its photo never visually collides with the
+          // card's protruding avatar.
+          if (isActive) return null
+
           return (
             <motion.div
               key={c.id}
@@ -275,7 +280,7 @@ export default function OrbitCarousel() {
                 position: "absolute",
                 top: `calc(50% - ${profileSize / 2}px)`,
                 left: `calc(50% - ${profileSize / 2}px)`,
-                zIndex: isActive ? 20 : 10,
+                zIndex: 10,
               }}
             >
               {/* Counter-rotation keeps the photo upright as the ring spins */}
@@ -287,9 +292,7 @@ export default function OrbitCarousel() {
                   onClick={() => handleProfileClick(i)}
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`size-full cursor-pointer rounded-full object-cover shadow-md transition-all duration-300 ${
-                    isActive ? "border-4 border-blue-500 shadow-lg" : "border-2 border-white/70 hover:border-blue-300"
-                  }`}
+                  className="size-full cursor-pointer rounded-full border-2 border-white/70 object-cover shadow-md transition-all duration-300 hover:border-blue-300"
                 />
               </motion.div>
             </motion.div>
