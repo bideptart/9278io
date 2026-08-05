@@ -90,7 +90,6 @@ function ECommercePage() {
   const industry = getIndustry("ecommerce")!
   const Icon = ShoppingBag
   const related = INDUSTRIES.filter((i) => i.slug !== "ecommerce").slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <>
@@ -669,40 +668,13 @@ function ECommercePage() {
           </ScrollReveal>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: TrendingUp,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const a = {
                 border: "border-l-primary",
                 tile: "bg-primary/10 text-primary",
@@ -1533,7 +1505,6 @@ function RealEstatePage() {
 function HomeServicesPage() {
   const industry = getIndustry("home-services")!
   const related = INDUSTRIES.filter((i) => i.slug !== "home-services").slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <>
@@ -1916,40 +1887,13 @@ function HomeServicesPage() {
           </ScrollReveal>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: TrendingUp,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const a = {
                 border: "border-l-primary",
                 tile: "bg-primary/10 text-primary",
@@ -2012,7 +1956,6 @@ function HomeServicesPage() {
 function RestaurantsPage() {
   const industry = getIndustry("restaurants")!
   const related = INDUSTRIES.filter((i) => i.slug !== "restaurants").slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <>
@@ -2283,40 +2226,13 @@ function RestaurantsPage() {
           </ScrollReveal>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: TrendingUp,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const a = {
                 border: "border-l-primary",
                 tile: "bg-primary/10 text-primary",
