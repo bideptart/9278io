@@ -53,18 +53,12 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
               AI Voice Agents for IT Teams
             </span>
 
-            <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-              <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
-              <br />
-              <span
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                For Enterprise IT.
+            <h1 className="mt-6 text-balance font-sans text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[3rem] md:text-[3.7rem]">
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                  For Enterprise IT.
+                </span>
               </span>
             </h1>
 
