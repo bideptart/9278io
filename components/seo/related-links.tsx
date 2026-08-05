@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { MouseGlowCard } from "@/components/animation/mouse-glow-card"
+import { ArrowRight, BookOpen } from "lucide-react"
 import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
 
 export type RelatedLink = {
@@ -12,9 +11,6 @@ export type RelatedLink = {
 /**
  * Site-wide internal-linking module. Each landing page renders one of these
  * to push link equity to siblings (industries → pricing → FAQ → get-started).
- *
- * Cards stagger in on scroll, then track the cursor with a 3D tilt + soft
- * spotlight (MouseGlowCard, reused as-is from the pricing/features cards).
  */
 export function RelatedLinks({
   heading = "Keep exploring 9278.io",
@@ -38,50 +34,41 @@ export function RelatedLinks({
       </div>
 
       <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" stagger={0.1} role="list">
-        {links.map((l, i) => (
+        {links.map((l) => (
           <StaggerItem key={l.href} role="listitem">
-            <Link href={l.href} className="block h-full">
-              <MouseGlowCard className="h-full rounded-2xl bg-card p-5 shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition-shadow duration-300 group-hover:shadow-[0_24px_48px_-20px_oklch(0.546_0.215_262.88/0.35)]">
-                {/* animated conic-gradient border ring, only visible on hover */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{
-                    padding: 1,
-                    background:
-                      "conic-gradient(from var(--angle, 0deg), transparent 0%, oklch(0.546 0.215 262.88 / 0.6) 15%, transparent 30%)",
-                    WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-                    WebkitMaskComposite: "xor",
-                    maskComposite: "exclude",
-                    animation: "spin-border 3s linear infinite",
-                  }}
-                />
+            <Link
+              href={l.href}
+              className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              {/* corner ribbon */}
+              <span
+                aria-hidden
+                className="absolute right-0 top-0 h-10 w-10 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]"
+              />
 
-                {/* diagonal sheen sweep on hover */}
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
-                >
-                  <span className="absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-[opacity,transform] duration-700 ease-out group-hover:translate-x-[420%] group-hover:opacity-100" />
-                </div>
+              {/* dotted decoration */}
+              <div aria-hidden className="absolute right-4 top-10 grid grid-cols-4 gap-1 opacity-60">
+                {Array.from({ length: 16 }).map((_, d) => (
+                  <span key={d} className="size-1 rounded-full bg-slate-300" />
+                ))}
+              </div>
 
-                <div className="relative flex h-full flex-col">
-                  <span className="font-mono text-xs tracking-wide text-muted-foreground/60 tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+              <span className="grid size-9 place-items-center rounded-lg bg-primary/10 text-primary">
+                <BookOpen className="size-4.5" aria-hidden />
+              </span>
 
-                  <div className="mt-3 flex items-start justify-between gap-3">
-                    <p className="text-base font-semibold tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
-                      {l.title}
-                    </p>
-                    <span className="mt-0.5 flex shrink-0 items-center gap-1 text-sm font-medium text-foreground">
-                      Read more
-                      <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-                    </span>
-                  </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{l.description}</p>
-                </div>
-              </MouseGlowCard>
+              <p className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
+                {l.title}
+              </p>
+              <span aria-hidden className="mt-2 block h-1 w-7 rounded-full bg-primary" />
+              <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">{l.description}</p>
+
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-[12.5px] font-semibold text-primary">Read more</span>
+                <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
+                  <ArrowRight className="size-3" aria-hidden />
+                </span>
+              </div>
             </Link>
           </StaggerItem>
         ))}
