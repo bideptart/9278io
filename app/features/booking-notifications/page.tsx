@@ -235,7 +235,7 @@ export default function BookingNotificationsPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={0} />
 
       <PricingCta
         heading="Never miss a booking again"

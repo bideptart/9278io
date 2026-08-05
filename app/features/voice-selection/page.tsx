@@ -185,7 +185,7 @@ export default function VoiceSelectionPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={1} />
 
       <PricingCta
         heading="Ready to give your agent the right voice?"

@@ -185,7 +185,7 @@ export default function KnowledgeBasePage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={2} />
 
       <PricingCta
         heading="Ready to give your agent its own knowledge base?"

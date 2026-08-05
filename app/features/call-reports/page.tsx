@@ -198,7 +198,7 @@ export default function CallReportsPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={2} />
 
       <PricingCta
         heading="Hear every call for yourself"

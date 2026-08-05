@@ -198,7 +198,7 @@ export default function SupportTicketsSystemPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={0} />
 
       <PricingCta
         heading="Get support without leaving your dashboard"

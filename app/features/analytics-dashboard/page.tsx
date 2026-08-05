@@ -218,7 +218,7 @@ export default function AnalyticsDashboardPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={1} />
 
       <PricingCta
         heading="See it on your own calls"

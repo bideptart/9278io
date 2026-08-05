@@ -193,7 +193,7 @@ export default function BookingHistoryPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={3} />
 
       <PricingCta
         heading="See it on your own bookings"

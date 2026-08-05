@@ -224,7 +224,7 @@ export default function CallTransferToolPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={3} />
 
       <PricingCta
         heading="Set up your first transfer rule"

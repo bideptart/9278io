@@ -231,7 +231,7 @@ export default function CallBehaviorControlsPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={1} />
 
       <PricingCta
         heading="Ready to set your agent's call behavior?"

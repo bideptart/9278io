@@ -182,7 +182,7 @@ export default function SetupTemplatesPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={3} />
 
       <PricingCta
         heading="Ready to launch from a template?"
