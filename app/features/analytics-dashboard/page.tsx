@@ -225,16 +225,19 @@ export default function AnalyticsDashboardPage() {
             role: "Call volume",
             name: "Minutes and durations, in one view",
             quote: "See every agent's call count, total minutes, and average call length without digging through raw logs.",
+            image: "/images/analytics-dashboard-call-activity-overview.webp",
           },
           {
             role: "Busy hours",
             name: "Spot your peak times at a glance",
             quote: "A time-of-day breakdown shows exactly when calls peak, so staffing and routing decisions are easy.",
+            image: "/images/analytics-dashboard-busy-hours-overview.webp",
           },
           {
             role: "Plan usage",
             name: "Track usage against your plan",
             quote: "Watch included minutes burn down in real time and know well before you hit an overage.",
+            image: "/images/analytics-dashboard-calls-over-time.webp",
           },
         ]}
       />

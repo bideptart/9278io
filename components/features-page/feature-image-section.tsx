@@ -31,7 +31,7 @@ const TESTIMONIALS = [
   },
 ]
 
-type Slide = { quote: string; name: string; role: string }
+type Slide = { quote: string; name: string; role: string; image?: string }
 
 type FeatureImageSectionProps = {
   testimonial?: 0 | 1 | 2 | 3
@@ -90,10 +90,10 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
         {/* Left — fanned 3-card stack pattern, no photo content. All three
             share the same top edge (no vertical stagger) so the canvas stays
             evenly balanced — only horizontal offset + scale distinguish the sides. */}
-        <div className="relative mx-auto h-[340px] w-[436px] shrink-0">
+        <div className="relative mx-auto h-[300px] w-[629px] shrink-0">
           <div
             aria-hidden
-            className="absolute left-0 top-0 h-[340px] w-[340px] rounded-[20px]"
+            className="absolute left-0 top-0 h-[300px] w-[533px] rounded-[20px]"
             style={{
               zIndex: 2,
               transform: "translateX(0) scale(0.85)",
@@ -101,20 +101,40 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
               boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
             }}
           />
+          {current.image ? (
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={active}
+                src={current.image}
+                alt={current.name}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute left-0 top-0 h-[300px] w-[533px] rounded-[20px] object-cover"
+                style={{
+                  zIndex: 3,
+                  transform: "translateX(48px) scale(1)",
+                  boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
+                }}
+              />
+            </AnimatePresence>
+          ) : (
+            <div
+              aria-hidden
+              className="absolute left-0 top-0 h-[300px] w-[533px] rounded-[20px]"
+              style={{
+                zIndex: 3,
+                transform: "translateX(48px) scale(1)",
+                background: "linear-gradient(135deg, #2563EB0F, #10B9810F)",
+                border: "1px solid #E4ECFF",
+                boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
+              }}
+            />
+          )}
           <div
             aria-hidden
-            className="absolute left-0 top-0 h-[340px] w-[340px] rounded-[20px]"
-            style={{
-              zIndex: 3,
-              transform: "translateX(48px) scale(1)",
-              background: "linear-gradient(135deg, #2563EB0F, #10B9810F)",
-              border: "1px solid #E4ECFF",
-              boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
-            }}
-          />
-          <div
-            aria-hidden
-            className="absolute left-0 top-0 h-[340px] w-[340px] rounded-[20px]"
+            className="absolute left-0 top-0 h-[300px] w-[533px] rounded-[20px]"
             style={{
               zIndex: 2,
               transform: "translateX(96px) scale(0.85)",
