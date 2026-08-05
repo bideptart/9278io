@@ -16,10 +16,10 @@ const DEFAULT_IMAGES = [
 
 export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?: { src: string; alt: string }[] }) {
   return (
-    <div className="relative h-[400px] w-full sm:h-[500px]">
+    <div className="relative h-[360px] w-full sm:h-[500px]">
       <div
         style={{ animationDelay: "0.1s" }}
-        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute left-1/2 top-0 w-52 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
+        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute left-1/2 top-0 w-64 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
       >
         <div
           className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
@@ -31,7 +31,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
 
       <div
         style={{ animationDelay: "0.25s" }}
-        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-down absolute right-0 top-1/3 w-44 transition-transform duration-300 hover:-translate-y-1 sm:w-64"
+        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-down absolute right-0 top-1/3 w-56 transition-transform duration-300 hover:-translate-y-1 sm:w-64"
       >
         <div
           className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
