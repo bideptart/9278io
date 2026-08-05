@@ -92,27 +92,27 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
               ))}
             </div>
 
-            <div style={{ animationDelay: "0.72s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-7 flex flex-wrap items-center gap-3.5">
+            <div style={{ animationDelay: "0.72s" }} className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] mt-7 flex flex-nowrap items-center gap-2.5 sm:gap-3.5">
               <Button
                 asChild
-                className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-2.5 text-[13px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
               >
                 <Link href="/get-started?industry=enterprise-it">
                   Get Started
-                  <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
-                    <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                  <span className="ml-2 inline-flex size-5 items-center justify-center rounded-full bg-white/20 sm:size-6">
+                    <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5 sm:size-3.5" aria-hidden />
                   </span>
                 </Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="group h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                className="group h-auto rounded-full border-slate-200 bg-white/95 px-4 py-2.5 text-[13px] font-bold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
               >
                 <Link href="/pricing">
                   View Pricing
                   <ArrowUpRight
-                    className="ml-2 size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    className="ml-2 size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:size-4"
                     aria-hidden
                   />
                 </Link>
@@ -126,7 +126,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
                 aria-hidden
                 className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-[85%] rounded-[2.5rem] bg-[radial-gradient(60%_60%_at_50%_20%,rgba(37,99,235,0.16),transparent_70%)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
               />
-              <div className="relative flex aspect-[4/3] w-full items-center justify-center">
+              <div className="relative flex w-full items-center justify-center sm:aspect-[4/3]">
                 <PhoneMockupBasic />
               </div>
             </div>
