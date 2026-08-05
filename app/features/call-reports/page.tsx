@@ -205,16 +205,19 @@ export default function CallReportsPage() {
             role: "Recording + transcript",
             name: "Every call, captured twice",
             quote: "Every single call is captured as both an audio recording and a full text transcript.",
+            image: "/images/call-reports-recording-transcript.webp",
           },
           {
             role: "Playback",
             name: "Listen or download anytime",
             quote: "Play it back right in the dashboard, or pull the audio file down for your own records.",
+            image: "/images/call-reports-playback.webp",
           },
           {
             role: "Transcript search",
             name: "Read exactly what was said",
             quote: "See what your agent and the caller said, word for word — no need to re-listen to the whole call.",
+            image: "/images/call-reports-transcript-search.webp",
           },
         ]}
       />

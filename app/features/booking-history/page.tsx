@@ -211,16 +211,19 @@ export default function BookingHistoryPage() {
             role: "Searchable list",
             name: "Every appointment in one place",
             quote: "Every booking your agents make lands in a single list you can search in seconds.",
+            image: "/images/booking-history-searchable-list.webp",
           },
           {
             role: "Filters",
             name: "Narrow down by date or agent",
             quote: "Filter to a date range or a specific agent to find exactly what you're looking for.",
+            image: "/images/booking-history-filters.webp",
           },
           {
             role: "Export",
             name: "Pull the list out anytime",
             quote: "Export for reporting, reconciliation, or sharing with your team — whenever you need it.",
+            image: "/images/booking-history-export.webp",
           },
         ]}
       />

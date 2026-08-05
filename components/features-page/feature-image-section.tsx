@@ -94,14 +94,14 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
             image when provided, falling back to the plain gradient tile
             otherwise. All three share the same top edge (no vertical
             stagger) — only horizontal offset + scale distinguish the sides. */}
-        <div className="relative mx-auto h-[340px] w-[436px] shrink-0">
+        <div className="relative mx-auto h-[230px] w-[295px] max-w-full shrink-0 sm:h-[300px] sm:w-[385px] md:h-[340px] md:w-[436px]">
           <motion.div
             aria-hidden
             key={`prev-${active}`}
-            className="absolute left-0 top-0 h-[340px] w-[340px] overflow-hidden rounded-[20px]"
+            className="absolute left-0 top-0 size-[230px] overflow-hidden rounded-[20px] sm:size-[300px] md:size-[340px]"
             style={{
               zIndex: 2,
-              transform: "translateX(0) scale(0.85)",
+              transform: "translateX(0%) scale(0.85)",
               background: "#F8FBFF",
               boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
             }}
@@ -114,7 +114,7 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
             )}
           </motion.div>
           <motion.div
-            className="absolute left-0 top-0 h-[340px] w-[340px] overflow-hidden rounded-[20px]"
+            className="absolute left-0 top-0 size-[230px] overflow-hidden rounded-[20px] sm:size-[300px] md:size-[340px]"
             style={{
               zIndex: 3,
               background: "#FFFFFF",
@@ -122,7 +122,7 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
               borderStyle: "solid",
             }}
             animate={{
-              x: 48,
+              x: "14%",
               scale: 1,
               borderColor: ["#E4ECFF", "#2563EB55", "#E4ECFF"],
               boxShadow: [
@@ -156,10 +156,10 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
           <motion.div
             aria-hidden
             key={`next-${active}`}
-            className="absolute left-0 top-0 h-[340px] w-[340px] overflow-hidden rounded-[20px]"
+            className="absolute left-0 top-0 size-[230px] overflow-hidden rounded-[20px] sm:size-[300px] md:size-[340px]"
             style={{
               zIndex: 2,
-              transform: "translateX(96px) scale(0.85)",
+              transform: "translateX(28%) scale(0.85)",
               background: "#F8FBFF",
               boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
             }}

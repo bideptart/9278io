@@ -82,7 +82,6 @@ const USE_CASES = [
 
 export default function LogisticsPage() {
   const related = INDUSTRIES.filter((i) => i.slug !== "logistics").slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <>
@@ -132,11 +131,7 @@ export default function LogisticsPage() {
                 </span>
               </h1>
 
-              <p className="mt-5 text-pretty text-[16px] font-bold leading-snug text-slate-800">
-                Never miss a delivery update or customer call with AI voice agents that answer instantly.
-              </p>
-
-              <p className="mt-4 max-w-lg text-pretty text-[15px] leading-relaxed text-slate-600">{PITCH}</p>
+              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 {[
@@ -502,40 +497,13 @@ export default function LogisticsPage() {
           </ScrollReveal>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: ShieldCheck,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: Globe,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const LinkIcon = link.icon
 
               return (

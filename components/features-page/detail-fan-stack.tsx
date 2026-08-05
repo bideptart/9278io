@@ -55,7 +55,7 @@ export function DetailFanStack({ items }: { items: DetailItem[] }) {
           })}
         </div>
 
-        <div className="relative h-56 w-80 shrink-0">
+        <div className="relative h-56 w-full max-w-80 shrink-0">
           {FAN_TONES.map((tone, i) => {
             const peek = peekItems[i]
             const isRight = i === 0

@@ -96,7 +96,7 @@ export function IndustryStickyScroll() {
 
       {/* ── Right: sticky visual panel, animates in as the active block changes ── */}
       <div className="md:sticky md:top-28 md:h-fit md:order-2">
-        <div className="relative min-h-[300px] overflow-hidden rounded-2xl shadow-xl shadow-slate-900/25">
+        <div className="relative aspect-[3/2] overflow-hidden rounded-2xl shadow-xl shadow-slate-900/25 md:aspect-auto md:min-h-[300px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={ind.slug}

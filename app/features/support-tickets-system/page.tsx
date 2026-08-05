@@ -205,16 +205,19 @@ export default function SupportTicketsSystemPage() {
             role: "Raise from your dashboard",
             name: "No separate portal, no email thread",
             quote: "Open a ticket right where you already work — no switching tools or waiting on a reply.",
+            image: "/images/support-tickets-system-raise-from-dashboard.webp",
           },
           {
             role: "Track status",
             name: "See exactly where things stand",
             quote: "Every open request shows its status in one place, from raised to resolved.",
+            image: "/images/support-tickets-system-track-status.webp",
           },
           {
             role: "Full history",
             name: "Nothing gets lost",
             quote: "Every ticket you've ever raised stays on record, searchable whenever you need it again.",
+            image: "/images/support-tickets-system-full-history.webp",
           },
         ]}
       />
