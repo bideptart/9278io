@@ -1,4 +1,5 @@
-import { Languages, CalendarCheck, FileSearch, ShieldCheck, Check, Lock } from "lucide-react"
+import Image from "next/image"
+import { Languages, CalendarCheck, FileSearch, Check } from "lucide-react"
 
 /**
  * Legal-only capability tiles. Every tile carries its own continuous loop —
@@ -121,51 +122,15 @@ export function LegalCapabilities({ sampleLines, jobs }: { sampleLines: string[]
         </ul>
       </div>
 
-      {/* ── On the record — transcript writing itself, PII redacting ── */}
-      <div className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:col-span-4 md:p-7">
-        <div className="flex items-center justify-between">
-          <span className="grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-            <ShieldCheck className="size-5" aria-hidden />
-          </span>
-          <span className="flex h-4 items-end gap-[2px]" aria-hidden>
-            {[6, 11, 7, 13, 8, 12, 6, 10].map((h, i) => (
-              <span
-                key={i}
-                style={{ height: `${h}px`, animationDelay: `${(i % 5) * 0.11}s` }}
-                className="ind-eq w-[2px] rounded-full bg-primary/70"
-              />
-            ))}
-          </span>
-        </div>
-
-        <h3 className="mt-4 text-balance text-lg font-semibold tracking-tight">On the record, and redacted</h3>
-        <p className="mt-2 text-pretty text-sm leading-relaxed text-muted-foreground">
-          Every call recorded and transcribed to your dashboard, with PII redaction options and DPDP Act 2023
-          handling.
-        </p>
-
-        <div aria-hidden className="mt-5 space-y-2 rounded-xl bg-slate-50/80 p-4 ring-1 ring-slate-100">
-          {[
-            { text: "Caller confirmed the sale deed is in his name.", redact: null },
-            { text: "Aadhaar ending", redact: "•••• 4417" },
-            { text: "Consult booked · consent to record captured.", redact: null },
-          ].map((row, i) => (
-            <p
-              key={row.text}
-              style={{ animationDelay: `${i * 1.2}s` }}
-              className="lgc-line flex items-center gap-2 text-[12.5px] leading-relaxed text-foreground/75"
-            >
-              <span className="size-1 shrink-0 rounded-full bg-primary/40" />
-              {row.text}
-              {row.redact && (
-                <span className="lgc-redact inline-flex items-center gap-1 rounded bg-slate-800 px-1.5 py-0.5 text-[11px] font-medium tabular-nums text-white">
-                  <Lock className="size-2.5" />
-                  {row.redact}
-                </span>
-              )}
-            </p>
-          ))}
-        </div>
+      {/* ── On the record — rendered as an image (see public/industries) ── */}
+      <div className="md:col-span-4">
+        <Image
+          src="/industries/legal-on-the-record.png"
+          alt="On the record, and redacted — every call recorded and transcribed to your dashboard, with PII redaction options and DPDP Act 2023 handling. Sample transcript: caller confirmed the sale deed is in his name; Aadhaar ending redacted; consult booked with consent to record captured."
+          width={1526}
+          height={652}
+          className="h-auto w-full"
+        />
       </div>
 
       <style>{`
@@ -209,28 +174,11 @@ export function LegalCapabilities({ sampleLines, jobs }: { sampleLines: string[]
         }
         .lgc-caps .lgc-tick { animation: lgcTick 8s cubic-bezier(0.22, 1, 0.36, 1) infinite both; }
 
-        /* transcript lines landing in order */
-        @keyframes lgcLine {
-          0%, 6%    { opacity: 0; transform: translateY(5px); }
-          14%, 85%  { opacity: 1; transform: translateY(0); }
-          94%, 100% { opacity: 0; transform: translateY(-4px); }
-        }
-        .lgc-caps .lgc-line { animation: lgcLine 7.5s cubic-bezier(0.22, 1, 0.36, 1) infinite both; }
-
-        /* the PII block sliding shut over the number */
-        @keyframes lgcRedact {
-          0%, 30%  { clip-path: inset(0 100% 0 0); }
-          40%, 100% { clip-path: inset(0 0 0 0); }
-        }
-        .lgc-caps .lgc-redact { animation: lgcRedact 7.5s ease-out infinite both; }
-
         @media (prefers-reduced-motion: reduce) {
           .lgc-caps .lgc-lang,
           .lgc-caps .lgc-slot,
           .lgc-caps .lgc-confirm,
-          .lgc-caps .lgc-tick,
-          .lgc-caps .lgc-line,
-          .lgc-caps .lgc-redact {
+          .lgc-caps .lgc-tick {
             animation: none;
             opacity: 1;
             transform: none;
