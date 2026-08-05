@@ -28,6 +28,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
@@ -418,6 +419,13 @@ export default function RemoteTeamsPage() {
           </div>
         </ScrollStepItem>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/remote-teams.png"
+        alt="AI voice agent supporting a distributed remote team"
+        heading="One agent, wherever your team is."
+        paragraph="No matter the time zone, 9278.io picks up every call instantly — answering HR and IT questions, scheduling meetings, and routing requests to the right person, so distributed teams stay connected around the clock."
+      />
 
       <PricingCta
         heading="Your Remote Team Never Misses A Conversation"
