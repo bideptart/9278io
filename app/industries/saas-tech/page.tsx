@@ -48,7 +48,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "Convert more trials with AI voice agents that answer every call in under 3 seconds. 9278.io qualifies leads, onboards customers, and resolves support 24/7—so you never miss a demo, trial, or support request."
+  "Convert more trials with AI voice agents that answer every call in under 3 seconds. 9278.io qualifies leads and resolves support 24/7—so you never miss a demo or trial."
 
 const DAY_ONE_JOBS = [
   { Icon: UserCheck, text: "Qualifies inbound SaaS leads automatically" },
