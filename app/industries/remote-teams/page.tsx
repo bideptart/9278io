@@ -367,13 +367,14 @@ export default function RemoteTeamsPage() {
         {/* Stats bar */}
         <div className="mx-auto mt-8 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-r from-blue-800 to-blue-700 px-3 py-3 shadow-lg shadow-blue-800/25">
-            <div className="grid grid-cols-2 divide-y divide-white/15 sm:grid-cols-5 sm:divide-x sm:divide-y-0">
+            <div className="grid grid-cols-2 divide-y divide-white/15 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-6">
               {[
                 { Icon: Zap, label: "Average Response Time", value: "< 3 Seconds" },
                 { Icon: Clock, label: "Support Availability", value: "24/7" },
                 { Icon: Globe, label: "Languages Supported", value: "10+" },
                 { Icon: Users, label: "Concurrent Calls", value: "Up to 40" },
                 { Icon: ShieldCheck, label: "Reliable Uptime", value: "99.9%" },
+                { Icon: CalendarCheck, label: "Meeting Scheduling", value: "Automated" },
               ].map(({ Icon: StatIcon, label, value }, i) => (
                 <ScrollStepItem
                   key={label}
