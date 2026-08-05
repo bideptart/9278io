@@ -139,7 +139,7 @@ export default function EducationIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                   <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
                   <span
                     style={{
@@ -155,7 +155,7 @@ export default function EducationIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">
                   {industry.pitch}
                 </p>
               </ScrollReveal>

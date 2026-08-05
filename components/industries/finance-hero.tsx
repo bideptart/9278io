@@ -69,34 +69,22 @@ export function FinanceHero({ pitch }: { pitch: string }) {
               className="ind-spin-slow pointer-events-none absolute -left-6 -top-10 -z-10 size-56 text-blue-600/[0.07] sm:size-64"
             />
 
-            {/* Badge has its own life: a light sweep travels across the pill,
-                the status icon pulses, and the whole pill gently bobs. */}
             <span
               style={{ animationDelay: "0.05s" }}
-              className="relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-blue-200/70 bg-white/90 py-2.5 pl-2.5 pr-7 text-base font-medium text-blue-700 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md motion-safe:[animation:reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both,ind-float_4.4s_ease-in-out_infinite_0.6s]"
+              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] inline-flex items-center gap-2.5 rounded-full border border-blue-200/70 bg-white/90 py-2.5 pl-2.5 pr-7 text-base font-medium text-blue-700 shadow-sm backdrop-blur transition-shadow duration-300 hover:shadow-md"
             >
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/25 to-transparent bg-[length:200%_auto] motion-safe:animate-[ind-shimmer_3.4s_linear_infinite]"
-              />
-              <span className="relative grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <span className="grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Sparkles className="size-5 motion-safe:animate-pulse" aria-hidden />
               </span>
-              <span className="relative">AI Voice Agents for Finance Teams</span>
+              AI Voice Agents for Finance Teams
             </span>
 
-            <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-              <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
-              <br />
-              <span
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                For Finance.
+            <h1 className="mt-6 text-balance font-sans text-4xl font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[2.75rem] md:text-[3.4rem]">
+              <span className="block font-black">AI Voice Agents</span>
+              <span className="mt-1 block">
+                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                  For Finance.
+                </span>
               </span>
             </h1>
 
@@ -118,10 +106,17 @@ export function FinanceHero({ pitch }: { pitch: string }) {
                   style={{ animationDelay: `${0.45 + i * 0.08}s` }}
                   className={`motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[13px] font-semibold shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ${pill.cls}`}
                 >
-                  <pill.Icon
-                    className={`size-4 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 ${pill.icon}`}
-                    aria-hidden
-                  />
+                  <span className="relative grid size-4 place-items-center">
+                    <span
+                      aria-hidden
+                      style={{ animationDelay: `${i * 0.5}s` }}
+                      className="absolute inset-0 rounded-full bg-current opacity-20 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite]"
+                    />
+                    <pill.Icon
+                      className={`relative size-4 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 ${pill.icon}`}
+                      aria-hidden
+                    />
+                  </span>
                   {pill.label}
                 </span>
               ))}

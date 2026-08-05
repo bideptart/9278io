@@ -156,7 +156,7 @@ function ECommercePage() {
                 </span>
               </h1>
 
-              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
                 Handle every customer call instantly—even during flash sales and viral traffic spikes. 9278.io
                 automates order updates, returns, sizing, and upsells, escalating only complex issues while
                 answering in the customer's preferred language.
@@ -1614,7 +1614,7 @@ function HomeServicesPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-5 flex flex-nowrap gap-4">
+              <div className="mt-5 flex flex-wrap gap-4 sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
@@ -2094,7 +2094,7 @@ function RestaurantsPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-8 flex flex-nowrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4 sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },

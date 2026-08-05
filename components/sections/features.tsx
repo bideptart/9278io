@@ -384,15 +384,15 @@ function AnalyticsVisual() {
    FEATURE DATA
 ══════════════════════════════════════════════════ */
 const features = [
-  { icon: AudioLines,     label: "Sub-300ms Latency",     tag: "Speed",       color: "text-blue-600",    activeBg: "bg-blue-50 border-blue-200",       visual: <LatencyVisual />,      desc: "WebRTC audio on Indian media network. Conversations feel instant with near-zero perceptible lag." },
-  { icon: Languages,      label: "10+ Indian Languages",  tag: "Multilingual",color: "text-violet-600",  activeBg: "bg-violet-50 border-violet-200",   visual: <LanguageVisual />,     desc: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect and switches mid-call." },
-  { icon: MessageCircle,  label: "Natural Turn-Taking",   tag: "AI",          color: "text-cyan-600",    activeBg: "bg-cyan-50 border-cyan-200",       visual: <TurnTakingVisual />,   desc: "Smart endpointing, barge-in detection and interruption handling. The agent listens and responds like a real person." },
-  { icon: Network,        label: "Massive Concurrency",   tag: "Scale",       color: "text-orange-600",  activeBg: "bg-orange-50 border-orange-200",   visual: <ConcurrencyVisual />,  desc: "Scale from one call to thousands simultaneously. Burst capacity built in — no pre-provisioning needed." },
-  { icon: CalendarClock,  label: "Call Scheduling",       tag: "Automation",  color: "text-purple-600",  activeBg: "bg-purple-50 border-purple-200",   visual: <ScheduleVisual />,     desc: "Set calling windows by time of day or day of week. TRAI calling-window rules enforced automatically." },
-  { icon: PhoneForwarded, label: "Call Forwarding",       tag: "Routing",     color: "text-teal-600",    activeBg: "bg-teal-50 border-teal-200",       visual: <ForwardingVisual />,   desc: "Route any call to a human agent, department or external number in real time. Define rules by intent, keyword or time." },
-  { icon: Mic,            label: "Call Recording",        tag: "Security",    color: "text-red-600",     activeBg: "bg-red-50 border-red-200",         visual: <RecordingVisual />,    desc: "Every call recorded, encrypted and stored securely. Full playback, download and audit trail on every plan." },
-  { icon: Timer,          label: "Per Second Billing",    tag: "Billing",     color: "text-indigo-600",  activeBg: "bg-indigo-50 border-indigo-200",   visual: <BillingVisual />,      desc: "Pay only for the seconds your agent actually speaks. No minute-rounding, no idle charges, no surprises." },
-  { icon: Activity,       label: "Real Time Transcripts & Analytics", tag: "Analytics", color: "text-emerald-600", activeBg: "bg-emerald-50 border-emerald-200", visual: <AnalyticsVisual />, desc: "Speaker labels, sentiment, intents and conversion events — searchable and exportable from day one." },
+  { icon: AudioLines,     label: "Sub-300ms Latency",     tag: "Speed",       color: "text-blue-600",    barColor: "bg-blue-600",    activeBg: "bg-blue-50 border-blue-200",       visual: <LatencyVisual />,      desc: "WebRTC audio on Indian media network. Conversations feel instant with near-zero perceptible lag." },
+  { icon: Languages,      label: "10+ Indian Languages",  tag: "Multilingual",color: "text-violet-600",  barColor: "bg-violet-600",  activeBg: "bg-violet-50 border-violet-200",   visual: <LanguageVisual />,     desc: "Native voices in Hindi, Tamil, Telugu, Kannada, Marathi, Bengali and more. Auto-detects dialect and switches mid-call." },
+  { icon: MessageCircle,  label: "Natural Turn-Taking",   tag: "AI",          color: "text-cyan-600",    barColor: "bg-cyan-600",    activeBg: "bg-cyan-50 border-cyan-200",       visual: <TurnTakingVisual />,   desc: "Smart endpointing, barge-in detection and interruption handling. The agent listens and responds like a real person." },
+  { icon: Network,        label: "Massive Concurrency",   tag: "Scale",       color: "text-orange-600",  barColor: "bg-orange-600",  activeBg: "bg-orange-50 border-orange-200",   visual: <ConcurrencyVisual />,  desc: "Scale from one call to thousands simultaneously. Burst capacity built in — no pre-provisioning needed." },
+  { icon: CalendarClock,  label: "Call Scheduling",       tag: "Automation",  color: "text-purple-600",  barColor: "bg-purple-600",  activeBg: "bg-purple-50 border-purple-200",   visual: <ScheduleVisual />,     desc: "Set calling windows by time of day or day of week. TRAI calling-window rules enforced automatically." },
+  { icon: PhoneForwarded, label: "Call Forwarding",       tag: "Routing",     color: "text-teal-600",    barColor: "bg-teal-600",    activeBg: "bg-teal-50 border-teal-200",       visual: <ForwardingVisual />,   desc: "Route any call to a human agent, department or external number in real time. Define rules by intent, keyword or time." },
+  { icon: Mic,            label: "Call Recording",        tag: "Security",    color: "text-red-600",     barColor: "bg-red-600",     activeBg: "bg-red-50 border-red-200",         visual: <RecordingVisual />,    desc: "Every call recorded, encrypted and stored securely. Full playback, download and audit trail on every plan." },
+  { icon: Timer,          label: "Per Second Billing",    tag: "Billing",     color: "text-indigo-600",  barColor: "bg-indigo-600",  activeBg: "bg-indigo-50 border-indigo-200",   visual: <BillingVisual />,      desc: "Pay only for the seconds your agent actually speaks. No minute-rounding, no idle charges, no surprises." },
+  { icon: Activity,       label: "Real Time Transcripts & Analytics", tag: "Analytics", color: "text-emerald-600", barColor: "bg-emerald-600", activeBg: "bg-emerald-50 border-emerald-200", visual: <AnalyticsVisual />, desc: "Speaker labels, sentiment, intents and conversion events — searchable and exportable from day one." },
 ]
 
 const AUTO_INTERVAL = 3500
@@ -527,7 +527,7 @@ export function Features() {
                     <motion.div className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary" style={{ width: `${progress * 100}%` }} />
                   )}
                   {isActive && (
-                    <div className={`absolute bottom-2.5 left-0 top-2.5 w-[3px] rounded-full ${feat.color.replace("text-", "bg-")}`} />
+                    <div className={`absolute bottom-2.5 left-0 top-2.5 w-[3px] rounded-full ${feat.barColor}`} />
                   )}
                   <span className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-all duration-200 ${
                     isActive ? `${feat.activeBg} ${feat.color}` : "border-border bg-white text-muted-foreground/60 group-hover:text-muted-foreground"

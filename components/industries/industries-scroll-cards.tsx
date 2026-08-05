@@ -110,7 +110,7 @@ export function IndustriesScrollCards({
                   </span>
                   <Icon className="size-4 text-muted-foreground" aria-hidden />
                 </div>
-                <div className="relative mt-2.5 flex h-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
+                <div className="relative mt-2.5 flex h-32 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
                   {item.image ? (
                     <Image src={item.image} alt={item.title} fill className="object-cover" sizes="280px" />
                   ) : (

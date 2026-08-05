@@ -43,15 +43,30 @@ async function resolveBlogDir() {
 }
 
 const FALLBACK_SLUGS = [
+  "24-7-ai-receptionist-guide",
+  "ai-appointment-booking-setup",
   "ai-calling-agent-cost-india",
+  "ai-receptionist-gyms-guide",
+  "ai-receptionist-hospitals-clinics",
+  "ai-receptionist-hotels-guide",
   "ai-receptionist-india",
+  "ai-receptionist-real-estate",
+  "ai-receptionist-restaurants-qsr",
+  "ai-receptionist-software-guide",
+  "ai-receptionist-vs-digital-receptionist",
   "ai-voice-agent-bfsi",
   "ai-voice-agent-real-estate",
   "ai-voice-agent-vs-human",
+  "ai-voice-agent-vs-voice-bot",
+  "ai-voice-receptionist-guide",
   "best-ai-voice-agents-india",
+  "business-call-automation-setup",
+  "business-phone-answering-service",
   "hindi-ai-voice-agent",
   "how-to-build-an-ai-voice-agent",
+  "multilingual-ai-receptionist-guide",
   "trai-compliant-ai-cold-calling",
+  "voice-ai-business-guide",
   "what-is-an-ai-voice-agent",
 ] as const
 

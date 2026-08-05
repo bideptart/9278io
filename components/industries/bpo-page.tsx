@@ -43,23 +43,12 @@ export function BpoPage() {
 
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <ScrollReveal>
-            {/* All motion is contained to this badge: a light sweep behind
-                the text, a rocket icon that gently bobs, and a pulsing ring
-                radiating from behind it. */}
-            <span className="relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-blue-200/70 bg-white py-2.5 pl-2.5 pr-7 text-base font-semibold uppercase tracking-wider text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md">
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent bg-[length:200%_auto] motion-safe:animate-[ind-shimmer_3.2s_linear_infinite]"
-              />
-
-              <span className="relative grid size-9 shrink-0 place-items-center" aria-hidden>
-                <span className="absolute inset-0 rounded-full bg-blue-500/30 motion-safe:animate-[ind-ping_2.4s_ease-out_infinite]" />
-                <span className="relative grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600 motion-safe:animate-[ind-float_3.6s_ease-in-out_infinite]">
-                  <Rocket className="size-5" aria-hidden />
-                </span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-xs font-semibold uppercase tracking-wider text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md">
+              <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600" aria-hidden>
+                <Rocket className="size-3.5" aria-hidden />
               </span>
 
-              <span className="relative">Rollout playbook</span>
+              <span>Rollout playbook</span>
             </span>
 
             <h2 className="mt-5 text-balance font-serif text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
