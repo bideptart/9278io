@@ -77,6 +77,7 @@ const USE_CASES = [
   { Icon: Truck, label: "Freight & Transportation" },
   { Icon: Boxes, label: "Warehouse Operations" },
   { Icon: Route, label: "Fleet Management" },
+  { Icon: Package, label: "Returns & Reverse Logistics" },
 ]
 
 export default function LogisticsPage() {
@@ -419,13 +420,14 @@ export default function LogisticsPage() {
         {/* Stats bar */}
         <div className="mx-auto mt-8 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
-            <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-5 sm:divide-x sm:divide-y-0">
+            <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-6">
               {[
                 { Icon: Zap, label: "Average response time", value: "< 3 Seconds" },
                 { Icon: Clock, label: "Automated support availability", value: "24/7" },
                 { Icon: Globe, label: "Indian languages supported", value: "10+" },
                 { Icon: ShieldCheck, label: "Reliable call handling", value: "99.9%" },
                 { Icon: Users, label: "Concurrent delivery inquiries", value: "Up to 40" },
+                { Icon: Package, label: "Shipment tracking", value: "Real-time" },
               ].map(({ Icon: StatIcon, label, value }, i) => (
                 <ScrollStepItem
                   key={label}
@@ -446,10 +448,14 @@ export default function LogisticsPage() {
 
       {/* ─── Other use cases ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
+        <ScrollStepItem className="mx-auto mb-5 max-w-7xl text-center">
+          <h2 className="text-balance font-sans text-2xl font-bold tracking-tight text-slate-900">Other use cases</h2>
+          <span aria-hidden className="mx-auto mt-3 block h-1 w-16 rounded-full bg-blue-600" />
+        </ScrollStepItem>
+
         <ScrollStepItem className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-5 rounded-[1.75rem] border border-blue-400 bg-white px-6 py-5 shadow-sm sm:flex-row sm:items-center">
-            <p className="shrink-0 font-sans text-lg font-bold text-slate-900">Other use cases</p>
-            <div className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-5">
+          <div className="rounded-[1.75rem] border border-blue-400 bg-white px-6 py-5 shadow-sm">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
               {USE_CASES.map((u, i) => (
                 <ScrollStepItem
                   key={u.label}
