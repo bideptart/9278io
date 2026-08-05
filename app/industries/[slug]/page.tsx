@@ -157,10 +157,9 @@ function ECommercePage() {
               </h1>
 
               <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
-                D2C brands hit support volume spikes the moment they hit a marketing milestone. 9278.io absorbs the
-                surge — order status, returns, sizing, and post-purchase upsells — and only escalates the genuinely
-                angry customers to a human. Every call is picked up in under 3 seconds, in the customer's own
-                language, so a flash sale or a viral post never turns into a wave of missed calls and lost orders.
+                Handle every customer call instantly—even during flash sales and viral traffic spikes. 9278.io
+                automates order updates, returns, sizing, and upsells, escalating only complex issues while
+                answering in the customer's preferred language.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">

@@ -418,18 +418,14 @@ export default function AutomotiveIndustryPage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="flex flex-wrap gap-x-10 gap-y-5">
-                {[
-                  { value: "5 min", label: "To first live agent" },
-                  { value: "10+", label: "Indian languages" },
-                  { value: "40+", label: "Concurrent calls" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <p className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">{s.value}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
-                  </div>
-                ))}
-              </div>
+              <Image
+                src="/industries/automotive-stats.png"
+                alt="5 minutes to first live agent, 10+ Indian languages supported, 40+ concurrent calls handled"
+                width={900}
+                height={140}
+                className="h-auto w-full max-w-[450px]"
+                unoptimized
+              />
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button

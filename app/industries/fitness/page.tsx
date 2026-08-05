@@ -26,6 +26,18 @@ const HERO_STATS = [
   { icon: IndianRupee, stat: "₹10", label: "Per-minute, from", color: "text-emerald-600", tile: "bg-emerald-50" },
 ]
 
+/* Extra playbooks shown only on this page, appended to the shared five in
+   lib/industries.ts. Kept local because that array also feeds the industries
+   index, the nav and the home-page rows — adding entries there would change
+   those surfaces too. */
+const EXTRA_PLAYBOOKS = [
+  "Waitlist promotion the moment a class spot frees up",
+  "Personal-training and diet consult scheduling",
+  "Renewal reminders before a membership lapses",
+  "Class timings, trainer, and fee enquiries",
+  "Guest-pass and referral follow-ups",
+]
+
 /**
  * This industry gets its own bespoke page (rather than the shared
  * [slug] template) so its hero can be redesigned independently.
@@ -182,7 +194,17 @@ export default function FitnessIndustryPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} className="mt-12">
-            <PlaybookStage jobs={industry.jobs} sampleLines={industry.sampleLines} conversation={industry.conversation} />
+            <PlaybookStage
+              jobs={[...industry.jobs, ...EXTRA_PLAYBOOKS]}
+              sampleLines={industry.sampleLines}
+              conversation={industry.conversation}
+              image={{
+                src: "/industries/fitness.jpg",
+                alt: "AI voice agents for fitness & wellness — schedule appointments, provide workout info, answer membership queries, and support customer goals",
+                width: 504,
+                height: 335,
+              }}
+            />
           </ScrollReveal>
         </div>
       </section>

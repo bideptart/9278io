@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import {
-  ArrowRight, Check, Quote, Sparkles,
+  ArrowRight, Check, Sparkles,
   GraduationCap, FileCheck, Wallet, CalendarClock, PhoneCall,
   Inbox, HeartHandshake, Rocket, ShieldCheck, IndianRupee,
 } from "lucide-react"
@@ -463,11 +464,15 @@ export default function EducationIndustryPage() {
                       aria-hidden
                       className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-gradient-to-b from-primary to-[oklch(0.5_0.22_255)] transition-transform duration-300 group-hover:scale-y-100"
                     />
-                    <Quote className="size-4 text-primary/40" aria-hidden />
-                    <blockquote className="mt-2.5 text-pretty leading-relaxed text-foreground/90">{line}</blockquote>
-                    <figcaption className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      {JOURNEY_STAGES[i]?.label ?? "Outbound"}
-                    </figcaption>
+                    {/* Content rendered as an image; the figure above keeps
+                        the border, shadow, lift and accent-bar hover states. */}
+                    <Image
+                      src={`/industries/education-quote-${i + 1}.png`}
+                      alt={`${JOURNEY_STAGES[i]?.label ?? "Outbound"} — “${line}”`}
+                      width={1008}
+                      height={214}
+                      className="h-auto w-full"
+                    />
                   </figure>
                 </ScrollReveal>
               ))}

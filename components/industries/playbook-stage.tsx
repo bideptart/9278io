@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { MessageSquareQuote } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -10,6 +11,10 @@ type PlaybookStageProps = {
   jobs: string[]
   sampleLines: string[]
   conversation: ConversationLine[]
+  /* Optional illustration that fills the space under the transcript. Left
+     unset, the card renders exactly as before — so pages that reuse this
+     component are unaffected. */
+  image?: { src: string; alt: string; width: number; height: number }
 }
 
 const CYCLE_MS = 2800
@@ -21,7 +26,7 @@ const CYCLE_MS = 2800
  * from the same index — so the two cards read as one connected demo.
  * Clicking a row jumps straight to it and restarts the timer from there.
  */
-export function PlaybookStage({ jobs, sampleLines, conversation }: PlaybookStageProps) {
+export function PlaybookStage({ jobs, sampleLines, conversation, image }: PlaybookStageProps) {
   const [active, setActive] = useState(0)
   const [cycleKey, setCycleKey] = useState(0)
 
@@ -127,7 +132,7 @@ export function PlaybookStage({ jobs, sampleLines, conversation }: PlaybookStage
             </div>
           </div>
 
-          <div className="flex-1 space-y-2 p-5">
+          <div className="flex flex-1 flex-col gap-2 p-5">
             {conversation.map((line, i) => (
               <div key={i} className={cn("flex text-sm", line.speaker === "Agent" ? "justify-start" : "justify-end")}>
                 {line.speaker === "Agent" ? (
@@ -143,6 +148,16 @@ export function PlaybookStage({ jobs, sampleLines, conversation }: PlaybookStage
                 )}
               </div>
             ))}
+
+            {image && (
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                className="mt-auto h-auto w-full rounded-xl border border-slate-200"
+              />
+            )}
           </div>
 
           {/* rotating caption, synced with the active playbook on the left */}
