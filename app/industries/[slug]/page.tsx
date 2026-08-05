@@ -1554,7 +1554,7 @@ function HomeServicesPage() {
                 </span>
               </h1>
 
-              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
+              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
                 {industry.pitch}
               </p>
 
