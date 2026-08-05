@@ -1596,7 +1596,7 @@ function HomeServicesPage() {
                 AI voice agents for home services
               </span>
 
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-6 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>AI Voice Agents Built for</span>
                 <br />
                 <span
@@ -1611,29 +1611,29 @@ function HomeServicesPage() {
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
+              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">
                 {industry.pitch}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-8">
+              <div className="mt-5 flex flex-nowrap gap-4">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
                   { Icon: TrendingUp, title: "More Jobs Won", desc: "Convert more calls into confirmed jobs" },
                 ].map((f) => (
-                  <div key={f.title} className="flex items-start gap-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
-                      <f.Icon className="size-5" aria-hidden />
+                  <div key={f.title} className="flex min-w-0 items-start gap-2.5">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
+                      <f.Icon className="size-4" aria-hidden />
                     </span>
-                    <div>
-                      <p className="text-[13.5px] font-bold leading-snug text-slate-900">{f.title}</p>
-                      <p className="max-w-[160px] text-[12px] leading-snug text-slate-500">{f.desc}</p>
+                    <div className="min-w-0">
+                      <p className="whitespace-nowrap text-[12.5px] font-bold leading-snug text-slate-900">{f.title}</p>
+                      <p className="max-w-[120px] text-[11px] leading-snug text-slate-500">{f.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+              <div className="mt-6 flex flex-wrap items-center gap-3.5">
                 <Button
                   asChild
                   size="lg"
@@ -2076,7 +2076,7 @@ function RestaurantsPage() {
                 AI voice agents for restaurants
               </span>
 
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.85, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>
                 <br />
                 <span
@@ -2095,19 +2095,19 @@ function RestaurantsPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-8">
+              <div className="mt-8 flex flex-nowrap gap-4">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
                   { Icon: TrendingUp, title: "More Jobs Won", desc: "Convert more calls into confirmed jobs" },
                 ].map((f) => (
-                  <div key={f.title} className="flex items-start gap-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
-                      <f.Icon className="size-5" aria-hidden />
+                  <div key={f.title} className="flex min-w-0 items-start gap-2.5">
+                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
+                      <f.Icon className="size-4" aria-hidden />
                     </span>
-                    <div>
-                      <p className="text-[13.5px] font-bold leading-snug text-slate-900">{f.title}</p>
-                      <p className="max-w-[160px] text-[12px] leading-snug text-slate-500">{f.desc}</p>
+                    <div className="min-w-0">
+                      <p className="whitespace-nowrap text-[12.5px] font-bold leading-snug text-slate-900">{f.title}</p>
+                      <p className="max-w-[120px] text-[11px] leading-snug text-slate-500">{f.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -2137,7 +2137,7 @@ function RestaurantsPage() {
 
             {/* Right — reservation form + AI chat assistant */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto grid w-full max-w-[620px] gap-5 sm:grid-cols-2">
+              <div className="relative mx-auto grid w-full max-w-[700px] gap-5 sm:grid-cols-2">
                 <RestaurantReservationCard />
                 <RestaurantChatCard />
               </div>

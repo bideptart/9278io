@@ -34,6 +34,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { SaasAgentConsole } from "@/components/industries/saas-agent-console"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
@@ -47,7 +48,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "Convert trials, qualify leads, onboard customers, and resolve support requests 24/7 with AI voice agents that sound natural and respond instantly. Built for startups, SaaS platforms, software providers, and technology companies. Every trial user, demo request, and support ticket is picked up in under 3 seconds — no missed signals during a product launch or a traffic spike."
+  "Convert more trials with AI voice agents that answer every call in under 3 seconds. 9278.io qualifies leads, onboards customers, and resolves support 24/7—so you never miss a demo, trial, or support request."
 
 const DAY_ONE_JOBS = [
   { Icon: UserCheck, text: "Qualifies inbound SaaS leads automatically" },
@@ -146,7 +147,6 @@ export default function SaasTechPage() {
                   { Icon: Phone, title: "24/7", desc: "Customer Support" },
                   { Icon: Users, title: "Trial Conversion", desc: "Calls" },
                   { Icon: Globe, title: "Multi-language", desc: "Voice AI" },
-                  { Icon: Puzzle, title: "CRM", desc: "Integration" },
                 ].map((f) => (
                   <div key={f.title} className="flex items-start gap-2.5">
                     <span className="grid size-10 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
@@ -408,6 +408,13 @@ export default function SaasTechPage() {
           </div>
         </div>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/saas-tech.png"
+        alt="AI voice agent handling SaaS customer conversations"
+        heading="Support that scales with your product."
+        paragraph="From trial signups to renewal calls, 9278.io picks up every conversation instantly — answering product questions, qualifying leads, and routing the right calls to your team, so support never becomes the bottleneck to growth."
+      />
 
       <PricingCta
         heading="Let AI handle conversations while your team builds products."

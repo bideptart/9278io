@@ -26,6 +26,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { LogisticsLivePreview } from "@/components/industries/logistics-live-preview"
@@ -466,6 +467,13 @@ export default function LogisticsPage() {
           </div>
         </ScrollStepItem>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/logistics.png"
+        alt="AI voice agent coordinating logistics and delivery operations"
+        heading="Every shipment, tracked and communicated."
+        paragraph="From dispatch to delivery, 9278.io keeps customers and drivers in the loop — confirming pickups, answering tracking questions, and handling delay notifications instantly, so your ops team can focus on keeping the fleet moving."
+      />
 
       <PricingCta
         heading="Keep Every Delivery On Track"

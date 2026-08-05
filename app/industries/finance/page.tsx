@@ -131,14 +131,14 @@ export default function FinancePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.12}>
-            <div className="relative mx-auto w-full max-w-[400px]">
-              <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.35)]">
+            <div className="relative mx-auto w-full max-w-[560px]">
+              <div className="relative aspect-[1489/1056] w-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.35)]">
                 <Image
-                  src="/images/finance-rollout.png"
-                  alt="How finance teams roll out 9278.io — reporting, security, and analytics workflow"
+                  src="/images/finance-rollout-full-v2.png"
+                  alt="How finance teams roll out 9278.io — align, configure, pilot, and scale, with a finance team member wearing a headset"
                   fill
-                  sizes="(min-width: 1024px) 400px, 100vw"
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 560px, 100vw"
+                  className="object-contain"
                 />
               </div>
 
