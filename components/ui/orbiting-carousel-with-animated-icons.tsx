@@ -111,20 +111,20 @@ export default function OrbitCarousel() {
     switch (screenSize) {
       case "xs":
         return {
-          containerRadius: 100,
-          profileSize: 45,
-          cardWidth: "w-40",
-          avatarSize: "w-12 h-12",
-          avatarMargin: "-mt-8",
+          containerRadius: 140,
+          profileSize: 50,
+          cardWidth: "w-44",
+          avatarSize: "w-14 h-14",
+          avatarMargin: "-mt-9",
           fontSize: { name: "text-sm", role: "text-xs", meta: "text-xs" },
         }
       case "sm":
         return {
-          containerRadius: 120,
-          profileSize: 55,
-          cardWidth: "w-44",
-          avatarSize: "w-14 h-14",
-          avatarMargin: "-mt-9",
+          containerRadius: 165,
+          profileSize: 60,
+          cardWidth: "w-48",
+          avatarSize: "w-16 h-16",
+          avatarMargin: "-mt-10",
           fontSize: { name: "text-base", role: "text-xs", meta: "text-xs" },
         }
       case "md":
@@ -191,7 +191,7 @@ export default function OrbitCarousel() {
 
   return (
     <div
-      className="relative flex min-h-[350px] flex-col items-center p-2 sm:min-h-[400px] sm:p-4"
+      className="relative flex min-h-[420px] flex-col items-center p-2 sm:min-h-[470px] sm:p-4"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
