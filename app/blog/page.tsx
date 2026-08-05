@@ -26,6 +26,7 @@ export const dynamic = "force-static"
 const categoryColors: Record<string, string> = {
   "Use Cases": "border-primary/20 bg-primary/[0.08] text-primary",
   Guides: "border-primary/20 bg-primary/[0.08] text-primary",
+  "Voice AI": "border-primary/20 bg-primary/[0.08] text-primary",
   Compliance: "border-amber-500/25 bg-amber-500/10 text-amber-600",
   Pricing: "border-amber-500/25 bg-amber-500/10 text-amber-600",
   Industry: "border-emerald-500/25 bg-emerald-500/10 text-emerald-600",

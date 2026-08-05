@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Is Text-to-Speech? How AI Voices Are Built and Judged</title>
+<meta name="description" content="Most guides treat text-to-speech as a way to make an audio file — a voiceover, an audiobook, a narration track. A phone call is a harder problem. The voice has…">
+<meta name="keywords" content="text to speech, text to speech india, ai voice agent, voice ai for indian businesses">
+<link rel="canonical" href="https://www.9278.io/blog/text-to-speech">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What Is Text-to-Speech? How AI Voices Are Built and Judged">
+<meta property="og:description" content="Most guides treat text-to-speech as a way to make an audio file — a voiceover, an audiobook, a narration track. A phone call is a harder problem. The voice has…">
+<meta property="og:url" content="https://www.9278.io/blog/text-to-speech">
+<meta property="og:site_name" content="9278.io">
+<meta property="og:locale" content="en_IN">
+<meta property="article:published_time" content="2026-07-31">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Is Text-to-Speech? How AI Voices Are Built and Judged">
+<meta name="twitter:description" content="Most guides treat text-to-speech as a way to make an audio file — a voiceover, an audiobook, a narration track. A phone call is a harder problem. The voice has…">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"What Is Text-to-Speech? How AI Voices Are Built and Judged","description":"Most guides treat text-to-speech as a way to make an audio file — a voiceover, an audiobook, a narration track. A phone call is a harder problem. The voice has…","image":"https://www.9278.io/opengraph-image","author":{"@type":"Organization","name":"9278.io","url":"https://www.9278.io"},"publisher":{"@type":"Organization","name":"9278.io","logo":{"@type":"ImageObject","url":"https://www.9278.io/darktheme.png"}},"datePublished":"2026-07-31","dateModified":"2026-07-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.9278.io/blog/text-to-speech"},"keywords":"text to speech, text to speech india, ai voice agent, voice ai for indian businesses"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is text-to-speech used for on business calls?","acceptedAnswer":{"@type":"Answer","text":"It speaks the words a voice agent decides to say, so replies are generated live instead of played from a recording. That lets one agent handle names, amounts and order details it has never seen before."}},{"@type":"Question","name":"How does text-to-speech handle Indian names and places?","acceptedAnswer":{"@type":"Answer","text":"It guesses pronunciation from spelling unless the name is in its dictionary, which is why regional names often come out wrong. A custom pronunciation list for your localities and product names fixes most of it."}},{"@type":"Question","name":"When should a business use recorded prompts instead of text-to-speech?","acceptedAnswer":{"@type":"Answer","text":"Use recordings for fixed lines that never change, such as a greeting or a legal disclaimer. Use live synthesis the moment the sentence depends on caller data."}},{"@type":"Question","name":"Where does the delay in a text-to-speech reply come from?","acceptedAnswer":{"@type":"Answer","text":"It comes from network travel, model processing and audio buffering before the first sound plays. Servers inside India cut the travel portion sharply."}},{"@type":"Question","name":"Is AI voice calling TRAI-compliant in India?","acceptedAnswer":{"@type":"Answer","text":"It is when the calling side follows TRAI rules on consent, calling windows and registered sender identity. Platforms built for India, including 9278.io, handle TRAI-compliant calling by default."}},{"@type":"Question","name":"How much does text-to-speech cost for handling calls?","acceptedAnswer":{"@type":"Answer","text":"Standalone TTS is usually billed per character or per audio minute, while call platforms fold it into the call rate. Entry plans for AI voice handling start at ₹2,999 a month."}},{"@type":"Question","name":"Which Indian languages can AI voices speak?","acceptedAnswer":{"@type":"Answer","text":"India-first platforms cover 10+ languages including Hindi, Tamil, Telugu, Bengali, Marathi and Punjabi. What matters more is whether the voice keeps its accent when English words appear mid-sentence."}},{"@type":"Question","name":"Why do rupee amounts get read out incorrectly?","acceptedAnswer":{"@type":"Answer","text":"Most systems expand numbers using the Western thousand-million grouping, so 250000 becomes two hundred fifty thousand. Indian callers expect two lakh fifty thousand, which needs explicit handling."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.9278.io"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.9278.io/blog"},{"@type":"ListItem","position":3,"name":"What Is Text-to-Speech? How AI Voices Are Built and Judged","item":"https://www.9278.io/blog/text-to-speech"}]}</script>
+<style>
+:root{--navy:#0a0c18;--ink:#1d2939;--muted:#667085;--line:#e4e7ec;--accent:#2563eb;--accentdk:#1e40af;--bg:#ffffff;--soft:#f5f8ff;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.7;background:var(--bg);font-size:18px;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+header.site{border-bottom:1px solid var(--line);background:var(--navy);}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+header.site .brand{color:#fff;font-weight:700;font-size:20px;letter-spacing:-.02em;}
+header.site nav a{color:#c7d2fe;font-size:15px;margin-left:22px;}
+.breadcrumb{font-size:13px;color:var(--muted);margin:24px 0 8px;}
+.breadcrumb a{color:var(--muted);}
+h1{font-size:36px;line-height:1.2;letter-spacing:-.02em;margin:.2em 0 .35em;color:var(--navy);}
+h2{font-size:25px;line-height:1.3;margin:1.6em 0 .5em;color:var(--navy);letter-spacing:-.01em;}
+h3{font-size:20px;margin:1.4em 0 .4em;color:var(--navy);}
+.meta{color:var(--muted);font-size:14px;margin-bottom:8px;}
+.lead{font-size:20px;color:#344054;margin:0 0 1.2em;}
+.tag{display:inline-block;background:var(--soft);color:var(--accentdk);font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em;}
+article p{margin:0 0 1.1em;}
+article ul,article ol{margin:0 0 1.2em;padding-left:22px;}
+article li{margin:.35em 0;}
+.callout{background:var(--soft);border:1px solid #dbe4ff;border-left:4px solid var(--accent);border-radius:10px;padding:16px 20px;margin:1.5em 0;font-size:17px;}
+.keytakeaway{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 20px;margin:1.5em 0;}
+.keytakeaway strong{color:#15803d;}
+table{width:100%;border-collapse:collapse;margin:1.4em 0;font-size:16px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:14px;}
+tr:nth-child(even) td{background:#fafbff;}
+.faq{margin-top:1em;}
+.faq details{border:1px solid var(--line);border-radius:10px;padding:4px 16px;margin:10px 0;background:#fff;}
+.faq summary{font-weight:600;cursor:pointer;padding:12px 0 4px;color:var(--navy);font-size:17px;}
+.faq details p{margin:0 0 1em;color:#344054;}
+.cta{background:var(--navy);color:#fff;border-radius:16px;padding:30px;margin:2.4em 0;text-align:center;}
+.cta h3{color:#fff;margin:0 0 .4em;}
+.cta p{color:#c7d2fe;margin:0 0 1.1em;}
+.btn{display:inline-block;background:var(--accent);color:#fff!important;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none!important;}
+.related{border-top:1px solid var(--line);margin-top:3em;padding-top:1.4em;}
+.related h3{font-size:18px;}
+.related a{display:block;padding:7px 0;font-weight:500;}
+footer.site{border-top:1px solid var(--line);margin-top:3em;padding:26px 0;color:var(--muted);font-size:14px;}
+.author{display:flex;align-items:center;gap:12px;margin:1.6em 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.author .av{width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.author .t{font-size:14px;color:var(--muted);}
+.author .t b{color:var(--ink);display:block;font-size:15px;}
+.post-hero{margin:14px 0 26px;}
+.post-hero img{width:100%;height:auto;display:block;border-radius:16px;}
+.post-img{margin:26px 0;}
+.post-img img{width:100%;height:auto;display:block;}
+.post-img figcaption,.post-hero figcaption{font-size:13.5px;color:var(--muted);text-align:center;margin-top:9px;font-style:italic;}
+
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/">9278.io</a><nav><a href="/industries">Industries</a><a href="/pricing">Pricing</a><a href="/blog">Blog</a></nav></div></header>
+<main class="wrap">
+<div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; Voice AI</div>
+<span class="tag">Voice AI</span>
+<h1>What Is Text-to-Speech? How AI Voices Are Built and Judged</h1>
+<div class="meta">By 9278.io Team &middot; 31 July 2026 &middot; 8 min read</div>
+<p class="lead">Most guides treat text-to-speech as a way to make an audio file — a voiceover, an audiobook, a narration track. A phone call is a harder problem. The voice has to say a stranger's name correctly, read a rupee figure the Indian way, and start speaking before the caller thinks the line has dropped.</p>
+<div class="author"><div class="av">9</div><div class="t"><b>9278.io Team</b>Voice AI for Indian businesses &middot; Updated 31 July 2026</div></div>
+<figure class="post-hero"><img src="/blog-content/text-to-speech/what-is-text-to-speech-how-ai-voices-are-built-and-judged.png" alt="What Is Text-to-Speech? How AI Voices Are Built and Judged" /></figure>
+<article>
+
+<div class="keytakeaway"><strong>Key takeaways:</strong>
+<ul>
+<li>Text-to-speech does three jobs before any sound exists: it normalises text, plans how it should sound, then generates audio.</li>
+<li>Pronunciation of Indian names and localities is a dictionary problem, not a model-quality problem.</li>
+<li>Rupee amounts break by default because most systems group numbers the Western way.</li>
+<li>On a live call, the first audio needs to arrive in roughly 300 milliseconds to feel natural.</li>
+</ul>
+</div>
+
+<p>Text-to-speech is the technology that turns written words into a spoken voice, and this guide covers what happens between the sentence and the sound. It matters because a caller decides in the first few seconds whether they are talking to a real business or a machine reading a script, and a mispronounced name or a badly read amount ends that call early. You will learn how a voice is built, why Indian names and lakh-crore figures break most systems, how recorded prompts differ from live synthesis, and what latency to insist on. Most articles stop at making an audio file; this one deals with a voice that has to perform live, on an Indian phone line, without a second take.</p>
+<h2>From Written Line to Spoken Sentence: What Happens in Between</h2>
+<figure class="post-img"><img src="/blog-content/text-to-speech/from-written-line-to-spoken-sentence-what-happens-in-between.png" alt="From Written Line to Spoken Sentence: What Happens in Between" style="width:100%;height:auto;display:block" /></figure>
+<p>A text-to-speech engine never reads letters aloud. It rewrites the sentence into something speakable, decides how that sentence should be delivered, and only then produces sound. Each stage introduces its own kind of error, which is why a voice can sound flawless on one sentence and wrong on the next.</p>
+<p>Most text-to-speech failures on Indian calls trace back to that first stage. The voice sounds fine; it simply said the wrong words, because nobody told it how your locality names and rupee figures should be expanded.</p>
+<h3>Rewriting the text</h3>
+<p>Numbers, abbreviations and symbols get expanded into words first. "Dr." becomes "Doctor," and "₹2,999" has to become a spoken amount. Get this wrong and the voice quality no longer matters.</p>
+<h3>Planning the delivery</h3>
+<p>The system marks where the stress falls, where the pauses go, and whether the sentence rises or drops at the end. This is what separates a question from a statement, and a warm line from a flat one.</p>
+<h3>Producing the audio</h3>
+<p>A neural model turns that plan into a waveform. Modern voice synthesis does this in one pass rather than stitching together recorded fragments, which is the main reason today's voices no longer sound clipped.</p>
+<h2>Why Do AI Voices Still Stumble on Indian Names?</h2>
+<p>An engine pronounces an unfamiliar word by guessing from its spelling, using rules learned mostly from English. That guess works for "Smith" and fails for "Kanchipuram." The same weakness runs in the other direction too, which our guide to <a href="https://www.9278.io/blog/speech-to-text">speech-to-text</a> covers from the listening side.</p>
+<p>None of this reflects badly on the model. A text-to-speech engine that handles American English perfectly has simply never met your customer list.</p>
+<ul>
+<li><strong>Regional names.</strong> Personal and place names outside the training data get sounded out letter by letter.</li>
+<li><strong>Silent and doubled letters.</strong> Spellings like "Jharkhand" or "Chhattisgarh" rarely map cleanly onto English pronunciation rules.</li>
+<li><strong>Your own vocabulary.</strong> Product names, scheme names and housing societies are unique to your business and unknown to any general model.</li>
+<li><strong>Mixed scripts.</strong> A Hindi sentence with an English brand name inside it forces the voice to switch accent mid-phrase.</li>
+<li><strong>The fix is a list, not a bigger model.</strong> A custom pronunciation dictionary solves most of this in an afternoon.</li>
+</ul>
+<h2>Lakhs, Crores, and the Numbers Every Voice Reads Wrong</h2>
+<figure class="post-img"><img src="/blog-content/text-to-speech/lakhs-crores-and-the-numbers-every-voice-reads-wrong.png" alt="Lakhs, Crores, and the Numbers Every Voice Reads Wrong" style="width:100%;height:auto;display:block" /></figure>
+<p>Ask a default text-to-speech system to read 250000 and it will almost always say "two hundred fifty thousand." Your caller in Nagpur is waiting to hear "two lakh fifty thousand." The words are technically correct and practically useless, because the listener has to stop and convert while the agent keeps talking.</p>
+<p>The same trap catches phone numbers read as one long figure instead of digit groups, dates spoken in American order, and EMI amounts rounded into something the customer never agreed to. None of this is a limitation of speech generation itself — it is a formatting decision made before the audio is produced, and it is fixable. Voice agents that handle Indian conversations well, such as those covered in our guide to <a href="https://www.9278.io/blog/hindi-ai-voice-agent">Hindi voice agents</a>, treat number formatting as a first-class setting rather than an afterthought.</p>
+<h2>Recorded Prompts vs Live Text-to-Speech: What Each One Costs You</h2>
+<p>Older phone systems play recorded audio files. A voice agent generates the sentence as it goes. Both have a place, and picking the wrong one is expensive in different ways.</p>
+<p>For most Indian businesses the answer is both. Keep a handful of recordings for the lines that never change, and let text-to-speech handle everything that depends on who is calling and why. Platforms such as 9278.io ship both inside the same agent, so the choice is made per sentence rather than per system.</p>
+<h3>Where recordings still win</h3>
+<p>Fixed lines that never change — a greeting, a legal disclaimer, a hold message — are worth recording once. The audio is predictable and costs nothing per call.</p>
+<h3>Where recordings fall apart</h3>
+<p>The moment a sentence contains a caller's name, an order number or a balance, recordings cannot help. Stitching fragments together produces that unmistakable jumpy IVR sound.</p>
+<h3>Where live synthesis earns its keep</h3>
+<p>Live text-to-speech handles sentences nobody scripted, which is the entire point of a conversation. The cost is latency, and that is the trade-off worth understanding next.</p>
+<h2>The First 300 Milliseconds Decide If the Caller Stays</h2>
+<figure class="post-img"><img src="/blog-content/text-to-speech/the-first-300-milliseconds-decide-if-the-caller-stays.png" alt="The First 300 Milliseconds Decide If the Caller Stays" style="width:100%;height:auto;display:block" /></figure>
+<p>People expect a reply in about a third of a second. Past that, callers assume the line dropped, repeat themselves, or talk over the answer just as it begins. For text-to-speech the number that matters is time to first audio — not how long the full sentence takes to generate, but how quickly the first syllable reaches the caller's ear.</p>
+<p>That budget gets spent on network travel, model processing and audio buffering. A request routed from Bengaluru to a North American data centre can burn most of it before any speech generation starts, which is why infrastructure inside India makes such a visible difference. Platforms like 9278.io run sub-300ms responses from Mumbai and Hyderabad over WebRTC audio, and streaming the audio out in chunks rather than waiting for the whole sentence is what keeps the reply inside that window.</p>
+<h2>The Myth That a Human-Sounding Voice Needs a Human Recording</h2>
+<p>For years the honest advice was to hire a voice artist, because synthetic voices gave themselves away in a sentence. That gap has closed far enough that most callers no longer notice, and the reasons are worth knowing before you pay for studio time you may not need.</p>
+<p>The commercial case matters too, because studio recording locks you into a script. Every new offer, price change or language means booking the artist again, while text-to-speech built on modern voice synthesis lets you edit a sentence and hear it read back immediately.</p>
+<h3>What actually changed</h3>
+<p>Older systems assembled speech from recorded pieces, so the joins were audible. Neural <a href="https://en.wikipedia.org/wiki/Speech_synthesis" rel="noopener noreferrer" target="_blank">speech synthesis</a> generates the waveform directly, which removed the seams that used to give the game away.</p>
+<h3>What still gives it away</h3>
+<p>Not the voice itself, but the details around it: a mangled name, a wrongly grouped number, a pause in the wrong place, or a reply that arrives a beat too late. Fix those four and a synthetic voice stops announcing itself.</p>
+<h2>Choosing a Text-to-Speech Voice Your Customers Will Trust</h2>
+<figure class="post-img"><img src="/blog-content/text-to-speech/choosing-a-text-to-speech-voice-your-customers-will-trust.png" alt="Choosing a Text-to-Speech Voice Your Customers Will Trust" style="width:100%;height:auto;display:block" /></figure>
+<p>Voice choice is usually treated as a branding decision and judged in a quiet room on good speakers. Your callers will hear it compressed, on a mobile, in traffic. Test any AI voice the way it will actually be heard, and run your own sentences through it rather than the vendor's demo script.</p>
+<p>A good text-to-speech setup should also let you fix whatever you find. Custom pronunciations, number formatting and voice selection ought to be settings you control yourself, not a support ticket. Platforms like 9278.io keep them in the dashboard.</p>
+<ul>
+<li><strong>Test on a real call.</strong> Judge the voice over an actual phone line, not a laptop preview.</li>
+<li><strong>Use your own words.</strong> Feed it your customer names, localities and product names, not a generic paragraph.</li>
+<li><strong>Check the numbers.</strong> Have it read rupee amounts, dates and phone numbers before anything else.</li>
+<li><strong>Listen for the switch.</strong> A voice that keeps its accent when English words appear mid-sentence sounds local; one that flips sounds imported.</li>
+<li><strong>Time the first syllable.</strong> Measure when audio starts, not when the sentence finishes.</li>
+<li><strong>Confirm the calling side.</strong> Check that outbound activity stays within TRAI rules before you scale anything.</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Text-to-speech has stopped being the weak link in a phone conversation, and the remaining problems are mostly ones you can fix yourself. Pronunciation is a dictionary you can extend, number formatting is a setting you can correct, and latency is an infrastructure question you can ask before signing anything. What separates a voice that sounds local from one that sounds imported is rarely the model — it is whether someone bothered to teach it your names, your amounts and your languages. The quickest way to find out where you stand is to write down ten sentences your business actually says on calls, complete with names and figures, and listen to any system read them aloud. Platforms like 9278.io let you test that on real traffic with per-second billing, so hearing the answer costs you an afternoon rather than a contract.</p>
+
+<div class="cta"><h3>Ready to see it on your own calls?</h3><p>9278.io answers every call in the caller's own language, with TRAI-compliant, per-second billed calling built for Indian businesses.</p><a class="btn" href="/get-started">Start free trial</a></div>
+
+<section class="faq"><h2>Frequently asked questions</h2>
+    <details><summary>What is text-to-speech used for on business calls?</summary><p>It speaks the words a voice agent decides to say, so replies are generated live instead of played from a recording. That lets one agent handle names, amounts and order details it has never seen before.</p></details>
+    <details><summary>How does text-to-speech handle Indian names and places?</summary><p>It guesses pronunciation from spelling unless the name is in its dictionary, which is why regional names often come out wrong. A custom pronunciation list for your localities and product names fixes most of it.</p></details>
+    <details><summary>When should a business use recorded prompts instead of text-to-speech?</summary><p>Use recordings for fixed lines that never change, such as a greeting or a legal disclaimer. Use live synthesis the moment the sentence depends on caller data.</p></details>
+    <details><summary>Where does the delay in a text-to-speech reply come from?</summary><p>It comes from network travel, model processing and audio buffering before the first sound plays. Servers inside India cut the travel portion sharply.</p></details>
+    <details><summary>Is AI voice calling TRAI-compliant in India?</summary><p>It is when the calling side follows TRAI rules on consent, calling windows and registered sender identity. Platforms built for India, including 9278.io, handle TRAI-compliant calling by default.</p></details>
+    <details><summary>How much does text-to-speech cost for handling calls?</summary><p>Standalone TTS is usually billed per character or per audio minute, while call platforms fold it into the call rate. Entry plans for AI voice handling start at ₹2,999 a month.</p></details>
+    <details><summary>Which Indian languages can AI voices speak?</summary><p>India-first platforms cover 10+ languages including Hindi, Tamil, Telugu, Bengali, Marathi and Punjabi. What matters more is whether the voice keeps its accent when English words appear mid-sentence.</p></details>
+    <details><summary>Why do rupee amounts get read out incorrectly?</summary><p>Most systems expand numbers using the Western thousand-million grouping, so 250000 becomes two hundred fifty thousand. Indian callers expect two lakh fifty thousand, which needs explicit handling.</p></details>
+</section>
+</article>
+<div class="related"><h3>Related reading</h3>
+<a href="/blog/speech-to-text">Speech-to-Text Explained: Accuracy, Latency, and Indian Languages</a>
+<a href="/blog/hindi-ai-voice-agent">Hindi AI Voice Agent: Automating Business Calls in Hindi and Hinglish</a>
+<a href="/blog/what-is-an-ai-voice-agent">What Is an AI Voice Agent? A Plain-English Guide for Indian Businesses</a>
+</div>
+</main>
+<footer class="site"><div class="wrap">&copy; 2026 9278.io &middot; Native-audio voice agents for Indian businesses. This article is for general information and is not legal advice.</div></footer>
+</body>
+</html>
