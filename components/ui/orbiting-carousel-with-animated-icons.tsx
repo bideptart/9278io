@@ -192,7 +192,7 @@ export default function OrbitCarousel() {
 
   return (
     <div
-      className="relative flex w-full min-h-[420px] flex-col items-center p-2 sm:min-h-[400px] sm:p-4"
+      className="relative flex w-full flex-col items-center p-2 sm:min-h-[400px] sm:p-4"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
