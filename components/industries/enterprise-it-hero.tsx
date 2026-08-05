@@ -45,10 +45,10 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
           <div>
             <span
               style={{ animationDelay: "0.05s" }}
-              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] inline-flex items-center gap-2.5 rounded-full border border-blue-200/70 bg-white/90 py-2 pl-2 pr-6 text-[15px] font-medium text-blue-700 shadow-sm backdrop-blur transition-shadow duration-300 hover:shadow-md"
+              className="motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-1.5 pl-1.5 pr-5 text-[14px] font-medium text-blue-700 shadow-sm backdrop-blur transition-shadow duration-300 hover:shadow-md"
             >
-              <span className="grid size-7 place-items-center rounded-full bg-blue-100 text-blue-600">
-                <Sparkles className="size-4 motion-safe:animate-pulse" aria-hidden />
+              <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+                <Sparkles className="size-3.5 motion-safe:animate-pulse" aria-hidden />
               </span>
               AI Voice Agents for IT Teams
             </span>
