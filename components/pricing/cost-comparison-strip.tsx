@@ -85,14 +85,14 @@ export function CostComparisonStrip() {
   return (
     <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-start gap-8 rounded-2xl border-2 border-border/60 bg-white p-6 shadow-sm sm:p-8 lg:grid-cols-[1fr_220px]">
       <div>
-        <div className="mb-5 flex items-center justify-center gap-1.5 lg:justify-start">
+        <div className="mb-5 flex w-full items-center gap-1.5 lg:w-auto lg:justify-start">
           {orderedPlans.map((p) => (
             <button
               key={p.id}
               type="button"
               onClick={() => setPlanId(p.id)}
               aria-pressed={planId === p.id}
-              className={`relative min-w-28 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors ${
+              className={`relative min-w-0 flex-1 rounded-full border px-3 py-2 text-sm font-semibold transition-colors sm:px-5 sm:py-2.5 lg:flex-none lg:min-w-28 ${
                 planId === p.id
                   ? "border-transparent text-primary-foreground"
                   : "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
@@ -105,7 +105,7 @@ export function CostComparisonStrip() {
                   transition={{ type: "spring", stiffness: 400, damping: 32 }}
                 />
               )}
-              <span className="relative">{p.name}</span>
+              <span className="relative truncate">{p.name}</span>
             </button>
           ))}
         </div>
