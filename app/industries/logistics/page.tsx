@@ -42,7 +42,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "9278.io AI voice agents help logistics companies automate delivery coordination, shipment tracking, customer notifications, and driver communication in 10+ Indian languages. Answer every call instantly, reduce support workload, and keep customers informed from dispatch to delivery."
+  "9278.io automates shipment tracking, delivery coordination, and driver communication in 10+ Indian languages."
 
 const AGENT_HANDLES = [
   { Icon: MessageCircle, text: "Instantly answer shipment status inquiries" },
@@ -132,7 +132,7 @@ export default function LogisticsPage() {
               </h1>
 
               <p className="mt-5 text-pretty text-[16px] font-bold leading-snug text-slate-800">
-                Never miss a shipment update, delivery confirmation, or customer inquiry.
+                Never miss a delivery update or customer call with AI voice agents that answer instantly.
               </p>
 
               <p className="mt-4 max-w-lg text-pretty text-[15px] leading-relaxed text-slate-600">{PITCH}</p>
@@ -142,7 +142,6 @@ export default function LogisticsPage() {
                   { Icon: Clock, label: "24/7 Shipment Updates" },
                   { Icon: Check, label: "Delivery Confirmation" },
                   { Icon: Users, label: "Driver Coordination" },
-                  { Icon: Globe, label: "Multilingual Support" },
                 ].map((f) => (
                   <span
                     key={f.label}
