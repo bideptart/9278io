@@ -48,7 +48,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "Convert trials, qualify leads, onboard customers, and resolve support requests 24/7 with AI voice agents that sound natural and respond instantly. Built for startups, SaaS platforms, software providers, and technology companies. Every trial user, demo request, and support ticket is picked up in under 3 seconds — no missed signals during a product launch or a traffic spike."
+  "Convert more trials with AI voice agents that answer every call in under 3 seconds. 9278.io qualifies leads, onboards customers, and resolves support 24/7—so you never miss a demo, trial, or support request."
 
 const DAY_ONE_JOBS = [
   { Icon: UserCheck, text: "Qualifies inbound SaaS leads automatically" },
@@ -147,7 +147,6 @@ export default function SaasTechPage() {
                   { Icon: Phone, title: "24/7", desc: "Customer Support" },
                   { Icon: Users, title: "Trial Conversion", desc: "Calls" },
                   { Icon: Globe, title: "Multi-language", desc: "Voice AI" },
-                  { Icon: Puzzle, title: "CRM", desc: "Integration" },
                 ].map((f) => (
                   <div key={f.title} className="flex items-start gap-2.5">
                     <span className="grid size-10 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
