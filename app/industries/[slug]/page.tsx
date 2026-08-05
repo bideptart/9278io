@@ -157,9 +157,8 @@ function ECommercePage() {
 
               <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
                 Handle every customer call instantly—even during flash sales and viral traffic spikes. 9278.io
-                automates order updates, returns, sizing, and upsells, escalating only complex issues while
-                answering in the customer's preferred language. Every conversation stays on-brand, accurate, and
-                available around the clock.
+                automates order updates, returns, and upsells, escalating only complex issues while answering in
+                the customer's preferred language.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
