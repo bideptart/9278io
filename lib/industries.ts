@@ -104,7 +104,7 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Take reservations, confirm large parties, answer hours and menu questions — fluently, in any language.",
     pitch:
-      "Phones during dinner rush are a tax on your hosts. 9278.io handles reservations, confirms large parties, answers hours and menu questions, and routes catering inquiries — so the host stand can focus on the room.",
+      "Phones during dinner rush are a tax on your hosts. 9278.io handles reservations and confirms large parties — so the host stand can focus on the room.",
     jobs: [
       "Reservation booking and modification on Zomato / EazyDiner / Dineout",
       "Large-party and private-event qualification",
