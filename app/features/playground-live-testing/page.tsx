@@ -212,16 +212,19 @@ export default function PlaygroundLiveTestingPage() {
             role: "Safe sandbox",
             name: "Chat with your agent before it goes live",
             quote: "Send test messages and see exactly how your agent would respond to a real caller.",
+            image: "/images/features/playground-live-testing/playground-live-testing-01-safe-sandbox.png",
           },
           {
             role: "Instant tweaks",
             name: "Change a prompt, see it right away",
             quote: "Adjust your agent's instructions and immediately test the new behavior in the same session.",
+            image: "/images/features/playground-live-testing/playground-live-testing-02-instant-tweaks.png",
           },
           {
             role: "Catch gaps early",
             name: "Find the weak spots first",
             quote: "Spot the questions your agent doesn't handle well yet, before a real customer ever asks them.",
+            image: "/images/features/playground-live-testing/playground-live-testing-03-catch-gaps-early.png",
           },
         ]}
       />

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Quote } from "lucide-react"
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 
 const TESTIMONIALS = [
   {
@@ -201,17 +201,35 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
           </AnimatePresence>
 
           {items.length > 1 && (
-            <div className="mt-6 flex justify-center gap-1.5 md:justify-start">
-              {items.map((s, i) => (
-                <button
-                  key={s.name + i}
-                  type="button"
-                  aria-label={`Show ${s.name}`}
-                  onClick={() => setActive(i)}
-                  className="h-1.5 rounded-full transition-all duration-300"
-                  style={{ width: i === active ? 18 : 6, backgroundColor: i === active ? "var(--primary)" : "#E4ECFF" }}
-                />
-              ))}
+            <div className="mt-6 flex items-center justify-center gap-3 md:justify-start">
+              <button
+                type="button"
+                aria-label="Previous"
+                onClick={() => setActive((a) => (a - 1 + total) % total)}
+                className="grid size-7 shrink-0 place-items-center rounded-full border border-border bg-white text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary"
+              >
+                <ChevronLeft className="size-4" aria-hidden />
+              </button>
+              <div className="flex gap-1.5">
+                {items.map((s, i) => (
+                  <button
+                    key={s.name + i}
+                    type="button"
+                    aria-label={`Show ${s.name}`}
+                    onClick={() => setActive(i)}
+                    className="h-1.5 rounded-full transition-all duration-300"
+                    style={{ width: i === active ? 18 : 6, backgroundColor: i === active ? "var(--primary)" : "#E4ECFF" }}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                aria-label="Next"
+                onClick={() => setActive((a) => (a + 1) % total)}
+                className="grid size-7 shrink-0 place-items-center rounded-full border border-border bg-white text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary"
+              >
+                <ChevronRight className="size-4" aria-hidden />
+              </button>
             </div>
           )}
         </div>

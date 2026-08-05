@@ -189,16 +189,19 @@ export default function LiveTestCallPage() {
             role: "Real number",
             name: "Dial exactly what callers dial",
             quote: "No sandbox mode — test the exact number your customers call, live.",
+            image: "/images/features/live-test-call/live-test-call-01-real-number.png",
           },
           {
             role: "Voice & latency",
             name: "Catch it before a customer does",
             quote: "Hear the same voice, greeting, and hold music your callers hear, and spot lag or glitches live.",
+            image: "/images/features/live-test-call/live-test-call-02-voice-latency.png",
           },
           {
             role: "Routing check",
             name: "Confirm it end to end",
             quote: "Verify transfers, fallbacks, and after-hours behavior all work exactly as configured.",
+            image: "/images/features/live-test-call/live-test-call-03-routing-check.png",
           },
         ]}
       />

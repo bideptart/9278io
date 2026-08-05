@@ -186,16 +186,19 @@ export default function KnowledgeTemplatesPage() {
             role: "Build once",
             name: "One template, every agent that needs it",
             quote: "Save a knowledge setup once and reuse it across multiple agents or numbers instead of rebuilding each time.",
+            image: "/images/features/knowledge-templates/knowledge-templates-01-build-once.png",
           },
           {
             role: "Stay in sync",
             name: "Every agent updates together",
             quote: "Edit the template and every agent using it updates automatically — no drifting out of sync over time.",
+            image: "/images/features/knowledge-templates/knowledge-templates-02-stay-in-sync.png",
           },
           {
             role: "Reusable",
             name: "Apply it anywhere, anytime",
             quote: "Use the same proven setup for a new agent or number the moment you launch it.",
+            image: "/images/features/knowledge-templates/knowledge-templates-03-reusable.png",
           },
         ]}
       />

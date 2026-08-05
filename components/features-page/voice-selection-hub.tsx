@@ -263,48 +263,18 @@ export function VoiceSelectionHub() {
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
       />
 
-      {/* floating capability badges — sit outside the dashboard on the left
-          to call out that voice is a distinct, bolt-on set of capabilities */}
+      {/* floating capability badge — sits below the dashboard card so it
+          never intrudes on the text column beside it at any breakpoint */}
       <motion.div
-        className="absolute -left-6 -top-12 z-20 hidden items-center gap-2 rounded-full bg-white pl-2 pr-4 py-2 md:-left-28 md:-top-10 md:flex"
-        style={{ border: "1px solid #E4ECFF", boxShadow: "0 12px 28px -12px rgba(37,99,235,0.35)" }}
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <span className="relative flex size-7 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg, #4F8DFF, #2563EB)" }}>
-          <Mic className="size-3.5 text-white" aria-hidden />
-          <motion.span
-            className="absolute inset-0 rounded-full"
-            style={{ border: "2px solid #2563EB" }}
-            animate={{ scale: [1, 1.7], opacity: [0.6, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-          />
-        </span>
-        <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "#2563EB" }}>Voice AI Add-on</span>
-      </motion.div>
-
-      <motion.div
-        className="absolute -left-14 top-[38%] z-20 hidden -translate-y-1/2 items-center gap-2 rounded-full bg-white pl-2 pr-4 py-2 md:-left-48 md:flex"
+        className="absolute -bottom-14 left-1/2 z-20 hidden -translate-x-1/2 items-center gap-2 rounded-full bg-white pl-2 pr-4 py-2 md:flex"
         style={{ border: "1px solid #E9E4FF", boxShadow: "0 12px 28px -12px rgba(124,58,237,0.3)" }}
-        animate={{ y: [0, -10, 0] }}
+        animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.3 }}
       >
         <span className="flex size-7 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg, #A78BFA, #7C3AED)" }}>
           <Languages className="size-3.5 text-white" aria-hidden />
         </span>
         <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "#7C3AED" }}>10+ Languages</span>
-      </motion.div>
-
-      <motion.div
-        className="absolute -left-4 bottom-16 z-20 hidden items-center gap-2 rounded-full bg-white pl-2 pr-4 py-2 md:-left-20 md:flex"
-        style={{ border: "1px solid #FDE9C8", boxShadow: "0 12px 28px -12px rgba(217,119,6,0.3)" }}
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2.6 }}
-      >
-        <span className="flex size-7 items-center justify-center rounded-full" style={{ background: "linear-gradient(135deg, #FBBF24, #D97706)" }}>
-          <Zap className="size-3.5 text-white" aria-hidden />
-        </span>
-        <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "#D97706" }}>Sub-second Latency</span>
       </motion.div>
 
       {/* gentle continuous float, separate from the one-time entrance above */}
@@ -501,7 +471,7 @@ export function VoiceSelectionHub() {
                   <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>Voice · 10 available</p>
                   <ChevronDown className="size-3.5" style={{ color: "#94A3B8" }} aria-hidden />
                 </div>
-                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                <div className="mt-2.5 flex min-h-[70px] flex-wrap content-start gap-1.5">
                   {voices.map((v) => {
                     const isActive = v.lang === active
                     const noRealVoice = !v.recording && !cloudAvailable && supportedCodes !== null && !supportedCodes.has(v.code)

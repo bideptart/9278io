@@ -189,16 +189,19 @@ export default function SetupTemplatesPage() {
             role: "5 proven templates",
             name: "A starting point for every use case",
             quote: "Receptionist, Healthcare, Transport, Support, or Blank — each one pre-filled and ready to launch.",
+            image: "/images/features/setup-templates/setup-templates-01-proven-templates.png",
           },
           {
             role: "Pre-filled",
             name: "Greeting, routing, and knowledge already set",
             quote: "Skip the blank page — every template ships with the basics your agent needs, done.",
+            image: "/images/features/setup-templates/setup-templates-02-pre-filled.png",
           },
           {
             role: "Fully customizable",
             name: "Start from a template, make it yours",
             quote: "Launch in minutes, then refine anything — the greeting, routing, or knowledge — anytime after.",
+            image: "/images/features/setup-templates/setup-templates-03-fully-customizable.png",
           },
         ]}
       />

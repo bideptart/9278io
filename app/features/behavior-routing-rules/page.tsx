@@ -193,16 +193,19 @@ export default function BehaviorRoutingRulesPage() {
             role: "Route by intent",
             name: "Calls sorted by what's actually said",
             quote: "Write a plain IF / THEN rule once — the agent checks every call against it by intent or keyword before it even answers.",
+            image: "/images/features/behavior-routing-rules/behavior-routing-rules-01-route-by-intent.png",
           },
           {
             role: "Time-of-day aware",
             name: "After-hours calls handled correctly",
             quote: "Rules can change by the clock, so calls outside business hours route differently, automatically.",
+            image: "/images/features/behavior-routing-rules/behavior-routing-rules-02-time-of-day-aware.png",
           },
           {
             role: "Fallback included",
             name: "Nothing left unmatched",
             quote: "A fallback rule catches anything that doesn't match, so no call is left without somewhere defined to go.",
+            image: "/images/features/behavior-routing-rules/behavior-routing-rules-03-fallback-included.png",
           },
         ]}
       />

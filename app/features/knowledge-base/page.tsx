@@ -192,16 +192,19 @@ export default function KnowledgeBasePage() {
             role: "Isolated per agent",
             name: "Its own facts, its own brain",
             quote: "Each agent's knowledge base is completely separate — one agent never answers from another agent's facts.",
+            image: "/images/features/knowledge-base/knowledge-base-01-isolated-per-agent.png",
           },
           {
             role: "Instant updates",
             name: "Edits go live immediately",
             quote: "Change an FAQ, policy, or fact and every call after that reflects it — no retraining, no delay.",
+            image: "/images/features/knowledge-base/knowledge-base-02-instant-updates.png",
           },
           {
             role: "No re-training",
             name: "Nothing to rebuild",
             quote: "Add or edit facts anytime without touching the agent's voice, routing, or behavior setup.",
+            image: "/images/features/knowledge-base/knowledge-base-03-no-retraining.png",
           },
         ]}
       />

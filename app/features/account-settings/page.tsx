@@ -195,16 +195,19 @@ export default function AccountSettingsPage() {
             role: "Billing & invoices",
             name: "Top up, switch plans, done",
             quote: "Manage credit, plan changes, and GST invoices without leaving your dashboard or opening a support ticket.",
+            image: "/images/features/account-settings/account-settings-01-billing-invoices.png",
           },
           {
             role: "Team access",
             name: "Control who can edit what",
             quote: "Invite teammates and decide exactly who can touch billing, agents, or both — all from one place.",
+            image: "/images/features/account-settings/account-settings-02-team-access.png",
           },
           {
             role: "Account security",
             name: "Nothing buried in a menu",
             quote: "Security settings, login preferences, and business info stay visible and easy to change, instantly.",
+            image: "/images/features/account-settings/account-settings-03-account-security.png",
           },
         ]}
       />

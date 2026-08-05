@@ -3,6 +3,7 @@ import Link from "next/link"
 import {
   ArrowRight,
   CalendarCheck2,
+  Check,
   Download,
   HelpCircle,
   IndianRupee,
@@ -128,9 +129,10 @@ export default function BookingHistoryPage() {
                   History
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 See every appointment your agent has booked, in one searchable list — no digging through call
-                recordings or chasing down what got confirmed.
+                recordings or chasing down what got confirmed. Filter by date, status, or customer, and export
+                the full history whenever you need it.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -155,6 +157,15 @@ export default function BookingHistoryPage() {
                     Talk to sales
                   </Link>
                 </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                {["Searchable by name or number", "Status at a glance", "Exportable anytime"].map((t) => (
+                  <span key={t} className="inline-flex items-center gap-1.5">
+                    <Check className="size-3.5 text-primary" aria-hidden />
+                    {t}
+                  </span>
+                ))}
               </div>
             </ScrollReveal>
           </div>
