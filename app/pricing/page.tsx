@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { ShieldCheck, Lock, Fingerprint, Globe, ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -8,13 +9,22 @@ import { LiveCallMockup } from "@/components/pricing/live-call-mockup"
 import { RateByPlanMockup } from "@/components/pricing/rate-by-plan-mockup"
 import { LiveCostMockup } from "@/components/pricing/live-cost-mockup"
 import { MockupStackConnector } from "@/components/pricing/mockup-stack-connector"
-import { MockupVerticalConnector } from "@/components/pricing/mockup-vertical-connector"
-import { ComparePlansTable } from "@/components/pricing/compare-plans-table"
-import { CostComparisonStrip } from "@/components/pricing/cost-comparison-strip"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { Button } from "@/components/ui/button"
+
+// Below-the-fold and not needed for first paint — code-split out of the
+// initial client bundle so hydrating the hero/plan cards above the fold
+// doesn't compete with parsing/executing these on the main thread too.
+// ssr stays on (the default) so the content still renders server-side for
+// SEO and no-JS users; only the client bundle is split.
+const ComparePlansTable = dynamic(() =>
+  import("@/components/pricing/compare-plans-table").then((m) => m.ComparePlansTable),
+)
+const CostComparisonStrip = dynamic(() =>
+  import("@/components/pricing/cost-comparison-strip").then((m) => m.CostComparisonStrip),
+)
+const FaqAccordion = dynamic(() => import("@/components/faq/faq-accordion").then((m) => m.FaqAccordion))
 import { formatPlanAgentNoun, formatPlanAgents, PLANS } from "@/lib/pricing"
 import { FAQ_GROUPS } from "@/lib/faq"
 import { pageSeo } from "@/lib/seo"
@@ -139,16 +149,15 @@ export default async function PricingPage({
               <RateByPlanMockup className="absolute bottom-6 left-28" />
             </div>
 
-            {/* Mobile/tablet: same 3 cards, simple vertical stack instead of
-                the absolute-positioned floating layout (which only fits the
-                lg+ two-column grid), with a short vertical dashed connector
-                between each card instead of the desktop curved-line SVG. */}
-            <div className="flex flex-col items-center lg:hidden">
-              <LiveCallMockup className="relative" />
-              <MockupVerticalConnector />
-              <LiveCostMockup className="relative" />
-              <MockupVerticalConnector />
-              <RateByPlanMockup className="relative" />
+            {/* Mobile/tablet: the same 3 sections but combined into a single
+                framed card (each mockup rendered in `framed` mode, stripped
+                of its own chrome/float animation) instead of 3 separate
+                floating cards — matches the lg+ layout's content without
+                the absolute-positioned two-column arrangement it depends on. */}
+            <div className="mx-auto w-full max-w-sm divide-y divide-border/60 rounded-2xl border border-border/60 bg-white p-4 shadow-[0_20px_60px_-15px_oklch(0.4_0.2_262/0.3)] lg:hidden">
+              <LiveCallMockup framed className="pb-4" />
+              <LiveCostMockup framed className="py-4" />
+              <RateByPlanMockup framed className="pt-4" />
             </div>
           </div>
         </div>

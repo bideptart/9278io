@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 // pairs with the Live Call card above it as "here's what that call costs."
 const RATE_PER_SEC = 0.02
 
-export function LiveCostMockup({ className }: { className?: string }) {
+export function LiveCostMockup({ className, framed = false }: { className?: string; framed?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-80px" })
   const [seconds, setSeconds] = useState(0)
@@ -20,6 +20,27 @@ export function LiveCostMockup({ className }: { className?: string }) {
     const id = setInterval(() => setSeconds((s) => s + 1), 400)
     return () => clearInterval(id)
   }, [isInView])
+
+  const content = (
+    <>
+      <div className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+        <Timer className="size-3.5 text-primary" aria-hidden />
+        Live call cost
+      </div>
+      <p className="mt-2 text-2xl font-bold tabular-nums tracking-tight text-foreground">
+        ₹{(seconds * RATE_PER_SEC).toFixed(2)}
+      </p>
+      <p className="mt-1 text-[11px] leading-tight text-muted-foreground">Billed per second — no minute-rounding.</p>
+    </>
+  )
+
+  if (framed) {
+    return (
+      <div ref={ref} aria-hidden className={cn("select-none", className)}>
+        {content}
+      </div>
+    )
+  }
 
   return (
     <div aria-hidden className={cn("pointer-events-none select-none", className)}>
@@ -35,16 +56,7 @@ export function LiveCostMockup({ className }: { className?: string }) {
           transition={{ duration: 4.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.6 }}
           className="w-56 rounded-2xl border border-border/60 bg-white p-4 shadow-[0_20px_60px_-15px_oklch(0.4_0.2_262/0.3)]"
         >
-          <div className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            <Timer className="size-3.5 text-primary" aria-hidden />
-            Live call cost
-          </div>
-          <p className="mt-2 text-2xl font-bold tabular-nums tracking-tight text-foreground">
-            ₹{(seconds * RATE_PER_SEC).toFixed(2)}
-          </p>
-          <p className="mt-1 text-[11px] leading-tight text-muted-foreground">
-            Billed per second — no minute-rounding.
-          </p>
+          {content}
         </motion.div>
       </motion.div>
     </div>

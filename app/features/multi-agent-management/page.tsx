@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { MultiAgentHub } from "@/components/features-page/multi-agent-hub"
@@ -118,14 +119,14 @@ export default function MultiAgentManagementPage() {
               </div>
 
               <h1
-                className="mt-8 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]"
+                className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]"
                 style={{ lineHeight: 0.95, letterSpacing: "-2px" }}
               >
                 <span style={{ color: "#0F172A" }}>Multi-Agent</span>
                 <br />
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(90deg, #4F8DFF, #2563EB)",
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -192,6 +193,27 @@ export default function MultiAgentManagementPage() {
 
       {/* Capabilities — each one is its own full-width section, alternating background */}
       <MultiAgentCapabilities capabilities={capabilities} />
+
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "One dashboard",
+            name: "Every agent, one account",
+            quote: "However many agents you create — sales, support, dispatch — they all show up in the same 9278.io dashboard. No juggling separate logins.",
+          },
+          {
+            role: "Fast cloning",
+            name: "Clone an agent in minutes",
+            quote: "Start a new agent from one you've already configured — same voice, same knowledge base, same call behavior — instead of rebuilding from scratch.",
+          },
+          {
+            role: "Dedicated numbers",
+            name: "One number per agent",
+            quote: "Give every agent its own phone number so a caller to sales and a caller to support each reach the right agent automatically.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to manage your agents from one place?"

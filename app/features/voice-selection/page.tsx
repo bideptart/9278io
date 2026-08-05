@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
+import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { VoiceSelectionHub } from "@/components/features-page/voice-selection-hub"
@@ -77,12 +78,12 @@ export default function VoiceSelectionPage() {
                 BUILD &amp; SETUP
               </span>
 
-              <h1 className="mt-8 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>Voice</span>
                 <br />
                 <span
                   style={{
-                    backgroundImage: "linear-gradient(90deg, #4F8DFF, #2563EB)",
+                    backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -167,17 +168,43 @@ export default function VoiceSelectionPage() {
         </div>
       </section>
 
-      {/* Feature list — numbered steps in a 3-up row, connected by a spine */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-12 md:py-24">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Voice Selection</p>
-            <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick it, hear it, ship it.</h2>
-          </ScrollReveal>
+      {/* Feature list — numbered steps in a 3-up row, connected by a spine.
+          Section is taller than the viewport with a sticky inner panel, so
+          it stays pinned in place while the step sequence plays out and only
+          scrolls away once there's no more extra height left to consume. */}
+      <section className="relative bg-white" style={{ height: "170vh" }}>
+        <div className="sticky top-0 flex min-h-screen w-full items-center">
+          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:px-12 md:py-24">
+            <ScrollReveal className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary">Voice Selection</p>
+              <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick it, hear it, ship it.</h2>
+            </ScrollReveal>
 
-          <VoiceSelectionSteps />
+            <VoiceSelectionSteps />
+          </div>
         </div>
       </section>
+
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Preview first",
+            name: "Hear it before you assign it",
+            quote: "Play a real clip of any voice and compare them side by side before choosing.",
+          },
+          {
+            role: "A personality each",
+            name: "Ten voices, ten distinct tones",
+            quote: "Every named voice comes with its own personality description, so the tone matches your brand.",
+          },
+          {
+            role: "Switch anytime",
+            name: "Change it with no rebuild",
+            quote: "Swap an agent's voice whenever you want — knowledge base, routing, and behavior stay exactly as they were.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to give your agent the right voice?"

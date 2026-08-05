@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ShieldCheck, TrendingUp, Zap } from "lucide-react"
+import { ArrowRight, Rocket, ShieldCheck, TrendingUp, Zap } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -9,6 +9,7 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { BfsiHero } from "@/components/industries/bfsi-hero"
 import { BfsiDetails } from "@/components/industries/bfsi-details"
+import { PricingCta } from "@/components/pricing/pricing-cta"
 
 export function BfsiPage() {
   const industry = getIndustry("bfsi")!
@@ -36,15 +37,29 @@ export function BfsiPage() {
       <BfsiDetails industry={industry} />
 
       {/* Internal contextual links */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 py-16 md:px-8 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white px-6 pb-4 pt-0 md:px-8 md:pb-6 md:pt-1">
         <div aria-hidden className="pointer-events-none absolute -left-24 top-10 -z-10 size-80 rounded-full bg-blue-400/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 -z-10 size-96 rounded-full bg-sky-400/15 blur-3xl" />
 
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-700 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 motion-safe:animate-pulse" aria-hidden />
-              Rollout playbook
+            {/* All motion is contained to this badge: a light sweep behind
+                the text, a rocket icon that gently bobs, and a pulsing ring
+                radiating from behind it. */}
+            <span className="relative inline-flex items-center gap-2.5 overflow-hidden rounded-full border border-blue-200/70 bg-white py-2.5 pl-2.5 pr-7 text-base font-semibold uppercase tracking-wider text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent bg-[length:200%_auto] motion-safe:animate-[ind-shimmer_3.2s_linear_infinite]"
+              />
+
+              <span className="relative grid size-9 shrink-0 place-items-center" aria-hidden>
+                <span className="absolute inset-0 rounded-full bg-blue-500/30 motion-safe:animate-[ind-ping_2.4s_ease-out_infinite]" />
+                <span className="relative grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600 motion-safe:animate-[ind-float_3.6s_ease-in-out_infinite]">
+                  <Rocket className="size-5" aria-hidden />
+                </span>
+              </span>
+
+              <span className="relative">Rollout playbook</span>
             </span>
 
             <h2 className="mt-5 text-balance font-serif text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
@@ -100,7 +115,7 @@ export function BfsiPage() {
 
           <ScrollReveal delay={0.12}>
             <div className="relative mx-auto w-full max-w-[400px]">
-              <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.35)]">
+              <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.4)]">
                 <Image
                   src="/images/bfsi-rollout.png"
                   alt="How BFSI & fintech teams roll out 9278.io — secure banking, compliance, and analytics workflow"
@@ -111,21 +126,33 @@ export function BfsiPage() {
                 />
               </div>
 
-              <div className="absolute -left-4 -top-4 z-10 hero-float-up rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
-                <div className="flex items-center gap-2.5">
-                  <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
-                    <ShieldCheck className="size-4" aria-hidden />
-                  </span>
-                  <span className="text-[12px] font-bold text-slate-800">TRAI Compliant</span>
+              <div className="absolute -left-4 -top-4 z-10 hero-float-up">
+                <div className="rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 rounded-xl bg-blue-500/25 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite]"
+                      />
+                      <ShieldCheck className="relative size-4" aria-hidden />
+                    </span>
+                    <span className="text-[12px] font-bold text-slate-800">TRAI Compliant</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -right-4 z-10 hero-float-down rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
-                <div className="flex items-center gap-2.5">
-                  <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
-                    <Zap className="size-4" aria-hidden />
-                  </span>
-                  <span className="text-[12px] font-bold text-slate-800">Live in 5 minutes</span>
+              <div className="absolute -bottom-4 -right-4 z-10 hero-float-down">
+                <div className="rounded-2xl border border-white/60 bg-white/95 px-4 py-3 shadow-lg shadow-blue-600/10 ring-1 ring-blue-100/60 backdrop-blur">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative grid size-8 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white">
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 rounded-xl bg-blue-500/25 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite_1.4s]"
+                      />
+                      <Zap className="relative size-4" aria-hidden />
+                    </span>
+                    <span className="text-[12px] font-bold text-slate-800">Live in 5 minutes</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -133,8 +160,17 @@ export function BfsiPage() {
         </div>
       </section>
 
+      <PricingCta
+        heading={`Ready to launch a ${industry.name.toLowerCase()} agent?`}
+        description="Get started with a Starter agent and a single phone number, live in under 5 minutes."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Get started"
+        secondaryHref="/industries"
+        secondaryLabel="Browse all industries"
+      />
+
       {/* ─── Other industries we power ─── */}
-      <section className="w-full px-6 pb-16 md:px-8 md:pb-24">
+      <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
         <div className="mx-auto max-w-6xl">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">

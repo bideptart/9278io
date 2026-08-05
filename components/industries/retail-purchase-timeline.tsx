@@ -1,4 +1,4 @@
-import { Search, Truck, Undo2 } from "lucide-react"
+import Image from "next/image"
 import { Marquee } from "@/components/ui/marquee"
 
 /**
@@ -20,10 +20,11 @@ import { Marquee } from "@/components/ui/marquee"
  * in lib/industries.ts; the rest are ordinary support exchanges, not claims.
  */
 
+/* Kept as data so the image's alt text stays in step with what it depicts. */
 const PHASES = [
-  { icon: Search, label: "Before the buy", note: "Sizing, availability, store hours" },
-  { icon: Truck, label: "On the way", note: "Order status, delivery windows" },
-  { icon: Undo2, label: "After it arrives", note: "Returns, exchanges, win-backs" },
+  { label: "Before the buy", note: "Sizing, availability, store hours" },
+  { label: "On the way", note: "Order status, delivery windows" },
+  { label: "After it arrives", note: "Returns, exchanges, win-backs" },
 ]
 
 type Moment = { phase: string; tone: string; ask: string; reply: string; meta: string }
@@ -81,26 +82,13 @@ export function RetailPurchaseTimeline() {
     <div className="rpt-journey grid items-center gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-14">
       {/* ── the three phases, as a quiet legend ── */}
       <div>
-        <ul className="space-y-1">
-          {PHASES.map((phase, i) => (
-            <li
-              key={phase.label}
-              style={{ animationDelay: `${i * 2.4}s` }}
-              className="rpt-phase flex items-start gap-4 border-b border-slate-200 py-5 last:border-b-0"
-            >
-              <span className="mt-0.5 grid size-10 shrink-0 place-items-center rounded-full border border-primary/20 bg-white text-primary">
-                <phase.icon className="size-[18px]" aria-hidden />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[15px] font-semibold tracking-tight text-foreground">{phase.label}</p>
-                <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{phase.note}</p>
-              </div>
-              <span className="ml-auto shrink-0 pt-1 text-[11px] font-semibold tabular-nums text-muted-foreground/40">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <Image
+          src="/industries/retail-purchase-phases.png"
+          alt={PHASES.map((p, i) => `${String(i + 1).padStart(2, "0")} ${p.label} — ${p.note}`).join(". ")}
+          width={974}
+          height={546}
+          className="h-auto w-full"
+        />
       </div>
 
       {/* ── the calls themselves, streaming past ── */}
@@ -155,13 +143,6 @@ export function RetailPurchaseTimeline() {
       </div>
 
       <style>{`
-        /* the legend rows brighten in turn, in step with the journey */
-        @keyframes rptPhase {
-          0%, 100% { border-color: rgb(226 232 240); }
-          8%, 26%  { border-color: oklch(0.546 0.215 262.88 / 0.45); }
-        }
-        .rpt-journey .rpt-phase { animation: rptPhase 7.2s ease-in-out infinite; }
-
         @keyframes rptBlink {
           0%, 45%, 100% { opacity: 1; }
           60%, 85%      { opacity: 0.25; }
@@ -169,7 +150,6 @@ export function RetailPurchaseTimeline() {
         .rpt-journey .rpt-blink { animation: rptBlink 1.6s ease-in-out infinite; }
 
         @media (prefers-reduced-motion: reduce) {
-          .rpt-journey .rpt-phase { animation: none; }
           .rpt-journey .rpt-blink { animation: none; }
         }
       `}</style>

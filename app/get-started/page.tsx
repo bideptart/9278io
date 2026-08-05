@@ -1,12 +1,19 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { ArrowRight, Check, Loader2 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
-import SignupWidget from "./SignupWidget"
+
+// Code-split out of the initial bundle — it's a large client component
+// (Select/Textarea/Badge/etc. plus the Razorpay flow) already gated behind
+// its own Suspense boundary for useSearchParams, so splitting it doesn't
+// change the loading UX, just how much JS the browser has to parse/execute
+// before this page becomes interactive.
+const SignupWidget = dynamic(() => import("./SignupWidget"))
 
 export const metadata: Metadata = pageSeo({
   title: "Get started — launch your AI voice agent",

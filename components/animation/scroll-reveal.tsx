@@ -43,4 +43,4 @@ export function ScrollReveal({
 // Re-export the motion-based helpers so existing imports keep working.
 // These are still client components, but only the 3 files that actually
 // use them pay the cost.
-export { StaggerGroup, StaggerItem } from "./stagger"
+export { StaggerGroup, StaggerItem, ScrollStepItem } from "./stagger"

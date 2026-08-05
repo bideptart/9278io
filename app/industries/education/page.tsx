@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import {
-  ArrowRight, Check, Quote, Sparkles,
+  ArrowRight, Check, Sparkles,
   GraduationCap, FileCheck, Wallet, CalendarClock, PhoneCall,
   Inbox, HeartHandshake, Rocket, ShieldCheck, IndianRupee,
 } from "lucide-react"
@@ -138,16 +139,23 @@ export default function EducationIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.4rem]">
-                  AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
                     education.
                   </span>
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">
                   {industry.pitch}
                 </p>
               </ScrollReveal>
@@ -456,11 +464,15 @@ export default function EducationIndustryPage() {
                       aria-hidden
                       className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-gradient-to-b from-primary to-[oklch(0.5_0.22_255)] transition-transform duration-300 group-hover:scale-y-100"
                     />
-                    <Quote className="size-4 text-primary/40" aria-hidden />
-                    <blockquote className="mt-2.5 text-pretty leading-relaxed text-foreground/90">{line}</blockquote>
-                    <figcaption className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      {JOURNEY_STAGES[i]?.label ?? "Outbound"}
-                    </figcaption>
+                    {/* Content rendered as an image; the figure above keeps
+                        the border, shadow, lift and accent-bar hover states. */}
+                    <Image
+                      src={`/industries/education-quote-${i + 1}.png`}
+                      alt={`${JOURNEY_STAGES[i]?.label ?? "Outbound"} — “${line}”`}
+                      width={1008}
+                      height={214}
+                      className="h-auto w-full"
+                    />
                   </figure>
                 </ScrollReveal>
               ))}
@@ -701,6 +713,16 @@ export default function EducationIndustryPage() {
         </div>
       </section>
 
+      {/* Closing CTA */}
+      <PricingCta
+        heading="Ready to fill every batch?"
+        description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* Other industries — uniform corner-ribbon cards (same treatment as
           the Automotive and Fitness pages) instead of the asymmetric bento. */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
@@ -785,16 +807,6 @@ export default function EducationIndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* Closing CTA */}
-      <PricingCta
-        heading="Ready to fill every batch?"
-        description="Launch an agent that follows up on enquiries in 60 seconds, chases documents, and reminds students about fees — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

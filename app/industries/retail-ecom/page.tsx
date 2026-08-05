@@ -60,7 +60,7 @@ export default function RetailEcomPage() {
           aria-hidden
           className="pointer-events-none absolute -right-24 -top-28 h-[520px] w-[680px] rounded-full bg-primary/[0.09] blur-[120px]"
         />
-        <div className="relative w-full px-6 pb-12 pt-4 md:px-8 md:pb-16 md:pt-6">
+        <div className="relative w-full px-6 pb-12 pt-10 md:px-8 md:pb-16 md:pt-10">
           <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
             <div>
               <ScrollReveal>
@@ -71,16 +71,23 @@ export default function RetailEcomPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-5 text-balance text-4xl font-semibold leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.35rem]">
-                  AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
                     retail &amp; e-commerce
                   </span>
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground md:text-lg">{PITCH}</p>
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">{PITCH}</p>
               </ScrollReveal>
 
               <ScrollReveal delay={0.18}>
@@ -108,18 +115,6 @@ export default function RetailEcomPage() {
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal delay={0.24}>
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {["Inbound", "24/7 Calling", "Hindi & Regional"].map((cap) => (
-                    <span
-                      key={cap}
-                      className="rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-medium text-muted-foreground"
-                    >
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-              </ScrollReveal>
             </div>
 
             <ScrollReveal delay={0.15}>
@@ -211,6 +206,16 @@ export default function RetailEcomPage() {
         </div>
       </section>
 
+      {/* ══ Closing CTA ══ */}
+      <PricingCta
+        heading="Put an agent on your support line."
+        description="Answer order, product, returns and store questions on every call — 24/7, in 10+ Indian languages, even on your busiest day."
+        primaryHref="/get-started?industry=retail-ecom"
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* ══ Other industries ══ */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
         <div className="mx-auto max-w-6xl">
@@ -291,16 +296,6 @@ export default function RetailEcomPage() {
           </div>
         </div>
       </section>
-
-      {/* ══ Closing CTA ══ */}
-      <PricingCta
-        heading="Put an agent on your support line."
-        description="Answer order, product, returns and store questions on every call — 24/7, in 10+ Indian languages, even on your busiest day."
-        primaryHref="/get-started?industry=retail-ecom"
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

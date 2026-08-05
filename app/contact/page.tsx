@@ -1,17 +1,22 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { Clock } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { ContactForm } from "@/components/contact/contact-form"
-import { ChannelCards } from "@/components/contact/channel-cards"
 import { LiveStatus } from "@/components/contact/live-status"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { RelatedLinks } from "@/components/seo/related-links"
+
+// Code-split — neither needs to be in the initial hydration bundle for
+// this page to be interactive (the hero above them has no interactivity
+// of its own to block on).
+const ContactForm = dynamic(() => import("@/components/contact/contact-form").then((m) => m.ContactForm))
+const ChannelCards = dynamic(() => import("@/components/contact/channel-cards").then((m) => m.ChannelCards))
+const FaqAccordion = dynamic(() => import("@/components/faq/faq-accordion").then((m) => m.FaqAccordion))
 
 export const metadata: Metadata = pageSeo({
   title: "Contact us — 9278.io",

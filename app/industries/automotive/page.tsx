@@ -18,14 +18,6 @@ import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
-/* Trust stats — same real numbers used in the marquee further down this
-   page, surfaced early in the hero for immediate credibility. */
-const HERO_STATS = [
-  { icon: Clock, stat: "< 3s", label: "First-touch response", color: "text-blue-600", tile: "bg-blue-50" },
-  { icon: PhoneCall, stat: "24/7", label: "After-hours coverage", color: "text-violet-600", tile: "bg-violet-50" },
-  { icon: IndianRupee, stat: "₹10", label: "Per-minute, from", color: "text-emerald-600", tile: "bg-emerald-50" },
-]
-
 /* The five day-one playbooks from lib/industries.ts, in the order a caller
    actually moves through them at a dealership — enquiry → test drive →
    service → parts → exchange. Copy is expanded from the terse job labels
@@ -113,7 +105,7 @@ export default function AutomotiveIndustryPage() {
           aria-hidden
           className="pointer-events-none absolute -top-32 right-0 h-[560px] w-[720px] rounded-full bg-primary/[0.1] blur-[130px]"
         />
-        <div className="relative w-full px-6 pb-10 pt-1 md:px-8 md:pb-12 md:pt-2">
+        <div className="relative w-full px-6 pb-10 pt-10 md:px-8 md:pb-12 md:pt-14">
           <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
@@ -125,16 +117,23 @@ export default function AutomotiveIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[3.4rem]">
-                  AI voice agents for{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
                     dealerships &amp; service centres.
                   </span>
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-3 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-3 max-w-xl text-pretty line-clamp-3 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {industry.pitch}
                 </p>
               </ScrollReveal>
@@ -164,23 +163,6 @@ export default function AutomotiveIndustryPage() {
                 </div>
               </ScrollReveal>
 
-              {/* Trust stats */}
-              <ScrollReveal
-                delay={0.26}
-                className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border/60"
-              >
-                {HERO_STATS.map((s) => (
-                  <div key={s.label} className="flex flex-col items-center gap-1 bg-white px-3 py-4 text-center">
-                    <div className="flex items-center gap-2">
-                      <span className={`flex size-8 items-center justify-center rounded-full ${s.tile} ${s.color}`}>
-                        <s.icon className="size-4" aria-hidden />
-                      </span>
-                      <span className={`text-lg font-bold ${s.color}`}>{s.stat}</span>
-                    </div>
-                    <span className="text-[11px] leading-tight text-muted-foreground">{s.label}</span>
-                  </div>
-                ))}
-              </ScrollReveal>
             </div>
 
             {/* ── Right: dealership hero artwork + floating status chips ── */}
@@ -198,6 +180,7 @@ export default function AutomotiveIndustryPage() {
                     height={340}
                     className="h-auto w-full"
                     sizes="(min-width: 1024px) 560px, 90vw"
+                    unoptimized
                     priority
                   />
                 </div>
@@ -410,18 +393,14 @@ export default function AutomotiveIndustryPage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <div className="flex flex-wrap gap-x-10 gap-y-5">
-                {[
-                  { value: "5 min", label: "To first live agent" },
-                  { value: "10+", label: "Indian languages" },
-                  { value: "40+", label: "Concurrent calls" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <p className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">{s.value}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
-                  </div>
-                ))}
-              </div>
+              <Image
+                src="/industries/automotive-stats.png"
+                alt="5 minutes to first live agent, 10+ Indian languages supported, 40+ concurrent calls handled"
+                width={900}
+                height={140}
+                className="h-auto w-full max-w-[450px]"
+                unoptimized
+              />
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button
@@ -475,6 +454,16 @@ export default function AutomotiveIndustryPage() {
           </div>
         </div>
       </section>
+
+      {/* Closing CTA */}
+      <PricingCta
+        heading="Ready to fill every bay and every seat?"
+        description="Launch an agent that books test drives, schedules service, and answers parts questions — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
 
       {/* Other industries — uniform corner-ribbon cards, matching the
           card style already used elsewhere in the project (e-commerce's
@@ -571,16 +560,6 @@ export default function AutomotiveIndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* Closing CTA */}
-      <PricingCta
-        heading="Ready to fill every bay and every seat?"
-        description="Launch an agent that books test drives, schedules service, and answers parts questions — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

@@ -98,16 +98,23 @@ export default function LegalIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-5 text-balance text-4xl font-semibold leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.35rem]">
-                  AI voice agents{" "}
-                  <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.5_0.22_255)] bg-clip-text text-transparent">
+                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                  <span style={{ color: "#0F172A" }}>AI voice agents</span>{" "}
+                  <span
+                    style={{
+                      backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
                     for legal.
                   </span>
                 </h1>
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">
                   {industry.pitch}
                 </p>
               </ScrollReveal>
@@ -421,6 +428,16 @@ export default function LegalIndustryPage() {
         </div>
       </section>
 
+      {/* ══ Closing CTA ══ */}
+      <PricingCta
+        heading="Put an agent on your intake line."
+        description="Answer every enquiry, capture the facts your advocates need, and book the consult — in 10+ Indian languages, around the clock."
+        primaryHref={`/get-started?industry=${industry.slug}`}
+        primaryLabel="Build your first agent"
+        secondaryHref="/pricing"
+        secondaryLabel="View pricing"
+      />
+
       {/* ══ Other industries — same uniform corner-ribbon cards the
              automotive, fitness and education pages use ══ */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
@@ -505,16 +522,6 @@ export default function LegalIndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* ══ Closing CTA ══ */}
-      <PricingCta
-        heading="Put an agent on your intake line."
-        description="Answer every enquiry, capture the facts your advocates need, and book the consult — in 10+ Indian languages, around the clock."
-        primaryHref={`/get-started?industry=${industry.slug}`}
-        primaryLabel="Build your first agent"
-        secondaryHref="/pricing"
-        secondaryLabel="View pricing"
-      />
 
       <SiteFooter />
     </main>

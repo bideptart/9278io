@@ -33,17 +33,35 @@ export function MultiAgentExploreLinks({ links }: { links: ExploreLink[] }) {
           >
             <Link
               href={l.href}
-              className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-[0_16px_34px_-24px_oklch(0.2_0.05_260/0.4)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_24px_50px_-20px_oklch(0.546_0.215_262.88/0.3)]"
+              className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-border border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_6px_14px_-4px_oklch(0.546_0.215_262.88/0.45)]">
+              {/* corner ribbon */}
+              <span
+                aria-hidden
+                className="absolute right-0 top-0 h-12 w-12 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]"
+              />
+
+              {/* dotted decoration */}
+              <div aria-hidden className="absolute right-5 top-12 grid grid-cols-4 gap-1 opacity-60">
+                {Array.from({ length: 16 }).map((_, d) => (
+                  <span key={d} className="size-1 rounded-full bg-slate-300" />
+                ))}
+              </div>
+
+              <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
                 {l.icon}
               </span>
-              <p className="mt-5 text-lg font-semibold tracking-tight">{l.title}</p>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{l.description}</p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                Read more
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-              </span>
+
+              <p className="mt-4 text-balance text-lg font-bold tracking-tight text-foreground">{l.title}</p>
+              <span aria-hidden className="mt-2.5 block h-1 w-8 rounded-full bg-primary" />
+              <p className="mt-2.5 text-pretty text-sm leading-relaxed text-muted-foreground">{l.description}</p>
+
+              <div className="mt-5 flex items-center justify-between">
+                <span className="text-sm font-semibold text-primary">Read more</span>
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
+                  <ArrowRight className="size-3.5" aria-hidden />
+                </span>
+              </div>
             </Link>
           </motion.div>
         )

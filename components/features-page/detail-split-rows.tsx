@@ -18,27 +18,24 @@ type DetailItem = {
 export function DetailSplitRows({ items }: { items: DetailItem[] }) {
   return (
     <div className="space-y-10">
-      {items.map((d, i) => {
-        const reversed = i % 2 === 1
-        return (
-          <motion.div
-            key={d.title}
-            initial={{ opacity: 0, x: reversed ? 40 : -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-100px", amount: 0.4 }}
-            transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className={`flex flex-col items-center gap-6 sm:flex-row ${reversed ? "sm:flex-row-reverse" : ""}`}
-          >
-            <div className="flex size-24 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-inset ring-primary/10">
-              <span className="[&_svg]:size-9">{d.icon}</span>
-            </div>
-            <div className={`min-w-0 flex-1 ${reversed ? "sm:text-right" : ""}`}>
-              <p className="text-lg font-semibold tracking-tight text-foreground">{d.title}</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{d.description}</p>
-            </div>
-          </motion.div>
-        )
-      })}
+      {items.map((d, i) => (
+        <motion.div
+          key={d.title}
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, margin: "-100px", amount: 0.4 }}
+          transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center gap-6 sm:flex-row"
+        >
+          <div className="flex size-24 shrink-0 items-center justify-center rounded-3xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-inset ring-primary/10">
+            <span className="[&_svg]:size-9">{d.icon}</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-lg font-semibold tracking-tight text-foreground">{d.title}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{d.description}</p>
+          </div>
+        </motion.div>
+      ))}
     </div>
   )
 }

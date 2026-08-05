@@ -51,7 +51,7 @@ export default function IndustriesPage() {
                   <Sparkles className="size-3.5 shrink-0" aria-hidden />
                   Pre-tuned for the calls you actually take
                 </span>
-                <h1 className="mt-7 text-balance font-serif text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+                <h1 className="mt-7 text-balance font-sans text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
                   Built for every kind of <span className="text-primary">phone call.</span>
                 </h1>
                 <div className="mt-6 flex items-center gap-3" aria-hidden>
@@ -107,7 +107,7 @@ export default function IndustriesPage() {
                   <Building2 className="size-3.5" aria-hidden />
                   Industries
                 </span>
-                <h2 className="mt-4 text-balance font-serif text-4xl font-semibold tracking-tight md:text-5xl">
+                <h2 className="mt-4 text-balance font-sans text-4xl font-semibold tracking-tight md:text-5xl">
                   Browse by <span className="text-primary">industry</span>
                 </h2>
                 {/* classical ornamental divider */}
@@ -138,7 +138,7 @@ export default function IndustriesPage() {
                 <BookOpen className="size-3.5" aria-hidden />
                 Playbooks
               </span>
-              <h2 className="mt-5 text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
+              <h2 className="mt-5 text-balance font-sans text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem]">
                 Every vertical, in depth.
               </h2>
               <span aria-hidden className="ind-shimmer mx-auto mt-6 block h-1 w-24 rounded-full" />
