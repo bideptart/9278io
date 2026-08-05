@@ -111,8 +111,8 @@ export default function OrbitCarousel() {
     switch (screenSize) {
       case "xs":
         return {
-          containerRadius: 140,
-          profileSize: 50,
+          containerRadius: 115,
+          profileSize: 54,
           cardWidth: "w-44",
           avatarSize: "w-14 h-14",
           avatarMargin: "-mt-9",
@@ -120,8 +120,8 @@ export default function OrbitCarousel() {
         }
       case "sm":
         return {
-          containerRadius: 165,
-          profileSize: 60,
+          containerRadius: 140,
+          profileSize: 62,
           cardWidth: "w-48",
           avatarSize: "w-16 h-16",
           avatarMargin: "-mt-10",
@@ -191,11 +191,14 @@ export default function OrbitCarousel() {
 
   return (
     <div
-      className="relative flex min-h-[420px] flex-col items-center p-2 sm:min-h-[470px] sm:p-4"
+      className="relative flex w-full min-h-[420px] flex-col items-center p-2 sm:min-h-[470px] sm:p-4"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="relative flex items-center justify-center" style={{ width: containerSize, height: containerSize }}>
+      <div
+        className="relative mx-auto flex max-w-full items-center justify-center"
+        style={{ width: containerSize, height: containerSize }}
+      >
         {/* Active capability card */}
         <AnimatePresence mode="wait">
           <motion.div
