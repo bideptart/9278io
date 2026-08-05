@@ -230,42 +230,42 @@ function ECommercePage() {
                   {/* Overlay Floating Glass Cards (on top of image to ensure exact match) */}
 
                   {/* Top-left: Order Update Processing */}
-                  <div className="absolute -left-4 top-6 z-20 hero-float-up">
-                    <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                      <div className="flex items-center gap-3">
-                        <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                          <ShoppingBag className="size-5" aria-hidden />
+                  <div className="absolute -left-2 top-6 z-20 hero-float-up sm:-left-4">
+                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                      <div className="flex items-center gap-1.5 sm:gap-3">
+                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
+                          <ShoppingBag className="size-3.5 sm:size-5" aria-hidden />
                         </span>
                         <div>
-                          <p className="text-[12.5px] font-bold text-slate-800 leading-tight">Order Update</p>
-                          <p className="text-[11px] font-medium text-slate-500">Processing</p>
+                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Order Update</p>
+                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Processing</p>
                         </div>
-                        <span className="ml-1 grid size-4 place-items-center rounded-full bg-emerald-500">
-                          <Check className="size-2.5 text-white" aria-hidden />
+                        <span className="ml-1 grid size-3 shrink-0 place-items-center rounded-full bg-emerald-500 sm:size-4">
+                          <Check className="size-2 text-white sm:size-2.5" aria-hidden />
                         </span>
                       </div>
                     </div>
                   </div>
 
                   {/* Top-right: AI Voice Agent Listening */}
-                  <div className="absolute -right-4 -top-4 z-20 ind-float">
-                    <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                      <p className="text-[13px] font-bold text-blue-700 leading-tight">AI Voice Agent</p>
-                      <div className="mt-1.5 flex items-center gap-1.5">
-                        <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
-                        <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
+                  <div className="absolute -right-2 -top-4 z-20 ind-float sm:-right-4">
+                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                      <p className="text-[10.5px] font-bold text-blue-700 leading-tight sm:text-[13px]">AI Voice Agent</p>
+                      <div className="mt-1 flex items-center gap-1 sm:mt-1.5 sm:gap-1.5">
+                        <p className="text-[8.5px] font-medium text-slate-500 sm:text-[10.5px]">Listening…</p>
+                        <div className="flex h-2.5 items-end gap-[1.5px] sm:h-3" aria-hidden>
                           {[7, 11, 6, 13, 9, 14, 8, 12, 7, 10, 5, 11].map((h, i) => (
                             <span
                               key={i}
                               style={{
-                                height: `${h}px`,
+                                "--bar-h": `${h}px`,
                                 animationDelay: `${(i % 6) * 0.1}s`,
                                 background:
                                   i < 6
                                     ? "linear-gradient(to top, rgb(139,92,246), rgb(99,102,241))"
                                     : "linear-gradient(to top, rgb(129,140,248), rgb(191,219,254))",
-                              }}
-                              className="ind-eq w-[2.5px] rounded-full"
+                              } as React.CSSProperties}
+                              className="ind-eq h-[calc(var(--bar-h)*0.75)] w-[2px] rounded-full sm:h-[var(--bar-h)] sm:w-[2.5px]"
                             />
                           ))}
                         </div>
@@ -274,30 +274,30 @@ function ECommercePage() {
                   </div>
 
                   {/* Middle-left: Returns & Exchange Handled */}
-                  <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
-                    <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                      <div className="flex items-center gap-3">
-                        <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                          <Package className="size-5" aria-hidden />
+                  <div className="absolute -left-3 top-[48%] z-20 hero-float-down sm:-left-6">
+                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                      <div className="flex items-center gap-1.5 sm:gap-3">
+                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
+                          <Package className="size-3.5 sm:size-5" aria-hidden />
                         </span>
                         <div>
-                          <p className="text-[12.5px] font-bold text-slate-800 leading-tight">Returns &amp; Exchange</p>
-                          <p className="text-[11px] font-medium text-slate-500">Handled</p>
+                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Returns &amp; Exchange</p>
+                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Handled</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Bottom-right: Upsell Opportunity Identified */}
-                  <div className="absolute -right-6 bottom-10 z-20 ind-float">
-                    <div className="rounded-2xl border border-white/60 bg-white/80 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                      <div className="flex items-center gap-3">
-                        <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                          <BarChart3 className="size-5" aria-hidden />
+                  <div className="absolute -right-3 bottom-10 z-20 ind-float sm:-right-6">
+                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                      <div className="flex items-center gap-1.5 sm:gap-3">
+                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
+                          <BarChart3 className="size-3.5 sm:size-5" aria-hidden />
                         </span>
                         <div>
-                          <p className="text-[12.5px] font-bold text-slate-800 leading-tight">Upsell Opportunity</p>
-                          <p className="text-[11px] font-medium text-slate-500">Identified</p>
+                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Upsell Opportunity</p>
+                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Identified</p>
                         </div>
                         <span className="ml-1 flex gap-1" aria-hidden>
                           <span className="size-1.5 rounded-full bg-slate-300" />
