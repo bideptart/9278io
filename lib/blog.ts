@@ -7,6 +7,8 @@ export type BlogPostSummary = {
   description: string
   category: string
   publishedAt: string
+  /** Raw ISO timestamp behind `publishedAt`, kept for chronological sorting. */
+  publishedIso: string
   readTime: string
   /** Inner HTML of the post's hero figure (an <img> or inline <svg>). */
   heroHtml: string
@@ -44,8 +46,15 @@ async function resolveBlogDir() {
 
 const FALLBACK_SLUGS = [
   "24-7-ai-receptionist-guide",
+  "ai-answering-service",
   "ai-appointment-booking-setup",
   "ai-calling-agent-cost-india",
+  "ai-calling-software",
+  "ai-customer-support",
+  "ai-ivr-explained",
+  "ai-phone-answering-service",
+  "ai-powered-chatbot",
+  "ai-receptionist",
   "ai-receptionist-gyms-guide",
   "ai-receptionist-hospitals-clinics",
   "ai-receptionist-hotels-guide",
@@ -54,6 +63,7 @@ const FALLBACK_SLUGS = [
   "ai-receptionist-restaurants-qsr",
   "ai-receptionist-software-guide",
   "ai-receptionist-vs-digital-receptionist",
+  "ai-virtual-assistant",
   "ai-voice-agent-bfsi",
   "ai-voice-agent-real-estate",
   "ai-voice-agent-vs-human",
@@ -62,10 +72,17 @@ const FALLBACK_SLUGS = [
   "best-ai-voice-agents-india",
   "business-call-automation-setup",
   "business-phone-answering-service",
+  "conversational-ai-platform",
+  "customer-service-automation",
   "hindi-ai-voice-agent",
   "how-to-build-an-ai-voice-agent",
   "multilingual-ai-receptionist-guide",
+  "smart-chatbot",
+  "speech-to-text",
+  "text-to-speech",
   "trai-compliant-ai-cold-calling",
+  "trai-rules-business-calls",
+  "virtual-receptionist",
   "voice-ai-business-guide",
   "what-is-an-ai-voice-agent",
 ] as const
@@ -149,6 +166,7 @@ function parseBlogHtml(slug: string, html: string): BlogPost {
     description: description || lead || "",
     category,
     publishedAt: publishedAt || "",
+    publishedIso: publishedIso || "",
     readTime: readTime || "",
     lead,
     heroHtml,
@@ -183,13 +201,23 @@ export async function getAllBlogPostSummaries(): Promise<BlogPostSummary[]> {
         description: normalizeWhitespace(parsed.description),
         category: normalizeWhitespace(parsed.category),
         publishedAt: normalizeWhitespace(parsed.publishedAt),
+        publishedIso: parsed.publishedIso,
         readTime: normalizeWhitespace(parsed.readTime),
         heroHtml: parsed.heroHtml,
       }
     }),
   )
 
-  return posts.sort((a, b) => b.slug.localeCompare(a.slug))
+  // Newest first by actual publish date — not by slug, which sorted
+  // alphabetically and had nothing to do with recency (it was picking an
+  // arbitrary post as "Featured" and showing a stale "Last updated" date
+  // on /blog). Posts without a parseable date fall back to the end via
+  // Number.NEGATIVE_INFINITY rather than breaking the sort.
+  return posts.sort((a, b) => {
+    const aTime = a.publishedIso ? Date.parse(a.publishedIso) : Number.NEGATIVE_INFINITY
+    const bTime = b.publishedIso ? Date.parse(b.publishedIso) : Number.NEGATIVE_INFINITY
+    return bTime - aTime
+  })
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {

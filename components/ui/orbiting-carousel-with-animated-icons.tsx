@@ -111,20 +111,20 @@ export default function OrbitCarousel() {
     switch (screenSize) {
       case "xs":
         return {
-          containerRadius: 100,
-          profileSize: 45,
-          cardWidth: "w-40",
-          avatarSize: "w-12 h-12",
-          avatarMargin: "-mt-8",
+          containerRadius: 115,
+          profileSize: 54,
+          cardWidth: "w-44",
+          avatarSize: "w-14 h-14",
+          avatarMargin: "-mt-9",
           fontSize: { name: "text-sm", role: "text-xs", meta: "text-xs" },
         }
       case "sm":
         return {
-          containerRadius: 120,
-          profileSize: 55,
-          cardWidth: "w-44",
-          avatarSize: "w-14 h-14",
-          avatarMargin: "-mt-9",
+          containerRadius: 140,
+          profileSize: 62,
+          cardWidth: "w-48",
+          avatarSize: "w-16 h-16",
+          avatarMargin: "-mt-10",
           fontSize: { name: "text-base", role: "text-xs", meta: "text-xs" },
         }
       case "md":
@@ -191,11 +191,14 @@ export default function OrbitCarousel() {
 
   return (
     <div
-      className="relative flex min-h-[350px] flex-col items-center p-2 sm:min-h-[400px] sm:p-4"
+      className="relative flex w-full min-h-[420px] flex-col items-center p-2 sm:min-h-[470px] sm:p-4"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="relative flex items-center justify-center" style={{ width: containerSize, height: containerSize }}>
+      <div
+        className="relative mx-auto flex max-w-full items-center justify-center"
+        style={{ width: containerSize, height: containerSize }}
+      >
         {/* Active capability card */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -257,6 +260,11 @@ export default function OrbitCarousel() {
           const rotation = getRotation(i)
           const isActive = i === activeIndex
 
+          // The active item is already shown large in the center card — keep
+          // it out of the ring so its photo never visually collides with the
+          // card's protruding avatar.
+          if (isActive) return null
+
           return (
             <motion.div
               key={c.id}
@@ -265,7 +273,6 @@ export default function OrbitCarousel() {
                 type: "spring",
                 stiffness: 150,
                 damping: 20,
-                delay: isActive ? 0 : Math.abs(i - activeIndex) * 0.05,
               }}
               style={{
                 width: profileSize,
@@ -273,7 +280,7 @@ export default function OrbitCarousel() {
                 position: "absolute",
                 top: `calc(50% - ${profileSize / 2}px)`,
                 left: `calc(50% - ${profileSize / 2}px)`,
-                zIndex: isActive ? 20 : 10,
+                zIndex: 10,
               }}
             >
               {/* Counter-rotation keeps the photo upright as the ring spins */}
@@ -285,9 +292,7 @@ export default function OrbitCarousel() {
                   onClick={() => handleProfileClick(i)}
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`size-full cursor-pointer rounded-full object-cover shadow-md transition-all duration-300 ${
-                    isActive ? "border-4 border-blue-500 shadow-lg" : "border-2 border-white/70 hover:border-blue-300"
-                  }`}
+                  className="size-full cursor-pointer rounded-full border-2 border-white/70 object-cover shadow-md transition-all duration-300 hover:border-blue-300"
                 />
               </motion.div>
             </motion.div>

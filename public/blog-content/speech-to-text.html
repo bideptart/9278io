@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speech-to-Text Guide: How It Works and Why Accuracy Varies</title>
+<meta name="description" content="Most speech-to-text guides assume a quiet room, a good microphone, and someone speaking careful English. Indian phone calls are none of those things. Here is how…">
+<meta name="keywords" content="speech to text, speech to text india, ai voice agent, voice ai for indian businesses">
+<link rel="canonical" href="https://www.9278.io/blog/speech-to-text">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Speech-to-Text Guide: How It Works and Why Accuracy Varies">
+<meta property="og:description" content="Most speech-to-text guides assume a quiet room, a good microphone, and someone speaking careful English. Indian phone calls are none of those things. Here is how…">
+<meta property="og:url" content="https://www.9278.io/blog/speech-to-text">
+<meta property="og:site_name" content="9278.io">
+<meta property="og:locale" content="en_IN">
+<meta property="article:published_time" content="2026-07-31">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Speech-to-Text Guide: How It Works and Why Accuracy Varies">
+<meta name="twitter:description" content="Most speech-to-text guides assume a quiet room, a good microphone, and someone speaking careful English. Indian phone calls are none of those things. Here is how…">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Speech-to-Text Guide: How It Works and Why Accuracy Varies","description":"Most speech-to-text guides assume a quiet room, a good microphone, and someone speaking careful English. Indian phone calls are none of those things. Here is how…","image":"https://www.9278.io/opengraph-image","author":{"@type":"Organization","name":"9278.io","url":"https://www.9278.io"},"publisher":{"@type":"Organization","name":"9278.io","logo":{"@type":"ImageObject","url":"https://www.9278.io/darktheme.png"}},"datePublished":"2026-07-31","dateModified":"2026-07-31","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.9278.io/blog/speech-to-text"},"keywords":"speech to text, speech to text india, ai voice agent, voice ai for indian businesses"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is speech-to-text used for in a business?","acceptedAnswer":{"@type":"Answer","text":"It converts phone calls, meetings, and voice notes into searchable written records. Businesses use it to capture leads, log appointments, and audit conversations without extra staff."}},{"@type":"Question","name":"Where does speech-to-text accuracy usually break down?","acceptedAnswer":{"@type":"Answer","text":"It breaks down on proper nouns, regional accents, and noisy or compressed telephone audio. Grammar is rarely the problem; unfamiliar names and localities almost always are."}},{"@type":"Question","name":"When should I use streaming instead of batch transcription?","acceptedAnswer":{"@type":"Answer","text":"Use streaming whenever something must happen during the call, like booking a slot or confirming an order. Batch is fine for meeting notes, audits, and archives."}},{"@type":"Question","name":"How does a speech engine handle Hinglish or mixed-language calls?","acceptedAnswer":{"@type":"Answer","text":"It needs to allow the language to change word by word instead of locking to one at the start. Systems trained on Indian audio handle this far better than English-only models."}},{"@type":"Question","name":"Is AI call answering TRAI-compliant in India?","acceptedAnswer":{"@type":"Answer","text":"Automated calling is allowed when it follows TRAI's rules on consent, timing, and registered sender identity. Platforms built for India, including 9278.io, handle TRAI-compliant calling by default."}},{"@type":"Question","name":"How much does speech-to-text cost for a small Indian business?","acceptedAnswer":{"@type":"Answer","text":"Pricing usually runs per audio hour for batch or per second for live calls. Entry plans for AI voice handling start at ₹2,999 a month, which covers a couple of agents and a few hundred minutes."}},{"@type":"Question","name":"Which Indian languages are supported for voice transcription?","acceptedAnswer":{"@type":"Answer","text":"Good India-first platforms cover 10+ languages including Hindi, Tamil, Telugu, Bengali, Marathi, and Punjabi. Coverage matters less than how the system behaves when a caller switches between two of them."}},{"@type":"Question","name":"Why does server location affect transcription on live calls?","acceptedAnswer":{"@type":"Answer","text":"Every network hop adds delay, and a live call only has about 300 milliseconds before it feels unnatural. Servers inside India leave far more of that budget for the model to actually think."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.9278.io"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.9278.io/blog"},{"@type":"ListItem","position":3,"name":"Speech-to-Text Guide: How It Works and Why Accuracy Varies","item":"https://www.9278.io/blog/speech-to-text"}]}</script>
+<style>
+:root{--navy:#0a0c18;--ink:#1d2939;--muted:#667085;--line:#e4e7ec;--accent:#2563eb;--accentdk:#1e40af;--bg:#ffffff;--soft:#f5f8ff;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.7;background:var(--bg);font-size:18px;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+header.site{border-bottom:1px solid var(--line);background:var(--navy);}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+header.site .brand{color:#fff;font-weight:700;font-size:20px;letter-spacing:-.02em;}
+header.site nav a{color:#c7d2fe;font-size:15px;margin-left:22px;}
+.breadcrumb{font-size:13px;color:var(--muted);margin:24px 0 8px;}
+.breadcrumb a{color:var(--muted);}
+h1{font-size:36px;line-height:1.2;letter-spacing:-.02em;margin:.2em 0 .35em;color:var(--navy);}
+h2{font-size:25px;line-height:1.3;margin:1.6em 0 .5em;color:var(--navy);letter-spacing:-.01em;}
+h3{font-size:20px;margin:1.4em 0 .4em;color:var(--navy);}
+.meta{color:var(--muted);font-size:14px;margin-bottom:8px;}
+.lead{font-size:20px;color:#344054;margin:0 0 1.2em;}
+.tag{display:inline-block;background:var(--soft);color:var(--accentdk);font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em;}
+article p{margin:0 0 1.1em;}
+article ul,article ol{margin:0 0 1.2em;padding-left:22px;}
+article li{margin:.35em 0;}
+.callout{background:var(--soft);border:1px solid #dbe4ff;border-left:4px solid var(--accent);border-radius:10px;padding:16px 20px;margin:1.5em 0;font-size:17px;}
+.keytakeaway{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 20px;margin:1.5em 0;}
+.keytakeaway strong{color:#15803d;}
+table{width:100%;border-collapse:collapse;margin:1.4em 0;font-size:16px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:14px;}
+tr:nth-child(even) td{background:#fafbff;}
+.faq{margin-top:1em;}
+.faq details{border:1px solid var(--line);border-radius:10px;padding:4px 16px;margin:10px 0;background:#fff;}
+.faq summary{font-weight:600;cursor:pointer;padding:12px 0 4px;color:var(--navy);font-size:17px;}
+.faq details p{margin:0 0 1em;color:#344054;}
+.cta{background:var(--navy);color:#fff;border-radius:16px;padding:30px;margin:2.4em 0;text-align:center;}
+.cta h3{color:#fff;margin:0 0 .4em;}
+.cta p{color:#c7d2fe;margin:0 0 1.1em;}
+.btn{display:inline-block;background:var(--accent);color:#fff!important;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none!important;}
+.related{border-top:1px solid var(--line);margin-top:3em;padding-top:1.4em;}
+.related h3{font-size:18px;}
+.related a{display:block;padding:7px 0;font-weight:500;}
+footer.site{border-top:1px solid var(--line);margin-top:3em;padding:26px 0;color:var(--muted);font-size:14px;}
+.author{display:flex;align-items:center;gap:12px;margin:1.6em 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.author .av{width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.author .t{font-size:14px;color:var(--muted);}
+.author .t b{color:var(--ink);display:block;font-size:15px;}
+.post-hero{margin:14px 0 26px;}
+.post-hero img{width:100%;height:auto;display:block;border-radius:16px;}
+.post-img{margin:26px 0;}
+.post-img img{width:100%;height:auto;display:block;}
+.post-img figcaption,.post-hero figcaption{font-size:13.5px;color:var(--muted);text-align:center;margin-top:9px;font-style:italic;}
+
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="/">9278.io</a><nav><a href="/industries">Industries</a><a href="/pricing">Pricing</a><a href="/blog">Blog</a></nav></div></header>
+<main class="wrap">
+<div class="breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog">Blog</a> &rsaquo; Voice AI</div>
+<span class="tag">Voice AI</span>
+<h1>Speech-to-Text Guide: How It Works and Why Accuracy Varies</h1>
+<div class="meta">By 9278.io Team &middot; 31 July 2026 &middot; 8 min read</div>
+<p class="lead">Most speech-to-text guides assume a quiet room, a good microphone, and someone speaking careful English. Indian phone calls are none of those things. Here is how the technology actually works, and where it breaks on a real line.</p>
+<div class="author"><div class="av">9</div><div class="t"><b>9278.io Team</b>Voice AI for Indian businesses &middot; Updated 31 July 2026</div></div>
+<figure class="post-hero"><img src="/blog-content/speech-to-text/speech-to-text-guide-how-it-works-and-why-accuracy-varies.png" alt="Speech-to-Text Guide: How It Works and Why Accuracy Varies" /></figure>
+<article>
+
+<div class="keytakeaway"><strong>Key takeaways:</strong>
+<ul>
+<li>Speech-to-text works in four separate stages, and accuracy can break at any one of them.</li>
+<li>Errors cluster on proper nouns, regional accents, and Hinglish code-mixing — rarely on grammar.</li>
+<li>Batch transcription can trade speed for accuracy, but live calls cannot.</li>
+<li>Latency under 300 milliseconds is the difference between a natural conversation and an awkward one.</li>
+</ul>
+</div>
+
+<p>Speech-to-text is the technology that turns spoken audio into written words, and this guide covers how it works from the microphone to the finished sentence. It matters because a missed call at 9 PM, a receptionist juggling five lines, and a lead who hung up before anyone answered all leave the same gap — nobody wrote down what was said. You will learn how a speech engine processes sound, why accuracy falls apart on Indian names and mixed-language sentences, how streaming differs from batch processing, and what to check before you pay for anything. Most guides stop at English dictation into a laptop; this one deals with the messy audio that real Indian phone lines carry.</p>
+<h2>From Sound Wave to Sentence: The Four Steps Inside a Speech-to-Text Engine</h2>
+<figure class="post-img"><img src="/blog-content/speech-to-text/from-sound-wave-to-sentence-the-four-steps-inside-a-speech-to-text-engine.png" alt="From Sound Wave to Sentence: The Four Steps Inside a Speech-to-Text Engine" style="width:100%;height:auto;display:block" /></figure>
+<p>Every speech recognition system does the same job — it takes messy analog sound and returns clean text. The steps are separate, and each one fails in its own way. Knowing where they sit tells you exactly where your accuracy is leaking. A good speech-to-text setup is only as strong as its weakest stage.</p>
+<p>It starts with capture, where the microphone or telecom codec records the audio and a compressed 8 kHz phone line has already thrown away detail a 16 kHz headset keeps. Feature extraction then cuts that audio into short frames and turns each one into a numerical fingerprint of its frequencies. Acoustic modelling maps those frames to the smallest units of sound in the target language, and language modelling picks the word sequence that makes the most sense in context — which is how the system decides between "sell" and "cell" without ever hearing a difference.</p>
+<h2>Why Does Speech-to-Text Still Mishear Indian Names?</h2>
+<p>Speech-to-text models learn from the audio they were trained on, and most large public models heard far more American and British English than Indian English. An unfamiliar vowel or a name like Sreelakshmi gets pushed into the nearest word the model already knows. The failures are predictable, and any team building <a href="https://www.9278.io/blog/what-is-an-ai-voice-agent">call automation</a> should test on its own recordings long before trusting a published accuracy score.</p>
+<ul>
+<li><strong>Proper nouns.</strong> Personal names, localities and housing-society names rarely appear in general training data.</li>
+<li><strong>Lakhs and crores.</strong> Amounts spoken Indian-style, such as "two lakh fifty thousand," get written as digits inconsistently.</li>
+<li><strong>Background noise.</strong> Traffic, ceiling fans and shared offices mask the consonants that carry the least energy.</li>
+<li><strong>Narrowband audio.</strong> Landline and mobile calls cut the high frequencies that separate "s" from "f."</li>
+<li><strong>Fast speech.</strong> Speakers drop the pauses between words, so the engine has to guess where one word ends.</li>
+</ul>
+<h2>Hinglish, Code-Mixing, and the Problem No English Model Solves</h2>
+<figure class="post-img"><img src="/blog-content/speech-to-text/hinglish-code-mixing-and-the-problem-no-english-model-solves.png" alt="Hinglish, Code-Mixing, and the Problem No English Model Solves" style="width:100%;height:auto;display:block" /></figure>
+<p>Indians rarely finish a sentence in the language they started it in. A caller from Pune may open in Marathi, name the product in English, and confirm the appointment in Hindi. A speech-to-text model locked to a single language transcribes the part it recognises and mangles everything around it.</p>
+<h3>Switching mid-sentence</h3>
+<p>Code-mixing happens inside single sentences, not just between them. A system that only detects language at the start of a call will pick one and stay wrong for the rest of it. The engine has to allow the language to shift word by word.</p>
+<h3>Choosing a script</h3>
+<p>"Kal subah" and "कल सुबह" are the same words in two scripts. Your transcript is only useful if the script stays consistent, because your CRM search, your reports, and your keyword rules all depend on it.</p>
+<h3>Coverage that actually ships</h3>
+<p>Broad language claims are easy to make and hard to verify. Platforms built for this market, including 9278.io, support 10+ Indian languages such as Hindi, Tamil, Telugu, Bengali, Marathi, and Punjabi — which matters far more than a long list of European ones your callers will never use. Our guide to <a href="https://www.9278.io/blog/hindi-ai-voice-agent">Hindi voice agents</a> goes deeper on how code-switching is handled on a live call.</p>
+<h2>Batch Transcription vs Streaming Speech-to-Text: Which One Do You Need?</h2>
+<p>Batch transcription takes a finished recording and returns text a little later. Streaming speech-to-text returns words while the person is still talking. The choice is not about quality — it is about whether anything needs to happen during the call.</p>
+<p>Batch suits meeting notes, quality audits and compliance archives, where a few minutes of delay costs nothing and the engine can re-read the whole file for context, so it usually scores slightly higher on accuracy. Streaming is the choice when the transcript drives something live, such as booking a slot or checking an order number, and it has to commit to words as they arrive and then quietly correct them as more audio lands. Pricing follows the same split: batch is normally billed per audio hour, streaming per active second or minute.</p>
+<h2>The 300-Millisecond Rule That Decides If a Call Feels Human</h2>
+<figure class="post-img"><img src="/blog-content/speech-to-text/the-300-millisecond-rule-that-decides-if-a-call-feels-human.png" alt="The 300-Millisecond Rule That Decides If a Call Feels Human" style="width:100%;height:auto;display:block" /></figure>
+<p>In a real conversation, people answer each other in roughly a third of a second. Push past that and the caller assumes the line dropped, starts repeating themselves, and talks over the reply. For live phone calls, the whole loop — speech recognition, understanding, and the spoken response — has to fit inside that budget.</p>
+<h3>Where the milliseconds go</h3>
+<p>Network hops, audio buffering, model inference, and voice generation each take a slice. Systems built on WebRTC and hosted close to the user, the way 9278.io runs sub-300ms responses from Mumbai and Hyderabad, spend far less time in transit than one routed through a US region.</p>
+<h3>Why distance is not a detail</h3>
+<p>A round trip from Bengaluru to a North American data centre can eat the entire budget before the model has processed a single word. Indian network conditions reward infrastructure that sits in India.</p>
+<h2>Turn Every Missed Call Into a Written Record</h2>
+<p>The real value of speech-to-text is not the transcript itself — it is everything that becomes searchable once the conversation exists as text. A call that was never logged is a lead you cannot follow up, and speech recognition closes that gap without adding staff.</p>
+<p>In real estate that means every site-visit request is captured, even the ones that arrive at midnight. Clinics and salons move appointment times straight from the conversation into the calendar, while lenders and insurers keep a searchable record of what was promised on each call. Restaurants and e-commerce sellers confirm order details without a person repeating them back, and support teams can finally see the same complaint surfacing across hundreds of calls in a single week.</p>
+<h2>The Myth That More Training Data Beats Better Audio</h2>
+<figure class="post-img"><img src="/blog-content/speech-to-text/the-myth-that-more-training-data-beats-better-audio.png" alt="The Myth That More Training Data Beats Better Audio" style="width:100%;height:auto;display:block" /></figure>
+<p>Speech-to-text vendors love to talk about how many hours of audio trained their model. It matters, but far less than the quality of the signal you feed in on the day. A clean 16 kHz stream from an average model routinely beats a distorted phone recording sent to an excellent one — a limitation that has shaped <a href="https://en.wikipedia.org/wiki/Speech_recognition" rel="noopener noreferrer" target="_blank">speech recognition</a> research since its earliest days.</p>
+<h3>Fix the input first</h3>
+<p>Move the microphone, cut the background noise, and stop re-encoding audio between systems. These changes cost nothing and often lift accuracy more than switching vendors does.</p>
+<h3>Then match the model to the language</h3>
+<p>Once the audio is clean, the gains come from a model that knows your callers' languages and vocabulary. Feeding it your product names and locality names in advance does more than another million generic training hours.</p>
+<h2>Six Questions to Ask Before You Sign a Speech-to-Text Contract</h2>
+<p>Most buying mistakes come from testing the wrong thing — a quiet studio demo instead of a real Tuesday afternoon call. Run any speech-to-text vendor through this list before you commit to a plan, whether that is 9278.io or anyone else.</p>
+<ul>
+<li><strong>Test conditions.</strong> Was the accuracy figure measured on telephone audio, or on clean studio recordings?</li>
+<li><strong>Language coverage.</strong> Which Indian languages are supported, and does the system handle switching mid-sentence?</li>
+<li><strong>End-to-end latency.</strong> What is the delay on a live call, not just the model's inference time?</li>
+<li><strong>Server location.</strong> Where are the servers, and does traffic leave India at any point?</li>
+<li><strong>Billing model.</strong> Is billing per second or rounded up to the minute, and are there long-term contracts?</li>
+<li><strong>Compliance.</strong> Is the calling side TRAI-compliant, so your outbound activity stays within the rules?</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Speech-to-text has moved well past dictation software, and the gap between systems now shows up in the details rather than the headline numbers. Accuracy depends on your audio quality and your callers' languages, while latency decides whether a live call feels like a conversation or a queue. The practical next step is small: record ten real calls from your own business and run them through any speech recognition system you are considering. You will learn more in an afternoon than any accuracy chart can tell you, and platforms like 9278.io let you test on real traffic with per-second billing instead of a year-long contract. Start with the calls you are already missing, and let the transcript show you what they were worth.</p>
+
+<div class="cta"><h3>Ready to see it on your own calls?</h3><p>9278.io answers every call in the caller's own language, with TRAI-compliant, per-second billed calling built for Indian businesses.</p><a class="btn" href="/get-started">Start free trial</a></div>
+
+<section class="faq"><h2>Frequently asked questions</h2>
+    <details><summary>What is speech-to-text used for in a business?</summary><p>It converts phone calls, meetings, and voice notes into searchable written records. Businesses use it to capture leads, log appointments, and audit conversations without extra staff.</p></details>
+    <details><summary>Where does speech-to-text accuracy usually break down?</summary><p>It breaks down on proper nouns, regional accents, and noisy or compressed telephone audio. Grammar is rarely the problem; unfamiliar names and localities almost always are.</p></details>
+    <details><summary>When should I use streaming instead of batch transcription?</summary><p>Use streaming whenever something must happen during the call, like booking a slot or confirming an order. Batch is fine for meeting notes, audits, and archives.</p></details>
+    <details><summary>How does a speech engine handle Hinglish or mixed-language calls?</summary><p>It needs to allow the language to change word by word instead of locking to one at the start. Systems trained on Indian audio handle this far better than English-only models.</p></details>
+    <details><summary>Is AI call answering TRAI-compliant in India?</summary><p>Automated calling is allowed when it follows TRAI's rules on consent, timing, and registered sender identity. Platforms built for India, including 9278.io, handle TRAI-compliant calling by default.</p></details>
+    <details><summary>How much does speech-to-text cost for a small Indian business?</summary><p>Pricing usually runs per audio hour for batch or per second for live calls. Entry plans for AI voice handling start at ₹2,999 a month, which covers a couple of agents and a few hundred minutes.</p></details>
+    <details><summary>Which Indian languages are supported for voice transcription?</summary><p>Good India-first platforms cover 10+ languages including Hindi, Tamil, Telugu, Bengali, Marathi, and Punjabi. Coverage matters less than how the system behaves when a caller switches between two of them.</p></details>
+    <details><summary>Why does server location affect transcription on live calls?</summary><p>Every network hop adds delay, and a live call only has about 300 milliseconds before it feels unnatural. Servers inside India leave far more of that budget for the model to actually think.</p></details>
+</section>
+</article>
+<div class="related"><h3>Related reading</h3>
+<a href="/blog/hindi-ai-voice-agent">Hindi AI Voice Agent: Automating Business Calls in Hindi and Hinglish</a>
+<a href="/blog/what-is-an-ai-voice-agent">What Is an AI Voice Agent? A Plain-English Guide for Indian Businesses</a>
+<a href="/blog/ai-receptionist-india">AI Receptionist in India: Answer Every Call, Day or Night</a>
+</div>
+</main>
+<footer class="site"><div class="wrap">&copy; 2026 9278.io &middot; Native-audio voice agents for Indian businesses. This article is for general information and is not legal advice.</div></footer>
+</body>
+</html>
