@@ -268,7 +268,6 @@ export default function OrbitCarousel() {
                 type: "spring",
                 stiffness: 150,
                 damping: 20,
-                delay: isActive ? 0 : Math.abs(i - activeIndex) * 0.05,
               }}
               style={{
                 width: profileSize,
