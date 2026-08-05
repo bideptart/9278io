@@ -31,7 +31,7 @@ const TESTIMONIALS = [
   },
 ]
 
-type Slide = { quote: string; name: string; role: string }
+type Slide = { quote: string; name: string; role: string; image?: string }
 
 type FeatureImageSectionProps = {
   testimonial?: 0 | 1 | 2 | 3
@@ -49,7 +49,7 @@ type FeatureImageSectionProps = {
   mode?: "testimonial" | "feature"
 }
 
-const CYCLE_MS = 4200
+const CYCLE_MS = 3500
 
 // Shared "trusted by real businesses" slot sitting between the capabilities
 // breakdown and the closing PricingCta on every /features/* inner page.
@@ -78,7 +78,10 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
     return () => clearInterval(id)
   }, [paused, items.length])
 
-  const current = items[active % items.length]
+  const total = items.length
+  const current = items[active % total]
+  const prevItem = items[(active - 1 + total) % total]
+  const nextItem = items[(active + 1) % total]
 
   return (
     <section className="w-full bg-background px-6 py-14 md:px-8 md:py-20">
@@ -87,41 +90,87 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        {/* Left — fanned 3-card stack pattern, no photo content. All three
-            share the same top edge (no vertical stagger) so the canvas stays
-            evenly balanced — only horizontal offset + scale distinguish the sides. */}
+        {/* Left — fanned 3-card stack pattern. Cards show the real per-slide
+            image when provided, falling back to the plain gradient tile
+            otherwise. All three share the same top edge (no vertical
+            stagger) — only horizontal offset + scale distinguish the sides. */}
         <div className="relative mx-auto h-[340px] w-[436px] shrink-0">
-          <div
+          <motion.div
             aria-hidden
-            className="absolute left-0 top-0 h-[340px] w-[340px] rounded-[20px]"
+            key={`prev-${active}`}
+            className="absolute left-0 top-0 h-[340px] w-[340px] overflow-hidden rounded-[20px]"
             style={{
               zIndex: 2,
               transform: "translateX(0) scale(0.85)",
-              background: "linear-gradient(135deg, #EEF2FF, #E0E7FF)",
+              background: "#F8FBFF",
               boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
             }}
-          />
-          <div
-            aria-hidden
-            className="absolute left-0 top-0 h-[340px] w-[340px] rounded-[20px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 0.5, times: [0, 0.35, 1] }}
+          >
+            {prevItem.image && (
+              <img src={prevItem.image} alt="" className="size-full object-contain" style={{ filter: "blur(3px)" }} />
+            )}
+          </motion.div>
+          <motion.div
+            className="absolute left-0 top-0 h-[340px] w-[340px] overflow-hidden rounded-[20px]"
             style={{
               zIndex: 3,
-              transform: "translateX(48px) scale(1)",
-              background: "linear-gradient(135deg, #2563EB0F, #10B9810F)",
-              border: "1px solid #E4ECFF",
-              boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
+              background: "#FFFFFF",
+              borderWidth: 1.5,
+              borderStyle: "solid",
             }}
-          />
-          <div
+            animate={{
+              x: 48,
+              scale: 1,
+              borderColor: ["#E4ECFF", "#2563EB55", "#E4ECFF"],
+              boxShadow: [
+                "0 20px 40px -18px rgba(11,18,32,0.3), 0 0 0 0 rgba(37,99,235,0.35)",
+                "0 20px 40px -18px rgba(11,18,32,0.3), 0 0 26px 6px rgba(37,99,235,0.28)",
+                "0 20px 40px -18px rgba(11,18,32,0.3), 0 0 0 0 rgba(37,99,235,0.35)",
+              ],
+            }}
+            transition={{
+              x: { duration: 0.2 },
+              scale: { duration: 0.2 },
+              boxShadow: { duration: 2.6, repeat: Infinity, ease: "easeInOut" },
+              borderColor: { duration: 2.6, repeat: Infinity, ease: "easeInOut" },
+            }}
+          >
+            <AnimatePresence mode="wait">
+              {current.image && (
+                <motion.img
+                  key={active}
+                  src={current.image}
+                  alt={current.name}
+                  className="size-full object-contain"
+                  initial={{ opacity: 0, scale: 1.06, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.96, filter: "blur(6px)" }}
+                  transition={{ duration: 0.25 }}
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
+          <motion.div
             aria-hidden
-            className="absolute left-0 top-0 h-[340px] w-[340px] rounded-[20px]"
+            key={`next-${active}`}
+            className="absolute left-0 top-0 h-[340px] w-[340px] overflow-hidden rounded-[20px]"
             style={{
               zIndex: 2,
               transform: "translateX(96px) scale(0.85)",
-              background: "linear-gradient(135deg, #F1F5F9, #E2E8F0)",
+              background: "#F8FBFF",
               boxShadow: "0 20px 40px -18px rgba(11,18,32,0.3)",
             }}
-          />
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 0.5, times: [0, 0.35, 1] }}
+          >
+            {nextItem.image && (
+              <img src={nextItem.image} alt="" className="size-full object-contain" style={{ filter: "blur(3px)" }} />
+            )}
+          </motion.div>
         </div>
 
         {/* Right — content, cycling when multiple slides are given */}
@@ -133,7 +182,7 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               {mode === "feature" ? (
                 <>

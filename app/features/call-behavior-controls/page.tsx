@@ -238,16 +238,19 @@ export default function CallBehaviorControlsPage() {
             role: "Custom greeting",
             name: "Sounds like your business, not a bot",
             quote: "Write the exact words each agent opens a call with — set once per agent, in the dashboard.",
+            image: "/images/features/call-behavior-controls/call-behavior-controls-01-custom-greeting.png",
           },
           {
             role: "Interruptions",
             name: "Callers can talk over the agent",
             quote: "Choose whether callers can interrupt mid-sentence like a real conversation, or keep it turn-based.",
+            image: "/images/features/call-behavior-controls/call-behavior-controls-02-interruptions.png",
           },
           {
             role: "Handoff trigger",
             name: "Define exactly when it transfers",
             quote: "Set the trigger — failed attempts, a specific request, a VIP caller — and the agent hands off on cue.",
+            image: "/images/features/call-behavior-controls/call-behavior-controls-03-handoff-trigger.png",
           },
         ]}
       />
