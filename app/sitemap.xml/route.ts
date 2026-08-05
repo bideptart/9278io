@@ -39,6 +39,35 @@ const staticRoutes: Entry[] = [
   { loc: "/sla", priority: 0.3, changefreq: "yearly" },
 ]
 
+// Industry pages that are static folders (app/industries/<slug>/page.tsx)
+// rather than entries in lib/industries.ts's INDUSTRIES array — these take
+// route precedence over the dynamic /industries/[slug] page and need to be
+// listed here explicitly since they aren't covered by the INDUSTRIES.map below.
+const staticIndustrySlugs = ["enterprise-it", "finance", "logistics", "remote-teams", "retail-ecom", "saas-tech"]
+
+// Feature detail pages under app/features/<slug>/page.tsx — no shared data
+// file to map over (unlike industries), so listed explicitly.
+const featureSlugs = [
+  "account-settings",
+  "analytics-dashboard",
+  "behavior-routing-rules",
+  "booking-history",
+  "booking-notifications",
+  "call-behavior-controls",
+  "call-reports",
+  "call-transfer-tool",
+  "dashboard-overview",
+  "identity-setup",
+  "knowledge-base",
+  "knowledge-templates",
+  "live-test-call",
+  "multi-agent-management",
+  "playground-live-testing",
+  "setup-templates",
+  "support-tickets-system",
+  "voice-selection",
+]
+
 export async function GET() {
   const lastmod = new Date().toISOString()
   const blogSlugs = await getAllBlogSlugs()
@@ -46,6 +75,8 @@ export async function GET() {
   const entries: Entry[] = [
     ...staticRoutes,
     ...INDUSTRIES.map((i) => ({ loc: `/industries/${i.slug}`, priority: 0.7, changefreq: "monthly" })),
+    ...staticIndustrySlugs.map((slug) => ({ loc: `/industries/${slug}`, priority: 0.7, changefreq: "monthly" })),
+    ...featureSlugs.map((slug) => ({ loc: `/features/${slug}`, priority: 0.6, changefreq: "monthly" })),
     ...blogSlugs.map((slug) => ({ loc: `/blog/${slug}`, priority: 0.6, changefreq: "monthly" })),
   ]
 
