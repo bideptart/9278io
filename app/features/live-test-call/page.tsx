@@ -182,7 +182,7 @@ export default function LiveTestCallPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={0} />
 
       <PricingCta
         heading="Ready to hear your agent live?"

@@ -52,7 +52,7 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Qualify buyer & seller leads 24/7, book site visits on your calendar, and follow up the moment a listing gets a hit.",
     pitch:
-      "Most leads die because no one picks up in the first five minutes. 9278.io answers every inbound call instantly, qualifies buyers and sellers, and books site visits directly on your calendar — in the caller's preferred Indian language — so you walk into every conversation with context, not voicemail.",
+      "Most leads are lost because no one answers within the first five minutes. 9278.io instantly answers every call, qualifies buyers and sellers in their preferred Indian language, and books site visits directly to your calendar.",
     jobs: [
       "Answer Housing.com, MagicBricks and 99acres leads in under 3 seconds",
       "Qualify budget, timeline, home-loan status, and motivation",
@@ -78,7 +78,7 @@ export const INDUSTRIES: Industry[] = [
     short:
       "Capture every after-hours service request, dispatch the right tech, and never lose a job to a slow callback again.",
     pitch:
-      "AC, plumbing, electrical and home-repair contractors live and die by callback speed. 9278.io answers every after-hours and weekend call, captures the job details, surge-prices emergencies, and books the right technician on your dispatch board — across Tier-1 and Tier-2 Indian cities.",
+      "Every missed call is a missed job—especially after hours and on weekends. 9278.io answers instantly, captures job details, prioritizes emergencies, and books the right technician directly to your dispatch board.",
     jobs: [
       "After-hours emergency intake (AC failure, no power, water leak)",
       "Same-day vs scheduled job triage",

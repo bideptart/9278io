@@ -186,7 +186,7 @@ export default function BehaviorRoutingRulesPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={2} />
 
       <PricingCta
         heading="Ready to set your routing rules?"

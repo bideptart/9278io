@@ -188,7 +188,7 @@ export default function AccountSettingsPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={0} />
 
       <PricingCta
         heading="Ready to take control of your account?"

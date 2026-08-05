@@ -182,7 +182,7 @@ export default function DashboardOverviewPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={0} />
 
       <PricingCta
         heading="Ready to see your account at a glance?"

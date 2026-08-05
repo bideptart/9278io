@@ -194,7 +194,25 @@ export default function MultiAgentManagementPage() {
       {/* Capabilities — each one is its own full-width section, alternating background */}
       <MultiAgentCapabilities capabilities={capabilities} />
 
-      <FeatureImageSection />
+      <FeatureImageSection
+        slides={[
+          {
+            quote: "We run six agents — sales, support, and dispatch — from one 9278.io account. Cloning a configured agent to launch the next one takes minutes, not a rebuild.",
+            name: "Operations Lead",
+            role: "Multi-location business on 9278.io",
+          },
+          {
+            quote: "Every new city we launch in gets its own agent and its own number, but it's still one dashboard, one login, one bill.",
+            name: "Franchise Owner",
+            role: "12-location chain on 9278.io",
+          },
+          {
+            quote: "Support, sales, and dispatch used to be three different logins. On 9278.io they're three agents in the same account.",
+            name: "IT Manager",
+            role: "Growing team on 9278.io",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to manage your agents from one place?"

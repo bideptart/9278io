@@ -38,7 +38,7 @@ export function RestaurantChatCard() {
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white shadow-xl shadow-slate-900/10">
-      <div className="flex items-center gap-2.5 border-b border-blue-100 bg-blue-50/60 px-4 py-3.5">
+      <div className="flex items-center gap-2.5 border-b border-blue-100 bg-blue-50/60 px-4 pb-3.5 pt-6">
         <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
           <Bot className="size-4" aria-hidden />
         </span>
@@ -51,7 +51,7 @@ export function RestaurantChatCard() {
         </div>
       </div>
 
-      <div ref={scrollRef} className="h-[230px] shrink-0 space-y-2.5 overflow-y-auto scroll-smooth px-4 py-4">
+      <div ref={scrollRef} className="h-[260px] shrink-0 space-y-2.5 overflow-y-auto scroll-smooth px-4 py-4">
         <AnimatePresence initial={false}>
           {messages.map((m, i) => (
             <motion.div
@@ -98,13 +98,13 @@ export function RestaurantReservationCard() {
   }, [confirmed])
 
   return (
-    <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-xl shadow-slate-900/10">
+    <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white px-7 pb-7 pt-9 shadow-xl shadow-slate-900/10">
       <div className="mb-5 flex flex-col items-center text-center">
-        <span className="grid size-12 place-items-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/30">
-          <CalendarCheck className="size-5" aria-hidden />
+        <span className="grid size-14 place-items-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/30">
+          <CalendarCheck className="size-6" aria-hidden />
         </span>
-        <p className="mt-3 font-serif text-lg font-extrabold text-slate-900">Reserve a Table</p>
-        <p className="text-[12px] text-slate-500">Book your perfect dining experience</p>
+        <p className="mt-3 font-serif text-xl font-extrabold text-slate-900">Reserve a Table</p>
+        <p className="text-[13px] text-slate-500">Book your perfect dining experience</p>
       </div>
 
       <div className="space-y-3">

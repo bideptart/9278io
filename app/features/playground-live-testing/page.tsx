@@ -205,7 +205,7 @@ export default function PlaygroundLiveTestingPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={2} />
 
       <PricingCta
         heading="Test it yourself before it ever answers a real call"

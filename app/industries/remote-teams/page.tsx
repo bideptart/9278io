@@ -28,6 +28,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
@@ -43,7 +44,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "9278.io AI voice agents help remote-first organizations handle employee support, schedule meetings, route requests, and automate communication in 10+ languages. Stay connected with your team and customers 24/7. Whether it's a new hire in Bengaluru or a client call in London, every request is picked up in under 3 seconds and routed to the right person. No time zone, holiday, or shift change ever leaves a call unanswered."
+  "9278.io automates employee support, meeting scheduling, and request routing—so no call goes unanswered, across time zones or languages."
 
 const HOW_IT_WORKS = [
   { Icon: Bot, step: "1. Deploy Your Agent", text: "Create your AI voice agent with company knowledge, policies, FAQs and workflows." },
@@ -129,7 +130,7 @@ export default function RemoteTeamsPage() {
               </h1>
 
               <p className="mt-5 text-pretty text-[16px] font-bold leading-snug text-slate-800">
-                One agent. Every conversation. Anywhere.
+                Keep your workforce connected with AI voice agents that answer every call instantly, 24/7.
               </p>
 
               <p className="mt-4 max-w-lg text-pretty text-[15px] leading-relaxed text-slate-600">{PITCH}</p>
@@ -137,9 +138,7 @@ export default function RemoteTeamsPage() {
               <div className="mt-7 flex flex-wrap gap-3">
                 {[
                   { Icon: Clock, label: "Always Available 24/7 Support" },
-                  { Icon: Zap, label: "Smart Automation Save Time" },
                   { Icon: Globe, label: "Multilingual 10+ Languages" },
-                  { Icon: Plug, label: "Seamless Integration Works Everywhere" },
                 ].map((f) => (
                   <span
                     key={f.label}
@@ -418,6 +417,13 @@ export default function RemoteTeamsPage() {
           </div>
         </ScrollStepItem>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/remote-teams.png"
+        alt="AI voice agent supporting a distributed remote team"
+        heading="One agent, wherever your team is."
+        paragraph="No matter the time zone, 9278.io picks up every call instantly — answering HR and IT questions, scheduling meetings, and routing requests to the right person, so distributed teams stay connected around the clock."
+      />
 
       <PricingCta
         heading="Your Remote Team Never Misses A Conversation"

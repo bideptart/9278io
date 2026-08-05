@@ -26,6 +26,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
+import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { LogisticsLivePreview } from "@/components/industries/logistics-live-preview"
@@ -41,7 +42,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "9278.io AI voice agents help logistics companies automate delivery coordination, shipment tracking, customer notifications, and driver communication in 10+ Indian languages. Answer every call instantly, reduce support workload, and keep customers informed from dispatch to delivery."
+  "9278.io automates shipment tracking, delivery coordination, and driver communication in 10+ Indian languages."
 
 const AGENT_HANDLES = [
   { Icon: MessageCircle, text: "Instantly answer shipment status inquiries" },
@@ -131,7 +132,7 @@ export default function LogisticsPage() {
               </h1>
 
               <p className="mt-5 text-pretty text-[16px] font-bold leading-snug text-slate-800">
-                Never miss a shipment update, delivery confirmation, or customer inquiry.
+                Never miss a delivery update or customer call with AI voice agents that answer instantly.
               </p>
 
               <p className="mt-4 max-w-lg text-pretty text-[15px] leading-relaxed text-slate-600">{PITCH}</p>
@@ -141,7 +142,6 @@ export default function LogisticsPage() {
                   { Icon: Clock, label: "24/7 Shipment Updates" },
                   { Icon: Check, label: "Delivery Confirmation" },
                   { Icon: Users, label: "Driver Coordination" },
-                  { Icon: Globe, label: "Multilingual Support" },
                 ].map((f) => (
                   <span
                     key={f.label}
@@ -466,6 +466,13 @@ export default function LogisticsPage() {
           </div>
         </ScrollStepItem>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/logistics.png"
+        alt="AI voice agent coordinating logistics and delivery operations"
+        heading="Every shipment, tracked and communicated."
+        paragraph="From dispatch to delivery, 9278.io keeps customers and drivers in the loop — confirming pickups, answering tracking questions, and handling delay notifications instantly, so your ops team can focus on keeping the fleet moving."
+      />
 
       <PricingCta
         heading="Keep Every Delivery On Track"

@@ -1,5 +1,20 @@
 import type { Metadata } from "next"
-import { Target, Users, Zap, MapPin, Languages, ShieldCheck, PhoneCall, CalendarClock, UserCheck, Package, CreditCard } from "lucide-react"
+import {
+  Target,
+  Users,
+  Zap,
+  MapPin,
+  Languages,
+  ShieldCheck,
+  PhoneCall,
+  CalendarClock,
+  UserCheck,
+  Package,
+  CreditCard,
+  IndianRupee,
+  Building2,
+  HelpCircle,
+} from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
@@ -9,7 +24,28 @@ import { UseCaseGrid } from "@/components/about/use-case-grid"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
-import { RelatedLinks } from "@/components/seo/related-links"
+import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
+
+const exploreLinks = [
+  {
+    icon: <IndianRupee className="size-5" aria-hidden />,
+    href: "/pricing",
+    title: "Pricing in INR",
+    description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Prices in ₹, billed once as wallet credit.",
+  },
+  {
+    icon: <Building2 className="size-5" aria-hidden />,
+    href: "/industries",
+    title: "Industries we power",
+    description: "BPO, BFSI, real estate, EdTech, and more.",
+  },
+  {
+    icon: <HelpCircle className="size-5" aria-hidden />,
+    href: "/faq",
+    title: "Frequently asked questions",
+    description: "TRAI compliance, Indian languages, billing, and account questions.",
+  },
+]
 
 export const metadata: Metadata = pageSeo({
   title: "About 9278.io — India's AI Voice Agent Platform",
@@ -181,15 +217,17 @@ export default function AboutPage() {
         secondaryLabel="View pricing"
       />
 
-      <RelatedLinks
-        heading="Explore 9278.io"
-        description="Product, pricing, and industries — everything in one place."
-        links={[
-          { href: "/pricing", title: "Pricing in INR", description: "Starter ₹2,999, Growth ₹8,799, Scale ₹29,999. Prices in ₹, billed once as wallet credit." },
-          { href: "/industries", title: "Industries we power", description: "BPO, BFSI, real estate, EdTech, and more." },
-          { href: "/faq", title: "Frequently asked questions", description: "TRAI compliance, Indian languages, billing, and account questions." },
-        ]}
-      />
+      <section className="border-b border-border">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+          <ScrollReveal>
+            <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore 9278.io</h2>
+            <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
+              Product, pricing, and industries — everything in one place.
+            </p>
+          </ScrollReveal>
+          <MultiAgentExploreLinks links={exploreLinks} />
+        </div>
+      </section>
 
       <SiteFooter />
     </main>

@@ -179,7 +179,7 @@ export default function KnowledgeTemplatesPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={3} />
 
       <PricingCta
         heading="Ready to build a reusable knowledge template?"

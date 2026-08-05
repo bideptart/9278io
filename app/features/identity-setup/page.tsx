@@ -183,7 +183,7 @@ export default function IdentitySetupPage() {
         </div>
       </section>
 
-      <FeatureImageSection />
+      <FeatureImageSection testimonial={1} />
 
       <PricingCta
         heading="Ready to give your agent an identity?"
