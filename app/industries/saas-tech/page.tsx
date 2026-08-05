@@ -48,7 +48,7 @@ export const metadata: Metadata = pageSeo({
 })
 
 const PITCH =
-  "Convert more trials with AI voice agents that answer every call in under 3 seconds. 9278.io qualifies leads, onboards customers, and resolves support 24/7—so you never miss a demo, trial, or support request."
+  "Convert more trials with AI voice agents that answer every call in under 3 seconds. 9278.io qualifies leads and resolves support 24/7—so you never miss a demo or trial."
 
 const DAY_ONE_JOBS = [
   { Icon: UserCheck, text: "Qualifies inbound SaaS leads automatically" },
@@ -90,7 +90,6 @@ const WHY_ITEMS = [
 
 export default function SaasTechPage() {
   const related = INDUSTRIES.filter((i) => i.slug !== "saas-tech").slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <>
@@ -140,7 +139,7 @@ export default function SaasTechPage() {
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600">{PITCH}</p>
+              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
 
               <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-5 sm:flex sm:flex-wrap">
                 {[
@@ -438,40 +437,13 @@ export default function SaasTechPage() {
           </ScrollReveal>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: TrendingUp,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const LinkIcon = link.icon
 
               return (

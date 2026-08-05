@@ -5,7 +5,7 @@ import Image from "next/image"
 import {
   ArrowRight, Check,
   Car, Wrench, CalendarClock, PhoneCall, IndianRupee,
-  ArrowLeftRight, KeyRound, Rocket, LifeBuoy, ShieldCheck,
+  ArrowLeftRight, KeyRound, Rocket, ShieldCheck,
   Gauge, Clock, Users, PhoneMissed,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
@@ -77,7 +77,6 @@ export default function AutomotiveIndustryPage() {
 
   // Pick three sibling industries for the related-links module.
   const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -118,7 +117,7 @@ export default function AutomotiveIndustryPage() {
 
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>{" "}
                   <span
                     style={{
                       backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -127,7 +126,7 @@ export default function AutomotiveIndustryPage() {
                       color: "transparent",
                     }}
                   >
-                    dealerships &amp; service centres.
+                    Dealerships &amp; Service Centres.
                   </span>
                 </h1>
               </ScrollReveal>
@@ -428,7 +427,10 @@ export default function AutomotiveIndustryPage() {
           </div>
 
           {/* Both mockups, side by side, with a connecting arrow */}
-          <div className="relative mt-12 grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
+          {/* grid-cols-1 is minmax(0,1fr): without it the single mobile track
+              sizes to the mockups' min-content (~406px) and pushes the page
+              wider than the viewport. */}
+          <div className="relative mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
             <ScrollReveal delay={0.1}>
               <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 1 · Set up
@@ -488,31 +490,6 @@ export default function AutomotiveIndustryPage() {
                 description: r.short,
                 icon: r.icon,
               })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: IndianRupee,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: LifeBuoy,
-              },
             ].map((link, i) => {
               const LinkIcon = link.icon
               return (

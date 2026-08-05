@@ -34,7 +34,7 @@ export const metadata: Metadata = pageSeo({
 
 export default function RetailEcomPage() {
   // Read-only: four sibling industries for the related-links row.
-  const related = INDUSTRIES.slice(0, 4)
+  const related = INDUSTRIES.slice(0, 3)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -72,7 +72,7 @@ export default function RetailEcomPage() {
 
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>{" "}
                   <span
                     style={{
                       backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -81,7 +81,7 @@ export default function RetailEcomPage() {
                       color: "transparent",
                     }}
                   >
-                    retail &amp; e-commerce
+                    Retail &amp; E-commerce
                   </span>
                 </h1>
               </ScrollReveal>
@@ -238,20 +238,6 @@ export default function RetailEcomPage() {
                 description: r.short,
                 icon: r.icon,
               })),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: Wallet,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
             ].map((link, i) => {
               const LinkIcon = link.icon
               return (

@@ -80,7 +80,6 @@ const USE_CASES = [
 
 export default function RemoteTeamsPage() {
   const related = INDUSTRIES.filter((i) => i.slug !== "remote-teams").slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <>
@@ -133,7 +132,7 @@ export default function RemoteTeamsPage() {
                 Keep your workforce connected with AI voice agents that answer every call instantly, 24/7.
               </p>
 
-              <p className="mt-4 max-w-lg text-pretty text-[15px] leading-relaxed text-slate-600">{PITCH}</p>
+              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 {[
@@ -367,13 +366,14 @@ export default function RemoteTeamsPage() {
         {/* Stats bar */}
         <div className="mx-auto mt-8 max-w-7xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-r from-blue-800 to-blue-700 px-3 py-3 shadow-lg shadow-blue-800/25">
-            <div className="grid grid-cols-2 divide-y divide-white/15 sm:grid-cols-5 sm:divide-x sm:divide-y-0">
+            <div className="grid grid-cols-2 divide-y divide-white/15 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-6">
               {[
                 { Icon: Zap, label: "Average Response Time", value: "< 3 Seconds" },
                 { Icon: Clock, label: "Support Availability", value: "24/7" },
                 { Icon: Globe, label: "Languages Supported", value: "10+" },
                 { Icon: Users, label: "Concurrent Calls", value: "Up to 40" },
                 { Icon: ShieldCheck, label: "Reliable Uptime", value: "99.9%" },
+                { Icon: CalendarCheck, label: "Meeting Scheduling", value: "Automated" },
               ].map(({ Icon: StatIcon, label, value }, i) => (
                 <ScrollStepItem
                   key={label}
@@ -447,40 +447,13 @@ export default function RemoteTeamsPage() {
           </ScrollReveal>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: TrendingUp,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const LinkIcon = link.icon
 
               return (

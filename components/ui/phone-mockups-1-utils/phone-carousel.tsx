@@ -38,7 +38,7 @@ export function PhoneCarousel({
     // breakpoints shrinks everything proportionally instead of cropping it.
     <div
       className={cn(
-        "relative flex h-[210px] origin-center scale-[0.5] items-center justify-center sm:h-[400px] sm:scale-100",
+        "relative flex h-[260px] origin-center scale-[0.6] items-center justify-center overflow-visible sm:h-[400px] sm:scale-100",
         className,
       )}
     >

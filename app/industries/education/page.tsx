@@ -5,7 +5,7 @@ import Image from "next/image"
 import {
   ArrowRight, Check, Sparkles,
   GraduationCap, FileCheck, Wallet, CalendarClock, PhoneCall,
-  Inbox, HeartHandshake, Rocket, ShieldCheck, IndianRupee,
+  Inbox, HeartHandshake, Rocket, ShieldCheck,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -99,7 +99,7 @@ export default function EducationIndustryPage() {
   // Four sibling industries — with the pricing and FAQ tiles that fills the
   // same six-card grid Automotive and Fitness use. (Those pages pull three
   // siblings plus an Education tile; this page can't link to itself.)
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 4)
+  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -140,7 +140,7 @@ export default function EducationIndustryPage() {
 
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>{" "}
                   <span
                     style={{
                       backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -149,7 +149,7 @@ export default function EducationIndustryPage() {
                       color: "transparent",
                     }}
                   >
-                    education.
+                    Education.
                   </span>
                 </h1>
               </ScrollReveal>
@@ -206,7 +206,13 @@ export default function EducationIndustryPage() {
 
             {/* ── Right: floating playbook cards ── */}
             <ScrollReveal delay={0.15}>
-              <div aria-hidden className="relative mx-auto aspect-square w-full max-w-[540px]">
+              {/* Below sm the cards stack into a plain 2-up grid: the collage
+                  positions them by percentage but their heights are set by
+                  content, so under ~590px they start overlapping each other. */}
+              <div
+                aria-hidden
+                className="relative mx-auto grid w-full max-w-[540px] grid-cols-2 gap-3 sm:block sm:aspect-square"
+              >
                 {/* decorative dots */}
                 {[
                   { top: "12%", left: "44%", size: "size-2.5" },
@@ -217,12 +223,12 @@ export default function EducationIndustryPage() {
                   <span
                     key={i}
                     style={{ top: d.top, left: d.left, animationDelay: `${i * 0.7}s` }}
-                    className={`fit-twinkle absolute ${d.size} rounded-full bg-primary/40`}
+                    className={`fit-twinkle absolute hidden sm:block ${d.size} rounded-full bg-primary/40`}
                   />
                 ))}
                 {/* soft rounded-square accents behind the cards */}
-                <span className="absolute left-[26%] top-[26%] size-24 rotate-12 rounded-[1.75rem] bg-primary/[0.06]" />
-                <span className="absolute bottom-[18%] right-[26%] size-20 -rotate-6 rounded-[1.5rem] bg-[oklch(0.72_0.18_150)]/[0.08]" />
+                <span className="absolute left-[26%] top-[26%] hidden size-24 rotate-12 rounded-[1.75rem] bg-primary/[0.06] sm:block" />
+                <span className="absolute bottom-[18%] right-[26%] hidden size-20 -rotate-6 rounded-[1.5rem] bg-[oklch(0.72_0.18_150)]/[0.08] sm:block" />
 
                 {/* Dotted links from the featured card to the others. The
                     dashes travel outward along each path (connector-flow →
@@ -231,7 +237,7 @@ export default function EducationIndustryPage() {
                     keyframe's -12 dashoffset, so the loop has no seam. */}
                 <svg
                   viewBox="0 0 400 400"
-                  className="pointer-events-none absolute inset-0 h-full w-full"
+                  className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block"
                   fill="none"
                   stroke="currentColor"
                 >
@@ -243,7 +249,7 @@ export default function EducationIndustryPage() {
                 </svg>
 
                 {/* ── Featured: live admissions call ── */}
-                <div className="hero-float-up absolute left-[4%] top-[10%] w-[48%] max-w-[244px]">
+                <div className="hero-float-up w-full sm:absolute sm:left-[4%] sm:top-[10%] sm:w-[48%] sm:max-w-[244px]">
                   <div className="overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-primary to-[oklch(0.42_0.2_262)] p-5 shadow-[0_28px_56px_-18px_oklch(0.52_0.22_265/0.6)] ring-1 ring-white/15">
                     <div className="flex items-center justify-between">
                       <span className="grid size-11 place-items-center rounded-xl bg-white/20 text-white backdrop-blur">
@@ -271,7 +277,7 @@ export default function EducationIndustryPage() {
 
                 {/* ── Documents: collection progress ── */}
                 <div
-                  className="hero-float-down absolute right-[2%] top-0 w-[46%] max-w-[234px]"
+                  className="hero-float-down w-full sm:absolute sm:right-[2%] sm:top-0 sm:w-[46%] sm:max-w-[234px]"
                   style={{ animationDelay: "0.4s" }}
                 >
                   <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
@@ -288,7 +294,7 @@ export default function EducationIndustryPage() {
 
                 {/* ── Fee reminders: instalment status ── */}
                 <div
-                  className="hero-float-down absolute bottom-[8%] left-0 w-[46%] max-w-[234px]"
+                  className="hero-float-down w-full sm:absolute sm:bottom-[8%] sm:left-0 sm:w-[46%] sm:max-w-[234px]"
                   style={{ animationDelay: "1.1s" }}
                 >
                   <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
@@ -308,7 +314,7 @@ export default function EducationIndustryPage() {
 
                 {/* ── Batch starts: upcoming orientation ── */}
                 <div
-                  className="hero-float-up absolute bottom-[2%] right-[6%] w-[46%] max-w-[234px]"
+                  className="hero-float-up w-full sm:absolute sm:bottom-[2%] sm:right-[6%] sm:w-[46%] sm:max-w-[234px]"
                   style={{ animationDelay: "0.75s" }}
                 >
                   <div className="rounded-[1.5rem] border border-slate-200/80 bg-white p-5 shadow-[0_22px_46px_-20px_oklch(0.2_0.05_262/0.3)]">
@@ -746,20 +752,6 @@ export default function EducationIndustryPage() {
                 description: r.short,
                 icon: r.icon,
               })),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: IndianRupee,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
             ].map((link, i) => {
               const LinkIcon = link.icon
               return (
