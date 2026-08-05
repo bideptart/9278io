@@ -131,10 +131,6 @@ export default function LogisticsPage() {
                 </span>
               </h1>
 
-              <p className="mt-5 text-pretty text-[16px] font-bold leading-snug text-slate-800">
-                Never miss a delivery update or customer call with AI voice agents that answer instantly.
-              </p>
-
               <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
