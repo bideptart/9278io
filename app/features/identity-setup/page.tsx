@@ -183,7 +183,26 @@ export default function IdentitySetupPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={1} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Name and avatar",
+            name: "A distinct identity per agent",
+            quote: "Name your agent and give it a look, so callers instantly know which business they've reached.",
+          },
+          {
+            role: "Custom greeting",
+            name: "Write it once, in your own words",
+            quote: "Define exactly how each agent introduces itself, and it applies everywhere that agent answers.",
+          },
+          {
+            role: "Consistent branding",
+            name: "Every number feels on-brand",
+            quote: "Update the name, avatar, or greeting anytime, and every call reflects it right away.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to give your agent an identity?"

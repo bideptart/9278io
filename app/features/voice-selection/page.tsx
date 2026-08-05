@@ -185,7 +185,26 @@ export default function VoiceSelectionPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={1} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Preview first",
+            name: "Hear it before you assign it",
+            quote: "Play a real clip of any voice and compare them side by side before choosing.",
+          },
+          {
+            role: "A personality each",
+            name: "Ten voices, ten distinct tones",
+            quote: "Every named voice comes with its own personality description, so the tone matches your brand.",
+          },
+          {
+            role: "Switch anytime",
+            name: "Change it with no rebuild",
+            quote: "Swap an agent's voice whenever you want — knowledge base, routing, and behavior stay exactly as they were.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to give your agent the right voice?"

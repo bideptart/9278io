@@ -40,6 +40,13 @@ type FeatureImageSectionProps = {
   role?: string
   /** Pass 2+ slides to auto-cycle the quote instead of showing a single fixed one. */
   slides?: Slide[]
+  /**
+   * "testimonial" (default) shows a customer quote with quotation marks.
+   * "feature" shows a plain capability callout instead — `role` as a small
+   * eyebrow label, `name` as a bold title, `quote` as the description —
+   * no quotation marks, no customer attribution.
+   */
+  mode?: "testimonial" | "feature"
 }
 
 const CYCLE_MS = 4200
@@ -49,7 +56,7 @@ const CYCLE_MS = 4200
 // Pass `slides` for a page-specific rotating set of quotes about 9278.io, or
 // `quote`/`name`/`role` for a single fixed override, or `testimonial` (0-3)
 // to fall back to the shared pool. The fanned card pattern never shows a photo.
-export function FeatureImageSection({ testimonial = 0, quote, name, role, slides }: FeatureImageSectionProps) {
+export function FeatureImageSection({ testimonial = 0, quote, name, role, slides, mode = "testimonial" }: FeatureImageSectionProps) {
   const fallback = TESTIMONIALS[testimonial]
   const items: Slide[] =
     slides && slides.length > 0
@@ -117,9 +124,9 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
           />
         </div>
 
-        {/* Right — quote, cycling when multiple slides are given */}
+        {/* Right — content, cycling when multiple slides are given */}
         <div className="min-w-0 flex-1 text-center md:text-left">
-          <Quote className="mx-auto size-8 text-primary/25 md:mx-0" aria-hidden />
+          {mode === "testimonial" && <Quote className="mx-auto size-8 text-primary/25 md:mx-0" aria-hidden />}
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -128,9 +135,19 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.3 }}
             >
-              <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">"{current.quote}"</p>
-              <p className="mt-4 text-sm font-semibold text-foreground">{current.name}</p>
-              <p className="text-sm text-muted-foreground">{current.role}</p>
+              {mode === "feature" ? (
+                <>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-primary">{current.role}</p>
+                  <p className="mt-2 text-xl font-bold tracking-tight text-foreground md:text-2xl">{current.name}</p>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">{current.quote}</p>
+                </>
+              ) : (
+                <>
+                  <p className="mt-4 text-lg leading-relaxed text-foreground md:text-xl">"{current.quote}"</p>
+                  <p className="mt-4 text-sm font-semibold text-foreground">{current.name}</p>
+                  <p className="text-sm text-muted-foreground">{current.role}</p>
+                </>
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -140,7 +157,7 @@ export function FeatureImageSection({ testimonial = 0, quote, name, role, slides
                 <button
                   key={s.name + i}
                   type="button"
-                  aria-label={`Show ${s.name}'s quote`}
+                  aria-label={`Show ${s.name}`}
                   onClick={() => setActive(i)}
                   className="h-1.5 rounded-full transition-all duration-300"
                   style={{ width: i === active ? 18 : 6, backgroundColor: i === active ? "var(--primary)" : "#E4ECFF" }}

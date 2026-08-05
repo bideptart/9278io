@@ -182,7 +182,26 @@ export default function DashboardOverviewPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={0} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Live activity feed",
+            name: "See what's happening right now",
+            quote: "Calls, bookings, and hand-offs stream in live, so you always know what happened while you were away.",
+          },
+          {
+            role: "Usage at a glance",
+            name: "Minutes, calls, and agents in one view",
+            quote: "Everything that matters about your account sits on one screen the moment you log in.",
+          },
+          {
+            role: "Quick links",
+            name: "Get where you need to go, fast",
+            quote: "Shortcuts to the tools you use most, built right into the overview — no digging through menus.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to see your account at a glance?"

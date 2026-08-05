@@ -224,7 +224,26 @@ export default function CallTransferToolPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={3} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Human handoff",
+            name: "Forward any call to a real person",
+            quote: "Hand any call off to a human number the moment your agent decides it needs one.",
+          },
+          {
+            role: "Custom labels",
+            name: "Know where every transfer goes",
+            quote: "Label each destination so it's obvious where a call is routed, and why.",
+          },
+          {
+            role: "Fallback numbers",
+            name: "Never a dead-end line",
+            quote: "Add a backup number so a call never stalls if the first line is busy or unreachable.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Set up your first transfer rule"

@@ -186,7 +186,26 @@ export default function BehaviorRoutingRulesPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={2} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Route by intent",
+            name: "Calls sorted by what's actually said",
+            quote: "Write a plain IF / THEN rule once — the agent checks every call against it by intent or keyword before it even answers.",
+          },
+          {
+            role: "Time-of-day aware",
+            name: "After-hours calls handled correctly",
+            quote: "Rules can change by the clock, so calls outside business hours route differently, automatically.",
+          },
+          {
+            role: "Fallback included",
+            name: "Nothing left unmatched",
+            quote: "A fallback rule catches anything that doesn't match, so no call is left without somewhere defined to go.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to set your routing rules?"

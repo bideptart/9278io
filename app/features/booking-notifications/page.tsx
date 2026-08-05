@@ -235,7 +235,26 @@ export default function BookingNotificationsPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={0} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Instant email",
+            name: "Notified the moment it's booked",
+            quote: "An email lands the moment your agent books a meeting or appointment — no checking in required.",
+          },
+          {
+            role: "Never miss one",
+            name: "Every agent, every booking",
+            quote: "Fires for every agent on your account, from your 1st booking to your 1,000th, with nothing to configure.",
+          },
+          {
+            role: "No delay",
+            name: "Sent the second it's confirmed",
+            quote: "No batching or hourly digest — the notification goes out as soon as the booking is locked in.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Never miss a booking again"

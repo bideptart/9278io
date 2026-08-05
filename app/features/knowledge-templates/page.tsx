@@ -179,7 +179,26 @@ export default function KnowledgeTemplatesPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={3} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Build once",
+            name: "One template, every agent that needs it",
+            quote: "Save a knowledge setup once and reuse it across multiple agents or numbers instead of rebuilding each time.",
+          },
+          {
+            role: "Stay in sync",
+            name: "Every agent updates together",
+            quote: "Edit the template and every agent using it updates automatically — no drifting out of sync over time.",
+          },
+          {
+            role: "Reusable",
+            name: "Apply it anywhere, anytime",
+            quote: "Use the same proven setup for a new agent or number the moment you launch it.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to build a reusable knowledge template?"

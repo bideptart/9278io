@@ -218,7 +218,26 @@ export default function AnalyticsDashboardPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={1} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Call volume",
+            name: "Minutes and durations, in one view",
+            quote: "See every agent's call count, total minutes, and average call length without digging through raw logs.",
+          },
+          {
+            role: "Busy hours",
+            name: "Spot your peak times at a glance",
+            quote: "A time-of-day breakdown shows exactly when calls peak, so staffing and routing decisions are easy.",
+          },
+          {
+            role: "Plan usage",
+            name: "Track usage against your plan",
+            quote: "Watch included minutes burn down in real time and know well before you hit an overage.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="See it on your own calls"

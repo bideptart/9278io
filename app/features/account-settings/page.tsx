@@ -188,7 +188,26 @@ export default function AccountSettingsPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={0} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Billing & invoices",
+            name: "Top up, switch plans, done",
+            quote: "Manage credit, plan changes, and GST invoices without leaving your dashboard or opening a support ticket.",
+          },
+          {
+            role: "Team access",
+            name: "Control who can edit what",
+            quote: "Invite teammates and decide exactly who can touch billing, agents, or both — all from one place.",
+          },
+          {
+            role: "Account security",
+            name: "Nothing buried in a menu",
+            quote: "Security settings, login preferences, and business info stay visible and easy to change, instantly.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to take control of your account?"

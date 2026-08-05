@@ -182,7 +182,26 @@ export default function LiveTestCallPage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={0} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Real number",
+            name: "Dial exactly what callers dial",
+            quote: "No sandbox mode — test the exact number your customers call, live.",
+          },
+          {
+            role: "Voice & latency",
+            name: "Catch it before a customer does",
+            quote: "Hear the same voice, greeting, and hold music your callers hear, and spot lag or glitches live.",
+          },
+          {
+            role: "Routing check",
+            name: "Confirm it end to end",
+            quote: "Verify transfers, fallbacks, and after-hours behavior all work exactly as configured.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to hear your agent live?"

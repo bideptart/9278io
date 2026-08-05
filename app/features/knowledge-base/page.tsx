@@ -185,7 +185,26 @@ export default function KnowledgeBasePage() {
         </div>
       </section>
 
-      <FeatureImageSection testimonial={2} />
+      <FeatureImageSection
+        mode="feature"
+        slides={[
+          {
+            role: "Isolated per agent",
+            name: "Its own facts, its own brain",
+            quote: "Each agent's knowledge base is completely separate — one agent never answers from another agent's facts.",
+          },
+          {
+            role: "Instant updates",
+            name: "Edits go live immediately",
+            quote: "Change an FAQ, policy, or fact and every call after that reflects it — no retraining, no delay.",
+          },
+          {
+            role: "No re-training",
+            name: "Nothing to rebuild",
+            quote: "Add or edit facts anytime without touching the agent's voice, routing, or behavior setup.",
+          },
+        ]}
+      />
 
       <PricingCta
         heading="Ready to give your agent its own knowledge base?"

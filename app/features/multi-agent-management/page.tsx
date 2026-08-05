@@ -195,21 +195,22 @@ export default function MultiAgentManagementPage() {
       <MultiAgentCapabilities capabilities={capabilities} />
 
       <FeatureImageSection
+        mode="feature"
         slides={[
           {
-            quote: "We run six agents — sales, support, and dispatch — from one 9278.io account. Cloning a configured agent to launch the next one takes minutes, not a rebuild.",
-            name: "Operations Lead",
-            role: "Multi-location business on 9278.io",
+            role: "One dashboard",
+            name: "Every agent, one account",
+            quote: "However many agents you create — sales, support, dispatch — they all show up in the same 9278.io dashboard. No juggling separate logins.",
           },
           {
-            quote: "Every new city we launch in gets its own agent and its own number, but it's still one dashboard, one login, one bill.",
-            name: "Franchise Owner",
-            role: "12-location chain on 9278.io",
+            role: "Fast cloning",
+            name: "Clone an agent in minutes",
+            quote: "Start a new agent from one you've already configured — same voice, same knowledge base, same call behavior — instead of rebuilding from scratch.",
           },
           {
-            quote: "Support, sales, and dispatch used to be three different logins. On 9278.io they're three agents in the same account.",
-            name: "IT Manager",
-            role: "Growing team on 9278.io",
+            role: "Dedicated numbers",
+            name: "One number per agent",
+            quote: "Give every agent its own phone number so a caller to sales and a caller to support each reach the right agent automatically.",
           },
         ]}
       />
