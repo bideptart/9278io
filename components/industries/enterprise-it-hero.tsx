@@ -56,7 +56,10 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
             <h1 className="mt-6 text-balance font-sans text-[2.6rem] font-extrabold leading-[1.02] tracking-tight text-slate-900 sm:text-[3rem] md:text-[3.7rem]">
               <span className="block font-black">AI Voice Agents</span>
               <span className="mt-1 block">
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 bg-clip-text font-black text-transparent">
+                <span
+                  className="inline bg-gradient-to-r from-blue-600 via-sky-500 to-emerald-500 bg-clip-text font-black text-transparent"
+                  style={{ WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}
+                >
                   For Enterprise IT.
                 </span>
               </span>
