@@ -160,11 +160,11 @@ export default function SaasTechPage() {
                 ))}
               </div>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+              <div className="mt-9 flex flex-nowrap items-center gap-2 sm:gap-3.5">
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto whitespace-nowrap rounded-full bg-blue-600 px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700 sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=saas-tech">
                     Launch SaaS AI Agent
@@ -175,7 +175,7 @@ export default function SaasTechPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=saas-tech">Book a Live Demo</Link>
                 </Button>

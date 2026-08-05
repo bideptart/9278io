@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { motion, type PanInfo } from "motion/react";
 import { cn } from "@/lib/utils"; // Assuming a utility function for class merging
 import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatedPrice } from "@/components/pricing/animated-price";
 
 // --- 1. Typescript Interfaces (API) ---
@@ -59,27 +58,59 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
 
   const yearlyDiscountPercent = 20;
 
-  // --- Mobile card-stack state ---
-  // A static layered stack, not a scroll carousel — the active plan is
-  // always centered in front with the other two permanently flanking it
-  // 50% behind, on both sides. Switching the active plan is a plain click
-  // or a swipe (drag gesture) on the front card — no scroll-snap or
-  // IntersectionObserver math to get wrong or glitch mid-gesture.
+  // --- Mobile slider state ---
+  // A real horizontal slider (native scroll-snap), one full-width card per
+  // view with a small peek of the next card at each edge — not the old
+  // static stack with two permanently shrunken 58%-width side cards.
+  // Native scroll-snap drives the swipe gesture itself (smooth, no custom
+  // drag/velocity math to get wrong), and `activeIndex` is just derived from
+  // scroll position for the dots/arrows/badge to read.
   const popularIndex = Math.max(0, plans.findIndex((p) => p.isPopular));
   const [activeIndex, setActiveIndex] = React.useState(popularIndex);
-  // Circular prev/next by position, not "whichever two aren't active" — the
-  // latter always returned the two non-active indices in ascending order
-  // regardless of swipe direction, so swiping the same way twice could bounce
-  // between the same two cards and never reach the third (e.g. Growth ->
-  // Scale -> Growth, skipping Starter entirely).
+  const trackRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollToIndex = React.useCallback((index: number) => {
+    const track = trackRef.current;
+    const slide = track?.children[index] as HTMLElement | undefined;
+    if (!track || !slide) return;
+    track.scrollTo({
+      left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2,
+      behavior: "smooth",
+    });
+  }, []);
+
+  // Center the initially-popular plan on mount without an animated scroll.
+  React.useEffect(() => {
+    const track = trackRef.current;
+    const slide = track?.children[popularIndex] as HTMLElement | undefined;
+    if (!track || !slide) return;
+    track.scrollLeft = slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Keep `activeIndex` in sync with whichever slide is nearest the center
+  // as the user scrolls/swipes — snap-mandatory guarantees it settles
+  // exactly on one, so "nearest center" is always unambiguous at rest.
+  function handleScroll() {
+    const track = trackRef.current;
+    if (!track) return;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    let closest = 0;
+    let closestDistance = Infinity;
+    Array.from(track.children).forEach((child, i) => {
+      const el = child as HTMLElement;
+      const elCenter = el.offsetLeft + el.clientWidth / 2;
+      const distance = Math.abs(elCenter - center);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closest = i;
+      }
+    });
+    setActiveIndex(closest);
+  }
+
   const leftIndex = (activeIndex - 1 + plans.length) % plans.length;
   const rightIndex = (activeIndex + 1) % plans.length;
-
-  const SWIPE_THRESHOLD = 60; // px of drag before it counts as a swipe
-  function handleDragEnd(_e: unknown, info: PanInfo) {
-    if (info.offset.x <= -SWIPE_THRESHOLD) setActiveIndex(rightIndex);
-    else if (info.offset.x >= SWIPE_THRESHOLD) setActiveIndex(leftIndex);
-  }
 
   // --- 2.1. Trust badges ---
   const Badges = badges && badges.length > 0 && (
@@ -136,36 +167,14 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
     </div>
   );
 
-  // --- 2.3. A single plan card (shared by the desktop grid and mobile stack) ---
-  // `showBadge` — desktop always shows it on the popular plan; mobile only
-  // shows it on whichever card is currently in front, since a demoted,
-  // partially-hidden side card has nowhere clean for it to sit.
-  // `previewCount` — the two mobile side cards are just a peek, so they're
-  // capped to a fixed feature count: a full list at that narrow 58% width
-  // wraps onto more lines for some plans (e.g. Scale, with longer feature
-  // text) than others, growing one side card past the other. The active
-  // mobile card and both desktop cards show the full feature list.
-  const SIDE_CARD_PREVIEW_COUNT = 5;
-  // `scrollFeatures` — the mobile active card shows every feature (never
-  // truncated), but that makes its box taller than the two capped side
-  // cards. Instead of cutting anything, the feature list itself scrolls
-  // inside a height matched to the side cards' 5-item preview, so the
-  // outer card box lines up while all features stay reachable.
-  function renderCard(
-    plan: PriceTier,
-    showBadge: boolean = plan.isPopular,
-    previewCount?: number,
-    scrollFeatures = false,
-  ) {
+  // --- 2.3. A single plan card (shared by the desktop grid and mobile slider) ---
+  // `showBadge` defaults to the plan's own `isPopular` flag — every card is
+  // now full-size on both desktop and mobile, so there's no demoted/peek
+  // card that needs the badge suppressed.
+  function renderCard(plan: PriceTier, showBadge: boolean = plan.isPopular) {
     const isFeatured = plan.isPopular;
     const currentPrice = billingCycle === 'monthly' ? plan.priceMonthly : plan.priceYearly;
     const priceSuffix = billingCycle === 'monthly' ? '/mo' : '/yr';
-    const visibleFeatures = previewCount ? plan.features.slice(0, previewCount) : plan.features;
-    // Side/background preview cards keep the button label on one line —
-    // otherwise the Scale plan's longer price ("Buy ₹29,999 now") wraps to
-    // 2 lines at the narrower 58% width while Starter/Growth's shorter
-    // labels don't, growing just that card and breaking the symmetric peek.
-    const isPreview = previewCount !== undefined;
 
     return (
       <Card
@@ -188,33 +197,21 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
         )}
         <CardHeader className="min-w-0 p-4 pb-0">
           <CardTitle className="text-lg font-bold">{plan.name}</CardTitle>
-          <CardDescription className={cn("text-sm mt-1", isPreview && "truncate")}>{plan.description}</CardDescription>
+          <CardDescription className="text-sm mt-1">{plan.description}</CardDescription>
           <div className="mt-2">
             <p className="text-3xl font-extrabold text-foreground">
               <AnimatedPrice value={currentPrice} />
               <span className="text-base font-normal text-muted-foreground ml-1">{priceSuffix}</span>
             </p>
-            {plan.priceNote && (
-              <p className={cn("mt-1 text-xs text-muted-foreground", isPreview && "truncate")}>{plan.priceNote}</p>
-            )}
+            {plan.priceNote && <p className="mt-1 text-xs text-muted-foreground">{plan.priceNote}</p>}
           </div>
         </CardHeader>
         <CardContent className="min-w-0 flex-grow p-4 pt-2">
-          <ul
-            className={cn(
-              "list-none space-y-0",
-              scrollFeatures && "max-h-[145px] overflow-y-auto overscroll-contain pr-1 touch-pan-y",
-            )}
-          >
-            {visibleFeatures.map((feature) => (
-              <li
-                key={feature}
-                className={cn("flex items-start space-x-3 py-0.5", isPreview && "min-w-0")}
-              >
+          <ul className="list-none space-y-0">
+            {plan.features.map((feature) => (
+              <li key={feature} className="flex items-start space-x-3 py-0.5">
                 <Check className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
-                <span className={cn("text-sm text-foreground", isPreview && "min-w-0 flex-1 truncate")}>
-                  {feature}
-                </span>
+                <span className="text-sm text-foreground">{feature}</span>
               </li>
             ))}
           </ul>
@@ -223,11 +220,10 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
           <Button
             onClick={() => onPlanSelect(plan.id, billingCycle)}
             className={cn(
-              "h-auto min-h-10 w-full rounded-full",
+              "h-auto min-h-10 w-full rounded-full whitespace-normal",
               isFeatured
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
                 : "border-2 border-border/60 bg-white text-black hover:border-primary hover:bg-primary hover:text-primary-foreground",
-              isPreview ? "whitespace-nowrap text-xs px-3" : "whitespace-normal",
             )}
             size="lg"
             aria-label={`Select ${plan.name} plan for ₹${currentPrice.toLocaleString("en-IN")} ${priceSuffix}`}
@@ -248,70 +244,57 @@ const PricingComponent: React.FC<PricingComponentProps> = ({
     </div>
   );
 
-  // --- 2.5. Mobile card stack (static layering, no scroll) ---
+  // --- 2.5. Mobile slider (native scroll-snap, one full card per view) ---
   const MobileStack = (
-    // overflow-hidden clips any residual sizing overflow so a card can never
-    // visually bleed past the viewport edge; pt-4 reserves room so the
-    // "Most popular" badge (which sits slightly above its card) isn't clipped.
-    <div className="relative overflow-hidden pt-4 md:hidden">
-      {/* Active plan — the only card in normal flow, so it defines the stack's height.
-          Swipe left/right on it to switch plans — drag={"x"} + dragConstraints
-          snap it back to center on release, so this is a gesture trigger,
-          not a scroll-based carousel. */}
-      <motion.div
-        key={activeIndex}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.15}
-        onDragEnd={handleDragEnd}
-        whileDrag={{ cursor: "grabbing" }}
-        className="relative z-20 mx-auto w-[78%] cursor-grab touch-pan-y"
-      >
-        {renderCard(plans[activeIndex], plans[activeIndex].isPopular, undefined, true)}
-      </motion.div>
-
-      {/* Left plan — permanently tucked ~50% behind the active card */}
+    // pt-4 reserves room so the "Most popular" badge (which sits slightly
+    // above its card) isn't clipped by the track's own overflow.
+    <div className="pt-4 md:hidden">
       <div
-        role="button"
-        tabIndex={0}
-        onClick={() => setActiveIndex(leftIndex)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") setActiveIndex(leftIndex);
-        }}
-        aria-label={`Show ${plans[leftIndex].name} plan`}
-        className="absolute left-0 top-4 z-10 w-[58%] cursor-pointer"
+        ref={trackRef}
+        onScroll={handleScroll}
+        className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-[5%] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {renderCard(plans[leftIndex], false, SIDE_CARD_PREVIEW_COUNT)}
-      </div>
-
-      {/* Right plan — permanently tucked ~50% behind the active card */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => setActiveIndex(rightIndex)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") setActiveIndex(rightIndex);
-        }}
-        aria-label={`Show ${plans[rightIndex].name} plan`}
-        className="absolute right-0 top-4 z-10 w-[58%] cursor-pointer"
-      >
-        {renderCard(plans[rightIndex], false, SIDE_CARD_PREVIEW_COUNT)}
-      </div>
-
-      {/* Dots — tap to switch which plan is in front */}
-      <div className="relative z-30 mt-4 flex items-center justify-center gap-1.5">
         {plans.map((plan, i) => (
-          <button
-            key={plan.id}
-            type="button"
-            onClick={() => setActiveIndex(i)}
-            aria-label={`Show ${plan.name} plan`}
-            className={cn(
-              "h-1.5 rounded-full transition-all duration-300",
-              i === activeIndex ? "w-5 bg-primary" : "w-1.5 bg-border",
-            )}
-          />
+          <div key={plan.id} className="w-[90%] flex-none snap-center">
+            {renderCard(plan, plan.isPopular)}
+          </div>
         ))}
+      </div>
+
+      {/* Arrows + dots — tap either to switch which plan is centered */}
+      <div className="relative z-10 mt-4 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={() => scrollToIndex(leftIndex)}
+          aria-label={`Show ${plans[leftIndex].name} plan`}
+          className="flex size-8 flex-none items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+        >
+          <ChevronLeft className="size-4" aria-hidden />
+        </button>
+
+        <div className="flex items-center gap-1.5">
+          {plans.map((plan, i) => (
+            <button
+              key={plan.id}
+              type="button"
+              onClick={() => scrollToIndex(i)}
+              aria-label={`Show ${plan.name} plan`}
+              className={cn(
+                "h-1.5 rounded-full transition-all duration-300",
+                i === activeIndex ? "w-5 bg-primary" : "w-1.5 bg-border",
+              )}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => scrollToIndex(rightIndex)}
+          aria-label={`Show ${plans[rightIndex].name} plan`}
+          className="flex size-8 flex-none items-center justify-center rounded-full border border-border/60 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+        >
+          <ChevronRight className="size-4" aria-hidden />
+        </button>
       </div>
     </div>
   );
