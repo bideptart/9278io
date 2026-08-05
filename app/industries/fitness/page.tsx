@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import {
   ArrowRight, Sparkles, Check,
-  Clock, PhoneCall, IndianRupee,
+  PhoneCall, IndianRupee,
   Rocket, LifeBuoy,
   Signal, Wifi, BatteryFull, MessageCircle, Phone, Video, Mic,
 } from "lucide-react"
@@ -17,14 +17,6 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
-
-/* Trust stats — same real numbers used in the marquee further down this
-   page, surfaced early in the hero for immediate credibility. */
-const HERO_STATS = [
-  { icon: Clock, stat: "< 3s", label: "First-touch response", color: "text-blue-600", tile: "bg-blue-50" },
-  { icon: PhoneCall, stat: "40+", label: "Concurrent calls", color: "text-violet-600", tile: "bg-violet-50" },
-  { icon: IndianRupee, stat: "₹10", label: "Per-minute, from", color: "text-emerald-600", tile: "bg-emerald-50" },
-]
 
 /* Extra playbooks shown only on this page, appended to the shared five in
    lib/industries.ts. Kept local because that array also feeds the industries
@@ -92,7 +84,7 @@ export default function FitnessIndustryPage() {
           aria-hidden
           className="pointer-events-none absolute -top-32 right-0 h-[560px] w-[720px] rounded-full bg-primary/[0.1] blur-[130px]"
         />
-        <div className="relative w-full px-6 pb-10 pt-1 md:px-8 md:pb-12 md:pt-2">
+        <div className="relative w-full px-6 pb-10 pt-10 md:px-8 md:pb-12 md:pt-14">
           <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
@@ -104,7 +96,7 @@ export default function FitnessIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                   <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
                   <span
                     style={{
@@ -120,7 +112,7 @@ export default function FitnessIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 text-base leading-relaxed text-muted-foreground md:text-lg">
                   {industry.pitch}
                 </p>
               </ScrollReveal>
@@ -150,23 +142,6 @@ export default function FitnessIndustryPage() {
                 </div>
               </ScrollReveal>
 
-              {/* Trust stats */}
-              <ScrollReveal
-                delay={0.26}
-                className="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border/60"
-              >
-                {HERO_STATS.map((s) => (
-                  <div key={s.label} className="flex flex-col items-center gap-1 bg-white px-3 py-4 text-center">
-                    <div className="flex items-center gap-2">
-                      <span className={`flex size-8 items-center justify-center rounded-full ${s.tile} ${s.color}`}>
-                        <s.icon className="size-4" aria-hidden />
-                      </span>
-                      <span className={`text-lg font-bold ${s.color}`}>{s.stat}</span>
-                    </div>
-                    <span className="text-[11px] leading-tight text-muted-foreground">{s.label}</span>
-                  </div>
-                ))}
-              </ScrollReveal>
             </div>
 
             {/* ── Right: console + phone product mockup ── */}
