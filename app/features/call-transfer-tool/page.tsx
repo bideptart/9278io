@@ -231,16 +231,19 @@ export default function CallTransferToolPage() {
             role: "Human handoff",
             name: "Forward any call to a real person",
             quote: "Hand any call off to a human number the moment your agent decides it needs one.",
+            image: "/images/call-transfer-tool-human-handoff.webp",
           },
           {
             role: "Custom labels",
             name: "Know where every transfer goes",
             quote: "Label each destination so it's obvious where a call is routed, and why.",
+            image: "/images/call-transfer-tool-custom-labels.webp",
           },
           {
             role: "Fallback numbers",
             name: "Never a dead-end line",
             quote: "Add a backup number so a call never stalls if the first line is busy or unreachable.",
+            image: "/images/call-transfer-tool-fallback-numbers.webp",
           },
         ]}
       />
