@@ -60,7 +60,7 @@ export default function LegalIndustryPage() {
 
   // Four sibling industries, plus the pricing and FAQ tiles, to fill the same
   // six-card grid the other industry pages use.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 4)
+  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -99,7 +99,7 @@ export default function LegalIndustryPage() {
 
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                  <span style={{ color: "#0F172A" }}>AI voice agents</span>{" "}
+                  <span style={{ color: "#0F172A" }}>AI Voice Agents</span>{" "}
                   <span
                     style={{
                       backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -108,7 +108,7 @@ export default function LegalIndustryPage() {
                       color: "transparent",
                     }}
                   >
-                    for legal.
+                    for Legal.
                   </span>
                 </h1>
               </ScrollReveal>
@@ -223,15 +223,18 @@ export default function LegalIndustryPage() {
                       style={{ gridColumn: pin.hour + 1, gridRow: 1, animationDelay: `${i * 0.42}s` }}
                       className="lgl-pin flex flex-col items-center justify-end"
                     >
+                      {/* Times are hidden on narrow screens: pins can sit two
+                          columns apart (~27px at 375px), which a 5-character
+                          timestamp overruns into its neighbour. */}
                       <span
-                        className={`mb-1.5 text-[10.5px] font-semibold tabular-nums ${
+                        className={`mb-1.5 hidden text-[10.5px] font-semibold tabular-nums sm:block ${
                           open ? "text-primary/70" : "text-red-400"
                         }`}
                       >
                         {pin.time}
                       </span>
                       <span
-                        className={`relative grid size-9 place-items-center rounded-full ${
+                        className={`relative grid size-6 place-items-center rounded-full sm:size-9 ${
                           open
                             ? "bg-primary text-white shadow-md shadow-primary/25"
                             : "bg-white text-red-500 ring-1 ring-red-200"
@@ -239,9 +242,13 @@ export default function LegalIndustryPage() {
                       >
                         {/* missed calls keep a slow halo so the eye lands on them */}
                         {!open && <span className="lgl-miss absolute inset-0 rounded-full bg-red-400/25" />}
-                        {open ? <Check className="relative size-4" /> : <PhoneOff className="relative size-4" />}
+                        {open ? (
+                          <Check className="relative size-3 sm:size-4" />
+                        ) : (
+                          <PhoneOff className="relative size-3 sm:size-4" />
+                        )}
                       </span>
-                      <span className={`h-5 w-px ${open ? "bg-primary/30" : "bg-red-200"}`} />
+                      <span className={`h-3 w-px sm:h-5 ${open ? "bg-primary/30" : "bg-red-200"}`} />
                     </span>
                   )
                 })}
@@ -461,20 +468,6 @@ export default function LegalIndustryPage() {
                 description: r.short,
                 icon: r.icon,
               })),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: Wallet,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
             ].map((link, i) => {
               const LinkIcon = link.icon
               return (

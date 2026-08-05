@@ -56,14 +56,19 @@ export function RetailHeroCards() {
             <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
               <PhoneCall className="size-4" />
             </span>
+            {/* The badge sits beside the title rather than at the card's right
+                edge: the order card overlaps this one's right ~20%, and the
+                edge is where it used to get clipped. */}
             <div className="min-w-0 flex-1 leading-tight">
-              <p className="truncate text-[12px] font-semibold text-foreground">Live call</p>
+              <div className="flex items-center gap-1.5">
+                <p className="truncate text-[12px] font-semibold text-foreground">Live call</p>
+                <span className="flex shrink-0 items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-emerald-700">
+                  <span className="size-1 rounded-full bg-emerald-500 motion-safe:animate-pulse" />
+                  Live
+                </span>
+              </div>
               <p className="text-[10.5px] text-muted-foreground">Order enquiry · 00:24</p>
             </div>
-            <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-emerald-700">
-              <span className="size-1 rounded-full bg-emerald-500 motion-safe:animate-pulse" />
-              Live
-            </span>
           </div>
 
           {/* waveform — stands in for the reference's chart panel */}
@@ -81,7 +86,9 @@ export function RetailHeroCards() {
       </div>
 
       {/* ── Order status — cycles through resolved enquiries ── */}
-      <div className="hero-float-down absolute right-0 top-0 w-[58%] max-w-[268px]">
+      {/* Slightly narrower on small screens so its left edge clears the live
+          card's badge, which the collage would otherwise overlap. */}
+      <div className="hero-float-down absolute right-0 top-0 w-[52%] max-w-[268px] sm:w-[58%]">
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_22px_50px_-24px_oklch(0.52_0.22_265/0.45)]">
           <div className="flex items-center gap-2.5">
             <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-emerald-100 text-emerald-600">

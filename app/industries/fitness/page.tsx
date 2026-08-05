@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import {
   ArrowRight, Sparkles, Check,
-  PhoneCall, IndianRupee,
+  PhoneCall,
   Rocket, LifeBuoy,
   Signal, Wifi, BatteryFull, MessageCircle, Phone, Video, Mic,
 } from "lucide-react"
@@ -57,7 +57,6 @@ export default function FitnessIndustryPage() {
 
   // Pick three sibling industries for the related-links module.
   const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
-  const education = getIndustry("education")
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -97,7 +96,7 @@ export default function FitnessIndustryPage() {
 
               <ScrollReveal delay={0.06}>
                 <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                  <span style={{ color: "#0F172A" }}>AI voice agents for</span>{" "}
+                  <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>{" "}
                   <span
                     style={{
                       backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -106,7 +105,7 @@ export default function FitnessIndustryPage() {
                       color: "transparent",
                     }}
                   >
-                    fitness &amp; wellness.
+                    Fitness &amp; Wellness.
                   </span>
                 </h1>
               </ScrollReveal>
@@ -344,31 +343,6 @@ export default function FitnessIndustryPage() {
                 description: r.short,
                 icon: r.icon,
               })),
-              ...(education
-                ? [
-                    {
-                      href: `/industries/${education.slug}`,
-                      titlePrefix: "AI voice agents for ",
-                      highlight: education.name.toLowerCase(),
-                      description: education.short,
-                      icon: education.icon,
-                    },
-                  ]
-                : []),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: IndianRupee,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: LifeBuoy,
-              },
             ].map((link, i) => {
               const LinkIcon = link.icon
               return (
