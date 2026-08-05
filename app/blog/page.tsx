@@ -75,7 +75,7 @@ export default async function BlogPage() {
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               How Indian businesses are automating phone calls, staying TRAI-compliant, and unlocking ROI with AI voice
-              agents in Hindi, Tamil, Telugu, and 12 more languages.
+              agents in Hindi, Tamil, Telugu, and 7 more languages.
             </p>
 
             <div className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
@@ -91,7 +91,7 @@ export default async function BlogPage() {
               </div>
               <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
                 <Globe className="mx-auto size-5 text-primary" aria-hidden />
-                <p className="mt-3 text-2xl font-bold tracking-tight">15+</p>
+                <p className="mt-3 text-2xl font-bold tracking-tight">10+</p>
                 <p className="mt-1 text-xs text-muted-foreground">Languages</p>
               </div>
               <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
