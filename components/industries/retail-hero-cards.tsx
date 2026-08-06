@@ -104,8 +104,11 @@ export function RetailHeroCards() {
       </div>
 
       {/* ── Concurrent calls — the "big number" tile ── */}
+      {/* Narrower on small screens: at full 50% width its left edge sat
+          under the Languages card below, which — painting later, on top —
+          clipped the "On the Scale plan" line beneath it. */}
       <div
-        className="hero-float-down absolute right-[4%] top-[40%] w-[50%] max-w-[228px]"
+        className="hero-float-down absolute right-[4%] top-[40%] w-[38%] max-w-[228px] sm:w-[50%]"
         style={{ animationDelay: "0.7s" }}
       >
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_22px_50px_-24px_oklch(0.52_0.22_265/0.45)]">
