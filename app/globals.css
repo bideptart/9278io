@@ -800,3 +800,54 @@
     animation: none;
   }
 }
+
+/* ── Voice-aura blob — an organic shape that continuously reshapes itself
+   (border-radius corners cycling) while slowly drifting and rotating, used
+   as a living gradient backdrop rather than a static blurred circle. ── */
+@keyframes voice-blob-morph {
+  0%, 100% {
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+    transform: rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 62% 38% 30% 70% / 55% 65% 35% 45%;
+    transform: rotate(8deg) scale(1.06);
+  }
+  66% {
+    border-radius: 35% 65% 55% 45% / 40% 45% 60% 55%;
+    transform: rotate(-6deg) scale(0.97);
+  }
+}
+.voice-blob-morph {
+  animation: voice-blob-morph 14s ease-in-out infinite;
+}
+
+/* ── Rising particles — small dots drifting upward and fading, like sound
+   energy lifting off the waveform. Horizontal drift is set per-particle via
+   inline --x so they don't all travel in a single vertical line. ── */
+@keyframes voice-particle-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x, 0px), -120px) scale(1);
+  }
+}
+.voice-particle-rise {
+  animation: voice-particle-rise 4.5s ease-in infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voice-blob-morph,
+  .voice-particle-rise {
+    animation: none;
+  }
+}
