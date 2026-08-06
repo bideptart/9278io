@@ -18,15 +18,18 @@ type StaggerProps = {
   className?: string
   /** Delay between each direct child */
   stagger?: number
+  /** Replay every time the group scrolls into view instead of once — useful
+   *  for sections users are likely to scroll past and back to. */
+  once?: boolean
   role?: string
 }
 
-export function StaggerGroup({ children, className, stagger = 0.08, ...rest }: StaggerProps) {
+export function StaggerGroup({ children, className, stagger = 0.08, once = true, ...rest }: StaggerProps) {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once, margin: "-30px" }}
       variants={{
         hidden: {},
         visible: {

@@ -57,8 +57,8 @@ export default function VoiceSelectionPage() {
       />
 
       {/* Hero */}
-      <section className="relative flex flex-col border-b border-border/50">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <section className="relative flex flex-col overflow-hidden border-b border-border/50">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
