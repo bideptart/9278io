@@ -18,7 +18,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
   return (
     <div className="relative h-[360px] w-full sm:h-[500px]">
       <div
-        style={{ animationDelay: "0.1s" }}
+        style={{ animationDelay: "0s" }}
         className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute left-1/2 top-0 w-64 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
       >
         <div
@@ -30,7 +30,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
       </div>
 
       <div
-        style={{ animationDelay: "0.25s" }}
+        style={{ animationDelay: "1s" }}
         className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-down absolute right-0 top-1/3 w-56 transition-transform duration-300 hover:-translate-y-1 sm:w-64"
       >
         <div
@@ -42,7 +42,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
       </div>
 
       <div
-        style={{ animationDelay: "0.4s" }}
+        style={{ animationDelay: "2s" }}
         className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute -left-2 bottom-6 h-24 transition-transform duration-300 hover:-translate-y-1 sm:h-32"
       >
         <div
