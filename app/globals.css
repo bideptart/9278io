@@ -851,3 +851,22 @@
     animation: none;
   }
 }
+
+/* ── Orbit travel — moves an element along an elliptical CSS motion path
+   (offset-path), used for particles that circle a glowing core. Duration is
+   set per-particle via inline --dur so rings don't rotate in lockstep. ── */
+@keyframes orbit-travel {
+  to {
+    offset-distance: 100%;
+  }
+}
+.orbit-travel {
+  offset-rotate: 0deg;
+  animation: orbit-travel var(--dur, 6s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-travel {
+    animation: none;
+  }
+}
