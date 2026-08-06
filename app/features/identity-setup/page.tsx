@@ -190,16 +190,19 @@ export default function IdentitySetupPage() {
             role: "Name and avatar",
             name: "A distinct identity per agent",
             quote: "Name your agent and give it a look, so callers instantly know which business they've reached.",
+            image: "/images/features/identity-setup/identity-setup-01-name-and-avatar.png",
           },
           {
             role: "Custom greeting",
             name: "Write it once, in your own words",
             quote: "Define exactly how each agent introduces itself, and it applies everywhere that agent answers.",
+            image: "/images/features/identity-setup/identity-setup-02-custom-greeting.png",
           },
           {
             role: "Consistent branding",
             name: "Every number feels on-brand",
             quote: "Update the name, avatar, or greeting anytime, and every call reflects it right away.",
+            image: "/images/features/identity-setup/identity-setup-03-consistent-branding.png",
           },
         ]}
       />

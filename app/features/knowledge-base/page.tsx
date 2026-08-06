@@ -85,7 +85,8 @@ export default function KnowledgeBasePage() {
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Give each agent its own set of company facts, FAQs, and policies to draw on — isolated from
-                every other agent on your account.
+                every other agent on your account. Update an entry anytime and every call after that reflects
+                it immediately, no retraining required.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -192,16 +193,19 @@ export default function KnowledgeBasePage() {
             role: "Isolated per agent",
             name: "Its own facts, its own brain",
             quote: "Each agent's knowledge base is completely separate — one agent never answers from another agent's facts.",
+            image: "/images/features/knowledge-base/knowledge-base-01-isolated-per-agent.png",
           },
           {
             role: "Instant updates",
             name: "Edits go live immediately",
             quote: "Change an FAQ, policy, or fact and every call after that reflects it — no retraining, no delay.",
+            image: "/images/features/knowledge-base/knowledge-base-02-instant-updates.png",
           },
           {
             role: "No re-training",
             name: "Nothing to rebuild",
             quote: "Add or edit facts anytime without touching the agent's voice, routing, or behavior setup.",
+            image: "/images/features/knowledge-base/knowledge-base-03-no-retraining.png",
           },
         ]}
       />

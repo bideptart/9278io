@@ -189,16 +189,19 @@ export default function DashboardOverviewPage() {
             role: "Live activity feed",
             name: "See what's happening right now",
             quote: "Calls, bookings, and hand-offs stream in live, so you always know what happened while you were away.",
+            image: "/images/features/dashboard-overview/dashboard-overview-01-live-activity-feed.png",
           },
           {
             role: "Usage at a glance",
             name: "Minutes, calls, and agents in one view",
             quote: "Everything that matters about your account sits on one screen the moment you log in.",
+            image: "/images/features/dashboard-overview/dashboard-overview-02-usage-at-a-glance.png",
           },
           {
             role: "Quick links",
             name: "Get where you need to go, fast",
             quote: "Shortcuts to the tools you use most, built right into the overview — no digging through menus.",
+            image: "/images/features/dashboard-overview/dashboard-overview-03-quick-links.png",
           },
         ]}
       />

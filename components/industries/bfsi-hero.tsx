@@ -40,8 +40,8 @@ export function BfsiHero({ industry }: { industry: Industry }) {
         className="pointer-events-none absolute -right-20 top-36 -z-10 size-96 rounded-full bg-sky-400/18 blur-3xl motion-safe:animate-[breathe_12s_ease-in-out_infinite]"
       />
 
-      <div className="w-full px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+      <div className="w-full px-6 pb-4 pt-6 md:px-8 md:pb-16 md:pt-8">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-10">
           {/* Each block enters on its own short delay so the column builds up
               top-to-bottom instead of arriving as one slab. */}
           <div className="relative">

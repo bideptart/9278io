@@ -117,7 +117,7 @@ export default function LogisticsPage() {
               </span>
 
               <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
-                <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>
+                <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
                 <br />
                 <span
                   style={{
@@ -127,7 +127,7 @@ export default function LogisticsPage() {
                     color: "transparent",
                   }}
                 >
-                  Logistics &amp; Delivery
+                  for Logistics &amp; Delivery
                 </span>
               </h1>
 

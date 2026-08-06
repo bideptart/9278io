@@ -155,9 +155,10 @@ export default function BookingNotificationsPage() {
                   Notifications
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Get an email the moment your agent books a meeting or appointment — so you're always the first
-                to know, without watching a dashboard.
+                to know, without watching a dashboard. Every notification includes the caller's details and the
+                booked time, ready to act on.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">

@@ -150,6 +150,7 @@ export default function OrbitCarousel() {
 
   const { containerRadius, profileSize, cardWidth, avatarSize, avatarMargin, fontSize } = getResponsiveValues()
   const containerSize = containerRadius * 2 + 100
+  const isMobile = screenSize === "xs" || screenSize === "sm"
 
   const getRotation = React.useCallback(
     (index: number): number => (index - activeIndex) * (360 / capabilities.length),
@@ -191,7 +192,7 @@ export default function OrbitCarousel() {
 
   return (
     <div
-      className="relative flex w-full min-h-[420px] flex-col items-center p-2 sm:min-h-[470px] sm:p-4"
+      className="relative flex w-full flex-col items-center p-2 sm:min-h-[400px] sm:p-4"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -260,10 +261,11 @@ export default function OrbitCarousel() {
           const rotation = getRotation(i)
           const isActive = i === activeIndex
 
-          // The active item is already shown large in the center card — keep
-          // it out of the ring so its photo never visually collides with the
-          // card's protruding avatar.
-          if (isActive) return null
+          // On mobile the active item is already shown large in the center
+          // card — keep it out of the ring there so its photo never visually
+          // collides with the card's protruding avatar. Desktop keeps the
+          // original behavior of showing the active photo in the ring too.
+          if (isActive && isMobile) return null
 
           return (
             <motion.div
@@ -273,6 +275,7 @@ export default function OrbitCarousel() {
                 type: "spring",
                 stiffness: 150,
                 damping: 20,
+                delay: isMobile ? 0 : isActive ? 0 : Math.abs(i - activeIndex) * 0.05,
               }}
               style={{
                 width: profileSize,
@@ -280,7 +283,7 @@ export default function OrbitCarousel() {
                 position: "absolute",
                 top: `calc(50% - ${profileSize / 2}px)`,
                 left: `calc(50% - ${profileSize / 2}px)`,
-                zIndex: 10,
+                zIndex: isActive ? 20 : 10,
               }}
             >
               {/* Counter-rotation keeps the photo upright as the ring spins */}
@@ -292,7 +295,9 @@ export default function OrbitCarousel() {
                   onClick={() => handleProfileClick(i)}
                   whileHover={{ scale: 1.15 }}
                   whileTap={{ scale: 0.95 }}
-                  className="size-full cursor-pointer rounded-full border-2 border-white/70 object-cover shadow-md transition-all duration-300 hover:border-blue-300"
+                  className={`size-full cursor-pointer rounded-full object-cover shadow-md transition-all duration-300 ${
+                    isActive ? "border-4 border-blue-500 shadow-lg" : "border-2 border-white/70 hover:border-blue-300"
+                  }`}
                 />
               </motion.div>
             </motion.div>

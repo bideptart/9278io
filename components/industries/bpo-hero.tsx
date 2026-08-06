@@ -150,35 +150,35 @@ export function BpoHero({ industry }: { industry: Industry }) {
 
               {/* Floating accent cards — sit outside the image bounds, each
                   with its own float rhythm plus a hover lift of its own. */}
-              <div className="absolute -left-4 top-6 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600">
+              <div className="absolute -left-2 top-6 z-20 hero-float-up transition-transform duration-300 hover:-translate-y-1 sm:-left-4">
+                <div className="rounded-xl border border-white/60 bg-white/90 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="relative grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-emerald-500/10 to-emerald-500/20 text-emerald-600 sm:size-10 sm:rounded-xl">
                       <span
                         aria-hidden
-                        className="absolute inset-0 rounded-xl bg-emerald-500/25 motion-safe:animate-[ind-ping_2.6s_ease-out_infinite]"
+                        className="absolute inset-0 rounded-lg bg-emerald-500/25 motion-safe:animate-[ind-ping_2.6s_ease-out_infinite] sm:rounded-xl"
                       />
-                      <CheckCircle2 className="relative size-5" aria-hidden />
+                      <CheckCircle2 className="relative size-3.5 sm:size-5" aria-hidden />
                     </span>
                     <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Call Deflected</p>
-                      <p className="text-[11px] font-medium text-slate-500">Resolved</p>
+                      <p className="text-[9.5px] font-bold leading-tight text-slate-800 sm:text-[12.5px]">Call Deflected</p>
+                      <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Resolved</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -right-4 -top-4 z-20 motion-safe:animate-breathe transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <p className="text-[13px] font-bold leading-tight text-blue-700">AI Voice Agent</p>
-                  <div className="mt-1.5 flex items-center gap-1.5">
-                    <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
-                    <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
+              <div className="absolute -right-2 -top-2 z-20 motion-safe:animate-breathe transition-transform duration-300 hover:-translate-y-1 sm:-right-4 sm:-top-4">
+                <div className="rounded-xl border border-white/60 bg-white/90 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                  <p className="text-[10px] font-bold leading-tight text-blue-700 sm:text-[13px]">AI Voice Agent</p>
+                  <div className="mt-1 flex items-center gap-1 sm:mt-1.5 sm:gap-1.5">
+                    <p className="text-[8px] font-medium text-slate-500 sm:text-[10.5px]">Listening…</p>
+                    <div className="flex h-2 items-end gap-[1.5px] sm:h-3" aria-hidden>
                       {[7, 11, 6, 13, 9, 14].map((h, i) => (
                         <span
                           key={i}
-                          style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
-                          className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-sky-500 to-blue-500"
+                          style={{ height: `${h * 0.65}px`, animationDelay: `${i * 0.1}s` }}
+                          className="ind-eq w-[2px] rounded-full bg-gradient-to-t from-sky-500 to-blue-500 sm:w-[2.5px]"
                         />
                       ))}
                     </div>
@@ -186,42 +186,42 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 </div>
               </div>
 
-              <div className="absolute -left-6 top-[48%] z-20 hero-float-down transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
+              <div className="absolute -left-3 top-[48%] z-20 hero-float-down transition-transform duration-300 hover:-translate-y-1 sm:-left-6">
+                <div className="rounded-xl border border-white/60 bg-white/90 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="relative grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
                       <span
                         aria-hidden
-                        className="absolute inset-0 rounded-xl bg-blue-500/15 motion-safe:animate-[ind-ping_3.2s_ease-out_infinite]"
+                        className="absolute inset-0 rounded-lg bg-blue-500/15 motion-safe:animate-[ind-ping_3.2s_ease-out_infinite] sm:rounded-xl"
                       />
-                      <Star className="relative size-5" aria-hidden />
+                      <Star className="relative size-3.5 sm:size-5" aria-hidden />
                     </span>
                     <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">CSAT Score</p>
-                      <p className="text-[11px] font-medium text-slate-500">4.6 / 5</p>
+                      <p className="text-[9.5px] font-bold leading-tight text-slate-800 sm:text-[12.5px]">CSAT Score</p>
+                      <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">4.6 / 5</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -right-6 bottom-10 z-20 hero-wobble transition-transform duration-300 hover:-translate-y-1">
-                <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60">
-                  <div className="flex items-center gap-3">
-                    <span className="relative grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
+              <div className="absolute -right-3 bottom-10 z-20 hero-wobble transition-transform duration-300 hover:-translate-y-1 sm:-right-6">
+                <div className="rounded-xl border border-white/60 bg-white/90 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(37,99,235,0.45)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="relative grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
                       <span
                         aria-hidden
-                        className="absolute inset-0 rounded-xl bg-blue-500/15 motion-safe:animate-[ind-ping_3.6s_ease-out_infinite_0.6s]"
+                        className="absolute inset-0 rounded-lg bg-blue-500/15 motion-safe:animate-[ind-ping_3.6s_ease-out_infinite_0.6s] sm:rounded-xl"
                       />
-                      <Headphones className="relative size-5" aria-hidden />
+                      <Headphones className="relative size-3.5 sm:size-5" aria-hidden />
                     </span>
                     <div>
-                      <p className="text-[12.5px] font-bold leading-tight text-slate-800">Escalation</p>
-                      <p className="text-[11px] font-medium text-slate-500">Routed live</p>
+                      <p className="text-[9.5px] font-bold leading-tight text-slate-800 sm:text-[12.5px]">Escalation</p>
+                      <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Routed live</p>
                     </div>
-                    <span className="ml-1 flex gap-1" aria-hidden>
-                      <span className="size-1.5 rounded-full bg-slate-300" />
-                      <span className="size-1.5 rounded-full bg-slate-300" />
-                      <span className="size-1.5 animate-pulse rounded-full bg-blue-500" />
+                    <span className="ml-0.5 flex gap-1 sm:ml-1" aria-hidden>
+                      <span className="size-1 rounded-full bg-slate-300 sm:size-1.5" />
+                      <span className="size-1 rounded-full bg-slate-300 sm:size-1.5" />
+                      <span className="size-1 animate-pulse rounded-full bg-blue-500 sm:size-1.5" />
                     </span>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, LayoutDashboard, Copy, PhoneCall, LayoutGrid, IndianRupee, HelpCircle } from "lucide-react"
+import { ArrowRight, LayoutDashboard, Copy, PhoneCall, LayoutGrid, IndianRupee, HelpCircle, Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
@@ -93,37 +94,24 @@ export default function MultiAgentManagementPage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#F7F9FC" }}>
-        {/* page-level soft blue blobs, top-right and bottom-left */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-32 -top-32 -z-10 size-[520px] rounded-full opacity-[0.08]"
-          style={{ background: "radial-gradient(circle, #2563EB, transparent 70%)" }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -bottom-32 -left-32 -z-10 size-[420px] rounded-full opacity-[0.07]"
-          style={{ background: "radial-gradient(circle, #2563EB, transparent 70%)" }}
-        />
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-10 px-6 py-10 md:px-8 md:py-14 lg:flex-row lg:items-center lg:gap-10">
-          <div className="w-full max-w-2xl text-center lg:max-w-none lg:flex-1 lg:text-left">
+      <section className="relative flex flex-col border-b border-border/50">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
+          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
+          <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
+        </div>
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-2 md:px-8 md:pb-24 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+          <div>
             <ScrollReveal>
-              <div className="flex justify-center lg:justify-start">
-                <span
-                  className="inline-flex h-10 items-center gap-2 rounded-full text-[15px] font-semibold"
-                  style={{ backgroundColor: "#EEF4FF", border: "1px solid #BBD1FF", color: "#2563EB", padding: "0 18px" }}
-                >
-                  <span className="size-1.5 rounded-full" style={{ backgroundColor: "#2563EB" }} aria-hidden />
-                  BUILD &amp; SETUP
-                </span>
-              </div>
-
+              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+                Build &amp; Setup
+              </span>
               <h1
                 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]"
                 style={{ lineHeight: 1, letterSpacing: "-1px" }}
               >
-                <span style={{ color: "#0F172A" }}>Multi-Agent</span>
-                <br />
+                Multi-Agent{" "}
                 <span
                   style={{
                     backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -135,44 +123,49 @@ export default function MultiAgentManagementPage() {
                   Management
                 </span>
               </h1>
-
-              <p
-                className="mx-auto mt-8 text-xl md:text-[24px] lg:mx-0"
-                style={{ color: "#667085", lineHeight: 1.6, maxWidth: "500px" }}
-              >
-                Create and manage as many AI agents as you need from a single account.
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                Create and manage as many AI agents as you need from a single account — one dashboard, fast
+                cloning, and a dedicated number per agent.
               </p>
 
-              <div className="mt-8 flex flex-wrap justify-center gap-5 lg:justify-start">
-                <Link
-                  href="/get-started"
-                  className="group inline-flex h-[60px] items-center gap-2 rounded-full pl-[34px] pr-[10px] text-base font-semibold text-white transition-all hover:-translate-y-0.5"
-                  style={{
-                    background: "linear-gradient(90deg, #4F8DFF, #2563EB)",
-                    boxShadow: "0 20px 60px rgba(37,99,235,0.25)",
-                  }}
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-7 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
                 >
-                  Build your first agent
-                  <span className="flex size-9 items-center justify-center rounded-full bg-white/20">
-                    <ArrowRight className="size-4" aria-hidden />
+                  <Link href="/get-started">
+                    Build your first agent
+                    <ArrowRight className="ml-1 size-4" aria-hidden />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                >
+                  <Link href="/contact">
+                    <PhoneCall className="mr-2 size-4" />
+                    Talk to sales
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                {["One dashboard for every agent", "Clone a setup in minutes", "A dedicated number per agent"].map((t) => (
+                  <span key={t} className="inline-flex items-center gap-1.5">
+                    <Check className="size-3.5 text-primary" aria-hidden />
+                    {t}
                   </span>
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex h-[60px] items-center rounded-full px-9 text-base font-semibold transition-colors hover:bg-[#F1F5F9]"
-                  style={{ backgroundColor: "#FFFFFF", border: "1px solid #D0D5DD", color: "#0F172A" }}
-                >
-                  Talk to sales
-                </Link>
+                ))}
               </div>
             </ScrollReveal>
           </div>
 
-          <div className="w-full max-w-md lg:max-w-none lg:flex-1">
-            <ScrollReveal>
-              <MultiAgentHub />
-            </ScrollReveal>
-          </div>
+          <ScrollReveal delay={0.08}>
+            <MultiAgentHub />
+          </ScrollReveal>
         </div>
       </section>
 
