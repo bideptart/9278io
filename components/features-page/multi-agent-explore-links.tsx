@@ -17,7 +17,7 @@ type ExploreLink = { icon: ReactNode; href: string; title: string; description: 
  */
 export function MultiAgentExploreLinks({ links }: { links: ExploreLink[] }) {
   return (
-    <div className="mt-8 grid gap-5 md:grid-cols-3">
+    <div className="mt-8 grid gap-5 overflow-x-hidden md:grid-cols-3">
       {links.map((l, i) => {
         const isCenter = i === 1
         const fromRight = i === 0 // card to the left starts offset from the centre, toward the right

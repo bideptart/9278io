@@ -26,7 +26,7 @@ export function HowItWorksTimeline({ steps }: { steps: Step[] }) {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
-    <div ref={ref} className="relative mt-10">
+    <div ref={ref} className="relative mt-10 overflow-x-hidden">
       {/* base line, always visible */}
       <div aria-hidden className="absolute left-6 top-6 bottom-6 w-px bg-border" />
       {/* fill line, grows as the section scrolls through view */}

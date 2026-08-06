@@ -56,7 +56,7 @@ export default function KnowledgeBasePage() {
       />
 
       {/* Hero */}
-      <section className="relative flex flex-col border-b border-border/50">
+      <section className="relative flex flex-col overflow-hidden border-b border-border/50">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
@@ -69,7 +69,7 @@ export default function KnowledgeBasePage() {
                 <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
                 Train &amp; Configure
               </span>
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
                 Knowledge{" "}
                 <span
                   style={{

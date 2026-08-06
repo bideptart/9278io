@@ -119,8 +119,8 @@ export default function MultiAgentManagementPage() {
               </div>
 
               <h1
-                className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]"
-                style={{ lineHeight: 0.95, letterSpacing: "-2px" }}
+                className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]"
+                style={{ lineHeight: 1, letterSpacing: "-1px" }}
               >
                 <span style={{ color: "#0F172A" }}>Multi-Agent</span>
                 <br />
