@@ -684,9 +684,10 @@ function ECommercePage() {
                 btn: "bg-primary",
               }
               const LinkIcon = link.icon
+              const position = i === 0 ? "left" : i === 2 ? "right" : "middle"
 
               return (
-                <ScrollReveal key={link.href} delay={i * 0.08}>
+                <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
                     className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
@@ -724,7 +725,7 @@ function ECommercePage() {
                       </span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </CenterOutItem>
               )
             })}
           </div>
@@ -1904,9 +1905,10 @@ function HomeServicesPage() {
                 btn: "bg-primary",
               }
               const LinkIcon = link.icon
+              const position = i === 0 ? "left" : i === 2 ? "right" : "middle"
 
               return (
-                <ScrollReveal key={link.href} delay={i * 0.08}>
+                <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
                     className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
@@ -1942,7 +1944,7 @@ function HomeServicesPage() {
                       </span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </CenterOutItem>
               )
             })}
           </div>
