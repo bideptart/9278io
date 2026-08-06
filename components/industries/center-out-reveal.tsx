@@ -13,16 +13,19 @@ export function CenterOutItem({
   children,
   className,
   position,
+  role,
 }: {
   children: React.ReactNode
   className?: string
   position: "left" | "middle" | "right"
+  role?: string
 }) {
   const xOffset = position === "left" ? 140 : position === "right" ? -140 : 0
 
   return (
     <motion.div
       className={cn(className)}
+      role={role}
       initial={{ opacity: 0, x: xOffset, y: position === "middle" ? 20 : 0 }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: false, margin: "-30px" }}
