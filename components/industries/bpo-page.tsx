@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Rocket, ShieldCheck, TrendingUp, Zap } from "lucide-react"
+import { ArrowRight, Rocket, ShieldCheck, Zap } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -13,7 +13,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 
 export function BpoPage() {
   const industry = getIndustry("bpo")!
-  const related = INDUSTRIES.filter((i) => i.slug !== "bpo").slice(0, 4)
+  const related = INDUSTRIES.filter((i) => i.slug !== "bpo").slice(0, 3)
 
   return (
     <main className="min-h-dvh bg-white text-slate-900">
@@ -158,29 +158,13 @@ export function BpoPage() {
           </ScrollReveal>
 
           <div className="mt-16 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-              {
-                href: "/pricing",
-                titlePrefix: "",
-                highlight: "Compare plans and per-minute rates",
-                description: "Three tiers from ₹3,000 to ₹30,000, with rates from ₹12 down to ₹10/min.",
-                icon: TrendingUp,
-              },
-              {
-                href: "/faq",
-                titlePrefix: "",
-                highlight: "FAQ — credit, phone numbers, compliance",
-                description: "Pricing, phone numbers, TRAI calling-window enforcement, DPDP Act 2023, and more.",
-                icon: ShieldCheck,
-              },
-            ].map((link, i) => {
+            {related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: r.icon,
+            })).map((link, i) => {
               const LinkIcon = link.icon
 
               return (
