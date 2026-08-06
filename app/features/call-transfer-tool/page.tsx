@@ -109,8 +109,8 @@ export default function CallTransferToolPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
-          <div>
+        <div className="mx-auto grid w-full max-w-6xl min-w-0 items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+          <div className="min-w-0">
             <nav aria-label="Breadcrumb">
               <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
                 Operate &amp; Monitor
@@ -162,7 +162,7 @@ export default function CallTransferToolPage() {
             </ScrollReveal>
           </div>
 
-          <ScrollReveal delay={0.08}>
+          <ScrollReveal delay={0.08} className="min-w-0">
             <CallTransferIllustration />
           </ScrollReveal>
         </div>

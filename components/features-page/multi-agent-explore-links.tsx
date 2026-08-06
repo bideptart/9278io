@@ -13,7 +13,7 @@ type ExploreLink = { icon: ReactNode; href: string; title: string; description: 
 /**
  * Three link cards where the centre one anchors and the two side cards
  * slide out from behind it — same technique as components/about/values-grid.tsx.
- * Replays every time the section scrolls into view (viewport `once: false`).
+ * Plays once the first time the section scrolls into view.
  */
 export function MultiAgentExploreLinks({ links }: { links: ExploreLink[] }) {
   return (
@@ -28,7 +28,7 @@ export function MultiAgentExploreLinks({ links }: { links: ExploreLink[] }) {
             style={{ zIndex: isCenter ? 20 : 10 }}
             initial={{ opacity: 0, scale: 0.85, x: isCenter ? 0 : fromRight ? 60 : -60 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: false, margin: "-40px" }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 1, delay: isCenter ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link

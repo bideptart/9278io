@@ -77,7 +77,7 @@ export function CallTransferIllustration() {
   const agent = AGENTS[activeAgent]
 
   return (
-    <div className="relative mx-auto w-full max-w-[560px] lg:mr-6">
+    <div className="relative mx-auto w-full min-w-0 max-w-[560px] lg:ml-6">
       {/* grounding shadow beneath the whole panel */}
       <div
         aria-hidden

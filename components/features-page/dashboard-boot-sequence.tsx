@@ -58,7 +58,7 @@ export function DashboardBootSequence() {
           className="rounded-3xl border border-border/60 bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.4 }}
         >
           <p className="text-sm font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>Signing in</p>
@@ -126,7 +126,7 @@ export function DashboardBootSequence() {
           className="relative overflow-hidden rounded-3xl border border-border/60 bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
           initial={{ opacity: 0, x: 16 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
           <div className="flex items-center justify-between">
@@ -150,7 +150,7 @@ export function DashboardBootSequence() {
               const Icon = t.icon
               const isReady = tileCount > i
               return (
-                <div key={t.label} className="rounded-xl p-3.5" style={{ backgroundColor: isReady ? `${t.tone}0F` : "#F1F5F9" }}>
+                <div key={t.label} className="min-h-[54px] rounded-xl p-3.5" style={{ backgroundColor: isReady ? `${t.tone}0F` : "#F1F5F9" }}>
                   <AnimatePresence mode="wait">
                     {isReady ? (
                       <motion.div key="ready" initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}>
@@ -158,7 +158,7 @@ export function DashboardBootSequence() {
                         <p className="mt-1.5 text-sm font-semibold" style={{ color: "#0F172A" }}>{t.label}</p>
                       </motion.div>
                     ) : (
-                      <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2 py-0.5">
+                      <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2 py-1.5">
                         <motion.span
                           className="block h-4 w-4 rounded"
                           style={{ backgroundColor: "#E4ECFF" }}

@@ -23,7 +23,7 @@ export function DetailSplitRows({ items }: { items: DetailItem[] }) {
           key={d.title}
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, margin: "-100px", amount: 0.4 }}
+          viewport={{ once: true, margin: "-100px", amount: 0.4 }}
           transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center gap-6 sm:flex-row"
         >

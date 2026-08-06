@@ -24,7 +24,7 @@ export function HowItWorksFlow({ steps }: { steps: Step[] }) {
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: 12 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px", amount: 0.5 }}
+            viewport={{ once: true, margin: "-100px", amount: 0.5 }}
             transition={{ type: "spring", stiffness: 200, damping: 20, delay: i * 0.15 }}
             className="flex-1 rounded-2xl border border-border/60 bg-white p-5 text-center shadow-[0_1px_2px_rgba(15,23,42,0.04)] md:flex md:flex-col md:items-center"
           >
@@ -42,7 +42,7 @@ export function HowItWorksFlow({ steps }: { steps: Step[] }) {
             <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.4, delay: i * 0.15 + 0.2 }}
               className="hidden shrink-0 text-primary/40 md:flex md:items-center md:justify-center"
             >

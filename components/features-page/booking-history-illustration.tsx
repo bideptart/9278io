@@ -253,7 +253,7 @@ export function BookingHistoryIllustration() {
               key={f.label}
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.6 }}
+              viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.4, delay: i * 0.12 }}
               whileHover={{ y: -2 }}
               className="relative flex flex-col items-center gap-1.5"
