@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Phone, Play, Pause, ChevronDown, Check, Mic, VolumeX, LayoutDashboard, BarChart3, Settings, Languages, Zap, Bell } from "lucide-react"
 
@@ -203,12 +203,6 @@ export function VoiceSelectionHub() {
   }, [])
   const callDuration = `${Math.floor(callSeconds / 60)}:${String(callSeconds % 60).padStart(2, "0")}`
 
-  // Auto-cycles through all 10 languages one by one on a timer. A manual
-  // tap jumps straight to that language and restarts the timer from there,
-  // instead of fighting with whatever the auto-cycle was about to do.
-  const CYCLE_MS = 4500
-  const autoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
   useEffect(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) return
     let cancelled = false
@@ -248,29 +242,9 @@ export function VoiceSelectionHub() {
     playGreeting(v)
   }
 
-  function scheduleAutoAdvance(fromLang: string) {
-    if (autoTimerRef.current) clearTimeout(autoTimerRef.current)
-    autoTimerRef.current = setTimeout(() => {
-      const i = voices.findIndex((v) => v.lang === fromLang)
-      const next = voices[(i + 1) % voices.length]
-      setActive(next.lang)
-      playGreeting(next)
-      scheduleAutoAdvance(next.lang)
-    }, CYCLE_MS)
-  }
-
-  useEffect(() => {
-    scheduleAutoAdvance(active)
-    return () => {
-      if (autoTimerRef.current) clearTimeout(autoTimerRef.current)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   function handleSelect(v: (typeof voices)[number]) {
     setActive(v.lang)
     playGreeting(v)
-    scheduleAutoAdvance(v.lang)
   }
 
   return (
@@ -480,7 +454,7 @@ export function VoiceSelectionHub() {
                     ))}
                   </div>
                 </motion.button>
-                <div className="mt-1.5 flex h-10 max-w-[85%] items-start justify-end">
+                <div className="mt-1.5 flex h-10 max-w-[85%] items-start justify-end overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={current.lang}
@@ -523,7 +497,7 @@ export function VoiceSelectionHub() {
                             : { backgroundColor: "#F1F5F9", color: "#475569" }
                         }
                       >
-                        {isActive && <Check className="size-3" aria-hidden />}
+                        <Check className={`size-3 shrink-0 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} aria-hidden />
                         {v.lang}
                         {noRealVoice && <VolumeX className="size-3 opacity-60" aria-hidden />}
                       </motion.button>
