@@ -63,7 +63,7 @@ export function AccountSettingsToggleList() {
 
   return (
     <div
-      className="mx-auto mt-12 grid w-full max-w-4xl grid-cols-3 items-start gap-4"
+      className="mx-auto mt-12 grid w-full max-w-4xl grid-cols-1 items-start gap-4 sm:grid-cols-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

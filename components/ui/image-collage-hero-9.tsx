@@ -18,8 +18,11 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
   return (
     <div className="relative h-[360px] w-full sm:h-[500px]">
       <div
-        style={{ animationDelay: "0.1s" }}
-        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute left-1/2 top-0 w-64 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
+        style={{
+          animation: "reveal 0.7s cubic-bezier(0.22,1,0.36,1) both, heroFloatUp 2.8s ease-in-out infinite",
+          animationDelay: "0s, 0s",
+        }}
+        className="absolute left-1/2 top-0 w-[60%] max-w-72 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
       >
         <div
           className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
@@ -30,8 +33,11 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
       </div>
 
       <div
-        style={{ animationDelay: "0.25s" }}
-        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-down absolute right-0 top-1/3 w-56 transition-transform duration-300 hover:-translate-y-1 sm:w-64"
+        style={{
+          animation: "reveal 0.7s cubic-bezier(0.22,1,0.36,1) both, heroFloatDown 2.8s ease-in-out infinite",
+          animationDelay: "1s, 1.4s",
+        }}
+        className="absolute right-0 top-[40%] w-[52%] max-w-64 transition-transform duration-300 hover:-translate-y-1 sm:top-1/3 sm:w-64"
       >
         <div
           className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
@@ -42,14 +48,17 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
       </div>
 
       <div
-        style={{ animationDelay: "0.4s" }}
-        className="motion-safe:animate-[reveal_0.7s_cubic-bezier(0.22,1,0.36,1)_both] hero-float-up absolute -left-2 bottom-6 h-24 transition-transform duration-300 hover:-translate-y-1 sm:h-32"
+        style={{
+          animation: "reveal 0.7s cubic-bezier(0.22,1,0.36,1) both, heroFloatUp 2.8s ease-in-out infinite",
+          animationDelay: "2s, 0s",
+        }}
+        className="absolute -left-2 bottom-0 h-20 transition-transform duration-300 hover:-translate-y-1 sm:bottom-6 sm:h-32"
       >
         <div
           className="h-full overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-1 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
           style={{ aspectRatio: "1536 / 470", width: "auto" }}
         >
-          <img src={images[2].src} alt={images[2].alt} className="h-full w-full rounded-xl object-contain" />
+          <img src={images[2].src} alt={images[2].alt} className="h-full w-full rounded-xl object-cover" />
         </div>
       </div>
     </div>

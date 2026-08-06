@@ -26,7 +26,7 @@ export function MultiAgentCapabilities({ capabilities }: { capabilities: Capabil
         return (
           <section
             key={c.title}
-            className={isLast ? "" : "border-b border-border/50"}
+            className={isLast ? "overflow-hidden" : "overflow-hidden border-b border-border/50"}
             style={{ backgroundColor: i % 2 === 0 ? "#FFFFFF" : "#F7F9FC" }}
           >
             <div className="mx-auto flex min-h-[420px] max-w-5xl px-6 py-14 md:min-h-[480px] md:px-8 md:py-20">

@@ -98,7 +98,7 @@ export default function SupportTicketsSystemPage() {
             </nav>
 
             <ScrollReveal className="mt-6">
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
                 <span style={{ color: "#0F172A" }}>Support</span>{" "}
                 <span
                   style={{
@@ -142,7 +142,7 @@ export default function SupportTicketsSystemPage() {
             </ScrollReveal>
           </div>
 
-          <ScrollReveal delay={0.08} className="hidden lg:block">
+          <ScrollReveal delay={0.08}>
             <SupportTicketIllustration />
           </ScrollReveal>
         </div>

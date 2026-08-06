@@ -378,11 +378,10 @@ export function AnalyticsDashboardIllustration() {
               })}
             </div>
 
-            <div className="min-w-0 flex-1 overflow-hidden p-4">
+            <div className="h-[360px] min-w-0 flex-1 overflow-hidden p-4">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active}
-                  layout
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}

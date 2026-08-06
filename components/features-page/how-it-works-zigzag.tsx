@@ -27,7 +27,7 @@ export function HowItWorksZigzag({ steps }: { steps: Step[] }) {
     .join(" ")
 
   return (
-    <div className="relative mt-10">
+    <div className="relative mt-10 overflow-x-hidden">
       <svg viewBox="0 0 4 100" preserveAspectRatio="none" aria-hidden className="absolute inset-y-0 left-1/2 hidden h-full w-1 -translate-x-1/2 sm:block">
         <path d={pathD} fill="none" stroke="oklch(0.546 0.215 262.88 / 0.3)" strokeWidth="1" strokeDasharray="3 3" vectorEffect="non-scaling-stroke" />
         <motion.circle
