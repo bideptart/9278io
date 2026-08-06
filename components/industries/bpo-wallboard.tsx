@@ -1,186 +1,160 @@
 "use client"
 
-// A custom hero visual built specifically for BPO & call-centre content: a
-// "neural call network" — a pulsing central hub with six capability nodes
-// orbiting it, each connected by an animated line that continuously carries
-// a traveling pulse of light into the hub (representing calls flowing in).
-// Every piece of the graphic is in motion — the aurora backdrop drifts, the
-// halo of particles rotates, each node bobs and pops in, the connecting
-// lines pulse, and a live call-line ticker cycles at the bottom — so unlike
-// a static screenshot, nothing here ever sits still.
+// A fifth, deliberately different take on the BPO hero visual: instead of
+// an abstract dashboard/diagram (every earlier attempt), this is a hand-
+// built illustrated scene — a support agent at a desk, wearing a headset,
+// with animated speech-waves, a breathing idle bob, and floating info
+// bubbles orbiting around them. Flat vector-illustration style (plain SVG
+// shapes, no external art assets), warm and human rather than data-panel
+// cold. Every part of it moves independently and continuously.
 
-import { useEffect, useState } from "react"
-import { BarChart3, Clock, Globe2, Headphones, ShieldCheck, Star, Zap } from "lucide-react"
-
-const CENTER = 200
-const RADIUS = 148
-
-const NODES = [
-  { angle: -90, Icon: Globe2, label: "Multilingual", tint: "from-blue-500 to-sky-400", delay: 0 },
-  { angle: -30, Icon: Zap, label: "< 3s response", tint: "from-amber-500 to-orange-400", delay: 0.15 },
-  { angle: 30, Icon: BarChart3, label: "Live analytics", tint: "from-emerald-500 to-teal-400", delay: 0.3 },
-  { angle: 90, Icon: ShieldCheck, label: "TRAI compliant", tint: "from-sky-500 to-blue-400", delay: 0.45 },
-  { angle: 150, Icon: Star, label: "4.6 CSAT", tint: "from-pink-500 to-rose-400", delay: 0.6 },
-  { angle: 210, Icon: Clock, label: "24/7 coverage", tint: "from-violet-500 to-purple-400", delay: 0.75 },
+const SPARKLES = [
+  { top: "14%", left: "12%", delay: 0 },
+  { top: "22%", left: "82%", delay: 0.8 },
+  { top: "58%", left: "6%", delay: 1.6 },
+  { top: "68%", left: "88%", delay: 0.4 },
+  { top: "8%", left: "48%", delay: 1.2 },
 ]
-
-const HALO_DOTS = Array.from({ length: 18 }, (_, i) => i)
-
-const TICKER_LINES = [
-  "“Namaste, IT helpdesk se baat kar rahi hoon…”",
-  "“Your order has been dispatched, tracking sent via SMS.”",
-  "“I've flagged this for a senior agent — 2 minutes.”",
-  "“Refund initiated, funds in 3–5 business days.”",
-]
-
-function toXY(angleDeg: number, radius: number) {
-  const rad = (angleDeg * Math.PI) / 180
-  return { x: CENTER + radius * Math.cos(rad), y: CENTER + radius * Math.sin(rad) }
-}
 
 export function BpoWallboard() {
-  const [tick, setTick] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => setTick((t) => (t + 1) % TICKER_LINES.length), 2600)
-    return () => clearInterval(id)
-  }, [])
-
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-between overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/70 to-sky-50 px-4 py-6 sm:px-6 sm:py-8">
-      {/* Drifting aurora blobs — three colours on independent cycles */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <span className="absolute -left-10 top-6 size-52 rounded-full bg-blue-400/25 blur-3xl motion-safe:animate-[breathe_8s_ease-in-out_infinite]" />
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50 via-sky-50/70 to-white">
+      {/* Soft colour blobs behind the scene */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <span className="absolute -left-10 -top-6 size-56 rounded-full bg-blue-300/25 blur-3xl motion-safe:animate-[breathe_9s_ease-in-out_infinite]" />
         <span
-          style={{ animationDelay: "1.2s" }}
-          className="absolute -right-8 top-16 size-44 rounded-full bg-emerald-400/20 blur-3xl motion-safe:animate-[breathe_10s_ease-in-out_infinite]"
-        />
-        <span
-          style={{ animationDelay: "2.4s" }}
-          className="absolute bottom-4 left-1/3 size-48 rounded-full bg-violet-400/20 blur-3xl motion-safe:animate-[breathe_11s_ease-in-out_infinite]"
+          style={{ animationDelay: "2s" }}
+          className="absolute -right-8 bottom-4 size-52 rounded-full bg-emerald-300/25 blur-3xl motion-safe:animate-[breathe_10s_ease-in-out_infinite]"
         />
       </div>
 
-      {/* Network diagram */}
-      <div className="relative mx-auto mt-2 grid aspect-square w-full max-w-[300px] shrink-0 place-items-center sm:max-w-[330px]">
-        {/* Rotating halo of particles */}
-        <div
+      {/* Twinkling sparkles scattered around the scene */}
+      {SPARKLES.map((s, i) => (
+        <span
+          key={i}
           aria-hidden
-          className="absolute inset-0 motion-safe:animate-[ind-spin_22s_linear_infinite]"
+          style={{ top: s.top, left: s.left, animationDelay: `${s.delay}s` }}
+          className="fit-twinkle absolute z-30 text-blue-400"
         >
-          {HALO_DOTS.map((i) => {
-            const { x, y } = toXY((360 / HALO_DOTS.length) * i, 49)
-            return (
-              <span
-                key={i}
-                className="absolute size-[3px] rounded-full bg-blue-400/50"
-                style={{ left: `${x / 4}%`, top: `${y / 4}%`, transform: "translate(-50%, -50%)" }}
-              />
-            )
-          })}
-        </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4L12 0z" />
+          </svg>
+        </span>
+      ))}
 
-        {/* Connecting lines with a traveling pulse of light per node */}
-        <svg viewBox="0 0 400 400" className="absolute inset-0 size-full" aria-hidden>
-          <defs>
-            <radialGradient id="pulseGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#2563eb" stopOpacity="1" />
-              <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          {NODES.map((n, i) => {
-            const { x, y } = toXY(n.angle, RADIUS)
-            return (
-              <g key={i}>
-                <line x1={x} y1={y} x2={CENTER} y2={CENTER} stroke="#93c5fd" strokeOpacity="0.45" strokeWidth="1.5" />
-                <circle r="6" fill="url(#pulseGlow)">
-                  <animateMotion
-                    dur="2.6s"
-                    begin={`${n.delay}s`}
-                    repeatCount="indefinite"
-                    path={`M${x},${y} L${CENTER},${CENTER}`}
-                  />
-                </circle>
-              </g>
-            )
-          })}
+      {/* ── The character ── */}
+      <div className="relative z-10 mt-6" style={{ animation: "breathe 4.5s ease-in-out infinite" }}>
+        <svg width="180" height="210" viewBox="0 0 180 210" className="drop-shadow-[0_18px_30px_rgba(37,99,235,0.25)]">
+          {/* Desk */}
+          <rect x="10" y="176" width="160" height="14" rx="7" fill="#1e40af" opacity="0.12" />
+          {/* Chair back */}
+          <rect x="48" y="86" width="84" height="94" rx="24" fill="#2563eb" />
+          {/* Body / shirt */}
+          <path d="M58 128c0-22 14-34 32-34s32 12 32 34v52H58z" fill="#0ea5e9" />
+          {/* Collar */}
+          <path d="M82 98l8 10 8-10" stroke="#e0f2fe" strokeWidth="3" fill="none" strokeLinecap="round" />
+          {/* Neck */}
+          <rect x="82" y="76" width="16" height="18" rx="6" fill="#f2b98d" />
+          {/* Head */}
+          <circle cx="90" cy="58" r="30" fill="#f6c99a" />
+          {/* Hair */}
+          <path d="M60 52a30 30 0 0 1 60 0c0-6-4-9-8-9-3-8-11-13-22-13s-19 5-22 13c-4 0-8 3-8 9z" fill="#3b2a20" />
+          {/* Smile */}
+          <path d="M80 66q10 8 20 0" stroke="#7a4a30" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          {/* Eyes */}
+          <circle cx="80" cy="56" r="2.6" fill="#3b2a20" />
+          <circle cx="100" cy="56" r="2.6" fill="#3b2a20" />
+
+          {/* Headset band */}
+          <path d="M62 48a28 28 0 0 1 56 0" stroke="#0f172a" strokeWidth="4" fill="none" strokeLinecap="round" />
+          {/* Ear cups */}
+          <circle cx="62" cy="58" r="8" fill="#0f172a" />
+          <circle cx="118" cy="58" r="8" fill="#0f172a" />
+          {/* Mic boom */}
+          <path d="M118 64c4 6 6 12 2 18" stroke="#0f172a" strokeWidth="3" fill="none" strokeLinecap="round" />
+          <circle cx="119" cy="83" r="4.5" fill="#2563eb" />
+
+          {/* Monitor on desk */}
+          <g transform="translate(18 130)">
+            <rect x="0" y="0" width="46" height="34" rx="5" fill="#0f172a" />
+            <rect x="3" y="3" width="40" height="26" rx="3" fill="#e0f2fe" />
+            <rect x="18" y="34" width="10" height="8" fill="#0f172a" />
+            <rect x="10" y="42" width="26" height="4" rx="2" fill="#0f172a" />
+          </g>
         </svg>
 
-        {/* Capability nodes */}
-        {NODES.map((n, i) => {
-          const { x, y } = toXY(n.angle, RADIUS)
-          const floatClass = i % 2 === 0 ? "hero-float-up" : "hero-float-down"
-          return (
-            <div
-              key={n.label}
-              style={{ left: `${x / 4}%`, top: `${y / 4}%`, animationDelay: `${n.delay}s` }}
-              className={`card-pop-in absolute -translate-x-1/2 -translate-y-1/2 ${floatClass}`}
-            >
-              <div className="flex flex-col items-center gap-1">
-                <span
-                  className={`relative grid size-9 place-items-center rounded-2xl bg-gradient-to-br text-white shadow-lg sm:size-11 ${n.tint}`}
-                >
-                  <span
-                    aria-hidden
-                    style={{ animationDelay: `${n.delay}s` }}
-                    className="absolute inset-0 rounded-2xl bg-white/30 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite]"
-                  />
-                  <n.Icon className="relative size-4 sm:size-5" aria-hidden />
-                </span>
-                <span className="whitespace-nowrap rounded-full bg-white/90 px-2 py-0.5 text-[8.5px] font-bold text-slate-700 shadow-sm ring-1 ring-slate-200/70 sm:text-[9.5px]">
-                  {n.label}
-                </span>
-              </div>
-            </div>
-          )
-        })}
-
-        {/* Centre hub */}
-        <span className="relative z-10 grid size-16 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-[0_16px_36px_-10px_rgba(37,99,235,0.75)] sm:size-[76px]">
-          <span
-            aria-hidden
-            className="absolute inset-0 rounded-full bg-blue-500/35 motion-safe:animate-[ind-ping_2.4s_ease-out_infinite]"
-          />
-          <span
-            aria-hidden
-            className="absolute -inset-2 rounded-full border border-blue-300/50 motion-safe:animate-[breathe_4s_ease-in-out_infinite]"
-          />
-          <Headphones className="relative size-7 sm:size-8" aria-hidden />
-        </span>
+        {/* Mic pulse rings — sound leaving the headset */}
+        <span
+          aria-hidden
+          className="absolute left-[132px] top-[76px] size-4 rounded-full bg-blue-500/50 motion-safe:animate-[ind-ping_1.8s_ease-out_infinite]"
+        />
+        <span
+          aria-hidden
+          style={{ animationDelay: "0.5s" }}
+          className="absolute left-[130px] top-[74px] size-6 rounded-full bg-blue-400/30 motion-safe:animate-[ind-ping_1.8s_ease-out_infinite]"
+        />
       </div>
 
-      {/* Live call-line ticker — cycles continuously, nothing static */}
-      <div className="relative mt-3 w-full max-w-[380px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-        <div className="flex items-center gap-2">
-          <span className="flex size-2 shrink-0" aria-hidden>
-            <span className="absolute inline-flex size-2 animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+      {/* Floating info bubbles orbiting the character */}
+      <div
+        style={{ animationDelay: "0s" }}
+        className="hero-float-up absolute left-[6%] top-[16%] z-20 rounded-2xl border border-white/70 bg-white/90 px-3 py-2 shadow-lg backdrop-blur"
+      >
+        <div className="flex items-center gap-1.5">
+          <span className="grid size-6 place-items-center rounded-full bg-emerald-100 text-emerald-600">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+              <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </span>
-          <p className="text-[9.5px] font-bold uppercase tracking-wider text-slate-400 sm:text-[10px]">Live on call</p>
-          <span className="ml-auto flex h-3.5 items-end gap-[2px]" aria-hidden>
-            {[6, 11, 5, 13, 8].map((h, i) => (
-              <span
-                key={i}
-                style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
-                className="ind-eq w-[2.5px] rounded-full bg-gradient-to-t from-sky-500 to-blue-600"
-              />
-            ))}
-          </span>
+          <div>
+            <p className="text-[9.5px] font-bold leading-tight text-slate-800">Order confirmed</p>
+            <p className="text-[8px] font-medium text-slate-500">Resolved in 40s</p>
+          </div>
         </div>
-        <p className="relative mt-1.5 h-4 overflow-hidden text-[11px] font-medium text-slate-600 sm:text-[12px]">
-          {TICKER_LINES.map((line, i) => (
-            <span
-              key={line}
-              className="absolute inset-0 truncate transition-all duration-500"
-              style={{
-                opacity: tick === i ? 1 : 0,
-                transform: `translateY(${tick === i ? 0 : 8}px)`,
-              }}
-            >
-              {line}
-            </span>
-          ))}
-        </p>
+      </div>
+
+      <div
+        style={{ animationDelay: "1.4s" }}
+        className="hero-float-down absolute right-[5%] top-[10%] z-20 rounded-2xl border border-white/70 bg-white/90 px-3 py-2 shadow-lg backdrop-blur"
+      >
+        <div className="flex items-center gap-1.5">
+          <span className="grid size-6 place-items-center rounded-full bg-amber-100 text-amber-500">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z" />
+            </svg>
+          </span>
+          <p className="text-[9.5px] font-bold text-slate-800">4.6 / 5 CSAT</p>
+        </div>
+      </div>
+
+      <div
+        style={{ animationDelay: "2.4s" }}
+        className="hero-wobble absolute bottom-[16%] left-[2%] z-20 rounded-2xl border border-white/70 bg-white/90 px-3 py-2 shadow-lg backdrop-blur"
+      >
+        <div className="flex items-center gap-1.5">
+          <span className="grid size-6 place-items-center rounded-full bg-violet-100 text-violet-600">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+            </svg>
+          </span>
+          <p className="text-[9.5px] font-bold text-slate-800">10+ languages</p>
+        </div>
+      </div>
+
+      <div
+        style={{ animationDelay: "0.7s" }}
+        className="hero-float-up absolute bottom-[10%] right-[3%] z-20 rounded-2xl border border-white/70 bg-white/90 px-3 py-2 shadow-lg backdrop-blur"
+      >
+        <div className="flex items-center gap-1.5">
+          <span className="relative grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+            <span aria-hidden className="absolute inset-0 rounded-full bg-blue-400/30 motion-safe:animate-[ind-ping_2.4s_ease-out_infinite]" />
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </span>
+          <p className="text-[9.5px] font-bold text-slate-800">Live call</p>
+        </div>
       </div>
     </div>
   )
