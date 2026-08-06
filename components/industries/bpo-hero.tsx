@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -11,6 +10,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { BpoWallboard } from "@/components/industries/bpo-wallboard"
 import type { Industry } from "@/lib/industries"
 
 const HERO_STATS = [
@@ -138,14 +138,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(37,99,235,0.2),transparent_70%)] motion-safe:animate-[breathe_8s_ease-in-out_infinite]"
               />
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_30px_70px_-25px_rgba(37,99,235,0.55)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_40px_90px_-25px_rgba(37,99,235,0.65)]">
-                <Image
-                  src="/images/bpo-hero.png"
-                  alt="AI voice agent for BPO & call centres — agents at workstations with call analytics"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                />
+                <BpoWallboard />
               </div>
 
               {/* Floating accent cards — sit outside the image bounds, each
