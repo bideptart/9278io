@@ -98,7 +98,7 @@ export function HowItWorksConsole({ steps }: { steps: Step[] }) {
           </span>
         </div>
 
-        <div className="min-h-[220px] space-y-3.5 p-5 font-mono text-xs sm:text-sm">
+        <div className="h-[340px] space-y-3.5 overflow-hidden p-5 font-mono text-xs sm:text-sm">
           {steps.map((step, i) => {
             const isDone = i < visibleCount
             const isActive = i === activeIndex

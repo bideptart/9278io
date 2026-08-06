@@ -11,6 +11,7 @@ import { RelatedLinks } from "@/components/seo/related-links"
 import { BlogSearchProvider } from "@/components/blog/blog-search-context"
 import { BlogCategoryFilter } from "@/components/blog/blog-category-filter"
 import { BlogPostGrid } from "@/components/blog/blog-post-grid"
+import { BlogHeroMockup } from "@/components/blog/blog-hero-mockup"
 import { getAllBlogPostSummaries } from "@/lib/blog"
 import { sanitizeHtml } from "@/lib/sanitize"
 
@@ -61,53 +62,70 @@ export default async function BlogPage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(56,189,248,0.18),transparent_70%)]"
         />
-        <div className="mx-auto w-full max-w-4xl px-4 pb-6 pt-10 text-center md:px-6 md:pb-8 md:pt-14">
-          <ScrollReveal>
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-6 pt-10 md:px-6 md:pb-8 md:pt-14 lg:grid-cols-2 lg:gap-12">
+          <ScrollReveal className="text-center lg:text-left">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Guides, case studies &amp; insights
             </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              The 92
+            <h1 className="mt-6 text-balance text-[60px] font-bold leading-[1.15] tracking-tight">
+              The{" "}
               <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
-                78.io Blog
-              </span>
+                AI Voice Agent
+              </span>{" "}
+              Knowledge Hub
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-              How Indian businesses are automating phone calls, staying TRAI-compliant, and unlocking ROI with AI voice
-              agents in Hindi, Tamil, Telugu, and 7 more languages.
+            <p className="mx-auto mt-5 line-clamp-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
+              Practical guides, comparisons, and real case studies on AI voice agents for Indian businesses — TRAI and
+              DPDP compliance, per-second pricing, and support for Hindi, Tamil, Telugu, and 7 more languages, updated
+              every week.
             </p>
 
-            <div className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
-              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
-                <BookOpen className="mx-auto size-5 text-primary" aria-hidden />
-                <p className="mt-3 text-2xl font-bold tracking-tight">{posts.length}</p>
-                <p className="mt-1 text-xs text-muted-foreground">In-depth guides</p>
+            <div className="mx-auto mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4 lg:mx-0 lg:max-w-none">
+              <div className="flex items-center gap-2.5 rounded-lg border-[3px] border-border/60 bg-white px-3 py-2.5">
+                <BookOpen className="size-4 flex-none text-primary" aria-hidden />
+                <div className="min-w-0">
+                  <p className="text-base font-bold leading-tight tracking-tight">{posts.length}</p>
+                  <p className="truncate text-[11px] leading-tight text-muted-foreground">In-depth guides</p>
+                </div>
               </div>
-              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
-                <Tags className="mx-auto size-5 text-primary" aria-hidden />
-                <p className="mt-3 text-2xl font-bold tracking-tight">{topicCount}</p>
-                <p className="mt-1 text-xs text-muted-foreground">Topics covered</p>
+              <div className="flex items-center gap-2.5 rounded-lg border-[3px] border-border/60 bg-white px-3 py-2.5">
+                <Tags className="size-4 flex-none text-primary" aria-hidden />
+                <div className="min-w-0">
+                  <p className="text-base font-bold leading-tight tracking-tight">{topicCount}</p>
+                  <p className="truncate text-[11px] leading-tight text-muted-foreground">Topics covered</p>
+                </div>
               </div>
-              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
-                <Globe className="mx-auto size-5 text-primary" aria-hidden />
-                <p className="mt-3 text-2xl font-bold tracking-tight">10+</p>
-                <p className="mt-1 text-xs text-muted-foreground">Languages</p>
+              <div className="flex items-center gap-2.5 rounded-lg border-[3px] border-border/60 bg-white px-3 py-2.5">
+                <Globe className="size-4 flex-none text-primary" aria-hidden />
+                <div className="min-w-0">
+                  <p className="text-base font-bold leading-tight tracking-tight">10+</p>
+                  <p className="truncate text-[11px] leading-tight text-muted-foreground">Languages</p>
+                </div>
               </div>
-              <div className="rounded-xl border-[3px] border-border/60 bg-white p-6">
-                <CalendarClock className="mx-auto size-5 text-primary" aria-hidden />
-                <p className="mt-3 text-2xl font-bold tracking-tight">{latestUpdate || "Live"}</p>
-                <p className="mt-1 text-xs text-muted-foreground">Last updated</p>
+              <div className="flex items-center gap-2.5 rounded-lg border-[3px] border-border/60 bg-white px-3 py-2.5">
+                <CalendarClock className="size-4 flex-none text-primary" aria-hidden />
+                <div className="min-w-0">
+                  <p className="text-base font-bold leading-tight tracking-tight">{latestUpdate || "Live"}</p>
+                  <p className="truncate text-[11px] leading-tight text-muted-foreground">Last updated</p>
+                </div>
               </div>
             </div>
           </ScrollReveal>
+
+          {/* Right: rotates through the 3 newest posts as real cards (image,
+              category, title) — hidden below lg, mobile hero stays a clean
+              single centered column. */}
+          <div className="hidden lg:mt-8 lg:block">
+            <BlogHeroMockup posts={posts} />
+          </div>
         </div>
       </section>
 
       {/* ── Posts ── */}
       <section className="w-full px-6 pb-16 pt-12 md:px-8 md:pb-20 md:pt-16">
         {/* Categories */}
-        <BlogCategoryFilter topicCount={topicCount} />
+        <BlogCategoryFilter topicCount={topicCount} postCount={posts.length} />
 
         {/* Featured */}
         {featured && (

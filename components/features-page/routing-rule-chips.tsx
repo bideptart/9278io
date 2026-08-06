@@ -42,7 +42,7 @@ export function RoutingRuleChips() {
 
   return (
     <div
-      className="mx-auto mt-10 flex w-full max-w-2xl flex-col gap-3"
+      className="mx-auto mt-10 flex w-full max-w-4xl flex-col gap-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -53,10 +53,14 @@ export function RoutingRuleChips() {
         return (
           <motion.div
             key={r.condition}
-            className="relative flex items-center gap-3 overflow-hidden rounded-2xl px-4 py-3.5 sm:gap-4 sm:px-5"
-            style={{ border: `1.5px solid ${isActive ? r.tone : "#E4ECFF"}`, backgroundColor: isActive ? `${r.tone}0A` : "#FFFFFF" }}
-            animate={{ boxShadow: isActive ? `0 16px 32px -20px ${r.tone}66` : "0 1px 2px rgba(15,23,42,0.04)" }}
-            transition={{ duration: 0.4 }}
+            className="relative flex items-center gap-3 overflow-hidden rounded-2xl border-[1.5px] px-4 py-3.5 sm:gap-4 sm:px-5"
+            animate={{
+              borderColor: isActive ? r.tone : "#E4ECFF",
+              backgroundColor: isActive ? `${r.tone}0A` : "#FFFFFF",
+              boxShadow: isActive ? `0 16px 32px -20px ${r.tone}66` : "0 1px 2px rgba(15,23,42,0.04)",
+              scale: isActive ? 1.015 : 1,
+            }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
           >
             {/* rule-number chip */}
             <span
@@ -80,7 +84,9 @@ export function RoutingRuleChips() {
               </span>
             </div>
 
-            <ArrowRight className="size-4 shrink-0" style={{ color: isActive ? r.tone : "#CBD5E1" }} aria-hidden />
+            <motion.div animate={{ x: isActive ? [0, 3, 0] : 0 }} transition={{ duration: 0.5, ease: "easeOut" }}>
+              <ArrowRight className="size-4 shrink-0" style={{ color: isActive ? r.tone : "#CBD5E1" }} aria-hidden />
+            </motion.div>
 
             {/* THEN result */}
             <div className="flex shrink-0 items-center gap-2">

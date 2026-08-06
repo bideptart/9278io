@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { motion } from "motion/react"
 import { FilePlus, Users, RefreshCw } from "lucide-react"
 
-const CYCLE_MS = 2600
+const CYCLE_MS = 1400
 
 const steps = [
   {
@@ -39,7 +39,7 @@ export function TemplateHowItWorksFlow() {
   }, [])
 
   return (
-    <div className="relative mx-auto mt-14 w-full max-w-3xl">
+    <div className="relative mx-auto mt-14 w-full">
       {/* the rail, inset to span column-1-center → column-3-center (1/6 of the grid width on each side) */}
       <div
         className="relative hidden h-1.5 rounded-full sm:block"
@@ -49,14 +49,14 @@ export function TemplateHowItWorksFlow() {
           className="absolute inset-y-0 left-0 rounded-full"
           style={{ background: "linear-gradient(90deg, #2563EB, #4F8DFF)", boxShadow: "0 0 14px 1px rgba(37,99,235,0.55)" }}
           animate={{ width: `${positions[active]}%` }}
-          transition={{ type: "spring", stiffness: 90, damping: 20 }}
+          transition={{ type: "spring", stiffness: 220, damping: 22 }}
         />
         {/* traveling token */}
         <motion.div
           className="absolute top-1/2 z-10 flex size-6 -translate-y-1/2 items-center justify-center rounded-full"
           style={{ backgroundColor: "#2563EB", boxShadow: "0 0 0 4px rgba(37,99,235,0.18), 0 8px 16px -6px rgba(37,99,235,0.6)" }}
           animate={{ left: `calc(${positions[active]}% - 12px)` }}
-          transition={{ type: "spring", stiffness: 90, damping: 20 }}
+          transition={{ type: "spring", stiffness: 220, damping: 22 }}
         >
           <motion.span
             aria-hidden

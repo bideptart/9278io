@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ArrowRight } from "lucide-react"
 import type { ReactNode } from "react"
@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils"
 
 type DetailItem = { icon: ReactNode; title: string; description: string }
 
-const AUTO_ADVANCE_MS = 3200
 const FAN_TONES = ["from-amber-300 to-amber-400", "from-violet-300 to-violet-400"]
 
 /**
@@ -21,11 +20,6 @@ const FAN_TONES = ["from-amber-300 to-amber-400", "from-violet-300 to-violet-400
  */
 export function DetailFanStack({ items }: { items: DetailItem[] }) {
   const [active, setActive] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => setActive((a) => (a + 1) % items.length), AUTO_ADVANCE_MS)
-    return () => clearInterval(interval)
-  }, [items.length])
 
   const current = items[active]
   const peekItems = [items[(active + 1) % items.length], items[(active + 2) % items.length]]
@@ -88,6 +82,7 @@ export function DetailFanStack({ items }: { items: DetailItem[] }) {
               initial={{ opacity: 0, y: 10, rotate: -2 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
               exit={{ opacity: 0, y: -10 }}
+              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 32px 60px -20px rgba(15,23,42,0.4)" }}
               transition={{ duration: 0.35, ease: "easeOut" }}
               className="absolute inset-0 z-10 flex flex-col justify-between rounded-2xl border border-border/60 bg-white p-6 shadow-[0_24px_50px_-20px_rgba(15,23,42,0.3)]"
             >

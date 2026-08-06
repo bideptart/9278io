@@ -2,17 +2,14 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
-  BarChart3,
   Clock3,
   HelpCircle,
   IndianRupee,
   LayoutGrid,
   ListChecks,
   PhoneCall,
-  PhoneIncoming,
   TrendingUp,
   Users,
-  Wallet,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
@@ -22,7 +19,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { AnalyticsDashboardIllustration } from "@/components/features-page/analytics-dashboard-illustration"
 import { DetailCards } from "@/components/features-page/detail-cards"
-import { HowItWorksTimeline } from "@/components/features-page/how-it-works-timeline"
+import { AnalyticsHowItWorksTiles } from "@/components/features-page/analytics-how-it-works-tiles"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -45,24 +42,6 @@ const exploreLinks = [
     href: "/faq",
     title: "Frequently asked questions",
     description: "TRAI compliance, Indian languages, billing, and account questions.",
-  },
-]
-
-const STEPS = [
-  {
-    icon: <PhoneIncoming className="size-5" aria-hidden />,
-    title: "Every call logs itself",
-    description: "The moment an agent answers or makes a call, it's captured — no setup, no extra step.",
-  },
-  {
-    icon: <BarChart3 className="size-5" aria-hidden />,
-    title: "Numbers update in real time",
-    description: "Volume, minutes, and duration roll into the dashboard as calls happen, not overnight.",
-  },
-  {
-    icon: <Wallet className="size-5" aria-hidden />,
-    title: "See usage against your wallet credit",
-    description: "Included minutes burn down against your plan so you always know where you stand before topping up.",
   },
 ]
 
@@ -214,7 +193,7 @@ export default function AnalyticsDashboardPage() {
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">From first call to full picture</h2>
           </ScrollReveal>
-          <HowItWorksTimeline steps={STEPS} />
+          <AnalyticsHowItWorksTiles />
         </div>
       </section>
 

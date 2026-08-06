@@ -15,7 +15,7 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PlaybookStage } from "@/components/industries/playbook-stage"
 import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -30,6 +30,13 @@ const EXTRA_PLAYBOOKS = [
   "Class timings, trainer, and fee enquiries",
   "Guest-pass and referral follow-ups",
 ]
+
+/* Page-local hero copy — industry.pitch is shared across the industries
+   index, nav and other pages, so it's kept short and generic there. This
+   description instead names the playbooks covered further down this page,
+   and is sized to end cleanly within the hero's 3-line clamp. */
+const HERO_DESCRIPTION =
+  "9278.io runs your whole front desk by phone — class bookings, no-show recovery, membership freezes, trial upsells, win-backs — in Indian languages, at a fraction of the cost."
 
 /**
  * This industry gets its own bespoke page (rather than the shared
@@ -57,7 +64,7 @@ export default function FitnessIndustryPage() {
   const Icon = industry.icon
 
   // Pick three sibling industries for the related-links module.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -113,7 +120,7 @@ export default function FitnessIndustryPage() {
 
               <ScrollReveal delay={0.12}>
                 <p className="mt-5 max-w-xl text-pretty line-clamp-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {industry.pitch}
+                  {HERO_DESCRIPTION}
                 </p>
               </ScrollReveal>
 
@@ -217,7 +224,7 @@ export default function FitnessIndustryPage() {
       <section className="w-full px-6 py-8 md:px-8 md:py-12">
         <div className="mx-auto max-w-6xl space-y-10 md:space-y-14">
           {/* ── Row 1: copy left, setup mockup right ── */}
-          <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
             <ScrollReveal>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 01</p>
               <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
@@ -259,7 +266,7 @@ export default function FitnessIndustryPage() {
           </div>
 
           {/* ── Row 2: call mockup left, copy right ── */}
-          <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
             <ScrollReveal className="md:order-2">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 02</p>
               <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
@@ -392,8 +399,11 @@ function ConsoleMockup({ conversation }: { conversation: { speaker: string; text
         className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-primary/[0.16] blur-[90px] motion-safe:animate-pulse"
       />
 
-      {/* ── Desktop console (right margin keeps the thread clear of the phone) ── */}
-      <div className="hero-float-up mr-28 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_70px_-30px_oklch(0.52_0.22_265/0.45)] sm:mr-[112px]">
+      {/* ── Desktop console (right margin keeps the thread clear of the phone).
+          mr-16 matches the mobile phone's narrower 152px width; the fixed
+          112px desktop value was also being applied below sm, overflowing
+          the mockup past the viewport on narrow phones. ── */}
+      <div className="hero-float-up mr-16 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_70px_-30px_oklch(0.52_0.22_265/0.45)] sm:mr-[112px]">
         {/* title bar */}
         <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50/80 px-4 py-2.5">
           <span className="size-2.5 rounded-full bg-red-400/70" />

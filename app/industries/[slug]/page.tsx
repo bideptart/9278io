@@ -42,7 +42,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
 import { CenterOutItem } from "@/components/industries/center-out-reveal"
 import { IndustryImage } from "@/components/industries/industry-image"
-import { INDUSTRIES, getIndustry, CAP_COLORS } from "@/lib/industries"
+import { INDUSTRIES, getIndustry, getRelatedIndustries, CAP_COLORS } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { RestaurantRobotMascot } from "@/components/industries/restaurant-robot-mascot"
@@ -90,7 +90,7 @@ const ECOM_CAP_COLORS: Record<string, string> = {
 function ECommercePage() {
   const industry = getIndustry("ecommerce")!
   const Icon = ShoppingBag
-  const related = INDUSTRIES.filter((i) => i.slug !== "ecommerce").slice(0, 3)
+  const related = getRelatedIndustries("ecommerce")
 
   return (
     <>
@@ -668,7 +668,7 @@ function ECommercePage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",
@@ -740,7 +740,7 @@ function ECommercePage() {
 
 function RealEstatePage() {
   const industry = getIndustry("real-estate")!
-  const related = INDUSTRIES.filter((i) => i.slug !== "real-estate").slice(0, 3)
+  const related = getRelatedIndustries("real-estate")
 
   return (
     <>
@@ -1435,7 +1435,7 @@ function RealEstatePage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",
@@ -1507,7 +1507,7 @@ function RealEstatePage() {
 
 function HomeServicesPage() {
   const industry = getIndustry("home-services")!
-  const related = INDUSTRIES.filter((i) => i.slug !== "home-services").slice(0, 3)
+  const related = getRelatedIndustries("home-services")
 
   return (
     <>
@@ -1889,7 +1889,7 @@ function HomeServicesPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",
@@ -1959,7 +1959,7 @@ function HomeServicesPage() {
 
 function RestaurantsPage() {
   const industry = getIndustry("restaurants")!
-  const related = INDUSTRIES.filter((i) => i.slug !== "restaurants").slice(0, 3)
+  const related = getRelatedIndustries("restaurants")
 
   return (
     <>
@@ -2229,7 +2229,7 @@ function RestaurantsPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",
@@ -2333,7 +2333,7 @@ export default async function IndustryPage({
   }
 
   const Icon = industry.icon
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
   const education = getIndustry("education")
 
   return (

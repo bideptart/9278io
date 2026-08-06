@@ -38,7 +38,7 @@ export function LiveTestCallTimeline() {
   const currentStep = active > 0 && active <= STEPS.length ? STEPS[active - 1] : STEPS[0]
 
   return (
-    <div className="mx-auto mt-6 w-full max-w-3xl">
+    <div className="mx-auto mt-6 w-full max-w-4xl">
       {/* live status caption — changes as each step fires */}
       <div className="mb-5 flex h-6 items-center justify-center gap-2.5">
         <motion.span
@@ -75,7 +75,13 @@ export function LiveTestCallTimeline() {
             const done = active > i
             const isCurrent = active === i + 1
             return (
-              <div key={step.label} className="relative flex items-start gap-4">
+              <div key={step.label} className="relative flex items-start gap-4 py-1">
+                <motion.span
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-y-1 -inset-x-3 rounded-xl"
+                  animate={{ backgroundColor: isCurrent ? `${step.tone}0D` : "rgba(0,0,0,0)" }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                />
                 <span className="absolute -left-10 top-0.5 flex size-6 items-center justify-center">
                   {isCurrent && (
                     <motion.span

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ArrowRight, BookOpen } from "lucide-react"
-import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
+import { CenterOutItem } from "@/components/industries/center-out-reveal"
 
 export type RelatedLink = {
   href: string
@@ -33,9 +33,13 @@ export function RelatedLinks({
         </div>
       </div>
 
-      <StaggerGroup className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" stagger={0.1} role="list">
-        {links.map((l) => (
-          <StaggerItem key={l.href} role="listitem">
+      <div className="grid gap-5 overflow-x-clip md:grid-cols-2 lg:grid-cols-3" role="list">
+        {links.map((l, i) => (
+          <CenterOutItem
+            key={l.href}
+            role="listitem"
+            position={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "middle"}
+          >
             <Link
               href={l.href}
               className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -70,9 +74,9 @@ export function RelatedLinks({
                 </span>
               </div>
             </Link>
-          </StaggerItem>
+          </CenterOutItem>
         ))}
-      </StaggerGroup>
+      </div>
     </section>
   )
 }

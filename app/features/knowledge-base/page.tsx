@@ -10,7 +10,7 @@ import { FeatureImageSection } from "@/components/features-page/feature-image-se
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { KnowledgeBaseHeroIllustration } from "@/components/features-page/knowledge-base-hero-illustration"
 import { KnowledgeCategoryShowcase } from "@/components/features-page/knowledge-category-showcase"
-import { KnowledgeSearchDemo } from "@/components/features-page/knowledge-search-demo"
+import { KnowledgeIndexLookup } from "@/components/features-page/knowledge-index-lookup"
 import { KnowledgeIsolationVault } from "@/components/features-page/knowledge-isolation-vault"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -161,7 +161,7 @@ export default function KnowledgeBasePage() {
               guessing.
             </p>
           </ScrollReveal>
-          <KnowledgeSearchDemo />
+          <KnowledgeIndexLookup />
         </div>
       </section>
 

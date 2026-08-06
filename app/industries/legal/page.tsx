@@ -14,7 +14,7 @@ import { LegalIntakeConsole } from "@/components/industries/legal-intake-console
 import { LegalCallFlow } from "@/components/industries/legal-call-flow"
 import { LegalCapabilities } from "@/components/industries/legal-capabilities"
 import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -36,6 +36,13 @@ const CALL_PINS = [
   { time: "19:40", hour: 19 },
   { time: "22:20", hour: 22 },
 ]
+
+/* Page-local hero copy — industry.pitch is shared across the industries
+   index, nav and other pages, so it's kept short and generic there. This
+   description instead names the intake/consult flow covered further down
+   this page, and is sized to end cleanly within the hero's 3-line clamp. */
+const HERO_DESCRIPTION =
+  "9278.io screens every call against your conflict rules, captures the facts your advocates need, and books paid consults on the calendar — in Hindi, Tamil, Telugu, and more."
 
 /**
  * Legal gets its own page (rather than the shared [slug] template) so its
@@ -61,7 +68,7 @@ export default function LegalIndustryPage() {
 
   // Four sibling industries, plus the pricing and FAQ tiles, to fill the same
   // six-card grid the other industry pages use.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -116,7 +123,7 @@ export default function LegalIndustryPage() {
 
               <ScrollReveal delay={0.12}>
                 <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">
-                  {industry.pitch}
+                  {HERO_DESCRIPTION}
                 </p>
               </ScrollReveal>
 
