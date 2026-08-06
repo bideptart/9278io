@@ -12,16 +12,11 @@ type ExploreLink = { icon: ReactNode; href: string; titlePrefix: string; highlig
 
 /**
  * Industry-page variant of components/features-page/multi-agent-explore-links.tsx:
- * the centre card anchors while the two side cards slide out from behind it.
- * Shared across the five bespoke industry pages (automotive, education,
- * fitness, legal, retail-ecom) — the other industry pages still render the
- * shared [slug] template and are unaffected.
- *
- * `once: true` (the source component uses `once: false`, replaying every
- * scroll): below `sm` these stack into a single column tall enough to
- * exceed short phone viewports (iPhone SE), so a card scrolled just above
- * or below the one in view would otherwise sit at opacity 0 — reading as
- * blank padding. Once each card has played in, it stays visible.
+ * the centre card anchors while the two side cards slide out from behind it,
+ * replaying every time the section scrolls into view (viewport `once: false`),
+ * same as the source component. Shared across the five bespoke industry
+ * pages (automotive, education, fitness, legal, retail-ecom) — the other
+ * industry pages still render the shared [slug] template and are unaffected.
  */
 export function IndustryExploreLinks({ links }: { links: ExploreLink[] }) {
   return (
@@ -36,7 +31,7 @@ export function IndustryExploreLinks({ links }: { links: ExploreLink[] }) {
             style={{ zIndex: isCenter ? 20 : 10 }}
             initial={{ opacity: 0, scale: 0.85, x: isCenter ? 0 : fromRight ? 60 : -60 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 1, delay: isCenter ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link
