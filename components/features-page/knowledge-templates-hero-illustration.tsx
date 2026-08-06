@@ -9,7 +9,7 @@ const CYCLE_MS = 3400
 const allAgents = [
   { name: "Aarav Motors", icon: Car, tone: "#2563EB" },
   { name: "Priya Dental", icon: Stethoscope, tone: "#10B981" },
-  { name: "Sharma Realty", icon: Home, tone: "#7C3AED" },
+  { name: "Sharma Reality", icon: Home, tone: "#7C3AED" },
 ]
 
 const templates = [

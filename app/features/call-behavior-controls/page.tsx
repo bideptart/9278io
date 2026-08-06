@@ -131,7 +131,8 @@ export default function CallBehaviorControlsPage() {
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Set how your agent greets callers, handles interruptions, and hands off conversations —
-                once, in the dashboard, and every call follows the same rules.
+                once, in the dashboard, and every call follows the same rules. Change your mind later and
+                the update applies to every call from that moment on, no redeployment needed.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">

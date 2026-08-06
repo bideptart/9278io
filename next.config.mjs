@@ -58,6 +58,10 @@ const nextConfig = {
   // Docker, etc.) and run `node server.js` — no Vercel runtime required.
   output: "standalone",
   allowedDevOrigins: ["192.168.2.84", "192.168.2.18"],
+  // Hide the floating dev-mode indicator badge (bottom-left "N" icon) — it's
+  // dev-only tooling chrome, never shown in production, but shifts around
+  // during scroll-triggered page animations and gets mistaken for a UI bug.
+  devIndicators: false,
   // Keep nodemailer out of the bundle so the contact-form server action
   // runs it as a normal Node require in the serverless/standalone function.
   serverExternalPackages: ["nodemailer"],

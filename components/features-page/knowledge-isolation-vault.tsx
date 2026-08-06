@@ -7,9 +7,9 @@ import { Car, Stethoscope, Home, Lock, FileText, HelpCircle, ShieldCheck } from 
 const CYCLE_MS = 3200
 
 const agents = [
-  { name: "Aarav Motors", icon: Car, tone: "#2563EB", entries: "12" },
-  { name: "Priya Dental", icon: Stethoscope, tone: "#7C3AED", entries: "9" },
-  { name: "Sharma Realty", icon: Home, tone: "#D97706", entries: "15" },
+  { name: "Aarav Motors", icon: Car, tone: "#2563EB", entries: "12", synced: "2 min ago", desc: "Service hours, pricing, and warranty terms." },
+  { name: "Priya Dental", icon: Stethoscope, tone: "#7C3AED", entries: "9", synced: "just now", desc: "Insurance coverage, appointment slots, and procedures." },
+  { name: "Sharma Reality", icon: Home, tone: "#D97706", entries: "15", synced: "5 min ago", desc: "Listings, site visits, and documentation checklists." },
 ]
 
 const facts = [
@@ -30,7 +30,7 @@ export function KnowledgeIsolationVault() {
   const Icon = agent.icon
 
   return (
-    <div className="relative mx-auto w-full max-w-lg">
+    <div className="relative mx-auto w-full max-w-2xl">
       {/* ambient glow, tinted to the active agent */}
       <motion.div
         aria-hidden
@@ -79,7 +79,7 @@ export function KnowledgeIsolationVault() {
 
       {/* the vault — only one agent's contents are ever visible at once */}
       <motion.div
-        className="relative mt-4 h-[260px] overflow-hidden rounded-3xl bg-white"
+        className="relative mt-4 h-[320px] overflow-hidden rounded-3xl bg-white"
         style={{ border: "1px solid #E4ECFF" }}
         animate={{ boxShadow: `0 30px 60px -24px ${agent.tone}40, 0 0 0 1px ${agent.tone}30` }}
         transition={{ duration: 0.6 }}
@@ -108,14 +108,14 @@ export function KnowledgeIsolationVault() {
         <AnimatePresence mode="wait">
           <motion.div
             key={agent.name}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 py-8 text-center"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 py-10 text-center"
             initial={{ clipPath: "inset(0 50% 0 50%)", opacity: 0, y: 8 }}
             animate={{ clipPath: "inset(0 0% 0 0%)", opacity: 1, y: 0 }}
             exit={{ clipPath: "inset(0 50% 0 50%)", opacity: 0, y: -8 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.span
-              className="relative flex size-12 items-center justify-center rounded-2xl text-white"
+              className="relative flex size-14 items-center justify-center rounded-2xl text-white"
               style={{ background: `linear-gradient(135deg, ${agent.tone}, ${agent.tone}CC)`, boxShadow: `0 14px 28px -12px ${agent.tone}` }}
               initial={{ scale: 0.6, rotate: -10 }}
               animate={{ scale: 1, rotate: 0 }}
@@ -128,39 +128,44 @@ export function KnowledgeIsolationVault() {
                 animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
                 transition={{ duration: 1, repeat: 2, ease: "easeOut", delay: 0.5 }}
               />
-              <Icon className="size-5" aria-hidden />
+              <Icon className="size-6" aria-hidden />
             </motion.span>
-            <p className="text-base font-bold" style={{ color: "#0F172A" }}>{agent.name}</p>
-            <div className="flex items-center gap-1.5 text-xs" style={{ color: "#94A3B8" }}>
+            <p className="text-lg font-bold" style={{ color: "#0F172A" }}>{agent.name}</p>
+            <p className="-mt-2 max-w-sm text-sm" style={{ color: "#667085" }}>{agent.desc}</p>
+            <div className="flex items-center gap-1.5 text-sm" style={{ color: "#94A3B8" }}>
               <motion.span
                 animate={{ rotate: [0, -8, 8, 0] }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <Lock className="size-3" aria-hidden />
+                <Lock className="size-3.5" aria-hidden />
               </motion.span>
               Sealed from every other agent
             </div>
 
-            <div className="mt-2 flex gap-2">
+            <div className="mt-2 flex gap-2.5">
               {facts.map((f, fi) => {
                 const FIcon = f.icon
                 return (
                   <motion.span
                     key={f.label}
-                    className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium"
+                    className="flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-medium"
                     style={{ backgroundColor: "#F7F9FC", border: "1px solid #E4ECFF", color: "#334155" }}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + fi * 0.08 }}
                   >
-                    <FIcon className="size-3" style={{ color: agent.tone }} aria-hidden />
+                    <FIcon className="size-3.5" style={{ color: agent.tone }} aria-hidden />
                     {f.label}
                   </motion.span>
                 )
               })}
             </div>
 
-            <span className="mt-1 text-xs font-semibold" style={{ color: agent.tone }}>{agent.entries} entries</span>
+            <div className="mt-1 flex items-center gap-3 text-sm">
+              <span className="font-semibold" style={{ color: agent.tone }}>{agent.entries} entries</span>
+              <span aria-hidden style={{ color: "#CBD5E1" }}>·</span>
+              <span style={{ color: "#94A3B8" }}>Synced {agent.synced}</span>
+            </div>
           </motion.div>
         </AnimatePresence>
       </motion.div>
