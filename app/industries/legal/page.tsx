@@ -37,6 +37,13 @@ const CALL_PINS = [
   { time: "22:20", hour: 22 },
 ]
 
+/* Page-local hero copy — industry.pitch is shared across the industries
+   index, nav and other pages, so it's kept short and generic there. This
+   description instead names the intake/consult flow covered further down
+   this page, and is sized to end cleanly within the hero's 3-line clamp. */
+const HERO_DESCRIPTION =
+  "9278.io screens every call against your conflict rules, captures the facts your advocates need, and books paid consults on the calendar — in Hindi, Tamil, Telugu, and more."
+
 /**
  * Legal gets its own page (rather than the shared [slug] template) so its
  * hero and layout can be designed independently. Next.js resolves this
@@ -116,7 +123,7 @@ export default function LegalIndustryPage() {
 
               <ScrollReveal delay={0.12}>
                 <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">
-                  {industry.pitch}
+                  {HERO_DESCRIPTION}
                 </p>
               </ScrollReveal>
 

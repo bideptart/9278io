@@ -31,6 +31,13 @@ const EXTRA_PLAYBOOKS = [
   "Guest-pass and referral follow-ups",
 ]
 
+/* Page-local hero copy — industry.pitch is shared across the industries
+   index, nav and other pages, so it's kept short and generic there. This
+   description instead names the playbooks covered further down this page,
+   and is sized to end cleanly within the hero's 3-line clamp. */
+const HERO_DESCRIPTION =
+  "9278.io runs your whole front desk by phone — class bookings, no-show recovery, membership freezes, trial upsells, win-backs — in Indian languages, at a fraction of the cost."
+
 /**
  * This industry gets its own bespoke page (rather than the shared
  * [slug] template) so its hero can be redesigned independently.
@@ -113,7 +120,7 @@ export default function FitnessIndustryPage() {
 
               <ScrollReveal delay={0.12}>
                 <p className="mt-5 max-w-xl text-pretty line-clamp-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {industry.pitch}
+                  {HERO_DESCRIPTION}
                 </p>
               </ScrollReveal>
 

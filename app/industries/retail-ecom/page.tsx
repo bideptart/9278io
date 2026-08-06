@@ -26,6 +26,12 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 const PITCH =
   "Shoppers call when something matters — a late delivery, a size that didn't fit, whether the store has it in stock. 9278.io answers every one of those calls, in the caller's language, and hands your team only the ones that genuinely need a person."
 
+/* Hero-only variant of PITCH, sized to end cleanly within the hero's 3-line
+   clamp and naming the purchase-journey phases covered further down this
+   page. PITCH itself stays as the (longer) SEO description. */
+const HERO_DESCRIPTION =
+  "9278.io answers every call across the purchase journey — sizing, stock, delivery updates, returns — even on your busiest sale day, and escalates only the ones that need a person."
+
 export const metadata: Metadata = pageSeo({
   title: "AI voice agents for retail & e-commerce",
   description:
@@ -88,7 +94,7 @@ export default function RetailEcomPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">{PITCH}</p>
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">{HERO_DESCRIPTION}</p>
               </ScrollReveal>
 
               <ScrollReveal delay={0.18}>

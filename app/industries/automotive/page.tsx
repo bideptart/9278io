@@ -52,6 +52,13 @@ const JOURNEY_STAGES = [
   },
 ]
 
+/* Page-local hero copy — industry.pitch is shared across the industries
+   index, nav and other pages, so it's kept short and generic there. This
+   description instead names the five journey stages covered further down
+   this page, and is sized to end cleanly within the hero's 3-line clamp. */
+const HERO_DESCRIPTION =
+  "9278.io handles test drives, service reminders, parts queries, and exchange valuations — the full dealership journey, for one showroom or a multi-state group."
+
 /**
  * Automotive gets its own page (rather than the shared [slug] template) so
  * its hero can be designed independently. Next.js resolves this static
@@ -134,7 +141,7 @@ export default function AutomotiveIndustryPage() {
 
               <ScrollReveal delay={0.12}>
                 <p className="mt-3 max-w-xl text-pretty line-clamp-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {industry.pitch}
+                  {HERO_DESCRIPTION}
                 </p>
               </ScrollReveal>
 
