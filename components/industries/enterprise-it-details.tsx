@@ -46,7 +46,7 @@ export function EnterpriseItDetails({
               <br />
               on day one
             </h2>
-            <StaggerGroup stagger={0.1} className="relative mt-8 space-y-3">
+            <StaggerGroup stagger={0.1} once={false} className="relative mt-8 space-y-3">
               {jobs.map((job, i) => {
                 const Icon = JOB_ICONS[i] ?? Check
                 return (
@@ -103,7 +103,7 @@ export function EnterpriseItDetails({
                   ))}
                 </div>
               </div>
-              <StaggerGroup className="space-y-3 p-5" stagger={0.18}>
+              <StaggerGroup className="space-y-3 p-5" stagger={0.18} once={false}>
                 {conversation.map((line, i) => (
                   <StaggerItem
                     key={i}
@@ -129,7 +129,7 @@ export function EnterpriseItDetails({
               </StaggerGroup>
             </div>
 
-            <StaggerGroup stagger={0.1} className="relative mt-6 space-y-3">
+            <StaggerGroup stagger={0.1} once={false} className="relative mt-6 space-y-3">
               {sampleLines.map((line, i) => {
                 const Icon = SAMPLE_ICONS[i] ?? MessageSquareQuote
                 return (
