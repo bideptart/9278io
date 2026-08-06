@@ -33,7 +33,7 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { LogisticsLivePreview } from "@/components/industries/logistics-live-preview"
 import { OrderTracking } from "@/components/ui/order-tracking"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 
 export const metadata: Metadata = pageSeo({
   title: "AI voice agents for logistics & delivery",
@@ -82,7 +82,7 @@ const USE_CASES = [
 ]
 
 export default function LogisticsPage() {
-  const related = INDUSTRIES.filter((i) => i.slug !== "logistics").slice(0, 3)
+  const related = getRelatedIndustries("logistics")
 
   return (
     <>

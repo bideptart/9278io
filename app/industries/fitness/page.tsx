@@ -15,7 +15,7 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PlaybookStage } from "@/components/industries/playbook-stage"
 import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -57,7 +57,7 @@ export default function FitnessIndustryPage() {
   const Icon = industry.icon
 
   // Pick three sibling industries for the related-links module.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">

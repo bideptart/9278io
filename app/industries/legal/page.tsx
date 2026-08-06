@@ -14,7 +14,7 @@ import { LegalIntakeConsole } from "@/components/industries/legal-intake-console
 import { LegalCallFlow } from "@/components/industries/legal-call-flow"
 import { LegalCapabilities } from "@/components/industries/legal-capabilities"
 import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -61,7 +61,7 @@ export default function LegalIndustryPage() {
 
   // Four sibling industries, plus the pricing and FAQ tiles, to fill the same
   // six-card grid the other industry pages use.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">

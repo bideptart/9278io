@@ -37,7 +37,7 @@ import { SaasAgentConsole } from "@/components/industries/saas-agent-console"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -90,7 +90,7 @@ const WHY_ITEMS = [
 ]
 
 export default function SaasTechPage() {
-  const related = INDUSTRIES.filter((i) => i.slug !== "saas-tech").slice(0, 3)
+  const related = getRelatedIndustries("saas-tech")
 
   return (
     <>

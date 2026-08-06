@@ -14,7 +14,7 @@ import { Marquee } from "@/components/ui/marquee"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { INDUSTRIES, getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -100,7 +100,7 @@ export default function EducationIndustryPage() {
   // Four sibling industries — with the pricing and FAQ tiles that fills the
   // same six-card grid Automotive and Fitness use. (Those pages pull three
   // siblings plus an Education tile; this page can't link to itself.)
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">

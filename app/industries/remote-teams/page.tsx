@@ -32,7 +32,7 @@ import { CenterOutItem } from "@/components/industries/center-out-reveal"
 import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { RemoteAgentPhoneChat } from "@/components/industries/remote-agent-phone-chat"
 import { WorldMap } from "@/components/ui/map"
 import { PricingCta } from "@/components/pricing/pricing-cta"
@@ -80,7 +80,7 @@ const USE_CASES = [
 ]
 
 export default function RemoteTeamsPage() {
-  const related = INDUSTRIES.filter((i) => i.slug !== "remote-teams").slice(0, 3)
+  const related = getRelatedIndustries("remote-teams")
 
   return (
     <>
