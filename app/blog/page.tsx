@@ -68,7 +68,7 @@ export default async function BlogPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Guides, case studies &amp; insights
             </span>
-            <h1 className="mt-6 text-balance text-[60px] font-bold leading-[1.15] tracking-tight">
+            <h1 className="mt-6 text-balance text-[34px] font-bold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl lg:text-[60px]">
               The{" "}
               <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
                 AI Voice Agent

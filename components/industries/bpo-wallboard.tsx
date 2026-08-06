@@ -1,153 +1,164 @@
 "use client"
 
-// A custom, code-drawn hero visual built specifically for BPO & call-centre
-// content — a "live call radar" rather than a photo or a generic dashboard
-// mockup. Every ring, sweep, and blip is plain CSS/SVG so it stays crisp at
-// any size, and it uses the site's own established motion vocabulary
-// (ind-ping, ind-eq, bar-grow, card-pop-in) so it reads as part of the same
-// design system, not a bolted-on widget. The only real client-side logic is
-// the count-up on "Calls answered today".
+// A custom hero visual built specifically for BPO & call-centre content: a
+// "neural call network" — a pulsing central hub with six capability nodes
+// orbiting it, each connected by an animated line that continuously carries
+// a traveling pulse of light into the hub (representing calls flowing in).
+// Every piece of the graphic is in motion — the aurora backdrop drifts, the
+// halo of particles rotates, each node bobs and pops in, the connecting
+// lines pulse, and a live call-line ticker cycles at the bottom — so unlike
+// a static screenshot, nothing here ever sits still.
 
-import { useEffect, useRef, useState } from "react"
-import { Headphones, PhoneCall } from "lucide-react"
+import { useEffect, useState } from "react"
+import { BarChart3, Clock, Globe2, Headphones, ShieldCheck, Star, Zap } from "lucide-react"
 
-// Six "incoming call" blips placed evenly around the radar, each on its own
-// pulse rhythm so the sweep never looks mechanically synced.
-const BLIPS = [
-  { angle: -35, radius: 78, delay: 0, size: "size-3" },
-  { angle: 40, radius: 92, delay: 0.6, size: "size-2.5" },
-  { angle: 110, radius: 70, delay: 1.2, size: "size-3" },
-  { angle: 165, radius: 95, delay: 1.8, size: "size-2" },
-  { angle: 225, radius: 82, delay: 0.3, size: "size-2.5" },
-  { angle: 290, radius: 65, delay: 1.5, size: "size-2" },
+const CENTER = 200
+const RADIUS = 148
+
+const NODES = [
+  { angle: -90, Icon: Globe2, label: "Multilingual", tint: "from-blue-500 to-sky-400", delay: 0 },
+  { angle: -30, Icon: Zap, label: "< 3s response", tint: "from-amber-500 to-orange-400", delay: 0.15 },
+  { angle: 30, Icon: BarChart3, label: "Live analytics", tint: "from-emerald-500 to-teal-400", delay: 0.3 },
+  { angle: 90, Icon: ShieldCheck, label: "TRAI compliant", tint: "from-sky-500 to-blue-400", delay: 0.45 },
+  { angle: 150, Icon: Star, label: "4.6 CSAT", tint: "from-pink-500 to-rose-400", delay: 0.6 },
+  { angle: 210, Icon: Clock, label: "24/7 coverage", tint: "from-violet-500 to-purple-400", delay: 0.75 },
 ]
 
-const STATS = [
-  { label: "Agents online", value: "38" },
-  { label: "Avg. wait", value: "6s" },
+const HALO_DOTS = Array.from({ length: 18 }, (_, i) => i)
+
+const TICKER_LINES = [
+  "“Namaste, IT helpdesk se baat kar rahi hoon…”",
+  "“Your order has been dispatched, tracking sent via SMS.”",
+  "“I've flagged this for a senior agent — 2 minutes.”",
+  "“Refund initiated, funds in 3–5 business days.”",
 ]
 
-function useCountUp(target: number, durationMs = 1600) {
-  const [value, setValue] = useState(0)
-  const started = useRef(false)
-
-  useEffect(() => {
-    if (started.current) return
-    started.current = true
-    const start = performance.now()
-    let frame: number
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / durationMs, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setValue(Math.round(eased * target))
-      if (progress < 1) frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [target, durationMs])
-
-  return value
+function toXY(angleDeg: number, radius: number) {
+  const rad = (angleDeg * Math.PI) / 180
+  return { x: CENTER + radius * Math.cos(rad), y: CENTER + radius * Math.sin(rad) }
 }
 
 export function BpoWallboard() {
-  const callsToday = useCountUp(2847)
+  const [tick, setTick] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => (t + 1) % TICKER_LINES.length), 2600)
+    return () => clearInterval(id)
+  }, [])
 
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-white via-blue-50/50 to-sky-50/60 px-6 py-8">
-      {/* Ambient glow behind the radar */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[38%] -z-10 size-[340px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(37,99,235,0.14),transparent)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
-      />
+    <div className="relative flex h-full w-full flex-col items-center justify-between overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/70 to-sky-50 px-4 py-6 sm:px-6 sm:py-8">
+      {/* Drifting aurora blobs — three colours on independent cycles */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <span className="absolute -left-10 top-6 size-52 rounded-full bg-blue-400/25 blur-3xl motion-safe:animate-[breathe_8s_ease-in-out_infinite]" />
+        <span
+          style={{ animationDelay: "1.2s" }}
+          className="absolute -right-8 top-16 size-44 rounded-full bg-emerald-400/20 blur-3xl motion-safe:animate-[breathe_10s_ease-in-out_infinite]"
+        />
+        <span
+          style={{ animationDelay: "2.4s" }}
+          className="absolute bottom-4 left-1/3 size-48 rounded-full bg-violet-400/20 blur-3xl motion-safe:animate-[breathe_11s_ease-in-out_infinite]"
+        />
+      </div>
 
-      {/* Live badge */}
-      <span className="mb-6 flex items-center gap-1.5 rounded-full border border-blue-200/70 bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm backdrop-blur">
-        <span className="relative flex size-2" aria-hidden>
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-400 opacity-75" />
-          <span className="relative inline-flex size-2 rounded-full bg-red-500" />
-        </span>
-        Live call radar
-      </span>
-
-      {/* Radar */}
-      <div className="relative grid size-[240px] shrink-0 place-items-center sm:size-[270px]">
-        {/* Concentric rings */}
-        {[1, 0.72, 0.44].map((scale, i) => (
-          <span
-            key={i}
-            aria-hidden
-            className="absolute rounded-full border border-blue-300/40"
-            style={{ width: `${scale * 100}%`, height: `${scale * 100}%` }}
-          />
-        ))}
-
-        {/* Rotating sweep, clipped to the radar circle */}
+      {/* Network diagram */}
+      <div className="relative mx-auto mt-2 grid aspect-square w-full max-w-[300px] shrink-0 place-items-center sm:max-w-[330px]">
+        {/* Rotating halo of particles */}
         <div
           aria-hidden
-          className="absolute inset-0 overflow-hidden rounded-full motion-safe:animate-[ind-spin_4s_linear_infinite]"
-          style={{
-            background: "conic-gradient(from 0deg, rgba(37,99,235,0.32), transparent 32%, transparent 100%)",
-          }}
-        />
-
-        {/* Blips — each an incoming call detected on the radar */}
-        {BLIPS.map((b, i) => {
-          const rad = (b.angle * Math.PI) / 180
-          const x = 50 + (b.radius / 2.7) * Math.cos(rad)
-          const y = 50 + (b.radius / 2.7) * Math.sin(rad)
-          return (
-            <span
-              key={i}
-              aria-hidden
-              className="absolute"
-              style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
-            >
+          className="absolute inset-0 motion-safe:animate-[ind-spin_22s_linear_infinite]"
+        >
+          {HALO_DOTS.map((i) => {
+            const { x, y } = toXY((360 / HALO_DOTS.length) * i, 49)
+            return (
               <span
-                style={{ animationDelay: `${b.delay}s` }}
-                className={`absolute inset-0 rounded-full bg-blue-500/40 motion-safe:animate-[ind-ping_2.2s_ease-out_infinite] ${b.size}`}
+                key={i}
+                className="absolute size-[3px] rounded-full bg-blue-400/50"
+                style={{ left: `${x / 4}%`, top: `${y / 4}%`, transform: "translate(-50%, -50%)" }}
               />
-              <span className={`relative block rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)] ${b.size}`} />
-            </span>
+            )
+          })}
+        </div>
+
+        {/* Connecting lines with a traveling pulse of light per node */}
+        <svg viewBox="0 0 400 400" className="absolute inset-0 size-full" aria-hidden>
+          <defs>
+            <radialGradient id="pulseGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="1" />
+              <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          {NODES.map((n, i) => {
+            const { x, y } = toXY(n.angle, RADIUS)
+            return (
+              <g key={i}>
+                <line x1={x} y1={y} x2={CENTER} y2={CENTER} stroke="#93c5fd" strokeOpacity="0.45" strokeWidth="1.5" />
+                <circle r="6" fill="url(#pulseGlow)">
+                  <animateMotion
+                    dur="2.6s"
+                    begin={`${n.delay}s`}
+                    repeatCount="indefinite"
+                    path={`M${x},${y} L${CENTER},${CENTER}`}
+                  />
+                </circle>
+              </g>
+            )
+          })}
+        </svg>
+
+        {/* Capability nodes */}
+        {NODES.map((n, i) => {
+          const { x, y } = toXY(n.angle, RADIUS)
+          const floatClass = i % 2 === 0 ? "hero-float-up" : "hero-float-down"
+          return (
+            <div
+              key={n.label}
+              style={{ left: `${x / 4}%`, top: `${y / 4}%`, animationDelay: `${n.delay}s` }}
+              className={`card-pop-in absolute -translate-x-1/2 -translate-y-1/2 ${floatClass}`}
+            >
+              <div className="flex flex-col items-center gap-1">
+                <span
+                  className={`relative grid size-9 place-items-center rounded-2xl bg-gradient-to-br text-white shadow-lg sm:size-11 ${n.tint}`}
+                >
+                  <span
+                    aria-hidden
+                    style={{ animationDelay: `${n.delay}s` }}
+                    className="absolute inset-0 rounded-2xl bg-white/30 motion-safe:animate-[ind-ping_2.8s_ease-out_infinite]"
+                  />
+                  <n.Icon className="relative size-4 sm:size-5" aria-hidden />
+                </span>
+                <span className="whitespace-nowrap rounded-full bg-white/90 px-2 py-0.5 text-[8.5px] font-bold text-slate-700 shadow-sm ring-1 ring-slate-200/70 sm:text-[9.5px]">
+                  {n.label}
+                </span>
+              </div>
+            </div>
           )
         })}
 
         {/* Centre hub */}
-        <span className="relative z-10 grid size-16 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-[0_12px_30px_-8px_rgba(37,99,235,0.7)] sm:size-[72px]">
+        <span className="relative z-10 grid size-16 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-[0_16px_36px_-10px_rgba(37,99,235,0.75)] sm:size-[76px]">
           <span
             aria-hidden
-            className="absolute inset-0 rounded-full bg-blue-500/30 motion-safe:animate-[ind-ping_2.6s_ease-out_infinite]"
+            className="absolute inset-0 rounded-full bg-blue-500/35 motion-safe:animate-[ind-ping_2.4s_ease-out_infinite]"
+          />
+          <span
+            aria-hidden
+            className="absolute -inset-2 rounded-full border border-blue-300/50 motion-safe:animate-[breathe_4s_ease-in-out_infinite]"
           />
           <Headphones className="relative size-7 sm:size-8" aria-hidden />
         </span>
       </div>
 
-      {/* Calls answered today */}
-      <div className="mt-6 text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Calls answered today</p>
-        <p className="mt-1 bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text font-serif text-[2.25rem] font-black leading-none tabular-nums text-transparent sm:text-[2.6rem]">
-          {callsToday.toLocaleString("en-IN")}
-        </p>
-      </div>
-
-      {/* Stat chips + live waveform */}
-      <div className="mt-5 flex w-full max-w-[360px] items-center justify-between gap-3">
-        {STATS.map((s, i) => (
-          <span
-            key={s.label}
-            style={{ animationDelay: `${i * 0.1}s` }}
-            className="card-pop-in rounded-2xl border border-slate-200/70 bg-white/90 px-3.5 py-2 text-center shadow-sm backdrop-blur"
-          >
-            <span className="block font-serif text-base font-extrabold text-slate-900">{s.value}</span>
-            <span className="block text-[9.5px] font-medium text-slate-500">{s.label}</span>
+      {/* Live call-line ticker — cycles continuously, nothing static */}
+      <div className="relative mt-3 w-full max-w-[380px] overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
+        <div className="flex items-center gap-2">
+          <span className="flex size-2 shrink-0" aria-hidden>
+            <span className="absolute inline-flex size-2 animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
           </span>
-        ))}
-        <span
-          style={{ animationDelay: "0.2s" }}
-          className="card-pop-in flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/90 px-3.5 py-2 shadow-sm backdrop-blur"
-        >
-          <PhoneCall className="size-3.5 text-blue-600" aria-hidden />
-          <span className="flex h-4 items-end gap-[2.5px]" aria-hidden>
-            {[7, 12, 6, 14, 9].map((h, i) => (
+          <p className="text-[9.5px] font-bold uppercase tracking-wider text-slate-400 sm:text-[10px]">Live on call</p>
+          <span className="ml-auto flex h-3.5 items-end gap-[2px]" aria-hidden>
+            {[6, 11, 5, 13, 8].map((h, i) => (
               <span
                 key={i}
                 style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
@@ -155,7 +166,21 @@ export function BpoWallboard() {
               />
             ))}
           </span>
-        </span>
+        </div>
+        <p className="relative mt-1.5 h-4 overflow-hidden text-[11px] font-medium text-slate-600 sm:text-[12px]">
+          {TICKER_LINES.map((line, i) => (
+            <span
+              key={line}
+              className="absolute inset-0 truncate transition-all duration-500"
+              style={{
+                opacity: tick === i ? 1 : 0,
+                transform: `translateY(${tick === i ? 0 : 8}px)`,
+              }}
+            >
+              {line}
+            </span>
+          ))}
+        </p>
       </div>
     </div>
   )
