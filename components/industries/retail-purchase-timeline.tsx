@@ -6,6 +6,11 @@ import { Marquee } from "@/components/ui/marquee"
  * the phone, shown as a legend beside a continuously scrolling feed of the
  * calls themselves.
  *
+ * Split into two exports — RetailSupportCard and RetailPurchasePhases — so
+ * app/industries/retail-ecom/page.tsx can lay the card beside the section's
+ * own heading (card left, heading+legend right, both top-aligned), the same
+ * way it already does for the Peak Demand section above.
+ *
  * Replaced an earlier three-column timeline, which read sparse and uneven —
  * the columns had different amounts of content, so the row never balanced.
  * A feed fixes that: every entry is the same shape, the motion is inherent
@@ -14,7 +19,7 @@ import { Marquee } from "@/components/ui/marquee"
  *
  * Uses the project's existing Marquee (vertical, pause-on-hover) rather than
  * a bespoke scroller. Server component — the only page-local keyframe is the
- * legend's phase highlight, scoped as `rpt-` under `.rpt-journey`.
+ * "answering" dot blink, scoped as `rpt-` under `.rpt-journey`.
  *
  * The agent replies marked below are real lines from the e-commerce playbook
  * in lib/industries.ts; the rest are ordinary support exchanges, not claims.
@@ -77,20 +82,9 @@ const MOMENTS: Moment[] = [
   },
 ]
 
-export function RetailPurchaseTimeline() {
+export function RetailSupportCard() {
   return (
-    <div className="rpt-journey grid items-center gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-14">
-      {/* ── the three phases, as a quiet legend ── */}
-      <div>
-        <Image
-          src="/industries/retail-purchase-phases.png"
-          alt={PHASES.map((p, i) => `${String(i + 1).padStart(2, "0")} ${p.label} — ${p.note}`).join(". ")}
-          width={974}
-          height={546}
-          className="h-auto w-full"
-        />
-      </div>
-
+    <div className="rpt-journey">
       {/* ── the calls themselves, streaming past ── */}
       <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_60px_-34px_oklch(0.52_0.22_265/0.45)]">
         <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-5 py-3">
@@ -154,5 +148,18 @@ export function RetailPurchaseTimeline() {
         }
       `}</style>
     </div>
+  )
+}
+
+/* ── the three phases, as a quiet legend ── */
+export function RetailPurchasePhases() {
+  return (
+    <Image
+      src="/industries/retail-purchase-phases.png"
+      alt={PHASES.map((p, i) => `${String(i + 1).padStart(2, "0")} ${p.label} — ${p.note}`).join(". ")}
+      width={974}
+      height={546}
+      className="h-auto w-full"
+    />
   )
 }

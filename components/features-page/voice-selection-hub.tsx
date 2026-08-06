@@ -277,8 +277,7 @@ export function VoiceSelectionHub() {
         <span className="text-xs font-semibold whitespace-nowrap" style={{ color: "#7C3AED" }}>10+ Languages</span>
       </motion.div>
 
-      {/* gentle continuous float, separate from the one-time entrance above */}
-      <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+      <div>
         <motion.div
           className="relative overflow-hidden rounded-[28px] bg-white"
           style={{ border: "1px solid #E4ECFF", boxShadow: "0 30px 60px -24px rgba(37,99,235,0.3)" }}
@@ -502,7 +501,7 @@ export function VoiceSelectionHub() {
             </div>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.div>
   )
 }

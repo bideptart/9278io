@@ -105,7 +105,7 @@ export default function CallReportsPage() {
 
             <ScrollReveal className="mt-6">
               <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
-                <span style={{ color: "#0F172A" }}>Call</span>{" "}
+                <span style={{ color: "#0F172A" }}>Call Reports</span>{" "}
                 <span
                   style={{
                     backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -114,7 +114,7 @@ export default function CallReportsPage() {
                     color: "transparent",
                   }}
                 >
-                  Reports (Recordings / Transcripts)
+                  (Recordings / Transcripts)
                 </span>
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">

@@ -62,14 +62,14 @@ export default function KnowledgeBasePage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-2 md:px-8 md:pb-24 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-0 md:px-8 md:pb-24 md:pt-0 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <span className="mt-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
                 Train &amp; Configure
               </span>
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-4 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
                 Knowledge{" "}
                 <span
                   style={{
@@ -81,7 +81,6 @@ export default function KnowledgeBasePage() {
                 >
                   Base
                 </span>
-                <span className="block text-2xl font-medium text-muted-foreground sm:text-3xl md:text-4xl">per agent</span>
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Give each agent its own set of company facts, FAQs, and policies to draw on — isolated from

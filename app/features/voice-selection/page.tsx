@@ -85,7 +85,8 @@ export default function VoiceSelectionPage() {
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Ten named voices, native audio in 10+ Indian languages — no robotic text-to-speech. Preview
-                every voice before you pick one, and switch anytime without rebuilding your agent.
+                every voice before you pick one, and switch anytime without rebuilding your agent. Each voice
+                carries its own personality, so the tone matches the business, not a generic script.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">

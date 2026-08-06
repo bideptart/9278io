@@ -32,11 +32,12 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, ScrollStepItem } from "@/components/animation/scroll-reveal"
+import { CenterOutItem } from "@/components/industries/center-out-reveal"
 import { SaasAgentConsole } from "@/components/industries/saas-agent-console"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { PricingCta } from "@/components/pricing/pricing-cta"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -89,7 +90,7 @@ const WHY_ITEMS = [
 ]
 
 export default function SaasTechPage() {
-  const related = INDUSTRIES.filter((i) => i.slug !== "saas-tech").slice(0, 3)
+  const related = getRelatedIndustries("saas-tech")
 
   return (
     <>
@@ -436,7 +437,7 @@ export default function SaasTechPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",
@@ -445,9 +446,10 @@ export default function SaasTechPage() {
               icon: r.icon,
             })).map((link, i) => {
               const LinkIcon = link.icon
+              const position = i === 0 ? "left" : i === 2 ? "right" : "middle"
 
               return (
-                <ScrollReveal key={link.href} delay={i * 0.08}>
+                <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
                     className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-l-primary border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
@@ -481,7 +483,7 @@ export default function SaasTechPage() {
                       </span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </CenterOutItem>
               )
             })}
           </div>

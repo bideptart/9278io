@@ -309,3 +309,18 @@ export const INDUSTRIES: Industry[] = [
 export function getIndustry(slug: string): Industry | undefined {
   return INDUSTRIES.find((i) => i.slug === slug)
 }
+
+/**
+ * Picks `count` industries for a page's "Other industries we power" section,
+ * rotated to a starting point derived from `currentSlug` so different pages
+ * show different cards instead of everyone defaulting to the same first few
+ * entries in INDUSTRIES (this also covers pages whose own slug — e.g.
+ * logistics, remote-teams, saas-tech — isn't itself in the INDUSTRIES list).
+ */
+export function getRelatedIndustries(currentSlug: string, count = 3): Industry[] {
+  const pool = INDUSTRIES.filter((i) => i.slug !== currentSlug)
+  let seed = 0
+  for (let i = 0; i < currentSlug.length; i++) seed += currentSlug.charCodeAt(i)
+  const start = pool.length ? seed % pool.length : 0
+  return [...pool.slice(start), ...pool.slice(0, start)].slice(0, count)
+}

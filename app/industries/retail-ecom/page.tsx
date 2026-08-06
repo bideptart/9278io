@@ -11,7 +11,8 @@ import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { RetailHeroCards } from "@/components/industries/retail-hero-cards"
 import { RetailPeakQueue } from "@/components/industries/retail-peak-queue"
-import { RetailPurchaseTimeline } from "@/components/industries/retail-purchase-timeline"
+import { RetailSupportCard, RetailPurchasePhases } from "@/components/industries/retail-purchase-timeline"
+import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
 import { INDUSTRIES } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
@@ -24,6 +25,12 @@ import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
    rather than repeating the D2C-only /industries/ecommerce page. */
 const PITCH =
   "Shoppers call when something matters — a late delivery, a size that didn't fit, whether the store has it in stock. 9278.io answers every one of those calls, in the caller's language, and hands your team only the ones that genuinely need a person."
+
+/* Hero-only variant of PITCH, sized to end cleanly within the hero's 3-line
+   clamp and naming the purchase-journey phases covered further down this
+   page. PITCH itself stays as the (longer) SEO description. */
+const HERO_DESCRIPTION =
+  "9278.io answers every call across the purchase journey — sizing, stock, delivery updates, returns — even on your busiest sale day, and escalates only the ones that need a person."
 
 export const metadata: Metadata = pageSeo({
   title: "AI voice agents for retail & e-commerce",
@@ -87,7 +94,7 @@ export default function RetailEcomPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">{PITCH}</p>
+                <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">{HERO_DESCRIPTION}</p>
               </ScrollReveal>
 
               <ScrollReveal delay={0.18}>
@@ -187,10 +194,16 @@ export default function RetailEcomPage() {
         </div>
       </section>
 
-      {/* == The whole purchase - editorial timeline, not a card grid == */}
+      {/* ══ The whole purchase — card left, heading + legend right, both
+          top-aligned in one row (card mirrors the Peak demand section's
+          card, just on the opposite side) ══ */}
       <section className="w-full px-6 py-12 md:px-8 md:py-16">
-        <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="max-w-2xl">
+        <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-14">
+          <ScrollReveal>
+            <RetailSupportCard />
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.12}>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">What it handles</p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
               Support that spans the whole purchase
@@ -198,10 +211,10 @@ export default function RetailEcomPage() {
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
               Shoppers ring at three points in a purchase. The agent covers all of them.
             </p>
-          </ScrollReveal>
 
-          <ScrollReveal delay={0.1} className="mt-12">
-            <RetailPurchaseTimeline />
+            <div className="mt-7">
+              <RetailPurchasePhases />
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -229,57 +242,15 @@ export default function RetailEcomPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-6 grid gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-            ].map((link, i) => {
-              const LinkIcon = link.icon
-              return (
-                <ScrollReveal key={link.href} delay={i * 0.08}>
-                  <Link
-                    href={link.href}
-                    className="group relative block h-full overflow-hidden rounded-2xl border border-l-4 border-slate-200 border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <span
-                      aria-hidden
-                      className="absolute right-0 top-0 h-12 w-12 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]"
-                    />
-                    <div aria-hidden className="absolute right-4 top-12 grid grid-cols-4 gap-1 opacity-60">
-                      {Array.from({ length: 16 }).map((_, d) => (
-                        <span key={d} className="size-1 rounded-full bg-slate-300" />
-                      ))}
-                    </div>
-
-                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
-                      <LinkIcon className="size-4" aria-hidden />
-                    </span>
-
-                    <h3 className="mt-3 min-h-[2.4rem] text-balance text-[15px] font-semibold leading-snug tracking-tight text-foreground">
-                      {link.titlePrefix}
-                      {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
-                    </h3>
-                    <span aria-hidden className="mt-2 block h-1 w-8 rounded-full bg-primary" />
-                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">
-                      {link.description}
-                    </p>
-
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-[13px] font-semibold text-primary">Read more</span>
-                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
-                        <ArrowRight className="size-3.5" aria-hidden />
-                      </span>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              )
-            })}
-          </div>
+          <IndustryExploreLinks
+            links={related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: <r.icon className="size-4" aria-hidden />,
+            }))}
+          />
         </div>
       </section>
 

@@ -13,7 +13,8 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { LegalIntakeConsole } from "@/components/industries/legal-intake-console"
 import { LegalCallFlow } from "@/components/industries/legal-call-flow"
 import { LegalCapabilities } from "@/components/industries/legal-capabilities"
-import { INDUSTRIES, getIndustry } from "@/lib/industries"
+import { IndustryExploreLinks } from "@/components/industries/industry-explore-links"
+import { getIndustry, getRelatedIndustries } from "@/lib/industries"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 
@@ -35,6 +36,13 @@ const CALL_PINS = [
   { time: "19:40", hour: 19 },
   { time: "22:20", hour: 22 },
 ]
+
+/* Page-local hero copy — industry.pitch is shared across the industries
+   index, nav and other pages, so it's kept short and generic there. This
+   description instead names the intake/consult flow covered further down
+   this page, and is sized to end cleanly within the hero's 3-line clamp. */
+const HERO_DESCRIPTION =
+  "9278.io screens every call against your conflict rules, captures the facts your advocates need, and books paid consults on the calendar — in Hindi, Tamil, Telugu, and more."
 
 /**
  * Legal gets its own page (rather than the shared [slug] template) so its
@@ -60,7 +68,7 @@ export default function LegalIndustryPage() {
 
   // Four sibling industries, plus the pricing and FAQ tiles, to fill the same
   // six-card grid the other industry pages use.
-  const related = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 3)
+  const related = getRelatedIndustries(industry.slug)
 
   return (
     <main className="min-h-dvh bg-background text-foreground">
@@ -115,7 +123,7 @@ export default function LegalIndustryPage() {
 
               <ScrollReveal delay={0.12}>
                 <p className="mt-5 max-w-xl text-pretty line-clamp-3 leading-relaxed text-muted-foreground md:text-lg">
-                  {industry.pitch}
+                  {HERO_DESCRIPTION}
                 </p>
               </ScrollReveal>
 
@@ -459,60 +467,15 @@ export default function LegalIndustryPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-6 grid gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ...related.map((r) => ({
-                href: `/industries/${r.slug}`,
-                titlePrefix: "AI voice agents for ",
-                highlight: r.name.toLowerCase(),
-                description: r.short,
-                icon: r.icon,
-              })),
-            ].map((link, i) => {
-              const LinkIcon = link.icon
-              return (
-                <ScrollReveal key={link.href} delay={i * 0.08}>
-                  <Link
-                    href={link.href}
-                    className="group relative block h-full overflow-hidden rounded-2xl border border-l-4 border-slate-200 border-l-primary bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    {/* corner ribbon */}
-                    <span
-                      aria-hidden
-                      className="absolute right-0 top-0 h-12 w-12 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]"
-                    />
-
-                    {/* dotted decoration */}
-                    <div aria-hidden className="absolute right-4 top-12 grid grid-cols-4 gap-1 opacity-60">
-                      {Array.from({ length: 16 }).map((_, d) => (
-                        <span key={d} className="size-1 rounded-full bg-slate-300" />
-                      ))}
-                    </div>
-
-                    <span className="grid size-9 place-items-center rounded-xl bg-primary/10 text-primary">
-                      <LinkIcon className="size-4" aria-hidden />
-                    </span>
-
-                    <h3 className="mt-3 min-h-[2.4rem] text-balance text-[15px] font-semibold leading-snug tracking-tight text-foreground">
-                      {link.titlePrefix}
-                      {link.titlePrefix ? <span className="text-primary">{link.highlight}</span> : link.highlight}
-                    </h3>
-                    <span aria-hidden className="mt-2 block h-1 w-8 rounded-full bg-primary" />
-                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">
-                      {link.description}
-                    </p>
-
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-[13px] font-semibold text-primary">Read more</span>
-                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
-                        <ArrowRight className="size-3.5" aria-hidden />
-                      </span>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              )
-            })}
-          </div>
+          <IndustryExploreLinks
+            links={related.map((r) => ({
+              href: `/industries/${r.slug}`,
+              titlePrefix: "AI voice agents for ",
+              highlight: r.name.toLowerCase(),
+              description: r.short,
+              icon: <r.icon className="size-4" aria-hidden />,
+            }))}
+          />
         </div>
       </section>
 
