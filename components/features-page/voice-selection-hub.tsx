@@ -173,6 +173,16 @@ async function speak(
   return { spoke: localMatch, source: "browser" }
 }
 
+// Stops whichever path is currently speaking — a recorded/cloud clip or the
+// browser's own voice — so the play button can act as a real toggle instead
+// of only ever restarting playback from the top.
+function stopSpeaking() {
+  currentCloudAudio?.pause()
+  if (typeof window !== "undefined" && window.speechSynthesis) {
+    window.speechSynthesis.cancel()
+  }
+}
+
 export function VoiceSelectionHub() {
   const [active, setActive] = useState("English")
   const [supportedCodes, setSupportedCodes] = useState<Set<string> | null>(null)
@@ -183,6 +193,15 @@ export function VoiceSelectionHub() {
   const [cloudAvailable, setCloudAvailable] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const current = voices.find((v) => v.lang === active) ?? voices[1]
+
+  // A real ticking "call duration" clock, not a static string — starts at
+  // 0:00 and counts up for as long as the card is on screen.
+  const [callSeconds, setCallSeconds] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setCallSeconds((s) => s + 1), 1000)
+    return () => clearInterval(id)
+  }, [])
+  const callDuration = `${Math.floor(callSeconds / 60)}:${String(callSeconds % 60).padStart(2, "0")}`
 
   // Auto-cycles through all 10 languages one by one on a timer. A manual
   // tap jumps straight to that language and restarts the timer from there,
@@ -214,6 +233,19 @@ export function VoiceSelectionHub() {
     setHasRealVoice(result.spoke)
     setUsedCloud(result.source === "cloud")
     if (result.source === "cloud") setCloudAvailable(true)
+  }
+
+  // The play button now genuinely toggles: tapping it mid-playback stops the
+  // greeting instead of restarting it. Manual stop() calls (pause/cancel)
+  // don't fire the audio/synthesis "ended" event, so isSpeaking is reset
+  // here directly rather than waiting on that callback.
+  function toggleGreeting(v: (typeof voices)[number]) {
+    if (isSpeaking) {
+      stopSpeaking()
+      setIsSpeaking(false)
+      return
+    }
+    playGreeting(v)
   }
 
   function scheduleAutoAdvance(fromLang: string) {
@@ -391,7 +423,7 @@ export function VoiceSelectionHub() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60" style={{ backgroundColor: "#22C55E" }} />
                   <span className="relative inline-flex size-2 rounded-full" style={{ backgroundColor: "#22C55E" }} />
                 </span>
-                <p className="text-xs font-semibold" style={{ color: "#0F172A" }}>Live call · 00:42</p>
+                <p className="text-xs font-semibold" style={{ color: "#0F172A" }}>Live call · {callDuration}</p>
                 <AnimatePresence>
                   {isSpeaking && (
                     <motion.span
@@ -421,7 +453,8 @@ export function VoiceSelectionHub() {
                 <p className="mb-1 pr-1 text-[11px] font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>AI Agent</p>
                 <motion.button
                   type="button"
-                  onClick={() => playGreeting(current)}
+                  onClick={() => toggleGreeting(current)}
+                  aria-label={isSpeaking ? "Stop greeting" : "Play greeting"}
                   whileTap={{ scale: 0.97 }}
                   className="flex max-w-[85%] items-center gap-3 rounded-2xl rounded-br-sm px-3.5 py-2.5 text-white"
                   style={{ background: "linear-gradient(135deg, #4F8DFF, #2563EB)", boxShadow: "0 12px 26px -10px rgba(37,99,235,0.5)" }}

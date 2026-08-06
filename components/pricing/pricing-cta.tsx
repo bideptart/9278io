@@ -85,7 +85,7 @@ export function PricingCta({
             </div>
           </div>
 
-          <div className="relative flex flex-col gap-8 pb-0 sm:pb-20 md:flex-row md:items-center md:justify-between md:gap-12 lg:pb-0">
+          <div className="relative flex flex-col gap-8 pb-0 sm:pb-12 md:flex-row md:items-center md:justify-between md:gap-12 md:pb-0">
             <div className="max-w-xl">
               <h3 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">{heading}</h3>
               <div className="mt-4 h-px w-12 bg-white/40" aria-hidden />
