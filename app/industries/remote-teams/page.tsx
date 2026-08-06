@@ -443,7 +443,7 @@ export default function RemoteTeamsPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-12 grid gap-x-5 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",

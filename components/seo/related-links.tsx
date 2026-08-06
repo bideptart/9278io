@@ -33,7 +33,7 @@ export function RelatedLinks({
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3" role="list">
+      <div className="grid gap-5 overflow-x-clip md:grid-cols-2 lg:grid-cols-3" role="list">
         {links.map((l, i) => (
           <CenterOutItem
             key={l.href}

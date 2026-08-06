@@ -20,11 +20,11 @@ export function CenterOutItem({
   position: "left" | "middle" | "right"
   role?: string
 }) {
-  const xOffset = position === "left" ? 140 : position === "right" ? -140 : 0
+  const xOffset = position === "left" ? 60 : position === "right" ? -60 : 0
 
   return (
     <motion.div
-      className={cn(className)}
+      className={cn("min-w-0", className)}
       role={role}
       initial={{ opacity: 0, x: xOffset, y: position === "middle" ? 20 : 0 }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
