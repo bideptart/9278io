@@ -69,11 +69,10 @@ export default async function BlogPage() {
               Guides, case studies &amp; insights
             </span>
             <h1 className="mt-6 text-balance text-[34px] font-bold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl lg:text-[60px]">
-              The{" "}
+              The AI Voice Agent{" "}
               <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
-                AI Voice Agent
-              </span>{" "}
-              Knowledge Hub
+                Knowledge Hub
+              </span>
             </h1>
             <p className="mx-auto mt-5 line-clamp-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
               Practical guides, comparisons, and real case studies on AI voice agents for Indian businesses — TRAI and
