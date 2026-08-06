@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal, StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
+import { CenterOutItem } from "@/components/industries/center-out-reveal"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { EnterpriseItHero } from "@/components/industries/enterprise-it-hero"
 import { EnterpriseItDetails } from "@/components/industries/enterprise-it-details"
@@ -264,7 +265,7 @@ export default function EnterpriseItPage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-16 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-x-6 gap-y-10 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {RELATED.map((r) => ({
               href: `/industries/${r.slug}`,
               titlePrefix: "AI voice agents for ",
@@ -273,45 +274,46 @@ export default function EnterpriseItPage() {
               icon: r.icon,
             })).map((link, i) => {
               const LinkIcon = link.icon
+              const position = i === 0 ? "left" : i === 2 ? "right" : "middle"
 
               return (
-                <ScrollReveal key={link.href} delay={i * 0.08}>
+                <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
-                    className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 border-l-blue-600 bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg"
+                    className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 border-l-blue-600 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg"
                   >
                     {/* corner ribbon */}
                     <span
                       aria-hidden
-                      className="absolute right-0 top-0 h-12 w-12 bg-blue-600 [clip-path:polygon(100%_0,0_0,100%_100%)]"
+                      className="absolute right-0 top-0 h-10 w-10 bg-blue-600 [clip-path:polygon(100%_0,0_0,100%_100%)]"
                     />
 
                     {/* dotted decoration */}
-                    <div aria-hidden className="absolute right-5 top-12 grid grid-cols-4 gap-1 opacity-60">
+                    <div aria-hidden className="absolute right-4 top-10 grid grid-cols-4 gap-1 opacity-60">
                       {Array.from({ length: 16 }).map((_, d) => (
                         <span key={d} className="size-1 rounded-full bg-slate-300" />
                       ))}
                     </div>
 
-                    <span className="grid size-11 place-items-center rounded-xl bg-blue-600/10 text-blue-600">
-                      <LinkIcon className="size-5" aria-hidden />
+                    <span className="grid size-9 place-items-center rounded-lg bg-blue-600/10 text-blue-600">
+                      <LinkIcon className="size-4.5" aria-hidden />
                     </span>
 
-                    <h3 className="mt-4 text-balance font-serif text-lg font-bold tracking-tight text-foreground">
+                    <h3 className="mt-3 text-balance font-sans text-[15px] font-bold leading-snug tracking-tight text-foreground">
                       {link.titlePrefix}
                       {link.titlePrefix ? <span className="text-blue-600">{link.highlight}</span> : link.highlight}
                     </h3>
-                    <span aria-hidden className="mt-2.5 block h-1 w-8 rounded-full bg-blue-600" />
-                    <p className="mt-2.5 text-pretty text-sm leading-relaxed text-muted-foreground">{link.description}</p>
+                    <span aria-hidden className="mt-2 block h-1 w-7 rounded-full bg-blue-600" />
+                    <p className="mt-2 text-pretty text-[12.5px] leading-relaxed text-muted-foreground">{link.description}</p>
 
-                    <div className="mt-5 flex items-center justify-between">
-                      <span className="text-sm font-semibold text-blue-600">Read more</span>
-                      <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
-                        <ArrowRight className="size-3.5" aria-hidden />
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="text-[12.5px] font-semibold text-blue-600">Read more</span>
+                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-md transition-transform duration-300 group-hover:translate-x-0.5">
+                        <ArrowRight className="size-3" aria-hidden />
                       </span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </CenterOutItem>
               )
             })}
           </div>

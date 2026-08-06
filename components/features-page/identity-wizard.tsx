@@ -83,7 +83,7 @@ export function IdentityWizard() {
 
   return (
     <div
-      className="mx-auto mt-12 w-full max-w-3xl overflow-hidden rounded-[24px] border border-border/60 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+      className="mx-auto mt-12 w-full overflow-hidden rounded-[24px] border border-border/60 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

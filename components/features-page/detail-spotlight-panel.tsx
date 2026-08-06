@@ -82,7 +82,7 @@ export function DetailSpotlightPanel({ items }: { items: DetailItem[] }) {
         })}
       </div>
 
-      <div className="relative min-h-[280px] overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-white to-primary/[0.04] p-8">
+      <div className="relative h-[480px] overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-white to-primary/[0.04] p-8 sm:h-[360px]">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full bg-primary/10 blur-[80px]"

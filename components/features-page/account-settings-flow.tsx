@@ -168,10 +168,10 @@ export function AccountSettingsFlow() {
       </div>
 
       {/* completion summary — appears once every destination is synced.
-          Fixed min-height keeps this slot's footprint constant whether the
+          Fixed height keeps this slot's footprint constant whether the
           banner is mounted or not, so its mount/unmount each cycle doesn't
           shift the section's total height and make the page jump. */}
-      <div className="mt-8 flex min-h-[46px] justify-center">
+      <div className="mt-8 flex h-12 items-center justify-center">
         <AnimatePresence>
           {showBanner && (
             <motion.div
