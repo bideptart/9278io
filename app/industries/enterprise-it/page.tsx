@@ -278,7 +278,7 @@ export default function EnterpriseItPage() {
                 <ScrollReveal key={link.href} delay={i * 0.08}>
                   <Link
                     href={link.href}
-                    className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 border-l-blue-600 bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    className="group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 border-l-blue-600 bg-gradient-to-br from-slate-50/60 to-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg"
                   >
                     {/* corner ribbon */}
                     <span
