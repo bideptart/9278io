@@ -33,7 +33,7 @@ export function SetupTemplatesLaptopHero() {
   }, [])
 
   return (
-    <div className="relative mx-auto w-full max-w-lg py-8" style={{ perspective: 1200 }}>
+    <div className="relative mx-auto w-full max-w-lg pb-8 pt-2" style={{ perspective: 1200 }}>
       {/* animated gradient ring — the rotating layer is oversized and clipped
           by this wrapper's overflow-hidden, so it can never bleed past a
           thin border no matter how the panel underneath is sized */}

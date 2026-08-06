@@ -131,7 +131,8 @@ export default function PlaygroundLiveTestingPage() {
               </h1>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Test your agent&apos;s responses in a live sandbox before it ever answers a real call — tweak,
-                retest, and catch the gaps while it's still safe to.
+                retest, and catch the gaps while it's still safe to. Change a prompt and see the new behavior
+                in the same session, no redeploy required.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">

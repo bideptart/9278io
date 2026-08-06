@@ -61,14 +61,14 @@ export default function SetupTemplatesPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-[#7C3AED]/[0.07] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-4 md:px-8 md:pb-16 md:pt-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
               <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
                 <LayoutTemplate className="size-3.5" aria-hidden />
                 Test &amp; Go Live
               </span>
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-4 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
                 Ready-Made
                 <br />
                 <span
