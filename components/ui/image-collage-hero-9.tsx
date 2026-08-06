@@ -58,7 +58,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
           className="h-full overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-1 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
           style={{ aspectRatio: "1536 / 470", width: "auto" }}
         >
-          <img src={images[2].src} alt={images[2].alt} className="h-full w-full rounded-xl object-contain" />
+          <img src={images[2].src} alt={images[2].alt} className="h-full w-full rounded-xl object-cover" />
         </div>
       </div>
     </div>
