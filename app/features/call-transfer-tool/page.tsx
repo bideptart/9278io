@@ -19,7 +19,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
-import { DetailSplitRows } from "@/components/features-page/detail-split-rows"
+import { DetailProfessionalLedger } from "@/components/features-page/detail-professional-ledger"
 import { HowItWorksZigzag } from "@/components/features-page/how-it-works-zigzag"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
@@ -178,7 +178,7 @@ export default function CallTransferToolPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Never leave a caller stranded</h2>
           </ScrollReveal>
           <div className="mt-10">
-            <DetailSplitRows items={DETAILS} />
+            <DetailProfessionalLedger items={DETAILS} />
           </div>
         </div>
       </section>

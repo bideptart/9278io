@@ -155,8 +155,8 @@ export default function VoiceSelectionPage() {
       </section>
 
       {/* Language pill cloud */}
-      <section className="border-b border-border/50" style={{ backgroundColor: "#F7F9FC" }}>
-        <div className="mx-auto max-w-4xl px-6 py-16 text-center md:px-8 md:py-20">
+      <section className="overflow-hidden border-b border-border/50" style={{ backgroundColor: "#F7F9FC" }}>
+        <div className="mx-auto max-w-4xl px-6 pt-16 text-center md:px-8 md:pt-20">
           <ScrollReveal>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Languages</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
@@ -165,8 +165,10 @@ export default function VoiceSelectionPage() {
                 10+ Indian languages.
               </span>
             </h2>
-            <LanguageMarquee />
           </ScrollReveal>
+        </div>
+        <div className="px-8 pb-16 sm:px-16 md:pb-20">
+          <LanguageMarquee />
         </div>
       </section>
 

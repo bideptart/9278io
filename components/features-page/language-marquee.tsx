@@ -20,7 +20,7 @@ function Pill({ lang, accentIndex }: { lang: string; accentIndex: number }) {
 
 export function LanguageMarquee() {
   return (
-    <div className="mx-auto mt-8 flex max-w-3xl flex-col gap-4">
+    <div className="mt-8 flex w-full flex-col gap-4">
       <Marquee pauseOnHover className="[--duration:12s] [--gap:0.75rem]" style={{ maskImage: "linear-gradient(90deg, transparent, black 6%, black 94%, transparent)" }}>
         {rowA.map((lang, i) => (
           <Pill key={lang} lang={lang} accentIndex={i} />
