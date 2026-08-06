@@ -82,7 +82,7 @@ function Orbiter({ radius, size, duration, reverse = false, delay = 0 }: { radiu
  */
 export function CallTransferIllustration() {
   return (
-    <div className="relative mx-auto flex w-full max-w-[520px] items-center justify-center py-14 lg:mr-6">
+    <div className="relative mx-auto flex w-full max-w-[520px] items-center justify-center py-10 sm:py-14 lg:mr-6">
       {/* grounding shadow beneath the whole stage */}
       <div
         aria-hidden
@@ -113,8 +113,8 @@ export function CallTransferIllustration() {
       <Sparkle className="bottom-[16%] left-[14%] size-1" delay={1.8} />
       <Sparkle className="bottom-[10%] right-[10%] size-1.5" delay={0.7} />
 
-      <div className="relative p-8">
-      <div className="flex w-full items-center justify-between">
+      <div className="relative p-3 sm:p-8">
+      <div className="flex w-full items-center justify-between gap-1 sm:gap-0">
         {/* caller, left */}
         <motion.div
           initial={{ opacity: 0, x: -16 }}
@@ -123,7 +123,7 @@ export function CallTransferIllustration() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex shrink-0 flex-col items-center gap-2.5"
         >
-          <span className="relative flex size-20 shrink-0 items-center justify-center">
+          <span className="relative flex size-12 shrink-0 items-center justify-center sm:size-20">
             <motion.span
               aria-hidden
               className="absolute inset-0 rounded-full border border-primary/40"
@@ -131,14 +131,14 @@ export function CallTransferIllustration() {
               animate={{ scale: 1.5, opacity: 0 }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
             />
-            <span className="relative flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-white to-primary/[0.06] text-primary shadow-[0_14px_28px_-14px_rgba(15,23,42,0.3)] ring-1 ring-inset ring-primary/15 transition-shadow duration-300 hover:shadow-[0_18px_36px_-14px_rgba(37,99,235,0.4)]">
+            <span className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-white to-primary/[0.06] text-primary shadow-[0_14px_28px_-14px_rgba(15,23,42,0.3)] ring-1 ring-inset ring-primary/15 transition-shadow duration-300 hover:shadow-[0_18px_36px_-14px_rgba(37,99,235,0.4)] sm:size-20">
               {/* glossy top highlight */}
               <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 rounded-full"
                 style={{ background: "linear-gradient(160deg, white 0%, transparent 45%)", opacity: 0.5 }}
               />
-              <Phone className="relative size-7 shrink-0" aria-hidden />
+              <Phone className="relative size-4 shrink-0 sm:size-7" aria-hidden />
             </span>
           </span>
           {/* live audio waveform */}
@@ -153,7 +153,7 @@ export function CallTransferIllustration() {
               />
             ))}
           </div>
-          <span className="rounded-full bg-white/70 px-2.5 py-1 text-sm font-semibold text-muted-foreground shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+          <span className="rounded-full bg-white/70 px-2 py-0.5 text-xs font-semibold text-muted-foreground shadow-[0_1px_2px_rgba(15,23,42,0.04)] sm:px-2.5 sm:py-1 sm:text-sm">
             Caller
           </span>
         </motion.div>
@@ -182,7 +182,7 @@ export function CallTransferIllustration() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-          className="relative flex size-32 shrink-0 items-center justify-center"
+          className="relative flex size-20 shrink-0 items-center justify-center sm:size-32"
         >
           <motion.span
             aria-hidden
@@ -220,7 +220,7 @@ export function CallTransferIllustration() {
           <motion.span
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10 flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary to-[oklch(0.45_0.19_264)] text-white shadow-[0_18px_40px_oklch(0.546_0.215_262.88/0.45)]"
+            className="relative z-10 flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary to-[oklch(0.45_0.19_264)] text-white shadow-[0_18px_40px_oklch(0.546_0.215_262.88/0.45)] sm:size-24"
           >
             {/* glossy top highlight */}
             <span
@@ -228,7 +228,7 @@ export function CallTransferIllustration() {
               className="pointer-events-none absolute inset-0 rounded-full"
               style={{ background: "linear-gradient(160deg, white 0%, transparent 50%)", opacity: 0.25 }}
             />
-            <PhoneForwarded className="relative size-9 shrink-0" aria-hidden />
+            <PhoneForwarded className="relative size-5 shrink-0 sm:size-9" aria-hidden />
           </motion.span>
         </motion.div>
 
@@ -258,15 +258,15 @@ export function CallTransferIllustration() {
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           className="flex shrink-0 flex-col items-center gap-2.5"
         >
-          <span className="relative flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-white to-primary/[0.06] text-primary shadow-[0_14px_28px_-14px_rgba(15,23,42,0.3)] ring-1 ring-inset ring-primary/15 transition-shadow duration-300 hover:shadow-[0_18px_36px_-14px_rgba(37,99,235,0.4)]">
+          <span className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-white to-primary/[0.06] text-primary shadow-[0_14px_28px_-14px_rgba(15,23,42,0.3)] ring-1 ring-inset ring-primary/15 transition-shadow duration-300 hover:shadow-[0_18px_36px_-14px_rgba(37,99,235,0.4)] sm:size-20">
             <span
               aria-hidden
               className="pointer-events-none absolute inset-0 rounded-full"
               style={{ background: "linear-gradient(160deg, white 0%, transparent 45%)", opacity: 0.5 }}
             />
-            <UserRound className="relative size-7 shrink-0" aria-hidden />
+            <UserRound className="relative size-4 shrink-0 sm:size-7" aria-hidden />
           </span>
-          <span className="rounded-full bg-white/70 px-2.5 py-1 text-sm font-semibold text-foreground shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
+          <span className="rounded-full bg-white/70 px-2 py-0.5 text-xs font-semibold text-foreground shadow-[0_1px_2px_rgba(15,23,42,0.04)] sm:px-2.5 sm:py-1 sm:text-sm">
             Agent
           </span>
         </motion.div>
