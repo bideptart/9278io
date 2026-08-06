@@ -104,7 +104,7 @@ export default function AutomotiveIndustryPage() {
           aria-hidden
           className="pointer-events-none absolute -top-32 right-0 h-[560px] w-[720px] rounded-full bg-primary/[0.1] blur-[130px]"
         />
-        <div className="relative w-full px-6 pb-10 pt-10 md:px-8 md:pb-12 md:pt-14">
+        <div className="relative w-full px-6 pb-10 pt-6 md:px-8 md:pb-12 md:pt-8">
           <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
@@ -116,7 +116,7 @@ export default function AutomotiveIndustryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.06}>
-                <h1 className="mt-10 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+                <h1 className="mt-6 text-[44px] font-semibold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                   <span style={{ color: "#0F172A" }}>AI Voice Agents for</span>{" "}
                   <span
                     style={{
