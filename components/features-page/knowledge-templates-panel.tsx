@@ -3,7 +3,7 @@
 import { motion } from "motion/react"
 import { Copy, User } from "lucide-react"
 
-const agents = ["Aarav Motors", "Priya Dental", "Sharma Realty"]
+const agents = ["Aarav Motors", "Priya Dental", "Sharma Reality"]
 
 export function KnowledgeTemplatesPanel() {
   return (

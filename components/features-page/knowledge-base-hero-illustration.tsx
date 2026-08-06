@@ -244,7 +244,7 @@ export function KnowledgeBaseHeroIllustration() {
               {a.name}
             </span>
             <motion.div
-              className="relative mt-1 w-full overflow-hidden rounded-xl bg-white p-2 pt-2.5"
+              className="relative mt-1 w-full overflow-hidden rounded-xl bg-white p-3 pt-3.5"
               style={{ border: "1px solid #E4ECFF", boxShadow: "0 10px 20px -14px rgba(15,23,42,0.25)" }}
               whileHover={{ y: -3, scale: 1.03 }}
               transition={{ duration: 0.2 }}
@@ -259,7 +259,7 @@ export function KnowledgeBaseHeroIllustration() {
                 return (
                   <motion.div
                     key={m.label}
-                    className="flex items-center gap-1 py-0.5"
+                    className="flex items-center gap-1.5 py-1"
                     initial={{ opacity: 0.3, x: -6 }}
                     animate={{ opacity: [0.3, 1, 1, 0.3], x: [-6, 0, 0, -6] }}
                     transition={{
@@ -270,8 +270,8 @@ export function KnowledgeBaseHeroIllustration() {
                       times: [0, 0.15, 0.85, 1],
                     }}
                   >
-                    <Icon className="size-2.5 shrink-0" style={{ color: a.tone }} aria-hidden />
-                    <span className="truncate text-[8.5px] font-medium" style={{ color: "#475569" }}>{m.label}</span>
+                    <Icon className="size-3.5 shrink-0" style={{ color: a.tone }} aria-hidden />
+                    <span className="truncate text-[11px] font-medium" style={{ color: "#475569" }}>{m.label}</span>
                   </motion.div>
                 )
               })}

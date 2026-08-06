@@ -13,7 +13,7 @@ const PREVIEW_GAP = 280
 const profiles = [
   { name: "Aarav Motors Agent", icon: Car, greeting: "Thanks for calling Aarav Motors, how can I help?", tone: "#2563EB" },
   { name: "Priya Dental Care", icon: Stethoscope, greeting: "Hi, you've reached Priya Dental Care!", tone: "#7C3AED" },
-  { name: "Sharma Realty", icon: Home, greeting: "Hello! Sharma Realty, how can I assist you today?", tone: "#D97706" },
+  { name: "Sharma Reality", icon: Home, greeting: "Hello! Sharma Reality, how can I assist you today?", tone: "#D97706" },
 ]
 
 function TypedText({ text, speed, startDelay = 0, tone }: { text: string; speed: number; startDelay?: number; tone: string }) {

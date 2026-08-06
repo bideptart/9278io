@@ -52,7 +52,7 @@ const tiles = [
 const feed = [
   { icon: CalendarCheck, text: "Aarav Motors Agent booked a service slot", time: "just now" },
   { icon: PhoneIncoming, text: "Priya Dental Care answered a call in 2 rings", time: "1m ago" },
-  { icon: ArrowRightLeft, text: "Sharma Realty transferred a call to sales", time: "3m ago" },
+  { icon: ArrowRightLeft, text: "Sharma Reality transferred a call to sales", time: "3m ago" },
 ]
 
 const LIVE_TICK_MS = 3200

@@ -6,7 +6,7 @@ import { BookOpen, Car, Stethoscope, Home } from "lucide-react"
 const agents = [
   { name: "Aarav Motors", icon: Car, tone: "#2563EB", entries: "12 entries" },
   { name: "Priya Dental", icon: Stethoscope, tone: "#7C3AED", entries: "9 entries" },
-  { name: "Sharma Realty", icon: Home, tone: "#D97706", entries: "15 entries" },
+  { name: "Sharma Reality", icon: Home, tone: "#D97706", entries: "15 entries" },
 ]
 
 export function KnowledgeIsolationDiagram() {

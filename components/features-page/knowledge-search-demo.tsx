@@ -24,14 +24,14 @@ export function KnowledgeSearchDemo() {
   const Icon = active.icon
 
   return (
-    <div className="relative mx-auto mt-10 max-w-2xl">
-      <div className="rounded-3xl bg-white p-6 md:p-8" style={{ border: "1px solid #E4ECFF", boxShadow: "0 30px 60px -30px rgba(37,99,235,0.35)" }}>
-        <div className="flex items-center gap-2 rounded-xl px-4 py-3" style={{ backgroundColor: "#F7F9FC", border: "1px solid #E4ECFF" }}>
+    <div className="relative mx-auto mt-10 max-w-4xl">
+      <div className="rounded-3xl bg-white p-8 md:p-10" style={{ border: "1px solid #E4ECFF", boxShadow: "0 30px 60px -30px rgba(37,99,235,0.35)" }}>
+        <div className="flex items-center gap-2 rounded-xl px-5 py-4" style={{ backgroundColor: "#F7F9FC", border: "1px solid #E4ECFF" }}>
           <Search className="size-4 shrink-0" style={{ color: "#94A3B8" }} aria-hidden />
           <AnimatePresence mode="wait">
             <motion.p
               key={active.q}
-              className="truncate text-sm font-medium"
+              className="truncate text-base font-medium"
               style={{ color: "#0F172A" }}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
@@ -43,33 +43,33 @@ export function KnowledgeSearchDemo() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-5 flex items-start gap-3">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-full text-white" style={{ background: "linear-gradient(135deg, #4F8DFF, #2563EB)" }}>
-            <Bot className="size-4" aria-hidden />
+        <div className="mt-6 flex items-start gap-4">
+          <span className="flex size-11 shrink-0 items-center justify-center rounded-full text-white" style={{ background: "linear-gradient(135deg, #4F8DFF, #2563EB)" }}>
+            <Bot className="size-5" aria-hidden />
           </span>
           <AnimatePresence mode="wait">
             <motion.div
               key={active.a}
-              className="min-w-0 flex-1 rounded-2xl rounded-tl-sm p-4"
+              className="min-w-0 flex-1 rounded-2xl rounded-tl-sm p-5"
               style={{ backgroundColor: "#EEF4FF", border: "1px solid #BBD1FF" }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35 }}
             >
-              <p className="text-sm" style={{ color: "#0F172A" }}>{active.a}</p>
+              <p className="text-base" style={{ color: "#0F172A" }}>{active.a}</p>
               <span
-                className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold"
+                className="mt-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold"
                 style={{ backgroundColor: "#FFFFFF", color: active.tone }}
               >
-                <Icon className="size-3" aria-hidden />
+                <Icon className="size-3.5" aria-hidden />
                 Matched from knowledge base
               </span>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="mt-6 flex justify-center gap-1.5" aria-hidden>
+        <div className="mt-7 flex justify-center gap-1.5" aria-hidden>
           {queries.map((qq, i) => (
             <span
               key={qq.q}
