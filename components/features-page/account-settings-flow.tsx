@@ -148,7 +148,7 @@ export function AccountSettingsFlow() {
       </div>
 
       {/* completion summary — appears once every destination is synced */}
-      <div className="mt-8 flex justify-center">
+      <div className="mt-8 flex h-12 items-center justify-center">
         <AnimatePresence>
           {showBanner && (
             <motion.div

@@ -18,7 +18,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { CallPlaybackTimeline } from "@/components/features-page/call-playback-timeline"
 import { RecordingFilmstrip } from "@/components/features-page/recording-filmstrip"
-import { TranscriptSearchDemo } from "@/components/features-page/transcript-search-demo"
+import { TranscriptSpeedComparison } from "@/components/features-page/transcript-speed-comparison"
 import { CallSoundwaveIllustration } from "@/components/features-page/call-soundwave-illustration"
 import { DetailScatteredCards } from "@/components/features-page/detail-scattered-cards"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
@@ -194,7 +194,7 @@ export default function CallReportsPage() {
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Find any moment instantly</h2>
           </ScrollReveal>
-          <TranscriptSearchDemo />
+          <TranscriptSpeedComparison />
         </div>
       </section>
 
