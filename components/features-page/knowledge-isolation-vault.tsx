@@ -40,7 +40,7 @@ export function KnowledgeIsolationVault() {
       />
 
       {/* agent selector tabs — clicking one "unlocks" that agent's vault */}
-      <div className="flex justify-center gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         {agents.map((a, i) => {
           const TabIcon = a.icon
           const isActive = i === active
@@ -48,7 +48,7 @@ export function KnowledgeIsolationVault() {
             <motion.button
               key={a.name}
               onClick={() => setActive(i)}
-              className="flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold"
+              className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[11px] font-semibold sm:gap-2 sm:px-3 sm:py-2 sm:text-xs"
               style={{
                 backgroundColor: isActive ? a.tone : "#F7F9FC",
                 color: isActive ? "#FFFFFF" : "#667085",
@@ -79,7 +79,7 @@ export function KnowledgeIsolationVault() {
 
       {/* the vault — only one agent's contents are ever visible at once */}
       <motion.div
-        className="relative mt-4 h-[320px] overflow-hidden rounded-3xl bg-white"
+        className="relative mt-4 h-[360px] overflow-hidden rounded-3xl bg-white sm:h-[320px]"
         style={{ border: "1px solid #E4ECFF" }}
         animate={{ boxShadow: `0 30px 60px -24px ${agent.tone}40, 0 0 0 1px ${agent.tone}30` }}
         transition={{ duration: 0.6 }}
@@ -108,7 +108,7 @@ export function KnowledgeIsolationVault() {
         <AnimatePresence mode="wait">
           <motion.div
             key={agent.name}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 py-10 text-center"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-5 py-6 text-center sm:gap-4 sm:px-8 sm:py-10"
             initial={{ clipPath: "inset(0 50% 0 50%)", opacity: 0, y: 8 }}
             animate={{ clipPath: "inset(0 0% 0 0%)", opacity: 1, y: 0 }}
             exit={{ clipPath: "inset(0 50% 0 50%)", opacity: 0, y: -8 }}
@@ -142,13 +142,13 @@ export function KnowledgeIsolationVault() {
               Sealed from every other agent
             </div>
 
-            <div className="mt-2 flex gap-2.5">
+            <div className="mt-2 flex flex-wrap justify-center gap-2 sm:gap-2.5">
               {facts.map((f, fi) => {
                 const FIcon = f.icon
                 return (
                   <motion.span
                     key={f.label}
-                    className="flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-medium"
+                    className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[11px] font-medium sm:px-3.5 sm:py-2 sm:text-xs"
                     style={{ backgroundColor: "#F7F9FC", border: "1px solid #E4ECFF", color: "#334155" }}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}

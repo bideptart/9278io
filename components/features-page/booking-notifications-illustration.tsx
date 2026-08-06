@@ -101,13 +101,18 @@ function Float({ children, delay = 0, duration = 4.5, className = "" }: { childr
  * pulsing bell "hub" with four notification-channel cards (email, SMS,
  * push, and the meeting-booked event) radiating out on animated dashed
  * paths, plus three decorative floating channel-icon bubbles and corner
- * dot grids. Sized to stay fully inside its hero column — every card,
- * bubble, and orbit ring is placed within the 520×440 canvas so nothing
- * clips against the page or overlaps fixed chrome.
+ * dot grids. The whole 520×440 canvas keeps its original pixel-coordinate
+ * layout and scales down as a single block on narrow screens (instead of
+ * hiding cards below `sm`), so every element stays visible at any width.
  */
 export function BookingNotificationsIllustration() {
   return (
-    <div className="relative mx-auto h-[440px] w-full max-w-[520px]">
+    <div className="relative mx-auto w-full max-w-[520px] overflow-visible" style={{ aspectRatio: "520 / 440" }}>
+      {/* the whole 520×440 canvas below keeps its original pixel-coordinate
+          layout untouched — instead of hiding content on mobile, it scales
+          down as one block to fit whatever width its column actually has,
+          so every card and bubble is visible at every screen size. */}
+      <div className="absolute left-1/2 top-0 h-[440px] w-[520px] origin-top -translate-x-1/2 scale-[0.62] sm:scale-100">
       {/* corner dot grids */}
       <div
         aria-hidden
@@ -207,7 +212,7 @@ export function BookingNotificationsIllustration() {
 
       {/* channel cards */}
       {CHANNELS.map((c, i) => (
-        <Float key={c.id} delay={0.2 + i * 0.12} duration={4 + i * 0.3} className="absolute z-20 hidden sm:block">
+        <Float key={c.id} delay={0.2 + i * 0.12} duration={4 + i * 0.3} className="absolute z-20">
           <div style={{ position: "relative", top: c.top, left: c.left, width: c.width }}>
             <div className="relative flex items-center gap-2.5 rounded-2xl border border-border/70 bg-white py-3 pl-4 pr-3 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
               <span aria-hidden className={`absolute inset-y-0 left-0 w-1 rounded-l-2xl ${c.accent}`} />
@@ -234,21 +239,22 @@ export function BookingNotificationsIllustration() {
       ))}
 
       {/* decorative floating channel bubbles */}
-      <Float delay={0.5} duration={4.2} className="absolute left-[148px] top-[108px] z-10 hidden sm:block">
+      <Float delay={0.5} duration={4.2} className="absolute left-[148px] top-[108px] z-10">
         <span className="flex size-11 items-center justify-center rounded-full bg-blue-100 text-blue-600">
           <Send className="size-5" aria-hidden />
         </span>
       </Float>
-      <Float delay={0.7} duration={4.6} className="absolute left-[118px] top-[298px] z-10 hidden sm:block">
+      <Float delay={0.7} duration={4.6} className="absolute left-[118px] top-[298px] z-10">
         <span className="flex size-11 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
           <MessageCircle className="size-5" aria-hidden />
         </span>
       </Float>
-      <Float delay={0.9} duration={5} className="absolute left-[458px] top-[10px] z-10 hidden sm:block">
+      <Float delay={0.9} duration={5} className="absolute left-[458px] top-[10px] z-10">
         <span className="flex size-12 items-center justify-center rounded-full bg-violet-100 text-violet-600">
           <AtSign className="size-6" aria-hidden />
         </span>
       </Float>
+      </div>
     </div>
   )
 }

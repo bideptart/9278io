@@ -11,31 +11,30 @@ type DetailItem = {
   accent: string
 }
 
-const ROTATIONS = [-6, 3, -3]
-const OFFSETS = [
-  { top: 0, left: "2%" },
-  { top: 40, left: "36%" },
-  { top: 10, left: "68%" },
-]
+// A tiny alternating tilt and vertical offset per card gives the same loose,
+// playful "spread deck" feel the old absolute-positioned layout was going
+// for, but expressed entirely through flex layout — so cards simply wrap
+// and reflow at any container width instead of needing percentage-based
+// `left` offsets to be re-tuned every time they clip at some width.
+const TILTS = ["-rotate-3 md:-mt-2", "rotate-2 md:mt-3", "-rotate-2 md:-mt-1"]
 
 /**
- * "What you get" as a scattered fan of tilted cards on a soft gradient
- * backdrop — each capability on its own card, rotated and overlapping
- * like a spread deck, with a colored top accent and small pill tags.
- * A completely different composition (loose, playful, non-grid) from
- * the audio-track rows, plain card grid, numbered list, split rows,
- * spotlight panel, receipt ledger, and glass-row used for "what you get"
- * elsewhere on the site.
+ * "What you get" as a loose fan of tilted cards on a soft gradient backdrop
+ * — each capability on its own card, gently rotated with a colored top
+ * accent and small pill tags. A completely different composition (loose,
+ * playful, non-grid) from the audio-track rows, plain card grid, numbered
+ * list, split rows, spotlight panel, receipt ledger, and glass-row used for
+ * "what you get" elsewhere on the site.
  */
 export function DetailScatteredCards({ items }: { items: (DetailItem & { icon: ReactNode })[] }) {
   return (
-    <div className="relative mt-8 min-h-[280px] overflow-hidden rounded-3xl bg-gradient-to-br from-primary/[0.08] via-primary/[0.04] to-transparent p-6 sm:min-h-[240px] sm:p-10">
-      <div className="relative mx-auto max-w-2xl">
+    <div className="relative mt-8 overflow-hidden rounded-3xl bg-gradient-to-br from-primary/[0.08] via-primary/[0.04] to-transparent p-6 sm:p-10">
+      <div className="flex flex-wrap items-start justify-center gap-6">
         {items.map((item, i) => (
           <motion.div
             key={item.title}
-            initial={{ opacity: 0, y: 20, rotate: 0 }}
-            whileInView={{ opacity: 1, y: 0, rotate: ROTATIONS[i % ROTATIONS.length] }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             whileHover={{
               rotate: 0,
               scale: 1.03,
@@ -44,13 +43,8 @@ export function DetailScatteredCards({ items }: { items: (DetailItem & { icon: R
             }}
             viewport={{ once: true, margin: "-60px", amount: 0.3 }}
             transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mb-4 w-full max-w-[300px] rounded-2xl border-t-4 bg-white p-4 shadow-[0_20px_45px_-20px_rgba(15,23,42,0.25)] sm:absolute sm:mb-0"
-            style={{
-              borderTopColor: item.accent,
-              top: OFFSETS[i % OFFSETS.length].top,
-              left: OFFSETS[i % OFFSETS.length].left,
-              zIndex: i,
-            }}
+            className={`relative w-full max-w-[300px] rounded-2xl border-t-4 bg-white p-4 shadow-[0_20px_45px_-20px_rgba(15,23,42,0.25)] md:w-[300px] ${TILTS[i % TILTS.length]}`}
+            style={{ borderTopColor: item.accent, zIndex: i }}
           >
             <motion.div
               animate={{ y: [0, -7, 0] }}
@@ -72,8 +66,6 @@ export function DetailScatteredCards({ items }: { items: (DetailItem & { icon: R
           </motion.div>
         ))}
       </div>
-      {/* spacer to reserve height on mobile stacked layout */}
-      <div className="hidden sm:block sm:h-[210px]" aria-hidden />
     </div>
   )
 }

@@ -202,33 +202,42 @@ export function CallSoundwaveIllustration() {
         </MouseGlowCard>
       </motion.div>
 
-      {/* "Recording..." phone badge, top-right */}
-      <Float delay={0.3} duration={4.4} className="absolute -right-4 -top-8 z-20 hidden sm:block">
-        <div className="flex w-[190px] items-center gap-2.5 rounded-2xl border border-border/70 bg-white px-3.5 py-2.5 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
-          <span className="relative flex size-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-white">
-            <Mic className="size-4" aria-hidden />
-            <span className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-white ring-1 ring-red-500 motion-safe:animate-pulse" aria-hidden />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-semibold text-foreground">Recording…</p>
-            <p className="truncate text-[9px] text-muted-foreground">00:02:45</p>
+      {/* "Recording..." phone badge, top-right — scales down on mobile instead of
+          disappearing, since the transform an ancestor sets survives while a class
+          on the animated Float element itself would get clobbered by its own
+          inline transform. */}
+      <div className="absolute -right-4 -top-8 z-20 origin-top-right scale-[0.7] sm:scale-100">
+        <Float delay={0.3} duration={4.4}>
+          <div className="flex w-[190px] items-center gap-2.5 rounded-2xl border border-border/70 bg-white px-3.5 py-2.5 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
+            <span className="relative flex size-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-white">
+              <Mic className="size-4" aria-hidden />
+              <span className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-white ring-1 ring-red-500 motion-safe:animate-pulse" aria-hidden />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-semibold text-foreground">Recording…</p>
+              <p className="truncate text-[9px] text-muted-foreground">00:02:45</p>
+            </div>
           </div>
-        </div>
-      </Float>
+        </Float>
+      </div>
 
       {/* headset badge */}
-      <Float delay={0.5} duration={4} className="absolute -left-8 top-28 z-20 hidden sm:block">
-        <span className="flex size-11 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_14px_28px_-12px_oklch(0.546_0.215_262.88/0.5)]">
-          <Headphones className="size-5" aria-hidden />
-        </span>
-      </Float>
+      <div className="absolute -left-8 top-28 z-20 origin-top-left scale-[0.7] sm:scale-100">
+        <Float delay={0.5} duration={4}>
+          <span className="flex size-11 items-center justify-center rounded-full bg-gradient-to-br from-primary to-[oklch(0.42_0.19_264)] text-white shadow-[0_14px_28px_-12px_oklch(0.546_0.215_262.88/0.5)]">
+            <Headphones className="size-5" aria-hidden />
+          </span>
+        </Float>
+      </div>
 
       {/* transcript badge, bottom-right */}
-      <Float delay={0.7} duration={4.8} className="absolute -right-6 -bottom-6 z-20 hidden sm:block">
-        <span className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_16px_32px_-12px_rgba(16,185,129,0.5)]">
-          <FileText className="size-6" aria-hidden />
-        </span>
-      </Float>
+      <div className="absolute -right-6 -bottom-6 z-20 origin-bottom-right scale-[0.7] sm:scale-100">
+        <Float delay={0.7} duration={4.8}>
+          <span className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_16px_32px_-12px_rgba(16,185,129,0.5)]">
+            <FileText className="size-6" aria-hidden />
+          </span>
+        </Float>
+      </div>
     </div>
   )
 }

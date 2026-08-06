@@ -43,7 +43,7 @@ export function KnowledgeCategoryShowcase() {
             style={{ backgroundColor: "#F7F9FC", border: "1px solid #E4ECFF" }}
             initial={{ opacity: 0, x: reversed ? 40 : -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.4, margin: "-60px" }}
+            viewport={{ once: true, amount: 0.4, margin: "-60px" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex shrink-0 flex-col items-center gap-2 text-center sm:w-40">

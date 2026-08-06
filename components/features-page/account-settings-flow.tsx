@@ -63,8 +63,9 @@ export function AccountSettingsFlow() {
         </AnimatePresence>
       </div>
 
-      {/* base rail */}
-      <div className="absolute left-8 right-8 top-[7.375rem] hidden h-px sm:block" style={{ backgroundColor: "#E9ECF3" }} aria-hidden />
+      {/* base rail — vertical on mobile (runs down through the icon column),
+          horizontal on sm+ (runs across, at icon-center height) */}
+      <div className="absolute bottom-8 left-8 top-8 w-px sm:right-8 sm:top-[7.375rem] sm:h-px sm:w-auto sm:bottom-auto" style={{ backgroundColor: "#E9ECF3" }} aria-hidden />
 
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-5 sm:gap-6">
         {STEPS.map((step, i) => {
@@ -76,7 +77,7 @@ export function AccountSettingsFlow() {
               <div className="relative flex shrink-0 flex-col items-center gap-1.5">
                 {/* elapsed-time pill, fades in the moment this step completes */}
                 <motion.span
-                  className="hidden h-6 items-center justify-center rounded-full px-2.5 font-mono text-xs font-semibold sm:flex"
+                  className="flex h-6 items-center justify-center rounded-full px-2.5 font-mono text-xs font-semibold"
                   animate={{ opacity: isDone ? 1 : 0, y: isDone ? 0 : 4 }}
                   transition={{ duration: 0.25 }}
                   style={{ backgroundColor: `${step.tone}14`, color: step.tone }}
@@ -129,7 +130,10 @@ export function AccountSettingsFlow() {
         })}
       </div>
 
-      {/* traveling dot that leads the rail fill, with a soft glow trail */}
+      {/* traveling dot that leads the rail fill, with a soft glow trail —
+          horizontal on sm+, vertical on mobile, tracking the same `active`
+          progress so the propagation reads as one continuous animation at
+          every screen size instead of disappearing below sm. */}
       <div className="pointer-events-none absolute left-8 right-8 top-[7.375rem] hidden h-px overflow-visible sm:block" aria-hidden>
         <motion.div
           className="h-full"
@@ -146,8 +150,27 @@ export function AccountSettingsFlow() {
           />
         )}
       </div>
+      <div className="pointer-events-none absolute bottom-8 left-8 top-8 w-px overflow-visible sm:hidden" aria-hidden>
+        <motion.div
+          className="w-full"
+          style={{ background: "linear-gradient(180deg, #0F172A, #2563EB, #7C3AED, #10B981, #D97706)" }}
+          animate={{ height: `${(Math.max(active - 1, 0) / (STEPS.length - 1)) * 100}%` }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+        />
+        {active > 0 && active <= STEPS.length && (
+          <motion.span
+            className="absolute left-1/2 size-4 -translate-x-1/2 rounded-full"
+            style={{ backgroundColor: STEPS[Math.min(active, STEPS.length) - 1].tone, boxShadow: `0 0 18px 5px ${STEPS[Math.min(active, STEPS.length) - 1].tone}80` }}
+            animate={{ top: `${(Math.max(active - 1, 0) / (STEPS.length - 1)) * 100}%` }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          />
+        )}
+      </div>
 
-      {/* completion summary — appears once every destination is synced */}
+      {/* completion summary — appears once every destination is synced.
+          Fixed height keeps this slot's footprint constant whether the
+          banner is mounted or not, so its mount/unmount each cycle doesn't
+          shift the section's total height and make the page jump. */}
       <div className="mt-8 flex h-12 items-center justify-center">
         <AnimatePresence>
           {showBanner && (

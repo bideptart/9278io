@@ -690,7 +690,7 @@ function ECommercePage() {
                 <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg ${a.border}`}
                   >
                     {/* corner ribbon */}
                     <span
@@ -1457,7 +1457,7 @@ function RealEstatePage() {
                 <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg ${a.border}`}
                   >
                     {/* corner ribbon */}
                     <span
@@ -1911,7 +1911,7 @@ function HomeServicesPage() {
                 <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg ${a.border}`}
                   >
                     <span
                       aria-hidden
@@ -2251,7 +2251,7 @@ function RestaurantsPage() {
                 <CenterOutItem key={link.href} position={position}>
                   <Link
                     href={link.href}
-                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${a.border}`}
+                    className={`group relative block h-full overflow-hidden rounded-xl border border-l-4 border-slate-200 bg-gradient-to-br from-slate-50/60 to-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:-translate-y-1 active:shadow-lg ${a.border}`}
                   >
                     {/* corner ribbon */}
                     <span

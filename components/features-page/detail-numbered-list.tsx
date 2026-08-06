@@ -25,7 +25,7 @@ export function DetailNumberedList({ items }: { items: DetailItem[] }) {
           key={d.title}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-80px", amount: 0.4 }}
+          viewport={{ once: true, margin: "-80px", amount: 0.4 }}
           transition={{ duration: 0.45, delay: i * 0.1, ease: "easeOut" }}
           className="group border-t border-border/50 pt-5"
         >

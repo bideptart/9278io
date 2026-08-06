@@ -47,7 +47,7 @@ export function HowItWorksZigzag({ steps }: { steps: Step[] }) {
               key={s.title}
               initial={{ opacity: 0, x: reversed ? 30 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: "-100px", amount: 0.5 }}
+              viewport={{ once: true, margin: "-100px", amount: 0.5 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4 }}
               className={`relative flex sm:w-1/2 ${reversed ? "sm:ml-auto sm:flex-row-reverse sm:text-right" : ""}`}

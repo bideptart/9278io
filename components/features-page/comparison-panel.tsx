@@ -34,7 +34,7 @@ export function ComparisonPanel({ withoutTitle, withoutPoints, withTitle, withPo
             key={row.before}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-80px", amount: 0.4 }}
+            viewport={{ once: true, margin: "-80px", amount: 0.4 }}
             transition={{ duration: 0.45, delay: i * 0.1, ease: "easeOut" }}
             className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-5 py-4 sm:gap-6 sm:px-6"
           >
