@@ -50,14 +50,13 @@ export function EnterpriseItDetails({
               {jobs.map((job, i) => {
                 const Icon = JOB_ICONS[i] ?? Check
                 return (
-                  <StaggerItem
-                    key={job}
-                    className="group flex min-h-[76px] items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
-                  >
-                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-                      <Icon className="size-4.5" aria-hidden />
-                    </span>
-                    <span className="text-pretty leading-relaxed text-slate-700">{job}</span>
+                  <StaggerItem key={job}>
+                    <div className="group flex min-h-[76px] items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+                        <Icon className="size-4.5" aria-hidden />
+                      </span>
+                      <span className="text-pretty leading-relaxed text-slate-700">{job}</span>
+                    </div>
                   </StaggerItem>
                 )
               })}
@@ -133,14 +132,13 @@ export function EnterpriseItDetails({
               {sampleLines.map((line, i) => {
                 const Icon = SAMPLE_ICONS[i] ?? MessageSquareQuote
                 return (
-                  <StaggerItem
-                    key={i}
-                    className="group flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
-                  >
-                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-                      <Icon className="size-4.5" aria-hidden />
-                    </span>
-                    <p className="text-pretty leading-relaxed text-slate-700">{line}</p>
+                  <StaggerItem key={i}>
+                    <div className="group flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+                        <Icon className="size-4.5" aria-hidden />
+                      </span>
+                      <p className="text-pretty leading-relaxed text-slate-700">{line}</p>
+                    </div>
                   </StaggerItem>
                 )
               })}
