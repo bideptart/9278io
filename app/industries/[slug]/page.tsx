@@ -1722,7 +1722,7 @@ function HomeServicesPage() {
 
         {/* Stats bar */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-          <ScrollReveal delay={0.15} className="mx-auto max-w-7xl">
+          <ScrollStepItem index={0} className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
@@ -1745,7 +1745,7 @@ function HomeServicesPage() {
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 

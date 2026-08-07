@@ -4,7 +4,6 @@ import Link from "next/link"
 import { motion } from "motion/react"
 import { ArrowRight, PhoneCall } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { ShaderBackground } from "@/components/ui/silk-shader"
 
 type PricingCtaProps = {
@@ -34,7 +33,13 @@ export function PricingCta({
 }: PricingCtaProps) {
   return (
     <section id={id} className="w-full scroll-mt-24 px-6 py-14 md:px-8 md:py-16">
-      <ScrollReveal className="mx-auto max-w-6xl">
+      <motion.div
+        className="mx-auto max-w-6xl"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, margin: "-30px" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="relative overflow-hidden rounded-[2rem] bg-primary px-8 py-12 shadow-[0_40px_100px_-40px_oklch(0.52_0.22_265/0.6)] md:px-14 md:py-14">
           {/* Live WebGL "Silk" shader — replaces the flat gradient with a
               slowly-shifting animated background. Dark overlay right after
@@ -113,7 +118,7 @@ export function PricingCta({
             </div>
           </div>
         </div>
-      </ScrollReveal>
+      </motion.div>
     </section>
   )
 }
