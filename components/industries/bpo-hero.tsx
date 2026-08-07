@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
+import { PulseIcon } from "@/components/animation/pulse-icon"
 import { BpoWallboard } from "@/components/industries/bpo-wallboard"
 import type { Industry } from "@/lib/industries"
 
@@ -153,11 +154,9 @@ export function BpoHero({ industry }: { industry: Industry }) {
               {HERO_STATS.map((s) => (
                 <StaggerItem key={s.label}>
                   <div className="group flex items-center gap-4 px-5 py-4 transition-transform duration-300 hover:-translate-y-0.5 active:-translate-y-0.5 sm:px-6 sm:py-5">
-                    <span
-                      className={`grid size-11 shrink-0 place-items-center rounded-2xl transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 group-active:rotate-6 group-active:scale-110 ${s.iconBg}`}
-                    >
+                    <PulseIcon className={`relative grid size-11 shrink-0 place-items-center rounded-2xl ${s.iconBg}`}>
                       <s.icon className="size-6" aria-hidden />
-                    </span>
+                    </PulseIcon>
                     <div>
                       <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
                       <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
