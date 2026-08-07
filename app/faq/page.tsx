@@ -60,7 +60,15 @@ export default function FaqPage() {
             </span>
             <h1 className="mt-6 text-balance pb-1 text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
               Everything you{" "}
-              <span className="inline-block bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text pr-1 text-transparent">
+              <span
+                className="inline-block pr-1"
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
                 wanted to know.
               </span>
             </h1>
