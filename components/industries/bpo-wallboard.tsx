@@ -1,23 +1,25 @@
 "use client"
 
 // Hero visual for "AI Voice Agents for BPO & Call Centres" — a premium
-// sky-blue-on-white composition that rotates through three scenes every
-// couple of seconds: the original, first-approved "Live Call" design, a 3D
-// tilt card, and a particle-swarm orb. Every scene stays permanently
-// mounted and is simply faded/transformed in or out based on an `active`
-// flag (rather than mounted/unmounted through AnimatePresence), so the
-// rotation never depends on an exit animation reliably reporting "finished"
-// before the next scene can appear. Built entirely on the codebase's
-// existing motion/react library.
+// sky-blue-on-white composition that rotates through four scenes every
+// couple of seconds: the original, first-approved "Live Call" design, plus
+// three deliberately distinct concepts — a radial "AI Voice Orbit", a
+// left-to-right "Live Call Flow", and a layered "AI Command Center" of
+// floating glass cards. Every scene stays permanently mounted and is simply
+// faded/transformed in or out based on an `active` flag (rather than
+// mounted/unmounted through AnimatePresence), so the rotation never depends
+// on an exit animation reliably reporting "finished" before the next scene
+// can appear. Built entirely on the codebase's existing motion/react
+// library.
 
 import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
 import type { MotionValue } from "motion/react"
-import { CheckCircle2, Globe2, Headphones, PhoneCall, Star, User, Users } from "lucide-react"
+import { CheckCircle2, Globe2, Headphones, PhoneCall, Signal, Star, TrendingUp, User, Users } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
-const SCENES = ["call", "tilt", "swarm"] as const
+const SCENES = ["call", "orbit", "flow", "command"] as const
 
 function useSceneCycle(intervalMs: number) {
   const [i, setI] = useState(0)
@@ -254,10 +256,17 @@ function CallScene({ cardsY, centerY, centerRotate, centerScale, active }: Scene
   )
 }
 
-// Scene 2 — "3D Voice Card": a glossy card with real perspective, gently
-// rocking on two axes like a physical object tilting in your hand. No
-// paragraph text — just an icon and a small waveform.
-function TiltCardScene({ centerY, centerScale, active }: SceneLayerProps) {
+const ORBIT_NODES: { deg: number; radius: number; speed: number; Icon: LucideIcon }[] = [
+  { deg: 0, radius: 95, speed: 16, Icon: User },
+  { deg: 130, radius: 95, speed: 16, Icon: PhoneCall },
+  { deg: 250, radius: 95, speed: 16, Icon: Globe2 },
+]
+
+// Concept 1 — "AI Voice Orbit": a central pulsing AI core with two counter-
+// rotating dashed rings, traveling signal pulses along them, three
+// connection nodes orbiting at a fixed radius, and floating call-status
+// panels — a radial, layered-depth composition unlike a card or a list.
+function OrbitScene({ cardsY, centerY, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
       animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
@@ -265,33 +274,84 @@ function TiltCardScene({ centerY, centerScale, active }: SceneLayerProps) {
       style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
-      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
-        <SceneBadge>3D Voice Card</SceneBadge>
+      <motion.div style={{ y: cardsY }} className="absolute left-[4%] top-[10%] z-20 hidden sm:block">
+        <div className="flex items-center gap-2 rounded-2xl border border-sky-100 bg-white/90 px-3 py-2 shadow-[0_10px_28px_-14px_rgba(14,116,209,0.35)] backdrop-blur">
+          <span className="grid size-7 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600">
+            <Users className="size-3.5" aria-hidden />
+          </span>
+          <div className="min-w-0">
+            <p className="text-[9.5px] font-semibold leading-tight text-slate-500">Live Calls</p>
+            <p className="text-[10.5px] font-bold leading-tight text-slate-800">24 active</p>
+          </div>
+        </div>
+      </motion.div>
+      <motion.div style={{ y: cardsY }} className="absolute bottom-[8%] right-[3%] z-20 hidden md:block">
+        <div className="flex items-center gap-2 rounded-2xl border border-sky-100 bg-white/90 px-3 py-2 shadow-[0_10px_28px_-14px_rgba(14,116,209,0.35)] backdrop-blur">
+          <span className="grid size-7 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600">
+            <Signal className="size-3.5" aria-hidden />
+          </span>
+          <div className="min-w-0">
+            <p className="text-[9.5px] font-semibold leading-tight text-slate-500">Connection</p>
+            <p className="text-[10.5px] font-bold leading-tight text-slate-800">Stable</p>
+          </div>
+        </div>
+      </motion.div>
 
-        <div className="relative mt-7" style={{ perspective: 700 }}>
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>AI Voice Orbit</SceneBadge>
+
+        <div className="relative mt-7 size-[220px] sm:size-[250px]">
           <motion.div
-            className="relative size-[190px] overflow-hidden rounded-[1.75rem] shadow-[0_45px_90px_-24px_rgba(2,132,199,0.6)] sm:size-[220px]"
-            style={{ transformStyle: "preserve-3d" }}
-            animate={{ rotateY: [-12, 12, -12], rotateX: [5, -5, 5] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-sky-400/35 blur-2xl"
+            animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          <div className="absolute inset-[6%]">
+            <motion.div className="size-full rounded-full border border-sky-200/80" animate={{ rotate: 360 }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} />
+          </div>
+          <div className="absolute inset-[16%]">
+            <motion.div className="size-full rounded-full border border-dashed border-sky-300/70" animate={{ rotate: -360 }} transition={{ duration: 17, repeat: Infinity, ease: "linear" }} />
+          </div>
+
+          <svg aria-hidden className="absolute inset-[6%] size-[88%]" viewBox="0 0 100 100">
+            {[0, 1].map((i) => (
+              <circle key={i} r="1.8" fill="#0ea5e9">
+                <animateMotion dur={`${4 + i * 1.4}s`} begin={`${i * 1.6}s`} repeatCount="indefinite" path="M50,2 A48,48 0 1,1 49.9,2 Z" />
+              </circle>
+            ))}
+          </svg>
+
+          {ORBIT_NODES.map(({ deg, speed, Icon }, i) => (
+            <motion.div
+              key={i}
+              className="absolute left-1/2 top-1/2 size-[190px] -translate-x-1/2 -translate-y-1/2"
+              initial={{ rotate: deg }}
+              animate={{ rotate: deg + 360 }}
+              transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
+            >
+              <motion.div
+                className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2"
+                initial={{ rotate: -deg }}
+                animate={{ rotate: -(deg + 360) }}
+                transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
+              >
+                <span className="grid size-8 place-items-center rounded-full bg-white text-sky-600 shadow-[0_10px_20px_-10px_rgba(14,116,209,0.5)] ring-1 ring-sky-100 sm:size-9">
+                  <Icon className="size-3.5 sm:size-4" aria-hidden />
+                </span>
+              </motion.div>
+            </motion.div>
+          ))}
+
+          <motion.div
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-[32%] grid place-items-center rounded-full shadow-[0_30px_60px_-18px_rgba(2,132,199,0.65)]"
+            style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_18%,rgba(255,255,255,0.55),transparent_45%)]" />
-            <div className="relative z-10 flex size-full flex-col items-center justify-center gap-5">
-              <span className="grid size-14 place-items-center rounded-full bg-white/20 text-white ring-1 ring-white/30 backdrop-blur">
-                <Headphones className="size-6" aria-hidden />
-              </span>
-              <div className="flex h-8 items-center gap-[3px]">
-                {[8, 14, 10, 18, 11, 16, 9].map((h, i) => (
-                  <motion.span
-                    key={i}
-                    className="w-[3px] rounded-full bg-white/85"
-                    animate={{ height: [h * 0.4, h, h * 0.4] }}
-                    transition={{ duration: 1.1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.06 }}
-                  />
-                ))}
-              </div>
-            </div>
+            <span aria-hidden className="absolute inset-0 rounded-full bg-sky-400/30 motion-safe:animate-ping" />
+            <Headphones className="relative size-6 text-white sm:size-7" aria-hidden />
           </motion.div>
         </div>
       </motion.div>
@@ -299,61 +359,154 @@ function TiltCardScene({ centerY, centerScale, active }: SceneLayerProps) {
   )
 }
 
-const SWARM_PARTICLES = Array.from({ length: 16 }, (_, i) => {
-  const angle = (i / 16) * Math.PI * 2
-  return {
-    startX: Math.cos(angle) * 95,
-    startY: Math.sin(angle) * 95,
-    delay: (i % 8) * 0.15,
-    dur: 3.2 + (i % 4) * 0.3,
-  }
-})
+const FLOW_STAGES: { label: string; Icon: LucideIcon }[] = [
+  { label: "Customer", Icon: User },
+  { label: "AI Agent", Icon: Headphones },
+  { label: "Routing", Icon: Signal },
+  { label: "Resolved", Icon: CheckCircle2 },
+]
 
-// Scene 4 — "Particle Swarm": a ring of glowing particles continuously
-// breathing in toward a bright core and back out again — motion-heavy,
-// abstract, representing many calls being drawn into the AI in real time.
-function ParticleSwarmScene({ centerY, centerScale, active }: SceneLayerProps) {
+// Concept 2 — "Live Call Flow": a curved path connecting Customer → AI
+// Agent → Routing → Resolved, with a signal continuously travelling the
+// full path and each stage lighting up in turn as it "processes" — a
+// left-to-right narrative composition, structurally nothing like the
+// radial orbit or the floating card stack.
+function FlowScene({ centerY, centerScale, active }: SceneLayerProps) {
+  const [liveStage, setLiveStage] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setLiveStage((s) => (s + 1) % FLOW_STAGES.length), 900)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <motion.div
-      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      animate={active ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 24, scale: 0.95 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
-      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
-        <SceneBadge>Live Voice Network</SceneBadge>
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 w-[250px] sm:w-[300px]">
+        <div className="flex justify-center">
+          <SceneBadge>Live Call Flow</SceneBadge>
+        </div>
 
-        <div className="relative mt-7 grid size-[220px] place-items-center sm:size-[250px]">
-          {SWARM_PARTICLES.map((p, i) => (
+        <div className="relative mt-8">
+          <svg aria-hidden className="absolute inset-x-0 top-[19px] h-6 w-full" viewBox="0 0 100 20" preserveAspectRatio="none">
+            <path d="M6,10 C 30,-2 40,22 50,10 C 60,-2 70,22 94,10" fill="none" stroke="#bae6fd" strokeWidth="1.4" vectorEffect="non-scaling-stroke" />
+            <circle r="1.8" fill="#0ea5e9">
+              <animateMotion dur="3.2s" repeatCount="indefinite" path="M6,10 C 30,-2 40,22 50,10 C 60,-2 70,22 94,10" />
+            </circle>
+          </svg>
+
+          <div className="relative flex items-start justify-between">
+            {FLOW_STAGES.map(({ label, Icon }, i) => {
+              const isLive = i === liveStage
+              return (
+                <div key={label} className="relative z-10 flex flex-col items-center gap-2" style={{ width: "25%" }}>
+                  <motion.span
+                    animate={{ scale: isLive ? 1.15 : 1 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className={`relative grid size-9 place-items-center rounded-full shadow-sm ring-1 transition-colors duration-300 sm:size-10 ${
+                      isLive ? "bg-gradient-to-br from-blue-600 to-sky-500 text-white ring-sky-200" : "bg-white text-sky-600 ring-sky-100"
+                    }`}
+                  >
+                    {isLive && <span aria-hidden className="absolute inset-0 rounded-full bg-sky-400/40 motion-safe:animate-ping" />}
+                    <Icon className="relative size-4" aria-hidden />
+                  </motion.span>
+                  <span className={`text-[8.5px] font-semibold sm:text-[9.5px] ${isLive ? "text-sky-700" : "text-slate-500"}`}>{label}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="mt-6 flex items-center justify-center gap-[3px]">
+          {[8, 14, 10, 18, 11, 16, 9, 13].map((h, i) => (
             <motion.span
               key={i}
-              aria-hidden
-              className="absolute size-2 rounded-full bg-gradient-to-br from-sky-300 to-blue-600 shadow-[0_0_10px_2px_rgba(14,165,233,0.5)]"
-              animate={{
-                x: [p.startX, p.startX * 0.22, p.startX],
-                y: [p.startY, p.startY * 0.22, p.startY],
-                opacity: [0.85, 1, 0.85],
-              }}
-              transition={{ duration: p.dur, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
+              className="w-[3px] rounded-full bg-gradient-to-t from-sky-300 to-blue-600"
+              animate={{ height: [h * 0.35, h, h * 0.35] }}
+              transition={{ duration: 1.1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.06 }}
             />
           ))}
-
-          <motion.div
-            aria-hidden
-            className="absolute size-24 rounded-full bg-sky-400/40 blur-2xl"
-            animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0.9, 0.6] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            animate={{ scale: [1, 1.08, 1] }}
-            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative grid size-16 place-items-center rounded-full shadow-[0_30px_60px_-18px_rgba(2,132,199,0.65)] sm:size-[72px]"
-            style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
-          >
-            <Headphones className="relative size-6 text-white sm:size-7" aria-hidden />
-          </motion.div>
         </div>
       </motion.div>
+    </motion.div>
+  )
+}
+
+type CommandCard = { label: string; value: string; Icon: LucideIcon; className: string; delay: number; float: number; rotate: number }
+
+const COMMAND_DATA: CommandCard[] = [
+  { label: "Live Calls", value: "24", Icon: Users, className: "left-[2%] top-[6%] z-20 w-[108px]", delay: 0, float: 4.5, rotate: -4 },
+  { label: "AI Agents Active", value: "8", Icon: Headphones, className: "right-[0%] top-[2%] z-30 w-[118px]", delay: 0.15, float: 5, rotate: 3 },
+  { label: "Call Queue", value: "5", Icon: PhoneCall, className: "left-[8%] bottom-[10%] z-10 w-[100px]", delay: 0.3, float: 5.5, rotate: 5 },
+  { label: "Resolution Rate", value: "92%", Icon: TrendingUp, className: "right-[4%] bottom-[4%] z-30 w-[126px]", delay: 0.45, float: 4.8, rotate: -3 },
+]
+
+// Concept 3 — "AI Command Center": several translucent glass cards of
+// different sizes floating at different depths/rotations/speeds around a
+// central waveform core, with a soft light sweep crossing one card — an
+// overlapping, layered-depth composition, deliberately not a grid or list.
+function CommandScene({ centerScale, active }: SceneLayerProps) {
+  return (
+    <motion.div
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <div className="absolute top-[6%] left-1/2 z-40 -translate-x-1/2">
+        <SceneBadge>AI Command Center</SceneBadge>
+      </div>
+
+      <div className="relative h-[240px] w-[280px] sm:h-[260px] sm:w-[320px]">
+        {COMMAND_DATA.map((c, i) => (
+          <motion.div
+            key={c.label}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: c.delay, ease: [0.22, 1, 0.36, 1] }}
+            className={`absolute ${c.className}`}
+          >
+            <motion.div
+              animate={{ y: [0, -7, 0], rotate: [c.rotate, c.rotate * -1, c.rotate] }}
+              transition={{ duration: c.float, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+              className="relative overflow-hidden rounded-2xl border border-white/70 bg-white/75 p-3 shadow-[0_20px_45px_-20px_rgba(14,116,209,0.45)] backdrop-blur-md"
+            >
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                animate={{ x: ["-120%", "220%"] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: i * 0.8 }}
+              />
+              <span className="relative grid size-7 place-items-center rounded-lg bg-sky-50 text-sky-600">
+                <c.Icon className="size-3.5" aria-hidden />
+              </span>
+              <p className="relative mt-1.5 truncate text-[8.5px] font-semibold text-slate-500">{c.label}</p>
+              <p className="relative text-[13px] font-extrabold text-slate-900">{c.value}</p>
+            </motion.div>
+          </motion.div>
+        ))}
+
+        <motion.div
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-1/2 top-1/2 z-0 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full shadow-[0_25px_55px_-16px_rgba(2,132,199,0.6)] sm:size-[72px]"
+          style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
+        >
+          <div className="flex items-center gap-[2px]">
+            {[6, 10, 7, 12, 8].map((h, i) => (
+              <motion.span
+                key={i}
+                className="w-[2px] rounded-full bg-white/90"
+                animate={{ height: [h * 0.4, h, h * 0.4] }}
+                transition={{ duration: 1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.08 }}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   )
 }
@@ -409,8 +562,9 @@ export function BpoWallboard() {
           opacity/transform it drives) changes, so the rotation never
           depends on any exit-animation completing first. */}
       <CallScene {...baseProps} active={scene === "call"} />
-      <TiltCardScene {...baseProps} active={scene === "tilt"} />
-      <ParticleSwarmScene {...baseProps} active={scene === "swarm"} />
+      <OrbitScene {...baseProps} active={scene === "orbit"} />
+      <FlowScene {...baseProps} active={scene === "flow"} />
+      <CommandScene {...baseProps} active={scene === "command"} />
     </div>
   )
 }
