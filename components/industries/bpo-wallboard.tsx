@@ -145,11 +145,21 @@ type SceneLayerProps = {
   centerY: MotionValue<number>
   centerRotate: MotionValue<number>
   centerScale: MotionValue<number>
+  active: boolean
 }
+
+// Every scene stays permanently mounted and is simply faded/transformed in
+// or out based on `active` — rather than being mounted/unmounted through
+// AnimatePresence. Conditional mounting made the rotation depend on each
+// scene's exit animation reliably reporting "finished" before the next one
+// could appear, and that never happened consistently in practice, which is
+// why the composition looked stuck on the first design. Keeping every scene
+// alive and driving visibility straight off `active` has no such dependency
+// — it always reflects the current scene on the very next render.
 
 // Scene 1 — "Live Call": the original AI-agent call card, plus curved
 // routing paths carrying pulses from two customer nodes into the hub.
-function CallScene({ cardsY, centerY, centerRotate, centerScale }: SceneLayerProps) {
+function CallScene({ cardsY, centerY, centerRotate, centerScale, active }: SceneLayerProps) {
   const slotA = useCycle(SLOT_A, 3200)
   const slotB = useCycle(SLOT_B, 3800)
   const slotC = useCycle(SLOT_C, 4400)
@@ -164,10 +174,9 @@ function CallScene({ cardsY, centerY, centerRotate, centerScale }: SceneLayerPro
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.92, y: 24 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.96, y: -18 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      animate={active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.96, y: -18 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
       {/* Call-routing paths — two customer nodes at the container edges,
@@ -303,13 +312,12 @@ const ORBIT_NODES: { deg: number; Icon: LucideIcon }[] = [
 // Scene 2 — "Network Pulse": a circular hub with agent/customer/call nodes
 // orbiting it, and floating network stat badges — a completely different
 // layout language from the call card (radial instead of linear/stacked).
-function NetworkScene({ cardsY, centerY, centerRotate, centerScale }: SceneLayerProps) {
+function NetworkScene({ cardsY, centerY, centerRotate, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, rotate: -10, scale: 0.9 }}
-      animate={{ opacity: 1, rotate: 0, scale: 1 }}
-      exit={{ opacity: 0, rotate: 10, scale: 0.9 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      animate={active ? { opacity: 1, rotate: 0, scale: 1 } : { opacity: 0, rotate: 10, scale: 0.9 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
       <motion.div style={{ y: cardsY }} className="absolute left-[3%] top-[12%] z-20 hidden sm:block">
@@ -379,7 +387,7 @@ const QUEUE_ROWS = [
 // Scene 3 — "Live Queue": a stacked list-board layout with a ticking queue
 // counter and an animated resolution-rate progress bar — again a distinct
 // composition from the previous two (stacked rows instead of radial/card).
-function QueueScene({ cardsY, centerY, centerRotate, centerScale }: SceneLayerProps) {
+function QueueScene({ cardsY, centerY, centerRotate, centerScale, active }: SceneLayerProps) {
   const [waiting, setWaiting] = useState(6)
   useEffect(() => {
     const id = setInterval(() => setWaiting((w) => (w <= 4 ? 7 : w - 1)), 2600)
@@ -388,10 +396,9 @@ function QueueScene({ cardsY, centerY, centerRotate, centerScale }: SceneLayerPr
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 30, scale: 0.96 }}
-      animate={{ opacity: 1, x: 0, scale: 1 }}
-      exit={{ opacity: 0, x: -30, scale: 0.96 }}
+      animate={active ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -30, scale: 0.96 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
       <motion.div style={{ y: cardsY }} className="absolute left-[3%] top-[10%] z-20 hidden sm:block">
@@ -472,7 +479,7 @@ export function BpoWallboard() {
   const centerRotate = useTransform(scrollYProgress, [0, 1], [0, -3])
   const centerScale = useTransform(scrollYProgress, [0, 1], [1, 0.94])
 
-  const sceneProps: SceneLayerProps = { cardsY, centerY, centerRotate, centerScale }
+  const baseProps = { cardsY, centerY, centerRotate, centerScale }
 
   return (
     <div ref={containerRef} className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-b from-white via-sky-50/50 to-sky-50/80">
@@ -504,13 +511,13 @@ export function BpoWallboard() {
       ))}
 
       {/* The composition itself keeps changing — a new design and a new
-          entrance/exit animation every rotation, not just new content
-          inside the same layout. */}
-      <AnimatePresence>
-        {scene === "call" && <CallScene key="call" {...sceneProps} />}
-        {scene === "network" && <NetworkScene key="network" {...sceneProps} />}
-        {scene === "queue" && <QueueScene key="queue" {...sceneProps} />}
-      </AnimatePresence>
+          transform-in animation every rotation, not just new content inside
+          the same layout. All three stay mounted; only `active` (and the
+          opacity/transform it drives) changes, so the rotation never
+          depends on any exit-animation completing first. */}
+      <CallScene {...baseProps} active={scene === "call"} />
+      <NetworkScene {...baseProps} active={scene === "network"} />
+      <QueueScene {...baseProps} active={scene === "queue"} />
     </div>
   )
 }
