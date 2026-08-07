@@ -167,14 +167,6 @@ function CallScene({ cardsY, centerY, centerRotate, centerScale, active }: Scene
         </motion.span>
       ))}
 
-      <motion.div
-        aria-hidden
-        style={{ y: cardsY }}
-        className="absolute left-1/2 top-1/2 z-[5] hidden w-[190px] -translate-x-[42%] -translate-y-[54%] rotate-[7deg] rounded-[1.6rem] border border-sky-100 bg-white/60 shadow-[0_20px_40px_-20px_rgba(14,116,209,0.3)] backdrop-blur-sm sm:block sm:w-[215px]"
-      >
-        <div className="aspect-[220/260]" />
-      </motion.div>
-
       <motion.div style={{ y: cardsY }} className="absolute left-[4%] top-[10%] z-20 hidden sm:block">
         <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
           <NoticeCard notice={slotA} />
