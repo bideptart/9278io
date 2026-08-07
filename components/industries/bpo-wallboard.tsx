@@ -506,7 +506,7 @@ export function BpoWallboard() {
       {/* The composition itself keeps changing — a new design and a new
           entrance/exit animation every rotation, not just new content
           inside the same layout. */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {scene === "call" && <CallScene key="call" {...sceneProps} />}
         {scene === "network" && <NetworkScene key="network" {...sceneProps} />}
         {scene === "queue" && <QueueScene key="queue" {...sceneProps} />}
