@@ -137,7 +137,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
                 aria-hidden
                 className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(37,99,235,0.2),transparent_70%)] motion-safe:animate-[breathe_8s_ease-in-out_infinite]"
               />
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_30px_70px_-25px_rgba(37,99,235,0.55)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_40px_90px_-25px_rgba(37,99,235,0.65)]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden transition-transform duration-500 group-hover:-translate-y-1">
                 <BpoWallboard />
               </div>
             </div>

@@ -520,7 +520,7 @@ export function BpoWallboard() {
   const baseProps = { cardsY, centerY, centerRotate, centerScale }
 
   return (
-    <div ref={containerRef} className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-b from-white via-sky-50/50 to-sky-50/80">
+    <div ref={containerRef} className="relative flex h-full w-full items-center justify-center overflow-hidden">
       {/* Background layer — slow drift, furthest back, constant across every scene */}
       <motion.div
         aria-hidden
