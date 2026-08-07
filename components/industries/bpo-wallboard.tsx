@@ -16,10 +16,9 @@ import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import type { MotionValue } from "motion/react"
-import { CheckCircle2, Globe2, Headphones, PhoneCall, Star, User } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import { Headphones } from "lucide-react"
 
-const SCENES = ["transcript", "timeline", "hexgrid", "swarm"] as const
+const SCENES = ["tilt", "stack", "crystal", "swarm"] as const
 
 function useSceneCycle(intervalMs: number) {
   const [i, setI] = useState(0)
@@ -60,169 +59,132 @@ function SceneBadge({ children }: { children: ReactNode }) {
   )
 }
 
-const TRANSCRIPT_LINES: { from: "agent" | "caller"; text: string }[] = [
-  { from: "agent", text: "Thanks for calling — how can I help today?" },
-  { from: "caller", text: "I need to check my order status." },
-  { from: "agent", text: "Sure, pulling that up right now." },
-  { from: "caller", text: "Great, thank you." },
-]
-
-// Scene 1 — "Live Transcript": a rounded rectangle glass panel — the
-// overall shape here is a card, not a circle, and the content is a real
-// conversation typing itself out line by line.
-function TranscriptScene({ centerY, centerScale, active }: SceneLayerProps) {
-  const [visible, setVisible] = useState(1)
-  useEffect(() => {
-    const id = setInterval(() => setVisible((v) => (v >= TRANSCRIPT_LINES.length ? 1 : v + 1)), 1300)
-    return () => clearInterval(id)
-  }, [])
-
+// Scene 1 — "3D Voice Card": a glossy card with real perspective, gently
+// rocking on two axes like a physical object tilting in your hand. No
+// paragraph text — just an icon and a small waveform.
+function TiltCardScene({ centerY, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
-      animate={active ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      style={{ pointerEvents: active ? "auto" : "none" }}
-      className="absolute inset-0 flex items-center justify-center"
-    >
-      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 w-[230px] sm:w-[270px]">
-        <div className="rounded-[1.75rem] border border-sky-100 bg-white/95 p-4 shadow-[0_30px_60px_-24px_rgba(14,116,209,0.35)] backdrop-blur-sm sm:p-5">
-          <SceneBadge>Live Transcript</SceneBadge>
-
-          <div className="mt-4 flex min-h-[148px] flex-col justify-end gap-2">
-            {TRANSCRIPT_LINES.slice(0, visible).map((line, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className={`flex items-end gap-1.5 text-[11px] ${line.from === "agent" ? "justify-start" : "justify-end"}`}
-              >
-                {line.from === "agent" && (
-                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-sky-100 text-sky-600">
-                    <Headphones className="size-2.5" aria-hidden />
-                  </span>
-                )}
-                <span
-                  className={
-                    line.from === "agent"
-                      ? "max-w-[78%] rounded-2xl rounded-bl-sm bg-sky-50 px-3 py-2 text-slate-700 ring-1 ring-sky-100"
-                      : "max-w-[78%] rounded-2xl rounded-br-sm bg-slate-50 px-3 py-2 text-slate-700 ring-1 ring-slate-200"
-                  }
-                >
-                  {line.text}
-                </span>
-                {line.from === "caller" && (
-                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-500">
-                    <User className="size-2.5" aria-hidden />
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-3 flex items-center justify-center gap-1.5">
-            <span className="relative flex size-1.5" aria-hidden>
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-70" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
-            </span>
-            <p className="text-[9.5px] font-semibold text-slate-500 sm:text-[10.5px]">Live call in progress</p>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
-
-const TIMELINE_STAGES: { label: string; Icon: LucideIcon }[] = [
-  { label: "Ringing", Icon: PhoneCall },
-  { label: "Connected", Icon: Headphones },
-  { label: "Resolved", Icon: CheckCircle2 },
-]
-
-// Scene 2 — "Call Timeline": a wide horizontal strip, not a circle at all —
-// three stage nodes on a straight line with a marker travelling left to
-// right between them, like a linear progress rail.
-function TimelineScene({ centerY, centerScale, active }: SceneLayerProps) {
-  return (
-    <motion.div
-      animate={active ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -24, scale: 0.95 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      style={{ pointerEvents: active ? "auto" : "none" }}
-      className="absolute inset-0 flex items-center justify-center"
-    >
-      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 w-[250px] sm:w-[290px]">
-        <div className="rounded-[1.75rem] border border-sky-100 bg-white/95 px-5 py-6 shadow-[0_30px_60px_-24px_rgba(14,116,209,0.35)] backdrop-blur-sm">
-          <div className="flex justify-center">
-            <SceneBadge>Call Timeline</SceneBadge>
-          </div>
-
-          <div className="relative mt-7 flex items-start justify-between">
-            <div className="absolute left-[10%] right-[10%] top-[18px] h-px bg-sky-100" aria-hidden />
-            <motion.span
-              aria-hidden
-              className="absolute top-[14px] size-2 rounded-full bg-sky-500 shadow-[0_0_8px_2px_rgba(14,165,233,0.5)]"
-              animate={{ left: ["10%", "90%", "10%"] }}
-              transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            {TIMELINE_STAGES.map(({ label, Icon }, i) => (
-              <div key={label} className="relative z-10 flex flex-col items-center gap-2" style={{ width: "33%" }}>
-                <span className="grid size-9 place-items-center rounded-full bg-white text-sky-600 ring-1 ring-sky-100 shadow-sm">
-                  <Icon className="size-4" aria-hidden />
-                </span>
-                <span className="text-[9px] font-semibold text-slate-500 sm:text-[10px]">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
-
-const HEX_TILES: { x: number; y: number; size: number; Icon: LucideIcon; big?: boolean }[] = [
-  { x: 50, y: 50, size: 60, Icon: Headphones, big: true },
-  { x: 50, y: 12, size: 42, Icon: User },
-  { x: 84, y: 31, size: 42, Icon: PhoneCall },
-  { x: 84, y: 69, size: 42, Icon: Globe2 },
-  { x: 50, y: 88, size: 42, Icon: Star },
-  { x: 16, y: 69, size: 42, Icon: CheckCircle2 },
-  { x: 16, y: 31, size: 42, Icon: Headphones },
-]
-const HEXAGON_CLIP = "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)"
-
-// Scene 3 — "Hex Grid": an angular honeycomb cluster of tiles — straight
-// edges throughout, the most geometric of the four, standing well apart
-// from the circular Particle Swarm.
-function HexGridScene({ centerY, centerScale, active }: SceneLayerProps) {
-  return (
-    <motion.div
-      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
       <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
-        <SceneBadge>Hex Grid</SceneBadge>
+        <SceneBadge>3D Voice Card</SceneBadge>
 
-        <div className="relative mt-7 size-[220px] sm:size-[250px]">
-          {HEX_TILES.map(({ x, y, size, Icon, big }, i) => (
+        <div className="relative mt-7" style={{ perspective: 700 }}>
+          <motion.div
+            className="relative size-[190px] overflow-hidden rounded-[1.75rem] shadow-[0_45px_90px_-24px_rgba(2,132,199,0.6)] sm:size-[220px]"
+            style={{ transformStyle: "preserve-3d" }}
+            animate={{ rotateY: [-12, 12, -12], rotateX: [5, -5, 5] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_18%,rgba(255,255,255,0.55),transparent_45%)]" />
+            <div className="relative z-10 flex size-full flex-col items-center justify-center gap-5">
+              <span className="grid size-14 place-items-center rounded-full bg-white/20 text-white ring-1 ring-white/30 backdrop-blur">
+                <Headphones className="size-6" aria-hidden />
+              </span>
+              <div className="flex h-8 items-center gap-[3px]">
+                {[8, 14, 10, 18, 11, 16, 9].map((h, i) => (
+                  <motion.span
+                    key={i}
+                    className="w-[3px] rounded-full bg-white/85"
+                    animate={{ height: [h * 0.4, h, h * 0.4] }}
+                    transition={{ duration: 1.1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.06 }}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+const STACK_LAYERS = [
+  { offset: 24, scale: 0.84, grad: "linear-gradient(135deg, #e0f2fe, #7dd3fc)" },
+  { offset: 12, scale: 0.92, grad: "linear-gradient(135deg, #7dd3fc, #38bdf8)" },
+  { offset: 0, scale: 1, grad: "linear-gradient(135deg, #38bdf8, #1d4ed8)" },
+]
+
+// Scene 2 — "Layered Stack": three glass panels stacked with real depth,
+// each drifting on its own float cycle, an icon fixed on the front-most
+// card — a tactile "deck of cards" 3D composition.
+function LayeredStackScene({ centerY, centerScale, active }: SceneLayerProps) {
+  return (
+    <motion.div
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>Layered Stack</SceneBadge>
+
+        <div className="relative mt-8 size-[170px] sm:size-[190px]">
+          {STACK_LAYERS.map((l, i) => (
             <motion.div
               key={i}
-              className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${x}%`, top: `${y}%`, width: size, height: size }}
-              animate={{ scale: [0.94, 1.04, 0.94], opacity: [0.85, 1, 0.85] }}
-              transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.18 }}
-            >
-              <div
-                className={`grid size-full place-items-center text-white shadow-[0_16px_30px_-14px_rgba(14,116,209,0.6)] ${
-                  big ? "bg-gradient-to-br from-blue-600 to-sky-500" : "bg-gradient-to-br from-sky-400 to-blue-500"
-                }`}
-                style={{ clipPath: HEXAGON_CLIP }}
-              >
-                <Icon className={big ? "size-6" : "size-4"} aria-hidden />
-              </div>
-            </motion.div>
+              className="absolute inset-0 rounded-[1.6rem] border border-white/50 shadow-[0_30px_60px_-20px_rgba(2,132,199,0.5)]"
+              style={{ zIndex: i, background: l.grad, scale: l.scale }}
+              animate={{ y: [l.offset - 4, l.offset + 4, l.offset - 4] }}
+              transition={{ duration: 4 + i * 0.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 }}
+            />
           ))}
+          <div className="absolute inset-0 z-10 grid place-items-center">
+            <span className="grid size-14 place-items-center rounded-full bg-white/25 text-white ring-1 ring-white/40 backdrop-blur">
+              <Headphones className="size-6" aria-hidden />
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+const CRYSTAL_CLIP = "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)"
+
+// Scene 3 — "Crystal Prism": a faceted gem shape — flat angular planes with
+// a moving highlight sweep, gently rocking — the most overtly 3D-looking
+// of the set, and structurally nothing like a card, list, or circle.
+function CrystalPrismScene({ centerY, centerScale, active }: SceneLayerProps) {
+  return (
+    <motion.div
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>Crystal Prism</SceneBadge>
+
+        <div className="relative mt-8 size-[180px] sm:size-[210px]">
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-sky-400/35 blur-2xl"
+            animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          <motion.div
+            className="absolute inset-[8%]"
+            animate={{ rotate: [0, 6, 0, -6, 0], y: [0, -6, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div
+              className="absolute inset-0 shadow-[0_35px_70px_-20px_rgba(2,132,199,0.6)]"
+              style={{ clipPath: CRYSTAL_CLIP, background: "linear-gradient(160deg, #bae6fd, #0ea5e9 55%, #1d4ed8)" }}
+            />
+            <motion.div
+              className="absolute inset-0"
+              style={{ clipPath: CRYSTAL_CLIP, background: "linear-gradient(200deg, rgba(255,255,255,0.65), transparent 55%)" }}
+              animate={{ opacity: [0.4, 0.9, 0.4] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
@@ -338,9 +300,9 @@ export function BpoWallboard() {
           the same layout. All four stay mounted; only `active` (and the
           opacity/transform it drives) changes, so the rotation never
           depends on any exit-animation completing first. */}
-      <TranscriptScene {...baseProps} active={scene === "transcript"} />
-      <TimelineScene {...baseProps} active={scene === "timeline"} />
-      <HexGridScene {...baseProps} active={scene === "hexgrid"} />
+      <TiltCardScene {...baseProps} active={scene === "tilt"} />
+      <LayeredStackScene {...baseProps} active={scene === "stack"} />
+      <CrystalPrismScene {...baseProps} active={scene === "crystal"} />
       <ParticleSwarmScene {...baseProps} active={scene === "swarm"} />
     </div>
   )
