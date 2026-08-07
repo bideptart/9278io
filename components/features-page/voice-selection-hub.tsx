@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Phone, Play, Pause, ChevronDown, Check, Mic, VolumeX, LayoutDashboard, BarChart3, Settings, Languages, Zap, Bell } from "lucide-react"
 
@@ -184,12 +184,6 @@ export function VoiceSelectionHub() {
   const [isSpeaking, setIsSpeaking] = useState(false)
   const current = voices.find((v) => v.lang === active) ?? voices[1]
 
-  // Auto-cycles through all 10 languages one by one on a timer. A manual
-  // tap jumps straight to that language and restarts the timer from there,
-  // instead of fighting with whatever the auto-cycle was about to do.
-  const CYCLE_MS = 4500
-  const autoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
   useEffect(() => {
     if (typeof window === "undefined" || !window.speechSynthesis) return
     let cancelled = false
@@ -202,6 +196,12 @@ export function VoiceSelectionHub() {
       cancelled = true
     }
   }, [])
+
+  function stopSpeaking() {
+    currentCloudAudio?.pause()
+    if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel()
+    setIsSpeaking(false)
+  }
 
   async function playGreeting(v: (typeof voices)[number]) {
     const result = await speak(
@@ -216,29 +216,9 @@ export function VoiceSelectionHub() {
     if (result.source === "cloud") setCloudAvailable(true)
   }
 
-  function scheduleAutoAdvance(fromLang: string) {
-    if (autoTimerRef.current) clearTimeout(autoTimerRef.current)
-    autoTimerRef.current = setTimeout(() => {
-      const i = voices.findIndex((v) => v.lang === fromLang)
-      const next = voices[(i + 1) % voices.length]
-      setActive(next.lang)
-      playGreeting(next)
-      scheduleAutoAdvance(next.lang)
-    }, CYCLE_MS)
-  }
-
-  useEffect(() => {
-    scheduleAutoAdvance(active)
-    return () => {
-      if (autoTimerRef.current) clearTimeout(autoTimerRef.current)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   function handleSelect(v: (typeof voices)[number]) {
     setActive(v.lang)
     playGreeting(v)
-    scheduleAutoAdvance(v.lang)
   }
 
   return (
@@ -421,7 +401,7 @@ export function VoiceSelectionHub() {
                 <p className="mb-1 pr-1 text-[11px] font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>AI Agent</p>
                 <motion.button
                   type="button"
-                  onClick={() => playGreeting(current)}
+                  onClick={() => (isSpeaking ? stopSpeaking() : playGreeting(current))}
                   whileTap={{ scale: 0.97 }}
                   className="flex max-w-[85%] items-center gap-3 rounded-2xl rounded-br-sm px-3.5 py-2.5 text-white"
                   style={{ background: "linear-gradient(135deg, #4F8DFF, #2563EB)", boxShadow: "0 12px 26px -10px rgba(37,99,235,0.5)" }}
@@ -470,7 +450,7 @@ export function VoiceSelectionHub() {
                   <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>Voice · 10 available</p>
                   <ChevronDown className="size-3.5" style={{ color: "#94A3B8" }} aria-hidden />
                 </div>
-                <div className="mt-2.5 flex min-h-[70px] flex-wrap content-start gap-1.5">
+                <div className="mt-2.5 flex h-[92px] flex-wrap content-start gap-1.5 overflow-hidden">
                   {voices.map((v) => {
                     const isActive = v.lang === active
                     const noRealVoice = !v.recording && !cloudAvailable && supportedCodes !== null && !supportedCodes.has(v.code)

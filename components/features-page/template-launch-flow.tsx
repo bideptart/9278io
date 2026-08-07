@@ -220,19 +220,21 @@ export function TemplateLaunchFlow() {
           <span className="size-2 rounded-full bg-[#FBBF24]" />
           <span className="size-2 rounded-full bg-[#34D399]" />
         </div>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {active === 0 && <PickPanel tone={STEPS[0].tone} />}
-            {active === 1 && <CustomizePanel tone={STEPS[1].tone} />}
-            {active === 2 && <LaunchPanel tone={STEPS[2].tone} />}
-          </motion.div>
-        </AnimatePresence>
+        <div className="h-[210px] overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {active === 0 && <PickPanel tone={STEPS[0].tone} />}
+              {active === 1 && <CustomizePanel tone={STEPS[1].tone} />}
+              {active === 2 && <LaunchPanel tone={STEPS[2].tone} />}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   )

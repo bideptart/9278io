@@ -6,10 +6,10 @@ import { Download, Pause, Play } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const CLIPS = [
-  { id: 1, duration: "3:12", seconds: 8, caller: "Priya", tag: "Booking", tone: "bg-blue-500", toneSoft: "bg-blue-50 text-blue-600", bars: [45, 65, 90, 55, 75, 60, 80, 50], line: "Sure, your booking is confirmed for Friday at 4 PM." },
-  { id: 2, duration: "1:48", seconds: 6, caller: "Rohit", tag: "Support", tone: "bg-rose-500", toneSoft: "bg-rose-50 text-rose-600", bars: [55, 45, 70, 60, 50, 65, 80, 48], line: "I've checked your refund, it was processed yesterday." },
-  { id: 3, duration: "4:05", seconds: 7, caller: "Anita", tag: "Sales", tone: "bg-emerald-500", toneSoft: "bg-emerald-50 text-emerald-600", bars: [60, 50, 45, 75, 55, 70, 65, 52], line: "Thanks for your interest, let me walk you through our plans." },
-  { id: 4, duration: "2:33", seconds: 6, caller: "Karan", tag: "Follow-up", tone: "bg-amber-500", toneSoft: "bg-amber-50 text-amber-600", bars: [50, 58, 45, 68, 55, 72, 60, 46], line: "Just following up, is there anything else you need?" },
+  { id: 1, duration: "3:12", seconds: 8, caller: "Priya", tag: "Booking", tone: "bg-blue-500", toneSoft: "bg-blue-50 text-blue-600", bars: [45, 65, 90, 55, 75, 60, 80, 50] },
+  { id: 2, duration: "1:48", seconds: 6, caller: "Rohit", tag: "Support", tone: "bg-rose-500", toneSoft: "bg-rose-50 text-rose-600", bars: [55, 45, 70, 60, 50, 65, 80, 48] },
+  { id: 3, duration: "4:05", seconds: 7, caller: "Anita", tag: "Sales", tone: "bg-emerald-500", toneSoft: "bg-emerald-50 text-emerald-600", bars: [60, 50, 45, 75, 55, 70, 65, 52] },
+  { id: 4, duration: "2:33", seconds: 6, caller: "Karan", tag: "Follow-up", tone: "bg-amber-500", toneSoft: "bg-amber-50 text-amber-600", bars: [50, 58, 45, 68, 55, 72, 60, 46] },
 ]
 
 /**
@@ -29,13 +29,6 @@ export function RecordingFilmstrip() {
     const clip = CLIPS.find((c) => c.id === playingId)!
     setProgress(0)
 
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel()
-      const utterance = new SpeechSynthesisUtterance(clip.line)
-      utterance.rate = 0.95
-      window.speechSynthesis.speak(utterance)
-    }
-
     const start = Date.now()
     const interval = setInterval(() => {
       const pct = Math.min(100, ((Date.now() - start) / (clip.seconds * 1000)) * 100)
@@ -45,10 +38,7 @@ export function RecordingFilmstrip() {
         setPlayingId(null)
       }
     }, 60)
-    return () => {
-      clearInterval(interval)
-      if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel()
-    }
+    return () => clearInterval(interval)
   }, [playingId])
 
   return (
