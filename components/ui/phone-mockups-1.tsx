@@ -11,6 +11,21 @@ const TICKET_ROWS = [
   { t: "Access request", meta: "#IT-2204 · 12m ago", s: "In progress", ok: false, Icon: ShieldCheck, tint: "bg-amber-50 text-amber-600" },
 ]
 
+// Ticks up on an interval so a stagger container can be remounted (via
+// `key={tick}`) and replay its one-by-one entrance animation repeatedly,
+// instead of only ever playing once on mount.
+function useReplayTick(intervalMs: number) {
+  const [tick, setTick] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), intervalMs)
+    return () => clearInterval(id)
+  }, [intervalMs])
+  return tick
+}
+
+const staggerContainer = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } }
+const popInItem = { hidden: { opacity: 0, y: 10, scale: 0.85 }, show: { opacity: 1, y: 0, scale: 1 } }
+
 function PhoneStatusBar() {
   return (
     <div className="flex items-center justify-between px-3 pb-0.5 pt-3 text-[6.5px] font-semibold text-slate-400">
@@ -32,18 +47,23 @@ function TicketScreen() {
     const id = setInterval(() => setLiveRow((r) => (r + 1) % TICKET_ROWS.length), 1600)
     return () => clearInterval(id)
   }, [])
+  const replayTick = useReplayTick(4200)
 
   return (
     <div className="flex h-full flex-col bg-slate-50 px-2.5 pb-2">
       <PhoneStatusBar />
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
+        <motion.div
+          animate={{ y: [0, -1.5, 0] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center gap-1.5"
+        >
           <span className="grid size-4.5 place-items-center rounded-md bg-gradient-to-br from-blue-600 to-sky-500 text-white">
             <Server className="size-2.5" aria-hidden />
           </span>
           <p className="text-[8.5px] font-extrabold text-slate-800">IT Helpdesk</p>
-        </div>
+        </motion.div>
         <motion.span
           animate={{ rotate: [0, -18, 16, -12, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" }}
@@ -55,16 +75,30 @@ function TicketScreen() {
         </motion.span>
       </div>
 
-      <div className="mt-1.5 grid grid-cols-2 gap-1">
-        <div className="rounded-lg border border-slate-100 bg-white px-1.5 py-1 shadow-sm">
+      <motion.div
+        key={replayTick}
+        initial="hidden"
+        animate="show"
+        variants={staggerContainer}
+        className="mt-1.5 grid grid-cols-2 gap-1"
+      >
+        <motion.div
+          variants={popInItem}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-lg border border-slate-100 bg-white px-1.5 py-1 shadow-sm"
+        >
           <p className="text-[6px] font-semibold uppercase tracking-wide text-slate-400">Open</p>
           <p className="text-[9.5px] font-extrabold text-slate-800">3</p>
-        </div>
-        <div className="rounded-lg border border-slate-100 bg-white px-1.5 py-1 shadow-sm">
+        </motion.div>
+        <motion.div
+          variants={popInItem}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="rounded-lg border border-slate-100 bg-white px-1.5 py-1 shadow-sm"
+        >
           <p className="text-[6px] font-semibold uppercase tracking-wide text-slate-400">Avg. response</p>
           <p className="text-[9.5px] font-extrabold text-slate-800">2m 40s</p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <p className="mt-1.5 text-[6.5px] font-bold uppercase tracking-wide text-slate-400">Recent tickets</p>
       <motion.div animate={{ y: [0, -2.5, 0] }} transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }} className="mt-1 space-y-1">
@@ -139,22 +173,31 @@ function LiveCallScreen() {
   }, [])
   const mm = String(Math.floor(seconds / 60)).padStart(2, "0")
   const ss = String(seconds % 60).padStart(2, "0")
+  const replayTick = useReplayTick(4600)
 
   return (
     <div className="flex h-full flex-col bg-white px-2.5 pb-2">
       <PhoneStatusBar />
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
+        <motion.div
+          animate={{ y: [0, -1.5, 0] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center gap-1.5"
+        >
           <span className="grid size-4.5 place-items-center rounded-md bg-gradient-to-br from-blue-600 to-sky-500 text-white">
             <Server className="size-2.5" aria-hidden />
           </span>
           <p className="text-[8.5px] font-extrabold text-slate-800">IT Helpdesk</p>
-        </div>
-        <span className="flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[6px] font-bold text-red-500">
+        </motion.div>
+        <motion.span
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[6px] font-bold text-red-500"
+        >
           <span className="size-1 rounded-full bg-red-500 motion-safe:animate-pulse" aria-hidden />
           Live
-        </span>
+        </motion.span>
       </div>
 
       <motion.div
@@ -193,19 +236,23 @@ function LiveCallScreen() {
 
       <div className="mt-2 space-y-1">
         <p className="text-[6px] font-bold uppercase tracking-wide text-slate-400">Call details</p>
-        {[
-          { label: "Caller", value: "+91 98xxx xxxxx" },
-          { label: "Queue", value: "IT Helpdesk" },
-          { label: "Language", value: "Hindi / English" },
-        ].map((row) => (
-          <div
-            key={row.label}
-            className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 px-1.5 py-1"
-          >
-            <span className="text-[6.5px] font-semibold text-slate-500">{row.label}</span>
-            <span className="max-w-[68px] truncate text-[6.5px] font-bold text-slate-800">{row.value}</span>
-          </div>
-        ))}
+        <motion.div key={replayTick} initial="hidden" animate="show" variants={staggerContainer} className="space-y-1">
+          {[
+            { label: "Caller", value: "+91 98xxx xxxxx" },
+            { label: "Queue", value: "IT Helpdesk" },
+            { label: "Language", value: "Hindi / English" },
+          ].map((row) => (
+            <motion.div
+              key={row.label}
+              variants={popInItem}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 px-1.5 py-1"
+            >
+              <span className="text-[6.5px] font-semibold text-slate-500">{row.label}</span>
+              <span className="max-w-[68px] truncate text-[6.5px] font-bold text-slate-800">{row.value}</span>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm">
@@ -230,16 +277,22 @@ function LiveCallScreen() {
 // Screen 3 — password reset: the key icon gently "turns", and the
 // confirmation badge pops in with a spring on a repeating cycle.
 function PasswordResetScreen() {
+  const replayTick = useReplayTick(4400)
+
   return (
     <div className="flex h-full flex-col bg-white px-2.5 pb-2">
       <PhoneStatusBar />
 
-      <div className="flex items-center gap-1.5">
+      <motion.div
+        animate={{ y: [0, -1.5, 0] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        className="flex items-center gap-1.5"
+      >
         <span className="grid size-4.5 place-items-center rounded-md bg-gradient-to-br from-blue-600 to-sky-500 text-white">
           <Server className="size-2.5" aria-hidden />
         </span>
         <p className="text-[8.5px] font-extrabold text-slate-800">IT Helpdesk</p>
-      </div>
+      </motion.div>
 
       <div className="mt-2 flex flex-col items-center gap-1.5 text-center">
         <div className="relative grid size-10 place-items-center">
@@ -266,23 +319,36 @@ function PasswordResetScreen() {
           <CheckCircle2 className="size-2.5" aria-hidden />
           Link sent
         </motion.span>
+        <div className="mt-0.5 h-1 w-20 overflow-hidden rounded-full bg-slate-100">
+          <motion.div
+            key={replayTick}
+            className="h-full rounded-full bg-gradient-to-r from-blue-400 to-emerald-500"
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </div>
       </div>
 
       <div className="mt-2 space-y-1">
         <p className="text-[6px] font-bold uppercase tracking-wide text-slate-400">Reset details</p>
-        {[
-          { label: "Account", value: "r.mehta@company.com" },
-          { label: "Method", value: "SMS one-time link" },
-          { label: "Requested", value: "Just now" },
-        ].map((row) => (
-          <div
-            key={row.label}
-            className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 px-1.5 py-1"
-          >
-            <span className="text-[6.5px] font-semibold text-slate-500">{row.label}</span>
-            <span className="max-w-[68px] truncate text-[6.5px] font-bold text-slate-800">{row.value}</span>
-          </div>
-        ))}
+        <motion.div key={replayTick} initial="hidden" animate="show" variants={staggerContainer} className="space-y-1">
+          {[
+            { label: "Account", value: "r.mehta@company.com" },
+            { label: "Method", value: "SMS one-time link" },
+            { label: "Requested", value: "Just now" },
+          ].map((row) => (
+            <motion.div
+              key={row.label}
+              variants={popInItem}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 px-1.5 py-1"
+            >
+              <span className="text-[6.5px] font-semibold text-slate-500">{row.label}</span>
+              <span className="max-w-[68px] truncate text-[6.5px] font-bold text-slate-800">{row.value}</span>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-1.5 text-white shadow-sm">
@@ -301,16 +367,22 @@ function PasswordResetScreen() {
 // Screen 4 — access granted: expanding sonar-style approval rings behind
 // the shield, like a stamp landing.
 function AccessGrantedScreen() {
+  const replayTick = useReplayTick(4800)
+
   return (
     <div className="flex h-full flex-col bg-white px-2.5 pb-2">
       <PhoneStatusBar />
 
-      <div className="flex items-center gap-1.5">
+      <motion.div
+        animate={{ y: [0, -1.5, 0] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        className="flex items-center gap-1.5"
+      >
         <span className="grid size-4.5 place-items-center rounded-md bg-gradient-to-br from-blue-600 to-sky-500 text-white">
           <Server className="size-2.5" aria-hidden />
         </span>
         <p className="text-[8.5px] font-extrabold text-slate-800">IT Helpdesk</p>
-      </div>
+      </motion.div>
 
       <div className="mt-2 flex flex-col items-center gap-1.5 text-center">
         <div className="relative grid size-10 place-items-center">
@@ -343,19 +415,23 @@ function AccessGrantedScreen() {
 
       <div className="mt-2 space-y-1">
         <p className="text-[6px] font-bold uppercase tracking-wide text-slate-400">Request details</p>
-        {[
-          { label: "Requester", value: "Aditya Sharma" },
-          { label: "Resource", value: "VPN — Finance" },
-          { label: "Duration", value: "24 hours" },
-        ].map((row) => (
-          <div
-            key={row.label}
-            className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 px-1.5 py-1"
-          >
-            <span className="text-[6.5px] font-semibold text-slate-500">{row.label}</span>
-            <span className="max-w-[68px] truncate text-[6.5px] font-bold text-slate-800">{row.value}</span>
-          </div>
-        ))}
+        <motion.div key={replayTick} initial="hidden" animate="show" variants={staggerContainer} className="space-y-1">
+          {[
+            { label: "Requester", value: "Aditya Sharma" },
+            { label: "Resource", value: "VPN — Finance" },
+            { label: "Duration", value: "24 hours" },
+          ].map((row) => (
+            <motion.div
+              key={row.label}
+              variants={popInItem}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 px-1.5 py-1"
+            >
+              <span className="text-[6.5px] font-semibold text-slate-500">{row.label}</span>
+              <span className="max-w-[68px] truncate text-[6.5px] font-bold text-slate-800">{row.value}</span>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-1.5 text-white shadow-sm">
