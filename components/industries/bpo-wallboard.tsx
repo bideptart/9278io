@@ -459,7 +459,7 @@ function QueueScene({ cardsY, centerY, centerRotate, centerScale }: SceneLayerPr
 }
 
 export function BpoWallboard() {
-  const scene = useSceneCycle(8000)
+  const scene = useSceneCycle(1000)
 
   // Scroll-linked parallax: as the hero scrolls out of view, layers drift
   // at different rates (background slowest, central composition fastest)
