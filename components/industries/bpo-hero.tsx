@@ -10,7 +10,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { BpoWallboard } from "@/components/industries/bpo-wallboard"
+import PhoneMockupBpo from "@/components/ui/phone-mockups-bpo"
 import type { Industry } from "@/lib/industries"
 
 const HERO_STATS = [
@@ -132,13 +132,13 @@ export function BpoHero({ industry }: { industry: Industry }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="group relative mx-auto w-full max-w-[560px]">
+            <div className="relative mx-auto w-full max-w-[620px]">
               <div
                 aria-hidden
-                className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(37,99,235,0.2),transparent_70%)] motion-safe:animate-[breathe_8s_ease-in-out_infinite]"
+                className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-[85%] rounded-[2.5rem] bg-[radial-gradient(60%_60%_at_50%_20%,rgba(37,99,235,0.16),transparent_70%)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
               />
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] shadow-[0_30px_70px_-25px_rgba(37,99,235,0.55)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_40px_90px_-25px_rgba(37,99,235,0.65)]">
-                <BpoWallboard />
+              <div className="relative flex aspect-[4/3] w-full items-center justify-center">
+                <PhoneMockupBpo />
               </div>
             </div>
           </ScrollReveal>
