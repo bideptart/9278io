@@ -16,10 +16,10 @@ import { useEffect, useRef, useState } from "react"
 import type { ReactNode } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
 import type { MotionValue } from "motion/react"
-import { CheckCircle2, Globe2, Headphones, PhoneCall, Signal, Star, TrendingUp, User, Users } from "lucide-react"
+import { CheckCircle2, Globe2, Headphones, PhoneCall, Signal, Star, User, Users } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
-const SCENES = ["call", "orbit", "flow", "command"] as const
+const SCENES = ["call", "orbit", "flow", "radar"] as const
 
 function useSceneCycle(intervalMs: number) {
   const [i, setI] = useState(0)
@@ -427,20 +427,20 @@ function FlowScene({ centerY, centerScale, active }: SceneLayerProps) {
   )
 }
 
-type CommandCard = { label: string; value: string; Icon: LucideIcon; className: string; delay: number; float: number; rotate: number }
-
-const COMMAND_DATA: CommandCard[] = [
-  { label: "Live Calls", value: "24", Icon: Users, className: "left-[2%] top-[6%] z-20 w-[108px]", delay: 0, float: 4.5, rotate: -4 },
-  { label: "AI Agents Active", value: "8", Icon: Headphones, className: "right-[0%] top-[2%] z-30 w-[118px]", delay: 0.15, float: 5, rotate: 3 },
-  { label: "Call Queue", value: "5", Icon: PhoneCall, className: "left-[8%] bottom-[10%] z-10 w-[100px]", delay: 0.3, float: 5.5, rotate: 5 },
-  { label: "Resolution Rate", value: "92%", Icon: TrendingUp, className: "right-[4%] bottom-[4%] z-30 w-[126px]", delay: 0.45, float: 4.8, rotate: -3 },
+const RADAR_BLIPS = [
+  { x: 30, y: 34, delay: 0 },
+  { x: 72, y: 26, delay: 0.7 },
+  { x: 78, y: 68, delay: 1.4 },
+  { x: 26, y: 72, delay: 2.1 },
+  { x: 56, y: 82, delay: 1.05 },
+  { x: 20, y: 46, delay: 1.75 },
 ]
 
-// Concept 3 — "AI Command Center": several translucent glass cards of
-// different sizes floating at different depths/rotations/speeds around a
-// central waveform core, with a soft light sweep crossing one card — an
-// overlapping, layered-depth composition, deliberately not a grid or list.
-function CommandScene({ centerScale, active }: SceneLayerProps) {
+// Concept 3 — "Call Radar": a rotating sweep line inside a circular grid,
+// with call "blips" pulsing into view as it passes — a completely
+// different motif from the card grid it replaces, built around a single
+// continuous sweeping motion instead of independently floating panels.
+function RadarScene({ cardsY, centerY, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
       animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
@@ -448,57 +448,59 @@ function CommandScene({ centerScale, active }: SceneLayerProps) {
       style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
-      <div className="absolute top-[6%] left-1/2 z-40 -translate-x-1/2">
-        <SceneBadge>AI Command Center</SceneBadge>
-      </div>
-
-      <div className="relative h-[240px] w-[280px] sm:h-[260px] sm:w-[320px]">
-        {COMMAND_DATA.map((c, i) => (
-          <motion.div
-            key={c.label}
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: c.delay, ease: [0.22, 1, 0.36, 1] }}
-            className={`absolute ${c.className}`}
-          >
-            <motion.div
-              animate={{ y: [0, -7, 0], rotate: [c.rotate, c.rotate * -1, c.rotate] }}
-              transition={{ duration: c.float, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-              className="relative overflow-hidden rounded-2xl border border-white/70 bg-white/75 p-3 shadow-[0_20px_45px_-20px_rgba(14,116,209,0.45)] backdrop-blur-md"
-            >
-              <motion.span
-                aria-hidden
-                className="pointer-events-none absolute inset-y-0 left-0 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-                animate={{ x: ["-120%", "220%"] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: i * 0.8 }}
-              />
-              <span className="relative grid size-7 place-items-center rounded-lg bg-sky-50 text-sky-600">
-                <c.Icon className="size-3.5" aria-hidden />
-              </span>
-              <p className="relative mt-1.5 truncate text-[8.5px] font-semibold text-slate-500">{c.label}</p>
-              <p className="relative text-[13px] font-extrabold text-slate-900">{c.value}</p>
-            </motion.div>
-          </motion.div>
-        ))}
-
-        <motion.div
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-1/2 z-0 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full shadow-[0_25px_55px_-16px_rgba(2,132,199,0.6)] sm:size-[72px]"
-          style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
-        >
-          <div className="flex items-center gap-[2px]">
-            {[6, 10, 7, 12, 8].map((h, i) => (
-              <motion.span
-                key={i}
-                className="w-[2px] rounded-full bg-white/90"
-                animate={{ height: [h * 0.4, h, h * 0.4] }}
-                transition={{ duration: 1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.08 }}
-              />
-            ))}
+      <motion.div style={{ y: cardsY }} className="absolute left-[3%] top-[10%] z-20 hidden sm:block">
+        <div className="flex items-center gap-2 rounded-2xl border border-sky-100 bg-white/90 px-3 py-2 shadow-[0_10px_28px_-14px_rgba(14,116,209,0.35)] backdrop-blur">
+          <span className="grid size-7 shrink-0 place-items-center rounded-xl bg-sky-50 text-sky-600">
+            <Users className="size-3.5" aria-hidden />
+          </span>
+          <div className="min-w-0">
+            <p className="text-[9.5px] font-semibold leading-tight text-slate-500">Calls Detected</p>
+            <p className="text-[10.5px] font-bold leading-tight text-slate-800">24 today</p>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
+
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>Call Radar</SceneBadge>
+
+        <div className="relative mt-7 size-[220px] overflow-hidden rounded-full border border-sky-100 bg-white/70 shadow-[0_30px_60px_-20px_rgba(2,132,199,0.35)] backdrop-blur-sm sm:size-[250px]">
+          <span aria-hidden className="absolute inset-[16%] rounded-full border border-sky-100" />
+          <span aria-hidden className="absolute inset-[32%] rounded-full border border-sky-100" />
+          <span aria-hidden className="absolute inset-[48%] rounded-full border border-sky-100" />
+          <span aria-hidden className="absolute left-1/2 top-0 h-full w-px bg-sky-100" />
+          <span aria-hidden className="absolute left-0 top-1/2 h-px w-full bg-sky-100" />
+
+          <motion.div
+            aria-hidden
+            className="absolute inset-0"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            style={{ background: "conic-gradient(from 0deg, rgba(14,165,233,0.4), transparent 30%)" }}
+          />
+
+          {RADAR_BLIPS.map((b, i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="absolute size-2.5 rounded-full bg-sky-500 shadow-[0_0_10px_2px_rgba(14,165,233,0.6)]"
+              style={{ left: `${b.x}%`, top: `${b.y}%` }}
+              animate={{ scale: [0, 1.4, 1, 0], opacity: [0, 1, 1, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: b.delay }}
+            />
+          ))}
+
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <motion.div
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="grid size-14 place-items-center rounded-full shadow-[0_20px_40px_-14px_rgba(2,132,199,0.65)] sm:size-16"
+              style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
+            >
+              <Headphones className="size-6 text-white" aria-hidden />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   )
 }
@@ -556,7 +558,7 @@ export function BpoWallboard() {
       <CallScene {...baseProps} active={scene === "call"} />
       <OrbitScene {...baseProps} active={scene === "orbit"} />
       <FlowScene {...baseProps} active={scene === "flow"} />
-      <CommandScene {...baseProps} active={scene === "command"} />
+      <RadarScene {...baseProps} active={scene === "radar"} />
     </div>
   )
 }
