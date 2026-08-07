@@ -800,3 +800,103 @@
     animation: none;
   }
 }
+
+/* ── Voice-aura blob — an organic shape that continuously reshapes itself
+   (border-radius corners cycling) while slowly drifting and rotating, used
+   as a living gradient backdrop rather than a static blurred circle. ── */
+@keyframes voice-blob-morph {
+  0%, 100% {
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+    transform: rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 62% 38% 30% 70% / 55% 65% 35% 45%;
+    transform: rotate(8deg) scale(1.06);
+  }
+  66% {
+    border-radius: 35% 65% 55% 45% / 40% 45% 60% 55%;
+    transform: rotate(-6deg) scale(0.97);
+  }
+}
+.voice-blob-morph {
+  animation: voice-blob-morph 14s ease-in-out infinite;
+}
+
+/* ── Rising particles — small dots drifting upward and fading, like sound
+   energy lifting off the waveform. Horizontal drift is set per-particle via
+   inline --x so they don't all travel in a single vertical line. ── */
+@keyframes voice-particle-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x, 0px), -120px) scale(1);
+  }
+}
+.voice-particle-rise {
+  animation: voice-particle-rise 4.5s ease-in infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voice-blob-morph,
+  .voice-particle-rise {
+    animation: none;
+  }
+}
+
+/* ── Orbit travel — moves an element along an elliptical CSS motion path
+   (offset-path), used for particles that circle a glowing core. Duration is
+   set per-particle via inline --dur so rings don't rotate in lockstep. ── */
+@keyframes orbit-travel {
+  to {
+    offset-distance: 100%;
+  }
+}
+.orbit-travel {
+  offset-rotate: 0deg;
+  animation: orbit-travel var(--dur, 6s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-travel {
+    animation: none;
+  }
+}
+
+/* ── Blob wander — three distinct meandering paths used by the gooey
+   metaball cluster. Each blob is assigned one of the three (plus its own
+   duration via inline --dur) so the cluster never moves in lockstep. ── */
+@keyframes blob-wander-a {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(34px, -22px); }
+  50%      { transform: translate(-12px, 28px); }
+  75%      { transform: translate(-28px, -16px); }
+}
+@keyframes blob-wander-b {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(-28px, 22px); }
+  66%      { transform: translate(24px, -26px); }
+}
+@keyframes blob-wander-c {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(30px, 20px); }
+}
+.blob-wander-a { animation: blob-wander-a var(--dur, 7s) ease-in-out infinite; }
+.blob-wander-b { animation: blob-wander-b var(--dur, 8s) ease-in-out infinite; }
+.blob-wander-c { animation: blob-wander-c var(--dur, 6s) ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-wander-a,
+  .blob-wander-b,
+  .blob-wander-c {
+    animation: none;
+  }
+}

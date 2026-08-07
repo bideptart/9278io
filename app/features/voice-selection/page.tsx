@@ -157,7 +157,7 @@ export default function VoiceSelectionPage() {
 
       {/* Language pill cloud */}
       <section className="overflow-hidden border-b border-border/50" style={{ backgroundColor: "#F7F9FC" }}>
-        <div className="mx-auto max-w-4xl px-6 pt-16 text-center md:px-8 md:pt-20">
+        <div className="mx-auto max-w-4xl px-6 pt-10 text-center md:px-8 md:pt-14">
           <ScrollReveal>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Languages</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
@@ -168,7 +168,7 @@ export default function VoiceSelectionPage() {
             </h2>
           </ScrollReveal>
         </div>
-        <div className="px-8 pb-16 sm:px-16 md:pb-20">
+        <div className="px-8 pb-10 sm:px-16 md:pb-14">
           <LanguageMarquee />
         </div>
       </section>
