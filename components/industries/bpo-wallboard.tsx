@@ -27,7 +27,7 @@ import {
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
-const SCENES = ["call", "network", "queue"] as const
+const SCENES = ["call", "network", "queue", "analytics"] as const
 type SceneKey = (typeof SCENES)[number]
 
 function useSceneCycle(intervalMs: number) {
@@ -465,8 +465,85 @@ function QueueScene({ cardsY, centerY, centerRotate, centerScale, active }: Scen
   )
 }
 
+const CALL_BARS = [10, 22, 16, 30, 24, 18]
+
+// Scene 4 — "Live Analytics": an animated CSAT gauge ring plus a small
+// call-volume bar chart — a data-dashboard composition, distinct again from
+// the call card, the radial network, and the queue list.
+function AnalyticsScene({ cardsY, centerY, centerRotate, centerScale, active }: SceneLayerProps) {
+  const r = 40
+  const circumference = 2 * Math.PI * r
+
+  return (
+    <motion.div
+      animate={active ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 22, scale: 0.94 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: active ? "auto" : "none" }}
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <motion.div style={{ y: cardsY }} className="absolute left-[3%] top-[10%] z-20 hidden sm:block">
+        <StatBadge icon={Clock} label="Avg. Handle Time" value="2:14" delay={0.15} floatClass="hero-float-up" />
+      </motion.div>
+      <motion.div style={{ y: cardsY }} className="absolute right-[3%] top-[8%] z-20 hidden md:block">
+        <StatBadge icon={CheckCircle2} label="First-call Resolution" value="88%" delay={0.3} floatClass="hero-float-down" />
+      </motion.div>
+
+      <motion.div style={{ y: centerY, rotate: centerRotate, scale: centerScale }} className="relative z-10 w-[220px] sm:w-[250px]">
+        <motion.div
+          animate={{ y: [0, -5, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          className="rounded-[1.75rem] border border-sky-100 bg-white/95 p-4 shadow-[0_30px_60px_-24px_rgba(14,116,209,0.35)] backdrop-blur-sm sm:p-5"
+        >
+          <span className="flex items-center gap-1.5 rounded-full bg-sky-50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-sky-700 sm:text-[10px]">
+            <span className="relative flex size-1.5" aria-hidden>
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75" />
+              <span className="relative inline-flex size-1.5 rounded-full bg-sky-500" />
+            </span>
+            Live Analytics
+          </span>
+
+          <div className="relative mt-4 flex items-center justify-center">
+            <svg width="96" height="96" viewBox="0 0 96 96" className="-rotate-90">
+              <circle cx="48" cy="48" r={r} fill="none" stroke="#e0f2fe" strokeWidth="9" />
+              <motion.circle
+                cx="48"
+                cy="48"
+                r={r}
+                fill="none"
+                stroke="#0ea5e9"
+                strokeWidth="9"
+                strokeLinecap="round"
+                strokeDasharray={circumference}
+                initial={{ strokeDashoffset: circumference }}
+                animate={{ strokeDashoffset: circumference * (1 - 0.94) }}
+                transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </svg>
+            <div className="absolute flex flex-col items-center">
+              <span className="font-serif text-lg font-extrabold tracking-tight text-slate-900">94%</span>
+              <span className="text-[8px] font-semibold uppercase tracking-wider text-slate-400">CSAT</span>
+            </div>
+          </div>
+
+          <div className="mt-4 flex h-10 items-end justify-center gap-2 sm:h-12">
+            {CALL_BARS.map((h, i) => (
+              <motion.span
+                key={i}
+                className="w-2.5 rounded-full bg-gradient-to-t from-sky-300 to-blue-600"
+                animate={{ height: [h * 0.5, h * 1.6, h * 0.5] }}
+                transition={{ duration: 2.2 + (i % 3) * 0.2, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 }}
+              />
+            ))}
+          </div>
+          <p className="mt-2 text-center text-[9.5px] font-semibold text-slate-500 sm:text-[10.5px]">Calls handled per hour</p>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export function BpoWallboard() {
-  const scene = useSceneCycle(1000)
+  const scene = useSceneCycle(2000)
 
   // Scroll-linked parallax: as the hero scrolls out of view, layers drift
   // at different rates (background slowest, central composition fastest)
@@ -518,6 +595,7 @@ export function BpoWallboard() {
       <CallScene {...baseProps} active={scene === "call"} />
       <NetworkScene {...baseProps} active={scene === "network"} />
       <QueueScene {...baseProps} active={scene === "queue"} />
+      <AnalyticsScene {...baseProps} active={scene === "analytics"} />
     </div>
   )
 }
