@@ -58,12 +58,19 @@ export default function FaqPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
               Frequently asked questions
             </span>
-            <h1 className="mt-6 text-balance pb-1 text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl md:text-6xl">
+            <h1 className="mt-6 text-balance pb-1 text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
               Everything you{" "}
-              <span className="inline-block bg-gradient-to-r from-[oklch(0.75_0.14_262.88)] to-[oklch(0.4_0.2_262.88)] bg-clip-text pr-1 leading-[1.15] text-transparent">
-                wanted to know
+              <span
+                className="inline-block pr-1"
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                wanted to know.
               </span>
-              .
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
               Real questions our team hears most — on pricing, Indian phone numbers, TRAI and DPDP compliance, and
@@ -115,7 +122,7 @@ export default function FaqPage() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.08} className="hidden lg:block">
+          <ScrollReveal delay={0.08}>
             <FaqIllustration
               questionCount={FLAT_FAQ.length}
               questions={FAQ_GROUPS.slice(0, 4).map((g) => g.items[0].q)}

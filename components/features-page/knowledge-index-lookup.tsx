@@ -27,7 +27,7 @@ export function KnowledgeIndexLookup() {
     <div className="relative mx-auto mt-10 w-full overflow-hidden rounded-3xl bg-white" style={{ border: "1px solid #E4ECFF", boxShadow: "0 30px 60px -30px rgba(37,99,235,0.35)" }}>
       <div className="grid md:grid-cols-[240px_1fr]">
         {/* left — the knowledge index, one row per entry */}
-        <div className="flex flex-row gap-2 border-b p-5 md:flex-col md:justify-center md:border-b-0 md:border-r md:p-6" style={{ borderColor: "#E4ECFF" }}>
+        <div className="flex flex-col gap-2 border-b p-5 md:justify-center md:border-b-0 md:border-r md:p-6" style={{ borderColor: "#E4ECFF" }}>
           {entries.map((e, i) => {
             const isActive = i === index
             const RowIcon = e.icon
@@ -36,19 +36,19 @@ export function KnowledgeIndexLookup() {
                 key={e.q}
                 type="button"
                 onClick={() => setIndex(i)}
-                className="relative flex flex-1 items-center gap-2.5 overflow-hidden rounded-xl px-3 py-3 text-left transition-colors md:flex-none"
+                className="relative flex items-center gap-2.5 overflow-hidden rounded-xl px-3 py-3 text-left transition-colors"
                 style={{ backgroundColor: isActive ? "#EEF4FF" : "transparent" }}
               >
                 {isActive && (
                   <motion.span
                     layoutId="index-lookup-accent"
-                    className="absolute inset-y-0 left-0 w-1 md:w-1"
+                    className="absolute inset-y-0 left-0 w-1"
                     style={{ backgroundColor: e.tone }}
                     transition={{ duration: 0.3 }}
                   />
                 )}
                 <RowIcon className="size-4 shrink-0" style={{ color: isActive ? e.tone : "#94A3B8" }} aria-hidden />
-                <span className="truncate text-xs font-medium md:text-sm" style={{ color: isActive ? "#0F172A" : "#64748B" }}>
+                <span className="min-w-0 flex-1 truncate text-xs font-medium md:text-sm" style={{ color: isActive ? "#0F172A" : "#64748B" }}>
                   {e.q}
                 </span>
               </button>
@@ -77,7 +77,7 @@ export function KnowledgeIndexLookup() {
               </p>
               <div className="mt-3 flex items-start gap-3 rounded-2xl p-4" style={{ backgroundColor: "#F7F9FC", border: "1px solid #E4ECFF" }}>
                 <Icon className="mt-0.5 size-4 shrink-0" style={{ color: active.tone }} aria-hidden />
-                <p className="text-sm leading-relaxed" style={{ color: "#334155" }}>{active.a}</p>
+                <p className="min-w-0 flex-1 text-sm leading-relaxed" style={{ color: "#334155" }}>{active.a}</p>
               </div>
 
               {/* confidence meter — fills to the entry's match score each cycle */}

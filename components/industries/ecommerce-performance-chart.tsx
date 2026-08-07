@@ -16,7 +16,7 @@ const STATS = [
 
 export function EcommercePerformanceChart() {
   const chartRef = useRef<SVGSVGElement>(null)
-  const inView = useInView(chartRef, { once: true, margin: "-10% 0px" })
+  const inView = useInView(chartRef, { once: false, margin: "-10% 0px" })
 
   return (
     <>

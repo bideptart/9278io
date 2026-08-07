@@ -216,6 +216,12 @@ export function VoiceSelectionHub() {
     }
   }, [])
 
+  function stopSpeaking() {
+    currentCloudAudio?.pause()
+    if (typeof window !== "undefined" && window.speechSynthesis) window.speechSynthesis.cancel()
+    setIsSpeaking(false)
+  }
+
   async function playGreeting(v: (typeof voices)[number]) {
     const result = await speak(
       v.greeting,
@@ -475,7 +481,7 @@ export function VoiceSelectionHub() {
                   <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>Voice · 10 available</p>
                   <ChevronDown className="size-3.5" style={{ color: "#94A3B8" }} aria-hidden />
                 </div>
-                <div className="mt-2.5 flex min-h-[70px] flex-wrap content-start gap-1.5">
+                <div className="mt-2.5 flex h-[92px] flex-wrap content-start gap-1.5 overflow-hidden">
                   {voices.map((v) => {
                     const isActive = v.lang === active
                     const noRealVoice = !v.recording && !cloudAvailable && supportedCodes !== null && !supportedCodes.has(v.code)

@@ -49,7 +49,7 @@ export function DashboardBootSequence() {
 
   return (
     <div
-      className="mx-auto mt-10 w-full max-w-4xl rounded-[2rem] p-6 sm:p-8"
+      className="mx-auto mt-10 w-full max-w-4xl overflow-hidden rounded-[2rem] p-6 sm:p-8"
       style={{ border: "2px solid #93B4FD", backgroundColor: "#F8FAFF", boxShadow: "0 1px 2px rgba(15,23,42,0.03), inset 0 1px 0 rgba(255,255,255,0.6)" }}
     >
       <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
@@ -129,20 +129,15 @@ export function DashboardBootSequence() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex h-6 items-center justify-between">
             <p className="text-sm font-semibold uppercase tracking-wide" style={{ color: "#94A3B8" }}>Your dashboard</p>
-            <AnimatePresence>
-              {dashboardReady && (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-600"
-                >
-                  <Check className="size-3" aria-hidden /> Ready
-                </motion.span>
-              )}
-            </AnimatePresence>
+            <motion.span
+              animate={{ opacity: dashboardReady ? 1 : 0, scale: dashboardReady ? 1 : 0.7 }}
+              transition={{ duration: 0.3 }}
+              className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-600"
+            >
+              <Check className="size-3" aria-hidden /> Ready
+            </motion.span>
           </div>
 
           <div className="mt-4 grid grid-cols-2 gap-3">
@@ -150,7 +145,7 @@ export function DashboardBootSequence() {
               const Icon = t.icon
               const isReady = tileCount > i
               return (
-                <div key={t.label} className="min-h-[54px] rounded-xl p-3.5" style={{ backgroundColor: isReady ? `${t.tone}0F` : "#F1F5F9" }}>
+                <div key={t.label} className="h-[74px] overflow-hidden rounded-xl p-3.5" style={{ backgroundColor: isReady ? `${t.tone}0F` : "#F1F5F9" }}>
                   <AnimatePresence mode="wait">
                     {isReady ? (
                       <motion.div key="ready" initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}>
@@ -184,9 +179,9 @@ export function DashboardBootSequence() {
       {/* the payoff line the whole animation is building toward — this row's height is
           always reserved (not conditionally mounted), so the banner fading in/out never
           grows or shrinks the section and shifts the borders above/below it */}
-      <div className="mt-6 flex h-11 items-center justify-center">
+      <div className="mt-6 flex h-16 items-center justify-center px-2 sm:h-11">
         <motion.div
-          className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold"
+          className="inline-flex max-w-xs items-center gap-2 rounded-full px-5 py-2.5 text-center text-sm font-semibold sm:max-w-none"
           style={{ backgroundColor: "#EEF2FF", color: "#2563EB" }}
           animate={{ opacity: dashboardReady && !loginDone ? 1 : 0, y: dashboardReady && !loginDone ? 0 : 8 }}
           transition={{ duration: 0.3 }}

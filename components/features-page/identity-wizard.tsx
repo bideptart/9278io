@@ -140,6 +140,7 @@ export function IdentityWizard() {
       </div>
 
       {/* unified content panel */}
+      <div className="h-[320px] overflow-hidden sm:h-[200px]">
       <AnimatePresence mode="wait">
         <motion.div
           key={active}
@@ -218,6 +219,7 @@ export function IdentityWizard() {
           </div>
         </motion.div>
       </AnimatePresence>
+      </div>
 
       {/* persistent completion tracker */}
       <div className="flex items-center gap-2 border-t border-border/60 bg-[#FAFBFF] px-7 py-3 md:px-9">

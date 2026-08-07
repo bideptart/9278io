@@ -4,8 +4,8 @@ import { ArrowRight, Rocket, ShieldCheck, Zap } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { CenterOutItem } from "@/components/industries/center-out-reveal"
+import { ScrollStepItem } from "@/components/animation/stagger"
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/jsonld"
 import { INDUSTRIES, getIndustry } from "@/lib/industries"
 import { BpoHero } from "@/components/industries/bpo-hero"
@@ -43,7 +43,7 @@ export function BpoPage() {
         <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 -z-10 size-96 rounded-full bg-sky-400/15 blur-3xl" />
 
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-xs font-semibold uppercase tracking-wider text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md">
               <span className="grid size-6 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600" aria-hidden>
                 <Rocket className="size-3.5" aria-hidden />
@@ -101,9 +101,9 @@ export function BpoPage() {
                 <Link href="/faq">Read the FAQ</Link>
               </Button>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
-          <ScrollReveal delay={0.12}>
+          <ScrollStepItem index={1}>
             <div className="relative mx-auto w-full max-w-[400px]">
               <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white shadow-[0_30px_70px_-25px_rgba(37,99,235,0.35)]">
                 <Image
@@ -133,7 +133,7 @@ export function BpoPage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -149,14 +149,14 @@ export function BpoPage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-3xl font-semibold tracking-tight md:text-4xl">
               Other industries we power
             </h2>
             <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-16 grid gap-x-6 gap-y-10 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({

@@ -934,7 +934,7 @@ function RealEstatePage() {
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Sparkles className="size-3.5" aria-hidden />
@@ -1035,10 +1035,10 @@ function RealEstatePage() {
                 </Button>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Volume2 className="size-3.5" aria-hidden />
@@ -1135,14 +1135,14 @@ function RealEstatePage() {
                 </Button>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
       {/* ─── How teams roll out — two-step process ─── */}
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="flex items-start gap-5">
+          <ScrollStepItem index={0} className="flex items-start gap-5">
             <span className="relative shrink-0">
               <Sparkles className="absolute -right-1 -top-1 size-3.5 text-blue-400" aria-hidden />
               <span className="grid size-16 place-items-center rounded-full border border-blue-100 bg-white text-blue-600 shadow-sm">
@@ -1160,7 +1160,7 @@ function RealEstatePage() {
                 A simple, scalable approach to launch AI voice agents and drive real results.
               </p>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="relative mt-10 grid gap-8 md:grid-cols-2 md:gap-10">
             <div
@@ -1293,7 +1293,7 @@ function RealEstatePage() {
             </ScrollStepItem>
           </div>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollStepItem index={2}>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
                 asChild
@@ -1318,7 +1318,7 @@ function RealEstatePage() {
                 </Link>
               </Button>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -1329,7 +1329,7 @@ function RealEstatePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
@@ -1367,10 +1367,10 @@ function RealEstatePage() {
                 <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
             </Button>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — Picture 2: real-time performance recap (real stats, no invented numbers) */}
-          <ScrollReveal delay={0.12}>
+          <ScrollStepItem index={1}>
             <div className="relative">
               <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <div className="flex items-center gap-3">
@@ -1410,7 +1410,7 @@ function RealEstatePage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -1722,7 +1722,7 @@ function HomeServicesPage() {
 
         {/* Stats bar */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-          <ScrollReveal delay={0.15} className="mx-auto max-w-7xl">
+          <ScrollStepItem index={0} className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
@@ -1745,7 +1745,7 @@ function HomeServicesPage() {
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
