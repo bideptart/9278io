@@ -143,24 +143,20 @@ export function BfsiHero({ industry }: { industry: Industry }) {
         </div>
       </div>
 
-      <div className="w-full px-6 pb-2 md:px-8 md:pb-3">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 py-4 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
-          <Marquee pauseOnHover className="[--duration:24s] [--gap:0px]">
-            {HERO_STATS.map((s) => (
-              <div key={s.label} className="flex items-center gap-4 px-8">
-                <PulseIcon className={`grid size-11 shrink-0 place-items-center rounded-2xl ${s.iconBg}`}>
-                  <s.icon className="size-6" aria-hidden />
-                </PulseIcon>
-                <div className="whitespace-nowrap">
-                  <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
-                  <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
-                </div>
+      <div className="w-full overflow-hidden px-6 pb-2 md:px-8 md:pb-3">
+        <Marquee pauseOnHover className="mx-auto max-w-6xl [--duration:24s] [--gap:0px]">
+          {HERO_STATS.map((s) => (
+            <div key={s.label} className="flex items-center gap-4 px-8">
+              <PulseIcon className={`grid size-11 shrink-0 place-items-center rounded-2xl ${s.iconBg}`}>
+                <s.icon className="size-6" aria-hidden />
+              </PulseIcon>
+              <div className="whitespace-nowrap">
+                <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
+                <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
               </div>
-            ))}
-          </Marquee>
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent" />
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent" />
-        </div>
+            </div>
+          ))}
+        </Marquee>
       </div>
     </section>
   )
