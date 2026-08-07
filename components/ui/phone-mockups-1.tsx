@@ -26,6 +26,43 @@ function useReplayTick(intervalMs: number) {
 const staggerContainer = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } }
 const popInItem = { hidden: { opacity: 0, y: 10, scale: 0.85 }, show: { opacity: 1, y: 0, scale: 1 } }
 
+// A trio of tiny twinkling dots scattered around a corner — a sparkle
+// flourish reused near a few of the screens' hero badges.
+function Twinkles({ className }: { className?: string }) {
+  const dots = [
+    { top: "-6px", left: "-4px", delay: 0 },
+    { top: "2px", left: "34px", delay: 0.5 },
+    { top: "24px", left: "-8px", delay: 1 },
+  ]
+  return (
+    <div aria-hidden className={`pointer-events-none absolute inset-0 ${className ?? ""}`}>
+      {dots.map((d, i) => (
+        <motion.span
+          key={i}
+          className="absolute size-[3px] rounded-full bg-sky-400"
+          style={{ top: d.top, left: d.left }}
+          animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", delay: d.delay }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// A dashed ring that spins continuously behind a hero icon — reused across
+// screens for a consistent "processing halo" flourish.
+function SpinHalo({ size = 48, color = "border-blue-300" }: { size?: number; color?: string }) {
+  return (
+    <div aria-hidden className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ width: size, height: size }}>
+      <motion.span
+        className={`block size-full rounded-full border-2 border-dashed ${color}`}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+      />
+    </div>
+  )
+}
+
 function PhoneStatusBar() {
   return (
     <div className="flex items-center justify-between px-3 pb-0.5 pt-3 text-[6.5px] font-semibold text-slate-400">
@@ -69,6 +106,7 @@ function TicketScreen() {
           transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" }}
           className="relative grid size-5 place-items-center rounded-full bg-white text-slate-500 shadow-sm"
         >
+          <Twinkles className="scale-75" />
           <Bell className="size-3" aria-hidden />
           <span className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-red-500 ring-2 ring-white" aria-hidden />
           <span aria-hidden className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-red-400 motion-safe:animate-ping" />
@@ -144,7 +182,11 @@ function TicketScreen() {
         ))}
       </motion.div>
 
-      <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm">
+      <motion.div
+        animate={{ scale: [1, 1.03, 1] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm"
+      >
         <div className="flex h-5 items-end gap-[2px]" aria-hidden>
           {[5, 9, 7, 12, 9, 14].map((h, i) => (
             <span
@@ -158,7 +200,7 @@ function TicketScreen() {
           <p className="text-[6.5px] font-medium text-blue-100">Resolved today</p>
           <p className="font-serif text-[13px] font-extrabold leading-none">96%</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
@@ -211,14 +253,17 @@ function LiveCallScreen() {
           animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0.9, 0.5] }}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.span
-          animate={{ scale: [1, 1.18, 1] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="relative z-10 grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25"
-        >
-          <span aria-hidden className="absolute inset-0 rounded-2xl bg-sky-400/50 motion-safe:animate-ping" />
-          <Headphones className="relative size-6" aria-hidden />
-        </motion.span>
+        <div className="relative z-10 grid size-12 place-items-center">
+          <SpinHalo size={62} color="border-sky-300" />
+          <motion.span
+            animate={{ scale: [1, 1.18, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="relative grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25"
+          >
+            <span aria-hidden className="absolute inset-0 rounded-2xl bg-sky-400/50 motion-safe:animate-ping" />
+            <Headphones className="relative size-6" aria-hidden />
+          </motion.span>
+        </div>
         <p className="relative z-10 text-[9px] font-bold text-slate-800">AI Agent — Live</p>
         <div className="relative z-10 flex h-5 items-end gap-[2.5px]" aria-hidden>
           {[9, 16, 11, 19, 10, 15].map((h, i) => (
@@ -255,7 +300,11 @@ function LiveCallScreen() {
         </motion.div>
       </div>
 
-      <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm">
+      <motion.div
+        animate={{ scale: [1, 1.03, 1] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm"
+      >
         <div className="flex h-5 items-end gap-[2px]" aria-hidden>
           {[9, 5, 12, 7, 14, 9].map((h, i) => (
             <span
@@ -269,7 +318,7 @@ function LiveCallScreen() {
           <p className="text-[6.5px] font-medium text-blue-100">Audio latency</p>
           <p className="font-serif text-[13px] font-extrabold leading-none">180ms</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
@@ -314,8 +363,9 @@ function PasswordResetScreen() {
         <motion.span
           animate={{ scale: [1, 1.22, 1], y: [0, -2, 0] }}
           transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100"
+          className="relative flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100"
         >
+          <Twinkles />
           <CheckCircle2 className="size-2.5" aria-hidden />
           Link sent
         </motion.span>
@@ -351,7 +401,11 @@ function PasswordResetScreen() {
         </motion.div>
       </div>
 
-      <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-1.5 text-white shadow-sm">
+      <motion.div
+        animate={{ scale: [1, 1.03, 1] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-1.5 text-white shadow-sm"
+      >
         <span className="grid size-6 shrink-0 place-items-center rounded-lg bg-white/15">
           <CheckCircle2 className="size-3.5" aria-hidden />
         </span>
@@ -359,7 +413,7 @@ function PasswordResetScreen() {
           <p className="text-[7px] font-bold leading-tight">Ticket #IT-2201</p>
           <p className="text-[6px] font-medium text-emerald-100">Closed automatically</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
@@ -386,6 +440,7 @@ function AccessGrantedScreen() {
 
       <div className="mt-2 flex flex-col items-center gap-1.5 text-center">
         <div className="relative grid size-10 place-items-center">
+          <SpinHalo size={58} color="border-emerald-300" />
           {[0, 1, 2].map((i) => (
             <motion.span
               key={i}
@@ -407,8 +462,9 @@ function AccessGrantedScreen() {
         <motion.span
           animate={{ scale: [1, 1.15, 1] }}
           transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100"
+          className="relative rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100"
         >
+          <Twinkles />
           Granted
         </motion.span>
       </div>
@@ -434,7 +490,11 @@ function AccessGrantedScreen() {
         </motion.div>
       </div>
 
-      <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-1.5 text-white shadow-sm">
+      <motion.div
+        animate={{ scale: [1, 1.03, 1] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-1.5 text-white shadow-sm"
+      >
         <span className="grid size-6 shrink-0 place-items-center rounded-lg bg-white/15">
           <ShieldCheck className="size-3.5" aria-hidden />
         </span>
@@ -442,7 +502,7 @@ function AccessGrantedScreen() {
           <p className="text-[7px] font-bold leading-tight">Ticket #IT-2204</p>
           <p className="text-[6px] font-medium text-emerald-100">Approved by AI agent</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   )
 }
