@@ -133,12 +133,47 @@ export function BpoHero({ industry }: { industry: Industry }) {
 
           <ScrollReveal delay={0.14}>
             <div className="relative mx-auto w-full max-w-[620px]">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-[85%] rounded-[2.5rem] bg-[radial-gradient(60%_60%_at_50%_20%,rgba(37,99,235,0.16),transparent_70%)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
-              />
+              {/* Vibrant multi-colour gradient mesh — several independently
+                  morphing blobs instead of a single blue glow, for a bolder,
+                  more "modern SaaS" backdrop. */}
+              <div aria-hidden className="pointer-events-none absolute -inset-8 -z-10">
+                <span className="voice-blob-morph absolute left-0 top-0 size-56 bg-gradient-to-br from-blue-500/35 to-sky-400/25 blur-3xl" />
+                <span
+                  style={{ animationDelay: "3s" }}
+                  className="voice-blob-morph absolute right-0 top-6 size-52 bg-gradient-to-br from-fuchsia-400/30 to-pink-300/25 blur-3xl"
+                />
+                <span
+                  style={{ animationDelay: "6s" }}
+                  className="voice-blob-morph absolute bottom-0 left-10 size-48 bg-gradient-to-br from-amber-400/30 to-orange-300/20 blur-3xl"
+                />
+                <span
+                  style={{ animationDelay: "9s" }}
+                  className="voice-blob-morph absolute bottom-4 right-8 size-44 bg-gradient-to-br from-emerald-400/30 to-teal-300/20 blur-3xl"
+                />
+              </div>
+
               <div className="relative flex aspect-[4/3] w-full items-center justify-center">
-                <PhoneMockupBpo />
+                {/* Floating colourful accent chips around the phone */}
+                <div style={{ animationDelay: "0s" }} className="hero-float-up absolute left-[4%] top-[8%] z-30 sm:left-[8%]">
+                  <span className="card-pop-in grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-fuchsia-500 to-pink-500 text-white shadow-[0_14px_30px_-10px_rgba(217,70,239,0.6)]">
+                    <Star className="size-5" aria-hidden />
+                  </span>
+                </div>
+                <div style={{ animationDelay: "1.2s" }} className="hero-float-down absolute right-[2%] top-[4%] z-30 sm:right-[6%]">
+                  <span className="card-pop-in grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-[0_14px_30px_-10px_rgba(249,115,22,0.6)]">
+                    <Headphones className="size-5" aria-hidden />
+                  </span>
+                </div>
+                <div style={{ animationDelay: "2.4s" }} className="hero-wobble absolute bottom-[6%] left-[0%] z-30 sm:left-[2%]">
+                  <span className="card-pop-in grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-400 text-white shadow-[0_14px_30px_-10px_rgba(16,185,129,0.6)]">
+                    <ShieldCheck className="size-5" aria-hidden />
+                  </span>
+                </div>
+
+                <div className="tilt-float relative">
+                  <PhoneMockupBpo />
+                  <span aria-hidden className="tilt-shadow absolute -bottom-6 left-1/2 h-6 w-3/4 -translate-x-1/2 rounded-full bg-blue-600/25 blur-lg" />
+                </div>
               </div>
             </div>
           </ScrollReveal>
