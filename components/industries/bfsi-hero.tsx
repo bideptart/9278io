@@ -11,8 +11,8 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
-import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
 import { PulseIcon } from "@/components/animation/pulse-icon"
+import { Marquee } from "@/components/ui/marquee"
 import OrbitCarousel from "@/components/ui/orbiting-carousel-with-animated-icons"
 import type { Industry } from "@/lib/industries"
 
@@ -144,24 +144,22 @@ export function BfsiHero({ industry }: { industry: Industry }) {
       </div>
 
       <div className="w-full px-6 pb-2 md:px-8 md:pb-3">
-        <div className="mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
-            <StaggerGroup stagger={0.1} once={false} className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-              {HERO_STATS.map((s) => (
-                <StaggerItem key={s.label}>
-                  <div className="group flex items-center gap-4 px-5 py-4 transition-transform duration-300 hover:-translate-y-0.5 active:-translate-y-0.5 sm:px-6 sm:py-5">
-                    <PulseIcon className={`relative grid size-11 shrink-0 place-items-center rounded-2xl ${s.iconBg}`}>
-                      <s.icon className="size-6" aria-hidden />
-                    </PulseIcon>
-                    <div>
-                      <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
-                      <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
-                    </div>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerGroup>
-          </div>
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 py-4 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
+          <Marquee pauseOnHover className="[--duration:24s] [--gap:0px]">
+            {HERO_STATS.map((s) => (
+              <div key={s.label} className="flex items-center gap-4 px-8">
+                <PulseIcon className={`grid size-11 shrink-0 place-items-center rounded-2xl ${s.iconBg}`}>
+                  <s.icon className="size-6" aria-hidden />
+                </PulseIcon>
+                <div className="whitespace-nowrap">
+                  <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
+                  <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
+                </div>
+              </div>
+            ))}
+          </Marquee>
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent" />
         </div>
       </div>
     </section>
