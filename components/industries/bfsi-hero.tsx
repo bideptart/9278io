@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { StaggerGroup, StaggerItem } from "@/components/animation/stagger"
 import OrbitCarousel from "@/components/ui/orbiting-carousel-with-animated-icons"
 import type { Industry } from "@/lib/industries"
 
@@ -142,29 +143,27 @@ export function BfsiHero({ industry }: { industry: Industry }) {
       </div>
 
       <div className="w-full px-6 pb-2 md:px-8 md:pb-3">
-        <ScrollReveal delay={0.1} className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(37,99,235,0.35)] backdrop-blur">
-            <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-              {HERO_STATS.map((s, i) => (
-                <div
-                  key={s.label}
-                  style={{ animationDelay: `${0.85 + i * 0.1}s` }}
-                  className="group flex items-center gap-4 px-5 py-4 transition-transform duration-300 hover:-translate-y-0.5 motion-safe:animate-[reveal_0.6s_cubic-bezier(0.22,1,0.36,1)_both] sm:px-6 sm:py-5"
-                >
-                  <span
-                    className={`grid size-11 shrink-0 place-items-center rounded-2xl transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${s.iconBg}`}
-                  >
-                    <s.icon className="size-6" aria-hidden />
-                  </span>
-                  <div>
-                    <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
-                    <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
+            <StaggerGroup stagger={0.1} once={false} className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
+              {HERO_STATS.map((s) => (
+                <StaggerItem key={s.label}>
+                  <div className="group flex items-center gap-4 px-5 py-4 transition-transform duration-300 hover:-translate-y-0.5 active:-translate-y-0.5 sm:px-6 sm:py-5">
+                    <span
+                      className={`grid size-11 shrink-0 place-items-center rounded-2xl transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 group-active:rotate-6 group-active:scale-110 ${s.iconBg}`}
+                    >
+                      <s.icon className="size-6" aria-hidden />
+                    </span>
+                    <div>
+                      <p className="font-serif text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">{s.value}</p>
+                      <p className="mt-0.5 text-[12.5px] font-medium text-slate-500">{s.label}</p>
+                    </div>
                   </div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   )
