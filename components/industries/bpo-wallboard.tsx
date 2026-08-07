@@ -18,7 +18,7 @@ import { motion, useScroll, useTransform } from "motion/react"
 import type { MotionValue } from "motion/react"
 import { Headphones } from "lucide-react"
 
-const SCENES = ["core", "wave", "aurora", "swarm"] as const
+const SCENES = ["bloom", "halo", "waves", "swarm"] as const
 
 function useSceneCycle(intervalMs: number) {
   const [i, setI] = useState(0)
@@ -59,12 +59,12 @@ function SceneBadge({ children }: { children: ReactNode }) {
   )
 }
 
-// Scene 1 — "Pulse Core": a glowing 3D-shaded sphere with two tilted rings
-// spinning around it at different speeds, like a small glowing planet.
-// The tilt is a static CSS transform on a wrapper element; only the spin
-// itself is animated by Framer Motion on a separate inner element, so the
-// two transform sources never fight over the same style property.
-function PulseCoreScene({ centerY, centerRotate, centerScale, active }: SceneLayerProps) {
+const BLOOM_PETALS = Array.from({ length: 8 }, (_, i) => i)
+
+// Scene 1 — "Signal Bloom": eight soft gradient petals breathing in and out
+// around a fixed centre icon, the whole ring slowly rotating — reads as an
+// organic blooming flower rather than mechanical rings.
+function SignalBloomScene({ centerY, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
       animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
@@ -72,42 +72,47 @@ function PulseCoreScene({ centerY, centerRotate, centerScale, active }: SceneLay
       style={{ pointerEvents: active ? "auto" : "none" }}
       className="absolute inset-0 flex items-center justify-center"
     >
-      <motion.div style={{ y: centerY, rotate: centerRotate, scale: centerScale }} className="relative z-10 flex flex-col items-center">
-        <SceneBadge>Pulse Core</SceneBadge>
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>Signal Bloom</SceneBadge>
 
-        <div className="relative mt-7 size-[190px] sm:size-[220px]">
+        <div className="relative mt-7 size-[200px] sm:size-[230px]">
           <motion.div
             aria-hidden
-            className="absolute inset-0 rounded-full bg-sky-400/40 blur-2xl"
-            animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0.85, 0.5] }}
+            className="absolute inset-0 rounded-full bg-sky-400/35 blur-2xl"
+            animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="absolute inset-0 [transform:rotateX(68deg)]">
-            <motion.div
-              className="size-full rounded-full border-2 border-sky-300/70"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
-          <div className="absolute inset-[10%] [transform:rotateX(68deg)_rotateZ(35deg)]">
-            <motion.div
-              className="size-full rounded-full border border-sky-200/70"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 13, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0"
+          >
+            {BLOOM_PETALS.map((i) => {
+              const deg = (360 / BLOOM_PETALS.length) * i
+              return (
+                <motion.span
+                  key={i}
+                  className="absolute left-1/2 top-1/2 h-14 w-5 rounded-full sm:h-16 sm:w-6"
+                  style={{
+                    transformOrigin: "bottom center",
+                    transform: `translate(-50%, -100%) rotate(${deg}deg)`,
+                    background: "linear-gradient(180deg, #bae6fd, #0ea5e9)",
+                  }}
+                  animate={{ scaleY: [0.55, 1, 0.55], opacity: [0.5, 0.95, 0.5] }}
+                  transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 }}
+                />
+              )
+            })}
+          </motion.div>
 
           <motion.div
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-[18%] rounded-full shadow-[0_45px_90px_-24px_rgba(2,132,199,0.65)]"
-            style={{
-              background:
-                "radial-gradient(circle at 32% 26%, #bae6fd 0%, #38bdf8 32%, #0ea5e9 55%, #1d4ed8 100%)",
-            }}
+            animate={{ scale: [1, 1.06, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-[30%] grid place-items-center rounded-full shadow-[0_30px_60px_-18px_rgba(2,132,199,0.65)]"
+            style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
           >
-            <span aria-hidden className="absolute inset-[18%] rounded-full bg-white/30 blur-md" />
+            <Headphones className="relative size-6 text-white sm:size-7" aria-hidden />
           </motion.div>
         </div>
       </motion.div>
@@ -115,106 +120,84 @@ function PulseCoreScene({ centerY, centerRotate, centerScale, active }: SceneLay
   )
 }
 
-const WAVE_BLOBS = [
-  { size: 170, top: "16%", left: "10%", grad: "from-sky-300/70 to-blue-500/60", dur: 8, delay: 0 },
-  { size: 140, top: "46%", left: "56%", grad: "from-blue-400/60 to-sky-600/55", dur: 10, delay: 0.6 },
-  { size: 120, top: "62%", left: "16%", grad: "from-sky-200/70 to-blue-400/60", dur: 9, delay: 1.1 },
-]
-const WAVE_BARS = [10, 20, 14, 26, 16, 24, 11, 18]
-
-// Scene 2 — "Wave Field": pure abstract art — three large soft blobs
-// drifting and morphing behind a small central waveform, no card, no icons.
-// Outer motion.div per blob carries the drift (x/y); the inner plain div
-// carries the voice-blob-morph CSS shape animation, kept separate so the
-// two transform sources don't collide.
-function WaveFieldScene({ centerScale, active }: SceneLayerProps) {
+// Scene 2 — "Orbit Halo": a fixed gradient core with a thin dashed halo and
+// three small light beads travelling around it along a full circular path —
+// calm and elegant next to the busier bloom/particle scenes.
+function OrbitHaloScene({ centerY, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
-      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.92 }}
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       style={{ pointerEvents: active ? "auto" : "none" }}
-      className="absolute inset-0 flex items-center justify-center overflow-hidden"
+      className="absolute inset-0 flex items-center justify-center"
     >
-      <span className="absolute left-1/2 top-[8%] z-10 -translate-x-1/2">
-        <SceneBadge>Wave Field</SceneBadge>
-      </span>
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>Orbit Halo</SceneBadge>
 
-      {WAVE_BLOBS.map((b, i) => (
-        <motion.div
-          key={i}
-          aria-hidden
-          className="absolute"
-          style={{ width: b.size, height: b.size, top: b.top, left: b.left }}
-          animate={{ x: [0, 16, -12, 0], y: [0, -12, 10, 0] }}
-          transition={{ duration: b.dur, repeat: Infinity, ease: "easeInOut", delay: b.delay }}
-        >
-          <div className={`voice-blob-morph size-full bg-gradient-to-br ${b.grad} blur-2xl`} />
-        </motion.div>
-      ))}
-
-      <motion.div style={{ scale: centerScale }} className="relative z-10 flex items-center gap-[3px] rounded-full border border-white/60 bg-white/70 px-5 py-4 shadow-[0_20px_45px_-20px_rgba(14,116,209,0.4)] backdrop-blur-md">
-        {WAVE_BARS.map((h, i) => (
-          <motion.span
-            key={i}
-            className="w-[3px] rounded-full bg-gradient-to-t from-sky-400 to-blue-700"
-            animate={{ height: [h * 0.4, h, h * 0.4] }}
-            transition={{ duration: 1.1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.07 }}
+        <div className="relative mt-7 size-[190px] sm:size-[220px]">
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-sky-400/35 blur-2xl"
+            animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
-        ))}
+          <span aria-hidden className="absolute inset-[7%] rounded-full border border-dashed border-sky-200" />
+
+          <svg aria-hidden className="absolute inset-[7%] size-[86%]" viewBox="0 0 100 100">
+            {[0, 1, 2].map((i) => (
+              <circle key={i} r="2.4" fill="#0ea5e9">
+                <animateMotion dur={`${5 + i * 1.6}s`} begin={`${i * 1.3}s`} repeatCount="indefinite" path="M50,4 A46,46 0 1,1 49.9,4 Z" />
+              </circle>
+            ))}
+          </svg>
+
+          <motion.div
+            animate={{ scale: [1, 1.06, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-[26%] grid place-items-center rounded-full shadow-[0_30px_60px_-18px_rgba(2,132,199,0.65)]"
+            style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
+          >
+            <Headphones className="relative size-6 text-white sm:size-7" aria-hidden />
+          </motion.div>
+        </div>
       </motion.div>
     </motion.div>
   )
 }
 
-// Scene 3 — "Aurora Glass": a frosted glass panel floating in front of
-// large, slow-drifting aurora colour fields — the background is the star,
-// the glass card carries just enough content to stay on-brand.
-function AuroraGlassScene({ centerY, centerRotate, centerScale, active }: SceneLayerProps) {
+// Scene 3 — "Frequency Waves": four rings rippling outward from a fixed
+// core and fading, staggered so a new ring launches every beat — a bigger,
+// slower, more dramatic pulse than the tight particle-swarm rhythm.
+function FrequencyWavesScene({ centerY, centerScale, active }: SceneLayerProps) {
   return (
     <motion.div
-      animate={active ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.94 }}
+      animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       style={{ pointerEvents: active ? "auto" : "none" }}
-      className="absolute inset-0 flex items-center justify-center overflow-hidden"
+      className="absolute inset-0 flex items-center justify-center"
     >
-      <motion.div
-        aria-hidden
-        className="absolute -left-10 top-0 size-[220px] rounded-full bg-gradient-to-br from-sky-300/60 to-blue-500/40 blur-3xl"
-        animate={{ x: [0, 20, 0], y: [0, 14, 0] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute -right-14 bottom-0 size-[240px] rounded-full bg-gradient-to-tr from-blue-400/50 to-sky-300/50 blur-3xl"
-        animate={{ x: [0, -18, 0], y: [0, -14, 0] }}
-        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-      />
+      <motion.div style={{ y: centerY, scale: centerScale }} className="relative z-10 flex flex-col items-center">
+        <SceneBadge>Frequency Waves</SceneBadge>
 
-      <motion.div style={{ y: centerY, rotate: centerRotate, scale: centerScale }} className="relative z-10 w-[210px] sm:w-[240px]">
-        <div className="rounded-[1.75rem] border border-white/70 bg-white/60 p-5 text-center shadow-[0_30px_70px_-24px_rgba(14,116,209,0.45)] backdrop-blur-xl">
-          <div className="flex justify-center">
-            <SceneBadge>AI Voice Live</SceneBadge>
-          </div>
+        <div className="relative mt-7 grid size-[220px] place-items-center sm:size-[250px]">
+          {[0, 1, 2, 3].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="absolute size-16 rounded-full border-2 border-sky-300/70 sm:size-20"
+              animate={{ scale: [1, 3.6], opacity: [0.65, 0] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeOut", delay: i * 0.8 }}
+            />
+          ))}
 
           <motion.div
             animate={{ scale: [1, 1.08, 1] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="mx-auto mt-5 grid size-16 place-items-center rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-[0_20px_40px_-14px_rgba(2,132,199,0.65)]"
+            transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative grid size-16 place-items-center rounded-full shadow-[0_30px_60px_-18px_rgba(2,132,199,0.65)] sm:size-[72px]"
+            style={{ background: "radial-gradient(circle at 34% 28%, #bae6fd, #0ea5e9 55%, #1d4ed8 100%)" }}
           >
-            <span aria-hidden className="absolute size-16 rounded-full bg-sky-400/40 motion-safe:animate-ping" />
-            <Headphones className="relative size-6" aria-hidden />
+            <Headphones className="relative size-6 text-white sm:size-7" aria-hidden />
           </motion.div>
-
-          <div className="mt-4 flex h-8 items-center justify-center gap-[3px]">
-            {[8, 14, 10, 18, 11, 16, 9].map((h, i) => (
-              <motion.span
-                key={i}
-                className="w-[3px] rounded-full bg-gradient-to-t from-sky-300 to-blue-600"
-                animate={{ height: [h * 0.35, h, h * 0.35] }}
-                transition={{ duration: 1.1 + (i % 3) * 0.15, repeat: Infinity, ease: "easeInOut", delay: i * 0.06 }}
-              />
-            ))}
-          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -330,9 +313,9 @@ export function BpoWallboard() {
           the same layout. All four stay mounted; only `active` (and the
           opacity/transform it drives) changes, so the rotation never
           depends on any exit-animation completing first. */}
-      <PulseCoreScene {...baseProps} active={scene === "core"} />
-      <WaveFieldScene {...baseProps} active={scene === "wave"} />
-      <AuroraGlassScene {...baseProps} active={scene === "aurora"} />
+      <SignalBloomScene {...baseProps} active={scene === "bloom"} />
+      <OrbitHaloScene {...baseProps} active={scene === "halo"} />
+      <FrequencyWavesScene {...baseProps} active={scene === "waves"} />
       <ParticleSwarmScene {...baseProps} active={scene === "swarm"} />
     </div>
   )
