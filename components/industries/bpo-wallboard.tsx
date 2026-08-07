@@ -12,6 +12,24 @@ import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
 import { CheckCircle2, Globe2, Headphones, PhoneCall, Star, User, Users } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
+// Two customer nodes at the container edges, each with a curved routing
+// path into the central hub — represents multiple simultaneous calls being
+// routed into the AI agent, not just one static connection.
+const ROUTES = [
+  { x1: 6, y1: 32, path: "M6,32 C 22,20 34,28 50,48", dur: "3.2s", delay: "0s" },
+  { x1: 94, y1: 66, path: "M94,66 C 78,74 62,60 50,48", dur: "3.6s", delay: "1.1s" },
+]
+
+// Small drifting particles standing in for ambient "voice signal" energy —
+// distinct from the waveform inside the card, these live in open space
+// around the composition.
+const PARTICLES = [
+  { top: "18%", left: "22%", delay: 0 },
+  { top: "72%", left: "18%", delay: 1.2 },
+  { top: "14%", left: "76%", delay: 0.6 },
+  { top: "80%", left: "80%", delay: 1.8 },
+]
+
 type Notice = { Icon: LucideIcon; label: string; sub: string }
 
 // Three independent slots, each cycling through its own pair of statuses on
@@ -99,6 +117,66 @@ export function BpoWallboard() {
         animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Organic atmospheric shape — a single soft, continuously reshaping
+          blob (sky-blue only) so the backdrop feels alive rather than a
+          static blurred circle. */}
+      <span
+        aria-hidden
+        className="voice-blob-morph pointer-events-none absolute -left-6 bottom-0 -z-10 size-64 bg-gradient-to-br from-sky-200/40 to-blue-100/30 blur-3xl"
+      />
+
+      {/* Call-routing paths — two customer nodes at the container edges,
+          each with a light pulse continuously traveling into the hub, and a
+          faint static trace so the path itself is visible even between
+          pulses. */}
+      <svg aria-hidden className="pointer-events-none absolute inset-0 size-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        {ROUTES.map((r, i) => (
+          <g key={i}>
+            <path d={r.path} fill="none" stroke="#7dd3fc" strokeOpacity="0.4" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
+            <circle r="1.1" fill="#0ea5e9">
+              <animateMotion dur={r.dur} begin={r.delay} repeatCount="indefinite" path={r.path} />
+            </circle>
+          </g>
+        ))}
+      </svg>
+      {ROUTES.map((r, i) => (
+        <motion.span
+          key={i}
+          aria-hidden
+          style={{ left: `${r.x1}%`, top: `${r.y1}%` }}
+          className="absolute z-20 hidden -translate-x-1/2 -translate-y-1/2 sm:block"
+          animate={{ y: [0, i === 0 ? -5 : 5, 0] }}
+          transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="relative grid size-6 place-items-center rounded-full bg-white text-sky-500 shadow-[0_6px_14px_-4px_rgba(14,116,209,0.4)] ring-1 ring-sky-100 sm:size-7">
+            <span aria-hidden className="absolute inset-0 rounded-full bg-sky-400/25 motion-safe:animate-ping" />
+            <User className="relative size-3 sm:size-3.5" aria-hidden />
+          </span>
+        </motion.span>
+      ))}
+
+      {/* Ambient voice-signal particles drifting in open space — only the
+          first two render on mobile, keeping the composition lighter there. */}
+      {PARTICLES.map((p, i) => (
+        <span
+          key={i}
+          aria-hidden
+          style={{ top: p.top, left: p.left, animationDelay: `${p.delay}s` }}
+          className={`voice-particle-rise pointer-events-none absolute z-0 size-1.5 rounded-full bg-sky-400/70 ${i >= 2 ? "hidden sm:block" : ""}`}
+        />
+      ))}
+
+      {/* Layered translucent surface behind the central card — a second
+          glass panel peeking out at a slight offset/rotation, giving the
+          composition real stacked depth instead of one flat card. */}
+      <motion.div
+        aria-hidden
+        style={{ y: cardsY }}
+        className="absolute left-1/2 top-1/2 z-[5] hidden w-[190px] -translate-x-[42%] -translate-y-[54%] rotate-[7deg] rounded-[1.6rem] border border-sky-100 bg-white/60 shadow-[0_20px_40px_-20px_rgba(14,116,209,0.3)] backdrop-blur-sm sm:block sm:w-[215px]"
+      >
+        <div className="aspect-[220/260]" />
+      </motion.div>
 
       {/* Foreground layer 1 — the three floating notice cards, mid-speed.
           Outer div carries the scroll-linked parallax offset; inner div
