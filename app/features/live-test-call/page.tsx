@@ -10,7 +10,7 @@ import { FeatureImageSection } from "@/components/features-page/feature-image-se
 import { LiveTestCallHero } from "@/components/features-page/live-test-call-hero"
 import { LiveTestCallChecklist } from "@/components/features-page/live-test-call-checklist"
 import { LiveTestCallTimeline } from "@/components/features-page/live-test-call-timeline"
-import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { LiveTestCallComparison } from "@/components/features-page/live-test-call-comparison"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -164,20 +164,7 @@ export default function LiveTestCallPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Catch it before a caller does</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <ComparisonPanel
-              withoutTitle="Without a real dial-in test"
-              withoutPoints={[
-                "Only tested in a text-based sandbox",
-                "First real call reveals voice or latency issues",
-                "Routing mistakes discovered by an actual customer",
-              ]}
-              withTitle="With Live Test Call"
-              withPoints={[
-                "Tested by dialing the exact live number",
-                "Voice and latency verified before launch",
-                "Routing confirmed end to end, by you",
-              ]}
-            />
+            <LiveTestCallComparison />
           </div>
         </div>
       </section>

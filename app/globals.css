@@ -362,6 +362,269 @@
   }
 }
 
+/* ── Live Test Call "before/after wipe" — a slider-style reveal that sweeps
+   left-to-right, uncovering the live-call layer underneath the sandbox
+   overlay, then sweeps back. Pure CSS (no JS timers) so it's immune to
+   dev-server HMR resetting component state mid-cycle. */
+@keyframes lt-wipe-clip {
+  0%,
+  6% {
+    clip-path: inset(0 0 0 0%);
+  }
+  44%,
+  56% {
+    clip-path: inset(0 0 0 100%);
+  }
+  94%,
+  100% {
+    clip-path: inset(0 0 0 0%);
+  }
+}
+@keyframes lt-wipe-left {
+  0%,
+  6% {
+    left: 0%;
+  }
+  44%,
+  56% {
+    left: 100%;
+  }
+  94%,
+  100% {
+    left: 0%;
+  }
+}
+.lt-wipe-clip {
+  animation: lt-wipe-clip 8s ease-in-out infinite;
+}
+.lt-wipe-left {
+  animation: lt-wipe-left 8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lt-wipe-clip,
+  .lt-wipe-left {
+    animation: none;
+    clip-path: inset(0 0 0 50%);
+    left: 50%;
+  }
+}
+
+/* ── Setup Templates "race track" — two lanes fill toward the same finish
+   line at wildly different speeds (a blank page crawling vs. a template
+   sprinting), looping together. Pure CSS, no JS timers. ────────────────── */
+@keyframes st-race-blank-fill {
+  0% {
+    width: 0%;
+  }
+  90%,
+  100% {
+    width: 100%;
+  }
+}
+@keyframes st-race-template-fill {
+  0% {
+    width: 0%;
+  }
+  16%,
+  100% {
+    width: 100%;
+  }
+}
+@keyframes st-race-blank-flag {
+  0%,
+  86% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.6);
+  }
+  92%,
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+@keyframes st-race-template-flag {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.6);
+  }
+  18%,
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+.st-race-blank-fill {
+  animation: st-race-blank-fill 7s ease-in infinite;
+}
+.st-race-template-fill {
+  animation: st-race-template-fill 7s ease-out infinite;
+}
+.st-race-blank-flag {
+  animation: st-race-blank-flag 7s ease-in-out infinite;
+}
+.st-race-template-flag {
+  animation: st-race-template-flag 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-race-blank-fill,
+  .st-race-template-fill,
+  .st-race-blank-flag,
+  .st-race-template-flag {
+    animation: none;
+  }
+  .st-race-blank-fill {
+    width: 55%;
+  }
+  .st-race-template-fill {
+    width: 100%;
+  }
+  .st-race-template-flag {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* ── Playground "test loop" — three nodes (Chat → Tweak → Catch gaps)
+   arranged in a triangle, with a dot continuously travelling the loop (via
+   SVG <animateMotion>, see the component) and each node/caption lighting up
+   in turn on a matching 6s cycle. Pure CSS, no JS timers. ───────────────── */
+@keyframes pg-loop-node-a {
+  0%,
+  4% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  9%,
+  28% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+  33%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes pg-loop-node-b {
+  0%,
+  37% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  42%,
+  61% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+  66%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes pg-loop-node-c {
+  0%,
+  70% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  75%,
+  94% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+  99%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes pg-loop-caption-a {
+  0%,
+  4% {
+    opacity: 0;
+  }
+  9%,
+  28% {
+    opacity: 1;
+  }
+  33%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pg-loop-caption-b {
+  0%,
+  37% {
+    opacity: 0;
+  }
+  42%,
+  61% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pg-loop-caption-c {
+  0%,
+  70% {
+    opacity: 0;
+  }
+  75%,
+  94% {
+    opacity: 1;
+  }
+  99%,
+  100% {
+    opacity: 0;
+  }
+}
+.pg-loop-node-a {
+  animation: pg-loop-node-a 6s ease-in-out infinite;
+}
+.pg-loop-node-b {
+  animation: pg-loop-node-b 6s ease-in-out infinite;
+}
+.pg-loop-node-c {
+  animation: pg-loop-node-c 6s ease-in-out infinite;
+}
+.pg-loop-caption-a {
+  animation: pg-loop-caption-a 6s ease-in-out infinite;
+}
+.pg-loop-caption-b {
+  animation: pg-loop-caption-b 6s ease-in-out infinite;
+}
+.pg-loop-caption-c {
+  animation: pg-loop-caption-c 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pg-loop-node-a,
+  .pg-loop-node-b,
+  .pg-loop-node-c,
+  .pg-loop-caption-a,
+  .pg-loop-caption-b,
+  .pg-loop-caption-c {
+    animation: none;
+  }
+  .pg-loop-node-a,
+  .pg-loop-caption-a {
+    opacity: 1;
+  }
+  .pg-loop-node-b,
+  .pg-loop-node-c,
+  .pg-loop-caption-b,
+  .pg-loop-caption-c {
+    opacity: 0.4;
+  }
+  .pg-loop-caption-b,
+  .pg-loop-caption-c {
+    opacity: 0;
+  }
+}
+
 /* ── Orbit ring — a set of icons slowly revolving around a fixed centre.
    The ring rotates full-circle; each icon counter-rotates by the same
    amount so it stays upright while it travels along the orbit. ────────── */
