@@ -7,8 +7,8 @@
 // the codebase's existing motion/react library rather than adding GSAP as
 // a new dependency.
 
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { useEffect, useRef, useState } from "react"
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
 import { CheckCircle2, Globe2, Headphones, PhoneCall, Star, User, Users } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
@@ -77,46 +77,65 @@ export function BpoWallboard() {
   const mm = String(Math.floor(seconds / 60)).padStart(2, "0")
   const ss = String(seconds % 60).padStart(2, "0")
 
+  // Scroll-linked parallax: as the hero scrolls out of view, the three
+  // layers drift at different rates (background slowest, central card
+  // fastest) so the composition reads as having real depth rather than
+  // moving as one flat image.
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] })
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, 40])
+  const cardsY = useTransform(scrollYProgress, [0, 1], [0, 70])
+  const centerY = useTransform(scrollYProgress, [0, 1], [0, 110])
+  const centerRotate = useTransform(scrollYProgress, [0, 1], [0, -3])
+  const centerScale = useTransform(scrollYProgress, [0, 1], [1, 0.94])
+
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-b from-white via-sky-50/50 to-sky-50/80">
+    <div ref={containerRef} className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-b from-white via-sky-50/50 to-sky-50/80">
       {/* Background layer — slow drift, furthest back = layered parallax */}
       <motion.div
         aria-hidden
+        style={{ y: glowY }}
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(14,165,233,0.18),transparent)] blur-2xl"
         animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Foreground layer 1 — the three floating notice cards, mid-speed */}
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[4%] top-[10%] z-20 hidden sm:block"
-      >
-        <NoticeCard notice={slotA} />
+      {/* Foreground layer 1 — the three floating notice cards, mid-speed.
+          Outer div carries the scroll-linked parallax offset; inner div
+          carries the continuous idle bob — kept on separate elements so
+          the two "y" animations don't fight over the same value. */}
+      <motion.div style={{ y: cardsY }} className="absolute left-[4%] top-[10%] z-20 hidden sm:block">
+        <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
+          <NoticeCard notice={slotA} />
+        </motion.div>
       </motion.div>
-      <motion.div
-        animate={{ y: [0, 7, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-        className="absolute right-[3%] top-[6%] z-20 hidden md:block"
-      >
-        <NoticeCard notice={slotB} />
+      <motion.div style={{ y: cardsY }} className="absolute right-[3%] top-[6%] z-20 hidden md:block">
+        <motion.div
+          animate={{ y: [0, 7, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+        >
+          <NoticeCard notice={slotB} />
+        </motion.div>
       </motion.div>
-      <motion.div
-        animate={{ y: [0, -5, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-        className="absolute bottom-[10%] left-[2%] z-20"
-      >
-        <NoticeCard notice={slotC} className="scale-90 sm:scale-100" />
+      <motion.div style={{ y: cardsY }} className="absolute bottom-[10%] left-[2%] z-20">
+        <motion.div
+          animate={{ y: [0, -5, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+        >
+          <NoticeCard notice={slotC} className="scale-90 sm:scale-100" />
+        </motion.div>
       </motion.div>
 
-      {/* Foreground layer 2 — the central AI call interface, fastest/closest */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.94, y: 16 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-[220px] sm:w-[250px]"
-      >
+      {/* Foreground layer 2 — the central AI call interface, fastest/closest.
+          Scroll parallax (outer) + entrance (middle) + idle bob (inner) are
+          three separate motion layers so none of the "y"/"scale" animations
+          collide. */}
+      <motion.div style={{ y: centerY, rotate: centerRotate, scale: centerScale }} className="relative z-10 w-[220px] sm:w-[250px]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
         <motion.div
           animate={{ y: [0, -5, 0] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -172,6 +191,7 @@ export function BpoWallboard() {
             </span>
             <p className="text-[9.5px] font-semibold text-slate-500 sm:text-[10.5px]">Customer Connected</p>
           </div>
+        </motion.div>
         </motion.div>
       </motion.div>
     </div>

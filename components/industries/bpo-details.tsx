@@ -8,7 +8,8 @@ import {
   Volume2,
   Wallet,
 } from "lucide-react"
-import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { StaggerGroup, StaggerItem } from "@/components/animation/scroll-reveal"
+import { ScrollStepItem } from "@/components/animation/stagger"
 import type { Industry } from "@/lib/industries"
 
 // Topic icons mapped by position — matches the fixed BPO content order
@@ -20,7 +21,7 @@ export function BpoDetails({ industry }: { industry: Industry }) {
   return (
     <section className="w-full px-6 pb-4 pt-16 md:px-8 md:pb-6 md:pt-20">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
-        <ScrollReveal className="relative h-full overflow-visible">
+        <ScrollStepItem index={0} className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Headphones className="size-6" aria-hidden />
           </span>
@@ -36,27 +37,25 @@ export function BpoDetails({ industry }: { industry: Industry }) {
               <br />
               on day one
             </h2>
-            <ul className="relative mt-8 space-y-3">
+            <StaggerGroup stagger={0.1} once={false} className="relative mt-8 space-y-3">
               {industry.jobs.map((job, i) => {
                 const Icon = JOB_ICONS[i] ?? Headphones
                 return (
-                  <li
-                    key={job}
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                    className="card-pop-in group flex min-h-[76px] items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
-                  >
-                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-                      <Icon className="size-4.5" aria-hidden />
-                    </span>
-                    <span className="text-pretty leading-relaxed text-slate-700">{job}</span>
-                  </li>
+                  <StaggerItem key={job}>
+                    <div className="group flex min-h-[76px] items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10 active:-translate-y-1 active:border-blue-300 active:shadow-lg active:shadow-blue-600/10">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-active:rotate-12 group-active:scale-110">
+                        <Icon className="size-4.5" aria-hidden />
+                      </span>
+                      <span className="text-pretty leading-relaxed text-slate-700">{job}</span>
+                    </div>
+                  </StaggerItem>
                 )
               })}
-            </ul>
+            </StaggerGroup>
           </div>
-        </ScrollReveal>
+        </ScrollStepItem>
 
-        <ScrollReveal delay={0.1} className="relative h-full overflow-visible">
+        <ScrollStepItem index={1} className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-down grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Volume2 className="size-6" aria-hidden />
           </span>
@@ -94,12 +93,11 @@ export function BpoDetails({ industry }: { industry: Industry }) {
                   ))}
                 </div>
               </div>
-              <div className="space-y-3 p-5">
+              <StaggerGroup className="space-y-3 p-5" stagger={0.18} once={false}>
                 {industry.conversation.map((line, i) => (
-                  <div
+                  <StaggerItem
                     key={i}
-                    style={{ animationDelay: `${i * 0.18}s` }}
-                    className={`card-pop-in flex text-sm ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
+                    className={`flex text-sm ${line.speaker === "Agent" ? "justify-start" : "justify-end"}`}
                   >
                     {line.speaker === "Agent" ? (
                       <span className="max-w-[85%] rounded-2xl rounded-bl-sm bg-blue-50 px-4 py-2.5 text-slate-700 ring-1 ring-blue-100">
@@ -116,30 +114,28 @@ export function BpoDetails({ industry }: { industry: Industry }) {
                         {line.text}
                       </span>
                     )}
-                  </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
 
-            <ul className="relative mt-6 space-y-3">
+            <StaggerGroup stagger={0.1} once={false} className="relative mt-6 space-y-3">
               {industry.sampleLines.map((line, i) => {
                 const Icon = SAMPLE_ICONS[i] ?? MessageSquareQuote
                 return (
-                  <li
-                    key={i}
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                    className="card-pop-in group flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10"
-                  >
-                    <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-                      <Icon className="size-4.5" aria-hidden />
-                    </span>
-                    <p className="text-pretty leading-relaxed text-slate-700">{line}</p>
-                  </li>
+                  <StaggerItem key={i}>
+                    <div className="group flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10 active:-translate-y-1 active:border-blue-300 active:shadow-lg active:shadow-blue-600/10">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-active:rotate-12 group-active:scale-110">
+                        <Icon className="size-4.5" aria-hidden />
+                      </span>
+                      <p className="text-pretty leading-relaxed text-slate-700">{line}</p>
+                    </div>
+                  </StaggerItem>
                 )
               })}
-            </ul>
+            </StaggerGroup>
           </div>
-        </ScrollReveal>
+        </ScrollStepItem>
       </div>
     </section>
   )
