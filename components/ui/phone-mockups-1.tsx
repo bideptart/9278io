@@ -1,3 +1,7 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { motion } from "motion/react"
 import { Bell, CheckCircle2, Headphones, KeyRound, Server, ShieldCheck, Wifi } from "lucide-react"
 import { ImageItem, PhoneCarousel } from "@/components/ui/phone-mockups-1-utils/phone-carousel"
 
@@ -19,7 +23,16 @@ function PhoneStatusBar() {
   )
 }
 
+// Screen 1 — ticket queue: rows sweep with a highlight in turn, the
+// "in progress" row pulses to signal it's actively being worked, and the
+// footer equalizer never stops moving.
 function TicketScreen() {
+  const [liveRow, setLiveRow] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setLiveRow((r) => (r + 1) % TICKET_ROWS.length), 1600)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <div className="flex h-full flex-col bg-slate-50 px-2.5 pb-2">
       <PhoneStatusBar />
@@ -34,6 +47,7 @@ function TicketScreen() {
         <span className="relative grid size-4.5 place-items-center rounded-full bg-white text-slate-400 shadow-sm">
           <Bell className="size-2.5" aria-hidden />
           <span className="absolute -right-0.5 -top-0.5 size-1.5 rounded-full bg-red-500 ring-1 ring-white" aria-hidden />
+          <span aria-hidden className="absolute -right-0.5 -top-0.5 size-1.5 rounded-full bg-red-400 motion-safe:animate-ping" />
         </span>
       </div>
 
@@ -50,30 +64,48 @@ function TicketScreen() {
 
       <p className="mt-1.5 text-[6.5px] font-bold uppercase tracking-wide text-slate-400">Recent tickets</p>
       <div className="mt-1 space-y-1">
-        {TICKET_ROWS.map((row) => (
-          <div key={row.t} className="flex items-center gap-1.5 rounded-lg border border-slate-100 bg-white px-1.5 py-1 shadow-sm">
-            <span className={`grid size-5 shrink-0 place-items-center rounded-md ${row.tint}`}>
+        {TICKET_ROWS.map((row, i) => (
+          <motion.div
+            key={row.t}
+            animate={{ scale: i === liveRow ? 1.02 : 1 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative flex items-center gap-1.5 overflow-hidden rounded-lg border border-slate-100 bg-white px-1.5 py-1 shadow-sm"
+          >
+            {i === liveRow && (
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-blue-100/70 to-transparent"
+                initial={{ x: "-120%" }}
+                animate={{ x: "220%" }}
+                transition={{ duration: 1, ease: "linear" }}
+              />
+            )}
+            <span className={`relative grid size-5 shrink-0 place-items-center rounded-md ${row.tint}`}>
               <row.Icon className="size-2.5" aria-hidden />
             </span>
-            <span className="min-w-0 flex-1">
+            <span className="relative min-w-0 flex-1">
               <span className="block truncate text-[7.5px] font-bold text-slate-800">{row.t}</span>
               <span className="block truncate text-[6px] font-medium text-slate-400">{row.meta}</span>
             </span>
             <span
-              className={`shrink-0 rounded-full px-1.5 py-0.5 text-[6px] font-bold ${
+              className={`relative shrink-0 rounded-full px-1.5 py-0.5 text-[6px] font-bold ${
                 row.ok ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"
               }`}
             >
               {row.s}
             </span>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm">
         <div className="flex h-5 items-end gap-[2px]" aria-hidden>
           {[5, 9, 7, 12, 9, 14].map((h, i) => (
-            <span key={i} style={{ height: `${h}px` }} className="w-[2.5px] rounded-full bg-white/70" />
+            <span
+              key={i}
+              style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
+              className="ind-eq w-[2.5px] rounded-full bg-white/70"
+            />
           ))}
         </div>
         <div>
@@ -85,7 +117,17 @@ function TicketScreen() {
   )
 }
 
+// Screen 2 — live call: a genuinely ticking call timer, a pulsing ring
+// around the AI avatar, and a continuously moving waveform.
 function LiveCallScreen() {
+  const [seconds, setSeconds] = useState(42)
+  useEffect(() => {
+    const id = setInterval(() => setSeconds((s) => s + 1), 1000)
+    return () => clearInterval(id)
+  }, [])
+  const mm = String(Math.floor(seconds / 60)).padStart(2, "0")
+  const ss = String(seconds % 60).padStart(2, "0")
+
   return (
     <div className="flex h-full flex-col bg-white px-2.5 pb-2">
       <PhoneStatusBar />
@@ -104,9 +146,14 @@ function LiveCallScreen() {
       </div>
 
       <div className="mt-2 flex flex-col items-center gap-1.5 rounded-2xl border border-slate-100 bg-gradient-to-b from-blue-50/60 to-white p-3 text-center shadow-sm">
-        <span className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
-          <Headphones className="size-6" aria-hidden />
-        </span>
+        <motion.span
+          animate={{ scale: [1, 1.06, 1] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          className="relative grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25"
+        >
+          <span aria-hidden className="absolute inset-0 rounded-2xl bg-sky-400/40 motion-safe:animate-ping" />
+          <Headphones className="relative size-6" aria-hidden />
+        </motion.span>
         <p className="text-[9px] font-bold text-slate-800">AI Agent — Live</p>
         <div className="flex h-4 items-end gap-[2px]" aria-hidden>
           {[6, 12, 8, 14, 7, 11].map((h, i) => (
@@ -117,8 +164,8 @@ function LiveCallScreen() {
             />
           ))}
         </div>
-        <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[7.5px] font-semibold text-blue-600 ring-1 ring-blue-100">
-          00:42
+        <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[7.5px] font-semibold tabular-nums text-blue-600 ring-1 ring-blue-100">
+          {mm}:{ss}
         </span>
       </div>
 
@@ -142,7 +189,11 @@ function LiveCallScreen() {
       <div className="mt-auto flex items-center gap-2 rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 p-1.5 text-white shadow-sm">
         <div className="flex h-5 items-end gap-[2px]" aria-hidden>
           {[9, 5, 12, 7, 14, 9].map((h, i) => (
-            <span key={i} style={{ height: `${h}px` }} className="w-[2.5px] rounded-full bg-white/70" />
+            <span
+              key={i}
+              style={{ height: `${h}px`, animationDelay: `${i * 0.1}s` }}
+              className="ind-eq w-[2.5px] rounded-full bg-white/70"
+            />
           ))}
         </div>
         <div>
@@ -154,6 +205,8 @@ function LiveCallScreen() {
   )
 }
 
+// Screen 3 — password reset: the key icon gently "turns", and the
+// confirmation badge pops in with a spring on a repeating cycle.
 function PasswordResetScreen() {
   return (
     <div className="flex h-full flex-col bg-white px-2.5 pb-2">
@@ -167,14 +220,22 @@ function PasswordResetScreen() {
       </div>
 
       <div className="mt-2 flex flex-col items-center gap-1.5 text-center">
-        <span className="grid size-10 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
+        <motion.span
+          animate={{ rotate: [0, -18, 0, 18, 0] }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+          className="grid size-10 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25"
+        >
           <KeyRound className="size-5" aria-hidden />
-        </span>
+        </motion.span>
         <p className="text-[9px] font-bold text-slate-800">Password reset</p>
-        <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100">
+        <motion.span
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100"
+        >
           <CheckCircle2 className="size-2.5" aria-hidden />
           Link sent
-        </span>
+        </motion.span>
       </div>
 
       <div className="mt-2 space-y-1">
@@ -207,6 +268,8 @@ function PasswordResetScreen() {
   )
 }
 
+// Screen 4 — access granted: expanding sonar-style approval rings behind
+// the shield, like a stamp landing.
 function AccessGrantedScreen() {
   return (
     <div className="flex h-full flex-col bg-white px-2.5 pb-2">
@@ -220,9 +283,20 @@ function AccessGrantedScreen() {
       </div>
 
       <div className="mt-2 flex flex-col items-center gap-1.5 text-center">
-        <span className="grid size-10 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-600/25">
-          <ShieldCheck className="size-5" aria-hidden />
-        </span>
+        <div className="relative grid size-10 place-items-center">
+          {[0, 1].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="absolute size-10 rounded-2xl border-2 border-emerald-400/60"
+              animate={{ scale: [1, 1.9], opacity: [0.6, 0] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut", delay: i * 1.1 }}
+            />
+          ))}
+          <span className="relative z-10 grid size-10 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-lg shadow-emerald-600/25">
+            <ShieldCheck className="size-5" aria-hidden />
+          </span>
+        </div>
         <p className="text-[9px] font-bold text-slate-800">Access request</p>
         <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[7.5px] font-bold text-emerald-600 ring-1 ring-emerald-100">
           Granted
