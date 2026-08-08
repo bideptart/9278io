@@ -1,10 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, BookOpen, Building2, Sparkles, AudioLines } from "lucide-react"
+import { ArrowRight, BookOpen, Building2, Sparkles, AudioLines, Play } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { ScrollStepItem } from "@/components/animation/stagger"
 import { IndustryStackCards } from "@/components/industries/industry-stack-cards"
 import { IndustryStickyScroll } from "@/components/industries/industry-sticky-scroll"
 import { IndustryHeroVisual } from "@/components/industries/industry-hero-visual"
@@ -68,20 +69,24 @@ export default function IndustriesPage() {
                   <Button
                     asChild
                     size="lg"
-                    className="rounded-full bg-primary px-7 text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:-translate-y-0.5 hover:bg-primary/90"
+                    className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                   >
                     <Link href="/get-started">
-                      Get started <ArrowRight className="ml-1 size-4" aria-hidden />
+                      Get Started
+                      <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                      </span>
                     </Link>
                   </Button>
                   <Button
                     asChild
                     size="lg"
                     variant="outline"
-                    className="rounded-full px-7 transition-transform hover:-translate-y-0.5"
+                    className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                   >
                     <Link href="/pricing">
-                      View pricing <ArrowRight className="ml-1 size-4" aria-hidden />
+                      <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                      View Pricing
                     </Link>
                   </Button>
                 </div>
@@ -102,7 +107,7 @@ export default function IndustriesPage() {
           <div className="grid gap-10 lg:grid-cols-[440px_minmax(0,1fr)] lg:gap-16">
             {/* Left — sticky details */}
             <div className="order-1">
-              <ScrollReveal className="lg:sticky lg:top-32">
+              <ScrollStepItem className="lg:sticky lg:top-32">
                 <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm">
                   <Building2 className="size-3.5" aria-hidden />
                   Industries
@@ -118,7 +123,7 @@ export default function IndustriesPage() {
                 <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
                   Tap any vertical to see its playbook, sample calls, and capabilities — scroll to stack through all 10.
                 </p>
-              </ScrollReveal>
+              </ScrollStepItem>
             </div>
 
             {/* Right — scroll-driven glass card stack */}
@@ -133,7 +138,7 @@ export default function IndustriesPage() {
       <section className="border-y border-slate-200/70 bg-white">
         <div className="w-full px-6 md:px-8">
           <div className="mx-auto max-w-6xl">
-            <ScrollReveal className="mx-auto max-w-2xl pt-12 pb-6 text-center md:pt-14 md:pb-8">
+            <ScrollStepItem className="mx-auto max-w-2xl pt-12 pb-6 text-center md:pt-14 md:pb-8">
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary shadow-sm">
                 <BookOpen className="size-3.5" aria-hidden />
                 Playbooks
@@ -145,7 +150,7 @@ export default function IndustriesPage() {
               <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
                 The exact jobs each agent does on day one, and how it sounds on a real call.
               </p>
-            </ScrollReveal>
+            </ScrollStepItem>
 
             <div className="pb-2 md:pb-3">
               <IndustryStickyScroll />

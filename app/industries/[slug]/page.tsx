@@ -1500,20 +1500,25 @@ function HomeServicesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                 >
                   <Link href="/get-started?industry=home-services">
-                    Get started
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    Get Started
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/pricing">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    View Pricing
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>
@@ -1960,20 +1965,25 @@ function RestaurantsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                 >
                   <Link href="/get-started?industry=restaurants">
-                    Get started
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    Get Started
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/pricing">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    View Pricing
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>

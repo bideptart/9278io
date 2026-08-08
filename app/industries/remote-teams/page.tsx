@@ -23,6 +23,7 @@ import {
   Headset,
   Wrench,
   Mic,
+  Play,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -150,20 +151,25 @@ export default function RemoteTeamsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto whitespace-nowrap rounded-full bg-blue-600 px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700 sm:px-7 sm:py-3.5 sm:text-[15px]"
+                  className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=remote-teams">
                     Launch Remote Agent
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
-                  <Link href="/get-started?industry=remote-teams">Book a Demo</Link>
+                  <Link href="/get-started?industry=remote-teams">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    Book a Demo
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>
