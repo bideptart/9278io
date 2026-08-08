@@ -1,44 +1,11 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { motion } from "motion/react"
-import { Ear, Search } from "lucide-react"
-import { CountUp } from "@/components/ui/count-up"
-
-const CYCLE_MS = 3400
-
-/**
- * "Why it matters" as a professional split-metric comparison card — two
- * side-by-side stat columns (manual vs. instant search) divided by a
- * center "faster" multiplier badge, styled like a boardroom analytics
- * report rather than a race/progress-bar animation. Full-width instead of
- * a narrow centered card, so it fills the section instead of leaving open
- * margin on either side.
- */
+// Bespoke pattern for call-reports' "Why it matters" section: a literal
+// speedometer-style gauge — a needle sweeps from a red "slow" zone to a
+// green "fast" zone, with the readout crossfading in sync. Pure CSS
+// keyframes (see .gauge-* in globals.css), no JS.
 export function TranscriptSpeedComparison() {
-  const [revealed, setRevealed] = useState(false)
-
-  useEffect(() => {
-    setRevealed(false)
-    const id = setTimeout(() => setRevealed(true), 500)
-    const reset = setTimeout(() => setRevealed(false), CYCLE_MS)
-    return () => {
-      clearTimeout(id)
-      clearTimeout(reset)
-    }
-  }, [])
-
-  useEffect(() => {
-    const loop = setInterval(() => {
-      setRevealed(false)
-      setTimeout(() => setRevealed(true), 400)
-    }, CYCLE_MS)
-    return () => clearInterval(loop)
-  }, [])
-
   return (
-    <div className="relative mt-8 w-full overflow-hidden rounded-3xl border border-border/60 bg-white shadow-[0_24px_60px_-30px_rgba(15,23,42,0.2)]">
-      <div className="flex items-center justify-between border-b border-border/60 bg-[#F7F9FC] px-6 py-4 sm:px-10">
+    <div className="mt-8 w-full">
+      <div className="flex items-center justify-start gap-2.5">
         <p className="text-sm font-bold tracking-tight text-foreground">Finding one moment in a call</p>
         <span className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">
           <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
@@ -46,50 +13,107 @@ export function TranscriptSpeedComparison() {
         </span>
       </div>
 
-      <div className="relative grid sm:grid-cols-2">
-        {/* divider + multiplier badge, desktop only */}
-        <div className="pointer-events-none absolute inset-y-6 left-1/2 hidden w-px -translate-x-1/2 bg-border/60 sm:block" />
-        <motion.div
-          className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-primary px-4 py-3 text-white shadow-[0_16px_32px_-14px_oklch(0.546_0.215_262.88/0.6)] sm:flex"
-          initial={{ scale: 0.7, opacity: 0 }}
-          animate={{ scale: revealed ? 1 : 0.7, opacity: revealed ? 1 : 0 }}
-          transition={{ type: "spring", stiffness: 280, damping: 20 }}
-        >
-          <span className="text-xl font-black leading-none">
-            <CountUp value={192} once={false} duration={0.7} />x
-          </span>
-          <span className="mt-0.5 text-[9px] font-semibold uppercase tracking-wide text-white/80">Faster</span>
-        </motion.div>
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 pb-10 pt-6 lg:flex-row lg:items-center lg:gap-12">
+        <div className="w-[340px] shrink-0">
+          {/* the gauge */}
+          <div className="relative mx-auto w-[340px]" style={{ aspectRatio: "340 / 190" }}>
+            <svg viewBox="0 0 300 168" className="absolute inset-0 size-full" aria-hidden>
+              <defs>
+                <linearGradient id="gaugeArc" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#2563EB" />
+                  <stop offset="50%" stopColor="#0EA5E9" />
+                  <stop offset="100%" stopColor="#10B981" />
+                </linearGradient>
+              </defs>
+              <path d="M20,160 A130,130 0 0 1 280,160" fill="none" stroke="#EEF2F7" strokeWidth="20" strokeLinecap="round" />
+              <path
+                className="gauge-zone-glow"
+                d="M20,160 A130,130 0 0 1 280,160"
+                fill="none"
+                stroke="url(#gaugeArc)"
+                strokeWidth="20"
+                strokeLinecap="round"
+              />
+            </svg>
 
-        <div className="flex flex-col items-center gap-3 px-6 py-8 text-center sm:items-start sm:px-10 sm:text-left">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
-            <Ear className="size-4.5" aria-hidden />
-          </span>
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Manual search</p>
-          <p className="font-mono text-4xl font-extrabold tracking-tight text-slate-400 sm:text-5xl">38.4s</p>
-          <p className="max-w-[26ch] text-sm leading-relaxed text-muted-foreground">
-            Scrubbing through the recording by ear, guessing where the moment might be.
-          </p>
+            {/* needle, pivoting from the bottom-center of the arc */}
+            <div className="absolute bottom-0 left-1/2 h-[2px] w-[2px]" style={{ transform: "translateX(-50%)" }}>
+              <div className="gauge-needle absolute bottom-0 left-1/2 h-[140px] w-[3px] -translate-x-1/2 rounded-full bg-foreground" style={{ transformOrigin: "bottom center" }}>
+                <span className="absolute -left-[5px] -top-[5px] size-3 rounded-full bg-foreground" />
+              </div>
+              <span className="absolute -bottom-2 -left-2 size-4 rounded-full border-2 border-white bg-foreground shadow-[0_2px_6px_rgba(15,23,42,0.4)]" />
+            </div>
+          </div>
+
+          {/* zone labels sit in normal flow below the arc, not absolutely
+              overlapping it, so they can never collide with the stroke */}
+          <div className="flex w-full items-center justify-between px-6">
+            <span className="text-[11px] font-bold uppercase tracking-wide text-primary">Slow</span>
+            <span className="text-[11px] font-bold uppercase tracking-wide text-emerald-600">Fast</span>
+          </div>
+
+          {/* readout, crossfading in sync with the needle */}
+          <div className="relative mt-6 h-24 w-full">
+            <div className="gauge-manual absolute inset-0 flex flex-col items-center">
+              <p className="font-mono text-5xl font-black tracking-tight text-primary">38.4s</p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">Manual search</p>
+            </div>
+            <div className="gauge-found absolute inset-0 flex flex-col items-center">
+              <p className="font-mono text-5xl font-black tracking-tight text-emerald-600">0.2s</p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-emerald-600">9278.io transcript search</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col items-center gap-3 border-t border-border/60 px-6 py-8 text-center sm:items-start sm:border-t-0 sm:px-10 sm:text-left">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <Search className="size-4.5" aria-hidden />
-          </span>
-          <p className="text-xs font-semibold uppercase tracking-wide text-primary">9278.io transcript search</p>
-          <p className="font-mono text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">0.2s</p>
-          <p className="max-w-[26ch] text-sm leading-relaxed text-muted-foreground">
-            Search the transcript for "refund" and jump straight to that exact moment.
-          </p>
+        {/* right-side content — swaps twice per cycle, in sync with the needle */}
+        <div className="relative h-64 w-full min-w-0 flex-1 pl-4 lg:pl-6">
+          <div className="gauge-manual absolute inset-0 flex flex-col justify-start pt-2">
+            <p className="text-2xl font-bold text-foreground">Scrubbing through the recording by ear</p>
+            <p className="mt-3 whitespace-nowrap text-base leading-relaxed text-muted-foreground">
+              Guessing, playing it back, and rewinding — for every single call.
+            </p>
+            <ul className="mt-3 space-y-1.5">
+              <li className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <span className="size-1 shrink-0 rounded-full bg-red-400" aria-hidden />
+                No timestamp to jump to
+              </li>
+              <li className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <span className="size-1 shrink-0 rounded-full bg-red-400" aria-hidden />
+                Every call reviewed the same slow way
+              </li>
+              <li className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <span className="size-1 shrink-0 rounded-full bg-red-400" aria-hidden />
+                Minutes add up across your whole team
+              </li>
+            </ul>
+            <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-500">
+              38.4s average, per call
+            </span>
+          </div>
+          <div className="gauge-found absolute inset-0 flex flex-col justify-start pt-2">
+            <p className="text-2xl font-bold text-foreground">Search the transcript for &ldquo;refund&rdquo;</p>
+            <p className="mt-3 whitespace-nowrap text-base leading-relaxed text-muted-foreground">
+              Jump straight to that exact moment — no scrubbing, no guessing.
+            </p>
+            <ul className="mt-3 space-y-1.5">
+              <li className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <span className="size-1 shrink-0 rounded-full bg-emerald-500" aria-hidden />
+                Exact timestamp, every time
+              </li>
+              <li className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <span className="size-1 shrink-0 rounded-full bg-emerald-500" aria-hidden />
+                Works the same way for every call
+              </li>
+              <li className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
+                <span className="size-1 shrink-0 rounded-full bg-emerald-500" aria-hidden />
+                Your team spends time on customers, not searching
+              </li>
+            </ul>
+            <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
+              0.2s — 192x faster
+            </span>
+          </div>
         </div>
-      </div>
-
-      {/* multiplier badge, mobile — inline instead of overlapping a divider */}
-      <div className="flex items-center justify-center gap-2 border-t border-border/60 bg-[#F7F9FC] py-3 sm:hidden">
-        <span className="text-lg font-black text-primary">
-          <CountUp value={192} once={false} duration={0.7} />x
-        </span>
-        <span className="text-xs font-semibold text-muted-foreground">faster to find the exact moment</span>
       </div>
     </div>
   )

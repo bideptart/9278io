@@ -939,6 +939,93 @@
   }
 }
 
+/* ── Call Reports "speed gauge" — a literal instrument-dial needle sweeps
+   from a red "slow" zone to a green "fast" zone, with the readout crossing
+   over in sync. A dashboard-gauge metaphor instead of any card, diagram,
+   document, waveform, or scoreboard already tried for this section. Pure
+   CSS keyframes, no JS. ─────────────────────────────────────────────── */
+@keyframes gauge-needle {
+  0%,
+  40% {
+    transform: rotate(-78deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  60%,
+  88% {
+    transform: rotate(78deg);
+  }
+  100% {
+    transform: rotate(-78deg);
+  }
+}
+.gauge-needle {
+  animation: gauge-needle 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes gauge-manual {
+  0%,
+  42% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes gauge-found {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  58%,
+  90% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+.gauge-manual {
+  animation: gauge-manual 7s ease-in-out infinite;
+}
+.gauge-found {
+  animation: gauge-found 7s ease-in-out infinite;
+}
+@keyframes gauge-zone-glow {
+  0%,
+  55% {
+    opacity: 0.25;
+  }
+  60%,
+  88% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0.25;
+  }
+}
+.gauge-zone-glow {
+  animation: gauge-zone-glow 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gauge-needle {
+    animation: none;
+    transform: rotate(78deg);
+  }
+  .gauge-manual {
+    animation: none;
+    opacity: 0;
+  }
+  .gauge-found,
+  .gauge-zone-glow {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ── Orbit ring — a set of icons slowly revolving around a fixed centre.
    The ring rotates full-circle; each icon counter-rotates by the same
    amount so it stays upright while it travels along the orbit. ────────── */

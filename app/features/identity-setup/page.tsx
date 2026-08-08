@@ -57,8 +57,8 @@ export default function IdentitySetupPage() {
 
       <section className="relative flex flex-col overflow-hidden border-b border-border">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#F3EEFF]" />
-          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-[#7C3AED]/[0.07] blur-[120px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
+          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-14 pt-2 md:px-8 md:pb-20 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">

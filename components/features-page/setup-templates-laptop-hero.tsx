@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { User, HeartPulse, Bus, MessageSquareText, Plus, Star, ChevronRight } from "lucide-react"
+import { User, HeartPulse, Bus, MessageSquareText, Plus, Star, ChevronRight, Check } from "lucide-react"
 
 const TILES = [
   { icon: User, name: "Receptionist", tone: "#2563EB" },
   { icon: HeartPulse, name: "Healthcare", tone: "#10B981" },
   { icon: Bus, name: "Transport", tone: "#2563EB" },
-  { icon: MessageSquareText, name: "Support", tone: "#7C3AED" },
+  { icon: MessageSquareText, name: "Support", tone: "#0EA5E9" },
   { icon: Plus, name: "Blank", tone: "#2563EB" },
 ]
+
+const CHECKLIST = ["Greeting", "Routing", "Knowledge"]
 
 const TILE_CYCLE_MS = 1500
 const STATUS = ["Opening Receptionist…", "Opening Healthcare…", "Opening Transport…", "Opening Support…", "Opening Blank…"]
@@ -76,6 +78,9 @@ export function SetupTemplatesLaptopHero() {
                 transition={{ duration: 1.4, repeat: Infinity }}
               />
               Live
+            </span>
+            <span className="rounded-full bg-[#F1F5F9] px-1.5 py-0.5 font-mono text-[9px] font-bold text-muted-foreground">
+              {activeTile + 1}/{TILES.length}
             </span>
           </div>
           <div className="relative h-4 w-36 shrink-0 overflow-visible text-right">
@@ -203,6 +208,30 @@ export function SetupTemplatesLaptopHero() {
               )
             })}
           </motion.div>
+        </div>
+
+        {/* mini setup checklist — ticks off in sequence within each tile's
+            turn, giving a sense of what "opening" a template actually does */}
+        <div className="flex items-center justify-center gap-3 border-t border-border/60 bg-[#FAFBFF] px-4 py-2.5">
+          {CHECKLIST.map((item, i) => (
+            <motion.div
+              key={`${activeTile}-${item}`}
+              className="flex items-center gap-1"
+              initial={{ opacity: 0.3 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2, delay: 0.15 + i * (TILE_CYCLE_MS / 1000 / 4) }}
+            >
+              <motion.span
+                className="flex size-3.5 items-center justify-center rounded-full"
+                initial={{ backgroundColor: "#E2E8F0" }}
+                animate={{ backgroundColor: TILES[activeTile].tone }}
+                transition={{ duration: 0.2, delay: 0.15 + i * (TILE_CYCLE_MS / 1000 / 4) }}
+              >
+                <Check className="size-2 text-white" aria-hidden />
+              </motion.span>
+              <span className="text-[9px] font-medium text-muted-foreground">{item}</span>
+            </motion.div>
+          ))}
         </div>
         </motion.div>
       </div>

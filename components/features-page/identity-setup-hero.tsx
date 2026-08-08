@@ -12,7 +12,7 @@ const PREVIEW_GAP = 280
 
 const profiles = [
   { name: "Aarav Motors Agent", icon: Car, greeting: "Thanks for calling Aarav Motors, how can I help?", tone: "#2563EB" },
-  { name: "Priya Dental Care", icon: Stethoscope, greeting: "Hi, you've reached Priya Dental Care!", tone: "#7C3AED" },
+  { name: "Priya Dental Care", icon: Stethoscope, greeting: "Hi, you've reached Priya Dental Care!", tone: "#0EA5E9" },
   { name: "Sharma Reality", icon: Home, greeting: "Hello! Sharma Reality, how can I assist you today?", tone: "#D97706" },
 ]
 
