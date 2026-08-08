@@ -541,8 +541,8 @@ export default function EducationIndustryPage() {
             {/* ── 01 · Spin up a Starter agent ── */}
             <ScrollReveal>
               <article className="group">
-                <div className="grid h-[230px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
-                  <div className="hero-float-up w-full max-w-[240px] rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_18px_40px_-20px_oklch(0.2_0.05_262/0.3)]">
+                <div className="grid h-[270px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
+                  <div className="hero-float-up w-full max-w-[290px] rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_18px_40px_-20px_oklch(0.2_0.05_262/0.3)]">
                     <div className="flex items-center gap-2.5">
                       <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary text-white">
                         <Rocket className="size-4" aria-hidden />
@@ -581,8 +581,8 @@ export default function EducationIndustryPage() {
             {/* ── 02 · Upgrade to Growth or Scale ── */}
             <ScrollReveal delay={0.08}>
               <article className="group">
-                <div className="grid h-[230px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
-                  <div className="hero-float-down w-full max-w-[240px] space-y-1.5">
+                <div className="grid h-[270px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
+                  <div className="hero-float-down w-full max-w-[290px] space-y-1.5">
                     {[
                       { plan: "Starter", price: "₹3,000", rate: "₹12/min", active: false },
                       { plan: "Growth", price: "₹8,800", rate: "₹11/min", active: true },
@@ -632,8 +632,8 @@ export default function EducationIndustryPage() {
             {/* ── 03 · Compliance answered ── */}
             <ScrollReveal delay={0.16}>
               <article className="group">
-                <div className="grid h-[230px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
-                  <div className="hero-float-up w-full max-w-[240px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_40px_-20px_oklch(0.2_0.05_262/0.3)]">
+                <div className="grid h-[270px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
+                  <div className="hero-float-up w-full max-w-[290px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_18px_40px_-20px_oklch(0.2_0.05_262/0.3)]">
                     <p className="flex items-center gap-1.5 border-b border-slate-100 px-3.5 py-2.5 text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">
                       <ShieldCheck className="size-3 text-primary" aria-hidden />
                       Compliance
@@ -667,8 +667,8 @@ export default function EducationIndustryPage() {
             {/* ── 04 · Compare other industries ── */}
             <ScrollReveal delay={0.24}>
               <article className="group">
-                <div className="grid h-[230px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
-                  <div className="hero-float-down grid w-full max-w-[240px] grid-cols-3 gap-2">
+                <div className="grid h-[270px] place-items-center rounded-3xl border border-slate-200/70 bg-slate-50/70 p-6 transition-colors duration-300 group-hover:bg-slate-50">
+                  <div className="hero-float-down grid w-full max-w-[290px] grid-cols-3 gap-2">
                     {INDUSTRIES.slice(0, 6).map((ind, i) => {
                       const IndIcon = ind.icon
                       const isSelf = ind.slug === industry.slug
@@ -768,15 +768,18 @@ export default function EducationIndustryPage() {
   )
 }
 
+/* group/line is a named group (not the plain "group" Marquee's own
+   container already uses for pauseOnHover) so hovering one card doesn't
+   trigger the accent line on every card in the row at once. */
 function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+    <div className="group/line relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover/line:scale-x-100"
       />
       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        <span className="grid size-7 place-items-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+        <span className="grid size-7 place-items-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover/line:bg-primary group-hover/line:text-white">
           <Sparkles className="size-4" aria-hidden />
         </span>
         {label}
