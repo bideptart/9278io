@@ -625,6 +625,320 @@
   }
 }
 
+/* ── Identity Setup "build the identity" — a live preview badge assembles
+   itself piece by piece (avatar, then name, then greeting) in sync with a
+   checklist filling in on the left, looping. Pure CSS keyframes, no JS. ── */
+@keyframes id-build-avatar {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  11%,
+  86% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+@keyframes id-build-name {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  37%,
+  86% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes id-build-greeting {
+  0%,
+  56% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  63%,
+  86% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes id-build-tag {
+  0%,
+  74% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  81%,
+  86% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.id-build-avatar {
+  animation: id-build-avatar 7s ease-in-out infinite;
+}
+.id-build-name {
+  animation: id-build-name 7s ease-in-out infinite;
+}
+.id-build-greeting {
+  animation: id-build-greeting 7s ease-in-out infinite;
+}
+.id-build-tag {
+  animation: id-build-tag 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .id-build-avatar,
+  .id-build-name,
+  .id-build-greeting,
+  .id-build-tag {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Behavior & Routing Rules "signal router" — a call packet travels from
+   an incoming-call node, through the rules engine, out to one of three
+   destinations in turn (intent match, after-hours, fallback), looping.
+   Pure CSS keyframes driving left/top position, no JS. ────────────────── */
+@keyframes rt-packet-a {
+  0%,
+  2% {
+    opacity: 0;
+    left: 40px;
+    top: 130px;
+  }
+  4% {
+    opacity: 1;
+    left: 40px;
+    top: 130px;
+  }
+  16% {
+    left: 250px;
+    top: 130px;
+  }
+  28% {
+    opacity: 1;
+    left: 460px;
+    top: 30px;
+  }
+  33%,
+  100% {
+    opacity: 0;
+    left: 460px;
+    top: 30px;
+  }
+}
+@keyframes rt-packet-b {
+  0%,
+  35% {
+    opacity: 0;
+    left: 40px;
+    top: 130px;
+  }
+  37% {
+    opacity: 1;
+    left: 40px;
+    top: 130px;
+  }
+  49% {
+    left: 250px;
+    top: 130px;
+  }
+  61% {
+    opacity: 1;
+    left: 460px;
+    top: 130px;
+  }
+  66%,
+  100% {
+    opacity: 0;
+    left: 460px;
+    top: 130px;
+  }
+}
+@keyframes rt-packet-c {
+  0%,
+  68% {
+    opacity: 0;
+    left: 40px;
+    top: 130px;
+  }
+  70% {
+    opacity: 1;
+    left: 40px;
+    top: 130px;
+  }
+  82% {
+    left: 250px;
+    top: 130px;
+  }
+  94% {
+    opacity: 1;
+    left: 460px;
+    top: 230px;
+  }
+  98%,
+  100% {
+    opacity: 0;
+    left: 460px;
+    top: 230px;
+  }
+}
+@keyframes rt-dest-a {
+  0%,
+  24% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  28%,
+  33% {
+    transform: scale(1.15);
+  }
+  38%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rt-dest-b {
+  0%,
+  57% {
+    transform: scale(1);
+  }
+  61%,
+  66% {
+    transform: scale(1.15);
+  }
+  71%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rt-dest-c {
+  0%,
+  90% {
+    transform: scale(1);
+  }
+  94%,
+  99% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rt-caption-a {
+  0%,
+  4% {
+    opacity: 0;
+  }
+  9%,
+  30% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rt-caption-b {
+  0%,
+  37% {
+    opacity: 0;
+  }
+  42%,
+  63% {
+    opacity: 1;
+  }
+  68%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rt-caption-c {
+  0%,
+  70% {
+    opacity: 0;
+  }
+  75%,
+  96% {
+    opacity: 1;
+  }
+  99%,
+  100% {
+    opacity: 0;
+  }
+}
+.rt-packet-a {
+  animation: rt-packet-a 9s ease-in-out infinite;
+}
+.rt-packet-b {
+  animation: rt-packet-b 9s ease-in-out infinite;
+}
+.rt-packet-c {
+  animation: rt-packet-c 9s ease-in-out infinite;
+}
+.rt-dest-a {
+  animation: rt-dest-a 9s ease-in-out infinite;
+}
+.rt-dest-b {
+  animation: rt-dest-b 9s ease-in-out infinite;
+}
+.rt-dest-c {
+  animation: rt-dest-c 9s ease-in-out infinite;
+}
+.rt-caption-a {
+  animation: rt-caption-a 9s ease-in-out infinite;
+}
+.rt-caption-b {
+  animation: rt-caption-b 9s ease-in-out infinite;
+}
+.rt-caption-c {
+  animation: rt-caption-c 9s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rt-packet-a,
+  .rt-packet-b,
+  .rt-packet-c,
+  .rt-dest-a,
+  .rt-dest-b,
+  .rt-dest-c {
+    animation: none;
+    opacity: 0;
+  }
+  .rt-caption-a {
+    animation: none;
+    opacity: 1;
+  }
+  .rt-caption-b,
+  .rt-caption-c {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* ── Orbit ring — a set of icons slowly revolving around a fixed centre.
    The ring rotates full-circle; each icon counter-rotates by the same
    amount so it stays upright while it travels along the orbit. ────────── */

@@ -10,7 +10,7 @@ import { FeatureImageSection } from "@/components/features-page/feature-image-se
 import { IdentitySetupHero } from "@/components/features-page/identity-setup-hero"
 import { IdentityCardStack } from "@/components/features-page/identity-card-stack"
 import { IdentityWizard } from "@/components/features-page/identity-wizard"
-import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { IdentityBuildPreview } from "@/components/features-page/identity-build-preview"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -165,20 +165,7 @@ export default function IdentitySetupPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Callers remember a name, not a number</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <ComparisonPanel
-              withoutTitle="Without a defined identity"
-              withoutPoints={[
-                "Every agent sounds and feels generic",
-                "Callers aren't sure who they're speaking with",
-                "Branding is inconsistent across numbers",
-              ]}
-              withTitle="With Agent Identity Setup"
-              withPoints={[
-                "Each agent has its own name and avatar",
-                "Callers hear a consistent, branded greeting",
-                "Every number feels like part of your business",
-              ]}
-            />
+            <IdentityBuildPreview />
           </div>
         </div>
       </section>
