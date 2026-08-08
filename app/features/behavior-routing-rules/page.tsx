@@ -9,7 +9,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { RoutingRuleChips } from "@/components/features-page/routing-rule-chips"
 import { CallRoutingDecisionTree } from "@/components/features-page/call-routing-decision-tree"
-import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { RoutingSignalFlow } from "@/components/features-page/routing-signal-flow"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { LiveRuleMatchHero } from "@/components/features-page/live-rule-match-hero"
 import { pageSeo } from "@/lib/seo"
@@ -168,20 +168,7 @@ export default function BehaviorRoutingRulesPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Every call, routed on purpose</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <ComparisonPanel
-              withoutTitle="Without behavior & routing rules"
-              withoutPoints={[
-                "Every call follows the same flow, regardless of intent",
-                "After-hours calls get treated the same as business hours",
-                "Unmatched calls have nowhere defined to go",
-              ]}
-              withTitle="With Behavior & Routing Rules"
-              withPoints={[
-                "Calls route automatically by intent or keyword",
-                "Time-of-day rules send after-hours calls the right way",
-                "A fallback rule catches anything unmatched",
-              ]}
-            />
+            <RoutingSignalFlow />
           </div>
         </div>
       </section>

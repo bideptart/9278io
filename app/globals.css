@@ -379,6 +379,670 @@
   }
 }
 
+/* ── Live Test Call "before/after wipe" — a slider-style reveal that sweeps
+   left-to-right, uncovering the live-call layer underneath the sandbox
+   overlay, then sweeps back. Pure CSS (no JS timers) so it's immune to
+   dev-server HMR resetting component state mid-cycle. */
+@keyframes lt-wipe-clip {
+  0%,
+  6% {
+    clip-path: inset(0 0 0 0%);
+  }
+  44%,
+  56% {
+    clip-path: inset(0 0 0 100%);
+  }
+  94%,
+  100% {
+    clip-path: inset(0 0 0 0%);
+  }
+}
+@keyframes lt-wipe-left {
+  0%,
+  6% {
+    left: 0%;
+  }
+  44%,
+  56% {
+    left: 100%;
+  }
+  94%,
+  100% {
+    left: 0%;
+  }
+}
+.lt-wipe-clip {
+  animation: lt-wipe-clip 8s ease-in-out infinite;
+}
+.lt-wipe-left {
+  animation: lt-wipe-left 8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lt-wipe-clip,
+  .lt-wipe-left {
+    animation: none;
+    clip-path: inset(0 0 0 50%);
+    left: 50%;
+  }
+}
+
+/* ── Setup Templates "race track" — two lanes fill toward the same finish
+   line at wildly different speeds (a blank page crawling vs. a template
+   sprinting), looping together. Pure CSS, no JS timers. ────────────────── */
+@keyframes st-race-blank-fill {
+  0% {
+    width: 0%;
+  }
+  90%,
+  100% {
+    width: 100%;
+  }
+}
+@keyframes st-race-template-fill {
+  0% {
+    width: 0%;
+  }
+  16%,
+  100% {
+    width: 100%;
+  }
+}
+@keyframes st-race-blank-flag {
+  0%,
+  86% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.6);
+  }
+  92%,
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+@keyframes st-race-template-flag {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.6);
+  }
+  18%,
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+.st-race-blank-fill {
+  animation: st-race-blank-fill 7s ease-in infinite;
+}
+.st-race-template-fill {
+  animation: st-race-template-fill 7s ease-out infinite;
+}
+.st-race-blank-flag {
+  animation: st-race-blank-flag 7s ease-in-out infinite;
+}
+.st-race-template-flag {
+  animation: st-race-template-flag 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-race-blank-fill,
+  .st-race-template-fill,
+  .st-race-blank-flag,
+  .st-race-template-flag {
+    animation: none;
+  }
+  .st-race-blank-fill {
+    width: 55%;
+  }
+  .st-race-template-fill {
+    width: 100%;
+  }
+  .st-race-template-flag {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* ── Playground "test loop" — three nodes (Chat → Tweak → Catch gaps)
+   arranged in a triangle, with a dot continuously travelling the loop (via
+   SVG <animateMotion>, see the component) and each node/caption lighting up
+   in turn on a matching 6s cycle. Pure CSS, no JS timers. ───────────────── */
+@keyframes pg-loop-node-a {
+  0%,
+  4% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  9%,
+  28% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+  33%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes pg-loop-node-b {
+  0%,
+  37% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  42%,
+  61% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+  66%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes pg-loop-node-c {
+  0%,
+  70% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  75%,
+  94% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+  99%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+@keyframes pg-loop-caption-a {
+  0%,
+  4% {
+    opacity: 0;
+  }
+  9%,
+  28% {
+    opacity: 1;
+  }
+  33%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pg-loop-caption-b {
+  0%,
+  37% {
+    opacity: 0;
+  }
+  42%,
+  61% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pg-loop-caption-c {
+  0%,
+  70% {
+    opacity: 0;
+  }
+  75%,
+  94% {
+    opacity: 1;
+  }
+  99%,
+  100% {
+    opacity: 0;
+  }
+}
+.pg-loop-node-a {
+  animation: pg-loop-node-a 6s ease-in-out infinite;
+}
+.pg-loop-node-b {
+  animation: pg-loop-node-b 6s ease-in-out infinite;
+}
+.pg-loop-node-c {
+  animation: pg-loop-node-c 6s ease-in-out infinite;
+}
+.pg-loop-caption-a {
+  animation: pg-loop-caption-a 6s ease-in-out infinite;
+}
+.pg-loop-caption-b {
+  animation: pg-loop-caption-b 6s ease-in-out infinite;
+}
+.pg-loop-caption-c {
+  animation: pg-loop-caption-c 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pg-loop-node-a,
+  .pg-loop-node-b,
+  .pg-loop-node-c,
+  .pg-loop-caption-a,
+  .pg-loop-caption-b,
+  .pg-loop-caption-c {
+    animation: none;
+  }
+  .pg-loop-node-a,
+  .pg-loop-caption-a {
+    opacity: 1;
+  }
+  .pg-loop-node-b,
+  .pg-loop-node-c,
+  .pg-loop-caption-b,
+  .pg-loop-caption-c {
+    opacity: 0.4;
+  }
+  .pg-loop-caption-b,
+  .pg-loop-caption-c {
+    opacity: 0;
+  }
+}
+
+/* ── Identity Setup "build the identity" — a live preview badge assembles
+   itself piece by piece (avatar, then name, then greeting) in sync with a
+   checklist filling in on the left, looping. Pure CSS keyframes, no JS. ── */
+@keyframes id-build-avatar {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  11%,
+  86% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+@keyframes id-build-name {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  37%,
+  86% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes id-build-greeting {
+  0%,
+  56% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  63%,
+  86% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@keyframes id-build-tag {
+  0%,
+  74% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  81%,
+  86% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.id-build-avatar {
+  animation: id-build-avatar 7s ease-in-out infinite;
+}
+.id-build-name {
+  animation: id-build-name 7s ease-in-out infinite;
+}
+.id-build-greeting {
+  animation: id-build-greeting 7s ease-in-out infinite;
+}
+.id-build-tag {
+  animation: id-build-tag 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .id-build-avatar,
+  .id-build-name,
+  .id-build-greeting,
+  .id-build-tag {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Behavior & Routing Rules "signal router" — a call packet travels from
+   an incoming-call node, through the rules engine, out to one of three
+   destinations in turn (intent match, after-hours, fallback), looping.
+   Pure CSS keyframes driving left/top position, no JS. ────────────────── */
+@keyframes rt-packet-a {
+  0%,
+  2% {
+    opacity: 0;
+    left: 40px;
+    top: 130px;
+  }
+  4% {
+    opacity: 1;
+    left: 40px;
+    top: 130px;
+  }
+  16% {
+    left: 250px;
+    top: 130px;
+  }
+  28% {
+    opacity: 1;
+    left: 460px;
+    top: 30px;
+  }
+  33%,
+  100% {
+    opacity: 0;
+    left: 460px;
+    top: 30px;
+  }
+}
+@keyframes rt-packet-b {
+  0%,
+  35% {
+    opacity: 0;
+    left: 40px;
+    top: 130px;
+  }
+  37% {
+    opacity: 1;
+    left: 40px;
+    top: 130px;
+  }
+  49% {
+    left: 250px;
+    top: 130px;
+  }
+  61% {
+    opacity: 1;
+    left: 460px;
+    top: 130px;
+  }
+  66%,
+  100% {
+    opacity: 0;
+    left: 460px;
+    top: 130px;
+  }
+}
+@keyframes rt-packet-c {
+  0%,
+  68% {
+    opacity: 0;
+    left: 40px;
+    top: 130px;
+  }
+  70% {
+    opacity: 1;
+    left: 40px;
+    top: 130px;
+  }
+  82% {
+    left: 250px;
+    top: 130px;
+  }
+  94% {
+    opacity: 1;
+    left: 460px;
+    top: 230px;
+  }
+  98%,
+  100% {
+    opacity: 0;
+    left: 460px;
+    top: 230px;
+  }
+}
+@keyframes rt-dest-a {
+  0%,
+  24% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  28%,
+  33% {
+    transform: scale(1.15);
+  }
+  38%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rt-dest-b {
+  0%,
+  57% {
+    transform: scale(1);
+  }
+  61%,
+  66% {
+    transform: scale(1.15);
+  }
+  71%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rt-dest-c {
+  0%,
+  90% {
+    transform: scale(1);
+  }
+  94%,
+  99% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rt-caption-a {
+  0%,
+  4% {
+    opacity: 0;
+  }
+  9%,
+  30% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rt-caption-b {
+  0%,
+  37% {
+    opacity: 0;
+  }
+  42%,
+  63% {
+    opacity: 1;
+  }
+  68%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rt-caption-c {
+  0%,
+  70% {
+    opacity: 0;
+  }
+  75%,
+  96% {
+    opacity: 1;
+  }
+  99%,
+  100% {
+    opacity: 0;
+  }
+}
+.rt-packet-a {
+  animation: rt-packet-a 9s ease-in-out infinite;
+}
+.rt-packet-b {
+  animation: rt-packet-b 9s ease-in-out infinite;
+}
+.rt-packet-c {
+  animation: rt-packet-c 9s ease-in-out infinite;
+}
+.rt-dest-a {
+  animation: rt-dest-a 9s ease-in-out infinite;
+}
+.rt-dest-b {
+  animation: rt-dest-b 9s ease-in-out infinite;
+}
+.rt-dest-c {
+  animation: rt-dest-c 9s ease-in-out infinite;
+}
+.rt-caption-a {
+  animation: rt-caption-a 9s ease-in-out infinite;
+}
+.rt-caption-b {
+  animation: rt-caption-b 9s ease-in-out infinite;
+}
+.rt-caption-c {
+  animation: rt-caption-c 9s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rt-packet-a,
+  .rt-packet-b,
+  .rt-packet-c,
+  .rt-dest-a,
+  .rt-dest-b,
+  .rt-dest-c {
+    animation: none;
+    opacity: 0;
+  }
+  .rt-caption-a {
+    animation: none;
+    opacity: 1;
+  }
+  .rt-caption-b,
+  .rt-caption-c {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* ── Call Reports "speed gauge" — a literal instrument-dial needle sweeps
+   from a red "slow" zone to a green "fast" zone, with the readout crossing
+   over in sync. A dashboard-gauge metaphor instead of any card, diagram,
+   document, waveform, or scoreboard already tried for this section. Pure
+   CSS keyframes, no JS. ─────────────────────────────────────────────── */
+@keyframes gauge-needle {
+  0%,
+  40% {
+    transform: rotate(-78deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  60%,
+  88% {
+    transform: rotate(78deg);
+  }
+  100% {
+    transform: rotate(-78deg);
+  }
+}
+.gauge-needle {
+  animation: gauge-needle 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes gauge-manual {
+  0%,
+  42% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes gauge-found {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  58%,
+  90% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+.gauge-manual {
+  animation: gauge-manual 7s ease-in-out infinite;
+}
+.gauge-found {
+  animation: gauge-found 7s ease-in-out infinite;
+}
+@keyframes gauge-zone-glow {
+  0%,
+  55% {
+    opacity: 0.25;
+  }
+  60%,
+  88% {
+    opacity: 1;
+  }
+  94%,
+  100% {
+    opacity: 0.25;
+  }
+}
+.gauge-zone-glow {
+  animation: gauge-zone-glow 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gauge-needle {
+    animation: none;
+    transform: rotate(78deg);
+  }
+  .gauge-manual {
+    animation: none;
+    opacity: 0;
+  }
+  .gauge-found,
+  .gauge-zone-glow {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ── Orbit ring — a set of icons slowly revolving around a fixed centre.
    The ring rotates full-circle; each icon counter-rotates by the same
    amount so it stays upright while it travels along the orbit. ────────── */

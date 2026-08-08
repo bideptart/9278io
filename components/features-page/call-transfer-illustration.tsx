@@ -121,7 +121,7 @@ export function CallTransferIllustration() {
         </div>
 
         {/* faint dot-grid texture behind the handoff row */}
-        <div className="relative px-4 pb-2 pt-6 sm:px-8 sm:pt-8">
+        <div className="relative px-4 pb-5 pt-8 sm:px-8 sm:pb-8 sm:pt-11">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-60"
@@ -330,8 +330,8 @@ export function CallTransferIllustration() {
         </div>
 
         {/* available agents strip — always-on context, doesn't wait for the handoff cycle */}
-        <div className="border-t px-4 py-3 sm:px-8" style={{ borderColor: "#EEF2F7" }}>
-          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/70">Available now</p>
+        <div className="border-t px-4 py-4 sm:px-8 sm:py-5" style={{ borderColor: "#EEF2F7" }}>
+          <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/70">Available now</p>
           <div className="flex flex-wrap gap-2">
             {AGENTS.map((a, i) => {
               const isActive = i === activeAgent && stage !== "ringing"
@@ -365,7 +365,7 @@ export function CallTransferIllustration() {
         </div>
 
         {/* recent transfers log — a slow ticker that reinforces this happens continuously */}
-        <div className="flex items-center gap-2 border-t px-4 py-2.5 sm:px-8" style={{ borderColor: "#EEF2F7", backgroundColor: "#F7F9FC" }}>
+        <div className="flex items-center gap-2 border-t px-4 py-3.5 sm:px-8 sm:py-4" style={{ borderColor: "#EEF2F7", backgroundColor: "#F7F9FC" }}>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/70">Recent</span>
           <div className="relative h-4 min-w-0 flex-1 overflow-hidden">
             <AnimatePresence mode="wait">

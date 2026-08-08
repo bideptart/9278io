@@ -404,19 +404,17 @@ export function VoiceSelectionHub() {
                   <span className="relative inline-flex size-2 rounded-full" style={{ backgroundColor: "#22C55E" }} />
                 </span>
                 <p className="text-xs font-semibold" style={{ color: "#0F172A" }}>Live call · {callDuration}</p>
-                <AnimatePresence>
-                  {isSpeaking && (
-                    <motion.span
-                      initial={{ opacity: 0, x: -4 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -4 }}
-                      className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
-                      style={{ backgroundColor: "#EEF4FF", color: "#2563EB" }}
-                    >
-                      Speaking…
-                    </motion.span>
-                  )}
-                </AnimatePresence>
+                {/* always rendered (opacity-toggled, not mounted/unmounted) so
+                    this pill's width never appears or disappears from the row
+                    — the Phone icon to its right stays put instead of jumping
+                    left/right every time playback starts or stops. */}
+                <span
+                  aria-hidden={!isSpeaking}
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-semibold transition-opacity duration-200 ${isSpeaking ? "opacity-100" : "pointer-events-none opacity-0"}`}
+                  style={{ backgroundColor: "#EEF4FF", color: "#2563EB" }}
+                >
+                  Speaking…
+                </span>
                 <Phone className="ml-auto size-4" style={{ color: "#94A3B8" }} aria-hidden />
               </div>
 

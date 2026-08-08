@@ -10,7 +10,7 @@ import { FeatureImageSection } from "@/components/features-page/feature-image-se
 import { SetupTemplatesLaptopHero } from "@/components/features-page/setup-templates-laptop-hero"
 import { TemplateGrid } from "@/components/features-page/template-grid"
 import { TemplateLaunchFlow } from "@/components/features-page/template-launch-flow"
-import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { SetupTemplatesRace } from "@/components/features-page/setup-templates-race"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -164,20 +164,7 @@ export default function SetupTemplatesPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Skip the blank-page problem</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <ComparisonPanel
-              withoutTitle="Without setup templates"
-              withoutPoints={[
-                "Every agent starts from a blank page",
-                "Writing a greeting and rules from scratch takes hours",
-                "Easy to miss a step a proven setup would cover",
-              ]}
-              withTitle="With Setup Templates"
-              withPoints={[
-                "Start from a proven, pre-filled template",
-                "Greeting, routing, and knowledge already set",
-                "Launch in minutes, refine anything after",
-              ]}
-            />
+            <SetupTemplatesRace />
           </div>
         </div>
       </section>

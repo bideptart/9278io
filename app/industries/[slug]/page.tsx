@@ -50,6 +50,7 @@ import { RestaurantReservationCard, RestaurantChatCard } from "@/components/indu
 import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { EcommercePerformanceChart } from "@/components/industries/ecommerce-performance-chart"
+import { EcommerceHeroVisual } from "@/components/industries/ecommerce-hero-visual"
 import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
@@ -209,106 +210,9 @@ function ECommercePage() {
               </div>
             </ScrollReveal>
 
-            {/* Right — futuristic hero illustration */}
+            {/* Right — circular voice-AI orbit hero visual */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[560px]">
-                {/* Main illustration — futuristic robot on podium with floating cards */}
-                <div className="relative">
-                  <img
-                    src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Futuristic%20white%20robot%20with%20purple%20blue%20glowing%20eyes%20wearing%20headset%20standing%20on%20a%20white%20circular%20podium%2C%20surrounded%20by%20four%20floating%20glass%20morphism%20UI%20cards%3A%20shopping%20cart%20order%20update%2C%20package%20returns%2C%20audio%20wave%20listening%2C%20upsell%20chart%20graph.%20Swirling%20orbital%20rings%2C%20sparkle%20particles%2C%20soft%20purple%20blue%20tech%20gradient%20background%2C%20clean%203D%20render%2C%20isometric%20angle&image_size=landscape_4_3"
-                    alt="AI Voice Agent for E-commerce — futuristic robot on podium with floating glass cards"
-                    className="hero-image-float aspect-[4/3.3] w-full rounded-[2rem] object-cover"
-                    loading="eager"
-                  />
-
-                  {/* Ambient glow pulsing beneath the robot, reinforcing the sense of motion */}
-                  <div
-                    aria-hidden
-                    className="ind-glow pointer-events-none absolute bottom-6 left-1/2 h-10 w-40 -translate-x-1/2 rounded-full bg-indigo-400/30 blur-2xl"
-                  />
-
-                  {/* Overlay Floating Glass Cards (on top of image to ensure exact match) */}
-
-                  {/* Top-left: Order Update Processing */}
-                  <div className="absolute -left-2 top-6 z-20 hero-float-up sm:-left-4">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
-                          <ShoppingBag className="size-3.5 sm:size-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Order Update</p>
-                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Processing</p>
-                        </div>
-                        <span className="ml-1 grid size-3 shrink-0 place-items-center rounded-full bg-emerald-500 sm:size-4">
-                          <Check className="size-2 text-white sm:size-2.5" aria-hidden />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Top-right: AI Voice Agent Listening */}
-                  <div className="absolute -right-2 -top-4 z-20 ind-float sm:-right-4">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <p className="text-[10.5px] font-bold text-blue-700 leading-tight sm:text-[13px]">AI Voice Agent</p>
-                      <div className="mt-1 flex items-center gap-1 sm:mt-1.5 sm:gap-1.5">
-                        <p className="text-[8.5px] font-medium text-slate-500 sm:text-[10.5px]">Listening…</p>
-                        <div className="flex h-2.5 items-end gap-[1.5px] sm:h-3" aria-hidden>
-                          {[7, 11, 6, 13, 9, 14, 8, 12, 7, 10, 5, 11].map((h, i) => (
-                            <span
-                              key={i}
-                              style={{
-                                "--bar-h": `${h}px`,
-                                animationDelay: `${(i % 6) * 0.1}s`,
-                                background:
-                                  i < 6
-                                    ? "linear-gradient(to top, rgb(139,92,246), rgb(99,102,241))"
-                                    : "linear-gradient(to top, rgb(129,140,248), rgb(191,219,254))",
-                              } as React.CSSProperties}
-                              className="ind-eq h-[calc(var(--bar-h)*0.75)] w-[2px] rounded-full sm:h-[var(--bar-h)] sm:w-[2.5px]"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Middle-left: Returns & Exchange Handled */}
-                  <div className="absolute -left-3 top-[48%] z-20 hero-float-down sm:-left-6">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
-                          <Package className="size-3.5 sm:size-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Returns &amp; Exchange</p>
-                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Handled</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom-right: Upsell Opportunity Identified */}
-                  <div className="absolute -right-3 bottom-10 z-20 ind-float sm:-right-6">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
-                          <BarChart3 className="size-3.5 sm:size-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Upsell Opportunity</p>
-                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Identified</p>
-                        </div>
-                        <span className="ml-1 flex gap-1" aria-hidden>
-                          <span className="size-1.5 rounded-full bg-slate-300" />
-                          <span className="size-1.5 rounded-full bg-slate-300" />
-                          <span className="size-1.5 rounded-full bg-blue-500" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <EcommerceHeroVisual />
             </ScrollReveal>
           </div>
         </div>
@@ -647,6 +551,13 @@ function ECommercePage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/ecommerce-shopping.png"
+        alt="Online shopping and checkout experience with cart, packages, and secure payment"
+        heading="Every order, tracked from cart to doorstep."
+        paragraph="9278.io answers order status, returns, and sizing questions instantly — even during flash sales — so your support team only steps in for the calls that really need them."
+      />
+
       <PricingCta
         heading="Let AI handle calls so your team can focus on growing sales."
         description="Launch your AI voice agent in minutes. No setup headaches."
@@ -659,14 +570,14 @@ function ECommercePage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
@@ -934,7 +845,7 @@ function RealEstatePage() {
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Sparkles className="size-3.5" aria-hidden />
@@ -1035,10 +946,10 @@ function RealEstatePage() {
                 </Button>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — how agent sounds */}
-          <ScrollReveal delay={0.1}>
+          <ScrollStepItem index={1}>
             <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
                 <Volume2 className="size-3.5" aria-hidden />
@@ -1135,14 +1046,14 @@ function RealEstatePage() {
                 </Button>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
       {/* ─── How teams roll out — two-step process ─── */}
       <section className="w-full px-6 pb-8 pt-6 md:px-8 md:pb-10 md:pt-8">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="flex items-start gap-5">
+          <ScrollStepItem index={0} className="flex items-start gap-5">
             <span className="relative shrink-0">
               <Sparkles className="absolute -right-1 -top-1 size-3.5 text-blue-400" aria-hidden />
               <span className="grid size-16 place-items-center rounded-full border border-blue-100 bg-white text-blue-600 shadow-sm">
@@ -1160,7 +1071,7 @@ function RealEstatePage() {
                 A simple, scalable approach to launch AI voice agents and drive real results.
               </p>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="relative mt-10 grid gap-8 md:grid-cols-2 md:gap-10">
             <div
@@ -1293,7 +1204,7 @@ function RealEstatePage() {
             </ScrollStepItem>
           </div>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollStepItem index={2}>
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
                 asChild
@@ -1318,7 +1229,7 @@ function RealEstatePage() {
                 </Link>
               </Button>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -1329,7 +1240,7 @@ function RealEstatePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
-          <ScrollReveal>
+          <ScrollStepItem index={0}>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
@@ -1367,10 +1278,10 @@ function RealEstatePage() {
                 <ArrowRight className="ml-1.5 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
             </Button>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           {/* Right — Picture 2: real-time performance recap (real stats, no invented numbers) */}
-          <ScrollReveal delay={0.12}>
+          <ScrollStepItem index={1}>
             <div className="relative">
               <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
                 <div className="flex items-center gap-3">
@@ -1410,9 +1321,16 @@ function RealEstatePage() {
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
+
+      <ImagePlaceholderSection
+        src="/images/industries/real-estate-robot.png"
+        alt="AI assistant helping a buyer find and analyze properties"
+        heading="Every lead, matched and followed up."
+        paragraph="From the first call to the site visit, 9278.io keeps buyers and sellers moving — qualifying leads, answering listing questions, and booking visits instantly so your agents can focus on closing."
+      />
 
       <PricingCta
         heading="Let AI handle calls so your team can focus on closing deals."
@@ -1426,14 +1344,14 @@ function RealEstatePage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
@@ -1582,20 +1500,25 @@ function HomeServicesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                 >
                   <Link href="/get-started?industry=home-services">
-                    Get started
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    Get Started
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/pricing">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    View Pricing
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>
@@ -1722,7 +1645,7 @@ function HomeServicesPage() {
 
         {/* Stats bar */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
-          <ScrollReveal delay={0.15} className="mx-auto max-w-7xl">
+          <ScrollStepItem index={0} className="mx-auto max-w-7xl">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
@@ -1745,7 +1668,7 @@ function HomeServicesPage() {
                 ))}
               </div>
             </div>
-          </ScrollReveal>
+          </ScrollStepItem>
         </div>
       </section>
 
@@ -1868,6 +1791,13 @@ function HomeServicesPage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/home-services-robots.png"
+        alt="AI robots handling cleaning, repairs, and maintenance tasks around a home"
+        heading="Every job, dispatched without delay."
+        paragraph="From the first ring to the technician at the door, 9278.io captures job details, prioritizes emergencies, and books the right tech directly to your dispatch board — so no call, and no job, slips through."
+      />
+
       <PricingCta
         heading="Ready to automate calls and grow your home service business?"
         description="Launch your AI voice agent in minutes. No setup headaches."
@@ -1880,14 +1810,14 @@ function HomeServicesPage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
@@ -2035,20 +1965,25 @@ function RestaurantsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                 >
                   <Link href="/get-started?industry=restaurants">
-                    Get started
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    Get Started
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/pricing">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    View Pricing
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>

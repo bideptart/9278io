@@ -21,7 +21,7 @@ import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
 import { DetailCards } from "@/components/features-page/detail-cards"
 import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
-import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { CallBehaviorComparison } from "@/components/features-page/call-behavior-comparison"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { CallBehaviorPanel } from "@/components/features-page/call-behavior-panel"
 import { pageSeo } from "@/lib/seo"
@@ -214,20 +214,7 @@ export default function CallBehaviorControlsPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">A defined behavior, not a guess</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <ComparisonPanel
-              withoutTitle="Without call behavior controls"
-              withoutPoints={[
-                "Every agent opens with the same generic greeting",
-                "Callers can't get a word in until the agent finishes talking",
-                "No clear rule for when a call should reach a human",
-              ]}
-              withTitle="With Call Behavior Controls"
-              withPoints={[
-                "A custom greeting per agent, written by you",
-                "Callers can interrupt naturally, mid-sentence",
-                "A clear, configurable trigger decides exactly when to hand off",
-              ]}
-            />
+            <CallBehaviorComparison />
           </div>
         </div>
       </section>

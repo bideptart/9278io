@@ -9,7 +9,6 @@ import {
   MessageSquareText,
   PhoneCall,
   Sparkles,
-  Wand2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
@@ -17,7 +16,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
-import { DetailFanStack } from "@/components/features-page/detail-fan-stack"
+import { PlaygroundEditorialColumns } from "@/components/features-page/playground-editorial-columns"
 import { HowItWorksConsole } from "@/components/features-page/how-it-works-console"
 import { TestingImpactBand } from "@/components/features-page/testing-impact-band"
 import { PlaygroundIllustration } from "@/components/features-page/playground-illustration"
@@ -51,24 +50,6 @@ export const metadata: Metadata = pageSeo({
   description: "Test your agent's responses in a live sandbox before it ever answers a real call.",
   path: "/features/playground-live-testing",
 })
-
-const DETAILS = [
-  {
-    icon: <MessageSquareText className="size-5" aria-hidden />,
-    title: "Chat with your agent in a safe sandbox",
-    description: "Send test messages and see exactly how your agent would respond to a real caller.",
-  },
-  {
-    icon: <Wand2 className="size-5" aria-hidden />,
-    title: "Tweak prompts and see results instantly",
-    description: "Adjust your agent's instructions and immediately test the new behavior in the same session.",
-  },
-  {
-    icon: <Sparkles className="size-5" aria-hidden />,
-    title: "Catch gaps before going live",
-    description: "Find the questions your agent doesn't handle well yet, before a real customer ever asks them.",
-  },
-]
 
 const STEPS = [
   {
@@ -176,7 +157,7 @@ export default function PlaygroundLiveTestingPage() {
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">A safe place to test everything</h2>
           </ScrollReveal>
-          <DetailFanStack items={DETAILS} />
+          <PlaygroundEditorialColumns />
         </div>
       </section>
 

@@ -15,7 +15,7 @@ const cards = [
     icon: Palette,
     title: "Set its avatar",
     description: "Pick a look for your agent that shows up across your dashboard and reports.",
-    tone: "#7C3AED",
+    tone: "#0EA5E9",
     rotate: 0,
   },
   {

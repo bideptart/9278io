@@ -10,7 +10,7 @@ import { FeatureImageSection } from "@/components/features-page/feature-image-se
 import { IdentitySetupHero } from "@/components/features-page/identity-setup-hero"
 import { IdentityCardStack } from "@/components/features-page/identity-card-stack"
 import { IdentityWizard } from "@/components/features-page/identity-wizard"
-import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { IdentityBuildPreview } from "@/components/features-page/identity-build-preview"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -57,8 +57,8 @@ export default function IdentitySetupPage() {
 
       <section className="relative flex flex-col overflow-hidden border-b border-border">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#F3EEFF]" />
-          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-[#7C3AED]/[0.07] blur-[120px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
+          <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-14 pt-2 md:px-8 md:pb-20 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
@@ -165,20 +165,7 @@ export default function IdentitySetupPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Callers remember a name, not a number</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <ComparisonPanel
-              withoutTitle="Without a defined identity"
-              withoutPoints={[
-                "Every agent sounds and feels generic",
-                "Callers aren't sure who they're speaking with",
-                "Branding is inconsistent across numbers",
-              ]}
-              withTitle="With Agent Identity Setup"
-              withPoints={[
-                "Each agent has its own name and avatar",
-                "Callers hear a consistent, branded greeting",
-                "Every number feels like part of your business",
-              ]}
-            />
+            <IdentityBuildPreview />
           </div>
         </div>
       </section>

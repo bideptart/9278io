@@ -15,7 +15,7 @@ const STEPS = [
     icon: Palette,
     label: "Pick an avatar",
     detail: "Choose a look that shows up across your dashboard and reports.",
-    tone: "#7C3AED",
+    tone: "#0EA5E9",
   },
   {
     icon: MessageCircle,
