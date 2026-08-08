@@ -647,6 +647,13 @@ function ECommercePage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/ecommerce-shopping.png"
+        alt="Online shopping and checkout experience with cart, packages, and secure payment"
+        heading="Every order, tracked from cart to doorstep."
+        paragraph="9278.io answers order status, returns, and sizing questions instantly — even during flash sales — so your support team only steps in for the calls that really need them."
+      />
+
       <PricingCta
         heading="Let AI handle calls so your team can focus on growing sales."
         description="Launch your AI voice agent in minutes. No setup headaches."
