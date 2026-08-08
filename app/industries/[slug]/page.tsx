@@ -1901,14 +1901,14 @@ function HomeServicesPage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
