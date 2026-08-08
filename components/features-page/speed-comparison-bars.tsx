@@ -95,7 +95,12 @@ export function SpeedComparisonBars() {
                     {bar.label}
                   </p>
                   {bar.variant === "primary" && (
-                    <span className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                    <span className="flex shrink-0 items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                      <motion.span
+                        className="size-1.5 rounded-full bg-primary"
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ duration: 1.4, repeat: Infinity }}
+                      />
                       This feature
                     </span>
                   )}
@@ -104,12 +109,29 @@ export function SpeedComparisonBars() {
                 <div className="mt-2 h-3 overflow-hidden rounded-full bg-secondary/50">
                   <motion.div
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${bar.fill}%` }}
+                    whileInView={{
+                      width: `${bar.fill}%`,
+                      boxShadow:
+                        bar.variant === "primary"
+                          ? [
+                              "0 0 10px oklch(0.546 0.215 262.88 / 0.5)",
+                              "0 0 18px oklch(0.546 0.215 262.88 / 0.8)",
+                              "0 0 10px oklch(0.546 0.215 262.88 / 0.5)",
+                            ]
+                          : "0 0 0px transparent",
+                    }}
                     viewport={{ once: false, margin: "-80px", amount: 0.4 }}
-                    transition={{ duration: 1, delay: 0.2 + ci * 0.1 + i * 0.15, ease: "easeOut" }}
+                    transition={
+                      bar.variant === "primary"
+                        ? {
+                            width: { duration: 1, delay: 0.2 + ci * 0.1 + i * 0.15, ease: "easeOut" },
+                            boxShadow: { duration: 1.6, repeat: Infinity, delay: 1.2 + ci * 0.1 + i * 0.15 },
+                          }
+                        : { duration: 1, delay: 0.2 + ci * 0.1 + i * 0.15, ease: "easeOut" }
+                    }
                     className={`h-full rounded-full ${
                       bar.variant === "primary"
-                        ? "bg-gradient-to-r from-primary to-[oklch(0.6_0.19_262.88)] shadow-[0_0_10px_oklch(0.546_0.215_262.88/0.5)]"
+                        ? "bg-gradient-to-r from-primary to-[oklch(0.6_0.19_262.88)]"
                         : "bg-muted-foreground/30"
                     }`}
                   />

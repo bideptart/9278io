@@ -14,9 +14,15 @@ export type BlogPostSummary = {
   heroHtml: string
 }
 
+export type BlogFaqItem = {
+  q: string
+  a: string
+}
+
 export type BlogPost = BlogPostSummary & {
   lead: string
   articleHtml: string
+  faqItems: BlogFaqItem[]
 }
 
 const BLOG_PUBLIC_ROUTE_PREFIX = "/blog-content"
@@ -144,6 +150,32 @@ async function readHtmlFile(slug: string) {
   }
 }
 
+function stripTags(value: string) {
+  return decodeHtmlEntities(value.replace(/<[^>]+>/g, "")).trim()
+}
+
+/** Pulls {q, a} pairs out of the article's `<section class="faq">` block (each
+ * a `<details><summary>Q</summary><p>A</p></details>` row) and strips that
+ * section out of the returned HTML, so the caller can render the same
+ * questions through the real FaqAccordion component instead of the static
+ * markup — matching the accordion used on the homepage and /faq page. */
+function extractFaq(html: string) {
+  const faqSectionMatch = /<section\s+class="faq">([\s\S]*?)<\/section>/i.exec(html)
+  if (!faqSectionMatch) return { faqItems: [] as BlogFaqItem[], html }
+
+  const faqSection = faqSectionMatch[0]
+  const rowPattern = /<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/gi
+  const faqItems: BlogFaqItem[] = []
+  let rowMatch: RegExpExecArray | null
+  while ((rowMatch = rowPattern.exec(faqSection))) {
+    const q = stripTags(rowMatch[1])
+    const a = stripTags(rowMatch[2])
+    if (q && a) faqItems.push({ q, a })
+  }
+
+  return { faqItems, html: html.replace(faqSectionMatch[0], "") }
+}
+
 function parseBlogHtml(slug: string, html: string): BlogPost {
   const title = decodeHtmlEntities(extractFirst(html, /<title>([\s\S]*?)<\/title>/i)).trim()
   const description = decodeHtmlEntities(extractFirst(html, /<meta\s+name="description"\s+content="([^"]*)"\s*\/?>/i)).trim()
@@ -158,7 +190,8 @@ function parseBlogHtml(slug: string, html: string): BlogPost {
 
   const lead = decodeHtmlEntities(extractFirst(html, /<p\s+class="lead">([\s\S]*?)<\/p>/i)).trim()
   const heroHtml = extractFirst(html, /<figure\s+class="post-hero">([\s\S]*?)<\/figure>/i).trim()
-  const articleHtml = extractFirst(html, /<article>([\s\S]*?)<\/article>/i).trim()
+  const rawArticleHtml = extractFirst(html, /<article>([\s\S]*?)<\/article>/i).trim()
+  const { faqItems, html: articleHtml } = extractFaq(rawArticleHtml)
 
   return {
     slug,
@@ -171,6 +204,7 @@ function parseBlogHtml(slug: string, html: string): BlogPost {
     lead,
     heroHtml,
     articleHtml,
+    faqItems,
   }
 }
 

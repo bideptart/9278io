@@ -161,11 +161,11 @@ export default function BookingNotificationsPage() {
                 booked time, ready to act on.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-7 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                  className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/get-started">
                     Build your first agent
@@ -176,7 +176,7 @@ export default function BookingNotificationsPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                  className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 size-4" />

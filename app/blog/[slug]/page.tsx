@@ -4,8 +4,10 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { notFound } from "next/navigation"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { ScrollReveal } from "@/components/animation/scroll-reveal"
+import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { pageSeo } from "@/lib/seo"
-import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/jsonld"
 import { getAllBlogSlugs, getBlogPostBySlug } from "@/lib/blog"
 import { sanitizeHtml } from "@/lib/sanitize"
 
@@ -48,6 +50,7 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           { name: post.title, path: `/blog/${post.slug}` },
         ]}
       />
+      {post.faqItems.length > 0 ? <FaqJsonLd items={post.faqItems} /> : null}
 
       {/* ── Article header ── */}
       <header className="relative overflow-hidden border-b border-border/50 bg-gradient-to-b from-blue-50/50 via-background to-background">
@@ -118,17 +121,31 @@ async function BlogPostPageContent({ slug }: { slug: string }) {
           [&_.cta]:mt-12 [&_.cta]:rounded-3xl [&_.cta]:border [&_.cta]:border-primary [&_.cta]:bg-primary [&_.cta]:px-6 [&_.cta]:py-8 [&_.cta]:text-center [&_.cta]:shadow-[0_4px_30px_oklch(0.52_0.22_265/0.25)]
           [&_.cta_h3]:mt-0 [&_.cta_h3]:text-xl [&_.cta_h3]:font-bold [&_.cta_h3]:text-white
           [&_.cta_p]:mt-2 [&_.cta_p]:text-white/70
-          [&_.btn]:mt-5 [&_.btn]:inline-flex [&_.btn]:items-center [&_.btn]:justify-center [&_.btn]:rounded-lg [&_.btn]:bg-white [&_.btn]:px-5 [&_.btn]:py-2.5 [&_.btn]:text-sm [&_.btn]:font-semibold [&_.btn]:text-primary [&_.btn]:no-underline hover:[&_.btn]:bg-white/90
-          [&_details]:mt-3 [&_details]:rounded-xl [&_details]:border-2 [&_details]:border-border/70 [&_details]:bg-white [&_details]:px-5 [&_details]:py-1
-          [&_summary]:cursor-pointer [&_summary]:pt-3 [&_summary]:pb-1 [&_summary]:font-semibold [&_summary]:text-foreground
-          [&_details_p]:mt-1
-          [&_.faq>h2]:mb-2"
+          [&_.btn]:mt-5 [&_.btn]:inline-flex [&_.btn]:items-center [&_.btn]:justify-center [&_.btn]:rounded-lg [&_.btn]:bg-white [&_.btn]:px-5 [&_.btn]:py-2.5 [&_.btn]:text-sm [&_.btn]:font-semibold [&_.btn]:text-primary [&_.btn]:no-underline hover:[&_.btn]:bg-white/90"
         // sanitizeHtml runs LAST, so it covers the injected loading/decoding
         // hints too. See the boundary contract in lib/sanitize.ts.
         dangerouslySetInnerHTML={{
           __html: sanitizeHtml(post.articleHtml.replace(/<img /g, '<img loading="lazy" decoding="async" ')),
         }}
       />
+
+      {/* ── FAQ ── same FaqAccordion component used on the homepage and
+          /faq page, instead of the static <details> markup the source
+          HTML ships with (stripped out of articleHtml in lib/blog.ts). */}
+      {post.faqItems.length > 0 ? (
+        <section className="border-t border-border/50">
+          <div className="mx-auto w-full max-w-5xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+            <ScrollReveal>
+              <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Frequently asked questions</h2>
+            </ScrollReveal>
+            <div className="mt-8">
+              <ScrollReveal>
+                <FaqAccordion items={post.faqItems} idPrefix="blog" contentClassName="pl-[52px]" />
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* ── Footer nav ── */}
       <div className="mx-auto w-full max-w-5xl px-6 md:px-8 pb-20">
