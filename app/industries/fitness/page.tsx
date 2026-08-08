@@ -3,9 +3,10 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import {
   ArrowRight, Sparkles, Check,
-  PhoneCall,
+  Clock, PhoneCall, IndianRupee,
   Rocket, LifeBuoy,
   Signal, Wifi, BatteryFull, MessageCircle, Phone, Video, Mic,
+  type LucideIcon,
 } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -197,23 +198,26 @@ export default function FitnessIndustryPage() {
           <Marquee pauseOnHover className="[--duration:28s] [--gap:1.25rem]">
             {[
               {
+                icon: Clock,
                 label: "First-touch response",
                 value: "< 3 seconds",
                 sub: `Every ${industry.name.toLowerCase()} call answered before it goes to voicemail.`,
               },
               {
+                icon: PhoneCall,
                 label: "Concurrent calls",
                 value: "Up to 40",
                 sub: "On the Scale plan — no extra hardware, no extra licenses.",
               },
               {
+                icon: IndianRupee,
                 label: "Per-minute rate",
                 value: "From ₹10",
                 sub: "See the full rate card on the pricing page.",
               },
             ].map((s) => (
               <div key={s.label} className="w-[300px] sm:w-[340px]">
-                <Stat label={s.label} value={s.value} sub={s.sub} />
+                <Stat icon={s.icon} label={s.label} value={s.value} sub={s.sub} />
               </div>
             ))}
           </Marquee>
@@ -360,17 +364,21 @@ export default function FitnessIndustryPage() {
   )
 }
 
-function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
+/* Original hover: a blue accent line draws in across the top, icon tile
+   inverts to solid primary. group/line is a named group (not the plain
+   "group" Marquee's own container already uses for pauseOnHover) so
+   hovering one card doesn't trigger every card in the row at once. */
+function Stat({ icon: Icon, label, value, sub }: { icon: LucideIcon; label: string; value: string; sub: string }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+    <div className="group/line relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
       {/* accent line draws across the top on hover */}
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover/line:scale-x-100"
       />
       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        <span className="grid size-7 place-items-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
-          <Sparkles className="size-4" aria-hidden />
+        <span className="grid size-7 place-items-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover/line:bg-primary group-hover/line:text-white">
+          <Icon className="size-4" aria-hidden />
         </span>
         {label}
       </div>
