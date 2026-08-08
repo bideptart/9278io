@@ -1875,6 +1875,13 @@ function HomeServicesPage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/home-services-robots.png"
+        alt="AI robots handling cleaning, repairs, and maintenance tasks around a home"
+        heading="Every job, dispatched without delay."
+        paragraph="From the first ring to the technician at the door, 9278.io captures job details, prioritizes emergencies, and books the right tech directly to your dispatch board — so no call, and no job, slips through."
+      />
+
       <PricingCta
         heading="Ready to automate calls and grow your home service business?"
         description="Launch your AI voice agent in minutes. No setup headaches."
