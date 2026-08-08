@@ -1414,6 +1414,13 @@ function RealEstatePage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/real-estate-robot.png"
+        alt="AI assistant helping a buyer find and analyze properties"
+        heading="Every lead, matched and followed up."
+        paragraph="From the first call to the site visit, 9278.io keeps buyers and sellers moving — qualifying leads, answering listing questions, and booking visits instantly so your agents can focus on closing."
+      />
+
       <PricingCta
         heading="Let AI handle calls so your team can focus on closing deals."
         description="Launch your AI voice agent in minutes. No setup headaches."
