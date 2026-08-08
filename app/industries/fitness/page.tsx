@@ -364,34 +364,26 @@ export default function FitnessIndustryPage() {
   )
 }
 
-/* 3D flip on hover — same mechanism as automotive's "Why teams switch" cards:
-   perspective + preserve-3d + rotateY(180deg), with the back face's whole
-   palette inverted (white -> primary gradient) rather than just fading. */
+/* Original hover: a blue accent line draws in across the top, icon tile
+   inverts to solid primary. group/line is a named group (not the plain
+   "group" Marquee's own container already uses for pauseOnHover) so
+   hovering one card doesn't trigger every card in the row at once. */
 function Stat({ icon: Icon, label, value, sub }: { icon: LucideIcon; label: string; value: string; sub: string }) {
   return (
-    <div className="group/flip h-[220px] [perspective:1200px]">
-      <div className="relative h-full w-full transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover/flip:[transform:rotateY(180deg)]">
-        {/* Front — white bg, primary text */}
-        <div className="absolute inset-0 flex flex-col gap-3 rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_20px_50px_-30px_oklch(0.52_0.22_265/0.3)] [backface-visibility:hidden]">
-          <span className="relative grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-            <span aria-hidden className="ind-ping absolute inset-0 rounded-xl bg-primary/30" />
-            <Icon className="relative size-5" aria-hidden />
-          </span>
-          <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{label}</p>
-          <p className="text-3xl font-semibold tracking-tight text-primary md:text-4xl">{value}</p>
-          <p className="text-[13px] leading-relaxed text-muted-foreground">{sub}</p>
-        </div>
-
-        {/* Back — primary bg, white text: colors fully inverted */}
-        <div className="absolute inset-0 flex flex-col gap-3 rounded-3xl bg-gradient-to-br from-primary to-[oklch(0.5_0.21_255)] p-7 text-white shadow-[0_20px_50px_-25px_oklch(0.52_0.22_265/0.55)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <span className="grid size-10 place-items-center rounded-xl bg-white/15 text-white">
-            <Icon className="size-5" aria-hidden />
-          </span>
-          <p className="text-[11px] font-bold uppercase tracking-wider text-white/70">{label}</p>
-          <p className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{value}</p>
-          <p className="text-[13px] leading-relaxed text-white/85">{sub}</p>
-        </div>
+    <div className="group/line relative h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+      {/* accent line draws across the top on hover */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover/line:scale-x-100"
+      />
+      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="grid size-7 place-items-center rounded-lg bg-primary/10 text-primary transition-colors duration-300 group-hover/line:bg-primary group-hover/line:text-white">
+          <Icon className="size-4" aria-hidden />
+        </span>
+        {label}
       </div>
+      <p className="mt-5 text-3xl font-semibold tracking-tight text-primary md:text-4xl">{value}</p>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{sub}</p>
     </div>
   )
 }
