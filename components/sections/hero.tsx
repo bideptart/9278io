@@ -135,12 +135,12 @@ function RecentCallsCard({
   onSelect: (id: string) => void
 }) {
   return (
-    <div className="rounded-2xl border border-blue-100/80 bg-white/95 p-2.5 shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] backdrop-blur sm:p-3.5">
-      <div className="flex items-center justify-between">
+    <div className="rounded-2xl border-0 bg-transparent p-2.5 shadow-none backdrop-blur-none sm:border sm:border-blue-100/80 sm:bg-white/95 sm:p-3.5 sm:shadow-[0_16px_40px_-26px_oklch(0.52_0.22_265/0.3)] sm:backdrop-blur">
+      <div className="hidden items-center justify-between sm:flex">
         <p className="text-[11px] font-bold text-foreground sm:text-xs">Recent calls</p>
         <p className="text-[10px] text-muted-foreground sm:text-[11px]">{CALLS.length}</p>
       </div>
-      <div className="mt-1.5 flex flex-col gap-0.5 sm:mt-2.5 sm:gap-1">
+      <div className="mt-1.5 flex flex-wrap justify-center gap-1.5 sm:mt-2.5 sm:flex-col sm:flex-nowrap sm:justify-start sm:gap-1">
         {CALLS.map((c) => {
           const active = c.id === activeId
           return (
@@ -148,14 +148,13 @@ function RecentCallsCard({
               key={c.id}
               type="button"
               onClick={() => onSelect(c.id)}
-              className={`flex w-full items-center gap-2 rounded-xl px-2 py-1 text-left no-underline outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/40 sm:py-1.5 ${active ? "bg-slate-100" : "hover:bg-slate-50"}`}
+              className={`flex w-[128px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border-2 px-2.5 py-1 text-left no-underline outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-full sm:gap-2 sm:rounded-xl sm:border-0 sm:px-2 sm:py-1.5 ${active ? "border-emerald-200 bg-emerald-50 sm:border-0 sm:bg-slate-100" : "border-border/60 hover:bg-slate-50 sm:border-0"}`}
             >
               <span className={`size-1.5 shrink-0 rounded-full ${active ? "bg-emerald-500" : "bg-emerald-500/60"}`} aria-hidden />
-              <div className="min-w-0 flex-1 leading-tight">
-                <p spellCheck={false} className="truncate text-[10px] font-semibold text-foreground no-underline sm:text-[11px]">{c.title}</p>
-                <p spellCheck={false} className="truncate text-[9px] text-muted-foreground no-underline sm:text-[10px]">{c.subtitle}</p>
+              <div className="min-w-0 flex-1 overflow-hidden leading-tight">
+                <p spellCheck={false} className="truncate text-[9px] font-semibold text-foreground no-underline sm:text-[11px]">{c.title}</p>
+                <p spellCheck={false} className="truncate text-[8px] text-muted-foreground no-underline sm:text-[10px]">{c.subtitle}</p>
               </div>
-              <span className="shrink-0 text-[9px] text-muted-foreground sm:text-[10px]">{c.duration}</span>
             </button>
           )
         })}
@@ -531,7 +530,7 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute -top-32 right-0 h-[620px] w-[820px] rounded-full bg-primary/[0.1] blur-[130px]" />
 
       <div className="relative w-full px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4">
-        <div className="grid items-stretch gap-14 lg:grid-cols-2 lg:gap-12">
+        <div className="grid items-stretch gap-6 lg:grid-cols-2 lg:gap-12">
 
           {/* ── Left ── */}
           <div className="flex flex-col">
