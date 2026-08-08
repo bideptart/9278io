@@ -647,6 +647,13 @@ function ECommercePage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/ecommerce-shopping.png"
+        alt="Online shopping and checkout experience with cart, packages, and secure payment"
+        heading="Every order, tracked from cart to doorstep."
+        paragraph="9278.io answers order status, returns, and sizing questions instantly — even during flash sales — so your support team only steps in for the calls that really need them."
+      />
+
       <PricingCta
         heading="Let AI handle calls so your team can focus on growing sales."
         description="Launch your AI voice agent in minutes. No setup headaches."
@@ -659,14 +666,14 @@ function ECommercePage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
@@ -1433,14 +1440,14 @@ function RealEstatePage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
@@ -1875,6 +1882,13 @@ function HomeServicesPage() {
         </div>
       </section>
 
+      <ImagePlaceholderSection
+        src="/images/industries/home-services-robots.png"
+        alt="AI robots handling cleaning, repairs, and maintenance tasks around a home"
+        heading="Every job, dispatched without delay."
+        paragraph="From the first ring to the technician at the door, 9278.io captures job details, prioritizes emergencies, and books the right tech directly to your dispatch board — so no call, and no job, slips through."
+      />
+
       <PricingCta
         heading="Ready to automate calls and grow your home service business?"
         description="Launch your AI voice agent in minutes. No setup headaches."
@@ -1887,14 +1901,14 @@ function HomeServicesPage() {
       {/* ─── Other industries we power ─── */}
       <section className="w-full px-6 pb-14 md:px-8 md:pb-20">
         <div className="mx-auto max-w-6xl">
-          <ScrollReveal className="mx-auto max-w-2xl text-center">
+          <ScrollStepItem className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-sans text-[1.6rem] font-semibold tracking-tight md:text-3xl">
               Other industries we power
             </h2>
             <p className="mt-2.5 text-pretty text-[13.5px] leading-relaxed text-muted-foreground">
               Pre-tuned playbooks for the calls your peers in adjacent verticals already automate.
             </p>
-          </ScrollReveal>
+          </ScrollStepItem>
 
           <div className="mt-12 grid gap-x-5 gap-y-7 overflow-x-clip sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => ({
