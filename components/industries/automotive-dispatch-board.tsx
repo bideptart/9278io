@@ -87,19 +87,23 @@ export function AutomotiveDispatchBoard({ jobs, sampleLines, conversation }: Aut
         })}
       </div>
 
-      {/* Dispatch ticket — active job as a quote */}
-      <div className="px-5 pt-6 sm:px-7">
-        <Quote className="size-6 text-primary/60" aria-hidden />
-        <p className="mt-3 text-pretty text-lg font-medium leading-relaxed text-foreground sm:text-xl">
-          {jobs[active]}
-        </p>
+      {/* Dispatch ticket — active job as a quote. The quote mark sits inline
+          beside the heading rather than stacked above it, so the card
+          doesn't carry that extra line of height. */}
+      <div className="px-5 pt-5 sm:px-7">
+        <div className="flex items-start gap-2.5">
+          <Quote className="mt-0.5 size-6 shrink-0 text-primary/60" aria-hidden />
+          <p className="text-pretty text-lg font-medium leading-relaxed text-foreground sm:text-xl">
+            {jobs[active]}
+          </p>
+        </div>
         <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
           {sampleLines[active % sampleLines.length]}
         </p>
       </div>
 
       {/* Live call strip */}
-      <div className="mt-6 border-t border-slate-100 bg-primary/[0.03] px-5 py-5 sm:px-7">
+      <div className="mt-5 border-t border-slate-100 bg-primary/[0.03] px-5 py-5 sm:px-7">
         <div className="flex items-center justify-between gap-3">
           <p className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
             <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
