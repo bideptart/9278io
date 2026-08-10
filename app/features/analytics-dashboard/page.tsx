@@ -92,7 +92,7 @@ export default function AnalyticsDashboardPage() {
           <span className="absolute left-[6%] top-[30%] size-1.5 rounded-full bg-primary/20" />
           <span className="absolute left-[30%] top-[75%] size-1 rounded-full bg-primary/15" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <nav aria-label="Breadcrumb">
               <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
@@ -167,7 +167,7 @@ export default function AnalyticsDashboardPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
