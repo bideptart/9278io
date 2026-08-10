@@ -157,7 +157,7 @@ export default function VoiceSelectionPage() {
           className="pointer-events-none absolute -right-24 bottom-0 -z-10 size-[380px] rounded-full opacity-[0.05]"
           style={{ background: "radial-gradient(circle, #2563EB, transparent 70%)" }}
         />
-        <div className="mx-auto max-w-5xl px-6 py-20 md:px-10 md:py-24">
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Under the hood</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Native audio, not text read aloud.</h2>
@@ -172,7 +172,7 @@ export default function VoiceSelectionPage() {
 
       {/* Language pill cloud */}
       <section className="overflow-hidden border-b border-border/50" style={{ backgroundColor: "#F7F9FC" }}>
-        <div className="mx-auto max-w-4xl px-6 pt-10 text-center md:px-8 md:pt-14">
+        <div className="w-full px-6 pt-10 text-center md:px-8 md:pt-14">
           <ScrollReveal>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Languages</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
@@ -195,7 +195,7 @@ export default function VoiceSelectionPage() {
           the next section overlap before the sticky content finished. */}
       <section className="relative bg-white lg:h-[170vh]">
         <div className="w-full py-20 md:py-24 lg:sticky lg:top-0 lg:flex lg:min-h-screen lg:items-center lg:py-0">
-          <div className="mx-auto w-full max-w-6xl px-6 md:px-12">
+          <div className="w-full px-6 md:px-8">
             <ScrollReveal className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-semibold uppercase tracking-widest text-primary">Voice Selection</p>
               <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Pick it, hear it, ship it.</h2>
@@ -240,7 +240,7 @@ export default function VoiceSelectionPage() {
       />
 
       <section className="w-full px-6 pb-24 md:px-8" style={{ backgroundColor: "#F7F9FC" }}>
-        <div className="mx-auto max-w-5xl pt-16 md:pt-20">
+        <div className="w-full pt-16 md:pt-20">
           <ScrollReveal>
             <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
             <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">

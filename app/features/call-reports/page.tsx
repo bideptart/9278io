@@ -184,7 +184,7 @@ export default function CallReportsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl">What you get</h2>
           </ScrollReveal>
@@ -193,7 +193,7 @@ export default function CallReportsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2.5 rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -206,7 +206,7 @@ export default function CallReportsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Your recording library</h2>
           </ScrollReveal>
@@ -215,7 +215,7 @@ export default function CallReportsPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 py-14 md:px-8 md:py-20">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2.5 rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
@@ -261,7 +261,7 @@ export default function CallReportsPage() {
       />
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="w-full px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
           <ScrollReveal>
             <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
             <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">
