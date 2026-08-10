@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
+  Check,
   Download,
   FileText,
   HelpCircle,
@@ -99,13 +100,13 @@ export default function CallReportsPage() {
         ]}
       />
 
-      <section className="relative flex flex-col overflow-hidden border-b border-border/50 lg:h-[calc(100vh-64px)] lg:justify-center">
+      <section className="relative flex flex-col overflow-hidden border-b border-border/50 lg:min-h-[calc(100vh-64px)] lg:justify-center">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
           <div>
             <nav aria-label="Breadcrumb">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
@@ -116,8 +117,10 @@ export default function CallReportsPage() {
 
             <ScrollReveal className="mt-6">
               <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
-                <span style={{ color: "#0F172A" }}>Call Reports</span>{" "}
+                <span style={{ color: "#0F172A" }}>Call Reports</span>
+                <br />
                 <span
+                  className="whitespace-nowrap"
                   style={{
                     backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
@@ -125,10 +128,10 @@ export default function CallReportsPage() {
                     color: "transparent",
                   }}
                 >
-                  (Recordings / Transcripts)
+                  Recordings &amp; Transcripts
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Every call is recorded and transcribed, with playback and download built in — so you can
                 review exactly what happened on any call, anytime.
               </p>
@@ -157,11 +160,24 @@ export default function CallReportsPage() {
                 </Button>
               </div>
 
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Every call recorded", "Full transcript too", "Searchable in seconds"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
+                    <Check className="size-4 text-emerald-600" aria-hidden />
+                    {t}
+                  </span>
+                ))}
+              </div>
+
               <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 
-          <ScrollReveal delay={0.08}>
+          <ScrollReveal delay={0.08} className="flex items-center justify-center lg:justify-end">
             <CallSoundwaveIllustration />
           </ScrollReveal>
         </div>

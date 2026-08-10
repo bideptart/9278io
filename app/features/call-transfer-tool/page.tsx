@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
+  Check,
   HelpCircle,
   IndianRupee,
   LayoutGrid,
@@ -141,9 +142,10 @@ export default function CallTransferToolPage() {
                   Transfer Tool
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Hand off any call to a human number with a custom label you set — so when your agent hits its
-                limit, the caller lands with the right person, not a dead end.
+                limit, the caller lands with the right person, not a dead end. Add backup numbers so a
+                transfer never rings out to nowhere. Set it once, per agent.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
@@ -168,6 +170,19 @@ export default function CallTransferToolPage() {
                     Talk to sales
                   </Link>
                 </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Transfer to any human number", "Custom label per transfer", "Backup numbers included"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
+                    <Check className="size-4 text-emerald-600" aria-hidden />
+                    {t}
+                  </span>
+                ))}
               </div>
 
               <HeroStatsBand stats={heroStats} />

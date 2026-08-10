@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
+  Check,
   Clock3,
   HelpCircle,
   IndianRupee,
@@ -124,25 +125,11 @@ export default function AnalyticsDashboardPage() {
                   Dashboard
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Track call counts, minutes used, and average call duration in one place — everything you need to
-                understand how your agents are performing, without digging through raw call logs.
+                understand how your agents are performing, without digging through raw call logs. See busy
+                hours at a glance, and watch included minutes burn down before you hit an overage.
               </p>
-
-              <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
-                <div className="flex items-center gap-1.5">
-                  <PhoneCall className="size-4 text-primary" aria-hidden />
-                  <span className="text-sm font-semibold text-foreground">Call volume</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <LayoutGrid className="size-4 text-primary" aria-hidden />
-                  <span className="text-sm font-semibold text-foreground">Minutes used</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Users className="size-4 text-accent" aria-hidden />
-                  <span className="text-sm font-semibold text-foreground">Active agents</span>
-                </div>
-              </div>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
                 <Button
@@ -166,6 +153,19 @@ export default function AnalyticsDashboardPage() {
                     Talk to sales
                   </Link>
                 </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Call volume", "Minutes used", "Active agents"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
+                    <Check className="size-4 text-emerald-600" aria-hidden />
+                    {t}
+                  </span>
+                ))}
               </div>
 
               <HeroStatsBand stats={heroStats} />
