@@ -16,7 +16,7 @@ const DEFAULT_IMAGES = [
 
 export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?: { src: string; alt: string }[] }) {
   return (
-    <div className="relative h-[360px] w-full sm:h-[500px]">
+    <div className="relative h-[320px] w-full sm:h-[420px]">
       <div
         style={{
           animation: "reveal 0.7s cubic-bezier(0.22,1,0.36,1) both, heroFloatUp 2.8s ease-in-out infinite",
