@@ -157,7 +157,7 @@ export default function VoiceSelectionPage() {
           className="pointer-events-none absolute -right-24 bottom-0 -z-10 size-[380px] rounded-full opacity-[0.05]"
           style={{ background: "radial-gradient(circle, #2563EB, transparent 70%)" }}
         />
-        <div className="w-full px-6 py-14 md:px-8 md:py-20">
+        <div className="w-full px-6 pb-14 pt-8 md:px-8 md:pb-20 md:pt-12">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Under the hood</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">Native audio, not text read aloud.</h2>

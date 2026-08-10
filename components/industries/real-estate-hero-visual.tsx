@@ -12,7 +12,7 @@ export function RealEstateHeroVisual() {
   return (
     <div className="relative mx-auto aspect-[3/4] w-full max-w-[480px] sm:aspect-[9/8]">
       {/* card background */}
-      <div className="absolute inset-0 overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-xl shadow-slate-900/10">
+      <div className="absolute inset-0 overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-50 via-white to-blue-100 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)]">
         <div
           aria-hidden
           className="absolute inset-0 bg-[radial-gradient(#93c5fd_1px,transparent_1px)] bg-[length:16px_16px] opacity-25"
