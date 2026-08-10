@@ -121,7 +121,7 @@ export function CallTransferIllustration() {
         </div>
 
         {/* faint dot-grid texture behind the handoff row */}
-        <div className="relative px-4 pb-5 pt-8 sm:px-8 sm:pb-8 sm:pt-11">
+        <div className="relative px-4 pb-9 pt-10 sm:px-8 sm:pb-14 sm:pt-14">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-60"

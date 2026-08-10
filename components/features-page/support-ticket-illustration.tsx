@@ -69,7 +69,7 @@ export function SupportTicketIllustration() {
   const resolvedCount = 94 + (cycle % 6)
 
   return (
-    <div className="relative mx-auto w-full max-w-[480px] lg:mr-4">
+    <div className="relative mx-auto mt-16 w-full max-w-[480px] scale-105 lg:mr-10">
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-8 -z-10 rounded-full bg-primary/20 blur-[60px]"

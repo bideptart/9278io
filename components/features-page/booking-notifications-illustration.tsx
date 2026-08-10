@@ -107,8 +107,8 @@ function Float({ children, delay = 0, duration = 4.5, className = "" }: { childr
  */
 export function BookingNotificationsIllustration() {
   return (
-    <div className="relative mx-auto w-full max-w-[520px] overflow-visible" style={{ aspectRatio: "520 / 440" }}>
-      <div className="absolute left-1/2 top-0 h-[440px] w-[520px] origin-top -translate-x-1/2 scale-[0.62] sm:scale-100">
+    <div className="relative mx-auto mt-8 w-full max-w-[620px] overflow-visible" style={{ aspectRatio: "520 / 440" }}>
+      <div className="absolute left-1/2 top-0 h-[440px] w-[520px] origin-top -translate-x-1/2 scale-[0.62] sm:scale-[1.2]">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-4 -top-4 -z-10 size-32 opacity-60"

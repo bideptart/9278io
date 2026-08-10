@@ -130,7 +130,7 @@ export function BookingHistoryIllustration() {
   )
 
   return (
-    <div className="relative mx-auto w-full max-w-[460px] lg:mr-4">
+    <div className="relative mx-auto w-full max-w-[560px] lg:mr-4">
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-8 -z-10 rounded-full bg-primary/20 blur-[60px]"
@@ -177,7 +177,7 @@ export function BookingHistoryIllustration() {
             </div>
 
             {/* booking rows — filtered live by the typing search above; fixed height (not min) so the card never resizes as rows filter in/out */}
-            <div className="mt-1.5 h-[204px] space-y-1.5">
+            <div className="mt-1.5 h-[260px] space-y-1.5">
               <AnimatePresence mode="popLayout">
                 {filtered.map((b) => (
                   <motion.div
@@ -310,7 +310,7 @@ export function BookingHistoryIllustration() {
       </Float>
 
       {/* floating "Upcoming Appointments" card, clear of the card's right edge — mirrors "All Appointments" */}
-      <Float delay={0.35} duration={4.2} className="absolute -right-16 top-2 z-20 hidden sm:block">
+      <Float delay={0.35} duration={4.2} className="absolute -right-4 top-2 z-20 hidden sm:block">
         <div className="w-20 rounded-lg border border-border/70 bg-white p-2 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
           <span className="flex size-5 items-center justify-center rounded-full bg-primary text-white">
             <Bell className="size-3" aria-hidden />
