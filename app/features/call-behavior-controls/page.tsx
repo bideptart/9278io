@@ -24,6 +24,15 @@ import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
 import { CallBehaviorComparison } from "@/components/features-page/call-behavior-comparison"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { CallBehaviorPanel } from "@/components/features-page/call-behavior-panel"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: MessageSquareText, stat: "Custom", title: "Greeting", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: Repeat, stat: "Natural", title: "Interruptions", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: UserCheck, stat: "Smart", title: "Handoff Rules", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: PhoneForwarded, stat: "Every", title: "Call, Same Rules", color: "text-orange-600", tile: "bg-orange-50" },
+]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -109,14 +118,14 @@ export default function CallBehaviorControlsPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-2 md:px-8 md:pb-24 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Build &amp; Setup
               </span>
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 Call{" "}
                 <span
                   style={{
@@ -132,7 +141,8 @@ export default function CallBehaviorControlsPage() {
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Set how your agent greets callers, handles interruptions, and hands off conversations —
                 once, in the dashboard, and every call follows the same rules. Change your mind later and
-                the update applies to every call from that moment on, no redeployment needed.
+                the update applies to every call from that moment on, no redeployment needed. Every rule
+                lives in one place, so your whole team's calls stay consistent.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -159,14 +169,16 @@ export default function CallBehaviorControlsPage() {
                 </Button>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                 {["Set up once per agent", "Applies to every call automatically", "No code required"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5">
-                    <Check className="size-3.5 text-primary" aria-hidden />
+                    <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>
                 ))}
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 

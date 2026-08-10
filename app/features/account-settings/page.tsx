@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Settings, PhoneCall, Check, LayoutGrid, IndianRupee, HelpCircle } from "lucide-react"
+import { ArrowRight, PhoneCall, Check, LayoutGrid, IndianRupee, HelpCircle, Receipt, Users2, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -11,6 +11,15 @@ import { AccountSettingsHero } from "@/components/features-page/account-settings
 import { AccountSettingsToggleList } from "@/components/features-page/account-settings-toggle-list"
 import { AccountSettingsFlow } from "@/components/features-page/account-settings-flow"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: Receipt, stat: "1-click", title: "Billing & Invoices", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: Users2, stat: "Full", title: "Team Access Control", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: ShieldCheck, stat: "Always", title: "Visible Security", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: LayoutGrid, stat: "1", title: "Place, Everything", color: "text-orange-600", tile: "bg-orange-50" },
+]
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
@@ -62,14 +71,14 @@ export default function AccountSettingsPage() {
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
 
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-10 pt-2 md:px-8 md:pb-14 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <Settings className="size-3.5" aria-hidden />
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Account &amp; Overview
               </span>
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 Account{" "}
                 <span
                   style={{
@@ -82,7 +91,7 @@ export default function AccountSettingsPage() {
                   Settings
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Manage billing, team access, and account details in one place — every change applies
                 across your account instantly. Invite teammates, set who can edit what, and keep every
                 invoice a click away. Security settings stay visible too, so nothing important gets
@@ -120,11 +129,13 @@ export default function AccountSettingsPage() {
                     className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
                     style={{ border: "1px solid #E4ECFF" }}
                   >
-                    <Check className="size-3.5 text-primary" aria-hidden />
+                    <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>
                 ))}
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 

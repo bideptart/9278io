@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, LayoutDashboard, PhoneCall, Check, IndianRupee, HelpCircle } from "lucide-react"
+import { ArrowRight, LayoutDashboard, PhoneCall, Check, IndianRupee, HelpCircle, Activity, BarChart3, Link2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -12,6 +12,15 @@ import { DashboardOverviewStats } from "@/components/features-page/dashboard-ove
 import { DashboardBootSequence } from "@/components/features-page/dashboard-boot-sequence"
 import { ComparisonPanel } from "@/components/features-page/comparison-panel"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: Activity, stat: "Live", title: "Activity Feed", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: BarChart3, stat: "Instant", title: "Usage at a Glance", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: Link2, stat: "Built-in", title: "Quick Links", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: LayoutDashboard, stat: "1", title: "Dashboard, Everything", color: "text-orange-600", tile: "bg-orange-50" },
+]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -61,14 +70,14 @@ export default function DashboardOverviewPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-10 pt-2 md:px-8 md:pb-14 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <LayoutDashboard className="size-3.5" aria-hidden />
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Account &amp; Overview
               </span>
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 Dashboard
                 <br />
                 <span
@@ -82,9 +91,9 @@ export default function DashboardOverviewPage() {
                   Overview
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 See your account's activity at a glance the moment you log in — calls, minutes, bookings,
-                and what needs your attention.
+                and what needs your attention, all in one place so nothing slips through.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -111,14 +120,16 @@ export default function DashboardOverviewPage() {
                 </Button>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                 {["Live activity feed", "Usage at a glance", "Quick links built in"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5">
-                    <Check className="size-3.5 text-primary" aria-hidden />
+                    <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>
                 ))}
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 

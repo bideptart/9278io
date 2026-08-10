@@ -268,7 +268,7 @@ export function PlaygroundIllustration() {
       </motion.div>
 
       {/* floating prompt-diff card, wired into the agent avatar with a traveling pulse */}
-      <div className="absolute -left-3 top-0 z-20 hidden sm:-left-14 sm:block">
+      <div className="absolute -left-3 top-6 z-20 hidden sm:-left-6 sm:top-6 sm:block">
         <motion.div
           className="relative w-[172px] rounded-2xl bg-white p-3"
           style={{ border: "1px solid #E4ECFF", boxShadow: "0 16px 34px -18px oklch(0.2_0.05_260/0.4)" }}
@@ -302,7 +302,7 @@ export function PlaygroundIllustration() {
 
       {/* dimmed "live" agent outside the boundary — untouched by testing */}
       <motion.div
-        className="absolute -bottom-2 -right-2 z-20 hidden flex-col items-center gap-1.5 sm:-right-10 sm:flex"
+        className="absolute -bottom-2 right-2 z-20 hidden flex-col items-center gap-1.5 sm:right-0 sm:flex"
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       >
