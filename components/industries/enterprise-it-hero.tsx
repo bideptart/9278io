@@ -123,7 +123,7 @@ export function EnterpriseItHero({ pitch }: { pitch: string }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="relative mx-auto w-full max-w-[620px]">
+            <div className="relative mx-auto w-full max-w-[670px]">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-x-6 top-6 -z-10 h-[85%] rounded-[2.5rem] bg-[radial-gradient(60%_60%_at_50%_20%,rgba(37,99,235,0.16),transparent_70%)] motion-safe:animate-[breathe_7s_ease-in-out_infinite]"
