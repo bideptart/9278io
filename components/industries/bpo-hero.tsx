@@ -147,7 +147,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden px-6 pb-2 md:px-8 md:pb-3">
+      <div className="w-full overflow-hidden px-6 pb-2 pt-6 md:px-8 md:pb-3 md:pt-10">
         <Marquee pauseOnHover className="mx-auto max-w-6xl [--duration:24s] [--gap:0px]">
           {HERO_STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-4 px-8">
