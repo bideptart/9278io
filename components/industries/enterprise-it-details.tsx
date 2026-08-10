@@ -69,7 +69,7 @@ export function EnterpriseItDetails({
             <Volume2 className="size-5 md:size-6" aria-hidden />
           </span>
 
-          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-4 shadow-sm md:p-8">
+          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white p-4 shadow-sm md:bg-gradient-to-b md:from-blue-50/40 md:to-white md:p-8">
             <Volume2
               aria-hidden
               className="ind-spin-slow pointer-events-none absolute -bottom-10 -right-10 size-48 text-blue-600/[0.06]"
