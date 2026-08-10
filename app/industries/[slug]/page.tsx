@@ -51,6 +51,7 @@ import { ConversationPreviewChat } from "@/components/industries/conversation-pr
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { EcommercePerformanceChart } from "@/components/industries/ecommerce-performance-chart"
 import { EcommerceHeroVisual } from "@/components/industries/ecommerce-hero-visual"
+import { RealEstateHeroVisual } from "@/components/industries/real-estate-hero-visual"
 import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
@@ -96,7 +97,7 @@ function ECommercePage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+      <main className="min-h-dvh bg-white text-slate-900">
 
       <BreadcrumbJsonLd
         items={[
@@ -131,18 +132,18 @@ function ECommercePage() {
           }}
         />
 
-        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+        <div className="w-full px-6 pt-4 pb-8 md:px-8 md:pt-6 md:pb-10">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-1.5 pl-1.5 pr-5 text-[14px] font-medium text-blue-700 shadow-sm backdrop-blur">
-                <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-2 px-4 text-sm font-medium text-blue-700 shadow-sm backdrop-blur">
+                <span className="grid size-5 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <Sparkles className="size-3.5" aria-hidden />
                 </span>
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-5 text-[38px] font-extrabold md:text-[52px] lg:text-[64px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
                 <br />
                 <span
@@ -157,13 +158,13 @@ function ECommercePage() {
                 </span>
               </h1>
 
-              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600 md:text-base">
                 Handle every customer call instantly—even during flash sales and viral traffic spikes. 9278.io
                 automates order updates, returns, and upsells, escalating only complex issues while answering in
                 the customer's preferred language.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-3">
                 {/* Inbound */}
                 <span className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/95 px-4 py-2 text-[13px] font-semibold text-blue-700 shadow-sm">
                   <Phone className="size-4 text-blue-600" aria-hidden />
@@ -181,12 +182,12 @@ function ECommercePage() {
                 </span>
               </div>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+              <div className="mt-6 flex flex-nowrap items-center gap-2 sm:gap-3.5">
                 {/* Get Started — purple gradient pill with arrow on RIGHT */}
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                  className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=ecommerce">
                     Get Started
@@ -200,7 +201,7 @@ function ECommercePage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/pricing">
                     <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
@@ -656,7 +657,7 @@ function RealEstatePage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+      <main className="min-h-dvh bg-white text-slate-900">
 
       <BreadcrumbJsonLd
         items={[
@@ -689,18 +690,18 @@ function RealEstatePage() {
           }}
         />
 
-        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-10">
+        <div className="w-full px-6 pt-4 pb-8 md:px-8 md:pt-6 md:pb-10">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-1.5 pl-1.5 pr-5 text-[14px] font-medium text-blue-700 shadow-sm backdrop-blur">
-                <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-2 px-4 text-sm font-medium text-blue-700 shadow-sm backdrop-blur">
+                <span className="grid size-5 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <Sparkles className="size-3.5" aria-hidden />
                 </span>
                 AI Voice Agents for Modern Businesses
               </span>
 
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-5 text-[38px] font-extrabold md:text-[52px] lg:text-[64px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
                 <br />
                 <span
@@ -715,11 +716,11 @@ function RealEstatePage() {
                 </span>
               </h1>
 
-              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600 md:text-base">
                 {industry.pitch}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-3">
                 <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/70 bg-emerald-50/90 px-4 py-2 text-[13px] font-semibold text-emerald-700 shadow-sm">
                   <Clock className="size-4 text-emerald-600" aria-hidden />
                   24/7 Calling
@@ -734,11 +735,11 @@ function RealEstatePage() {
                 </span>
               </div>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+              <div className="mt-6 flex flex-nowrap items-center gap-2 sm:gap-3.5">
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                  className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=real-estate">
                     Get Started
@@ -751,7 +752,7 @@ function RealEstatePage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/pricing">
                     <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
@@ -761,80 +762,9 @@ function RealEstatePage() {
               </div>
             </ScrollReveal>
 
-            {/* Right — Picture 1: real property photo with floating status chips */}
+            {/* Right — animated real-estate hero visual (blue + white only) */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[560px]">
-                <div className="relative overflow-hidden rounded-[2rem] shadow-xl shadow-slate-900/10">
-                  <IndustryImage slug="real-estate" name="Real estate" />
-                </div>
-
-                <div className="absolute -left-4 top-6 z-20 hero-float-up">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                        <Home className="size-5" aria-hidden />
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-bold text-slate-800 leading-tight">New Lead</p>
-                        <p className="text-[11px] font-medium text-slate-500">Qualifying</p>
-                      </div>
-                      <span className="ml-1 grid size-4 place-items-center rounded-full bg-emerald-500">
-                        <Check className="size-2.5 text-white" aria-hidden />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -right-4 -top-4 z-20 ind-float">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <p className="text-[13px] font-bold text-blue-700 leading-tight">AI Voice Agent</p>
-                    <div className="mt-1.5 flex items-center gap-1.5">
-                      <p className="text-[10.5px] font-medium text-slate-500">Listening…</p>
-                      <div className="flex h-3 items-end gap-[1.5px]" aria-hidden>
-                        {[7, 11, 6, 13, 9, 14, 8, 12, 7, 10, 5, 11].map((h, i) => (
-                          <span
-                            key={i}
-                            style={{
-                              height: `${h}px`,
-                              animationDelay: `${(i % 6) * 0.1}s`,
-                              background: "linear-gradient(to top, rgb(37,99,235), rgb(14,165,233))",
-                            }}
-                            className="ind-eq w-[2.5px] rounded-full"
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -left-6 top-[48%] z-20 hero-float-down">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                        <CalendarCheck className="size-5" aria-hidden />
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-bold text-slate-800 leading-tight">Site Visit</p>
-                        <p className="text-[11px] font-medium text-slate-500">Booked</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -right-6 bottom-10 z-20 ind-float">
-                  <div className="rounded-2xl border border-white/60 bg-white/90 px-4 py-3 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60">
-                    <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600">
-                        <UserCheck className="size-5" aria-hidden />
-                      </span>
-                      <div>
-                        <p className="text-[12.5px] font-bold text-slate-800 leading-tight">Buyer</p>
-                        <p className="text-[11px] font-medium text-slate-500">Qualified</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <RealEstateHeroVisual />
             </ScrollReveal>
           </div>
         </div>
@@ -1430,7 +1360,7 @@ function HomeServicesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+      <main className="min-h-dvh bg-white text-slate-900">
 
       <BreadcrumbJsonLd
         items={[
@@ -1448,18 +1378,18 @@ function HomeServicesPage() {
 
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
-        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
-          <div className="mx-auto grid max-w-7xl items-start gap-14 lg:grid-cols-2 lg:gap-10">
+        <div className="w-full px-6 pt-4 pb-8 md:px-8 md:pt-6 md:pb-10">
+          <div className="mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[13px] font-medium text-blue-700 shadow-sm">
-                <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm">
+                <span className="grid size-5 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <Sparkles className="size-3.5" aria-hidden />
                 </span>
                 AI voice agents for home services
               </span>
 
-              <h1 className="mt-6 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-4 text-[38px] font-extrabold md:text-[52px] lg:text-[64px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>AI Voice Agents Built for</span>
                 <br />
                 <span
@@ -1474,11 +1404,11 @@ function HomeServicesPage() {
                 </span>
               </h1>
 
-              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600 md:text-base">
                 {industry.pitch}
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-4 sm:flex-nowrap">
+              <div className="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
@@ -1496,11 +1426,11 @@ function HomeServicesPage() {
                 ))}
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3.5">
+              <div className="mt-5 flex flex-nowrap items-center gap-2 sm:gap-3.5">
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                  className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=home-services">
                     Get Started
@@ -1513,7 +1443,7 @@ function HomeServicesPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/pricing">
                     <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
@@ -1894,7 +1824,7 @@ function RestaurantsPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+      <main className="min-h-dvh bg-white text-slate-900">
 
       <BreadcrumbJsonLd
         items={[
@@ -1917,8 +1847,8 @@ function RestaurantsPage() {
           <div className="mx-auto grid max-w-7xl items-end gap-14 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[13px] font-medium text-blue-700 shadow-sm">
-                <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm">
+                <span className="grid size-5 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <Sparkles className="size-3.5" aria-hidden />
                 </span>
                 AI voice agents for restaurants
@@ -1961,11 +1891,11 @@ function RestaurantsPage() {
                 ))}
               </div>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3.5">
+              <div className="mt-9 flex flex-nowrap items-center gap-2 sm:gap-3.5">
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                  className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=restaurants">
                     Get Started
@@ -1978,7 +1908,7 @@ function RestaurantsPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/pricing">
                     <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />

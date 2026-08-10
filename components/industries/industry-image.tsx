@@ -12,7 +12,20 @@ import { Phone } from "lucide-react"
  * public/industries/ — e.g. public/industries/real-estate.jpg — and it
  * appears automatically. Recommended size ~640×480 (4:3), JPG or WEBP.
  */
-export function IndustryImage({ slug, name }: { slug: string; name: string }) {
+export function IndustryImage({
+  slug,
+  name,
+  objectPosition = "center",
+  objectFit = "cover",
+  scale = 1,
+}: {
+  slug: string
+  name: string
+  objectPosition?: string
+  objectFit?: "cover" | "contain"
+  /** Slight base zoom (e.g. 1.05) to eat into contain letterboxing without full-on cropping. */
+  scale?: number
+}) {
   const [failed, setFailed] = useState(false)
 
   if (!failed) {
@@ -22,7 +35,10 @@ export function IndustryImage({ slug, name }: { slug: string; name: string }) {
         src={`/industries/${slug}.jpg`}
         alt={`${name} — AI voice agent`}
         onError={() => setFailed(true)}
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className={`h-full w-full transition-transform duration-500 group-hover:scale-105 ${
+          objectFit === "contain" ? "object-contain" : "object-cover"
+        }`}
+        style={{ objectPosition, transform: scale !== 1 ? `scale(${scale})` : undefined }}
         loading="lazy"
       />
     )

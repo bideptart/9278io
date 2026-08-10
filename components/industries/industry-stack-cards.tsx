@@ -33,33 +33,73 @@ export function IndustryStackCards() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray<HTMLElement>(".industry-stack-card")
-      const face = gsap.utils.toArray<HTMLElement>(".industry-stack-face")
+      // Pin-and-stack effect only makes sense with a full viewport of scroll
+      // room per card — on mobile it just leaves blank gaps, so it's desktop-only.
+      const mm = gsap.matchMedia()
 
-      cards.forEach((card, i) => {
-        const isLast = i === cards.length - 1
-        if (isLast) return // last card just scrolls in normally, ending the stack
+      mm.add("(min-width: 768px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(".industry-stack-card")
+        const face = gsap.utils.toArray<HTMLElement>(".industry-stack-face")
 
-        ScrollTrigger.create({
-          trigger: card,
-          start: `top top+=${80 + i * 12}`,
-          end: "bottom top",
-          pin: true,
-          pinSpacing: false,
+        cards.forEach((card, i) => {
+          const isLast = i === cards.length - 1
+          if (isLast) return // last card just scrolls in normally, ending the stack
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: `top top+=${80 + i * 12}`,
+            end: "bottom top",
+            pin: true,
+            pinSpacing: false,
+          })
+
+          // scale down + dim the card as the next one arrives on top of it
+          gsap.to(face[i], {
+            scale: 0.94,
+            opacity: 0.5,
+            filter: "blur(1.5px)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: cards[i + 1],
+              start: "top bottom",
+              end: `top top+=${80 + (i + 1) * 12}`,
+              scrub: true,
+            },
+          })
         })
+      })
 
-        // scale down + dim the card as the next one arrives on top of it
-        gsap.to(face[i], {
-          scale: 0.94,
-          opacity: 0.5,
-          filter: "blur(1.5px)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: cards[i + 1],
-            start: "top bottom",
-            end: `top top+=${80 + (i + 1) * 12}`,
-            scrub: true,
-          },
+      // Mobile gets the same pin-and-swap effect, just with a shorter
+      // per-card scroll distance so it doesn't leave big blank gaps.
+      mm.add("(max-width: 767px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(".industry-stack-card")
+        const face = gsap.utils.toArray<HTMLElement>(".industry-stack-face")
+
+        cards.forEach((card, i) => {
+          const isLast = i === cards.length - 1
+          if (isLast) return // last card just scrolls in normally, ending the stack
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: `top top+=${60 + i * 8}`,
+            end: "bottom top",
+            pin: true,
+            pinSpacing: false,
+          })
+
+          // scale down + dim the card as the next one arrives on top of it
+          gsap.to(face[i], {
+            scale: 0.94,
+            opacity: 0.5,
+            filter: "blur(1.5px)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: cards[i + 1],
+              start: "top bottom",
+              end: `top top+=${60 + (i + 1) * 8}`,
+              scrub: true,
+            },
+          })
         })
       })
     }, containerRef)
@@ -78,7 +118,7 @@ export function IndustryStackCards() {
         return (
           <div
             key={ind.slug}
-            className="industry-stack-card flex min-h-screen items-start justify-center px-6 pt-2 md:px-0 lg:pt-8"
+            className="industry-stack-card flex min-h-[58vh] items-start justify-center px-6 md:min-h-screen md:px-0 lg:pt-8"
           >
             <Link
               href={`/industries/${ind.slug}`}
