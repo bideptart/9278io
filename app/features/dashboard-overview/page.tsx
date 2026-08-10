@@ -78,8 +78,7 @@ export default function DashboardOverviewPage() {
                 Account &amp; Overview
               </span>
               <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
-                Dashboard
-                <br />
+                Dashboard{" "}
                 <span
                   style={{
                     backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
@@ -91,9 +90,10 @@ export default function DashboardOverviewPage() {
                   Overview
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 See your account's activity at a glance the moment you log in — calls, minutes, bookings,
-                and what needs your attention, all in one place so nothing slips through.
+                and what needs your attention, all in one place so nothing slips through. No digging
+                through menus to find out what happened while you were away. Everything's already there.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
@@ -120,9 +120,13 @@ export default function DashboardOverviewPage() {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-8 flex flex-wrap gap-2">
                 {["Live activity feed", "Usage at a glance", "Quick links built in"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
                     <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>

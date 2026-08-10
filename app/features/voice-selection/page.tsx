@@ -122,9 +122,13 @@ export default function VoiceSelectionPage() {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-8 flex flex-wrap gap-2">
                 {["Ten named voices", "10+ Indian languages", "Native audio, not text-to-speech"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
                     <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>

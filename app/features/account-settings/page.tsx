@@ -91,7 +91,7 @@ export default function AccountSettingsPage() {
                   Settings
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Manage billing, team access, and account details in one place — every change applies
                 across your account instantly. Invite teammates, set who can edit what, and keep every
                 invoice a click away. Security settings stay visible too, so nothing important gets
