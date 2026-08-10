@@ -112,8 +112,8 @@ export default function AutomotiveIndustryPage() {
           aria-hidden
           className="pointer-events-none absolute -top-32 right-0 h-[560px] w-[720px] rounded-full bg-primary/[0.1] blur-[130px]"
         />
-        <div className="relative w-full px-6 pb-10 pt-6 md:px-8 md:pb-12 md:pt-8">
-          <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
+        <div className="relative w-full px-6 pb-16 pt-6 md:px-8 md:pb-20 md:pt-8">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
               <ScrollReveal>
@@ -229,8 +229,8 @@ export default function AutomotiveIndustryPage() {
       {/* What it does — dark dispatch-board stage, automotive-only visual
           language (distinct from the shared light PlaybookStage used on
           the other industry pages). */}
-      <section className="w-full px-6 pb-8 pt-4 md:px-8 md:pb-12 md:pt-6">
-        <div className="mx-auto max-w-6xl">
+      <section className="w-full px-6 pb-8 pt-10 md:px-8 md:pb-12 md:pt-14">
+        <div className="w-full">
           <ScrollReveal className="max-w-2xl">
             <div className="flex items-center gap-3">
               <span className="h-7 w-1 rounded-full bg-primary" aria-hidden />
@@ -257,7 +257,7 @@ export default function AutomotiveIndustryPage() {
           the back face swaps the whole palette (primary fill, white text)
           instead of just fading or lifting like the rest of the site. */}
       <section className="w-full px-6 py-8 md:px-8 md:py-12">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal>
             <div className="grid gap-5 sm:grid-cols-3">
               {[
@@ -312,7 +312,7 @@ export default function AutomotiveIndustryPage() {
 
       {/* The showroom-to-service journey */}
       <section className="w-full px-6 py-8 md:px-8 md:py-12">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="max-w-2xl">
             <div className="flex items-center gap-3">
               <span className="h-7 w-1 rounded-full bg-primary" aria-hidden />
@@ -374,7 +374,7 @@ export default function AutomotiveIndustryPage() {
           then both mockups side by side under it, connected by an arrow
           reading left-to-right as "set up, then compliant" in one glance. */}
       <section className="w-full px-6 py-8 md:px-8 md:py-12">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <ScrollReveal>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Rollout</p>
@@ -479,7 +479,7 @@ export default function AutomotiveIndustryPage() {
           card style already used elsewhere in the project (e-commerce's
           industry page) rather than the asymmetric bento used before. */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight md:text-3xl">
               Other industries we power
