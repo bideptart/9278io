@@ -3,6 +3,7 @@ import Link from "next/link"
 import {
   ArrowRight,
   Archive,
+  Check,
   HelpCircle,
   IndianRupee,
   LayoutDashboard,
@@ -122,9 +123,10 @@ export default function SupportTicketsSystemPage() {
                   Tickets System
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Raise and track support requests directly from your dashboard — no separate portal, no
-                email back-and-forth to find out where things stand.
+                email back-and-forth to find out where things stand. Every ticket stays on record for
+                whenever you need to look back.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
@@ -149,6 +151,19 @@ export default function SupportTicketsSystemPage() {
                     Talk to sales
                   </Link>
                 </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Auto ticket creation", "Live activity feed", "Priority flags"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
+                    <Check className="size-4 text-emerald-600" aria-hidden />
+                    {t}
+                  </span>
+                ))}
               </div>
 
               <HeroStatsBand stats={heroStats} />

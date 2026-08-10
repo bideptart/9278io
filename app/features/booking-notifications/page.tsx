@@ -3,6 +3,7 @@ import Link from "next/link"
 import {
   ArrowRight,
   CalendarCheck2,
+  Check,
   HelpCircle,
   History,
   Inbox,
@@ -193,6 +194,19 @@ export default function BookingNotificationsPage() {
                     Talk to sales
                   </Link>
                 </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Every booking notified", "Email + SMS alerts", "Instant delivery"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
+                    <Check className="size-4 text-emerald-600" aria-hidden />
+                    {t}
+                  </span>
+                ))}
               </div>
 
               <HeroStatsBand stats={heroStats} />

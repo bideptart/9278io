@@ -134,7 +134,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
           </div>
 
           <ScrollReveal delay={0.14}>
-            <div className="group relative mx-auto w-full max-w-[610px]">
+            <div className="group relative mx-auto w-full max-w-[560px]">
               <div
                 aria-hidden
                 className="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-[radial-gradient(60%_60%_at_50%_45%,rgba(37,99,235,0.2),transparent_70%)] motion-safe:animate-[breathe_8s_ease-in-out_infinite]"
@@ -147,7 +147,7 @@ export function BpoHero({ industry }: { industry: Industry }) {
         </div>
       </div>
 
-      <div className="w-full overflow-hidden px-6 pb-2 md:px-8 md:pb-3">
+      <div className="w-full overflow-hidden px-6 pb-2 pt-6 md:px-8 md:pb-3 md:pt-10">
         <Marquee pauseOnHover className="mx-auto max-w-6xl [--duration:24s] [--gap:0px]">
           {HERO_STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-4 px-8">

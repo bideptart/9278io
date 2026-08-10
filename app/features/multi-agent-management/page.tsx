@@ -129,9 +129,10 @@ export default function MultiAgentManagementPage() {
                   Management
                 </span>
               </h1>
-              <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-3xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Create and manage as many AI agents as you need from a single account — one dashboard, fast
-                cloning, and a dedicated number per agent. Switch between agents in seconds, no separate logins.
+                cloning, and a dedicated number per agent. Switch between agents in seconds, no separate
+                logins, and no juggling multiple accounts to keep everything running.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">

@@ -86,7 +86,7 @@ export function CallSoundwaveIllustration() {
   }, [playingIndex])
 
   return (
-    <div className="relative mx-auto w-full max-w-[520px] lg:mr-4">
+    <div className="relative mx-auto w-full max-w-[640px] lg:max-w-none">
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-8 -z-10 rounded-full bg-primary/20 blur-[60px]"
@@ -110,17 +110,17 @@ export function CallSoundwaveIllustration() {
           glowColor="oklch(0.6 0.19 262.88 / 0.16)"
           className="relative overflow-hidden rounded-3xl border-border/60 bg-white shadow-[0_30px_70px_-30px_oklch(0.2_0.05_260/0.35)] backdrop-blur-0"
         >
-          <div className="p-6">
+          <div className="p-6 lg:p-8">
             <div className="flex items-center gap-2">
-              <p className="text-sm font-bold tracking-tight text-foreground">Call Reports</p>
-              <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-emerald-600">
+              <p className="text-sm font-bold tracking-tight text-foreground lg:text-base">Call Reports</p>
+              <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-emerald-600 lg:px-2.5 lg:py-1 lg:text-[10px]">
                 <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
                 Live
               </span>
             </div>
 
             {/* stat tiles */}
-            <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:mt-6 lg:gap-3">
               {STATS.map((s, si) => (
                 <motion.div
                   key={s.label}
@@ -128,29 +128,29 @@ export function CallSoundwaveIllustration() {
                   animate={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -3 }}
                   transition={{ duration: 0.35, delay: 0.15 + si * 0.08, ease: "easeOut" }}
-                  className="rounded-xl border border-border/60 p-2.5 transition-shadow hover:shadow-[0_10px_24px_-14px_rgba(15,23,42,0.25)]"
+                  className="rounded-xl border border-border/60 p-2.5 transition-shadow hover:shadow-[0_10px_24px_-14px_rgba(15,23,42,0.25)] lg:p-4"
                 >
                   <motion.span
                     initial={{ scale: 0.6 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 16, delay: 0.25 + si * 0.08 }}
-                    className={`flex size-7 items-center justify-center rounded-full ${s.tone}`}
+                    className={`flex size-7 items-center justify-center rounded-full ${s.tone} lg:size-9`}
                   >
-                    <s.icon className="size-3.5" aria-hidden />
+                    <s.icon className="size-3.5 lg:size-4" aria-hidden />
                   </motion.span>
                   {s.display ? (
-                    <p className="mt-1.5 text-sm font-bold leading-none text-foreground">{s.display}</p>
+                    <p className="mt-1.5 text-sm font-bold leading-none text-foreground lg:mt-2.5 lg:text-lg">{s.display}</p>
                   ) : (
-                    <CountUp value={s.value} once={false} className="mt-1.5 block text-sm font-bold leading-none text-foreground" />
+                    <CountUp value={s.value} once={false} className="mt-1.5 block text-sm font-bold leading-none text-foreground lg:mt-2.5 lg:text-lg" />
                   )}
-                  <p className="truncate text-[9px] text-muted-foreground">{s.label}</p>
+                  <p className="truncate text-[9px] text-muted-foreground lg:mt-1 lg:text-xs">{s.label}</p>
                 </motion.div>
               ))}
             </div>
 
             {/* recordings list */}
-            <p className="mt-4 text-xs font-semibold text-foreground">Call Recordings</p>
-            <div className="mt-2 space-y-2">
+            <p className="mt-4 text-xs font-semibold text-foreground lg:mt-6 lg:text-sm">Call Recordings</p>
+            <div className="mt-2 space-y-2 lg:mt-3 lg:space-y-3">
               {ROWS.map((row, i) => {
                 const isPlaying = playingIndex === i
                 return (
@@ -159,37 +159,37 @@ export function CallSoundwaveIllustration() {
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.35, delay: 0.3 + i * 0.1 }}
-                    className={`relative overflow-hidden rounded-lg border px-2.5 py-2 transition-colors ${
+                    className={`relative overflow-hidden rounded-lg border px-2.5 py-2 transition-colors lg:px-4 lg:py-3.5 ${
                       isPlaying ? "border-primary/40 bg-primary/[0.03]" : "border-border/50"
                     }`}
                   >
-                    <div className="flex items-center gap-2.5">
+                    <div className="flex items-center gap-2.5 lg:gap-4">
                       <button
                         type="button"
                         onClick={() => setPlayingIndex(isPlaying ? null : i)}
                         aria-label={isPlaying ? `Pause recording ${i + 1}` : `Play recording ${i + 1}`}
-                        className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-transform hover:scale-105"
+                        className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-transform hover:scale-105 lg:size-8"
                       >
                         {isPlaying ? (
-                          <Pause className="size-3" aria-hidden fill="currentColor" />
+                          <Pause className="size-3 lg:size-3.5" aria-hidden fill="currentColor" />
                         ) : (
-                          <Play className="size-3 translate-x-px" aria-hidden fill="currentColor" />
+                          <Play className="size-3 translate-x-px lg:size-3.5" aria-hidden fill="currentColor" />
                         )}
                       </button>
-                      <div className="flex h-5 flex-1 items-end justify-between">
+                      <div className="flex h-5 flex-1 items-end justify-between lg:h-7">
                         {row.bars.map((h, bi) => (
                           <motion.span
                             key={bi}
-                            className="w-[3px] rounded-full bg-primary/50"
+                            className="w-[3px] rounded-full bg-primary/50 lg:w-1"
                             animate={isPlaying ? { height: [`${h * 0.6}%`, `${h}%`, `${h * 0.6}%`] } : { height: `${h * 0.6}%` }}
                             transition={isPlaying ? { duration: 0.5, repeat: Infinity, delay: bi * 0.05, ease: "easeInOut" } : { duration: 0.2 }}
                           />
                         ))}
                       </div>
-                      <span className="shrink-0 text-[10px] text-muted-foreground">
+                      <span className="shrink-0 text-[10px] text-muted-foreground lg:text-xs">
                         {isPlaying ? <span className="font-semibold text-primary">Now playing</span> : row.duration}
                       </span>
-                      <Download className="size-3 shrink-0 text-muted-foreground/60 transition-colors hover:text-primary" aria-hidden />
+                      <Download className="size-3 shrink-0 text-muted-foreground/60 transition-colors hover:text-primary lg:size-4" aria-hidden />
                     </div>
                     <div className="absolute inset-x-0 bottom-0 h-[2px] bg-border/40">
                       <div className="h-full bg-primary/60 transition-[width] duration-100" style={{ width: `${isPlaying ? progress : 0}%` }} />
@@ -206,7 +206,7 @@ export function CallSoundwaveIllustration() {
           disappearing, since the transform an ancestor sets survives while a class
           on the animated Float element itself would get clobbered by its own
           inline transform. */}
-      <div className="absolute -right-4 -top-8 z-20 origin-top-right scale-[0.7] sm:scale-100">
+      <div className="absolute -right-4 -top-4 z-20 origin-top-right scale-[0.7] sm:scale-100">
         <Float delay={0.3} duration={4.4}>
           <div className="flex w-[190px] items-center gap-2.5 rounded-2xl border border-border/70 bg-white px-3.5 py-2.5 shadow-[0_16px_34px_-18px_oklch(0.2_0.05_260/0.4)]">
             <span className="relative flex size-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-white">
@@ -230,14 +230,6 @@ export function CallSoundwaveIllustration() {
         </Float>
       </div>
 
-      {/* transcript badge, bottom-right */}
-      <div className="absolute -right-6 -bottom-6 z-20 origin-bottom-right scale-[0.7] sm:scale-100">
-        <Float delay={0.7} duration={4.8}>
-          <span className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-[0_16px_32px_-12px_rgba(16,185,129,0.5)]">
-            <FileText className="size-6" aria-hidden />
-          </span>
-        </Float>
-      </div>
     </div>
   )
 }
