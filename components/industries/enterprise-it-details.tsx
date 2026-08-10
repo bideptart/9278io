@@ -29,7 +29,7 @@ export function EnterpriseItDetails({
 }) {
   return (
     <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
-      <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
+      <div className="relative mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
         <ScrollReveal className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Server className="size-6" aria-hidden />
@@ -64,7 +64,7 @@ export function EnterpriseItDetails({
           </div>
         </ScrollReveal>
 
-        <ScrollReveal className="relative h-full overflow-visible [animation-delay:1s] md:[animation-delay:0.1s]">
+        <ScrollReveal className="absolute inset-x-0 top-0 z-10 overflow-visible [animation-delay:1s] md:static md:inset-auto md:z-auto md:h-full md:[animation-delay:0.1s]">
           <span className="absolute -top-5 right-6 z-20 hero-float-down grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Volume2 className="size-6" aria-hidden />
           </span>
