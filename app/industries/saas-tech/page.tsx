@@ -230,7 +230,7 @@ export default function SaasTechPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollStepItem index={0}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-blue-50/30 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the AI Agent Does on Day One
               </h2>
@@ -255,7 +255,7 @@ export default function SaasTechPage() {
 
           {/* Right — smarter support panel with robot */}
           <ScrollStepItem index={1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 Smarter support.
                 <br />
@@ -309,7 +309,7 @@ export default function SaasTechPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[minmax(0,360px)_1fr]">
           {/* Performance card */}
           <ScrollStepItem index={0}>
-            <div className="overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
+            <div className="overflow-hidden rounded-[2rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-7">
               <div className="flex items-center gap-2.5">
                 <span className="grid size-9 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <TrendingUp className="size-4.5" aria-hidden />
@@ -342,7 +342,7 @@ export default function SaasTechPage() {
 
           {/* How the agent actually sounds */}
           <ScrollStepItem index={1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-blue-50/30 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the Agent Actually Sounds
               </h2>
@@ -402,7 +402,7 @@ export default function SaasTechPage() {
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
             {WHY_ITEMS.map((item, i) => (
               <ScrollStepItem key={item.label} index={i}>
-                <div className="group flex h-full flex-col items-center gap-3 rounded-2xl border border-blue-400 bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-600/15">
+                <div className="group flex h-full flex-col items-center gap-3 rounded-2xl bg-white p-4 text-center shadow-[0_15px_35px_-10px_rgba(15,23,42,0.3)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-600/15">
                   <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                     <item.Icon className="size-5" aria-hidden />
                   </span>

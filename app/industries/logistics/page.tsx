@@ -180,9 +180,9 @@ export default function LogisticsPage() {
 
             {/* Right — order tracking map card */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[620px] overflow-hidden rounded-[1.75rem] shadow-xl shadow-slate-900/10">
+              <div className="relative mx-auto w-full max-w-[620px] overflow-hidden rounded-[1.75rem] shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
                 {/* Map panel */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-slate-50 to-blue-100">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-blue-50 via-slate-50 to-blue-100">
                   <div
                     aria-hidden
                     className="absolute inset-0 opacity-[0.35]"
@@ -264,7 +264,7 @@ export default function LogisticsPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
           {/* What the agent handles */}
           <ScrollStepItem index={0}>
-            <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
+            <div className="h-full rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
               <p className="font-sans text-lg font-bold text-slate-900">What the agent handles</p>
               <div className="mt-4 space-y-4">
                 {AGENT_HANDLES.map((item, i) => (
@@ -285,7 +285,7 @@ export default function LogisticsPage() {
 
           {/* Benefits */}
           <ScrollStepItem index={1}>
-            <div className="flex h-full flex-col rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
+            <div className="flex h-full flex-col rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
               <p className="font-sans text-lg font-bold text-slate-900">Benefits for your logistics business</p>
               <div className="mt-4 space-y-3.5">
                 {BENEFITS.map((line, i) => (
@@ -316,7 +316,7 @@ export default function LogisticsPage() {
 
           {/* Live agent preview */}
           <ScrollStepItem index={2}>
-            <div className="h-full overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
+            <div className="h-full overflow-hidden rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
               <div className="flex items-center justify-between">
                 <p className="font-sans text-lg font-bold text-slate-900">Live agent preview</p>
                 <span className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-600">
@@ -336,7 +336,7 @@ export default function LogisticsPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_360px]">
           {/* Rollout card */}
           <ScrollStepItem index={0}>
-            <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-7">
+            <div className="h-full rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-7">
               <p className="font-sans text-xl font-bold text-slate-900">How logistics teams roll out 9278.io</p>
 
               <div className="relative mt-6 grid gap-8 sm:grid-cols-2">
@@ -421,7 +421,7 @@ export default function LogisticsPage() {
 
         {/* Stats bar */}
         <div className="mx-auto mt-8 max-w-7xl">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-white px-3 py-3 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-6">
               {[
                 { Icon: Zap, label: "Average response time", value: "< 3 Seconds" },
@@ -456,7 +456,7 @@ export default function LogisticsPage() {
         </ScrollStepItem>
 
         <ScrollStepItem className="mx-auto max-w-7xl">
-          <div className="rounded-[1.75rem] border border-blue-400 bg-white px-6 py-5 shadow-sm">
+          <div className="rounded-[1.75rem] bg-white px-6 py-5 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
               {USE_CASES.map((u, i) => (
                 <ScrollStepItem
