@@ -142,19 +142,19 @@ export default function SaasTechPage() {
 
               <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600 md:text-base">{PITCH}</p>
 
-              <div className="mt-5 grid grid-cols-2 gap-x-8 gap-y-5 sm:flex sm:flex-wrap">
+              <div className="mt-5 grid grid-cols-2 gap-x-3 gap-y-5 sm:flex sm:flex-wrap sm:gap-x-8">
                 {[
                   { Icon: Phone, title: "24/7", desc: "Customer Support" },
                   { Icon: Users, title: "Trial Conversion", desc: "Calls" },
                   { Icon: Globe, title: "Multi-language", desc: "Voice AI" },
                 ].map((f) => (
-                  <div key={f.title} className="flex items-start gap-2.5">
-                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600">
-                      <f.Icon className="size-4.5" aria-hidden />
+                  <div key={f.title} className="flex min-w-0 items-start gap-2 sm:gap-2.5">
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-600 sm:size-10">
+                      <f.Icon className="size-4 sm:size-4.5" aria-hidden />
                     </span>
-                    <div>
-                      <p className="text-[13px] font-bold leading-snug text-slate-900">{f.title}</p>
-                      <p className="max-w-[130px] text-[11.5px] leading-snug text-slate-500">{f.desc}</p>
+                    <div className="min-w-0">
+                      <p className="text-[12px] font-bold leading-snug text-slate-900 sm:text-[13px]">{f.title}</p>
+                      <p className="max-w-[110px] text-[11px] leading-snug text-slate-500 sm:max-w-[130px] sm:text-[11.5px]">{f.desc}</p>
                     </div>
                   </div>
                 ))}

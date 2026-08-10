@@ -1408,7 +1408,7 @@ function HomeServicesPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
+              <div className="mt-4 grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
@@ -1873,7 +1873,7 @@ function RestaurantsPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-4 sm:flex-nowrap">
+              <div className="mt-8 grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },

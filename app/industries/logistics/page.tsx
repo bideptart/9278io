@@ -135,7 +135,7 @@ export default function LogisticsPage() {
 
               <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600 md:text-base">{PITCH}</p>
 
-              <div className="mt-5 flex flex-wrap gap-3">
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
                 {[
                   { Icon: Clock, label: "24/7 Shipment Updates" },
                   { Icon: Check, label: "Delivery Confirmation" },
@@ -143,7 +143,7 @@ export default function LogisticsPage() {
                 ].map((f) => (
                   <span
                     key={f.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-[12.5px] font-semibold text-slate-700 shadow-sm"
+                    className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-center text-[11px] font-semibold text-slate-700 shadow-sm sm:px-3.5 sm:text-[12.5px]"
                   >
                     <f.Icon className="size-3.5 text-blue-600" aria-hidden />
                     {f.label}
