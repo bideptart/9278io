@@ -184,7 +184,7 @@ export default function MultiAgentManagementPage() {
 
       {/* Capabilities intro */}
       <section className="border-b border-border/50">
-        <div className="mx-auto flex max-w-5xl items-center justify-center px-6 py-10 md:px-8 md:py-14">
+        <div className="mx-auto flex max-w-6xl items-center justify-center px-6 py-10 md:px-8 md:py-14">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Multi-Agent Management</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">
@@ -234,7 +234,7 @@ export default function MultiAgentManagementPage() {
       />
 
       <section className="w-full px-6 pb-24 md:px-8" style={{ backgroundColor: "#F7F9FC" }}>
-        <div className="mx-auto max-w-5xl pt-16 md:pt-20">
+        <div className="mx-auto max-w-6xl pt-16 md:pt-20">
           <ScrollReveal>
             <h2 className="text-balance text-2xl font-bold tracking-tight md:text-3xl">Explore more of 9278.io</h2>
             <p className="mt-2 max-w-2xl text-pretty text-sm text-muted-foreground md:text-base">

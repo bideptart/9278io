@@ -43,33 +43,35 @@ export default function IndustriesPage() {
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04] bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:56px_56px]"
         />
-        <div className="w-full px-6 pb-10 pt-6 md:px-8 md:pb-20 md:pt-10">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="w-full px-6 pb-8 pt-4 md:px-8 md:pb-12 md:pt-6">
+          <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
               <div className="max-w-3xl">
-                <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-3.5 py-1.5 text-[10px] font-semibold uppercase leading-tight tracking-wide text-primary sm:px-5 sm:py-2 sm:text-xs sm:tracking-[0.18em]">
-                  <Sparkles className="size-3.5 shrink-0" aria-hidden />
+                <span className="inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-blue-200/70 bg-white/90 py-2 px-4 text-sm font-medium text-blue-700 shadow-sm backdrop-blur">
+                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-blue-100 text-blue-600">
+                    <Sparkles className="size-3.5" aria-hidden />
+                  </span>
                   Pre-tuned for the calls you actually take
                 </span>
-                <h1 className="mt-7 text-balance font-sans text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+                <h1 className="mt-5 text-balance font-sans text-[32px] font-semibold leading-[1.05] tracking-tight sm:text-[42px] md:text-[50px]">
                   Built for every kind of <span className="text-primary">phone call.</span>
                 </h1>
-                <div className="mt-6 flex items-center gap-3" aria-hidden>
+                <div className="mt-4 flex items-center gap-3" aria-hidden>
                   <span className="h-px w-14 bg-gradient-to-r from-primary to-transparent" />
                   <AudioLines className="size-4 shrink-0 text-primary" />
                   <span className="h-px w-8 bg-gradient-to-l from-primary to-transparent" />
                 </div>
-                <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+                <p className="mt-4 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground md:text-base">
                   One AI voice agent that answers calls, qualifies leads, and books appointments across every industry below
                   — fluent in 10+ Indian languages, on the same simple plans for everyone, live in under 5 minutes.
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-5 flex flex-nowrap gap-2 sm:gap-3">
                   <Button
                     asChild
                     size="lg"
-                    className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                    className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                   >
                     <Link href="/get-started">
                       Get Started
@@ -82,7 +84,7 @@ export default function IndustriesPage() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                    className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                   >
                     <Link href="/pricing">
                       <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />

@@ -88,7 +88,7 @@ export default function LogisticsPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-dvh bg-white text-slate-900" style={{ zoom: 0.9 }}>
+      <main className="min-h-dvh bg-white text-slate-900">
 
       <BreadcrumbJsonLd
         items={[
@@ -106,19 +106,19 @@ export default function LogisticsPage() {
 
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden bg-white">
-        <div className="w-full px-6 pt-6 pb-12 md:px-8 md:pt-8 md:pb-16">
+        <div className="w-full px-6 pt-4 pb-8 md:px-8 md:pt-6 md:pb-10">
 
-          <div className="mx-auto grid max-w-7xl items-end gap-14 lg:grid-cols-2 lg:gap-10">
+          <div className="mx-auto grid max-w-7xl items-end gap-10 lg:grid-cols-2 lg:gap-10">
             {/* Left — copy */}
             <ScrollReveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-1.5 pl-1.5 pr-5 text-[12px] font-bold uppercase tracking-wide text-blue-700 shadow-sm">
-                <span className="grid size-6 place-items-center rounded-full bg-blue-100 text-blue-600">
+              <span className="inline-flex items-center gap-2 rounded-full border border-blue-200/70 bg-white py-2 px-4 text-sm font-bold uppercase tracking-wide text-blue-700 shadow-sm">
+                <span className="grid size-5 place-items-center rounded-full bg-blue-100 text-blue-600">
                   <Truck className="size-3.5" aria-hidden />
                 </span>
                 AI Voice Agents for Logistics
               </span>
 
-              <h1 className="mt-10 text-[44px] font-extrabold md:text-[60px] lg:text-[72px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
+              <h1 className="mt-5 text-[38px] font-extrabold md:text-[52px] lg:text-[64px]" style={{ lineHeight: 0.95, letterSpacing: "-2px" }}>
                 <span style={{ color: "#0F172A" }}>AI Voice Agents</span>
                 <br />
                 <span
@@ -133,9 +133,9 @@ export default function LogisticsPage() {
                 </span>
               </h1>
 
-              <p className="mt-7 max-w-lg text-pretty text-[16.5px] leading-[1.75] text-slate-600 md:text-lg">{PITCH}</p>
+              <p className="mt-4 max-w-lg text-pretty text-[15.5px] leading-relaxed text-slate-600 md:text-base">{PITCH}</p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
                 {[
                   { Icon: Clock, label: "24/7 Shipment Updates" },
                   { Icon: Check, label: "Delivery Confirmation" },
@@ -143,7 +143,7 @@ export default function LogisticsPage() {
                 ].map((f) => (
                   <span
                     key={f.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-[12.5px] font-semibold text-slate-700 shadow-sm"
+                    className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-center text-[11px] font-semibold text-slate-700 shadow-sm sm:px-3.5 sm:text-[12.5px]"
                   >
                     <f.Icon className="size-3.5 text-blue-600" aria-hidden />
                     {f.label}
@@ -151,11 +151,11 @@ export default function LogisticsPage() {
                 ))}
               </div>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3.5">
+              <div className="mt-5 flex flex-nowrap items-center gap-2 sm:gap-3.5">
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
+                  className="group h-auto whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 py-3 text-[12.5px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)] sm:px-7 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/get-started?industry=logistics">
                     Get Started
@@ -168,7 +168,7 @@ export default function LogisticsPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto whitespace-nowrap rounded-full border-slate-200 bg-white/95 px-4 py-3 text-[12.5px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-6 sm:py-3.5 sm:text-[15px]"
                 >
                   <Link href="/pricing">
                     <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PhoneCall, ArrowRight } from "lucide-react"
+import { PhoneCall, ArrowRight, Check, LayoutGrid, IndianRupee, Clock3, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,15 @@ import { FeatureGroups } from "@/components/features-page/feature-groups"
 import { BlueprintHero } from "@/components/features-page/blueprint-hero"
 import { StatBand } from "@/components/features-page/stat-band"
 import { FeatureBento } from "@/components/features-page/feature-bento"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: LayoutGrid, stat: "9", title: "Capabilities", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: IndianRupee, stat: "Per-second", title: "Billing", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: Clock3, stat: "24/7", title: "Always On", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: ShieldCheck, stat: "TRAI", title: "Compliant", color: "text-orange-600", tile: "bg-orange-50" },
+]
 
 export const metadata: Metadata = {
   title: "Features — 9278.io",
@@ -61,19 +70,20 @@ export default function FeaturesPage() {
             maskImage: "radial-gradient(ellipse at top, black 40%, transparent 85%)",
           }}
         />
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 py-12 md:px-8 md:py-20 lg:grid-cols-[1fr_1.2fr]">
+        <div className="grid w-full items-center gap-10 px-6 pb-12 pt-4 md:px-8 md:pb-20 md:pt-6 lg:grid-cols-[1fr_1.2fr]">
           <ScrollReveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <BadgeBars className="text-primary" />
               Features
             </span>
-            <h1 className="mt-3 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground md:text-[60px]">
-              Everything your{" "}
-              <span className="bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
+            <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
+              Everything your
+              <br />
+              <span className="whitespace-nowrap bg-gradient-to-r from-primary via-[oklch(0.62_0.2_240)] to-[oklch(0.72_0.18_150)] bg-clip-text text-transparent">
                 voice agent needs.
               </span>
             </h1>
-            <p className="mt-3 max-w-lg text-pretty text-[17px] leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               From setup to billing — every tool your 9278.io AI voice agent needs, built for Indian businesses.
             </p>
 
@@ -102,6 +112,21 @@ export default function FeaturesPage() {
                 </Link>
               </Button>
             </div>
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {["Every feature, one place", "Build to billing", "Made for India"].map((t) => (
+                <span
+                  key={t}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                  style={{ border: "1px solid #E4ECFF" }}
+                >
+                  <Check className="size-4 text-emerald-600" aria-hidden />
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <HeroStatsBand stats={heroStats} />
           </ScrollReveal>
 
           <ScrollReveal delay={0.08} className="flex justify-center lg:justify-end">
