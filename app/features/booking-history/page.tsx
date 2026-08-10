@@ -18,8 +18,8 @@ import { SiteFooter } from "@/components/site-footer"
 import { ScrollReveal } from "@/components/animation/scroll-reveal"
 import { PricingCta } from "@/components/pricing/pricing-cta"
 import { FeatureImageSection } from "@/components/features-page/feature-image-section"
-import { HowItWorksFlow } from "@/components/features-page/how-it-works-flow"
-import { DetailNumberedList } from "@/components/features-page/detail-numbered-list"
+import { HowItWorksPipeline } from "@/components/features-page/how-it-works-pipeline"
+import { DetailToolbarMockup } from "@/components/features-page/detail-toolbar-mockup"
 import { BookingHistoryIllustration } from "@/components/features-page/booking-history-illustration"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
 import { BadgeBars } from "@/components/features-page/badge-bars"
@@ -84,16 +84,19 @@ const STEPS = [
     icon: <CalendarCheck2 className="size-5" aria-hidden />,
     title: "Every booking logs itself",
     description: "The moment your agent confirms an appointment, it's added to the list — no manual entry.",
+    live: "Just logged: Aarav Mehta, May 30",
   },
   {
     icon: <Search className="size-5" aria-hidden />,
     title: "Search and filter instantly",
     description: "Find any booking by date or agent in seconds, without scrolling through call recordings.",
+    live: "3 matches in 0.2s",
   },
   {
     icon: <Download className="size-5" aria-hidden />,
     title: "Export whenever you need it",
     description: "Pull the list out for reporting or reconciliation, anytime — no waiting on support.",
+    live: "CSV ready · 128 rows",
   },
 ]
 
@@ -145,11 +148,11 @@ export default function BookingHistoryPage() {
                 the full history whenever you need it.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-7 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                  className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/get-started">
                     Build your first agent
@@ -160,7 +163,7 @@ export default function BookingHistoryPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                  className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 size-4" />
@@ -198,7 +201,7 @@ export default function BookingHistoryPage() {
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">Every booking, always findable</h2>
           </ScrollReveal>
           <div className="mt-8">
-            <DetailNumberedList items={DETAILS} />
+            <DetailToolbarMockup items={DETAILS} />
           </div>
         </div>
       </section>
@@ -212,7 +215,7 @@ export default function BookingHistoryPage() {
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">From confirmed call to searchable record</h2>
           </ScrollReveal>
-          <HowItWorksFlow steps={STEPS} />
+          <HowItWorksPipeline steps={STEPS} />
         </div>
       </section>
 

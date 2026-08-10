@@ -55,24 +55,26 @@ export function TicketStepReveal() {
         {String(stage + 1).padStart(2, "0")}
       </span>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={stage}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -14 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        >
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
-            <Icon className="size-3.5" aria-hidden />
-            {current.label}
-          </span>
-          <h3 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{current.title}</h3>
-          <p className="mx-auto mt-3 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground">
-            {current.description}
-          </p>
-        </motion.div>
-      </AnimatePresence>
+      <div className="min-h-[210px] sm:min-h-[180px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={stage}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -14 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
+              <Icon className="size-3.5" aria-hidden />
+              {current.label}
+            </span>
+            <h3 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{current.title}</h3>
+            <p className="mx-auto mt-3 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground">
+              {current.description}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       <div className="mx-auto mt-8 flex max-w-xs items-center gap-2">
         {STEPS.map((_, i) => (

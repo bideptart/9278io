@@ -50,6 +50,7 @@ import { RestaurantReservationCard, RestaurantChatCard } from "@/components/indu
 import { ConversationPreviewChat } from "@/components/industries/conversation-preview-chat"
 import { SoundSampleChat } from "@/components/industries/sound-sample-chat"
 import { EcommercePerformanceChart } from "@/components/industries/ecommerce-performance-chart"
+import { EcommerceHeroVisual } from "@/components/industries/ecommerce-hero-visual"
 import { ImagePlaceholderSection } from "@/components/industries/image-placeholder-section"
 import { BfsiPage } from "@/components/industries/bfsi-page"
 import { BpoPage } from "@/components/industries/bpo-page"
@@ -209,106 +210,9 @@ function ECommercePage() {
               </div>
             </ScrollReveal>
 
-            {/* Right — futuristic hero illustration */}
+            {/* Right — circular voice-AI orbit hero visual */}
             <ScrollReveal delay={0.14}>
-              <div className="relative mx-auto w-full max-w-[560px]">
-                {/* Main illustration — futuristic robot on podium with floating cards */}
-                <div className="relative">
-                  <img
-                    src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Futuristic%20white%20robot%20with%20purple%20blue%20glowing%20eyes%20wearing%20headset%20standing%20on%20a%20white%20circular%20podium%2C%20surrounded%20by%20four%20floating%20glass%20morphism%20UI%20cards%3A%20shopping%20cart%20order%20update%2C%20package%20returns%2C%20audio%20wave%20listening%2C%20upsell%20chart%20graph.%20Swirling%20orbital%20rings%2C%20sparkle%20particles%2C%20soft%20purple%20blue%20tech%20gradient%20background%2C%20clean%203D%20render%2C%20isometric%20angle&image_size=landscape_4_3"
-                    alt="AI Voice Agent for E-commerce — futuristic robot on podium with floating glass cards"
-                    className="hero-image-float aspect-[4/3.3] w-full rounded-[2rem] object-cover"
-                    loading="eager"
-                  />
-
-                  {/* Ambient glow pulsing beneath the robot, reinforcing the sense of motion */}
-                  <div
-                    aria-hidden
-                    className="ind-glow pointer-events-none absolute bottom-6 left-1/2 h-10 w-40 -translate-x-1/2 rounded-full bg-indigo-400/30 blur-2xl"
-                  />
-
-                  {/* Overlay Floating Glass Cards (on top of image to ensure exact match) */}
-
-                  {/* Top-left: Order Update Processing */}
-                  <div className="absolute -left-2 top-6 z-20 hero-float-up sm:-left-4">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
-                          <ShoppingBag className="size-3.5 sm:size-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Order Update</p>
-                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Processing</p>
-                        </div>
-                        <span className="ml-1 grid size-3 shrink-0 place-items-center rounded-full bg-emerald-500 sm:size-4">
-                          <Check className="size-2 text-white sm:size-2.5" aria-hidden />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Top-right: AI Voice Agent Listening */}
-                  <div className="absolute -right-2 -top-4 z-20 ind-float sm:-right-4">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <p className="text-[10.5px] font-bold text-blue-700 leading-tight sm:text-[13px]">AI Voice Agent</p>
-                      <div className="mt-1 flex items-center gap-1 sm:mt-1.5 sm:gap-1.5">
-                        <p className="text-[8.5px] font-medium text-slate-500 sm:text-[10.5px]">Listening…</p>
-                        <div className="flex h-2.5 items-end gap-[1.5px] sm:h-3" aria-hidden>
-                          {[7, 11, 6, 13, 9, 14, 8, 12, 7, 10, 5, 11].map((h, i) => (
-                            <span
-                              key={i}
-                              style={{
-                                "--bar-h": `${h}px`,
-                                animationDelay: `${(i % 6) * 0.1}s`,
-                                background:
-                                  i < 6
-                                    ? "linear-gradient(to top, rgb(139,92,246), rgb(99,102,241))"
-                                    : "linear-gradient(to top, rgb(129,140,248), rgb(191,219,254))",
-                              } as React.CSSProperties}
-                              className="ind-eq h-[calc(var(--bar-h)*0.75)] w-[2px] rounded-full sm:h-[var(--bar-h)] sm:w-[2.5px]"
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Middle-left: Returns & Exchange Handled */}
-                  <div className="absolute -left-3 top-[48%] z-20 hero-float-down sm:-left-6">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
-                          <Package className="size-3.5 sm:size-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Returns &amp; Exchange</p>
-                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Handled</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom-right: Upsell Opportunity Identified */}
-                  <div className="absolute -right-3 bottom-10 z-20 ind-float sm:-right-6">
-                    <div className="rounded-xl border border-white/60 bg-white/80 px-2.5 py-2 shadow-[0_14px_40px_-14px_rgba(2,132,199,0.35)] backdrop-blur-md ring-1 ring-blue-100/60 sm:rounded-2xl sm:px-4 sm:py-3">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-blue-500/10 to-sky-500/10 text-blue-600 sm:size-10 sm:rounded-xl">
-                          <BarChart3 className="size-3.5 sm:size-5" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="text-[10px] font-bold text-slate-800 leading-tight sm:text-[12.5px]">Upsell Opportunity</p>
-                          <p className="text-[8.5px] font-medium text-slate-500 sm:text-[11px]">Identified</p>
-                        </div>
-                        <span className="ml-1 flex gap-1" aria-hidden>
-                          <span className="size-1.5 rounded-full bg-slate-300" />
-                          <span className="size-1.5 rounded-full bg-slate-300" />
-                          <span className="size-1.5 rounded-full bg-blue-500" />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <EcommerceHeroVisual />
             </ScrollReveal>
           </div>
         </div>
@@ -1596,20 +1500,25 @@ function HomeServicesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                 >
                   <Link href="/get-started?industry=home-services">
-                    Get started
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    Get Started
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/pricing">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    View Pricing
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>
@@ -2056,20 +1965,25 @@ function RestaurantsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-auto rounded-full bg-blue-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                  className="group h-auto rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_30px_-10px_rgba(37,99,235,0.65)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-10px_rgba(37,99,235,0.75)]"
                 >
                   <Link href="/get-started?industry=restaurants">
-                    Get started
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    Get Started
+                    <span className="ml-2 inline-flex size-6 items-center justify-center rounded-full bg-white/20">
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    </span>
                   </Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-auto rounded-full border-slate-200 bg-white px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
+                  className="h-auto rounded-full border-slate-200 bg-white/95 px-6 py-3.5 text-[15px] font-bold text-slate-800 shadow-sm hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700"
                 >
-                  <Link href="/pricing">View pricing</Link>
+                  <Link href="/pricing">
+                    <Play className="mr-2 size-4 fill-slate-800 group-hover:fill-blue-700" aria-hidden />
+                    View Pricing
+                  </Link>
                 </Button>
               </div>
             </ScrollReveal>

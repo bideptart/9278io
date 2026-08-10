@@ -144,11 +144,11 @@ export default function AnalyticsDashboardPage() {
                 </div>
               </div>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-7 text-base font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)]"
+                  className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/get-started">
                     Build your first agent
@@ -159,7 +159,7 @@ export default function AnalyticsDashboardPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-12 rounded-full border-border bg-white px-7 text-base font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50"
+                  className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 size-4" />
@@ -179,7 +179,7 @@ export default function AnalyticsDashboardPage() {
       </section>
 
       <section className="border-b border-border/50">
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4">
           <ScrollReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary ring-1 ring-inset ring-primary/20">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
