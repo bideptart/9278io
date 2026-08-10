@@ -138,7 +138,7 @@ export default function OrbitCarousel() {
         }
       default:
         return {
-          containerRadius: 205,
+          containerRadius: 190,
           profileSize: 78,
           cardWidth: "w-56",
           avatarSize: "w-20 h-20",
