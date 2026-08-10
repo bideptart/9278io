@@ -64,7 +64,7 @@ export function EnterpriseItDetails({
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.1} className="relative h-full overflow-visible">
+        <ScrollReveal delay={1} className="relative h-full overflow-visible">
           <span className="absolute -top-5 right-6 z-20 hero-float-down grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
             <Volume2 className="size-6" aria-hidden />
           </span>
