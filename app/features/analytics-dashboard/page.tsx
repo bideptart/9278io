@@ -21,6 +21,15 @@ import { AnalyticsDashboardIllustration } from "@/components/features-page/analy
 import { DetailCards } from "@/components/features-page/detail-cards"
 import { AnalyticsHowItWorksTiles } from "@/components/features-page/analytics-how-it-works-tiles"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: TrendingUp, stat: "Live", title: "Call Trends", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: Clock3, stat: "Real-time", title: "Metrics", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: ListChecks, stat: "Relevance", title: "Scoring", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: Users, stat: "At a", title: "Glance", color: "text-orange-600", tile: "bg-orange-50" },
+]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -92,16 +101,17 @@ export default function AnalyticsDashboardPage() {
           <span className="absolute left-[6%] top-[30%] size-1.5 rounded-full bg-primary/20" />
           <span className="absolute left-[30%] top-[75%] size-1 rounded-full bg-primary/15" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <nav aria-label="Breadcrumb">
-              <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Operate &amp; Monitor
               </span>
             </nav>
 
             <ScrollReveal className="mt-6">
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 <span style={{ color: "#0F172A" }}>Analytics</span>{" "}
                 <span
                   style={{
@@ -114,7 +124,7 @@ export default function AnalyticsDashboardPage() {
                   Dashboard
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Track call counts, minutes used, and average call duration in one place — everything you need to
                 understand how your agents are performing, without digging through raw call logs.
               </p>
@@ -157,6 +167,8 @@ export default function AnalyticsDashboardPage() {
                   </Link>
                 </Button>
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 

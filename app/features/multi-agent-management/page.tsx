@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, LayoutDashboard, Copy, PhoneCall, LayoutGrid, IndianRupee, HelpCircle, Check } from "lucide-react"
+import { ArrowRight, LayoutDashboard, Copy, PhoneCall, LayoutGrid, IndianRupee, HelpCircle, Check, Bot } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -12,6 +12,15 @@ import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 import { MultiAgentHub } from "@/components/features-page/multi-agent-hub"
 import { MultiAgentCapabilities } from "@/components/features-page/multi-agent-capabilities"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: Bot, stat: "∞", title: "Agents / Account", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: LayoutDashboard, stat: "1", title: "Shared Dashboard", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: Copy, stat: "<1m", title: "Clone a Setup", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: PhoneCall, stat: "1", title: "Number / Agent", color: "text-orange-600", tile: "bg-orange-50" },
+]
 
 export const metadata: Metadata = pageSeo({
   title: "Multi-Agent Management — 9278.io Features",
@@ -100,17 +109,14 @@ export default function MultiAgentManagementPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-20 pt-2 md:px-8 md:pb-24 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary motion-safe:animate-pulse" aria-hidden />
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Build &amp; Setup
               </span>
-              <h1
-                className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]"
-                style={{ lineHeight: 1, letterSpacing: "-1px" }}
-              >
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 Multi-Agent{" "}
                 <span
                   style={{
@@ -123,9 +129,9 @@ export default function MultiAgentManagementPage() {
                   Management
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Create and manage as many AI agents as you need from a single account — one dashboard, fast
-                cloning, and a dedicated number per agent.
+                cloning, and a dedicated number per agent. Switch between agents in seconds, no separate logins.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
@@ -152,14 +158,16 @@ export default function MultiAgentManagementPage() {
                 </Button>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                 {["One dashboard for every agent", "Clone a setup in minutes", "A dedicated number per agent"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5">
-                    <Check className="size-3.5 text-primary" aria-hidden />
+                    <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>
                 ))}
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 
@@ -171,7 +179,7 @@ export default function MultiAgentManagementPage() {
 
       {/* Capabilities intro */}
       <section className="border-b border-border/50">
-        <div className="mx-auto flex min-h-[240px] max-w-5xl items-center justify-center px-6 py-14 md:min-h-[280px] md:px-8 md:py-20">
+        <div className="mx-auto flex max-w-5xl items-center justify-center px-6 py-10 md:px-8 md:py-14">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Multi-Agent Management</p>
             <h2 className="mt-3 text-balance text-3xl font-bold tracking-tight md:text-4xl">

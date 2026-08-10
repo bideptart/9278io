@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, PhoneCall, LayoutTemplate, Check, LayoutGrid, IndianRupee, HelpCircle } from "lucide-react"
+import { ArrowRight, PhoneCall, Check, LayoutGrid, IndianRupee, HelpCircle, LayoutTemplate, Timer, Sparkles, Settings2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -12,6 +12,15 @@ import { TemplateGrid } from "@/components/features-page/template-grid"
 import { TemplateLaunchFlow } from "@/components/features-page/template-launch-flow"
 import { SetupTemplatesRace } from "@/components/features-page/setup-templates-race"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: LayoutTemplate, stat: "5", title: "Proven Templates", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: Sparkles, stat: "Pre-filled", title: "& Ready", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: Timer, stat: "Minutes", title: "To Launch", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: Settings2, stat: "Anytime", title: "Customizable", color: "text-orange-600", tile: "bg-orange-50" },
+]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -61,14 +70,14 @@ export default function SetupTemplatesPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-[#7C3AED]/[0.07] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-4 md:px-8 md:pb-16 md:pt-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <ScrollReveal>
-              <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-5 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
-                <LayoutTemplate className="size-3.5" aria-hidden />
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Test &amp; Go Live
               </span>
-              <h1 className="mt-4 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 Ready-Made
                 <br />
                 <span
@@ -85,6 +94,7 @@ export default function SetupTemplatesPage() {
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Start from Receptionist, Healthcare, Transport, Support, or Blank — each one pre-filled
                 with a greeting, routing, and knowledge base. Launch in minutes, then customize anything.
+                No blank page to start from, and nothing locked once you've picked one.
               </p>
 
               <div className="mt-9 flex flex-nowrap gap-2 sm:gap-3">
@@ -111,14 +121,16 @@ export default function SetupTemplatesPage() {
                 </Button>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                 {["5 proven templates", "Pre-filled and ready", "Customize after launch"].map((t) => (
                   <span key={t} className="inline-flex items-center gap-1.5">
-                    <Check className="size-3.5 text-primary" aria-hidden />
+                    <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>
                 ))}
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 

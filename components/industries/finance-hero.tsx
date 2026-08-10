@@ -59,8 +59,8 @@ export function FinanceHero({ pitch }: { pitch: string }) {
         />
       ))}
 
-      <div className="w-full px-6 pb-4 pt-6 md:px-8 md:pb-16 md:pt-8">
-        <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-10">
+      <div className="w-full px-6 pb-4 pt-3 md:px-8 md:pb-8 md:pt-4">
+        <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Each block enters on its own short delay so the column builds up
               top-to-bottom instead of arriving as one slab. */}
           <div className="relative">

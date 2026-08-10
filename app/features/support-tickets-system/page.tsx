@@ -9,6 +9,7 @@ import {
   LayoutGrid,
   PhoneCall,
   Timer,
+  Flag,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
@@ -22,6 +23,15 @@ import { TicketActivityFeed } from "@/components/features-page/ticket-activity-f
 import { DetailGlassRow } from "@/components/features-page/detail-glass-row"
 import { SupportTicketIllustration } from "@/components/features-page/support-ticket-illustration"
 import { MultiAgentExploreLinks } from "@/components/features-page/multi-agent-explore-links"
+import { BadgeBars } from "@/components/features-page/badge-bars"
+import { HeroStatsBand } from "@/components/features-page/hero-stats-band"
+
+const heroStats = [
+  { icon: Archive, stat: "Auto", title: "Ticket Creation", color: "text-blue-600", tile: "bg-blue-50" },
+  { icon: LayoutDashboard, stat: "Live", title: "Activity Feed", color: "text-violet-600", tile: "bg-violet-50" },
+  { icon: Flag, stat: "Priority", title: "Flags", color: "text-emerald-600", tile: "bg-emerald-50" },
+  { icon: Timer, stat: "0", title: "Missed Issues", color: "text-orange-600", tile: "bg-orange-50" },
+]
 import { pageSeo } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/jsonld"
 
@@ -89,16 +99,17 @@ export default function SupportTicketsSystemPage() {
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-12 pt-6 md:px-8 md:pb-16 md:pt-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
           <div>
             <nav aria-label="Breadcrumb">
-              <span className="inline-flex items-center rounded-full bg-primary/[0.07] px-6 py-2.5 text-base font-semibold uppercase tracking-wide text-primary ring-1 ring-inset ring-primary/20">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
+                <BadgeBars className="text-primary" />
                 Operate &amp; Monitor
               </span>
             </nav>
 
             <ScrollReveal className="mt-6">
-              <h1 className="mt-10 text-balance text-[34px] font-extrabold sm:text-[44px] md:text-[60px] lg:text-[72px]" style={{ lineHeight: 1, letterSpacing: "-1px" }}>
+              <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
                 <span style={{ color: "#0F172A" }}>Support</span>{" "}
                 <span
                   style={{
@@ -111,7 +122,7 @@ export default function SupportTicketsSystemPage() {
                   Tickets System
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Raise and track support requests directly from your dashboard — no separate portal, no
                 email back-and-forth to find out where things stand.
               </p>
@@ -139,6 +150,8 @@ export default function SupportTicketsSystemPage() {
                   </Link>
                 </Button>
               </div>
+
+              <HeroStatsBand stats={heroStats} />
             </ScrollReveal>
           </div>
 
