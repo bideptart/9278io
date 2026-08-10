@@ -14,6 +14,8 @@ const profiles = [
       { icon: MessageSquareText, label: "Greeting", value: "Custom", tone: "#2563EB" },
       { icon: Repeat, label: "Interruptions", value: "Allowed", tone: "#7C3AED" },
       { icon: PhoneForwarded, label: "Handoff", value: "2 attempts", tone: "#D97706" },
+      { icon: Sparkles, label: "Tone", value: "Friendly", tone: "#059669" },
+      { icon: ShieldCheck, label: "Escalation", value: "Service manager", tone: "#DC2626" },
     ],
   },
   {
@@ -23,6 +25,8 @@ const profiles = [
       { icon: MessageSquareText, label: "Greeting", value: "Custom", tone: "#2563EB" },
       { icon: Repeat, label: "Interruptions", value: "Turn-based", tone: "#7C3AED" },
       { icon: PhoneForwarded, label: "Handoff", value: "VIP callers", tone: "#D97706" },
+      { icon: Sparkles, label: "Tone", value: "Warm", tone: "#059669" },
+      { icon: ShieldCheck, label: "Escalation", value: "Front desk", tone: "#DC2626" },
     ],
   },
   {
@@ -32,6 +36,8 @@ const profiles = [
       { icon: MessageSquareText, label: "Greeting", value: "Custom", tone: "#2563EB" },
       { icon: Repeat, label: "Interruptions", value: "Allowed", tone: "#7C3AED" },
       { icon: PhoneForwarded, label: "Handoff", value: "3 attempts", tone: "#D97706" },
+      { icon: Sparkles, label: "Tone", value: "Professional", tone: "#059669" },
+      { icon: ShieldCheck, label: "Escalation", value: "Broker on-call", tone: "#DC2626" },
     ],
   },
 ]
@@ -147,7 +153,7 @@ export function CallBehaviorPanel() {
           <span className="absolute inset-x-0 top-0 h-1.5" style={{ backgroundColor: "#0F172A" }} aria-hidden />
           <div className="h-3 w-24 rounded-full" style={{ backgroundColor: "#E4ECFF" }} />
           <div className="mt-5 flex flex-col gap-3">
-            {[0, 1, 2].map((i) => (
+            {[0, 1, 2, 3, 4].map((i) => (
               <div key={i} className="h-11 rounded-2xl" style={{ backgroundColor: "#F1F5F9" }} />
             ))}
           </div>
@@ -160,14 +166,14 @@ export function CallBehaviorPanel() {
           <span className="absolute inset-x-0 top-0 h-1.5" style={{ background: "linear-gradient(90deg, #4F8DFF, #7C3AED)" }} aria-hidden />
           <div className="h-3 w-28 rounded-full" style={{ backgroundColor: "#EEF4FF" }} />
           <div className="mt-5 flex flex-col gap-3">
-            {[0, 1, 2].map((i) => (
+            {[0, 1, 2, 3, 4].map((i) => (
               <div key={i} className="h-11 rounded-2xl" style={{ backgroundColor: "#F7F9FC" }} />
             ))}
           </div>
         </div>
 
         {/* front layer — a brand new card swaps in each cycle, not the same card updating in place */}
-        <div className="relative h-[360px] w-[85vw] max-w-[340px]" style={{ transformStyle: "preserve-3d" }}>
+        <div className="relative h-[480px] w-[85vw] max-w-[400px]" style={{ transformStyle: "preserve-3d" }}>
           {/* the previous card recedes back in 3D space and stays partly
               visible behind the incoming one, instead of just vanishing */}
           <AnimatePresence>
