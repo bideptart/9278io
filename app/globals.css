@@ -86,6 +86,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Reserves the scrollbar's width permanently so it never toggles on/off
+       as page height changes (e.g. a nav mega-menu opening taller than the
+       viewport) — without this, that toggle shifts all page content
+       sideways by the scrollbar width, which reads as the page "shaking"
+       when moving the mouse across nav items. */
+    scrollbar-gutter: stable;
+  }
   body {
     @apply bg-background text-foreground;
     transition: padding-right 0.32s cubic-bezier(0.32, 0.72, 0, 1);
