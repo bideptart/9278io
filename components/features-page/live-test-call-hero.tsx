@@ -94,7 +94,7 @@ export function LiveTestCallHero() {
   const ss = String(seconds % 60).padStart(2, "0")
 
   return (
-    <div className="relative mx-auto w-full max-w-md">
+    <div className="relative mx-auto mt-8 w-full max-w-md">
       <div aria-hidden className="absolute inset-x-6 -top-6 h-24 rounded-full bg-primary/15 blur-3xl" />
 
       <motion.div

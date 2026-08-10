@@ -35,7 +35,7 @@ export function SetupTemplatesLaptopHero() {
   }, [])
 
   return (
-    <div className="relative mx-auto w-full max-w-lg pb-8 pt-2" style={{ perspective: 1200 }}>
+    <div className="relative mx-auto w-full max-w-2xl pb-8 pt-2" style={{ perspective: 1200 }}>
       {/* animated gradient ring — the rotating layer is oversized and clipped
           by this wrapper's overflow-hidden, so it can never bleed past a
           thin border no matter how the panel underneath is sized */}
@@ -111,7 +111,7 @@ export function SetupTemplatesLaptopHero() {
           />
         </div>
 
-        <div className="relative grid grid-cols-2 gap-3 p-4">
+        <div className="relative grid grid-cols-2 gap-4 p-5">
           {TILES.map((t, i) => {
             const Icon = t.icon
             const isBlank = t.name === "Blank"
@@ -119,7 +119,7 @@ export function SetupTemplatesLaptopHero() {
             return (
               <motion.div
                 key={t.name}
-                className={`relative flex flex-col items-start gap-3 rounded-xl p-3.5 ${i === TILES.length - 1 ? "col-span-2 mx-auto w-[calc(50%-6px)]" : ""}`}
+                className={`relative flex flex-col items-start gap-3 rounded-xl p-5 ${i === TILES.length - 1 ? "col-span-2 mx-auto w-[calc(50%-8px)]" : ""}`}
                 animate={{
                   backgroundColor: isActive ? `${t.tone}0F` : "#F7F9FC",
                   borderColor: isActive ? t.tone : "#EEF2F7",
@@ -145,7 +145,7 @@ export function SetupTemplatesLaptopHero() {
                     />
                   )}
                   <motion.span
-                    className="flex size-9 items-center justify-center rounded-full"
+                    className="flex size-11 items-center justify-center rounded-full"
                     animate={{
                       backgroundColor: isBlank ? `${t.tone}12` : `${t.tone}18`,
                       scale: isActive ? [1, 1.15, 1] : 1,

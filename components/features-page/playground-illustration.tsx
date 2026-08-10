@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
-import { Bot, FlaskConical, Gauge, PenLine, Phone, ShieldCheck, Sparkles } from "lucide-react"
+import { Bot, FlaskConical, Gauge, ShieldCheck, Sparkles } from "lucide-react"
 
 type Scenario = { user: string; agent: string; ms: number }
 
@@ -14,7 +14,6 @@ const SCENARIOS: Scenario[] = [
 
 const THINK_MS = 550
 const HOLD_MS = 1950
-const EDIT_PATH = "M0 0 C 40 8, 55 30, 62 58"
 
 function TypingDots() {
   return (
@@ -153,7 +152,7 @@ export function PlaygroundIllustration() {
           </span>
         </div>
 
-        <div className="relative min-h-[340px] px-4 py-5 sm:px-6 sm:py-6">
+        <div className="relative min-h-[420px] px-4 py-5 sm:px-6 sm:py-6">
           {/* sandbox label */}
           <div className="mb-5 flex flex-wrap items-center gap-2">
             <span
@@ -265,56 +264,6 @@ export function PlaygroundIllustration() {
             </span>
           </div>
         </div>
-      </motion.div>
-
-      {/* floating prompt-diff card, wired into the agent avatar with a traveling pulse */}
-      <div className="absolute -left-3 top-6 z-20 hidden sm:-left-6 sm:top-6 sm:block">
-        <motion.div
-          className="relative w-[172px] rounded-2xl bg-white p-3"
-          style={{ border: "1px solid #E4ECFF", boxShadow: "0 16px 34px -18px oklch(0.2_0.05_260/0.4)" }}
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="flex items-center gap-1.5">
-            <span className="flex size-6 items-center justify-center rounded-full text-white" style={{ background: "linear-gradient(135deg, var(--primary), oklch(0.45 0.19 264))" }}>
-              <PenLine className="size-3" aria-hidden />
-            </span>
-            <span className="text-[11px] font-semibold text-foreground">Prompt edited</span>
-          </div>
-          <div className="mt-2 space-y-1 font-mono text-[9.5px] leading-snug">
-            <p className="rounded bg-red-50 px-1.5 py-0.5 text-red-500 line-through decoration-red-300">Weekdays only, 9–5</p>
-            <p className="rounded bg-emerald-50 px-1.5 py-0.5 text-emerald-600">Every day, 10 AM–6 PM</p>
-          </div>
-        </motion.div>
-
-        {/* curved wire + traveling pulse down into the sandbox */}
-        <svg width="90" height="56" viewBox="0 0 90 56" className="pointer-events-none absolute left-14 top-[86px] overflow-visible" aria-hidden>
-          <path d={EDIT_PATH} fill="none" stroke="oklch(0.546 0.215 262.88 / 0.3)" strokeWidth="1.5" strokeDasharray="3 4" />
-          <motion.circle
-            r="3.5"
-            fill="var(--primary)"
-            style={{ offsetPath: `path('${EDIT_PATH}')` }}
-            animate={{ offsetDistance: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.8, times: [0, 0.1, 0.85, 1] }}
-          />
-        </svg>
-      </div>
-
-      {/* dimmed "live" agent outside the boundary — untouched by testing */}
-      <motion.div
-        className="absolute -bottom-2 right-2 z-20 hidden flex-col items-center gap-1.5 sm:right-0 sm:flex"
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      >
-        <span
-          className="flex size-10 items-center justify-center rounded-full opacity-50"
-          style={{ backgroundColor: "#F1F5F9", color: "#94A3B8", border: "1px solid #E2E8F0" }}
-        >
-          <Phone className="size-4" aria-hidden />
-        </span>
-        <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-muted-foreground" style={{ border: "1px solid #E2E8F0" }}>
-          Live — untouched
-        </span>
       </motion.div>
 
       {/* sparkle badge, top-right */}
