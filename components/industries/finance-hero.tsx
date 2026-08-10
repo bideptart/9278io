@@ -158,7 +158,7 @@ export function FinanceHero({ pitch }: { pitch: string }) {
             </div>
           </div>
 
-          <ScrollReveal delay={0.14} className="self-start -mt-6 sm:-mt-10">
+          <ScrollReveal delay={0.14} className="self-start">
             <ImageCollageHero />
           </ScrollReveal>
         </div>

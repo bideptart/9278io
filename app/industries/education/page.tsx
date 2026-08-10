@@ -136,7 +136,7 @@ export default function EducationIndustryPage() {
         />
 
         <div className="relative w-full px-6 pb-10 pt-1 md:px-8 md:pb-12 md:pt-2">
-          <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
               <ScrollReveal>
@@ -354,7 +354,7 @@ export default function EducationIndustryPage() {
 
       {/* What it does — the student journey, stage by stage */}
       <section className="w-full px-6 py-16 md:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               The student journey
@@ -526,7 +526,7 @@ export default function EducationIndustryPage() {
 
       {/* Rollout — 2×2 feature cards, each with a live product mockup */}
       <section className="w-full px-6 py-16 md:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl font-bold tracking-tight md:text-4xl">
               How {industry.name.toLowerCase()} teams roll out 9278.io
@@ -740,7 +740,7 @@ export default function EducationIndustryPage() {
       {/* Other industries — uniform corner-ribbon cards (same treatment as
           the Automotive and Fitness pages) instead of the asymmetric bento. */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight md:text-3xl">
               Other industries we power

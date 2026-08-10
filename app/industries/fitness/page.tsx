@@ -93,7 +93,7 @@ export default function FitnessIndustryPage() {
           className="pointer-events-none absolute -top-32 right-0 h-[560px] w-[720px] rounded-full bg-primary/[0.1] blur-[130px]"
         />
         <div className="relative w-full px-6 pb-10 pt-10 md:px-8 md:pb-12 md:pt-14">
-          <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-12">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
             {/* ── Left: copy ── */}
             <div>
               <ScrollReveal>
@@ -162,7 +162,7 @@ export default function FitnessIndustryPage() {
 
       {/* What it does — unified, auto-cycling playbook + live-call stage */}
       <section className="w-full px-6 py-8 md:px-8 md:py-12">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="max-w-2xl">
             <div className="flex items-center gap-3">
               <span className="h-7 w-1 rounded-full bg-primary" aria-hidden />
@@ -227,7 +227,7 @@ export default function FitnessIndustryPage() {
       {/* Rollout Phase 01 — its own full section, sized generously so it
           isn't cramped against Phase 02 below. */}
       <section className="w-full px-6 py-16 md:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
             <ScrollReveal>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 01</p>
@@ -264,7 +264,7 @@ export default function FitnessIndustryPage() {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.12} className="md:scale-110">
+            <ScrollReveal delay={0.12}>
               <SetupMockup industryName={industry.name} />
             </ScrollReveal>
           </div>
@@ -274,7 +274,7 @@ export default function FitnessIndustryPage() {
       {/* Rollout Phase 02 — a separate section below Phase 01, not sharing
           its row. */}
       <section className="w-full px-6 py-8 md:px-8 md:py-12">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
             <ScrollReveal className="md:order-2">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 02</p>
@@ -341,7 +341,7 @@ export default function FitnessIndustryPage() {
           e-commerce industry page's card style, and the Automotive page's
           "Other industries" section) instead of the asymmetric bento. */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight md:text-3xl">
               Other industries we power

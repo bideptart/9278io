@@ -68,7 +68,7 @@ export default function RetailEcomPage() {
           className="pointer-events-none absolute -right-24 -top-28 h-[520px] w-[680px] rounded-full bg-primary/[0.09] blur-[120px]"
         />
         <div className="relative w-full px-6 pb-12 pt-10 md:px-8 md:pb-16 md:pt-10">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
             <div>
               <ScrollReveal>
                 <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
@@ -133,7 +133,7 @@ export default function RetailEcomPage() {
 
       {/* ══ Platform numbers — published figures used elsewhere on the site ══ */}
       <section className="w-full px-6 py-10 md:px-8 md:py-12">
-        <ScrollReveal className="mx-auto max-w-6xl">
+        <ScrollReveal className="w-full">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
             <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
               {[
@@ -161,7 +161,7 @@ export default function RetailEcomPage() {
 
       {/* ══ Peak demand — copy left, live queue right ══ */}
       <section className="w-full border-y border-border/50 bg-card/20 px-6 py-12 md:px-8 md:py-16">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <ScrollReveal>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Peak demand</p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
@@ -198,7 +198,7 @@ export default function RetailEcomPage() {
           top-aligned in one row (card mirrors the Peak demand section's
           card, just on the opposite side) ══ */}
       <section className="w-full px-6 py-12 md:px-8 md:py-16">
-        <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-14">
+        <div className="grid items-start gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-14">
           <ScrollReveal>
             <RetailSupportCard />
           </ScrollReveal>
@@ -231,7 +231,7 @@ export default function RetailEcomPage() {
 
       {/* ══ Other industries ══ */}
       <section className="w-full border-t border-border/50 bg-card/20 px-6 py-6 md:px-8 md:py-8">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance font-serif text-2xl font-semibold tracking-tight md:text-3xl">
               Other industries we power
