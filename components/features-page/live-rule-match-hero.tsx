@@ -24,11 +24,11 @@ export function LiveRuleMatchHero() {
   const DestIcon = current.destIcon
 
   return (
-    <div className="relative mx-auto flex w-full max-w-[460px] flex-col justify-center py-6" style={{ minHeight: 460 }}>
+    <div className="relative mt-6 mx-auto flex w-full max-w-[560px] flex-col justify-center py-6" style={{ minHeight: 520 }}>
       {/* ambient glow, tinted to whichever rule is currently active */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full"
         animate={{ backgroundColor: `${current.tone}20` }}
         style={{ filter: "blur(100px)" }}
         transition={{ duration: 0.6 }}
@@ -45,11 +45,11 @@ export function LiveRuleMatchHero() {
                 animate={{ scale: isOn ? [1, 1.35, 1] : 1, rotate: isOn ? [0, -8, 8, 0] : 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
-                <Icon className="size-5" style={{ color: isOn ? sw.tone : "#94A3B8" }} aria-hidden />
+                <Icon className="size-6" style={{ color: isOn ? sw.tone : "#94A3B8" }} aria-hidden />
               </motion.span>
               {/* rocker switch track */}
               <motion.div
-                className="relative h-10 w-20 rounded-full"
+                className="relative h-12 w-24 rounded-full"
                 animate={{
                   background: isOn
                     ? `linear-gradient(180deg, ${sw.tone}, ${sw.tone}CC)`
@@ -86,9 +86,9 @@ export function LiveRuleMatchHero() {
                   </motion.span>
                 )}
                 <motion.span
-                  className="absolute top-1/2 flex size-8 -translate-y-1/2 items-center justify-center rounded-full"
+                  className="absolute top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full"
                   animate={{
-                    left: isOn ? "calc(100% - 34px)" : "2px",
+                    left: isOn ? "calc(100% - 42px)" : "2px",
                     background: isOn
                       ? "radial-gradient(circle at 32% 28%, #FFFFFF, #F4F6FB 55%, #E4E9F3)"
                       : "radial-gradient(circle at 32% 28%, #FFFFFF, #E7ECF5 60%, #CBD5E1)",
@@ -122,14 +122,14 @@ export function LiveRuleMatchHero() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.3, delay: 0.15, type: "spring", stiffness: 340, damping: 18 }}
                       >
-                        <Check className="size-4" style={{ color: sw.tone }} aria-hidden />
+                        <Check className="size-5" style={{ color: sw.tone }} aria-hidden />
                       </motion.span>
                     </>
                   )}
                 </motion.span>
               </motion.div>
               <motion.span
-                className="text-xs font-semibold"
+                className="text-sm font-semibold"
                 animate={{ color: isOn ? sw.tone : "#94A3B8" }}
                 transition={{ duration: 0.3 }}
               >
@@ -141,7 +141,7 @@ export function LiveRuleMatchHero() {
       </div>
 
       {/* right-angled circuit traces running from each switch down to the shared output lamp */}
-      <svg viewBox="0 0 100 140" preserveAspectRatio="none" className="h-36 w-full overflow-visible" aria-hidden>
+      <svg viewBox="0 0 100 140" preserveAspectRatio="none" className="h-44 w-full overflow-visible" aria-hidden>
         <defs>
           <filter id="lrm-wire-glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="1.4" />
@@ -212,7 +212,7 @@ export function LiveRuleMatchHero() {
         {/* rotating halo ring for depth */}
         <motion.span
           aria-hidden
-          className="pointer-events-none absolute -top-4 left-1/2 size-28 -translate-x-1/2 rounded-full"
+          className="pointer-events-none absolute -top-4 left-1/2 size-32 -translate-x-1/2 rounded-full"
           animate={{
             background: `conic-gradient(from 0deg, ${current.tone}00, ${current.tone}55, ${current.tone}00)`,
             rotate: 360,
@@ -220,7 +220,7 @@ export function LiveRuleMatchHero() {
           transition={{ background: { duration: 0.5 }, rotate: { duration: 6, repeat: Infinity, ease: "linear" } }}
         />
         <motion.span
-          className="relative flex size-20 items-center justify-center rounded-full text-white"
+          className="relative flex size-24 items-center justify-center rounded-full text-white"
           animate={{
             background: `linear-gradient(135deg, ${current.tone}, ${current.tone}CC)`,
             boxShadow: `0 0 0 10px ${current.tone}1A, 0 20px 40px -14px ${current.tone}80`,
@@ -250,13 +250,13 @@ export function LiveRuleMatchHero() {
             animate={{ scale: 1, rotate: 0, opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.15, type: "spring", stiffness: 260, damping: 16 }}
           >
-            <DestIcon className="size-8" aria-hidden />
+            <DestIcon className="size-9" aria-hidden />
           </motion.span>
         </motion.span>
 
         <motion.p
           key={`label-${active}`}
-          className="mt-4 text-lg font-bold"
+          className="mt-4 text-xl font-bold"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0, color: current.tone }}
           transition={{ duration: 0.35, delay: 0.1 }}
@@ -265,7 +265,7 @@ export function LiveRuleMatchHero() {
         </motion.p>
         <motion.p
           key={`detail-${active}`}
-          className="mt-1 text-sm"
+          className="mt-1 text-base"
           style={{ color: "#94A3B8" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

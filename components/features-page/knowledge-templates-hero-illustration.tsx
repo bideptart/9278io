@@ -61,7 +61,7 @@ export function KnowledgeTemplatesHeroIllustration() {
         />
 
         {/* dashboard window — fixed footprint, never resizes between templates */}
-        <div className="relative flex h-[418px] flex-col overflow-hidden rounded-[15px] bg-white">
+        <div className="relative flex h-[480px] flex-col overflow-hidden rounded-[15px] bg-white">
           {/* title bar */}
           <div className="flex shrink-0 items-center gap-2 border-b px-4 py-3" style={{ borderColor: "#E4ECFF", backgroundColor: "#FAFBFF" }}>
             <span className="size-2.5 rounded-full" style={{ backgroundColor: "#F87171" }} aria-hidden />
