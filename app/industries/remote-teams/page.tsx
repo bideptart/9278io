@@ -139,7 +139,7 @@ export default function RemoteTeamsPage() {
                 ].map((f) => (
                   <span
                     key={f.label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[12.5px] font-semibold text-slate-700 shadow-sm"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[12.5px] font-semibold text-slate-700 shadow-[0_10px_25px_-8px_rgba(15,23,42,0.3)]"
                   >
                     <f.Icon className="size-3.5 text-blue-600" aria-hidden />
                     {f.label}
@@ -177,7 +177,7 @@ export default function RemoteTeamsPage() {
             {/* Right — animated world map showing a distributed team */}
             <ScrollReveal delay={0.14}>
               <div className="relative mx-auto w-full max-w-[560px]">
-                <div className="overflow-hidden rounded-[1.75rem] border border-blue-400">
+                <div className="overflow-hidden rounded-[1.75rem] shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
                 <WorldMap
                   className="aspect-[2/1.35]"
                   lineColor="#2563eb"
@@ -249,7 +249,7 @@ export default function RemoteTeamsPage() {
       {/* ─── How it works ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <ScrollStepItem className="mx-auto max-w-7xl">
-          <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-8">
+          <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-8">
             <p className="text-center font-sans text-xl font-bold text-slate-900 sm:text-2xl">
               How It Works For Remote Teams
             </p>
@@ -280,7 +280,7 @@ export default function RemoteTeamsPage() {
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_340px_1fr]">
           {/* What your remote agent can do */}
           <ScrollStepItem index={0}>
-            <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
+            <div className="h-full rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
               <p className="font-sans text-lg font-bold text-slate-900">What Your Remote Agent Can Do</p>
               <div className="mt-4 space-y-4">
                 {AGENT_CAN_DO.map((item, i) => (
@@ -339,7 +339,7 @@ export default function RemoteTeamsPage() {
 
           {/* Why remote teams choose 9278.io */}
           <ScrollStepItem index={2}>
-            <div className="h-full rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
+            <div className="h-full rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
               <p className="font-sans text-lg font-bold text-slate-900">
                 Why Remote Teams
                 <br />
@@ -368,7 +368,7 @@ export default function RemoteTeamsPage() {
 
         {/* Stats bar */}
         <div className="mx-auto mt-8 max-w-7xl">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-r from-blue-800 to-blue-700 px-3 py-3 shadow-lg shadow-blue-800/25">
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-r from-blue-800 to-blue-700 px-3 py-3 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.5)]">
             <div className="grid grid-cols-2 divide-y divide-white/15 sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:grid-cols-6">
               {[
                 { Icon: Zap, label: "Average Response Time", value: "< 3 Seconds" },
@@ -398,7 +398,7 @@ export default function RemoteTeamsPage() {
       {/* ─── Use cases for remote teams ─── */}
       <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
         <ScrollStepItem className="mx-auto max-w-7xl">
-          <div className="rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm">
+          <div className="rounded-[1.75rem] bg-white p-6 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)]">
             <p className="font-sans text-lg font-bold text-slate-900">Use Cases For Remote Teams</p>
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {USE_CASES.map((u, i) => (

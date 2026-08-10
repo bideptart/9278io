@@ -97,6 +97,10 @@
   body {
     @apply bg-background text-foreground;
     transition: padding-right 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+    /* Guards against a stray horizontal scrollbar from sub-pixel rounding
+       on any one element somewhere on the page — nothing on this site is
+       meant to scroll horizontally at the page level. */
+    overflow-x: hidden;
   }
 
   /* Fade-up entry animation used by the CSS-only ScrollReveal component. */

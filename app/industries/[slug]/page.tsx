@@ -221,7 +221,7 @@ function ECommercePage() {
         {/* ─── Stats bar (directly under hero, inside hero section per reference) ─── */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
           <div className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+            <div className="relative overflow-hidden rounded-[1.75rem] bg-white/95 px-3 py-3 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
                   {
@@ -276,7 +276,7 @@ function ECommercePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollStepItem index={0}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               {/* Shopping bag accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
                 <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-blue-500 to-sky-500 text-white shadow-lg shadow-blue-500/30">
@@ -309,7 +309,7 @@ function ECommercePage() {
 
           {/* Right — how agent sounds */}
           <ScrollStepItem index={1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               {/* Sound-wave accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
                 <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-sky-500 to-blue-500 text-white shadow-lg shadow-sky-500/30">
@@ -393,7 +393,7 @@ function ECommercePage() {
             </div>
 
             <ScrollStepItem index={0}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
+              <div className="group relative h-full overflow-hidden rounded-2xl bg-white p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-gradient-to-r from-blue-600 to-sky-600 px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-blue-600/25">
                     01
@@ -419,7 +419,7 @@ function ECommercePage() {
             </ScrollStepItem>
 
             <ScrollStepItem index={1}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
+              <div className="group relative h-full overflow-hidden rounded-2xl bg-white p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-8">
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white shadow-md shadow-primary/25">
                     02
@@ -482,7 +482,7 @@ function ECommercePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
           <ScrollStepItem index={0}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-[0_10px_25px_-8px_rgba(15,23,42,0.3)] backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
@@ -537,7 +537,7 @@ function ECommercePage() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
+              <div className="rounded-[2rem] bg-white p-6 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)] sm:p-8">
                 <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
                   <span className="grid size-5 place-items-center rounded-md bg-blue-100 text-blue-600">
                     <ShieldCheck className="size-3" aria-hidden />
@@ -776,8 +776,8 @@ function RealEstatePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollStepItem index={0}>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-sm sm:p-9">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-[0_10px_25px_-8px_rgba(15,23,42,0.3)]">
                 <Sparkles className="size-3.5" aria-hidden />
                 Day one. Done right.
               </span>
@@ -880,8 +880,8 @@ function RealEstatePage() {
 
           {/* Right — how agent sounds */}
           <ScrollStepItem index={1}>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-blue-400 bg-white p-7 shadow-sm sm:p-9">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400 bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-sm">
+            <div className="relative flex h-full flex-col overflow-hidden rounded-[2rem] bg-white p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-blue-700 shadow-[0_10px_25px_-8px_rgba(15,23,42,0.3)]">
                 <Volume2 className="size-3.5" aria-hidden />
                 Hear it to believe it
               </span>
@@ -1013,7 +1013,7 @@ function RealEstatePage() {
 
             {/* Card 01 — Start small. Grow fast. */}
             <ScrollStepItem index={0}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
+              <div className="relative h-full overflow-hidden rounded-2xl bg-white p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] md:p-8">
                 <span
                   aria-hidden
                   className="absolute right-0 top-0 h-14 w-14 rounded-bl-2xl bg-gradient-to-br from-blue-600 to-sky-500"
@@ -1078,7 +1078,7 @@ function RealEstatePage() {
 
             {/* Card 02 — Explore more. Compare with confidence. */}
             <ScrollStepItem index={1}>
-              <div className="relative h-full overflow-hidden rounded-2xl border border-blue-400 bg-white p-7 shadow-sm md:p-8">
+              <div className="relative h-full overflow-hidden rounded-2xl bg-white p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] md:p-8">
                 <span
                   aria-hidden
                   className="absolute right-0 top-0 h-14 w-14 rounded-bl-2xl bg-gradient-to-br from-blue-600 to-sky-500"
@@ -1171,7 +1171,7 @@ function RealEstatePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left — copy */}
           <ScrollStepItem index={0}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-400 bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-sm backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700 shadow-[0_10px_25px_-8px_rgba(15,23,42,0.3)] backdrop-blur">
               <Sparkles className="size-3.5" aria-hidden />
               The smarter way to scale
             </span>
@@ -1213,7 +1213,7 @@ function RealEstatePage() {
           {/* Right — Picture 2: real-time performance recap (real stats, no invented numbers) */}
           <ScrollStepItem index={1}>
             <div className="relative">
-              <div className="rounded-[2rem] border border-blue-400 bg-white p-6 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] sm:p-8">
+              <div className="rounded-[2rem] bg-white p-6 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)] sm:p-8">
                 <div className="flex items-center gap-3">
                   <span className="ind-float relative grid size-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25">
                     <span aria-hidden className="absolute inset-0 rounded-2xl bg-blue-500 motion-safe:animate-ping" style={{ animationDuration: "2.4s", opacity: 0.35 }} />
@@ -1408,7 +1408,7 @@ function HomeServicesPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
+              <div className="mt-4 grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
@@ -1576,7 +1576,7 @@ function HomeServicesPage() {
         {/* Stats bar */}
         <div className="w-full px-6 pb-10 md:px-8 md:pb-14">
           <ScrollStepItem index={0} className="mx-auto max-w-7xl">
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white/95 px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)] backdrop-blur">
+            <div className="relative overflow-hidden rounded-[1.75rem] bg-white/95 px-3 py-3 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)] backdrop-blur">
               <div className="grid grid-cols-1 divide-y divide-slate-200/70 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
                 {[
                   { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-100 text-blue-600" },
@@ -1607,7 +1607,7 @@ function HomeServicesPage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs with real photo */}
           <ScrollStepItem index={0}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-blue-50/30 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Wrench className="size-5" aria-hidden />
               </span>
@@ -1639,7 +1639,7 @@ function HomeServicesPage() {
 
           {/* Right — how agent sounds */}
           <ScrollStepItem index={1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-blue-50/30 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <span className="grid size-11 place-items-center rounded-full bg-blue-100 text-blue-600">
                 <Volume2 className="size-5" aria-hidden />
               </span>
@@ -1688,7 +1688,7 @@ function HomeServicesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-2xl border border-blue-400 bg-blue-50/40 p-5">
+              <div className="mt-6 rounded-2xl bg-blue-50/40 p-5 shadow-[0_15px_35px_-10px_rgba(15,23,42,0.3)]">
                 <div className="flex items-center gap-2.5">
                   <span className="grid size-8 shrink-0 place-items-center rounded-full bg-blue-600 text-white">
                     <Sparkles className="size-4" aria-hidden />
@@ -1873,7 +1873,7 @@ function RestaurantsPage() {
                 {industry.pitch}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-4 sm:flex-nowrap">
+              <div className="mt-8 grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap">
                 {[
                   { Icon: Phone, title: "24/7 Calling", desc: "Always on for your customers" },
                   { Icon: CalendarCheck, title: "Instant Booking", desc: "Capture & schedule jobs in real time" },
@@ -1931,7 +1931,7 @@ function RestaurantsPage() {
         {/* ─── Smarter operations. Happier guests. ─── */}
         <div className="w-full px-6 pb-4 pt-2 md:px-8">
           <ScrollStepItem index={0} className="mx-auto max-w-7xl">
-            <div className="group relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-sm transition-shadow duration-300 hover:shadow-[0_25px_60px_-25px_rgba(2,132,199,0.4)] sm:p-11">
+            <div className="group relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-blue-50 via-white to-sky-50 p-8 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_25px_60px_-25px_rgba(2,132,199,0.4)] sm:p-11">
               <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div>
                   <h2 className="text-balance font-sans text-[1.75rem] font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -1969,7 +1969,7 @@ function RestaurantsPage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {/* Left — day-one jobs */}
           <ScrollStepItem index={0}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-blue-50/30 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 What the agent does on day one
               </h2>
@@ -1994,7 +1994,7 @@ function RestaurantsPage() {
 
           {/* Right — how agent sounds */}
           <ScrollStepItem index={1}>
-            <div className="relative h-full overflow-hidden rounded-[2rem] border border-blue-400 bg-blue-50/30 p-7 shadow-sm sm:p-9">
+            <div className="relative h-full overflow-hidden rounded-[2rem] bg-blue-50/30 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               <h2 className="font-sans text-2xl font-semibold tracking-tight text-slate-900 md:text-[1.65rem]">
                 How the agent actually sounds
               </h2>
@@ -2045,7 +2045,7 @@ function RestaurantsPage() {
 
         {/* Stats bar */}
         <div className="mx-auto mt-10 max-w-7xl">
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-blue-400 bg-white px-3 py-3 shadow-[0_20px_50px_-25px_rgba(2,132,199,0.35)]">
+          <div className="relative overflow-hidden rounded-[1.75rem] bg-white px-3 py-3 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)]">
             <div className="grid grid-cols-2 divide-y divide-slate-200/70 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
               {[
                 { Icon: Zap, label: "First-call response", value: "< 3 sec", tone: "bg-blue-50 text-blue-600" },

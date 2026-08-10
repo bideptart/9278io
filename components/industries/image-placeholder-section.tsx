@@ -22,7 +22,7 @@ export function ImagePlaceholderSection({
     <section className="w-full px-6 pb-10 md:px-8 md:pb-14">
       <ScrollStepItem>
         {src ? (
-          <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 rounded-[1.75rem] border border-blue-400 bg-white p-6 shadow-sm sm:p-8 md:flex-row">
+          <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 rounded-[1.75rem] bg-white p-6 shadow-[0_25px_55px_-15px_rgba(15,23,42,0.4)] sm:p-8 md:flex-row">
             <div className="relative h-80 w-full shrink-0 overflow-hidden rounded-[1.5rem] bg-blue-50/40 sm:h-96 md:h-[28rem] md:w-1/2">
               <Image src={src} alt={alt ?? ""} fill className="object-contain p-3" />
             </div>

@@ -34,7 +34,7 @@ export function KnowledgeTemplatesHeroIllustration() {
   const appliedCount = template.agents.length
 
   return (
-    <div className="relative mx-auto w-full max-w-[520px]">
+    <div className="relative mx-auto mt-8 w-full max-w-[520px]">
       <motion.div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full"
