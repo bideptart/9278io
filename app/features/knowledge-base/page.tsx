@@ -91,7 +91,7 @@ export default function KnowledgeBasePage() {
                   Base
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Give each agent its own set of company facts, FAQs, and policies to draw on — isolated from
                 every other agent on your account. Update an entry anytime and every call after that reflects
                 it immediately, no retraining required.

@@ -22,7 +22,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
           animation: "reveal 0.7s cubic-bezier(0.22,1,0.36,1) both, heroFloatUp 2.8s ease-in-out infinite",
           animationDelay: "0s, 0s",
         }}
-        className="absolute left-1/2 top-0 w-[64%] max-w-80 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-80"
+        className="absolute left-1/2 top-0 w-[60%] max-w-72 -translate-x-1/2 transition-transform duration-300 hover:-translate-y-1 sm:w-72"
       >
         <div
           className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
@@ -37,7 +37,7 @@ export default function ImageCollageHero({ images = DEFAULT_IMAGES }: { images?:
           animation: "reveal 0.7s cubic-bezier(0.22,1,0.36,1) both, heroFloatDown 2.8s ease-in-out infinite",
           animationDelay: "1s, 1.4s",
         }}
-        className="absolute right-0 top-[40%] w-[56%] max-w-72 transition-transform duration-300 hover:-translate-y-1 sm:top-1/3 sm:w-72"
+        className="absolute right-0 top-[40%] w-[52%] max-w-64 transition-transform duration-300 hover:-translate-y-1 sm:top-1/3 sm:w-64"
       >
         <div
           className="overflow-hidden rounded-2xl border border-slate-200/70 bg-white p-2 shadow-[0_16px_40px_-22px_rgba(15,23,42,0.35)] transition-shadow duration-300 hover:shadow-[0_28px_55px_-18px_rgba(15,23,42,0.45)]"
