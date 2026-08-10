@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   ArrowRight,
+  Check,
   HelpCircle,
   IndianRupee,
   LayoutGrid,
@@ -100,9 +101,10 @@ export default function KnowledgeTemplatesPage() {
                   Knowledge Templates
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Save a knowledge setup once and reuse it across multiple agents or numbers — edit the
-                template, and every agent using it updates together.
+                template, and every agent using it updates together. No rebuilding the same setup
+                from scratch for every new number.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3 pb-1">
@@ -127,6 +129,19 @@ export default function KnowledgeTemplatesPage() {
                     Talk to sales
                   </Link>
                 </Button>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Save a template once", "Reuse across agents", "Updates sync everywhere"].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
+                    <Check className="size-4 text-emerald-600" aria-hidden />
+                    {t}
+                  </span>
+                ))}
               </div>
 
               <HeroStatsBand stats={heroStats} />

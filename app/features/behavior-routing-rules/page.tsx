@@ -78,9 +78,8 @@ export default function BehaviorRoutingRulesPage() {
                 Train &amp; Configure
               </span>
               <h1 className="mt-5 text-balance text-[32px] font-bold leading-[1.15] tracking-tight sm:text-5xl sm:leading-[1.05] md:text-6xl lg:text-[3.6rem]">
-                Behavior
+                Behavior{" "}
                 <span
-                  className="block"
                   style={{
                     backgroundImage: "linear-gradient(135deg, #2563EB, #0EA5E9, #10B981)",
                     WebkitBackgroundClip: "text",
@@ -88,10 +87,12 @@ export default function BehaviorRoutingRulesPage() {
                     color: "transparent",
                   }}
                 >
-                  &amp; Routing Rules
+                  &amp; Routing
+                  <br />
+                  Rules
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Decide how calls get classified and routed by intent, keyword, or time of day — so every
                 call ends up exactly where it should. No manual sorting, no missed calls after hours.
               </p>
