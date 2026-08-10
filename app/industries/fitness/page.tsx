@@ -224,21 +224,21 @@ export default function FitnessIndustryPage() {
         </ScrollReveal>
       </section>
 
-      {/* Rollout — alternating copy / product-mockup rows */}
-      <section className="w-full px-6 py-8 md:px-8 md:py-12">
-        <div className="mx-auto max-w-6xl space-y-10 md:space-y-14">
-          {/* ── Row 1: copy left, setup mockup right ── */}
-          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
+      {/* Rollout Phase 01 — its own full section, sized generously so it
+          isn't cramped against Phase 02 below. */}
+      <section className="w-full px-6 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
             <ScrollReveal>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 01</p>
-              <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl">
+              <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
                 Go live in{" "}
                 <span className="bg-gradient-to-r from-primary to-[oklch(0.62_0.2_240)] bg-clip-text text-transparent">
                   minutes
                 </span>
                 , not months
               </h2>
-              <p className="mt-5 text-pretty leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-6 text-pretty leading-relaxed text-muted-foreground md:text-xl">
                 Most {industry.name.toLowerCase()} customers start by{" "}
                 <Link href="/get-started" className="font-medium text-primary underline-offset-4 hover:underline">
                   spinning up a Starter agent
@@ -250,26 +250,31 @@ export default function FitnessIndustryPage() {
                 once the inbound playbooks prove out.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-x-10 gap-y-5">
+              <div className="mt-10 flex flex-wrap gap-x-10 gap-y-5">
                 {[
                   { value: "5 min", label: "To first live agent" },
                   { value: "10+", label: "Indian languages" },
                   { value: "40+", label: "Concurrent calls" },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">{s.value}</p>
+                    <p className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{s.value}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
                   </div>
                 ))}
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.12}>
+            <ScrollReveal delay={0.12} className="md:scale-110">
               <SetupMockup industryName={industry.name} />
             </ScrollReveal>
           </div>
+        </div>
+      </section>
 
-          {/* ── Row 2: call mockup left, copy right ── */}
+      {/* Rollout Phase 02 — a separate section below Phase 01, not sharing
+          its row. */}
+      <section className="w-full px-6 py-8 md:px-8 md:py-12">
+        <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
             <ScrollReveal className="md:order-2">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Phase 02</p>
