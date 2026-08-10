@@ -90,7 +90,7 @@ export default function IdentitySetupPage() {
                   Identity Setup
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Name your agent, set its avatar, and define how it introduces itself — a distinct identity
                 for every number you run. Every agent gets its own look and voice, so callers instantly
                 know which business they've reached. Update the name, avatar, or greeting anytime, and it
@@ -121,9 +121,13 @@ export default function IdentitySetupPage() {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-8 flex flex-wrap gap-2">
                 {["Name and avatar", "Custom greeting", "Consistent branding"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
                     <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>

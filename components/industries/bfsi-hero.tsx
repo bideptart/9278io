@@ -137,7 +137,7 @@ export function BfsiHero({ industry }: { industry: Industry }) {
             </div>
           </div>
 
-          <ScrollReveal delay={0.14}>
+          <ScrollReveal delay={0.14} className="self-start -mt-14 sm:-mt-12">
             <OrbitCarousel />
           </ScrollReveal>
         </div>

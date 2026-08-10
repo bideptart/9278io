@@ -94,7 +94,6 @@ export default function SetupTemplatesPage() {
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Start from Receptionist, Healthcare, Transport, Support, or Blank — each one pre-filled
                 with a greeting, routing, and knowledge base. Launch in minutes, then customize anything.
-                No blank page to start from, and nothing locked once you've picked one.
               </p>
 
               <div className="mt-9 flex flex-nowrap gap-2 sm:gap-3">
@@ -121,9 +120,13 @@ export default function SetupTemplatesPage() {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-8 flex flex-wrap gap-2">
                 {["5 proven templates", "Pre-filled and ready", "Customize after launch"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
                     <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>

@@ -94,8 +94,7 @@ export default function LiveTestCallPage() {
               <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
                 Dial your agent's real number and hear exactly what your callers hear, live — the same
                 voice, the same greeting, the same answers. No sandbox, no simulation. Catch anything
-                off before a real caller ever does, and test as many times as you need, for free. Every
-                test call runs on the exact setup that's live right now.
+                off before a real caller ever does.
               </p>
 
               <div className="mt-7 flex flex-nowrap gap-2 sm:gap-3">
@@ -122,9 +121,13 @@ export default function LiveTestCallPage() {
                 </Button>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-8 flex flex-wrap gap-2">
                 {["Dial the real number", "Verify voice & latency", "Confirm routing end to end"].map((t) => (
-                  <span key={t} className="inline-flex items-center gap-1.5">
+                  <span
+                    key={t}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-foreground shadow-sm"
+                    style={{ border: "1px solid #E4ECFF" }}
+                  >
                     <Check className="size-4 text-emerald-600" aria-hidden />
                     {t}
                   </span>
