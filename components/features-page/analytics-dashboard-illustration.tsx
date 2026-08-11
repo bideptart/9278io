@@ -327,7 +327,7 @@ export function AnalyticsDashboardIllustration() {
   }
 
   return (
-    <div className="relative mx-auto w-full max-w-[460px] lg:mr-4">
+    <div className="relative mx-auto w-full max-w-[560px] lg:mr-4">
       {/* ambient glow that breathes behind the card */}
       <motion.div
         aria-hidden
@@ -378,7 +378,7 @@ export function AnalyticsDashboardIllustration() {
               })}
             </div>
 
-            <div className="h-[360px] min-w-0 flex-1 overflow-hidden p-4">
+            <div className="h-[440px] min-w-0 flex-1 overflow-hidden p-4">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={active}

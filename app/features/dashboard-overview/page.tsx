@@ -64,7 +64,7 @@ export default function DashboardOverviewPage() {
         ]}
       />
 
-      <section className="relative flex flex-col overflow-hidden border-b border-border">
+      <section className="relative flex flex-col overflow-hidden border-b border-border lg:min-h-[calc(100vh-64px)] lg:justify-center">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#F8FBFF] to-[#EAF4FF]" />
           <div className="absolute -left-24 -top-24 size-[380px] rounded-full bg-primary/[0.06] blur-[120px]" />

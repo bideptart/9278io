@@ -31,11 +31,11 @@ export function EnterpriseItDetails({
     <section className="w-full px-6 pt-16 pb-8 md:px-8 md:pt-20 md:pb-10">
       <div className="relative mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
         <ScrollReveal className="relative h-full overflow-visible">
-          <span className="absolute -top-5 right-6 z-20 hero-float-up grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
-            <Server className="size-6" aria-hidden />
+          <span className="absolute -top-4 right-5 z-20 hero-float-up grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25 md:-top-5 md:right-6 md:size-14">
+            <Server className="size-5 md:size-6" aria-hidden />
           </span>
 
-          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
+          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-4 shadow-sm md:p-8">
             <Server
               aria-hidden
               className="ind-spin-slow pointer-events-none absolute -bottom-10 -right-10 size-48 text-blue-600/[0.06]"
@@ -46,12 +46,12 @@ export function EnterpriseItDetails({
               <br />
               on day one
             </h2>
-            <StaggerGroup stagger={0.1} once={false} className="relative mt-8 space-y-3">
+            <StaggerGroup stagger={0.1} once={false} className="relative mt-6 space-y-2.5 md:mt-8 md:space-y-3">
               {jobs.map((job, i) => {
                 const Icon = JOB_ICONS[i] ?? Check
                 return (
                   <StaggerItem key={job}>
-                    <div className="group flex min-h-[76px] items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10 active:-translate-y-1 active:border-blue-300 active:shadow-lg active:shadow-blue-600/10">
+                    <div className="group flex min-h-[64px] items-center gap-3 rounded-2xl border border-slate-200/70 bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10 active:-translate-y-1 active:border-blue-300 active:shadow-lg active:shadow-blue-600/10 md:min-h-[76px] md:px-5 md:py-4">
                       <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-active:rotate-12 group-active:scale-110">
                         <Icon className="size-4.5" aria-hidden />
                       </span>
@@ -65,11 +65,11 @@ export function EnterpriseItDetails({
         </ScrollReveal>
 
         <ScrollReveal className="absolute inset-x-0 top-0 z-10 overflow-visible [animation-delay:1s] md:static md:inset-auto md:z-auto md:h-full md:[animation-delay:0.1s]">
-          <span className="absolute -top-5 right-6 z-20 hero-float-down grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25">
-            <Volume2 className="size-6" aria-hidden />
+          <span className="absolute -top-4 right-5 z-20 hero-float-down grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/25 md:-top-5 md:right-6 md:size-14">
+            <Volume2 className="size-5 md:size-6" aria-hidden />
           </span>
 
-          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-b from-blue-50/40 to-white p-6 shadow-sm md:p-8">
+          <div className="relative h-full overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white p-4 shadow-sm md:bg-gradient-to-b md:from-blue-50/40 md:to-white md:p-8">
             <Volume2
               aria-hidden
               className="ind-spin-slow pointer-events-none absolute -bottom-10 -right-10 size-48 text-blue-600/[0.06]"
@@ -80,14 +80,14 @@ export function EnterpriseItDetails({
               <br />
               actually sounds
             </h2>
-            <p className="relative mt-4 text-pretty leading-relaxed text-slate-600">
+            <p className="relative mt-3 text-pretty leading-relaxed text-slate-600 md:mt-4">
               Real lines our voice agents have used in enterprise IT deployments. Every word is generated in real
               time with sub-second latency, real interruptions, and natural emotion.
             </p>
 
             {/* Live multilingual conversation preview */}
-            <div className="relative mt-8 overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
-              <div className="flex items-center justify-between border-b border-slate-100 px-5 py-3">
+            <div className="relative mt-6 overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg md:mt-8">
+              <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2.5 md:px-5 md:py-3">
                 <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                   <span className="size-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden />
                   Live agent preview
@@ -102,7 +102,7 @@ export function EnterpriseItDetails({
                   ))}
                 </div>
               </div>
-              <StaggerGroup className="space-y-3 p-5" stagger={0.18} once={false}>
+              <StaggerGroup className="space-y-2.5 p-4 md:space-y-3 md:p-5" stagger={0.18} once={false}>
                 {conversation.map((line, i) => (
                   <StaggerItem
                     key={i}
@@ -128,12 +128,12 @@ export function EnterpriseItDetails({
               </StaggerGroup>
             </div>
 
-            <StaggerGroup stagger={0.1} once={false} className="relative mt-6 space-y-3">
+            <StaggerGroup stagger={0.1} once={false} className="relative mt-5 space-y-2.5 md:mt-6 md:space-y-3">
               {sampleLines.map((line, i) => {
                 const Icon = SAMPLE_ICONS[i] ?? MessageSquareQuote
                 return (
                   <StaggerItem key={i}>
-                    <div className="group flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white px-5 py-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10 active:-translate-y-1 active:border-blue-300 active:shadow-lg active:shadow-blue-600/10">
+                    <div className="group flex items-start gap-3 rounded-2xl border border-slate-200/70 bg-white px-4 py-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg hover:shadow-blue-600/10 active:-translate-y-1 active:border-blue-300 active:shadow-lg active:shadow-blue-600/10 md:px-5 md:py-4">
                       <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-sky-500 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-active:rotate-12 group-active:scale-110">
                         <Icon className="size-4.5" aria-hidden />
                       </span>

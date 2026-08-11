@@ -279,7 +279,7 @@ function ECommercePage() {
             <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-blue-50/90 via-white to-sky-50/60 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               {/* Shopping bag accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
-                <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-blue-500 to-sky-500 text-white shadow-lg shadow-blue-500/30">
+                <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-blue-400 to-sky-400 text-white shadow-lg shadow-blue-400/25">
                   <ShoppingBag className="size-10" aria-hidden />
                 </div>
               </div>
@@ -312,7 +312,7 @@ function ECommercePage() {
             <div className="relative h-full overflow-hidden rounded-[2rem] bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 p-7 shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] sm:p-9">
               {/* Sound-wave accent */}
               <div className="absolute -right-2 -top-2 opacity-90">
-                <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-sky-500 to-blue-500 text-white shadow-lg shadow-sky-500/30">
+                <div className="grid size-20 place-items-center rounded-3xl bg-gradient-to-br from-sky-400 to-blue-400 text-white shadow-lg shadow-sky-400/25">
                   <Volume2 className="size-9" aria-hidden />
                 </div>
               </div>
@@ -1230,18 +1230,18 @@ function RealEstatePage() {
                 <div className="mt-8 grid grid-cols-2 place-items-center gap-5 py-4">
                   {[
                     { Icon: MessageCircle, tone: "bg-blue-50 text-blue-600", label: "First-touch response", value: "< 3 sec" },
-                    { Icon: Phone, tone: "bg-emerald-50 text-emerald-600", label: "Concurrent calls", value: "Up to 40" },
-                    { Icon: Wallet, tone: "bg-violet-50 text-violet-600", label: "Per-minute rate", value: "From ₹10" },
-                    { Icon: ShieldCheck, tone: "bg-orange-50 text-orange-600", label: "Uptime reliability", value: "99.9%" },
+                    { Icon: Phone, tone: "bg-blue-50 text-blue-600", label: "Concurrent calls", value: "Up to 40" },
+                    { Icon: Wallet, tone: "bg-blue-50 text-blue-600", label: "Per-minute rate", value: "From ₹10" },
+                    { Icon: ShieldCheck, tone: "bg-blue-50 text-blue-600", label: "Uptime reliability", value: "99.9%" },
                   ].map((s, i) => (
                     <ScrollStepItem key={s.label} index={i} className="w-full max-w-[220px]">
                       <div
-                        className={`group w-full rounded-2xl border border-blue-400 p-6 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-blue-600/15 ${s.tone}`}
+                        className={`group w-full rounded-2xl p-6 text-center shadow-[0_15px_35px_-10px_rgba(15,23,42,0.3)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_45px_-12px_rgba(15,23,42,0.4)] ${s.tone}`}
                       >
                         <span className="mx-auto grid size-12 place-items-center rounded-full bg-white/70 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                           <s.Icon className="size-6" aria-hidden />
                         </span>
-                        <p className="mt-4 font-sans text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                        <p className="mt-4 whitespace-nowrap font-sans text-xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                           {s.value}
                         </p>
                         <p className="mt-1 text-[13px] font-medium leading-snug text-slate-500">{s.label}</p>
