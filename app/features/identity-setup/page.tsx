@@ -71,7 +71,7 @@ export default function IdentitySetupPage() {
           <div className="absolute -bottom-24 -right-16 size-[340px] rounded-full bg-primary/[0.05] blur-[120px]" />
         </div>
         <div className="grid w-full items-stretch gap-10 px-6 pb-6 pt-3 md:px-8 md:pb-8 md:pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
-          <div>
+          <div className="min-w-0">
             <ScrollReveal>
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.07] px-4 py-2 text-sm font-semibold uppercase tracking-wider text-primary">
                 <BadgeBars className="text-primary" />
@@ -101,10 +101,11 @@ export default function IdentitySetupPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
+                  className="h-10 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-3 text-xs font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/get-started">
-                    Build your first agent
+                    <span className="sm:hidden">Build agent</span>
+                    <span className="hidden sm:inline">Build your first agent</span>
                     <ArrowRight className="ml-1 size-4" aria-hidden />
                   </Link>
                 </Button>
@@ -112,7 +113,7 @@ export default function IdentitySetupPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
+                  className="h-10 shrink-0 rounded-full border-border bg-white px-3 text-xs font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 size-4" />

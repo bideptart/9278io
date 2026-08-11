@@ -152,10 +152,11 @@ export default function CallTransferToolPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-11 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-4 text-sm font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
+                  className="h-10 shrink-0 rounded-full bg-gradient-to-r from-primary to-[oklch(0.5_0.21_255)] px-3 text-xs font-semibold text-white shadow-[0_8px_28px_oklch(0.546_0.215_262.88/0.45)] transition-all hover:shadow-[0_10px_36px_oklch(0.546_0.215_262.88/0.6)] sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/get-started">
-                    Build your first agent
+                    <span className="sm:hidden">Build agent</span>
+                    <span className="hidden sm:inline">Build your first agent</span>
                     <ArrowRight className="ml-1 size-4" aria-hidden />
                   </Link>
                 </Button>
@@ -163,7 +164,7 @@ export default function CallTransferToolPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-11 shrink-0 rounded-full border-border bg-white px-4 text-sm font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
+                  className="h-10 shrink-0 rounded-full border-border bg-white px-3 text-xs font-semibold text-foreground hover:border-primary/30 hover:bg-slate-50 sm:h-12 sm:px-7 sm:text-base"
                 >
                   <Link href="/contact">
                     <PhoneCall className="mr-2 size-4" />
@@ -189,7 +190,7 @@ export default function CallTransferToolPage() {
             </ScrollReveal>
           </div>
 
-          <ScrollReveal delay={0.08} className="min-w-0">
+          <ScrollReveal delay={0.08}>
             <CallTransferIllustration />
           </ScrollReveal>
         </div>
